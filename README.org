@@ -1,0 +1,91 @@
+#+Title: Stack-Mode for Emacs
+#+Author: Sean Allred
+#+Date: [2014-10-30 Thu]
+
+=stack-mode= hopes to be a fully-featured Stack Exchange mode for
+Emacs 24+ using version 2.2 (and subsequent versions as available) of
+the Stack Exchange API.
+
+This README will eventually hold a high-level feature list and details
+on installation and configuration.
+* Contributing
+Please do, but note that the repository history is likely to be
+rebased on a single commit once v0.1 is reached.  Things at this stage
+are volatile and highly experimental, so the codebase changes quickly
+and sometimes arbitrarily.
+
+The best way to contribute right now is via discussion.  Open an issue
+describing a feature you'd like (That isn't already listed) or a
+package you think would come in handy.
+** Wishlist
+- Proper unit tests :: Nothing too in-depth -- just a start using 'the
+     right way' would be /very/ nice
+- Automatic testing system (usable with Travis CI) :: Along with
+     unit-testing, it would be best to have this done in Travis CI so
+     that pull requests can be examined before merge.
+- OAuth :: Without this, we can't write with the API.  This is
+           obviously something we want to do, but I don't understand
+           even /regular/ OAuth (web server -- web server).  If
+           someone can take care of this, I'd be forever grateful.
+* Planned Features
+** Network Exploration
+#+BEGIN_EXAMPLE
+  Logged in as Sean
+  
+    14 unread inbox items
+     1 unread notification
+  
+  Favorites.............................................................
+    Emacs                                                          emacs
+    TeX, LaTeX, and Friends                                          tex
+    StackOverflow                                          stackoverflow
+    StackApps                                                  stackapps
+    Mathematics                                                     math
+  
+  Other Sites...........................................................
+    <all other sites>
+#+END_EXAMPLE
+** Question Viewing
+It's not terribly clear how this whould be approached, but I have in
+the past assumed using an Org-mode-like buffer (with special bindings)
+that includes the question and all answers and comments.  This is
+likely to evolve as the project better understands what it is.
+
+Whatever the format, the user will be able to archive the question for
+offline reference.
+** Question Browsing
+If point is on a question:
+#+BEGIN_EXAMPLE
+  Full title: AUCTeX, preview-latex, and Ghostscript (Emacs)
+       Asker: vermiculus (572)
+     Answers:  1 (Not Accepted)           Active: [2013-02-27 Wed 15:44]
+        Tags: emacs auctex preview ghostscript
+      Bounty: 50
+#+END_EXAMPLE
+Else:
+#+BEGIN_EXAMPLE
+        Site: TeX, LaTeX, and Friends
+       Users: 400
+  Unanswered: 15 (0.003)
+#+END_EXAMPLE
+The information displays (and its format) will be customizable using
+format strings and special markers.
+** Question Asking
+** Commenting
+With a pop-up buffer similar to =twittering-mode=.
+** Not Planned
+The following features are not currently planned for this mode,
+regardless of API support.  This is mostly because I have no idea what
+I'm doing.
+- chat
+* Resources
+- [[https://api.stackexchange.com/docs][SX.API v2.2]]
+- [[http://stackapps.com/apps/oauth/register][StackApps Registration Page]]
+- [[http://www.emacswiki.org/emacs/ModeTutorial][Creating Major Modes for Emacs]]
+** Icon
+Stack Exchange Mode for Emacs has no explicit use for an icon,
+although standard SVG files have been gathered in =resources/= if
+anyone would fancy a crack at it.
+
+- [[file:resources/emacs.svg][Emacs icon]]
+- [[file:resources/stackexchange.svg][Stack Exchange icon]]
