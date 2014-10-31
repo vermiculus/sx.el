@@ -27,6 +27,8 @@ package you think would come in handy.
            obviously something we want to do, but I don't understand
            even /regular/ OAuth (web server -- web server).  If
            someone can take care of this, I'd be forever grateful.
+- Persistent Data :: It would cut down on requests if StackMode could
+     implement a persistent, expirable cache.
 * Planned Features
 ** Network Exploration
 #+BEGIN_EXAMPLE
