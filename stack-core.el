@@ -182,7 +182,9 @@ entire response as a complex alist."
 		       (point-min) (point-max)
 		       stack-core-unzip-program
 		       nil t)
-		      (json-read-from-string (buffer-string))))
+		      (json-read-from-string
+		       (buffer-substring
+			(point-min) (point-max)))))
 	      ;; If it still fails, error out
 	      (unless response
 		(stack-message "Unable to parse response")
