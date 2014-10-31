@@ -151,9 +151,11 @@ entire response as a complex alist."
 	 (json-read-from-string
 	  (let ((call (stack-core-build-request
 		       method
-		       (cons `(filter . ,stack-core-filter)
+		       (cons `(filter . ,(if (boundp 'stack-core-filter)
+					     stack-core-filter))
 			     (if keyword-arguments keyword-arguments
-			       (stack-core-get-default-keyword-arguments method)))))
+			       (stack-core-get-default-keyword-arguments
+				method)))))
 		(url-automatic-caching stack-core-cache-requests))
 	    ;; TODO: url-retrieve-synchronously can return nil if the call is
 	    ;; unsuccessful should handle this case
