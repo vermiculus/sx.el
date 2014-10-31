@@ -146,7 +146,7 @@ with the given KEYWORD-ARGUMENTS."
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
-  (let ((api-response
+  (let* ((api-response
 	 (let ((call
 		(stack-core-build-request
 		 method
