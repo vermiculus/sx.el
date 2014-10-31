@@ -24,15 +24,21 @@
 
 ;;; Code:
 
-(if (boundp 'production)
-    (require 'stack-core)
-  (setq load-path (cons "." load-path))
-  (load "stack-core.el"))
+(require 'stack-core)
+(require 'stack-filter)
 
-(defun stack-question-parse (data)
-  "Parse and return the questions from DATA as returned by
-`stack-core-make-request'"
-  (cdr (assoc 'items data)))
+(defvar stack-question-browse-filter
+  (stack-filter-compile nil
+   '(user.profile_image shallow_user.profile_image)))
+
+(defun stack-question-get-questions (site &optional page)
+  "Get the page PAGE of questions from SITE."
+  (cdr (assoc 'items
+	      (stack-core-make-request
+	       "questions"
+	       `((site . ,site)
+		 (page . ,page))
+	       stack-question-browse-filter))))
 
 (provide 'stack-question)
 ;;; stack-question.el ends here

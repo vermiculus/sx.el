@@ -1,12 +1,17 @@
 ;;; Tests
 
 (add-to-list 'load-path ".")
+
 (require 'stack-core)
+(require 'stack-question)
 
-(setq *t (stack-core-make-request "questions"))
+(setq
+ stack-tmp (stack-question-get-questions 'emacs)
+ stack-tmp-2 (stack-question-get-questions 'emacs 2))
 
-(prog1 t (prin1 (elt (stack-core-parse-questions *t) 0)
-		#'insert))
+(prog1 nil
+  (stack-message "%S" stack-tmp)
+  (stack-message "%S" stack-tmp-2))
 
 (defun -stack--nuke ()
   (interactive)

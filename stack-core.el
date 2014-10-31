@@ -142,7 +142,7 @@ with the given KEYWORD-ARGUMENTS."
 	base
       (concat base "?" args))))
 
-(defun stack-core-make-request (method &optional keyword-arguments)
+(defun stack-core-make-request (method &optional keyword-arguments filter)
   "Make a request to the StackExchange API using METHOD and
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
@@ -151,8 +151,10 @@ entire response as a complex alist."
 	 (json-read-from-string
 	  (let ((call (stack-core-build-request
 		       method
-		       (cons `(filter . ,(if (boundp 'stack-core-filter)
-					     stack-core-filter))
+		       (cons `(filter . ,(cond
+					  (filter filter)
+					  ((boundp 'stack-filter)
+					   stack-filter)))
 			     (if keyword-arguments keyword-arguments
 			       (stack-core-get-default-keyword-arguments
 				method)))))

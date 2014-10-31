@@ -27,20 +27,13 @@
 
 ;;; Dependencies
 
-(if (boundp 'production)
-    (require 'stack-core)
-  (setq load-path (cons "." load-path))
-  (load "stack-core.el"))
+(require 'stack-core)
 
 
 ;;; Customizations
 
-(defcustom stack-core-filter
-  (stack-core-compile-filter
-   nil					;don't include anything extra
-   '(user.profile_image			;don't include pictures (yet)
-     shallow_user.profile_image)	;
-   'withbody)				;we want the body!
+(defcustom stack-filter
+  'default
   "The current filter.  To customize the filter for the next call
 to `stack-core-make-request', let-bind this variable to the
 output of a call to `stack-core-compile-filter'.  Be careful!  If
@@ -51,7 +44,7 @@ for it.  Creation requests count against
 
 ;;; Filter compilation
 
-(defun stack-core-compile-filter (&optional include exclude base)
+(defun stack-filter-compile (&optional include exclude base)
   "Compile a StackExchange filter including fields from INCLUDE,
 excluding those from EXCLUDE, using BASE as a base filter.
 
