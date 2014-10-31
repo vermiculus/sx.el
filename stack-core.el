@@ -173,11 +173,7 @@ entire response as a complex alist."
 	     stack-core-remaining-api-requests-message-threshold)
       (stack-message "%d API requests remaining"
 		     stack-core-remaining-api-requests))
-    response))
+    (cdr (assoc 'items response))))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
-
-;; Local Variables:
-;; fill-column: 72
-;; End:

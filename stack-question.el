@@ -33,12 +33,11 @@
 
 (defun stack-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
-  (cdr (assoc 'items
-	      (stack-core-make-request
-	       "questions"
-	       `((site . ,site)
-		 (page . ,page))
-	       stack-question-browse-filter))))
+  (stack-core-make-request
+   "questions"
+   `((site . ,site)
+     (page . ,page))
+   stack-question-browse-filter))
 
 (provide 'stack-question)
 ;;; stack-question.el ends here
