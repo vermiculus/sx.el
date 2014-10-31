@@ -3,6 +3,7 @@
 #+Date: [2014-10-30 Thu]
 
 [[https://travis-ci.org/vermiculus/stack-mode][https://travis-ci.org/vermiculus/stack-mode.svg]]
+[[https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 
 =stack-mode= hopes to be a fully-featured Stack Exchange mode for
 Emacs 24+ using version 2.2 (and subsequent versions as available) of
