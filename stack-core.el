@@ -52,13 +52,20 @@
   "The base URL to make requests from.")
 
 (defcustom stack-core-default-keyword-arguments-alist
-  '(("filters/create" . nil)
-    (t . ((site . emacs))))
-  "An alist of keywords to use as the default for a given method.
-This collection is in itself an alist; the key is the method and
-the value is an alist of the default arguments for this method.
-The value for `t' is the default-default... a super-default, if
-you will.
+  '(("filters/create")
+    ("sites")
+    (t (site . emacs)))
+  "Keywords to use as the default for a given method.
+
+The first element of each list is the method call the keywords
+apply to.  The remaining cons cells (and they must be conses) are
+the values for each keyword.
+
+For each list, if no keywords are provided, the method's
+arguments are forced to the default as determined by the API.
+
+For each cons cell, if the cdr is `nil', then the keyword will be
+forced to the default as determined by the API.
 
 See `stack-core-get-default-keyword-arguments' and
 `stack-core-build-keyword-arguments'.
