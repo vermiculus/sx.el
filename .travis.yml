@@ -14,10 +14,10 @@ before_install:
   - curl -fsSkL https://gist.github.com/rejeep/7736123/raw | sh
   - export PATH="/home/travis/.cask/bin:$PATH"
   - export PATH="/home/travis/.evm/bin:$PATH"
+  - cask --version
   - cask info
-  - cask outdated
   - cask install
+  - $EMACS --version
 
 script:
-  - $EMACS --version
   - $EMACS -batch -L . -l ert -l tests.el -f ert-run-tests-batch-and-exit

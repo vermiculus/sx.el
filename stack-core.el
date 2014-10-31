@@ -146,27 +146,34 @@ with the given KEYWORD-ARGUMENTS."
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
-  (let ((response
-	 (json-read-from-string
-	  (let ((call (stack-core-build-request
-		       method
-		       (cons `(filter . ,(cond
-					  (filter filter)
-					  ((boundp 'stack-filter)
-					   stack-filter)))
-			     (if keyword-arguments keyword-arguments
-			       (stack-core-get-default-keyword-arguments
-				method)))))
-		(url-automatic-caching stack-core-cache-requests))
-	    ;; TODO: url-retrieve-synchronously can return nil if the call is
-	    ;; unsuccessful should handle this case
-	    (stack-message "Request: %s" call)
-	    (with-current-buffer (url-retrieve-synchronously call)
-	      (goto-char (point-min))
-	      (if (not (search-forward "\n\n" nil t))
-		  (error "Response corrupted")
-		(delete-region (point-min) (point))
-		(buffer-string)))))))
+  (let ((api-response
+	 (let ((call
+		(stack-core-build-request
+		 method
+		 (cons `(filter . ,(cond
+				    (filter filter)
+				    ((boundp 'stack-filter)
+				     stack-filter)))
+		       (if keyword-arguments keyword-arguments
+			 (stack-core-get-default-keyword-arguments
+			  method)))))
+	       (url-automatic-caching stack-core-cache-requests))
+	   ;; TODO: url-retrieve-synchronously can return nil if the call is
+	   ;; unsuccessful should handle this case
+	   (stack-message "Request: %s" call)
+	   (with-current-buffer (url-retrieve-synchronously call)
+	     (goto-char (point-min))
+	     (if (not (search-forward "\n\n" nil t))
+		 (error "Response corrupted")
+	       (delete-region (point-min) (point))
+	       (buffer-string)))))
+	(response
+	 (with-demoted-errors "JSON Error: %s"
+	   (json-read-from-string api-response))))
+    (unless response
+      (stack-message "Printing response as message")
+      (message response)
+      (error "Response could not be read by json-read-string"))
     (when (assoc 'error_id response)
       (error "Request failed: (%s) [%i %s] %s"
 	     method
