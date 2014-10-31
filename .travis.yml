@@ -5,20 +5,18 @@ env:
   - "EMACS=emacs24"
 
 before_install:
-  - curl -fsSkL https://gist.github.com/rejeep/7736123/raw | sh
-  - export PATH="/home/travis/.cask/bin:$PATH"
-  - export PATH="/home/travis/.evm/bin:$PATH"
-  - cask info
-  - cask outdated
-  - cask install
-
-install:
   - if [ "$EMACS" = "emacs24" ]; then
         sudo add-apt-repository -y ppa:cassou/emacs &&
         sudo apt-get -qq update &&
         sudo apt-get -qq -f install &&
         sudo apt-get -qq install emacs24-nox;
     fi
+  - curl -fsSkL https://gist.github.com/rejeep/7736123/raw | sh
+  - export PATH="/home/travis/.cask/bin:$PATH"
+  - export PATH="/home/travis/.evm/bin:$PATH"
+  - cask info
+  - cask outdated
+  - cask install
 
 script:
   - $EMACS --version
