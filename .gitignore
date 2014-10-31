@@ -4,3 +4,4 @@
 
 # Compiled Elisp
 *.elc
+/.cask/
