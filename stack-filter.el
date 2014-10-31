@@ -32,7 +32,7 @@
 
 ;;; Customizations
 
-(defcustom stack-filter
+(defvar stack-filter
   'default
   "The current filter.  To customize the filter for the next call
 to `stack-core-make-request', let-bind this variable to the
@@ -58,9 +58,12 @@ or string."
 				    #'stack-core-thing-as-string
 				    exclude ";")))
 	   (base    . ,(if base base)))))
-    (let ((response (stack-core-make-request "filter/create" keyword-arguments)))
+    (let ((response (stack-core-make-request
+		     "filter/create"
+		     keyword-arguments)))
       (url-hexify-string
-       (cdr (assoc 'filter (elt (cdr (assoc 'items response)) 0)))))))
+       (cdr (assoc 'filter
+		   (elt response 0)))))))
 
 (provide 'stack-filter)
 ;;; stack-filter.el ends here
