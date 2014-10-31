@@ -6,6 +6,7 @@
 	 (unintern symbol)))))
 
 ;;; Tests
+(setq debug-on-error t)
 
 (require 'stack-core)
 (require 'stack-question)
