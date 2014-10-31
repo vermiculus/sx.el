@@ -38,6 +38,7 @@
 ;;; Package Logging
 
 (defun stack-message (format-string &rest args)
+  "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
 
 
@@ -54,7 +55,8 @@
 (defcustom stack-core-default-keyword-arguments-alist
   '(("filters/create")
     ("sites")
-    (t (site . emacs)))
+    ("questions" (site . emacs))
+    (t nil))
   "Keywords to use as the default for a given method.
 
 The first element of each list is the method call the keywords
@@ -164,12 +166,12 @@ entire response as a complex alist."
 	   (with-current-buffer (url-retrieve-synchronously call)
 	     (goto-char (point-min))
 	     (if (not (search-forward "\n\n" nil t))
-		 (error "Response corrupted")
+		 (error "Response headers missing")
 	       (delete-region (point-min) (point))
 	       (buffer-string)))))
-	(response
-	 (with-demoted-errors "JSON Error: %s"
-	   (json-read-from-string api-response))))
+	 (response
+	  (with-demoted-errors "JSON Error: %s"
+	    (json-read-from-string api-response))))
     (unless response
       (stack-message "Printing response as message")
       (message response)
@@ -180,9 +182,8 @@ entire response as a complex alist."
 	     (cdr (assoc 'error_id response))
 	     (cdr (assoc 'error_name response))
 	     (cdr (assoc 'error_message response))))
-    (setq stack-core-remaining-api-requests
-	  (cdr (assoc 'quota_remaining response)))
-    (when (< stack-core-remaining-api-requests
+    (when (< (setq stack-core-remaining-api-requests
+		   (cdr (assoc 'quota_remaining response)))
 	     stack-core-remaining-api-requests-message-threshold)
       (stack-message "%d API requests remaining"
 		     stack-core-remaining-api-requests))
