@@ -7,10 +7,10 @@
 
 ;;; Tests
 
-(add-to-list 'load-path ".")
-
 (require 'stack-core)
 (require 'stack-question)
+
+(setq stack-core-remaining-api-requests-message-threshold 50000)
 
 (ert-deftest test-question-retrieve ()
   (should (stack-question-get-questions 'emacs)))

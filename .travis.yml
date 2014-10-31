@@ -12,4 +12,4 @@ install:
         sudo apt-get -qq install emacs24-nox;
     fi
 
-script: emacs -batch -l ert -l tests.el -f ert-run-tests-batch-and-exit
+script: $EMACS -batch -L . -l ert -l tests.el -f ert-run-tests-batch-and-exit
