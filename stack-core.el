@@ -143,51 +143,66 @@ with the given KEYWORD-ARGUMENTS."
 	base
       (concat base "?" args))))
 
-(defun stack-core-make-request (method &optional keyword-arguments filter)
+(defun stack-core-make-request
+    (method &optional keyword-arguments filter silent)
   "Make a request to the StackExchange API using METHOD and
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
-  (let* ((api-response
-	 (let ((call
-		(stack-core-build-request
-		 method
-		 (cons `(filter . ,(cond
-				    (filter filter)
-				    ((boundp 'stack-filter)
-				     stack-filter)))
-		       (if keyword-arguments keyword-arguments
-			 (stack-core-get-default-keyword-arguments
-			  method)))))
-	       (url-automatic-caching stack-core-cache-requests))
-	   ;; TODO: url-retrieve-synchronously can return nil if the call is
-	   ;; unsuccessful should handle this case
-	   (stack-message "Request: %s" call)
-	   (with-current-buffer (url-retrieve-synchronously call)
-	     (goto-char (point-min))
-	     (if (not (search-forward "\n\n" nil t))
-		 (error "Response headers missing")
-	       (delete-region (point-min) (point))
-	       (buffer-string)))))
-	 (response
-	  (with-demoted-errors "JSON Error: %s"
-	    (json-read-from-string api-response))))
-    (unless response
-      (stack-message "Printing response as message")
-      (message response)
-      (error "Response could not be read by json-read-string"))
-    (when (assoc 'error_id response)
-      (error "Request failed: (%s) [%i %s] %s"
-	     method
-	     (cdr (assoc 'error_id response))
-	     (cdr (assoc 'error_name response))
-	     (cdr (assoc 'error_message response))))
-    (when (< (setq stack-core-remaining-api-requests
-		   (cdr (assoc 'quota_remaining response)))
-	     stack-core-remaining-api-requests-message-threshold)
-      (stack-message "%d API requests remaining"
-		     stack-core-remaining-api-requests))
-    (cdr (assoc 'items response))))
+  (let ((url-automatic-caching stack-core-cache-requests)
+	(call
+	 (stack-core-build-request
+	  method
+	  (cons `(filter . ,(cond (filter filter)
+				  ((boundp 'stack-filter) stack-filter)))
+		(if keyword-arguments keyword-arguments
+		  (stack-core-get-default-keyword-arguments method))))))
+    ;; TODO: url-retrieve-synchronously can return nil if the call is
+    ;; unsuccessful should handle this case
+    (unless silent (stack-message "Request: %S" call))
+    (let ((response-buffer (url-retrieve-synchronously
+			    call silent)))
+      (if (not response-buffer)
+	  (error "Something went wrong in `url-retrieve-synchronously'")
+	(with-current-buffer response-buffer
+	  (let* ((data (progn
+			 (goto-char (point-min))
+			 (if (not (search-forward "\n\n" nil t))
+			     (error "Response headers missing")
+			   (delete-region (point-min) (point))
+			   (buffer-string))))
+		 (response (ignore-errors
+			     (json-read-from-string data))))
+	    ;; if response isn't nil, the response was in plain text
+	    (unless response
+	      ;; try to decompress the response
+	      (setq response
+		    (with-demoted-errors "JSON Error: %s"
+		      (shell-command-on-region
+		       (point-min) (point-max)
+		       stack-core-unzip-program
+		       nil t)
+		      (json-read-from-string (buffer-string))))
+	      ;; If it still fails, error out
+	      (unless response
+		(stack-message "Unable to parse response")
+		(stack-message "Printing response as message")
+		(message "%S" response)
+		(error "Response could not be read by json-read-string")))
+	    ;; At this point, either response is a valid data structure
+	    ;; or we have already thrown an error
+	    (when (assoc 'error_id response)
+	      (error "Request failed: (%s) [%i %s] %s"
+		     method
+		     (cdr (assoc 'error_id response))
+		     (cdr (assoc 'error_name response))
+		     (cdr (assoc 'error_message response))))
+	    (when (< (setq stack-core-remaining-api-requests
+			   (cdr (assoc 'quota_remaining response)))
+		     stack-core-remaining-api-requests-message-threshold)
+	      (stack-message "%d API requests remaining"
+			     stack-core-remaining-api-requests))
+	    (cdr (assoc 'items response))))))))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
