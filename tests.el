@@ -1,3 +1,10 @@
+(defun -stack--nuke ()
+  (interactive)
+  (mapatoms
+   (lambda (symbol)
+     (if (string-prefix-p "stack-" (symbol-name symbol))
+	 (unintern symbol)))))
+
 ;;; Tests
 
 (add-to-list 'load-path ".")
@@ -5,17 +12,9 @@
 (require 'stack-core)
 (require 'stack-question)
 
-(setq
- stack-tmp (stack-question-get-questions 'emacs)
- stack-tmp-2 (stack-question-get-questions 'emacs 2))
+(ert-deftest test-question-retrieve ()
+  (should (stack-question-get-questions 'emacs)))
 
-(prog1 nil
-  (stack-message "%S" stack-tmp)
-  (stack-message "%S" stack-tmp-2))
-
-(defun -stack--nuke ()
-  (interactive)
-  (mapatoms
-   (lambda (symbol)
-     (if (string-prefix-p "stack-" (symbol-name symbol))
-	 (unintern symbol)))))
+(ert-deftest test-bad-request ()
+  (should-error
+   (stack-core-make-request "questions" '(()))))

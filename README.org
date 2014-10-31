@@ -18,8 +18,6 @@ The best way to contribute right now is via discussion.  Open an issue
 describing a feature you'd like (That isn't already listed) or a
 package you think would come in handy.
 ** Wishlist
-- Proper unit tests :: Nothing too in-depth -- just a start using 'the
-     right way' would be /very/ nice
 - Automatic testing system (usable with Travis CI) :: Along with
      unit-testing, it would be best to have this done in Travis CI so
      that pull requests can be examined before merge.
