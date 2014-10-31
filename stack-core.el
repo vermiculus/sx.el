@@ -96,16 +96,8 @@ a string, just return it."
 
 (defun stack-core-get-default-keyword-arguments (method)
   "Gets the correct keyword arguments for METHOD."
-  (let ((entry
-	 (car
-	  (delq
-	   nil
-	   (mapcar (lambda (pair)
-		     (if (equal method (car pair))
-			 (cdr pair)))
-		   stack-core-default-keyword-arguments-alist)))))
-    (if entry entry
-      (cdr (assoc t stack-core-default-keyword-arguments-alist)))))
+  (let ((entry (assoc method stack-core-default-keyword-arguments-alist)))
+    (cdr (or entry (assoc t stack-core-default-keyword-arguments-alist)))))
 
 ;;; @todo stack-core-change-default-keyword-arguments
 ;;;       (method new-keyword-arguments)
