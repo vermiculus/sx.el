@@ -167,6 +167,12 @@ entire response as a complex alist."
 		  (error "Response corrupted")
 		(delete-region (point-min) (point))
 		(buffer-string)))))))
+    (when (assoc 'error_id response)
+      (error "Request failed: (%s) [%i %s] %s"
+	     method
+	     (cdr (assoc 'error_id response))
+	     (cdr (assoc 'error_name response))
+	     (cdr (assoc 'error_message response))))
     (setq stack-core-remaining-api-requests
 	  (cdr (assoc 'quota_remaining response)))
     (when (< stack-core-remaining-api-requests
