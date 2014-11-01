@@ -7,13 +7,11 @@
 
 ;;; Tests
 
-(setq stack-core-remaining-api-requests-message-threshold 1000000000)
+(setq stack-core-remaining-api-requests-message-threshold 50000)
 (setq debug-on-error t)
 
 (require 'stack-core)
 (require 'stack-question)
-
-(setq stack-core-remaining-api-requests-message-threshold 50000)
 
 (ert-deftest test-basic-request ()
     "Test basic request functionality"
