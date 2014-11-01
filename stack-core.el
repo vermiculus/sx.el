@@ -164,8 +164,7 @@ entire response as a complex alist."
     (let ((response-buffer (cond
 			    ((= emacs-minor-version 4)
 			     (url-retrieve-synchronously call silent))
-			    ((= emacs-minor-version 3)
-			     (url-retrieve-synchronously call)))))
+			    (t (url-retrieve-synchronously call)))))
       (if (not response-buffer)
 	  (error "Something went wrong in `url-retrieve-synchronously'")
 	(with-current-buffer response-buffer
