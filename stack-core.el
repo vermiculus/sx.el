@@ -209,5 +209,14 @@ entire response as a complex alist."
 			     stack-core-remaining-api-requests))
 	    (cdr (assoc 'items response))))))))
 
+(defun stack-core-filter-data (data desired-tree)
+  "Filters DATA and returns the DESIRED-TREE"
+  (delq
+   nil
+   (mapcar (lambda (cons-cell)
+	     (when (member (car cons-cell) desired-tree)
+	       cons-cell))
+	   data)))
+
 (provide 'stack-core)
 ;;; stack-core.el ends here
