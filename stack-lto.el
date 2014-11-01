@@ -49,25 +49,30 @@ by the API and read by `json-read'."
   `(headline (:title "Answer" :level 2)
              ,@(stack-lto--question-answer data)))
 
-(defvar stack-lto-body-src-block 
-  '(:language "markdown" :switches nil :parameters nil :hiddenp nil) 
+(defvar stack-lto-body-src-block
+  '(:language "markdown" :switches nil :parameters nil :hiddenp nil)
   "Properties used on the src-block which represents the body.")
 
 (defun stack-lto--question-answer (data)
   "Process and return the elements of DATA which questions and answers have in common."
-  `((property-drawer nil ,(stack-lto--properties data))
-    (src-block (:value ,(stack-lto--body data) 
-                       . ,stack-lto-body-src-block))))
+  (let ((comments
+         (mapcar #'stack-lto--comment (cdr (assoc 'comments data)))))
+    `(;; Body as a src block (really NOT nice).
+      (src-block (:value ,(stack-lto--body data)
+                         . ,stack-lto-body-src-block))
+      ;; Comments as descriptive lists. If there are no comments, an
+      ;; empty list would throw an error.
+      ,@(when comments `((plain-list (:type descriptive) ,comments))))))
 
 (defun stack-lto--body (data)
   "Get and cleanup `body_markdown' from DATA."
-  (concat 
+  (concat
    (replace-regexp-in-string
     "\r\n" "\n" (cdr (assoc 'body_markdown data)))
    "\n"))
 
 (defvar stack-lto-comment-item
-  '(:bullet "- " :checkbox nil :counter nil :hiddenp nil) 
+  '(:bullet "- " :checkbox nil :counter nil :hiddenp nil)
   "Properties used on the items which represent comments.")
 
 (defun stack-lto--comment (data)
@@ -76,10 +81,6 @@ by the API and read by `json-read'."
          (owner-name (cdr (assoc 'display_name owner))))
     `(item (:tag ,owner-name . ,stack-lto-comment-item)
            (paragraph () ,(cdr (assoc 'body_markdown data))))))
-
-(defun stack-lto--properties (data)
-  ""
-  nil)
 
 (provide 'stack-lto)
 ;;; stack-core.el ends here
