@@ -92,6 +92,10 @@ recent call.  Set by `stack-core-make-request'.")
 number, `stack-core-make-request' will begin printing out the
 number of requests left every time it finishes a call.")
 
+(defcustom stack-core-silent-requests
+  t
+  "When `t', requests default to being silent.")
+
 
 ;;; Keyword Arguments
 
@@ -151,6 +155,7 @@ optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 entire response as a complex alist."
   (let ((url-automatic-caching stack-core-cache-requests)
 	(url-inhibit-uncompression t)
+	(silent (or silent stack-core-silent-requests))
 	(call
 	 (stack-core-build-request
 	  method
