@@ -2,7 +2,7 @@
 #+Author: Sean Allred
 #+Date: [2014-10-30 Thu]
 
-[[https://travis-ci.org/vermiculus/stack-mode][https://travis-ci.org/vermiculus/stack-mode.svg]]
+[[https://travis-ci.org/vermiculus/stack-mode][https://travis-ci.org/vermiculus/stack-mode.svg?branch=master]]
 [[https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 
 =stack-mode= hopes to be a fully-featured Stack Exchange mode for
