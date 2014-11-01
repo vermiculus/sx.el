@@ -5,7 +5,7 @@
      (if (string-prefix-p "stack-" (symbol-name symbol))
 	 (unintern symbol)))))
 
-(defmacro stack-test-sample-data (method &optional directory)
+(defun stack-test-sample-data (method &optional directory)
   (with-current-buffer
       (find-file-noselect
        (concat "data-samples/"
