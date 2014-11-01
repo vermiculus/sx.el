@@ -21,7 +21,7 @@ before_install:
   - cask --version
 
 script:
-  - emacs -batch -L . -l ert -l tests.el -f ert-run-tests-batch-and-exit
+  - emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
   
 notifications:
   webhooks:
