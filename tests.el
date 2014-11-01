@@ -25,3 +25,17 @@
   "Test a method given a bad set of keywords"
   (should-error
    (stack-core-make-request "questions" '(()))))
+
+(ert-deftest test-data-filter-1 ()
+  "Test the meta-convenience function"
+  (should
+   (equal
+    '((1 . t) (2 . [1 2]) (3))
+    (stack-core-filter-data '((0 . 3)
+			      (1 . t)
+			      (a . five)
+			      (2 . [1 2])
+			      ("5" . bop)
+			      (3)
+			      (p . 4))
+			    '(1 2 3)))))
