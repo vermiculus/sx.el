@@ -222,7 +222,6 @@ entire response as a complex alist."
 		       (stack-core-filter-data
 			entry desired-tree))
 		     data))
-    (mapcar #'identity '(1 2 3))
     (delq
      nil
      (mapcar (lambda (cons-cell)
