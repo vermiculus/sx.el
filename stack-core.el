@@ -150,6 +150,7 @@ optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
   (let ((url-automatic-caching stack-core-cache-requests)
+	(url-inhibit-uncompression t)
 	(call
 	 (stack-core-build-request
 	  method
@@ -160,8 +161,11 @@ entire response as a complex alist."
     ;; TODO: url-retrieve-synchronously can return nil if the call is
     ;; unsuccessful should handle this case
     (unless silent (stack-message "Request: %S" call))
-    (let ((response-buffer (url-retrieve-synchronously
-			    call silent)))
+    (let ((response-buffer (cond
+			    ((= emacs-minor-version 4)
+			     (url-retrieve-synchronously call silent))
+			    ((= emacs-minor-version 3)
+			     (url-retrieve-synchronously call)))))
       (if (not response-buffer)
 	  (error "Something went wrong in `url-retrieve-synchronously'")
 	(with-current-buffer response-buffer
