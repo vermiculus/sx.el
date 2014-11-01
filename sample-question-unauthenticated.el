@@ -26,8 +26,16 @@ Doesn't seem like markdown gets fontified. Which is disapointing. :-("
      (insert 
       (org-element-interpret-data
        (stack-lto--question x))))
-   (cdr (assoc 'items sample-frontpage)))
-  (org-global-cycle 1))
+   (nthcdr 25 (mapcar #'identity (cdr (assoc 'items sample-frontpage)))))
+  (org-global-cycle 1)
+  (stack-navigation-mode))
+
+(defun sample-frontpage-html ()
+  "Renders the question list usiong markdown for the content.
+Doesn't seem like markdown gets fontified. Which is disapointing. :-("
+  (interactive)
+  (let ((stack-lto-body-src-block nil))
+    (sample-frontpage-markdown)))
 
 (provide 'sample-question-unauthenticated)
 
