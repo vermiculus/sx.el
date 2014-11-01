@@ -220,8 +220,11 @@ entire response as a complex alist."
      nil
      (mapcar (lambda (cons-cell)
 	       (when (member (car cons-cell) desired-tree)
-		 (if (sequencep (cdr cons-cell))
-		     (stack-core-filter-data ))
+		 (if (and (sequencep (cdr cons-cell))
+			  (sequencep (elt (cdr cons-cell) 0)))
+		     (stack-core-filter-data
+		      (cdr cons-cell)
+		      (cdr (assoc (car cons-cell) desired-tree))))
 		 cons-cell))
 	     data))))
 
