@@ -67,4 +67,10 @@
 
 (ert-deftest test-data-filter-3 ()
   "Test the meta-convenience function -- vector structure"
-  (equal))
+  (equal
+   '(((1 . 2) (2 . 3) (3 . 4)) ((1 . a) (2 . b) (3 . c)) nil ((1 . alpha) (2 . beta)))
+   (stack-core-filter-data [((1 . 2) (2 . 3) (3 . 4))
+			    ((1 . a) (2 . b) (3 . c) (5 . seven))
+			    ((should-not-go))
+			    ((1 . alpha) (2 . beta))]
+			   '(1 2 3))))
