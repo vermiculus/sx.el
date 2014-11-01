@@ -5,6 +5,19 @@
      (if (string-prefix-p "stack-" (symbol-name symbol))
 	 (unintern symbol)))))
 
+(defmacro stack-test-sample-data (method &optional directory)
+  (with-current-buffer
+      (find-file-noselect
+       (concat "data-samples/"
+	       (when directory (concat directory "/"))
+	       method ".el"))
+    (eval (read (buffer-string)))))
+
+(setq stack-test-data-questions
+      (stack-test-sample-data "questions")
+      stack-test-data-sites
+      (stack-test-sample-data "sites"))
+
 ;;; Tests
 
 (setq stack-core-remaining-api-requests-message-threshold 50000)
@@ -44,12 +57,14 @@
   "Test the meta-convenience function -- complex structure"
   (should
    (equal
-    '([()])
-    (stack-core-filter-data '((0 . 3)
-			      (1 . t)
-			      (a . five)
-			      (2 . [1 2])
-			      ("5" . bop)
-			      (3)
-			      (p . 4))
-			    '(1 2 3)))))
+    '((1 . [a b c]) (2 . [(a . 1)]) (3 . peach))
+    (stack-core-filter-data '((1 . [a b c])
+			      (2 . [(a . 1)
+				    (b . 2)])
+			      (3 . peach)
+			      (4 . banana))
+			    '(1 (2 a) 3)))))
+
+(ert-deftest test-data-filter-3 ()
+  "Test the meta-convenience function -- vector structure"
+  (equal))

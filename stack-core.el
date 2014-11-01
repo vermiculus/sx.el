@@ -211,12 +211,19 @@ entire response as a complex alist."
 
 (defun stack-core-filter-data (data desired-tree)
   "Filters DATA and returns the DESIRED-TREE"
-  (delq
-   nil
-   (mapcar (lambda (cons-cell)
-	     (when (member (car cons-cell) desired-tree)
-	       cons-cell))
-	   data)))
+  (if (vectorp data)
+      (mapcar (lambda (entry)
+		(stack-core-filter-data
+		 entry desired-tree))
+	      data)
+    (delq
+     nil
+     (mapcar (lambda (cons-cell)
+	       (when (member (car cons-cell) desired-tree)
+		 (if (sequencep (cdr cons-cell))
+		     (stack-core-filter-data ))
+		 cons-cell))
+	     data))))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
