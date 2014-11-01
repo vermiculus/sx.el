@@ -251,7 +251,5 @@ in a (deep structure))), `(item here)' would be returned.
 	  (car tree)
 	(stack-core-filter-data--item-in-tree item (cdr tree))))))
 
-(stack-core-filter-data--item-in-tree 'a '(b (a 1 b c) c))
-
 (provide 'stack-core)
 ;;; stack-core.el ends here
