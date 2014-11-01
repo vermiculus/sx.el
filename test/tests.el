@@ -11,7 +11,9 @@
        (concat "data-samples/"
 	       (when directory (concat directory "/"))
 	       method ".el"))
-    (eval (read (buffer-string)))))
+    (eval (read (if (string-equal "" (buffer-string))
+		    "'no-value"
+		  (buffer-string))))))
 
 (setq stack-test-data-questions
       (stack-test-sample-data "questions")
