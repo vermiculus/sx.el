@@ -212,21 +212,41 @@ entire response as a complex alist."
 (defun stack-core-filter-data (data desired-tree)
   "Filters DATA and returns the DESIRED-TREE"
   (if (vectorp data)
-      (mapcar (lambda (entry)
-		(stack-core-filter-data
-		 entry desired-tree))
-	      data)
+      (apply #'vector 
+	     (mapcar (lambda (entry)
+		       (stack-core-filter-data
+			entry desired-tree))
+		     data))
+    (mapcar #'identity '(1 2 3))
     (delq
      nil
      (mapcar (lambda (cons-cell)
-	       (when (member (car cons-cell) desired-tree)
-		 (if (and (sequencep (cdr cons-cell))
-			  (sequencep (elt (cdr cons-cell) 0)))
-		     (stack-core-filter-data
-		      (cdr cons-cell)
-		      (cdr (assoc (car cons-cell) desired-tree))))
-		 cons-cell))
+	       (let ((f (stack-core-filter-data--item-in-tree
+			 (car cons-cell) desired-tree)))
+		 (when f
+		   (if (and (sequencep (cdr cons-cell))
+			    (sequencep (elt (cdr cons-cell) 0)))
+		       (cons (car cons-cell)
+			     (stack-core-filter-data
+		     	      (cdr cons-cell) (cdr f)))
+		     cons-cell))))
 	     data))))
+
+(defun stack-core-filter-data--item-in-tree (item tree)
+  "Check if ITEM is in the direct leaves of TREE
+
+For example, when called with (f 'item '(some item here)), the
+return would be `t'.  When called as (f 'item '(some (item here)
+in a (deep structure))), `(item here)' would be returned.
+"
+  (when tree
+    (if (equal item (car tree)) tree
+      (if (and (listp (car tree))
+	       (equal item (caar tree)))
+	  (car tree)
+	(stack-core-filter-data--item-in-tree item (cdr tree))))))
+
+(stack-core-filter-data--item-in-tree 'a '(b (a 1 b c) c))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here

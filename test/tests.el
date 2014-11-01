@@ -41,8 +41,9 @@
   (should-error
    (stack-core-make-request "questions" '(()))))
 
-(ert-deftest test-data-filter-1 ()
-  "Test the meta-convenience function -- flat structure"
+(ert-deftest test-tree-filter ()
+  "`stack-core-filter-data'"
+  ;; flat
   (should
    (equal
     '((1 . t) (2 . [1 2]) (3))
@@ -53,28 +54,62 @@
 			      ("5" . bop)
 			      (3)
 			      (p . 4))
-			    '(1 2 3)))))
-
-(ert-deftest test-data-filter-2 ()
-  "Test the meta-convenience function -- complex structure"
+			    '(1 2 3))))
+  ;; complex
   (should
    (equal
-    '((1 . [a b c]) (2 . [(a . 1)]) (3 . peach))
+    '((1 . [a b c]) (2 . [((a . 1) (c . 3)) ((a . 4) (c . 6))]) (3 . peach))
     (stack-core-filter-data '((1 . [a b c])
-			      (2 . [(a . 1)
-				    (b . 2)])
+			      (2 . [((a . 1)
+				     (b . 2)
+				     (c . 3))
+				    ((a . 4)
+				     (b . 5)
+				     (c . 6))])
 			      (3 . peach)
 			      (4 . banana))
-			    '(1 (2 a) 3)))))
+			    '(1 (2 a c) 3))))
 
-(ert-deftest test-data-filter-3 ()
-  "Test the meta-convenience function -- vector structure"
-  (equal
-   '(((1 . 2) (2 . 3) (3 . 4))
+  ;; vector
+  (should
+   (equal
+    [((1 . 2) (2 . 3) (3 . 4))
      ((1 . a) (2 . b) (3 . c))
-     nil ((1 . alpha) (2 . beta)))
-   (stack-core-filter-data [((1 . 2) (2 . 3) (3 . 4))
-			    ((1 . a) (2 . b) (3 . c) (5 . seven))
-			    ((should-not-go))
-			    ((1 . alpha) (2 . beta))]
-			   '(1 2 3))))
+     nil ((1 . alpha) (2 . beta))]
+    (stack-core-filter-data [((1 . 2) (2 . 3) (3 . 4))
+			     ((1 . a) (2 . b) (3 . c) (5 . seven))
+			     ((should-not-go))
+			     ((1 . alpha) (2 . beta))]
+			    '(1 2 3)))))
+
+(ert-deftest test-tree-member ()
+  "`stack-core-filter-data--item-in-tree'"
+  (should
+   (equal
+    '(a b c)
+    (stack-core-filter-data--item-in-tree 'a '(a b c))))
+
+  (should
+   (equal
+    '(a b c)
+    (stack-core-filter-data--item-in-tree 'a '(b a b c))))
+
+  (should
+   (equal
+    '(a b c)
+    (stack-core-filter-data--item-in-tree 'a '((a b c) 1 2))))
+
+  (should
+   (equal
+    '(a b c)
+    (stack-core-filter-data--item-in-tree 'a '(1 (a b c) 2))))
+
+  (should
+   (equal
+    '(a b c)
+    (stack-core-filter-data--item-in-tree 'a '(1 2 (a b c)))))
+
+  (should
+   (equal
+    '(a a b c)
+    (stack-core-filter-data--item-in-tree 'a '(1 (a a b c) 2)))))
