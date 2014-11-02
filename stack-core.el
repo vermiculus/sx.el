@@ -245,5 +245,14 @@ entire response as a complex alist."
 		     cons-cell))))
 	     data))))
 
+(defun stack-cache-get-file (filename)
+  "Return a buffer for FILENAME from `stack-cache-directory'."
+  (let ((find-file-hook nil)
+        (file (expand-file-name filename stack-cache-directory)))
+    (unless (file-exists-p stack-cache-directory)
+      (mkdir stack-cache-directory))
+    (unless (file-exists-p file)
+      (find-file-noselect file))))
+
 (provide 'stack-core)
 ;;; stack-core.el ends here
