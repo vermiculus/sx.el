@@ -22,8 +22,10 @@
 
 ;;; Tests
 
-(setq stack-core-remaining-api-requests-message-threshold 50000)
-(setq debug-on-error t)
+(setq
+ stack-core-remaining-api-requests-message-threshold 50000
+ debug-on-error t
+ stack-core-silent-requests nil)
 
 (require 'stack-core)
 (require 'stack-question)
