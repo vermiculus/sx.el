@@ -6,3 +6,5 @@
 *.elc
 /.cask/
 .dir-locals.el
+/.stackmode/
+/url/

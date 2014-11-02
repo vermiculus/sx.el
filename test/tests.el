@@ -5,6 +5,8 @@
      (if (string-prefix-p "stack-" (symbol-name symbol))
          (unintern symbol)))))
 
+;;; Tests
+
 (defun stack-test-sample-data (method &optional directory)
   (with-current-buffer
       (find-file-noselect
@@ -15,17 +17,16 @@
                     "'no-value"
                   (buffer-string))))))
 
-(setq stack-test-data-questions
-      (stack-test-sample-data "questions")
-      stack-test-data-sites
-      (stack-test-sample-data "sites"))
-
-;;; Tests
-
 (setq
  stack-core-remaining-api-requests-message-threshold 50000
  debug-on-error t
- stack-core-silent-requests nil)
+ stack-core-silent-requests nil
+ user-emacs-directory "."
+
+ stack-test-data-questions
+ (stack-test-sample-data "questions")
+ stack-test-data-sites
+ (stack-test-sample-data "sites"))
 
 (require 'stack-core)
 (require 'stack-question)
