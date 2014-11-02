@@ -245,10 +245,14 @@ entire response as a complex alist."
 		     cons-cell))))
 	     data))))
 
+(defun stack-cache-get-file-name (filename)
+  "Expands FILENAME in the context of `stack-cache-directory'."
+  (expand-file-name filename stack-cache-directory))
+
 (defun stack-cache-get-file (filename)
   "Return a buffer for FILENAME from `stack-cache-directory'."
   (let ((find-file-hook nil)
-        (file (expand-file-name filename stack-cache-directory)))
+        (file (stack-cache-get-file-name filename)))
     (unless (file-exists-p stack-cache-directory)
       (mkdir stack-cache-directory))
     (unless (file-exists-p file)
