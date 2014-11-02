@@ -80,7 +80,7 @@
                             '(1 2 3)))))
 
 (ert-deftest test-filters ()
-  (let ((stack-filter-cache-file (make-temp-file "stack-test-")))
+  (let ((stack-cache-directory (make-temp-file "stack-test" t)))
     (should-error (stack-filter-store "names must be symbols"
                                       "this is a filter"))
     ;; basic use
