@@ -28,8 +28,11 @@
 (require 'stack-filter)
 
 (defvar stack-question-browse-filter
-  (stack-filter-compile nil
+  (stack-filter-compile
+   nil
    '(user.profile_image shallow_user.profile_image)))
+
+(stack-filter-store 'question-browse stack-question-browse-filter)
 
 (defun stack-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
