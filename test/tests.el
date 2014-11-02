@@ -5,25 +5,27 @@
      (if (string-prefix-p "stack-" (symbol-name symbol))
          (unintern symbol)))))
 
-(defun stack-test-sample-data (method &optional directory)
-  (with-current-buffer
-      (find-file-noselect
-       (concat "data-samples/"
-               (when directory (concat directory "/"))
-               method ".el"))
-    (eval (read (if (string-equal "" (buffer-string))
-                    "'no-value"
-                  (buffer-string))))))
-
-(setq stack-test-data-questions
-      (stack-test-sample-data "questions")
-      stack-test-data-sites
-      (stack-test-sample-data "sites"))
-
 ;;; Tests
 
-(setq stack-core-remaining-api-requests-message-threshold 50000)
-(setq debug-on-error t)
+(defun stack-test-sample-data (method &optional directory)
+  (let ((file (concat "data-samples/"
+                      (when directory (concat directory "/"))
+                      method ".el")))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (read (buffer-string))))))
+
+(setq
+ stack-core-remaining-api-requests-message-threshold 50000
+ debug-on-error t
+ stack-core-silent-requests nil
+ user-emacs-directory "."
+
+ stack-test-data-questions
+ (stack-test-sample-data "questions")
+ stack-test-data-sites
+ (stack-test-sample-data "sites"))
 
 (require 'stack-core)
 (require 'stack-question)
@@ -75,3 +77,21 @@
                              ((should-not-go))
                              ((1 . alpha) (2 . beta))]
                             '(1 2 3)))))
+
+(ert-deftest test-filters ()
+  (let ((stack-cache-directory (make-temp-file "stack-test" t)))
+    (should-error (stack-filter-store "names must be symbols"
+                                      "this is a filter"))
+    ;; basic use
+    (should (equal '((test . "filter"))
+                   (stack-filter-store 'test "filter")))
+    ;; aggregation
+    (should (equal '((test2 . "filter2") (test . "filter"))
+                   (stack-filter-store 'test2 "filter2")))
+    ;; mutation
+    (should (equal '((test2 . "filter2") (test . "filter-test"))
+                   (stack-filter-store 'test "filter-test")))
+    ;; clean up (note: the file should exist)
+    (delete-file
+     (stack-cache-get-file-name
+      stack-filter-cache-file))))
