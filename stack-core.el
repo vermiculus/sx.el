@@ -92,6 +92,10 @@ recent call.  Set by `stack-core-make-request'.")
 number, `stack-core-make-request' will begin printing out the
 number of requests left every time it finishes a call.")
 
+(defcustom stack-core-silent-requests
+  t
+  "When `t', requests default to being silent.")
+
 
 ;;; Keyword Arguments
 
@@ -151,6 +155,7 @@ optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 entire response as a complex alist."
   (let ((url-automatic-caching stack-core-cache-requests)
 	(url-inhibit-uncompression t)
+	(silent (or silent stack-core-silent-requests))
 	(call
 	 (stack-core-build-request
 	  method
@@ -208,6 +213,33 @@ entire response as a complex alist."
 	      (stack-message "%d API requests remaining"
 			     stack-core-remaining-api-requests))
 	    (cdr (assoc 'items response))))))))
+
+(defun stack-core-filter-data (data desired-tree)
+  "Filters DATA and returns the DESIRED-TREE"
+  (if (vectorp data)
+      (apply #'vector 
+	     (mapcar (lambda (entry)
+		       (stack-core-filter-data
+			entry desired-tree))
+		     data))
+    (delq
+     nil
+     (mapcar (lambda (cons-cell)
+	       ;; TODO the resolution of `f' is O(2n) in the worst
+	       ;; case.  It may be faster to implement the same
+	       ;; functionality as a `while' loop to stop looking the
+	       ;; list once it has found a match.  Do speed tests.
+	       ;; See edfab4443ec3d376c31a38bef12d305838d3fa2e.
+	       (let ((f (or (memq (car cons-cell) desired-tree)
+			    (assoc (car cons-cell) desired-tree))))
+		 (when f
+		   (if (and (sequencep (cdr cons-cell))
+			    (sequencep (elt (cdr cons-cell) 0)))
+		       (cons (car cons-cell)
+			     (stack-core-filter-data
+		     	      (cdr cons-cell) (cdr f)))
+		     cons-cell))))
+	     data))))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
