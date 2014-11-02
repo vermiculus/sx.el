@@ -34,7 +34,8 @@
 
 (defvar stack-filter
   'default
-  "The current filter.  To customize the filter for the next call
+  "The current filter.
+To customize the filter for the next call
 to `stack-core-make-request', let-bind this variable to the
 output of a call to `stack-core-compile-filter'.  Be careful!  If
 you're going to be using this new filter a lot, create a variable
@@ -42,11 +43,11 @@ for it.  Creation requests count against
 `stack-core-remaining-api-requests'!")
 
 
-;;; Filter compilation
+;;; Compilation
 
+;;; TODO allow BASE to be a precompiled filter name
 (defun stack-filter-compile (&optional include exclude base)
-  "Compile a StackExchange filter including fields from INCLUDE,
-excluding those from EXCLUDE, using BASE as a base filter.
+  "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
 
 INCLUDE and EXCLUDE must both be lists; BASE should be a symbol
 or string."
