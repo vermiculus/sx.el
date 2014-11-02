@@ -75,35 +75,3 @@
                              ((should-not-go))
                              ((1 . alpha) (2 . beta))]
                             '(1 2 3)))))
-
-(ert-deftest test-tree-member ()
-  "`stack-core-filter-data--item-in-tree'"
-  (should
-   (equal
-    '(a b c)
-    (stack-core-filter-data--item-in-tree 'a '(a b c))))
-
-  (should
-   (equal
-    '(a b c)
-    (stack-core-filter-data--item-in-tree 'a '(b a b c))))
-
-  (should
-   (equal
-    '(a b c)
-    (stack-core-filter-data--item-in-tree 'a '((a b c) 1 2))))
-
-  (should
-   (equal
-    '(a b c)
-    (stack-core-filter-data--item-in-tree 'a '(1 (a b c) 2))))
-
-  (should
-   (equal
-    '(a b c)
-    (stack-core-filter-data--item-in-tree 'a '(1 2 (a b c)))))
-
-  (should
-   (equal
-    '(a a b c)
-    (stack-core-filter-data--item-in-tree 'a '(1 (a a b c) 2)))))

@@ -225,8 +225,13 @@ entire response as a complex alist."
     (delq
      nil
      (mapcar (lambda (cons-cell)
-	       (let ((f (stack-core-filter-data--item-in-tree
-			 (car cons-cell) desired-tree)))
+	       ;; TODO the resolution of `f' is O(2n) in the worst
+	       ;; case.  It may be faster to implement the same
+	       ;; functionality as a `while' loop to stop looking the
+	       ;; list once it has found a match.  Do speed tests.
+	       ;; See edfab4443ec3d376c31a38bef12d305838d3fa2e.
+	       (let ((f (or (memq (car cons-cell) desired-tree)
+			    (assoc (car cons-cell) desired-tree))))
 		 (when f
 		   (if (and (sequencep (cdr cons-cell))
 			    (sequencep (elt (cdr cons-cell) 0)))
@@ -235,20 +240,6 @@ entire response as a complex alist."
 		     	      (cdr cons-cell) (cdr f)))
 		     cons-cell))))
 	     data))))
-
-(defun stack-core-filter-data--item-in-tree (item tree)
-  "Check if ITEM is in the direct leaves of TREE
-
-For example, when called with (f 'item '(some item here)), the
-return would be `t'.  When called as (f 'item '(some (item here)
-in a (deep structure))), `(item here)' would be returned.
-"
-  (when tree
-    (if (equal item (car tree)) tree
-      (if (and (listp (car tree))
-	       (equal item (caar tree)))
-	  (car tree)
-	(stack-core-filter-data--item-in-tree item (cdr tree))))))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
