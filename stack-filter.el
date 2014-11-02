@@ -51,19 +51,20 @@ excluding those from EXCLUDE, using BASE as a base filter.
 INCLUDE and EXCLUDE must both be lists; BASE should be a symbol
 or string."
   (let ((keyword-arguments
-	 `((include . ,(if include (mapconcat
-				    #'stack-core-thing-as-string
-				    include ";")))
-	   (exclude . ,(if exclude (mapconcat
-				    #'stack-core-thing-as-string
-				    exclude ";")))
-	   (base    . ,(if base base)))))
+         `((include . ,(if include (mapconcat
+                                    #'stack-core-thing-as-string
+                                    include ";")))
+           (exclude . ,(if exclude (mapconcat
+                                    #'stack-core-thing-as-string
+                                    exclude ";")))
+           (base    . ,(if base base)))))
     (let ((response (stack-core-make-request
-		     "filter/create"
-		     keyword-arguments)))
+                     "filter/create"
+                     keyword-arguments)))
       (url-hexify-string
        (cdr (assoc 'filter
-		   (elt response 0)))))))
+                   (elt response 0)))))))
+
 
 (provide 'stack-filter)
 ;;; stack-filter.el ends here
