@@ -32,6 +32,9 @@
 
 ;;; Customizations
 
+(defconst stack-filter-cache-file
+  "filters.el")
+
 (defvar stack-filter
   'default
   "The current filter.
@@ -66,6 +69,42 @@ or string."
        (cdr (assoc 'filter
                    (elt response 0)))))))
 
+
+;;; Storage and Retrieval
+
+(defun stack-filter-get (filter)
+  "Retrieve named FILTER from `stack-filter-cache-file'."
+  (with-current-buffer (stack-cache-get-file stack-filter-cache-file)
+    (or (cdr (ignore-errors (assoc filter (read (buffer-string)))))
+        nil)))
+
+(defun stack-filter-store (name filter)
+  "Store NAME as FILTER in `stack-filter-cache-file'.
+
+NAME should be a symbol and FILTER is a string as compiled by
+`stack-filter-compile'."
+  (unless (symbolp name)
+    (error "Name must be a symbol: %S" name))
+  (with-current-buffer (stack-cache-get-file stack-filter-cache-file)
+    (let* ((dict (or (ignore-errors
+                       (read (buffer-string)))
+                     nil))
+           (entry (assoc name dict)))
+      (if entry (setf (cdr entry) filter)
+        (setq dict (cons (cons name filter) dict)))
+      (erase-buffer)
+      (insert (prin1-to-string dict))
+      (save-buffer)
+      dict)))
+
+;;; TODO tail recursion should be made more efficient for the
+;;; byte-compiler
+(defun stack-filter-store-all (name-filter-alist)
+  (when name-filter-alist
+    (stack-filter-store
+     (caar name-filter-alist)
+     (cdar name-filter-alist))
+    (stack-filter-store-all (cdr name-filter-alist))))
 
 (provide 'stack-filter)
 ;;; stack-filter.el ends here
