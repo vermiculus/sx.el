@@ -44,6 +44,10 @@
 
 ;;; Constants and Customizable Options
 
+(defcustom stack-cache-directory
+  (expand-file-name ".stackmode" user-emacs-directory)
+  "Directory containined cached files and precompiled filters.")
+
 (defconst stack-core-api-version
   "2.2"
   "The current version of the API.")
