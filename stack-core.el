@@ -255,8 +255,7 @@ entire response as a complex alist."
         (file (stack-cache-get-file-name filename)))
     (unless (file-exists-p stack-cache-directory)
       (mkdir stack-cache-directory))
-    (unless (file-exists-p file)
-      (find-file-noselect file))))
+    (find-file-noselect file)))
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
