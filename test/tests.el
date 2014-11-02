@@ -8,14 +8,13 @@
 ;;; Tests
 
 (defun stack-test-sample-data (method &optional directory)
-  (with-current-buffer
-      (find-file-noselect
-       (concat "data-samples/"
-               (when directory (concat directory "/"))
-               method ".el"))
-    (eval (read (if (string-equal "" (buffer-string))
-                    "'no-value"
-                  (buffer-string))))))
+  (let ((file (concat "data-samples/"
+                      (when directory (concat directory "/"))
+                      method ".el")))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (read (buffer-string))))))
 
 (setq
  stack-core-remaining-api-requests-message-threshold 50000
