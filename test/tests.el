@@ -77,20 +77,19 @@
                             '(1 2 3)))))
 
 (ert-deftest test-filters ()
-  ;; Ensure the file is empty
-  (ignore-errors
+  (let ((stack-filter-cache-file (make-temp-file "stack-test-")))
+    (should-error (stack-filter-store "names must be symbols"
+                                      "this is a filter"))
+    ;; basic use
+    (should (equal '((test . "filter"))
+                   (stack-filter-store 'test "filter")))
+    ;; aggregation
+    (should (equal '((test2 . "filter2") (test . "filter"))
+                   (stack-filter-store 'test2 "filter2")))
+    ;; mutation
+    (should (equal '((test2 . "filter2") (test . "filter-test"))
+                   (stack-filter-store 'test "filter-test")))
+    ;; clean up (note: the file should exist)
     (delete-file
      (stack-cache-get-file-name
-      stack-filter-cache-file)))
-
-  (should-error (stack-filter-store "names must be symbols"
-                                    "this is a filter"))
-  ;; basic use
-  (should (equal '((test . "filter"))
-                 (stack-filter-store 'test "filter")))
-  ;; aggregation
-  (should (equal '((test2 . "filter2") (test . "filter"))
-                 (stack-filter-store 'test2 "filter2")))
-  ;; mutation
-  (should (equal '((test2 . "filter2") (test . "filter-test"))
-                 (stack-filter-store 'test "filter-test"))))
+      stack-filter-cache-file))))
