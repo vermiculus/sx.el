@@ -76,29 +76,28 @@ or string."
   "Retrieve named FILTER from `stack-filter-cache-file'."
   (cdr (assoc filter (stack-cache-get stack-filter-cache-file))))
 
-(defun stack-filter-store (name filter)
+(defun stack-filter-store (name &optional filter)
   "Store NAME as FILTER in `stack-filter-cache-file'.
 
 NAME should be a symbol and FILTER is a string as compiled by
-`stack-filter-compile'."
-  (unless (symbolp name)
-    (error "Name must be a symbol: %S" name))
-  (let* ((dict (stack-cache-get stack-filter-cache-file))
-         (entry (assoc name dict)))
-    (if entry (setcdr entry filter)
-      (setq dict (cons (cons name filter) dict)))
+`stack-filter-compile'.
 
-    (stack-cache-set stack-filter-cache-file dict)))
+If NAME is a cons cell, (car NAME) is taken to be the actual NAME
+and (cdr NAME) is taken to be the actual FILTER.  In this case,
+the second argument is simply ignored."
+  (let ((name   (if (consp name) (car name) name))
+        (filter (if (consp name) (cdr name) filter)))
+    (unless (symbolp name)
+      (error "Name must be a symbol: %S" name))
+    (let* ((dict (stack-cache-get stack-filter-cache-file))
+           (entry (assoc name dict)))
+      (if entry (setcdr entry filter)
+        (setq dict (cons (cons name filter) dict)))
 
-;;; TODO tail recursion should be made more efficient for the
-;;; byte-compiler
+      (stack-cache-set stack-filter-cache-file dict))))
+
 (defun stack-filter-store-all (name-filter-alist)
-  (when name-filter-alist
-    (stack-filter-store
-     (caar name-filter-alist)
-     (cdar name-filter-alist))
-    (stack-filter-store-all
-     (cdr name-filter-alist))))
+  (mapc #'stack-filter-store name-filter-alist))
 
 (provide 'stack-filter)
 ;;; stack-filter.el ends here
