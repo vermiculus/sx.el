@@ -249,13 +249,29 @@ entire response as a complex alist."
   "Expands FILENAME in the context of `stack-cache-directory'."
   (expand-file-name filename stack-cache-directory))
 
-(defun stack-cache-get-file (filename)
-  "Return a buffer for FILENAME from `stack-cache-directory'."
-  (let ((find-file-hook nil)
-        (file (stack-cache-get-file-name filename)))
-    (unless (file-exists-p stack-cache-directory)
-      (mkdir stack-cache-directory))
-    (find-file-noselect file)))
+(defun stack-cache-get (cache)
+  "Return the data within CACHE.
+
+As with `stack-cache-set', CACHE is a file name within the
+context of `stack-cache-directory'."
+  (unless (file-exists-p stack-cache-directory)
+    (mkdir stack-cache-directory))
+  (let ((file (stack-cache-get-file-name cache)))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents (stack-cache-get-file-name cache))
+        (read (buffer-string))))))
+
+(defun stack-cache-set (cache data)
+  "Set the content of CACHE to DATA.
+
+As with `stack-cache-get', CACHE is a file name within the
+context of `stack-cache-directory'."
+  (unless (file-exists-p stack-cache-directory)
+    (mkdir stack-cache-directory))
+  (write-region (prin1-to-string data) nil
+                (stack-cache-get-file-name cache))
+  data)
 
 (provide 'stack-core)
 ;;; stack-core.el ends here
