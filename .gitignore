@@ -5,3 +5,4 @@
 # Compiled Elisp
 *.elc
 /.cask/
+.dir-locals.el
