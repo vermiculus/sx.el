@@ -25,6 +25,7 @@
 (require 'stack-question)
 (require 'tabulated-list)
 (require 'cl-lib)
+(load "test/tests.el")
 
 
 ;;; Customization
