@@ -34,6 +34,59 @@
   :type 'integer
   :group 'stack-question-list)
 
+(defface stack-question-list-parent
+  '((t :inherit default))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-answers
+  '((((background light)) :foreground "SeaGreen4"
+     :height 1.0 :inherit stack-question-list-parent)
+    (((background dark))  :foreground "#D1FA71"
+     :height 1.0 :inherit stack-question-list-parent)
+    (t :inherit stack-question-list-parent))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-answers-accepted
+  '((((background light)) :background "YellowGreen"
+     :inherit stack-question-list-answers)
+    (((background dark)) :background "DarkOliveGreen"
+     :inherit stack-question-list-answers)
+    (t :inherit stack-question-list-answers))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-score
+  '((t :height 1.0 :inherit stack-question-list-parent))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-score-upvoted
+  '((t :weight bold
+       :inherit stack-question-list-score))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-tags
+  '((t :inherit font-lock-function-name-face))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-date
+  '((t :inherit font-lock-comment-face))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-read-question
+  '((t :height 1.0 :inherit stack-question-list-parent))
+  ""
+  :group 'stack-question-list-faces)
+
+(defface stack-question-list-unread-question
+  '((t :weight bold :inherit stack-question-list-read-question))
+  ""
+  :group 'stack-question-list-faces)
 
 
 ;;; Mode Definition
