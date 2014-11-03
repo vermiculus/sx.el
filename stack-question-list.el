@@ -68,6 +68,7 @@ Letters do not insert themselves; instead, they are commands.
 (defun stack-question-list-refresh (&optional redisplay)
   "Update the list of questions.
 If REDISPLAY is non-nil, also call `tabulated-list-print'."
+  (interactive '(t))
   ;; Obviously this needs to be changed.
   (let ((question-list (stack-test-sample-data "questions")))
     ;; Print the result.
