@@ -138,7 +138,7 @@ Letters do not insert themselves; instead, they are commands.
 If REDISPLAY is non-nil, also call `tabulated-list-print'."
   (interactive '(t))
   ;; Obviously this needs to be changed.
-  (let ((question-list (stack-test-sample-data "questions")))
+  (let ((question-list (stack-test-sample-data "questions" "test")))
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar #'stack-question-list--print-info question-list)))
