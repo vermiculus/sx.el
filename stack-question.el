@@ -43,29 +43,45 @@
      (page . ,page))
    stack-question-browse-filter))
 
-(defun stack-question--display (data window)
-  "Display question given by DATA on WINDOW.
-If WINDOW is nil, use selected one."
-  (with-current-buffer
-      (stack-question--display-buffer window)
-    (erase-buffer)
-    (insert
-     (org-element-interpret-data
-      (stack-lto--question data)))))
-
+
+;;; Displaying a question
 (defvar stack-question--window nil
   "Window where the content of questions is displayed.")
 
-(defvar stack-question--buffer "*stack-question*"
+(defvar stack-question--buffer nil
   "Buffer being used to display questions.")
+
+(defcustom stack-question-use-html t
+  "If nil, markdown is used for the body."
+  :type 'boolean
+  :group 'stack-question)
+
+(defun stack-question--display (data window)
+  "Display question given by DATA on WINDOW.
+If WINDOW is nil, use selected one."
+  (let ((stack-lto--body-src-block
+         (if stack-question-use-html nil
+           stack-lto--body-src-block))
+        (inhibit-read-only t))
+    (with-current-buffer
+        (stack-question--display-buffer window)
+      (erase-buffer)
+      (insert
+       (org-element-interpret-data
+        (stack-lto--question data)))
+      (org-mode)
+      (show-all)
+      (view-mode)
+      (current-buffer))))
 
 (defun stack-question--display-buffer (window)
   "Display and return the buffer used for displaying a question.
 Create the buffer if necessary.
 If WINDOW is given, use that to display the buffer."
+  ;; Create the buffer if necessary.
   (unless (buffer-live-p stack-question--buffer)
     (setq stack-question--buffer
-          (generate-new-buffer stack-question--buffer)))
+          (generate-new-buffer "*stack-question*")))
   (cond
    ;; Window was given, use it.
    ((window-live-p window)
