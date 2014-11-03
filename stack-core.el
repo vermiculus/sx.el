@@ -274,17 +274,28 @@ context of `stack-cache-directory'."
                 (stack-cache-get-file-name cache))
   data)
 
+(defvar stack-core--seconds-to-string
+  '((1 "ms" 0.001)
+    (100 "s" 1)
+    (6000 "m" 60.0)
+    (108000 "h" 3600.0)
+    (34560000 "d" 86400.0)
+    (nil "y" 31557600.0))
+  "Auxiliary variable used by `stack--time-since'.")
+
 (defun stack--time-since (time)
   "Convert the time interval since TIME (in seconds) to a short string."
-  (concat
-   (let ((delay (- (time-to-seconds) time)))
-     (cond ((> 0 delay) (concat "-" (seconds-to-string (- delay))))
-           ((= 0 delay) "0s")
-           (t (let ((sts seconds-to-string) here)
-                (while (and (car (setq here (pop sts)))
-                            (<= (car here) delay)))
-                (concat (format "%.0f" (/ delay (car (cddr here)))) (cadr here))))))
-   " ago"))
+  (let ((delay (- (time-to-seconds) time)))
+    (concat
+     (if (> 0 delay) "-" "")
+     (if (= 0 delay) "0s"
+       (setq delay (abs delay))
+       (let ((sts stack-core--seconds-to-string) here)
+         (while (and (car (setq here (pop sts)))
+                     (<= (car here) delay)))
+         (concat (format "%.0f" (/ delay (car (cddr here))))
+                 (cadr here))))
+     " ago")))
 
 (defun stack-core--decode-entities (string)
   (let* ((plist '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
