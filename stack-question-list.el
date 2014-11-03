@@ -29,7 +29,7 @@
 
 
 ;;; Customization
-(defcustom stack-question-list-height 10
+(defcustom stack-question-list-height 15
   "Height, in lines, of stack-mode's *question-list* buffer."
   :type 'integer
   :group 'stack-question-list)
