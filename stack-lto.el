@@ -54,10 +54,10 @@ by the API and read by `json-read'."
   "Process and return the elements of DATA which questions and answers have in common."
   (let ((comments
          (mapcar #'stack-lto--comment (cdr (assoc 'comments data)))))
-    `(,(if stack-lto-body-src-block
+    `(,(if stack-lto--body-src-block
            ;; Body as a src block (really NOT nice).
            `(src-block (:value ,(stack-lto--body data)
-                               . ,stack-lto-body-src-block))
+                               . ,stack-lto--body-src-block))
          ;; Body as html. Nicer...
          (list 'paragraph () (stack-lto--body-rendered data)))
       ;; Comments as descriptive lists. If there are no comments, an
@@ -66,9 +66,9 @@ by the API and read by `json-read'."
 
 
 ;;; Body rendering
-(defvar stack-lto-body-src-block
+(defvar stack-lto--body-src-block
   '(:language "markdown" :switches nil :parameters nil :hiddenp nil)
-  "Properties used on the src-block which represents the body.
+  "Properties used on the markdown src-block which represents the body.
 If this is nil, rendered html is used for the body instead.")
 
 (defface stack-lto-body
