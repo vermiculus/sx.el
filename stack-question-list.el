@@ -102,11 +102,22 @@ Letters do not insert themselves; instead, they are commands.
          ("  A" 3 t :right-align t)
          ("Title" 0 stack-question-list--date-sort)])
   (setq tabulated-list-padding 1)
+  ;; Sorting by title actually sorts by date. It's what we want, but
+  ;; it's not terribly intuitive.
+  (setq tabulated-list-sort-key '("Title" . nil))
   (add-hook 'tabulated-list-revert-hook
             #'stack-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
             #'stack-question-list--update-mode-line nil t)
   (tabulated-list-init-header))
+
+(defvar stack-question-list-date-sort-method 'last_activity_date
+  "Parameter which controls date sorting.")
+
+(defun stack-question-list--date-sort (x y)
+  "Non-nil if tabulated-entry X is newer than Y."
+  (> (cdr (assoc stack-question-list-date-sort-method (car x)))
+     (cdr (assoc stack-question-list-date-sort-method (car y)))))
 
 (mapc
  (lambda (x) (define-key stack-question-list-mode-map
