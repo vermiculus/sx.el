@@ -98,9 +98,10 @@ Letters do not insert themselves; instead, they are commands.
   (hl-line-mode 1)
   (stack-question-list--update-mode-line)
   (setq tabulated-list-format
-        `[("Vote" 4 nil) ("Answ" 4 nil) ("Date" 4 nil) ("Title" 0 nil)])
-  (setq tabulated-list-padding 2)
-  (setq tabulated-list-sort-key (cons "Date" nil))
+        [("  V" 3 t :right-align t)
+         ("  A" 3 t :right-align t)
+         ("Title" 0 stack-question-list--date-sort)])
+  (setq tabulated-list-padding 1)
   (add-hook 'tabulated-list-revert-hook
             #'stack-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
@@ -110,8 +111,10 @@ Letters do not insert themselves; instead, they are commands.
 (mapc
  (lambda (x) (define-key stack-question-list-mode-map
           (car x) (cadr x)))
- '(("j" stack-question-list-next)
-   ("k" stack-question-list-previous)
+ '(("n" stack-question-list-next)
+   ("p" stack-question-list-previous)
+   ("j" stack-question-list-view-next)
+   ("k" stack-question-list-view-previous)
    ("g" stack-question-list-refresh)
    ([?\r] stack-question-list-display-question)))
 
@@ -130,28 +133,53 @@ If REDISPLAY is non-nil, also call `tabulated-list-print'."
           (mapcar #'stack-question-list--print-info question-list)))
   (when redisplay (tabulated-list-print 'remember)))
 
-;; (stack-question-list--print-info sample-question-unauthenticated)
-
 (defun stack-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
   (cl-flet ((ca (x) (cdr (assoc x data))))
     (list
      data
-     (vector (int-to-string (ca 'score))
-             (int-to-string (ca 'answer_count))
-             (int-to-string (ca 'last_activity_date))
-             (ca 'title)))))
+     (vector
+      (list (int-to-string (ca 'score)) 'face
+            (if (ca 'upvoted) 'stack-question-list-score-upvoted
+              'stack-question-list-score))
+      (list (int-to-string (ca 'answer_count)) 'face
+            (if (stack-question--accepted-answer data)
+                'stack-question-list-answers-accepted
+              'stack-question-list-answers))
+      (concat
+       (propertize
+        (stack-core--decode-entities (ca 'title))
+        'face
+        (if (stack-question--read-p data)
+            'stack-question-list-read-question
+          'stack-question-list-unread-question))
+       (propertize " " 'display "\n         ")
+       (propertize (stack--time-since (ca 'last_activity_date))
+                   'face 'stack-question-list-date)
+       (propertize (concat " [" (mapconcat #'identity (ca 'tags) "] [") "]")
+                   'face 'stack-question-list-tags)
+       (propertize " " 'display "\n"))))))
 
-(defun stack-question-list-previous (n)
+(defun stack-question-list-view-previous (n)
   "Hide this question, move to previous one, display it."
   (interactive "p")
-  (stack-question-list-next (- n)))
+  (stack-question-list-view-next (- n)))
 
-(defun stack-question-list-next (n)
+(defun stack-question-list-view-next (n)
   "Hide this question, move to next one, display it."
   (interactive "p")
-  (next-line n)
+  (stack-question-list-next n)
   (stack-question-list-display-question))
+
+(defun stack-question-list-next (n)
+  "Move to the next entry."
+  (interactive "p")
+  (forward-line n))
+
+(defun stack-question-list-previous (n)
+  "Move to the previous entry."
+  (interactive "p")
+  (stack-question-list-next (- n)))
 
 (defun stack-question-list-display-question (&optional data focus)
   "Display question given by DATA.

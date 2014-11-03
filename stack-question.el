@@ -45,6 +45,18 @@
    stack-question-browse-filter))
 
 
+;;; Question Properties
+(defun stack-question--read-p (question)
+  "Non-nil if QUESTION has been read since last updated."
+  ;; @TODO:
+  (cl-evenp (random)))
+
+(defun stack-question--accepted-answer (question)
+  "Return accepted answer in QUESTION, or nil if none."
+  ;; @TODO:
+  (cl-evenp (random)))
+
+
 ;;; Displaying a question
 (defvar stack-question--window nil
   "Window where the content of questions is displayed.")
