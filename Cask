@@ -7,6 +7,7 @@
 
 (depends-on "json" "1.4")
 (depends-on "url")
+(depends-on "cl-lib")
 
 (development
  (depends-on "ert"))
