@@ -21,11 +21,11 @@ and sometimes arbitrarily.
 The best way to contribute right now is via discussion.  Open an issue
 describing a feature you'd like (That isn't already listed) or a
 package you think would come in handy.
-** Wishlist
-- OAuth :: Without this, we can't write with the API.  This is
-           obviously something we want to do, but I don't understand
-           even /regular/ OAuth (web server -- web server).  If
-           someone can take care of this, I'd be forever grateful.
+
+For a better view of all of the open issues, take a look at our lovely
+[[http://www.waffle.io/vermiculus/stack-mode][Waffle board]]!  Feel free to take the torch on anything in =backlog= or
+=ready=.  If you have thoughts on any other issues, don't hesitate to
+chime in!
 * Planned Features
 ** Network Exploration
 #+BEGIN_EXAMPLE
