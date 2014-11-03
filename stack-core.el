@@ -38,10 +38,15 @@
 ;;; Package Logging
 
 (defun stack-message (format-string &rest args)
+  "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
 
 
 ;;; Constants and Customizable Options
+
+(defcustom stack-cache-directory
+  (expand-file-name ".stackmode" user-emacs-directory)
+  "Directory containined cached files and precompiled filters.")
 
 (defconst stack-core-api-version
   "2.2"
@@ -54,7 +59,8 @@
 (defcustom stack-core-default-keyword-arguments-alist
   '(("filters/create")
     ("sites")
-    (t (site . emacs)))
+    ("questions" (site . emacs))
+    (t nil))
   "Keywords to use as the default for a given method.
 
 The first element of each list is the method call the keywords
@@ -89,6 +95,10 @@ recent call.  Set by `stack-core-make-request'.")
   "After `stack-core-remaining-api-requests' drops below this
 number, `stack-core-make-request' will begin printing out the
 number of requests left every time it finishes a call.")
+
+(defcustom stack-core-silent-requests
+  t
+  "When `t', requests default to being silent.")
 
 
 ;;; Keyword Arguments
@@ -141,52 +151,127 @@ with the given KEYWORD-ARGUMENTS."
 	base
       (concat base "?" args))))
 
-(defun stack-core-make-request (method &optional keyword-arguments filter)
+(defun stack-core-make-request
+    (method &optional keyword-arguments filter silent)
   "Make a request to the StackExchange API using METHOD and
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `stack-core-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
-  (let* ((api-response
-	 (let ((call
-		(stack-core-build-request
-		 method
-		 (cons `(filter . ,(cond
-				    (filter filter)
-				    ((boundp 'stack-filter)
-				     stack-filter)))
-		       (if keyword-arguments keyword-arguments
-			 (stack-core-get-default-keyword-arguments
-			  method)))))
-	       (url-automatic-caching stack-core-cache-requests))
-	   ;; TODO: url-retrieve-synchronously can return nil if the call is
-	   ;; unsuccessful should handle this case
-	   (stack-message "Request: %s" call)
-	   (with-current-buffer (url-retrieve-synchronously call)
-	     (goto-char (point-min))
-	     (if (not (search-forward "\n\n" nil t))
-		 (error "Response corrupted")
-	       (delete-region (point-min) (point))
-	       (buffer-string)))))
-	(response
-	 (with-demoted-errors "JSON Error: %s"
-	   (json-read-from-string api-response))))
-    (unless response
-      (stack-message "Printing response as message")
-      (message response)
-      (error "Response could not be read by json-read-string"))
-    (when (assoc 'error_id response)
-      (error "Request failed: (%s) [%i %s] %s"
-	     method
-	     (cdr (assoc 'error_id response))
-	     (cdr (assoc 'error_name response))
-	     (cdr (assoc 'error_message response))))
-    (setq stack-core-remaining-api-requests
-	  (cdr (assoc 'quota_remaining response)))
-    (when (< stack-core-remaining-api-requests
-	     stack-core-remaining-api-requests-message-threshold)
-      (stack-message "%d API requests remaining"
-		     stack-core-remaining-api-requests))
-    (cdr (assoc 'items response))))
+  (let ((url-automatic-caching stack-core-cache-requests)
+	(url-inhibit-uncompression t)
+	(silent (or silent stack-core-silent-requests))
+	(call
+	 (stack-core-build-request
+	  method
+	  (cons `(filter . ,(cond (filter filter)
+				  ((boundp 'stack-filter) stack-filter)))
+		(if keyword-arguments keyword-arguments
+		  (stack-core-get-default-keyword-arguments method))))))
+    ;; TODO: url-retrieve-synchronously can return nil if the call is
+    ;; unsuccessful should handle this case
+    (unless silent (stack-message "Request: %S" call))
+    (let ((response-buffer (cond
+			    ((= emacs-minor-version 4)
+			     (url-retrieve-synchronously call silent))
+			    (t (url-retrieve-synchronously call)))))
+      (if (not response-buffer)
+	  (error "Something went wrong in `url-retrieve-synchronously'")
+	(with-current-buffer response-buffer
+	  (let* ((data (progn
+			 (goto-char (point-min))
+			 (if (not (search-forward "\n\n" nil t))
+			     (error "Response headers missing")
+			   (delete-region (point-min) (point))
+			   (buffer-string))))
+		 (response (ignore-errors
+			     (json-read-from-string data))))
+	    ;; if response isn't nil, the response was in plain text
+	    (unless response
+	      ;; try to decompress the response
+	      (setq response
+		    (with-demoted-errors "JSON Error: %s"
+		      (shell-command-on-region
+		       (point-min) (point-max)
+		       stack-core-unzip-program
+		       nil t)
+		      (json-read-from-string
+		       (buffer-substring
+			(point-min) (point-max)))))
+	      ;; If it still fails, error out
+	      (unless response
+		(stack-message "Unable to parse response")
+		(stack-message "Printing response as message")
+		(message "%S" response)
+		(error "Response could not be read by json-read-string")))
+	    ;; At this point, either response is a valid data structure
+	    ;; or we have already thrown an error
+	    (when (assoc 'error_id response)
+	      (error "Request failed: (%s) [%i %s] %s"
+		     method
+		     (cdr (assoc 'error_id response))
+		     (cdr (assoc 'error_name response))
+		     (cdr (assoc 'error_message response))))
+	    (when (< (setq stack-core-remaining-api-requests
+			   (cdr (assoc 'quota_remaining response)))
+		     stack-core-remaining-api-requests-message-threshold)
+	      (stack-message "%d API requests remaining"
+			     stack-core-remaining-api-requests))
+	    (cdr (assoc 'items response))))))))
+
+(defun stack-core-filter-data (data desired-tree)
+  "Filters DATA and returns the DESIRED-TREE"
+  (if (vectorp data)
+      (apply #'vector 
+	     (mapcar (lambda (entry)
+		       (stack-core-filter-data
+			entry desired-tree))
+		     data))
+    (delq
+     nil
+     (mapcar (lambda (cons-cell)
+	       ;; TODO the resolution of `f' is O(2n) in the worst
+	       ;; case.  It may be faster to implement the same
+	       ;; functionality as a `while' loop to stop looking the
+	       ;; list once it has found a match.  Do speed tests.
+	       ;; See edfab4443ec3d376c31a38bef12d305838d3fa2e.
+	       (let ((f (or (memq (car cons-cell) desired-tree)
+			    (assoc (car cons-cell) desired-tree))))
+		 (when f
+		   (if (and (sequencep (cdr cons-cell))
+			    (sequencep (elt (cdr cons-cell) 0)))
+		       (cons (car cons-cell)
+			     (stack-core-filter-data
+		     	      (cdr cons-cell) (cdr f)))
+		     cons-cell))))
+	     data))))
+
+(defun stack-cache-get-file-name (filename)
+  "Expands FILENAME in the context of `stack-cache-directory'."
+  (expand-file-name filename stack-cache-directory))
+
+(defun stack-cache-get (cache)
+  "Return the data within CACHE.
+
+As with `stack-cache-set', CACHE is a file name within the
+context of `stack-cache-directory'."
+  (unless (file-exists-p stack-cache-directory)
+    (mkdir stack-cache-directory))
+  (let ((file (stack-cache-get-file-name cache)))
+    (when (file-exists-p file)
+      (with-temp-buffer
+        (insert-file-contents (stack-cache-get-file-name cache))
+        (read (buffer-string))))))
+
+(defun stack-cache-set (cache data)
+  "Set the content of CACHE to DATA.
+
+As with `stack-cache-get', CACHE is a file name within the
+context of `stack-cache-directory'."
+  (unless (file-exists-p stack-cache-directory)
+    (mkdir stack-cache-directory))
+  (write-region (prin1-to-string data) nil
+                (stack-cache-get-file-name cache))
+  data)
 
 (provide 'stack-core)
 ;;; stack-core.el ends here

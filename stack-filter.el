@@ -32,9 +32,13 @@
 
 ;;; Customizations
 
+(defconst stack-filter-cache-file
+  "filters.el")
+
 (defvar stack-filter
   'default
-  "The current filter.  To customize the filter for the next call
+  "The current filter.
+To customize the filter for the next call
 to `stack-core-make-request', let-bind this variable to the
 output of a call to `stack-core-compile-filter'.  Be careful!  If
 you're going to be using this new filter a lot, create a variable
@@ -42,28 +46,58 @@ for it.  Creation requests count against
 `stack-core-remaining-api-requests'!")
 
 
-;;; Filter compilation
+;;; Compilation
 
+;;; TODO allow BASE to be a precompiled filter name
 (defun stack-filter-compile (&optional include exclude base)
-  "Compile a StackExchange filter including fields from INCLUDE,
-excluding those from EXCLUDE, using BASE as a base filter.
+  "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
 
 INCLUDE and EXCLUDE must both be lists; BASE should be a symbol
 or string."
   (let ((keyword-arguments
-	 `((include . ,(if include (mapconcat
-				    #'stack-core-thing-as-string
-				    include ";")))
-	   (exclude . ,(if exclude (mapconcat
-				    #'stack-core-thing-as-string
-				    exclude ";")))
-	   (base    . ,(if base base)))))
+         `((include . ,(if include (mapconcat
+                                    #'stack-core-thing-as-string
+                                    include ";")))
+           (exclude . ,(if exclude (mapconcat
+                                    #'stack-core-thing-as-string
+                                    exclude ";")))
+           (base    . ,(if base base)))))
     (let ((response (stack-core-make-request
-		     "filter/create"
-		     keyword-arguments)))
+                     "filter/create"
+                     keyword-arguments)))
       (url-hexify-string
        (cdr (assoc 'filter
-		   (elt response 0)))))))
+                   (elt response 0)))))))
+
+
+;;; Storage and Retrieval
+
+(defun stack-filter-get (filter)
+  "Retrieve named FILTER from `stack-filter-cache-file'."
+  (cdr (assoc filter (stack-cache-get stack-filter-cache-file))))
+
+(defun stack-filter-store (name &optional filter)
+  "Store NAME as FILTER in `stack-filter-cache-file'.
+
+NAME should be a symbol and FILTER is a string as compiled by
+`stack-filter-compile'.
+
+If NAME is a cons cell, (car NAME) is taken to be the actual NAME
+and (cdr NAME) is taken to be the actual FILTER.  In this case,
+the second argument is simply ignored."
+  (let ((name   (if (consp name) (car name) name))
+        (filter (if (consp name) (cdr name) filter)))
+    (unless (symbolp name)
+      (error "Name must be a symbol: %S" name))
+    (let* ((dict (stack-cache-get stack-filter-cache-file))
+           (entry (assoc name dict)))
+      (if entry (setcdr entry filter)
+        (setq dict (cons (cons name filter) dict)))
+
+      (stack-cache-set stack-filter-cache-file dict))))
+
+(defun stack-filter-store-all (name-filter-alist)
+  (mapc #'stack-filter-store name-filter-alist))
 
 (provide 'stack-filter)
 ;;; stack-filter.el ends here
