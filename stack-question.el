@@ -27,6 +27,7 @@
 
 (require 'stack-core)
 (require 'stack-filter)
+(require 'stack-lto)
 
 (defvar stack-question-browse-filter
   (stack-filter-compile
