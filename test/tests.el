@@ -6,9 +6,12 @@
          (unintern symbol)))))
 
 ;;; Tests
+(defvar stack-test-data-dir
+  (expand-file-name "data-samples/") 
+  "")
 
 (defun stack-test-sample-data (method &optional directory)
-  (let ((file (concat "data-samples/"
+  (let ((file (concat stack-test-data-dir
                       (when directory (concat directory "/"))
                       method ".el")))
     (when (file-exists-p file)
