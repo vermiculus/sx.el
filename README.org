@@ -22,15 +22,10 @@ The best way to contribute right now is via discussion.  Open an issue
 describing a feature you'd like (That isn't already listed) or a
 package you think would come in handy.
 ** Wishlist
-- Automatic testing system (usable with Travis CI) :: Along with
-     unit-testing, it would be best to have this done in Travis CI so
-     that pull requests can be examined before merge.
 - OAuth :: Without this, we can't write with the API.  This is
            obviously something we want to do, but I don't understand
            even /regular/ OAuth (web server -- web server).  If
            someone can take care of this, I'd be forever grateful.
-- Persistent Data :: It would cut down on requests if StackMode could
-     implement a persistent, expirable cache.
 * Planned Features
 ** Network Exploration
 #+BEGIN_EXAMPLE
