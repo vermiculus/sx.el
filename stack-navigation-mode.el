@@ -25,7 +25,7 @@
 
 
 ;;; Requirements
-(define-derived-mode stack-navigation-mode org-mode "Stack-Nav")
+(define-derived-mode stack-navigation-mode tabulated-list-mode "Question List")
 
 (mapc
  (lambda (x) (define-key stack-navigation-mode-map

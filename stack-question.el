@@ -22,6 +22,7 @@
 
 ;; 
 
+
 ;;; Code:
 
 (require 'stack-core)
@@ -38,6 +39,39 @@
    `((site . ,site)
      (page . ,page))
    stack-question-browse-filter))
+
+(defun stack-question--display (data window)
+  "Display question given by DATA on WINDOW.
+If WINDOW is nil, use selected one."
+  (with-current-buffer
+      (stack-question--display-buffer window)
+    (erase-buffer)
+    (insert
+     (org-element-interpret-data
+      (stack-lto--question data)))))
+
+(defvar stack-question--window nil
+  "Window where the content of questions is displayed.")
+
+(defvar stack-question--buffer "*stack-question*"
+  "Buffer being used to display questions.")
+
+(defun stack-question--display-buffer (window)
+  "Display and return the buffer used for displaying a question.
+Create the buffer if necessary.
+If WINDOW is given, use that to display the buffer."
+  (unless (buffer-live-p stack-question--buffer)
+    (setq stack-question--buffer
+          (generate-new-buffer stack-question--buffer)))
+  (cond
+   ;; Window was given, use it.
+   ((window-live-p window)
+    (set-window-buffer window stack-question--buffer))
+   ;; No window, but the buffer is already being displayed somewhere.
+   ((get-buffer-window stack-question--buffer 'visible))
+   ;; Neither, so we create the window.
+   (t (switch-to-buffer stack-question--buffer)))
+  stack-question--buffer)
 
 (provide 'stack-question)
 ;;; stack-question.el ends here
