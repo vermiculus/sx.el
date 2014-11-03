@@ -24,6 +24,15 @@
 ;;; Code:
 (require 'stack-question)
 (require 'tabulated-list)
+(require 'cl-lib)
+
+
+;;; Customization
+(defcustom stack-question-list-height 10
+  "Height, in lines, of stack-mode's *question-list* buffer."
+  :type 'integer
+  :group 'stack-question-list)
+
 
 
 ;;; Mode Definition
@@ -39,7 +48,7 @@ Letters do not insert themselves; instead, they are commands.
   (setq tabulated-list-padding 2)
   (setq tabulated-list-sort-key (cons "Date" nil))
   (add-hook 'tabulated-list-revert-hook
-            #'stack-question-list--refresh-question-list nil t)
+            #'stack-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
             #'stack-question-list--update-mode-line nil t)
   (tabulated-list-init-header))
@@ -49,23 +58,34 @@ Letters do not insert themselves; instead, they are commands.
           (car x) (cadr x)))
  '(("j" stack-question-list-next)
    ("k" stack-question-list-previous)
-   ([RET] stack-question-list-display-question)))
+   ("g" stack-question-list-refresh)
+   ([?\r] stack-question-list-display-question)))
 
 (defun stack-question-list--update-mode-line ()
   "Fill the mode-line with useful information."
   nil)
 
-(defun stack-question-list--refresh-question-list ()
-  ""
+(defun stack-question-list-refresh (&optional redisplay)
+  "Update the list of questions.
+If REDISPLAY is non-nil, also call `tabulated-list-print'."
   ;; Obviously this needs to be changed.
-  (let ((question-list ))
+  (let ((question-list (stack-test-sample-data "questions")))
     ;; Print the result.
     (setq tabulated-list-entries
-          (mapcar #'stack-question-list--print-info question-list))))
+          (mapcar #'stack-question-list--print-info question-list)))
+  (when redisplay (tabulated-list-print 'remember)))
+
+;; (stack-question-list--print-info sample-question-unauthenticated)
 
 (defun stack-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
-  )
+  (cl-flet ((ca (x) (cdr (assoc x data))))
+    (list
+     data
+     (vector (int-to-string (ca 'score))
+             (int-to-string (ca 'answer_count))
+             (int-to-string (ca 'last_activity_date))
+             (ca 'title)))))
 
 (defun stack-question-list-previous (n)
   "Hide this question, move to previous one, display it."
@@ -78,11 +98,6 @@ Letters do not insert themselves; instead, they are commands.
   (next-line n)
   (stack-question-list-display-question))
 
-(defcustom stack-question-list-height 10
-  "Height, in lines, of stack-mode's *question-list* buffer."
-  :type 'integer
-  :group 'stack-question-list)
-
 (defun stack-question-list-display-question (&optional data focus)
   "Display question given by DATA.
 If called interactively (or with DATA being nil), display
@@ -92,13 +107,28 @@ focus the relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
-  (let ((window stack-question--window))
-    (unless (window-live-p window)
-      (setq window
-            (split-window-below stack-question-list-height)))
-    (stack-question--display data window)
-    (when focus
-      (select-window window))))
+  (unless (window-live-p stack-question--window)
+    (setq stack-question--window
+          (split-window-below stack-question-list-height)))
+  (stack-question--display data stack-question--window)
+  (when focus
+    (select-window stack-question--window)))
+
+(defvar stack-question-list--buffer nil
+  "Buffer where the list of questions is displayed.")
+
+(defun list-questions (no-update)
+  "Display a list of stack-exchange questions."
+  (interactive "P")
+  (unless (buffer-live-p stack-question-list--buffer)
+    (setq stack-question-list--buffer
+          (generate-new-buffer "*question-list*")))
+  (with-current-buffer stack-question-list--buffer
+    (stack-question-list-mode)
+    (stack-question-list-refresh 'redisplay))
+  ;; The package menu buffer has keybindings.  If the user types
+  ;; `M-x list-packages', that suggests it should become current.
+  (switch-to-buffer stack-question-list--buffer))
 
 (provide 'stack-question-list)
 ;;; stack-question-list.el ends here
