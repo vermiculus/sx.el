@@ -296,8 +296,7 @@ context of `stack-cache-directory'."
          (while (and (car (setq here (pop sts)))
                      (<= (car here) delay)))
          (concat (format "%.0f" (/ delay (car (cddr here))))
-                 (cadr here))))
-     " ago")))
+                 (cadr here)))))))
 
 (defcustom stack-core-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"

@@ -165,7 +165,7 @@ If REDISPLAY is non-nil, also call `tabulated-list-print'."
             'stack-question-list-read-question
           'stack-question-list-unread-question))
        (propertize " " 'display "\n         ")
-       (propertize (stack--time-since (ca 'last_activity_date))
+       (propertize (concat (stack--time-since (ca 'last_activity_date)) " ago")
                    'face 'stack-question-list-date)
        (propertize (concat " [" (mapconcat #'identity (ca 'tags) "] [") "]")
                    'face 'stack-question-list-tags)
