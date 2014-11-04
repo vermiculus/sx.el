@@ -111,8 +111,13 @@ Letters do not insert themselves; instead, they are commands.
             #'stack-question-list--update-mode-line nil t)
   (tabulated-list-init-header))
 
-(defvar stack-question-list-date-sort-method 'last_activity_date
-  "Parameter which controls date sorting.")
+(defcustom stack-question-list-date-sort-method 'last_activity_date
+  "Parameter which controls date sorting."
+  ;; This should be made into a (choice ...) of constants.
+  :type 'symbol
+  ;; Add a setter to protect the value.
+  :group 'stack-question-list)
+
 
 (defun stack-question-list--date-sort (x y)
   "Non-nil if tabulated-entry X is newer than Y."
