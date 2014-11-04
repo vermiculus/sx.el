@@ -22,17 +22,21 @@
 
 ;; 
 
+
 ;;; Code:
 
 (require 'stack-core)
 (require 'stack-filter)
+(require 'stack-lto)
 
-(defvar stack-question-browse-filter
-  (stack-filter-compile
-   nil
-   '(user.profile_image shallow_user.profile_image)))
+;; I don't know why this is here, but it was causing an API request on require.
+(defvar stack-question-browse-filter nil
+  ;; (stack-filter-compile
+  ;;  nil
+  ;;  '(user.profile_image shallow_user.profile_image))
+  )
 
-(stack-filter-store 'question-browse stack-question-browse-filter)
+;; (stack-filter-store 'question-browse stack-question-browse-filter)
 
 (defun stack-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
@@ -41,6 +45,73 @@
    `((site . ,site)
      (page . ,page))
    stack-question-browse-filter))
+
+
+;;; Question Properties
+(defun stack-question--read-p (question)
+  "Non-nil if QUESTION has been read since last updated."
+  ;; @TODO:
+  (cl-evenp (random)))
+
+(defun stack-question--accepted-answer (question)
+  "Return accepted answer in QUESTION, or nil if none."
+  ;; @TODO:
+  (cl-evenp (random)))
+
+(defun stack-question--< (property x y &optional pred)
+  "Non-nil if PROPERTY attribute of question X is less than that of Y.
+With optional argument predicate, use it instead of `<'."
+  (funcall (or pred #'<)
+           (cdr (assoc property x))
+           (cdr (assoc property y))))
+
+;;; Displaying a question
+(defvar stack-question--window nil
+  "Window where the content of questions is displayed.")
+
+(defvar stack-question--buffer nil
+  "Buffer being used to display questions.")
+
+(defcustom stack-question-use-html t
+  "If nil, markdown is used for the body."
+  :type 'boolean
+  :group 'stack-question)
+
+(defun stack-question--display (data &optional window)
+  "Display question given by DATA on WINDOW.
+If WINDOW is nil, use selected one."
+  (let ((stack-lto--body-src-block
+         (if stack-question-use-html nil
+           stack-lto--body-src-block))
+        (inhibit-read-only t))
+    (with-current-buffer
+        (stack-question--display-buffer window)
+      (erase-buffer)
+      (insert
+       (org-element-interpret-data
+        (stack-lto--question data)))
+      (org-mode)
+      (show-all)
+      (view-mode)
+      (current-buffer))))
+
+(defun stack-question--display-buffer (window)
+  "Display and return the buffer used for displaying a question.
+Create the buffer if necessary.
+If WINDOW is given, use that to display the buffer."
+  ;; Create the buffer if necessary.
+  (unless (buffer-live-p stack-question--buffer)
+    (setq stack-question--buffer
+          (generate-new-buffer "*stack-question*")))
+  (cond
+   ;; Window was given, use it.
+   ((window-live-p window)
+    (set-window-buffer window stack-question--buffer))
+   ;; No window, but the buffer is already being displayed somewhere.
+   ((get-buffer-window stack-question--buffer 'visible))
+   ;; Neither, so we create the window.
+   (t (switch-to-buffer stack-question--buffer)))
+  stack-question--buffer)
 
 (provide 'stack-question)
 ;;; stack-question.el ends here
