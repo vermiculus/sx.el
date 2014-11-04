@@ -342,7 +342,9 @@ context of `stack-cache-directory'."
 (defun stack-core--decode-entities (string)
   (let* ((plist stack-core-html-entities-plist)
          (get-function (lambda (s) (let ((ss (substring s 1 -1)))
+                                ;; Handle things like &quot;
                                 (or (plist-get plist (intern ss))
+                                    ;; Handle things like &#39;
                                     (format "%c" (string-to-int
                                                   (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
