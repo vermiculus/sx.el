@@ -234,9 +234,9 @@ focus the relevant window."
   (with-current-buffer stack-question-list--buffer
     (stack-question-list-mode)
     (stack-question-list-refresh 'redisplay))
-  ;; The package menu buffer has keybindings.  If the user types
-  ;; `M-x list-packages', that suggests it should become current.
   (switch-to-buffer stack-question-list--buffer))
+
+(defalias 'stack-list-questions #'list-questions)
 
 (provide 'stack-question-list)
 ;;; stack-question-list.el ends here
