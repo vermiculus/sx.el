@@ -162,20 +162,21 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
     (list
      data
      (vector
-      (list (int-to-string (ca 'score)) 'face
+      (list (int-to-string (ca 'score))
+            'face
             (if (ca 'upvoted) 'stack-question-list-score-upvoted
               'stack-question-list-score))
-      (list (int-to-string (ca 'answer_count)) 'face
+      (list (int-to-string (ca 'answer_count))
+            'face
             (if (stack-question--accepted-answer data)
                 'stack-question-list-answers-accepted
               'stack-question-list-answers))
       (concat
-       (propertize
-        (stack-core--decode-entities (ca 'title))
-        'face
-        (if (stack-question--read-p data)
-            'stack-question-list-read-question
-          'stack-question-list-unread-question))
+       (propertize (ca 'title)
+                   'face
+                   (if (stack-question--read-p data)
+                       'stack-question-list-read-question
+                     'stack-question-list-unread-question))
        (propertize " " 'display "\n         ")
        (propertize (concat (stack--time-since (ca 'last_activity_date))
                            stack-question-list-ago-string)
