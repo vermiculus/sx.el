@@ -77,7 +77,7 @@ With optional argument predicate, use it instead of `<'."
   :type 'boolean
   :group 'stack-question)
 
-(defun stack-question--display (data window)
+(defun stack-question--display (data &optional window)
   "Display question given by DATA on WINDOW.
 If WINDOW is nil, use selected one."
   (let ((stack-lto--body-src-block
