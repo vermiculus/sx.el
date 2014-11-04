@@ -275,12 +275,14 @@ context of `stack-cache-directory'."
   data)
 
 (defvar stack-core--seconds-to-string
-  '((1 "ms" 0.001)
-    (100 "s" 1)
-    (6000 "m" 60.0)
-    (108000 "h" 3600.0)
-    (34560000 "d" 86400.0)
-    (nil "y" 31557600.0))
+  ;; (LIMIT NAME VALUE)
+  ;; We use an entry if the number of seconds in question is less than
+  ;; LIMIT, but more than the previous entry's LIMIT.
+  '((100      "s"  1)
+    (6000     "m"  60.0)
+    (108000   "h"  3600.0)
+    (34560000 "d"  86400.0)
+    (nil      "y"  31557600.0))
   "Auxiliary variable used by `stack--time-since'.")
 
 (defun stack--time-since (time)
