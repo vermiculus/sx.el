@@ -100,7 +100,7 @@ Letters do not insert themselves; instead, they are commands.
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
          ("  A" 3 t :right-align t)
-         ("Title" 0 stack-question-list--date-sort)])
+         ("Title" 0 stack-question-list--date-more-recent-p)])
   (setq tabulated-list-padding 1)
   ;; Sorting by title actually sorts by date. It's what we want, but
   ;; it's not terribly intuitive.
@@ -119,10 +119,11 @@ Letters do not insert themselves; instead, they are commands.
   :group 'stack-question-list)
 
 
-(defun stack-question-list--date-sort (x y)
+(defun stack-question-list--date-more-recent-p (x y)
   "Non-nil if tabulated-entry X is newer than Y."
-  (> (cdr (assoc stack-question-list-date-sort-method (car x)))
-     (cdr (assoc stack-question-list-date-sort-method (car y)))))
+  (stack-question-list--<
+   stack-question-list-date-sort-method
+   (car x) (car y) #'>))
 
 (mapc
  (lambda (x) (define-key stack-question-list-mode-map
