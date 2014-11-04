@@ -345,7 +345,7 @@ context of `stack-cache-directory'."
          (get-function (lambda (s) (let ((ss (substring s 1 -1)))
                                 (or (plist-get plist (intern ss))
                                     (format "%c" (string-to-int
-                                                  (substring ss 1 nil))))))))
+                                                  (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
 (provide 'stack-core)
