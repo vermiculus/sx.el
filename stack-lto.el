@@ -27,7 +27,6 @@
 ;;; Requirements
 (require 'stack-core)
 (require 'json)
-(require 'shr)
 (require 'org)
 
 (defun stack-lto--question (data)
@@ -37,10 +36,8 @@ by the API and read by `json-read'."
   `(headline (:title ,(cdr (assoc 'title data))
                      :level 1
                      :tags ,(mapcar #'identity (cdr (assoc 'tags data))))
-             (section ()
-                      (headline (:title "Question" :level 2)
-                                ,(stack-lto--question-answer data))
-                      ,@(mapcar #'stack-lto--answer (cdr (assoc 'answers data))))))
+             ,(stack-lto--question-answer data)
+             ,@(mapcar #'stack-lto--answer (cdr (assoc 'answers data)))))
 
 (defun stack-lto--answer (data)
   "Return answer DATA in a format acceptable by `org-element-interpret-data'.
@@ -55,12 +52,9 @@ by the API and read by `json-read'."
   "Process and return the elements of DATA which questions and answers have in common."
   (let ((comments
          (mapcar #'stack-lto--comment (cdr (assoc 'comments data)))))
-    `(,(if stack-lto--body-src-block
-           ;; Body as a src block (really NOT nice).
-           `(src-block (:value ,(stack-lto--body data)
-                               . ,stack-lto--body-src-block))
-         ;; Body as html. Nicer...
-         (list 'paragraph () (stack-lto--body-rendered data)))
+    `(;; Body as a src block (really NOT nice).
+      (src-block (:value ,(stack-lto--body data)
+                         . ,stack-lto--body-src-block))
       ;; Comments as descriptive lists. If there are no comments, an
       ;; empty list would throw an error.
       ,@(when comments `((plain-list (:type descriptive) ,comments))))))
@@ -69,8 +63,7 @@ by the API and read by `json-read'."
 ;;; Body rendering
 (defvar stack-lto--body-src-block
   '(:language "markdown" :switches nil :parameters nil :hiddenp nil)
-  "Properties used on the markdown src-block which represents the body.
-If this is nil, rendered html is used for the body instead.")
+  "Properties used on the markdown src-block which represents the body.")
 
 (defface stack-lto-body
   '((((background light)) :background "Grey90")
@@ -78,8 +71,10 @@ If this is nil, rendered html is used for the body instead.")
   "Face used on the body content of questions and answers."
   :group 'stack-mode-faces)
 
+;;; This is not used ATM since we got rid of HTML. But it can be used
+;;; once we start extending markdown mode.
 (defcustom stack-lto-bullet (if (char-displayable-p ?•) " •"  " -")
-  "Bullet used on the display of html lists."
+  "Bullet used on the display of lists."
   :type 'string
   :group 'stack-mode)
 
@@ -95,21 +90,6 @@ If this is nil, rendered html is used for the body instead.")
 (defvar stack-lto--padding
   (propertize "  " 'display "  ")
   "Left-padding added to each line of a body.")
-
-(defun stack-lto--body-rendered (data)
-  "Get and cleanup `body' from DATA.
-Render it with `shr-render-region'."
-  (propertize
-   (with-temp-buffer
-     (insert (cdr (assoc 'body data)))
-     (let ((shr-bullet stack-lto-bullet))
-       (shr-render-region (point-min) (point-max)))
-     (goto-char (point-min))
-     (while (null (eobp))
-       (insert stack-lto--padding)
-       (forward-line 1))
-     (buffer-string))
-   'font-lock-face 'stack-lto-body))
 
 (defvar stack-lto-comment-item
   '(:bullet "- " :checkbox nil :counter nil :hiddenp nil)
