@@ -144,6 +144,12 @@ If REDISPLAY is non-nil, also call `tabulated-list-print'."
           (mapcar #'stack-question-list--print-info question-list)))
   (when redisplay (tabulated-list-print 'remember)))
 
+(defcustom stack-question-list-ago-string " ago"
+  "String appended to descriptions of the time since something happened.
+Used in the questions list to indicate a question was updated \"4d ago\"."
+  :type 'string
+  :group 'stack-question-list)
+
 (defun stack-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
   (cl-flet ((ca (x) (cdr (assoc x data))))
@@ -165,7 +171,8 @@ If REDISPLAY is non-nil, also call `tabulated-list-print'."
             'stack-question-list-read-question
           'stack-question-list-unread-question))
        (propertize " " 'display "\n         ")
-       (propertize (concat (stack--time-since (ca 'last_activity_date)) " ago")
+       (propertize (concat (stack--time-since (ca 'last_activity_date))
+                           stack-question-list-ago-string)
                    'face 'stack-question-list-date)
        (propertize (concat " [" (mapconcat #'identity (ca 'tags) "] [") "]")
                    'face 'stack-question-list-tags)
