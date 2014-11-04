@@ -28,6 +28,7 @@
 (require 'stack-core)
 (require 'json)
 (require 'shr)
+(require 'org)
 
 (defun stack-lto--question (data)
   "Return question DATA in a format acceptable by `org-element-interpret-data'.
