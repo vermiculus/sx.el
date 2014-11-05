@@ -1,0 +1,9 @@
+div.uservalue {
+    font-family: monospace;
+    font-size: 14pt;
+    font-weight: bold;
+    color: darkgreen;
+    margin-top: 2ex;
+    margin-bottom: 2ex;
+    margin-left: 2em;
+}
