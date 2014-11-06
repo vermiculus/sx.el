@@ -9,7 +9,7 @@
 (defvar stack-test-data-dir
   (expand-file-name
    "data-samples/"
-   (or load-file-name "./"))
+   (or (file-name-directory load-file-name) "./"))
   "")
 
 (defun stack-test-sample-data (method &optional directory)
@@ -35,6 +35,7 @@
 (require 'stack-core)
 (require 'stack-question)
 (require 'stack-question-list)
+(require 'cl-lib)
 
 (ert-deftest test-basic-request ()
   "Test basic request functionality"
@@ -102,23 +103,29 @@
      (stack-cache-get-file-name
       stack-filter-cache-file))))
 
+(defmacro line-should-match (regexp)
+  ""
+  `(let ((line (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position))))
+     (message "Line here is: %S" line)
+     (should (string-match ,regexp line))))
+
 (ert-deftest question-list-display ()
-  (cl-letf (((symbol-function 'stack-core-make-request)
+  (cl-letf (((symbol-function #'stack-core-make-request)
              (lambda (&rest _) stack-test-data-questions)))
-    (call-interactively 'list-questions))
-  (goto-char (point-min))
-  (should (equal (buffer-name) "*question-list*"))
-  (should (string-match
-           "^   1   0 Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago \\[frames\\] \\[hooks\\] \\[focus\\]"
-           (thing-at-point 'line)))
-  (stack-question-list-next 5)
-  (should (string-match
-           "^   0   1 Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago \\[org-mode\\]"
-           (thing-at-point 'line)))
-  (call-interactively 'stack-question-list-display-question)
-  (should (equal (buffer-name) "*stack-question*"))
-  (switch-to-buffer "*question-list*")
-  (stack-question-list-previous 4)
-  (should (string-match
-           "^   2   1 &quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago \\[autocomplete\\]"
-           (thing-at-point 'line))))
+    (list-questions nil)
+    (switch-to-buffer "*question-list*")
+    (goto-char (point-min))
+    (should (equal (buffer-name) "*question-list*"))
+    (line-should-match
+     "^   1   0 Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago \\[frames\\] \\[hooks\\] \\[focus\\]")
+    (stack-question-list-next 5)
+    (line-should-match
+     "^   0   1 Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago \\[org-mode\\]")
+    (call-interactively 'stack-question-list-display-question)
+    (should (equal (buffer-name) "*stack-question*"))
+    (switch-to-buffer "*question-list*")
+    (stack-question-list-previous 4)
+    (line-should-match
+     "^   2   1 &quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago \\[autocomplete\\]")))
