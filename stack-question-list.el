@@ -133,15 +133,53 @@ Letters do not insert themselves; instead, they are commands.
    ("g" stack-question-list-refresh)
    ([?\r] stack-question-list-display-question)))
 
+(defvar stack-question-list--current-page "Latest"
+  ;; Other values (once we implement them) are "Top Voted",
+  ;; "Unanswered", etc.
+  "Variable describing current page being viewed.")
+
+(defvar stack-question-list--unread-count 0
+  "Holds the number of unread questions in the current buffer.")
+(make-variable-buffer-local 'stack-question-list--unread-count)
+
+(defvar stack-question-list--total-count 0
+  "Holds the total number of questions in the current buffer.")
+(make-variable-buffer-local 'stack-question-list--total-count)
+
+(defconst stack-question-list--mode-line-format
+  '("  "
+    mode-name
+    " "
+    (:propertize stack-question-list--current-page
+                 face mode-line-buffer-id)
+    " ["
+    "Unread: "
+    (:propertize
+     (:eval (int-to-string stack-question-list--unread-count))
+     face mode-line-buffer-id)
+    ", "
+    "Total: "
+    (:propertize
+     (:eval (int-to-string stack-question-list--total-count))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in question-list buffers.")
+
 (defun stack-question-list--update-mode-line ()
   "Fill the mode-line with useful information."
-  nil)
+  ;; All the data we need is right in the buffer.
+  (when (derived-mode-p 'stack-question-list-mode)
+    (setq mode-line-format
+          stack-question-list--mode-line-format)
+    (setq stack-question-list--total-count
+          (length tabulated-list-entries))))
 
 (defun stack-question-list-refresh (&optional redisplay)
   "Update the list of questions.
 If REDISPLAY is non-nil, also call `tabulated-list-print'."
   (interactive '(t))
-  ;; Obviously this needs to be changed.
+  ;; Reset the mode-line unread count (we rebuild it here).
+  (setq stack-question-list--unread-count 0)
   (let ((question-list (stack-core-make-request "questions")))
     ;; Print the result.
     (setq tabulated-list-entries
@@ -170,11 +208,14 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
                 'stack-question-list-answers-accepted
               'stack-question-list-answers))
       (concat
-       (propertize (ca 'title)
-                   'face
-                   (if (stack-question--read-p data)
-                       'stack-question-list-read-question
-                     'stack-question-list-unread-question))
+       (propertize
+        (ca 'title)
+        'face
+        (if (stack-question--read-p data)
+            'stack-question-list-read-question
+          ;; Increment `stack-question-list--unread-count' for the mode-line.
+          (cl-incf stack-question-list--unread-count)
+          'stack-question-list-unread-question))
        (propertize " " 'display "\n         ")
        (propertize (concat (stack--time-since (ca 'last_activity_date))
                            stack-question-list-ago-string)
@@ -213,6 +254,9 @@ focus the relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
+  (when (stack-question--read-p data)
+    (cl-decf stack-question-list--unread-count)
+    (stack-question--mark-read data))
   (unless (window-live-p stack-question--window)
     (setq stack-question--window
           (split-window-below stack-question-list-height)))
