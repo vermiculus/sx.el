@@ -32,10 +32,14 @@
  stack-test-data-sites
  (stack-test-sample-data "sites"))
 
+(setq package-user-dir
+      (expand-file-name (format "../../.cask/%s/elpa" emacs-version)
+                        stack-test-data-dir))
+(package-initialize)
+(require 'cl-lib)
 (require 'stack-core)
 (require 'stack-question)
 (require 'stack-question-list)
-(require 'cl-lib)
 
 (ert-deftest test-basic-request ()
   "Test basic request functionality"
