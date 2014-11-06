@@ -261,10 +261,20 @@ focus the relevant window."
     (stack-question--mark-read data))
   (unless (window-live-p stack-question--window)
     (setq stack-question--window
-          (split-window-below stack-question-list-height)))
+          (condition-case er
+              (split-window-below stack-question-list-height)
+            (error
+             ;; If the window is too small to split, use current one.
+             (if (string-match
+                  "Window #<window .*> too small for splitting"
+                  (car (cdr-safe er)))
+                 nil
+               (error (cdr er)))))))
   (stack-question--display data stack-question--window)
   (when focus
-    (select-window stack-question--window)))
+    (if stack-question--window
+        (select-window stack-question--window)
+      (switch-to-buffer stack-question--buffer))))
 
 (defvar stack-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
