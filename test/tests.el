@@ -127,8 +127,9 @@
     (stack-question-list-next 5)
     (line-should-match
      "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
-    (call-interactively 'stack-question-list-display-question)
-    (should (equal (buffer-name) "*stack-question*"))
+    ;; ;; Use this when we have a real stack-question buffer.
+    ;; (call-interactively 'stack-question-list-display-question)
+    ;; (should (equal (buffer-name) "*stack-question*"))
     (switch-to-buffer "*question-list*")
     (stack-question-list-previous 4)
     (line-should-match
