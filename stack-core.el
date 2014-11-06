@@ -274,7 +274,9 @@ context of `stack-cache-directory'."
   "Set the content of CACHE to DATA.
 
 As with `stack-cache-get', CACHE is a file name within the
-context of `stack-cache-directory'."
+context of `stack-cache-directory'.
+
+DATA will be written as returned by `prin1'."
   (unless (file-exists-p stack-cache-directory)
     (mkdir stack-cache-directory))
   (write-region (prin1-to-string data) nil
