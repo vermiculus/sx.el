@@ -67,7 +67,7 @@ questions)."
   (if (string-equal "" stack-auth-access-token)
       (progn (setq stack-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
-    (stack-cache-set "auth" `((access-token . ,stack-auth-access-token)))))
+    (stack-cache-set "auth.el" `((access-token . ,stack-auth-access-token)))))
 
 (provide 'stack-auth)
 ;;; stack-auth.el ends here
