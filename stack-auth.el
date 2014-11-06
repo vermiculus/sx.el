@@ -32,8 +32,6 @@
   "http://vermiculus.github.io/stack-mode/auth/auth.htm")
 (defconst stack-auth--client-id
   "3291")
-(defconst stack-auth--key
-  "0TE6s1tveCpP9K5r5JNDNQ((")
 (defvar stack-auth-access-token
   nil
   "Your access token.
