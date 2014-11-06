@@ -58,6 +58,10 @@
   ;; @TODO:
   (cl-evenp (random)))
 
+(defun stack-question--mark-read (question)
+  "Mark QUESTION as being read, until it is updated again."
+  nil)
+
 (defun stack-question--< (property x y &optional pred)
   "Non-nil if PROPERTY attribute of question X is less than that of Y.
 With optional argument predicate, use it instead of `<'."

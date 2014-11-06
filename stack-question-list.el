@@ -25,11 +25,10 @@
 (require 'stack-question)
 (require 'tabulated-list)
 (require 'cl-lib)
-(load "test/tests.el")
 
 
 ;;; Customization
-(defcustom stack-question-list-height 15
+(defcustom stack-question-list-height 12
   "Height, in lines, of stack-mode's *question-list* buffer."
   :type 'integer
   :group 'stack-question-list)
@@ -118,7 +117,6 @@ Letters do not insert themselves; instead, they are commands.
   ;; Add a setter to protect the value.
   :group 'stack-question-list)
 
-
 (defun stack-question-list--date-more-recent-p (x y)
   "Non-nil if tabulated-entry X is newer than Y."
   (stack-question--<
@@ -135,16 +133,60 @@ Letters do not insert themselves; instead, they are commands.
    ("g" stack-question-list-refresh)
    ([?\r] stack-question-list-display-question)))
 
+(defvar stack-question-list--current-page "Latest"
+  ;; Other values (once we implement them) are "Top Voted",
+  ;; "Unanswered", etc.
+  "Variable describing current page being viewed.")
+
+(defvar stack-question-list--unread-count 0
+  "Holds the number of unread questions in the current buffer.")
+(make-variable-buffer-local 'stack-question-list--unread-count)
+
+(defvar stack-question-list--total-count 0
+  "Holds the total number of questions in the current buffer.")
+(make-variable-buffer-local 'stack-question-list--total-count)
+
+(defconst stack-question-list--mode-line-format
+  '("  "
+    mode-name
+    " "
+    (:propertize stack-question-list--current-page
+                 face mode-line-buffer-id)
+    " ["
+    "Unread: "
+    (:propertize
+     (:eval (int-to-string stack-question-list--unread-count))
+     face mode-line-buffer-id)
+    ", "
+    "Total: "
+    (:propertize
+     (:eval (int-to-string stack-question-list--total-count))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in question-list buffers.")
+
 (defun stack-question-list--update-mode-line ()
   "Fill the mode-line with useful information."
-  nil)
+  ;; All the data we need is right in the buffer.
+  (when (derived-mode-p 'stack-question-list-mode)
+    (setq mode-line-format
+          stack-question-list--mode-line-format)
+    (setq stack-question-list--total-count
+          (length tabulated-list-entries))))
 
-(defun stack-question-list-refresh (&optional redisplay)
+(defvar stack-question-list--current-site "emacs"
+  "Site being displayed in the *question-list* buffer.")
+
+(defun stack-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
-If REDISPLAY is non-nil, also call `tabulated-list-print'."
-  (interactive '(t))
-  ;; Obviously this needs to be changed.
-  (let ((question-list (stack-test-sample-data "questions" "test")))
+If REDISPLAY is non-nil, also call `tabulated-list-print'.
+If the prefix argument NO-UPDATE is nil, query stack-exchange for
+a new list before redisplaying."
+  (interactive "pP")
+  ;; Reset the mode-line unread count (we rebuild it here).
+  (setq stack-question-list--unread-count 0)
+  (let ((question-list (stack-question-get-questions
+                        stack-question-list--current-site)))
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar #'stack-question-list--print-info question-list)))
@@ -158,32 +200,34 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
 
 (defun stack-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
-  (cl-flet ((ca (x) (cdr (assoc x data))))
-    (list
-     data
-     (vector
-      (list (int-to-string (ca 'score))
-            'face
-            (if (ca 'upvoted) 'stack-question-list-score-upvoted
-              'stack-question-list-score))
-      (list (int-to-string (ca 'answer_count))
-            'face
-            (if (stack-question--accepted-answer data)
-                'stack-question-list-answers-accepted
-              'stack-question-list-answers))
-      (concat
-       (propertize (ca 'title)
-                   'face
-                   (if (stack-question--read-p data)
-                       'stack-question-list-read-question
-                     'stack-question-list-unread-question))
-       (propertize " " 'display "\n         ")
-       (propertize (concat (stack--time-since (ca 'last_activity_date))
-                           stack-question-list-ago-string)
-                   'face 'stack-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity (ca 'tags) "] [") "]")
-                   'face 'stack-question-list-tags)
-       (propertize " " 'display "\n"))))))
+  (list
+   data
+   (vector
+    (list (int-to-string (cdr (assoc 'score data)))
+          'face
+          (if (cdr (assoc 'upvoted data)) 'stack-question-list-score-upvoted
+            'stack-question-list-score))
+    (list (int-to-string (cdr (assoc 'answer_count data)))
+          'face
+          (if (stack-question--accepted-answer data)
+              'stack-question-list-answers-accepted
+            'stack-question-list-answers))
+    (concat
+     (propertize
+      (cdr (assoc 'title data))
+      'face
+      (if (stack-question--read-p data)
+          'stack-question-list-read-question
+        ;; Increment `stack-question-list--unread-count' for the mode-line.
+        (cl-incf stack-question-list--unread-count)
+        'stack-question-list-unread-question))
+     (propertize " " 'display "\n         ")
+     (propertize (concat (stack--time-since (cdr (assoc 'last_activity_date data)))
+                         stack-question-list-ago-string)
+                 'face 'stack-question-list-date)
+     (propertize (concat " [" (mapconcat #'identity (cdr (assoc 'tags data)) "] [") "]")
+                 'face 'stack-question-list-tags)
+     (propertize " " 'display "\n")))))
 
 (defun stack-question-list-view-previous (n)
   "Hide this question, move to previous one, display it."
@@ -215,12 +259,25 @@ focus the relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
+  (when (stack-question--read-p data)
+    (cl-decf stack-question-list--unread-count)
+    (stack-question--mark-read data))
   (unless (window-live-p stack-question--window)
     (setq stack-question--window
-          (split-window-below stack-question-list-height)))
+          (condition-case er
+              (split-window-below stack-question-list-height)
+            (error
+             ;; If the window is too small to split, use current one.
+             (if (string-match
+                  "Window #<window .*> too small for splitting"
+                  (car (cdr-safe er)))
+                 nil
+               (error (cdr er)))))))
   (stack-question--display data stack-question--window)
   (when focus
-    (select-window stack-question--window)))
+    (if stack-question--window
+        (select-window stack-question--window)
+      (switch-to-buffer stack-question--buffer))))
 
 (defvar stack-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
@@ -233,7 +290,7 @@ focus the relevant window."
           (generate-new-buffer "*question-list*")))
   (with-current-buffer stack-question-list--buffer
     (stack-question-list-mode)
-    (stack-question-list-refresh 'redisplay))
+    (stack-question-list-refresh 'redisplay no-update))
   (switch-to-buffer stack-question-list--buffer))
 
 (defalias 'stack-list-questions #'list-questions)

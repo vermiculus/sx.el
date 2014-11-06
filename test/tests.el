@@ -6,7 +6,10 @@
          (unintern symbol)))))
 
 ;;; Tests
-(defvar stack-test-data-dir "data-samples/" 
+(defvar stack-test-data-dir
+  (expand-file-name
+   "data-samples/"
+   (or (file-name-directory load-file-name) "./"))
   "")
 
 (defun stack-test-sample-data (method &optional directory)
@@ -29,12 +32,18 @@
  stack-test-data-sites
  (stack-test-sample-data "sites"))
 
+(setq package-user-dir
+      (expand-file-name (format "../../.cask/%s/elpa" emacs-version)
+                        stack-test-data-dir))
+(package-initialize)
+(require 'cl-lib)
 (require 'stack-core)
 (require 'stack-question)
+(require 'stack-question-list)
 
 (ert-deftest test-basic-request ()
-    "Test basic request functionality"
-    (should (stack-core-make-request "sites")))
+  "Test basic request functionality"
+  (should (stack-core-make-request "sites")))
 
 (ert-deftest test-question-retrieve ()
   "Test the ability to receive a list of questions."
@@ -53,7 +62,7 @@
     '((1 . t) (2 . [1 2]) (3))
     (stack-core-filter-data '((0 . 3) (1 . t) (a . five) (2 . [1 2])
                               ("5" . bop) (3) (p . 4))
-			    '(1 2 3))))
+                            '(1 2 3))))
   ;; complex
   (should
    (equal
@@ -97,3 +106,31 @@
     (delete-file
      (stack-cache-get-file-name
       stack-filter-cache-file))))
+
+(defmacro line-should-match (regexp)
+  ""
+  `(let ((line (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position))))
+     (message "Line here is: %S" line)
+     (should (string-match ,regexp line))))
+
+(ert-deftest question-list-display ()
+  (cl-letf (((symbol-function #'stack-core-make-request)
+             (lambda (&rest _) stack-test-data-questions)))
+    (list-questions nil)
+    (switch-to-buffer "*question-list*")
+    (goto-char (point-min))
+    (should (equal (buffer-name) "*question-list*"))
+    (line-should-match
+     "^\\s-+1\\s-+0\\s-+Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago\\s-+\\[frames\\] \\[hooks\\] \\[focus\\]")
+    (stack-question-list-next 5)
+    (line-should-match
+     "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
+    ;; ;; Use this when we have a real stack-question buffer.
+    ;; (call-interactively 'stack-question-list-display-question)
+    ;; (should (equal (buffer-name) "*stack-question*"))
+    (switch-to-buffer "*question-list*")
+    (stack-question-list-previous 4)
+    (line-should-match
+     "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago\\s-+\\[autocomplete\\]")))
