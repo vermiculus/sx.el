@@ -174,10 +174,12 @@ Letters do not insert themselves; instead, they are commands.
     (setq stack-question-list--total-count
           (length tabulated-list-entries))))
 
-(defun stack-question-list-refresh (&optional redisplay)
+(defun stack-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
-If REDISPLAY is non-nil, also call `tabulated-list-print'."
-  (interactive '(t))
+If REDISPLAY is non-nil, also call `tabulated-list-print'.
+If the prefix argument NO-UPDATE is nil, query stack-exchange for
+a new list before redisplaying."
+  (interactive "pP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq stack-question-list--unread-count 0)
   (let ((question-list (stack-core-make-request "questions")))
@@ -275,7 +277,7 @@ focus the relevant window."
           (generate-new-buffer "*question-list*")))
   (with-current-buffer stack-question-list--buffer
     (stack-question-list-mode)
-    (stack-question-list-refresh 'redisplay))
+    (stack-question-list-refresh 'redisplay no-update))
   (switch-to-buffer stack-question-list--buffer))
 
 (defalias 'stack-list-questions #'list-questions)
