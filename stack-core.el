@@ -57,6 +57,10 @@
   (format "http://api.stackexchange.com/%s/" stack-core-api-version)
   "The base URL to make requests from.")
 
+(defconst stack-core-api-batch-request-separator
+  ";"
+  "The separator character to use when making batch requests.")
+
 (defcustom stack-core-default-keyword-arguments-alist
   '(("filters/create")
     ("sites")
@@ -110,7 +114,10 @@ a string, just return it."
   (cond
    ((stringp thing) thing)
    ((symbolp thing) (symbol-name thing))
-   ((numberp thing) (number-to-string thing))))
+   ((numberp thing) (number-to-string thing))
+   ((sequencep thing)
+    (mapconcat #'stack-core-thing-as-string
+               thing stack-core-api-batch-request-separator))))
 
 (defun stack-core-get-default-keyword-arguments (method)
   "Gets the correct keyword arguments for METHOD."
