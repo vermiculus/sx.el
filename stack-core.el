@@ -57,9 +57,11 @@
   (format "http://api.stackexchange.com/%s/" stack-core-api-version)
   "The base URL to make requests from.")
 
-(defconst stack-core-api-batch-request-separator
+(defvar stack-core-api-batch-request-separator
   ";"
-  "The separator character to use when making batch requests.")
+  "The separator character to use when making batch requests.
+
+Do not change this unless you know what you are doing!")
 
 (defcustom stack-core-default-keyword-arguments-alist
   '(("filters/create")
