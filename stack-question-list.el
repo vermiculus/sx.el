@@ -174,6 +174,9 @@ Letters do not insert themselves; instead, they are commands.
     (setq stack-question-list--total-count
           (length tabulated-list-entries))))
 
+(defvar stack-question-list--current-site "emacs"
+  "Site being displayed in the *question-list* buffer.")
+
 (defun stack-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil, also call `tabulated-list-print'.
@@ -182,7 +185,8 @@ a new list before redisplaying."
   (interactive "pP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq stack-question-list--unread-count 0)
-  (let ((question-list (stack-core-make-request "questions")))
+  (let ((question-list (stack-question-get-questions
+                        stack-question-list--current-site)))
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar #'stack-question-list--print-info question-list)))
