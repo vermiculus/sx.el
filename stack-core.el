@@ -57,6 +57,12 @@
   (format "http://api.stackexchange.com/%s/" stack-core-api-version)
   "The base URL to make requests from.")
 
+(defvar stack-core-api-batch-request-separator
+  ";"
+  "The separator character to use when making batch requests.
+
+Do not change this unless you know what you are doing!")
+
 (defconst stack-core-api-key
   "0TE6s1tveCpP9K5r5JNDNQ(("
   "When passed, this key provides a higher request quota.")
@@ -114,7 +120,10 @@ a string, just return it."
   (cond
    ((stringp thing) thing)
    ((symbolp thing) (symbol-name thing))
-   ((numberp thing) (number-to-string thing))))
+   ((numberp thing) (number-to-string thing))
+   ((sequencep thing)
+    (mapconcat #'stack-core-thing-as-string
+               thing stack-core-api-batch-request-separator))))
 
 (defun stack-core-get-default-keyword-arguments (method)
   "Gets the correct keyword arguments for METHOD."
@@ -272,7 +281,9 @@ context of `stack-cache-directory'."
   "Set the content of CACHE to DATA.
 
 As with `stack-cache-get', CACHE is a file name within the
-context of `stack-cache-directory'."
+context of `stack-cache-directory'.
+
+DATA will be written as returned by `prin1'."
   (unless (file-exists-p stack-cache-directory)
     (mkdir stack-cache-directory))
   (write-region (prin1-to-string data) nil
