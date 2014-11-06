@@ -57,8 +57,7 @@ questions)."
              `((client_id . ,stack-auth--client-id)
                (scope . (read_inbox
                          no_expiry
-                         write_access
-                         private_info))
+                         write_access))
                (redirect_uri . ,(url-hexify-string
                                  stack-auth--redirect-uri))))))
      (read-string "Enter the access token displayed on the webpage: ")))
