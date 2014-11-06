@@ -1,9 +1,45 @@
+* {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
 div.uservalue {
-    font-family: monospace;
     font-size: 14pt;
     font-weight: bold;
     color: darkgreen;
     margin-top: 2ex;
     margin-bottom: 2ex;
     margin-left: 2em;
+    background-color: #EEEEEE;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto; 
+} 
+
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 16px;
+}
+
+a {
+    background-color: #1695A3;
+    padding: 8px;
+
+    border-radius: 6px;
+    color: #000;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+hr {
+    width: 35%;
+    margin-bottom: 30px;
 }
