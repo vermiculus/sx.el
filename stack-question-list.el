@@ -28,7 +28,7 @@
 
 
 ;;; Customization
-(defcustom stack-question-list-height 15
+(defcustom stack-question-list-height 12
   "Height, in lines, of stack-mode's *question-list* buffer."
   :type 'integer
   :group 'stack-question-list)
@@ -116,7 +116,6 @@ Letters do not insert themselves; instead, they are commands.
   :type 'symbol
   ;; Add a setter to protect the value.
   :group 'stack-question-list)
-
 
 (defun stack-question-list--date-more-recent-p (x y)
   "Non-nil if tabulated-entry X is newer than Y."
