@@ -57,6 +57,10 @@
   (format "http://api.stackexchange.com/%s/" stack-core-api-version)
   "The base URL to make requests from.")
 
+(defconst stack-core-api-key
+  "0TE6s1tveCpP9K5r5JNDNQ(("
+  "When passed, this key provides a higher request quota.")
+
 (defcustom stack-core-default-keyword-arguments-alist
   '(("filters/create")
     ("sites")
@@ -164,8 +168,9 @@ entire response as a complex alist."
 	(call
 	 (stack-core-build-request
 	  method
-	  (cons `(filter . ,(cond (filter filter)
-				  ((boundp 'stack-filter) stack-filter)))
+	  (append `((filter . ,(cond (filter filter)
+                                     ((boundp 'stack-filter) stack-filter)))
+                    (key . ,stack-core-api-key))
 		(if keyword-arguments keyword-arguments
 		  (stack-core-get-default-keyword-arguments method))))))
     ;; TODO: url-retrieve-synchronously can return nil if the call is
