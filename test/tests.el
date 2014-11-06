@@ -107,10 +107,18 @@
              (lambda (&rest _) stack-test-data-questions)))
     (call-interactively 'list-questions))
   (goto-char (point-min))
-  (should (looking-at "   1   0 Focus-hook: attenuate colours when losing focus [0-9]+d ago \\[frames\\] \\[hooks\\] \\[focus\\]"))
+  (should (equal (buffer-name) "*question-list*"))
+  (should (string-match
+           "^   1   0 Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago \\[frames\\] \\[hooks\\] \\[focus\\]"
+           (thing-at-point 'line)))
   (stack-question-list-next 5)
-  (should (looking-at "   0   1 Babel doesn&#39;t wrap results in verbatim [0-9]+d ago \\[org-mode\\]"))
+  (should (string-match
+           "^   0   1 Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago \\[org-mode\\]"
+           (thing-at-point 'line)))
   (call-interactively 'stack-question-list-display-question)
   (should (equal (buffer-name) "*stack-question*"))
+  (switch-to-buffer "*question-list*")
   (stack-question-list-previous 4)
-  (should (looking-at "   2   1 &quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [0-9]+d ago \\[autocomplete\\]")))
+  (should (string-match
+           "^   2   1 &quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago \\[autocomplete\\]"
+           (thing-at-point 'line))))
