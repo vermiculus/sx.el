@@ -6,7 +6,10 @@
          (unintern symbol)))))
 
 ;;; Tests
-(defvar stack-test-data-dir "data-samples/" 
+(defvar stack-test-data-dir
+  (expand-file-name
+   "data-samples/"
+   (or load-file-name "./"))
   "")
 
 (defun stack-test-sample-data (method &optional directory)
@@ -31,10 +34,11 @@
 
 (require 'stack-core)
 (require 'stack-question)
+(require 'stack-question-list)
 
 (ert-deftest test-basic-request ()
-    "Test basic request functionality"
-    (should (stack-core-make-request "sites")))
+  "Test basic request functionality"
+  (should (stack-core-make-request "sites")))
 
 (ert-deftest test-question-retrieve ()
   "Test the ability to receive a list of questions."
@@ -53,7 +57,7 @@
     '((1 . t) (2 . [1 2]) (3))
     (stack-core-filter-data '((0 . 3) (1 . t) (a . five) (2 . [1 2])
                               ("5" . bop) (3) (p . 4))
-			    '(1 2 3))))
+                            '(1 2 3))))
   ;; complex
   (should
    (equal
@@ -97,3 +101,16 @@
     (delete-file
      (stack-cache-get-file-name
       stack-filter-cache-file))))
+
+(ert-deftest question-list-display ()
+  (cl-letf (((symbol-function 'stack-core-make-request)
+             (lambda (&rest _) stack-test-data-questions)))
+    (call-interactively 'list-questions))
+  (goto-char (point-min))
+  (should (looking-at "   1   0 Focus-hook: attenuate colours when losing focus [0-9]+d ago \\[frames\\] \\[hooks\\] \\[focus\\]"))
+  (stack-question-list-next 5)
+  (should (looking-at "   0   1 Babel doesn&#39;t wrap results in verbatim [0-9]+d ago \\[org-mode\\]"))
+  (call-interactively 'stack-question-list-display-question)
+  (should (equal (buffer-name) "*stack-question*"))
+  (stack-question-list-previous 4)
+  (should (looking-at "   2   1 &quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [0-9]+d ago \\[autocomplete\\]")))
