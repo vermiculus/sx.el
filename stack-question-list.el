@@ -196,35 +196,34 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
 
 (defun stack-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
-  (cl-flet ((ca (x) (cdr (assoc x data))))
-    (list
-     data
-     (vector
-      (list (int-to-string (ca 'score))
-            'face
-            (if (ca 'upvoted) 'stack-question-list-score-upvoted
-              'stack-question-list-score))
-      (list (int-to-string (ca 'answer_count))
-            'face
-            (if (stack-question--accepted-answer data)
-                'stack-question-list-answers-accepted
-              'stack-question-list-answers))
-      (concat
-       (propertize
-        (ca 'title)
-        'face
-        (if (stack-question--read-p data)
-            'stack-question-list-read-question
-          ;; Increment `stack-question-list--unread-count' for the mode-line.
-          (cl-incf stack-question-list--unread-count)
-          'stack-question-list-unread-question))
-       (propertize " " 'display "\n         ")
-       (propertize (concat (stack--time-since (ca 'last_activity_date))
-                           stack-question-list-ago-string)
-                   'face 'stack-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity (ca 'tags) "] [") "]")
-                   'face 'stack-question-list-tags)
-       (propertize " " 'display "\n"))))))
+  (list
+   data
+   (vector
+    (list (int-to-string (cdr (assoc 'score data)))
+          'face
+          (if (cdr (assoc 'upvoted data)) 'stack-question-list-score-upvoted
+            'stack-question-list-score))
+    (list (int-to-string (cdr (assoc 'answer_count data)))
+          'face
+          (if (stack-question--accepted-answer data)
+              'stack-question-list-answers-accepted
+            'stack-question-list-answers))
+    (concat
+     (propertize
+      (cdr (assoc 'title data))
+      'face
+      (if (stack-question--read-p data)
+          'stack-question-list-read-question
+        ;; Increment `stack-question-list--unread-count' for the mode-line.
+        (cl-incf stack-question-list--unread-count)
+        'stack-question-list-unread-question))
+     (propertize " " 'display "\n         ")
+     (propertize (concat (stack--time-since (cdr (assoc 'last_activity_date data)))
+                         stack-question-list-ago-string)
+                 'face 'stack-question-list-date)
+     (propertize (concat " [" (mapconcat #'identity (cdr (assoc 'tags data)) "] [") "]")
+                 'face 'stack-question-list-tags)
+     (propertize " " 'display "\n")))))
 
 (defun stack-question-list-view-previous (n)
   "Hide this question, move to previous one, display it."
