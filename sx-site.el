@@ -1,4 +1,4 @@
-;;; sx-network.el --- browsing networks  -*- lexical-binding: t; -*-
+;;; sx-site.el --- browsing sites                    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -25,11 +25,11 @@
 
 (require 'sx-request)
 
-(defun sx-network-get-networks ()
+(defun sx-site-get-sites ()
   (sx-request-make "sites"))
 
-(provide 'sx-network)
-;;; stack-network.el ends here
+(provide 'sx-site)
+;;; stack-site.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
