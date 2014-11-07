@@ -112,6 +112,33 @@ is equivalent to
     `(let ,(mapcar (lambda (x) `(,x (cdr (assoc ',x ,alist)))) symbols)
        ,@body)))
 
+(defcustom sx-init-hook nil
+  "Hook run when stack-mode initializes.
+
+Run after `sx-init--internal-hook'.")
+
+(defvar sx-init--internal-hook nil
+  "Hook run when stack-mode initializes.
+
+This is used internally to set initial values for variables such
+as filters.")
+
+(defmacro sx-init-variable (variable value &optional setter)
+  "Set VARIABLE to VALUE using SETTER.
+SETTER should be a function of two arguments.  If SETTER is nil,
+`set' is used."
+  (eval
+   `(add-hook
+     'sx-init--internal-hook
+     (lambda ()
+       (,(or setter #'setq) ,variable ,value))))
+  nil)
+
+(defun stack-initialize ()
+  (run-hooks
+   'sx-init--internal-hook
+   'sx-init-hook))
+
 (provide 'sx)
 ;;; sx.el ends here
 
