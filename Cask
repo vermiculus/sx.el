@@ -3,7 +3,7 @@
 (source gnu)
 (source melpa-stable)
 
-(files "stack-*.el")
+(files "sx*.el")
 
 (depends-on "json" "1.4")
 (depends-on "url")
