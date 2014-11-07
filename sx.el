@@ -63,7 +63,7 @@ a string, just return it."
                    (if (and (sequencep (cdr cons-cell))
                             (sequencep (elt (cdr cons-cell) 0)))
                        (cons (car cons-cell)
-                             (sx-filter-data
+                             (sx--filter-data
                               (cdr cons-cell) (cdr f)))
                      cons-cell))))
              data))))
