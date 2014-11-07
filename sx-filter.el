@@ -1,4 +1,4 @@
-;;; stack-filter.el --- filters for stack-mode       -*- lexical-binding: t; -*-
+;;; sx-filter.el --- filters                         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,49 +19,45 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 
 ;;; Dependencies
 
-(require 'stack-core)
+(require 'sx)
+(require 'sx-cache)
 
 
 ;;; Customizations
 
-(defconst stack-filter-cache-file
+(defconst sx-filter-cache-file
   "filters.el")
 
-(defvar stack-filter
+(defvar sx-filter
   'default
   "The current filter.
-To customize the filter for the next call
-to `stack-core-make-request', let-bind this variable to the
-output of a call to `stack-core-compile-filter'.  Be careful!  If
-you're going to be using this new filter a lot, create a variable
-for it.  Creation requests count against
-`stack-core-remaining-api-requests'!")
+To customize the filter for the next call to `sx-request-make',
+let-bind this variable to the output of a call to
+`sx-filter-compile'.  Be careful!  If you're going to be using
+this new filter a lot, create a variable for it.  Creation
+requests count against `sx-request-remaining-api-requests'!")
 
 
 ;;; Compilation
 
 ;;; TODO allow BASE to be a precompiled filter name
-(defun stack-filter-compile (&optional include exclude base)
+(defun sx-filter-compile (&optional include exclude base)
   "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
 
 INCLUDE and EXCLUDE must both be lists; BASE should be a symbol
 or string."
   (let ((keyword-arguments
-         `((include . ,(if include (mapconcat
-                                    #'stack-core-thing-as-string
-                                    include ";")))
-           (exclude . ,(if exclude (mapconcat
-                                    #'stack-core-thing-as-string
-                                    exclude ";")))
+         `((include . ,(if include (sx--thing-as-string include)))
+           (exclude . ,(if exclude (sx--thing-as-string exclude)))
            (base    . ,(if base base)))))
-    (let ((response (stack-core-make-request
+    (let ((response (sx-request-make
                      "filter/create"
                      keyword-arguments)))
       (url-hexify-string
@@ -71,15 +67,15 @@ or string."
 
 ;;; Storage and Retrieval
 
-(defun stack-filter-get (filter)
-  "Retrieve named FILTER from `stack-filter-cache-file'."
-  (cdr (assoc filter (stack-cache-get stack-filter-cache-file))))
+(defun sx-filter-get (filter)
+  "Retrieve named FILTER from `sx-filter-cache-file'."
+  (cdr (assoc filter (sx-cache-get sx-filter-cache-file))))
 
-(defun stack-filter-store (name &optional filter)
-  "Store NAME as FILTER in `stack-filter-cache-file'.
+(defun sx-filter-store (name &optional filter)
+  "Store NAME as FILTER in `sx-filter-cache-file'.
 
 NAME should be a symbol and FILTER is a string as compiled by
-`stack-filter-compile'.
+`sx-filter-compile'.
 
 If NAME is a cons cell, (car NAME) is taken to be the actual NAME
 and (cdr NAME) is taken to be the actual FILTER.  In this case,
@@ -88,15 +84,19 @@ the second argument is simply ignored."
         (filter (if (consp name) (cdr name) filter)))
     (unless (symbolp name)
       (error "Name must be a symbol: %S" name))
-    (let* ((dict (stack-cache-get stack-filter-cache-file))
+    (let* ((dict (sx-cache-get sx-filter-cache-file))
            (entry (assoc name dict)))
       (if entry (setcdr entry filter)
         (setq dict (cons (cons name filter) dict)))
 
-      (stack-cache-set stack-filter-cache-file dict))))
+      (sx-cache-set sx-filter-cache-file dict))))
 
-(defun stack-filter-store-all (name-filter-alist)
-  (mapc #'stack-filter-store name-filter-alist))
+(defun sx-filter-store-all (name-filter-alist)
+  (mapc #'sx-filter-store name-filter-alist))
 
-(provide 'stack-filter)
-;;; stack-filter.el ends here
+(provide 'sx-filter)
+;;; sx-filter.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

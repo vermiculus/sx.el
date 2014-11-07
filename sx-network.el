@@ -1,4 +1,4 @@
-;;; stack-network.el --- network functions for stack-mode  -*- lexical-binding: t; -*-
+;;; sx-network.el --- browsing networks  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,14 +19,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
-(require 'stack-core)
+(require 'sx-request)
 
-(defun stack-network-get-networks ()
-  (stack-core-make-request "sites"))
+(defun sx-network-get-networks ()
+  (sx-request-make "sites"))
 
-(provide 'stack-network)
+(provide 'sx-network)
 ;;; stack-network.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
