@@ -68,6 +68,50 @@ a string, just return it."
                      cons-cell))))
              data))))
 
+
+;;; Interpreting request data
+(defvar sx--api-symbols
+  '(accept_rate answer_count answer_id answers body body_markdown close_vote_count upvoted downvoted
+                comment_count comment_id creation_date delete_vote_count display_name
+                edited favorite_count is_accepted is_answered last_activity_date
+                last_edit_date last_editor link owner profile_image question_id
+                reopen_vote_count reputation score tags title user_id user_type view_count)
+  "")
+
+(defun sx--deep-search (symbol list)
+  "Non-nil if SYMBOL is contained somewhere inside LIST."
+  (cond
+   ((symbolp list)
+    (eq symbol list))
+   ((not (listp list))
+    nil)
+   (t
+    (remove nil (mapcar (lambda (x) (sx--deep-search symbol x)) list)))))
+
+(defmacro sx-assoc-let (alist &rest body)
+  "Execute BODY while let-binding api symbols to their values in ALIST.
+Any api symbol is any symbol listed in `sx--api-symbols'. Only
+those present in BODY are letbound, which leads to optimal
+performance.
+
+For instance the following code
+
+  (stack-core-with-data alist
+    (list title body))
+
+is equivalent to
+
+  (let ((title (cdr (assoc 'title alist)))
+        (body (cdr (assoc 'body alist))))
+    (list title body))"
+  (declare (indent 1)
+           (debug t))
+  (let ((symbols (cl-member-if
+                  (lambda (x) (sx--deep-search x body))
+                  sx--api-symbols)))
+    `(let ,(mapcar (lambda (x) `(,x (cdr (assoc ',x ,alist)))) symbols)
+       ,@body)))
+
 (provide 'sx)
 ;;; sx.el ends here
 
