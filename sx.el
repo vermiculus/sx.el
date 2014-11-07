@@ -71,7 +71,7 @@ a string, just return it."
 
 ;;; Interpreting request data
 (defvar sx--api-symbols
-  '(accept_rate answer_count answer_id answers body body_markdown close_vote_count
+  '(accept_rate answer_count answer_id answers body body_markdown close_vote_count upvoted downvoted
                 comment_count comment_id creation_date delete_vote_count display_name
                 edited favorite_count is_accepted is_answered last_activity_date
                 last_edit_date last_editor link owner profile_image question_id
@@ -93,7 +93,7 @@ a string, just return it."
 Any api symbol is any symbol listed in `sx--api-symbols'. Only
 those present in BODY are letbound, which leads to optimal
 performance.
- 
+
 For instance the following code
 
   (stack-core-with-data alist
