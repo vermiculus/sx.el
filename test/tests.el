@@ -22,9 +22,9 @@
         (read (buffer-string))))))
 
 (setq
- stack-core-remaining-api-requests-message-threshold 50000
+ sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
- stack-core-silent-requests nil
+ sx-request-silent-p nil
  user-emacs-directory "."
 
  stack-test-data-questions
@@ -37,22 +37,22 @@
                         stack-test-data-dir))
 (package-initialize)
 (require 'cl-lib)
-(require 'stack-core)
-(require 'stack-question)
-(require 'stack-question-list)
+(require 'sx)
+(require 'sx-question)
+(require 'sx-question-list)
 
 (ert-deftest test-basic-request ()
   "Test basic request functionality"
-  (should (stack-core-make-request "sites")))
+  (should (sx-request-make "sites")))
 
 (ert-deftest test-question-retrieve ()
   "Test the ability to receive a list of questions."
-  (should (stack-question-get-questions 'emacs)))
+  (should (sx-question-get-questions 'emacs)))
 
 (ert-deftest test-bad-request ()
   "Test a method given a bad set of keywords"
   (should-error
-   (stack-core-make-request "questions" '(()))))
+   (sx-request-make "questions" '(()))))
 
 (ert-deftest test-tree-filter ()
   "`stack-core-filter-data'"
@@ -60,9 +60,9 @@
   (should
    (equal
     '((1 . t) (2 . [1 2]) (3))
-    (stack-core-filter-data '((0 . 3) (1 . t) (a . five) (2 . [1 2])
-                              ("5" . bop) (3) (p . 4))
-                            '(1 2 3))))
+    (sx--filter-data '((0 . 3) (1 . t) (a . five) (2 . [1 2])
+                       ("5" . bop) (3) (p . 4))
+                     '(1 2 3))))
   ;; complex
   (should
    (equal
@@ -70,12 +70,12 @@
       (2 . [((a . 1) (c . 3))
             ((a . 4) (c . 6))])
       (3 . peach))
-    (stack-core-filter-data '((1 . [a b c])
-                              (2 . [((a . 1) (b . 2) (c . 3))
-                                    ((a . 4) (b . 5) (c . 6))])
-                              (3 . peach)
-                              (4 . banana))
-                            '(1 (2 a c) 3))))
+    (sx--filter-data '((1 . [a b c])
+                       (2 . [((a . 1) (b . 2) (c . 3))
+                             ((a . 4) (b . 5) (c . 6))])
+                       (3 . peach)
+                       (4 . banana))
+                     '(1 (2 a c) 3))))
 
   ;; vector
   (should
@@ -83,29 +83,29 @@
     [((1 . 2) (2 . 3) (3 . 4))
      ((1 . a) (2 . b) (3 . c))
      nil ((1 . alpha) (2 . beta))]
-    (stack-core-filter-data [((1 . 2) (2 . 3) (3 . 4))
-                             ((1 . a) (2 . b) (3 . c) (5 . seven))
-                             ((should-not-go))
-                             ((1 . alpha) (2 . beta))]
-                            '(1 2 3)))))
+    (sx--filter-data [((1 . 2) (2 . 3) (3 . 4))
+                      ((1 . a) (2 . b) (3 . c) (5 . seven))
+                      ((should-not-go))
+                      ((1 . alpha) (2 . beta))]
+                     '(1 2 3)))))
 
 (ert-deftest test-filters ()
   (let ((stack-cache-directory (make-temp-file "stack-test" t)))
-    (should-error (stack-filter-store "names must be symbols"
-                                      "this is a filter"))
+    (should-error (sx-filter-store "names must be symbols"
+                                   "this is a filter"))
     ;; basic use
     (should (equal '((test . "filter"))
-                   (stack-filter-store 'test "filter")))
+                   (sx-filter-store 'test "filter")))
     ;; aggregation
     (should (equal '((test2 . "filter2") (test . "filter"))
-                   (stack-filter-store 'test2 "filter2")))
+                   (sx-filter-store 'test2 "filter2")))
     ;; mutation
     (should (equal '((test2 . "filter2") (test . "filter-test"))
-                   (stack-filter-store 'test "filter-test")))
+                   (sx-filter-store 'test "filter-test")))
     ;; clean up (note: the file should exist)
     (delete-file
-     (stack-cache-get-file-name
-      stack-filter-cache-file))))
+     (sx-cache-get-file-name
+      sx-filter-cache-file))))
 
 (defmacro line-should-match (regexp)
   ""
@@ -116,7 +116,7 @@
      (should (string-match ,regexp line))))
 
 (ert-deftest question-list-display ()
-  (cl-letf (((symbol-function #'stack-core-make-request)
+  (cl-letf (((symbol-function #'sx-request-make)
              (lambda (&rest _) stack-test-data-questions)))
     (list-questions nil)
     (switch-to-buffer "*question-list*")
@@ -124,13 +124,13 @@
     (should (equal (buffer-name) "*question-list*"))
     (line-should-match
      "^\\s-+1\\s-+0\\s-+Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago\\s-+\\[frames\\] \\[hooks\\] \\[focus\\]")
-    (stack-question-list-next 5)
+    (sx-question-list-next 5)
     (line-should-match
      "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
     ;; ;; Use this when we have a real stack-question buffer.
     ;; (call-interactively 'stack-question-list-display-question)
     ;; (should (equal (buffer-name) "*stack-question*"))
     (switch-to-buffer "*question-list*")
-    (stack-question-list-previous 4)
+    (sx-question-list-previous 4)
     (line-should-match
      "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago\\s-+\\[autocomplete\\]")))

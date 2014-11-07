@@ -1,9 +1,8 @@
-;;; stack-question.el --- question logic for stack-mode  -*- lexical-binding: t; -*-
+;;; sx-question.el --- question logic for stack-mode  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
-;; Keywords: help, hypermedia, mail, news, tools
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,49 +19,50 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 
 ;;; Code:
 
-(require 'stack-core)
-(require 'stack-filter)
-(require 'stack-lto)
+(require 'sx)
+(require 'sx-filter)
+(require 'sx-lto)
+(require 'sx-request)
 
 ;; I don't know why this is here, but it was causing an API request on require.
-(defvar stack-question-browse-filter nil
+(defvar sx-question-browse-filter nil
   ;; (stack-filter-compile
   ;;  nil
   ;;  '(user.profile_image shallow_user.profile_image))
   )
 
-;; (stack-filter-store 'question-browse stack-question-browse-filter)
+;; (stack-filter-store 'question-browse sx-question-browse-filter)
 
-(defun stack-question-get-questions (site &optional page)
+(defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
-  (stack-core-make-request
+  (sx-request-make
    "questions"
    `((site . ,site)
      (page . ,page))
-   stack-question-browse-filter))
+   sx-question-browse-filter))
 
 
 ;;; Question Properties
-(defun stack-question--read-p (question)
+(defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated."
   ;; @TODO:
   (cl-evenp (random)))
 
-(defun stack-question--accepted-answer (question)
+(defun sx-question--accepted-answer (question)
   "Return accepted answer in QUESTION, or nil if none."
   ;; @TODO:
   (cl-evenp (random)))
 
-(defun stack-question--mark-read (question)
+(defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
   nil)
 
-(defun stack-question--< (property x y &optional pred)
+(defun sx-question--< (property x y &optional pred)
   "Non-nil if PROPERTY attribute of question X is less than that of Y.
 With optional argument predicate, use it instead of `<'."
   (funcall (or pred #'<)
@@ -70,52 +70,56 @@ With optional argument predicate, use it instead of `<'."
            (cdr (assoc property y))))
 
 ;;; Displaying a question
-(defvar stack-question--window nil
+(defvar sx-question--window nil
   "Window where the content of questions is displayed.")
 
-(defvar stack-question--buffer nil
+(defvar sx-question--buffer nil
   "Buffer being used to display questions.")
 
-(defcustom stack-question-use-html t
+(defcustom sx-question-use-html t
   "If nil, markdown is used for the body."
   :type 'boolean
-  :group 'stack-question)
+  :group 'sx-question)
 
-(defun stack-question--display (data &optional window)
+(defun sx-question--display (data &optional window)
   "Display question given by DATA on WINDOW.
 If WINDOW is nil, use selected one."
-  (let ((stack-lto--body-src-block
-         (if stack-question-use-html nil
-           stack-lto--body-src-block))
+  (let ((sx-lto--body-src-block
+         (if sx-question-use-html nil
+           sx-lto--body-src-block))
         (inhibit-read-only t))
     (with-current-buffer
-        (stack-question--display-buffer window)
+        (sx-question--display-buffer window)
       (erase-buffer)
       (insert
        (org-element-interpret-data
-        (stack-lto--question data)))
+        (sx-lto--question data)))
       (org-mode)
       (show-all)
       (view-mode)
       (current-buffer))))
 
-(defun stack-question--display-buffer (window)
+(defun sx-question--display-buffer (window)
   "Display and return the buffer used for displaying a question.
 Create the buffer if necessary.
 If WINDOW is given, use that to display the buffer."
   ;; Create the buffer if necessary.
-  (unless (buffer-live-p stack-question--buffer)
-    (setq stack-question--buffer
-          (generate-new-buffer "*stack-question*")))
+  (unless (buffer-live-p sx-question--buffer)
+    (setq sx-question--buffer
+          (generate-new-buffer "*sx-question*")))
   (cond
    ;; Window was given, use it.
    ((window-live-p window)
-    (set-window-buffer window stack-question--buffer))
+    (set-window-buffer window sx-question--buffer))
    ;; No window, but the buffer is already being displayed somewhere.
-   ((get-buffer-window stack-question--buffer 'visible))
+   ((get-buffer-window sx-question--buffer 'visible))
    ;; Neither, so we create the window.
-   (t (switch-to-buffer stack-question--buffer)))
-  stack-question--buffer)
+   (t (switch-to-buffer sx-question--buffer)))
+  sx-question--buffer)
 
-(provide 'stack-question)
-;;; stack-question.el ends here
+(provide 'sx-question)
+;;; sx-question.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

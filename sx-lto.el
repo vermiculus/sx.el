@@ -1,10 +1,8 @@
-;;; stack-core.el --- lisp-to-org conversion functions for stack-mode  -*- lexical-binding: t; -*-
+;;; sx-lto.el --- lisp-to-org conversion functions  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
-;; Keywords: help, hypermedia, mail, news, tools
-
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,47 +23,46 @@
 
 
 ;;; Requirements
-(require 'stack-core)
-(require 'json)
+(require 'sx)
 (require 'org)
 
-(defun stack-lto--question (data)
+(defun sx-lto--question (data)
   "Return question DATA in a format acceptable by `org-element-interpret-data'.
 DATA is a list of cons cells representing a question, as received
 by the API and read by `json-read'."
   `(headline (:title ,(cdr (assoc 'title data))
                      :level 1
                      :tags ,(mapcar #'identity (cdr (assoc 'tags data))))
-             ,(stack-lto--question-answer data)
-             ,@(mapcar #'stack-lto--answer (cdr (assoc 'answers data)))))
+             ,(sx-lto--question-answer data)
+             ,@(mapcar #'sx-lto--answer (cdr (assoc 'answers data)))))
 
-(defun stack-lto--answer (data)
+(defun sx-lto--answer (data)
   "Return answer DATA in a format acceptable by `org-element-interpret-data'.
 DATA is a list of cons cells representing a question, as received
 by the API and read by `json-read'."
   ;; Right now this doesn't do anything special. But it should check
   ;; whether the answer is accepted. How do we display that?
   `(headline (:title "Answer" :level 2)
-             ,(stack-lto--question-answer data)))
+             ,(sx-lto--question-answer data)))
 
-(defun stack-lto--question-answer (data)
+(defun sx-lto--question-answer (data)
   "Process and return the elements of DATA which questions and answers have in common."
   (let ((comments
-         (mapcar #'stack-lto--comment (cdr (assoc 'comments data)))))
+         (mapcar #'sx-lto--comment (cdr (assoc 'comments data)))))
     `(;; Body as a src block (really NOT nice).
-      (src-block (:value ,(stack-lto--body data)
-                         . ,stack-lto--body-src-block))
+      (src-block (:value ,(sx-lto--body data)
+                         . ,sx-lto--body-src-block))
       ;; Comments as descriptive lists. If there are no comments, an
       ;; empty list would throw an error.
       ,@(when comments `((plain-list (:type descriptive) ,comments))))))
 
 
 ;;; Body rendering
-(defvar stack-lto--body-src-block
+(defvar sx-lto--body-src-block
   '(:language "markdown" :switches nil :parameters nil :hiddenp nil)
   "Properties used on the markdown src-block which represents the body.")
 
-(defface stack-lto-body
+(defface sx-lto-body
   '((((background light)) :background "Grey90")
     (((background dark)) :background "Grey10"))
   "Face used on the body content of questions and answers."
@@ -73,12 +70,12 @@ by the API and read by `json-read'."
 
 ;;; This is not used ATM since we got rid of HTML. But it can be used
 ;;; once we start extending markdown mode.
-(defcustom stack-lto-bullet (if (char-displayable-p ?•) " •"  " -")
+(defcustom sx-lto-bullet (if (char-displayable-p ?•) " •"  " -")
   "Bullet used on the display of lists."
   :type 'string
   :group 'stack-mode)
 
-(defun stack-lto--body (data)
+(defun sx-lto--body (data)
   "Get and cleanup `body_markdown' from DATA."
   (concat
    (replace-regexp-in-string
@@ -87,20 +84,20 @@ by the API and read by `json-read'."
 
 ;; We need to add padding in case the body contains a * at column 1
 ;; (which would break org-mode).
-(defvar stack-lto--padding
+(defvar sx-lto--padding
   (propertize "  " 'display "  ")
   "Left-padding added to each line of a body.")
 
-(defvar stack-lto-comment-item
+(defvar sx-lto-comment-item
   '(:bullet "- " :checkbox nil :counter nil :hiddenp nil)
   "Properties used on the items which represent comments.")
 
-(defun stack-lto--comment (data)
+(defun sx-lto--comment (data)
   ""
   (let* ((owner (cdr (assoc 'owner data)))
          (owner-name (cdr (assoc 'display_name owner))))
-    `(item (:tag ,owner-name . ,stack-lto-comment-item)
+    `(item (:tag ,owner-name . ,sx-lto-comment-item)
            (paragraph () ,(cdr (assoc 'body_markdown data))))))
 
-(provide 'stack-lto)
-;;; stack-core.el ends here
+(provide 'sx-lto)
+;;; sx.el ends here

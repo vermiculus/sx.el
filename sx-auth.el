@@ -1,9 +1,8 @@
-;;; stack-auth.el --- user authentication for stack-mode  -*- lexical-binding: t; -*-
+;;; sx-auth.el --- user authentication  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
-;; Keywords: help, hypermedia, mail, news, tools
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,19 +19,21 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
-(require 'stack-core)
+(require 'sx)
+(require 'sx-request)
+(require 'sx-cache)
 
-(defconst stack-auth-root
-  "https://stackexchange.com/oauth/dialog")
-(defconst stack-auth--redirect-uri
+(defconst sx-auth-root
+  "https://stackexchange.com/oauth/")
+(defconst sx-auth-redirect-uri
   "http://vermiculus.github.io/stack-mode/auth/auth.htm")
-(defconst stack-auth--client-id
+(defconst sx-auth-client-id
   "3291")
-(defvar stack-auth-access-token
+(defvar sx-auth-access-token
   nil
   "Your access token.
 
@@ -40,7 +41,7 @@ This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
 what you are doing!")
 
-(defun stack-authenticate ()
+(defun sx-auth-authenticate ()
   "Authenticate this application.
 
 Authentication is required to read your personal data (such as
@@ -48,23 +49,27 @@ notifications) and to write with the API (asking and answering
 questions)."
   (interactive)
   (setq
-   stack-auth-access-token
-   (when (browse-url
-          (let ((stack-core-api-root stack-auth-root)
-                (stack-core-api-batch-request-separator ","))
-            (stack-core-build-request
-             nil
-             `((client_id . ,stack-auth--client-id)
-               (scope . (read_inbox
-                         no_expiry
-                         write_access))
-               (redirect_uri . ,(url-hexify-string
-                                 stack-auth--redirect-uri))))))
+   sx-auth-access-token
+   (let* ((sx-request-api-root sx-auth-root)
+          (url (sx-request--build
+                "dialog"
+                `((client_id . ,sx-auth-client-id)
+                  (scope . (read_inbox
+                            no_expiry
+                            write_access))
+                  (redirect_uri . ,(url-hexify-string
+                                    sx-auth-redirect-uri)))
+                ",")))
+     (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
-  (if (string-equal "" stack-auth-access-token)
-      (progn (setq stack-auth-access-token nil)
+  (if (string-equal "" sx-auth-access-token)
+      (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
-    (stack-cache-set "auth.el" `((access-token . ,stack-auth-access-token)))))
+    (sx-cache-set "auth.el" `((access-token . ,sx-auth-access-token)))))
 
-(provide 'stack-auth)
+(provide 'sx-auth)
 ;;; stack-auth.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
