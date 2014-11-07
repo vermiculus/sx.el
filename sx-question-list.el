@@ -199,34 +199,32 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
 
 (defun sx-question-list--print-info (data)
   "Convert `json-read' DATA into tabulated-list format."
-  (list
-   data
-   (vector
-    (list (int-to-string (cdr (assoc 'score data)))
-          'face
-          (if (cdr (assoc 'upvoted data)) 'sx-question-list-score-upvoted
-            'sx-question-list-score))
-    (list (int-to-string (cdr (assoc 'answer_count data)))
-          'face
-          (if (sx-question--accepted-answer data)
-              'sx-question-list-answers-accepted
-            'sx-question-list-answers))
-    (concat
-     (propertize
-      (cdr (assoc 'title data))
-      'face
-      (if (sx-question--read-p data)
-          'sx-question-list-read-question
-        ;; Increment `sx-question-list--unread-count' for the mode-line.
-        (cl-incf sx-question-list--unread-count)
-        'sx-question-list-unread-question))
-     (propertize " " 'display "\n         ")
-     (propertize (concat (sx-time-since (cdr (assoc 'last_activity_date data)))
-                         sx-question-list-ago-string)
-                 'face 'sx-question-list-date)
-     (propertize (concat " [" (mapconcat #'identity (cdr (assoc 'tags data)) "] [") "]")
-                 'face 'sx-question-list-tags)
-     (propertize " " 'display "\n")))))
+  (sx-assoc-let data
+    (list
+     data
+     (vector
+      (list (int-to-string score)
+            'face (if upvoted 'sx-question-list-score-upvoted
+                    'sx-question-list-score))
+      (list (int-to-string answer_count)
+            'face (if (sx-question--accepted-answer data)
+                      'sx-question-list-answers-accepted
+                    'sx-question-list-answers))
+      (concat
+       (propertize
+        title
+        'face (if (sx-question--read-p data)
+                  'sx-question-list-read-question
+                ;; Increment `sx-question-list--unread-count' for the mode-line.
+                (cl-incf sx-question-list--unread-count)
+                'sx-question-list-unread-question))
+       (propertize " " 'display "\n         ")
+       (propertize (concat (sx-time-since last_activity_date)
+                           sx-question-list-ago-string)
+                   'face 'sx-question-list-date)
+       (propertize (concat " [" (mapconcat #'identity tags "] [") "]")
+                   'face 'sx-question-list-tags)
+       (propertize " " 'display "\n"))))))
 
 (defun sx-question-list-view-previous (n)
   "Hide this question, move to previous one, display it."
