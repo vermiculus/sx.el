@@ -27,6 +27,7 @@
 (require 'sx)
 (require 'sx-filter)
 (require 'sx-lto)
+(require 'sx-request)
 
 ;; I don't know why this is here, but it was causing an API request on require.
 (defvar sx-question-browse-filter nil
