@@ -176,6 +176,9 @@ Letters do not insert themselves; instead, they are commands.
 (defvar sx-question-list--current-site "emacs"
   "Site being displayed in the *question-list* buffer.")
 
+(defvar sx-question-list--current-dataset nil
+  "")
+
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil, also call `tabulated-list-print'.
@@ -184,8 +187,12 @@ a new list before redisplaying."
   (interactive "pP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
-  (let ((question-list (sx-question-get-questions
-                        sx-question-list--current-site)))
+  (let ((question-list
+         (if (and no-update sx-question-list--current-dataset)
+             sx-question-list--current-dataset
+           (sx-question-get-questions
+            sx-question-list--current-site))))
+    (setq sx-question-list--current-dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar #'sx-question-list--print-info question-list)))
