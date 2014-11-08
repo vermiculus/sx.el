@@ -67,7 +67,7 @@
   :group 'sx-question-list-faces)
 
 (defface sx-question-list-tags
-  '((t :inherit font-lock-function-name-face))
+  '((t :inherit sx-question-mode-tags))
   ""
   :group 'sx-question-list-faces)
 
@@ -277,7 +277,7 @@ focus the relevant window."
                   (car (cdr-safe er)))
                  nil
                (error (cdr er)))))))
-  (sx-question--display data sx-question--window)
+  (sx-question-mode--display data sx-question--window)
   (when focus
     (if sx-question--window
         (select-window sx-question--window)
