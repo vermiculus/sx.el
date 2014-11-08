@@ -91,6 +91,7 @@ a string, just return it."
     error_name
     error_message
     favorite_count
+    filter
     items
     is_accepted
     is_answered

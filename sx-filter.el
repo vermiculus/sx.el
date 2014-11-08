@@ -53,8 +53,8 @@ or string."
     (let ((response (sx-request-make
                      "filter/create"
                      keyword-arguments)))
-      (url-hexify-string
-       (cdr (assoc 'filter (elt response 0)))))))
+      (sx-assoc-let (elt response 0)
+        (url-hexify-string filter)))))
 
 
 ;;; Storage and Retrieval
