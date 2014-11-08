@@ -145,70 +145,13 @@ See `sx-request-get-default-keyword-arguments' and
 optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
 `sx-default-keyword-arguments-alist' is used.  Return the
 entire response as a complex alist."
-  (let ((url-automatic-caching sx-request-cache-p)
-	(url-inhibit-uncompression t)
-	(silent (or silent sx-request-silent-p))
-	(call
-	 (sx-request--build
-	  method
-	  (append `((filter . ,(unless (string-equal method "filter/create")
-                                 (sx-filter-get-var
-                                  (cond (filter filter)
-                                        ((boundp 'stack-filter)
-                                         stack-filter)))))
-                    (key . ,sx-request-api-key))
-		(if keyword-arguments keyword-arguments
-		  (sx-request--get-default-keyword-arguments method))))))
-    ;; TODO: url-retrieve-synchronously can return nil if the call is
-    ;; unsuccessful should handle this case
-    (unless silent (sx-message "Request: %S" call))
-    (let ((response-buffer (cond
-			    ((= emacs-minor-version 4)
-			     (url-retrieve-synchronously call silent))
-			    (t (url-retrieve-synchronously call)))))
-      (if (not response-buffer)
-	  (error "Something went wrong in `url-retrieve-synchronously'")
-	(with-current-buffer response-buffer
-	  (let* ((data (progn
-			 (goto-char (point-min))
-			 (if (not (search-forward "\n\n" nil t))
-			     (error "Response headers missing")
-			   (delete-region (point-min) (point))
-			   (buffer-string))))
-		 (response (ignore-errors
-			     (json-read-from-string data))))
-	    ;; if response isn't nil, the response was in plain text
-	    (unless response
-	      ;; try to decompress the response
-	      (setq response
-		    (with-demoted-errors "JSON Error: %s"
-		      (shell-command-on-region
-		       (point-min) (point-max)
-		       sx-request-unzip-program
-		       nil t)
-		      (json-read-from-string
-		       (buffer-substring
-			(point-min) (point-max)))))
-	      ;; If it still fails, error out
-	      (unless response
-		(sx-message "Unable to parse response")
-		(sx-message "Printing response as message")
-		(message "%S" response)
-		(error "Response could not be read by json-read-string")))
-	    ;; At this point, either response is a valid data structure
-	    ;; or we have already thrown an error
-	    (when (assoc 'error_id response)
-	      (error "Request failed: (%s) [%i %s] %s"
-		     method
-		     (cdr (assoc 'error_id response))
-		     (cdr (assoc 'error_name response))
-		     (cdr (assoc 'error_message response))))
-	    (when (< (setq sx-request-remaining-api-requests
-			   (cdr (assoc 'quota_remaining response)))
-		     sx-request-remaining-api-requests-message-threshold)
-	      (sx-message "%d API requests remaining"
-			     sx-request-remaining-api-requests))
-	    (cdr (assoc 'items response))))))))
+  (sx-request--make
+   method
+   (cons (cons 'filter
+               (sx-filter-get-var
+                (cond (filter filter)
+                      ((boundp 'stack-filter) stack-filter))))
+         keyword-arguments)))
 
 (defun sx-request--build (method keyword-arguments &optional kv-value-sep)
   "Build the request string that will be used to process REQUEST
