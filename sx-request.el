@@ -89,7 +89,10 @@ See `sx-request-get-default-keyword-arguments' and
   (let ((url-automatic-caching sx-request-cache-p)
         (url-inhibit-uncompression t)
         (silent (or silent sx-request-silent-p))
-        (call (sx-request--build method args)))
+        (call (sx-request--build
+               method
+               (cons (cons 'key sx-request-api-key)
+                     args))))
     (unless silent (sx-message "Request: %S" call))
     (let ((response-buffer (cond
                             ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
