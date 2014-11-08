@@ -71,11 +71,41 @@ a string, just return it."
 
 ;;; Interpreting request data
 (defvar sx--api-symbols
-  '(accept_rate answer_count answer_id answers body body_markdown close_vote_count upvoted downvoted
-                comment_count comment_id creation_date delete_vote_count display_name
-                edited favorite_count is_accepted is_answered last_activity_date
-                last_edit_date last_editor link owner profile_image question_id
-                reopen_vote_count reputation score tags title user_id user_type view_count)
+  '(
+    accept_rate
+    answer_count
+    answer_id
+    answers
+    body
+    body_markdown
+    close_vote_count
+    comment_count
+    comment_id
+    creation_date
+    delete_vote_count
+    display_name
+    downvoted
+    edited
+    favorite_count
+    is_accepted
+    is_answered
+    last_activity_date
+    last_edit_date
+    last_editor
+    link
+    owner
+    profile_image
+    question_id
+    reopen_vote_count
+    reputation
+    score
+    tags
+    title
+    upvoted
+    user_id
+    user_type
+    view_count
+    )
   "")
 
 (defun sx--deep-search (symbol list)
