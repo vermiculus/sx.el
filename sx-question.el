@@ -46,6 +46,16 @@
      (page . ,page))
    sx-question-browse-filter))
 
+(defun sx-question-get-question (site id)
+  "Get the question ID from SITE."
+  (let ((res (sx-request-make
+              (format "questions/%s" id)
+              `((site . ,site))
+              sx-question-browse-filter)))
+    (if (vectorp res)
+        (elt res 0)
+      (error "Couldn't find question %s in %s" id site))))
+
 
 ;;; Question Properties
 (defun sx-question--read-p (question)
