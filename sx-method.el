@@ -1,8 +1,8 @@
-;;; sx-network.el --- browsing networks  -*- lexical-binding: t; -*-
+;;; sx-request.el --- requests for stack-mode
 
 ;; Copyright (C) 2014  Sean Allred
 
-;; Author: Sean Allred <code@seanallred.com>
+;; Author: Sean Allred <sallred@calamity.tcs.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,15 +22,26 @@
 ;;
 
 ;;; Code:
-
+(require 'json)
+(require 'url)
+(require 'sx)
 (require 'sx-request)
+(require 'sx-filter)
 
-(defun sx-network-get-networks ()
-  (sx-request-make "sites"))
+(defun sx-method-call
+    (method &optional keyword-arguments filter silent)
+  "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
 
-(provide 'sx-network)
-;;; sx-network.el ends here
+If SILENT is non-nil, no messages will be printed.
 
-;; Local Variables:
-;; indent-tabs-mode: nil
-;; End:
+Return the entire response as a complex alist."
+  (sx-request-make
+   method
+   (cons (cons 'filter
+               (sx-filter-get-var
+                (cond (filter filter)
+                      ((boundp 'stack-filter) stack-filter))))
+         keyword-arguments)))
+
+(provide 'sx-method)
+;;; sx-request.el ends here

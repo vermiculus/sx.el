@@ -1,20 +1,19 @@
-(defun -stack--nuke ()
+(defun -sx--nuke ()
   (interactive)
   (mapatoms
    (lambda (symbol)
-     (if (string-prefix-p "stack-" (symbol-name symbol))
+     (if (string-prefix-p "sx-" (symbol-name symbol))
          (unintern symbol)))))
 
 ;;; Tests
-(defvar stack-test-data-dir
+(defvar sx-test-data-dir
   (expand-file-name
    "data-samples/"
-   (or (file-name-directory load-file-name) "./"))
-  "")
+   (or (file-name-directory load-file-name) "./")))
 
-(defun stack-test-sample-data (method &optional directory)
+(defun sx-test-sample-data (method &optional directory)
   (let ((file (concat (when directory (concat directory "/"))
-                      stack-test-data-dir
+                      sx-test-data-dir
                       method ".el")))
     (when (file-exists-p file)
       (with-temp-buffer
@@ -27,15 +26,16 @@
  sx-request-silent-p nil
  user-emacs-directory "."
 
- stack-test-data-questions
- (stack-test-sample-data "questions")
- stack-test-data-sites
- (stack-test-sample-data "sites"))
+ sx-test-data-questions
+ (sx-test-sample-data "questions")
+ sx-test-data-sites
+ (sx-test-sample-data "sites"))
 
 (setq package-user-dir
       (expand-file-name (format "../../.cask/%s/elpa" emacs-version)
-                        stack-test-data-dir))
+                        sx-test-data-dir))
 (package-initialize)
+
 (require 'cl-lib)
 (require 'sx)
 (require 'sx-question)
@@ -55,7 +55,7 @@
    (sx-request-make "questions" '(()))))
 
 (ert-deftest test-tree-filter ()
-  "`stack-core-filter-data'"
+  "`sx-core-filter-data'"
   ;; flat
   (should
    (equal
@@ -89,24 +89,6 @@
                       ((1 . alpha) (2 . beta))]
                      '(1 2 3)))))
 
-(ert-deftest test-filters ()
-  (let ((stack-cache-directory (make-temp-file "stack-test" t)))
-    (should-error (sx-filter-store "names must be symbols"
-                                   "this is a filter"))
-    ;; basic use
-    (should (equal '((test . "filter"))
-                   (sx-filter-store 'test "filter")))
-    ;; aggregation
-    (should (equal '((test2 . "filter2") (test . "filter"))
-                   (sx-filter-store 'test2 "filter2")))
-    ;; mutation
-    (should (equal '((test2 . "filter2") (test . "filter-test"))
-                   (sx-filter-store 'test "filter-test")))
-    ;; clean up (note: the file should exist)
-    (delete-file
-     (sx-cache-get-file-name
-      sx-filter-cache-file))))
-
 (defmacro line-should-match (regexp)
   ""
   `(let ((line (buffer-substring-no-properties
@@ -117,7 +99,7 @@
 
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
-             (lambda (&rest _) stack-test-data-questions)))
+             (lambda (&rest _) sx-test-data-questions)))
     (list-questions nil)
     (switch-to-buffer "*question-list*")
     (goto-char (point-min))
@@ -127,9 +109,9 @@
     (sx-question-list-next 5)
     (line-should-match
      "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
-    ;; ;; Use this when we have a real stack-question buffer.
-    ;; (call-interactively 'stack-question-list-display-question)
-    ;; (should (equal (buffer-name) "*stack-question*"))
+    ;; ;; Use this when we have a real sx-question buffer.
+    ;; (call-interactively 'sx-question-list-display-question)
+    ;; (should (equal (buffer-name) "*sx-question*"))
     (switch-to-buffer "*question-list*")
     (sx-question-list-previous 4)
     (line-should-match

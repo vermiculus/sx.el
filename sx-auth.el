@@ -50,25 +50,24 @@ questions)."
   (interactive)
   (setq
    sx-auth-access-token
-   (let* ((sx-request-api-root sx-auth-root)
-          (url (sx-request--build
-                "dialog"
-                `((client_id . ,sx-auth-client-id)
-                  (scope . (read_inbox
-                            no_expiry
-                            write_access))
-                  (redirect_uri . ,(url-hexify-string
-                                    sx-auth-redirect-uri)))
-                ",")))
+   (let ((url (sx-request-build
+               "dialog"
+               `((client_id . ,sx-auth-client-id)
+                 (scope . (read_inbox
+                           no_expiry
+                           write_access))
+                 (redirect_uri . ,(url-hexify-string
+                                   sx-auth-redirect-uri)))
+               "," sx-auth-root)))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
   (if (string-equal "" sx-auth-access-token)
       (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
-    (sx-cache-set "auth.el" `((access-token . ,sx-auth-access-token)))))
+    (sx-cache-set 'auth `((access-token . ,sx-auth-access-token)))))
 
 (provide 'sx-auth)
-;;; stack-auth.el ends here
+;;; sx-auth.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil

@@ -1,4 +1,4 @@
-;;; sx-request.el --- requests for stack-mode
+;;; sx-request.el --- requests and url manipulation  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -22,9 +22,26 @@
 ;;
 
 ;;; Code:
-(require 'json)
+
 (require 'url)
+(require 'json)
+
 (require 'sx)
+
+
+;;; Variables
+
+(defconst sx-request-api-key
+  "0TE6s1tveCpP9K5r5JNDNQ(("
+  "When passed, this key provides a higher request quota.")
+
+(defconst sx-request-api-version
+  "2.2"
+  "The current version of the API.")
+
+(defconst sx-request-api-root
+  (format "http://api.stackexchange.com/%s/" sx-request-api-version)
+  "The base URL to make requests from.")
 
 (defcustom sx-request-silent-p
   t
@@ -49,111 +66,69 @@ recent call.  Set by `sx-request-make'.")
 number, `sx-request-make' will begin printing out the
 number of requests left every time it finishes a call.")
 
-(defcustom sx-request-default-keyword-arguments-alist
-  '(("filters/create")
-    ("sites")
-    ("questions" (site . emacs))
-    (t nil))
-  "Keywords to use as the default for a given method.
-
-The first element of each list is the method call the keywords
-apply to.  The remaining cons cells (and they must be conses) are
-the values for each keyword.
-
-For each list, if no keywords are provided, the method's
-arguments are forced to the default as determined by the API.
-
-For each cons cell, if the cdr is `nil', then the keyword will be
-forced to the default as determined by the API.
-
-See `sx-request-get-default-keyword-arguments' and
-`sx-request-build-keyword-arguments'.
-")
-
-(defconst sx-request-api-version
-  "2.2"
-  "The current version of the API.")
-
-(defconst sx-request-api-root
-  (format "http://api.stackexchange.com/%s/" sx-request-api-version)
-  "The base URL to make requests from.")
-
-(defconst sx-request-api-key
-  "0TE6s1tveCpP9K5r5JNDNQ(("
-  "When passed, this key provides a higher request quota.")
+
+;;; Making Requests
 
 (defun sx-request-make
-    (method &optional keyword-arguments filter silent)
-  "Make a request to the StackExchange API using METHOD and
-optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
-`sx-default-keyword-arguments-alist' is used.  Return the
-entire response as a complex alist."
+    (method &optional args silent)
   (let ((url-automatic-caching sx-request-cache-p)
-	(url-inhibit-uncompression t)
-	(silent (or silent sx-request-silent-p))
-	(call
-	 (sx-request--build
-	  method
-	  (append `((filter . ,(cond (filter filter)
-                                     ((boundp 'stack-filter) stack-filter)))
-                    (key . ,sx-request-api-key))
-		(if keyword-arguments keyword-arguments
-		  (sx-request--get-default-keyword-arguments method))))))
-    ;; TODO: url-retrieve-synchronously can return nil if the call is
-    ;; unsuccessful should handle this case
+        (url-inhibit-uncompression t)
+        (silent (or silent sx-request-silent-p))
+        (call (sx-request-build
+               method
+               (cons (cons 'key sx-request-api-key)
+                     args))))
     (unless silent (sx-message "Request: %S" call))
     (let ((response-buffer (cond
-			    ((= emacs-minor-version 4)
-			     (url-retrieve-synchronously call silent))
-			    (t (url-retrieve-synchronously call)))))
+                            ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
+                             (url-retrieve-synchronously call silent))
+                            (t (url-retrieve-synchronously call)))))
       (if (not response-buffer)
-	  (error "Something went wrong in `url-retrieve-synchronously'")
-	(with-current-buffer response-buffer
-	  (let* ((data (progn
-			 (goto-char (point-min))
-			 (if (not (search-forward "\n\n" nil t))
-			     (error "Response headers missing")
-			   (delete-region (point-min) (point))
-			   (buffer-string))))
-		 (response (ignore-errors
-			     (json-read-from-string data))))
-	    ;; if response isn't nil, the response was in plain text
-	    (unless response
-	      ;; try to decompress the response
-	      (setq response
-		    (with-demoted-errors "JSON Error: %s"
-		      (shell-command-on-region
-		       (point-min) (point-max)
-		       sx-request-unzip-program
-		       nil t)
-		      (json-read-from-string
-		       (buffer-substring
-			(point-min) (point-max)))))
-	      ;; If it still fails, error out
-	      (unless response
-		(sx-message "Unable to parse response")
-		(sx-message "Printing response as message")
-		(message "%S" response)
-		(error "Response could not be read by json-read-string")))
-	    ;; At this point, either response is a valid data structure
-	    ;; or we have already thrown an error
-	    (when (assoc 'error_id response)
-	      (error "Request failed: (%s) [%i %s] %s"
-		     method
-		     (cdr (assoc 'error_id response))
-		     (cdr (assoc 'error_name response))
-		     (cdr (assoc 'error_message response))))
-	    (when (< (setq sx-request-remaining-api-requests
-			   (cdr (assoc 'quota_remaining response)))
-		     sx-request-remaining-api-requests-message-threshold)
-	      (sx-message "%d API requests remaining"
-			     sx-request-remaining-api-requests))
-	    (cdr (assoc 'items response))))))))
+          (error "Something went wrong in `url-retrieve-synchronously'")
+        (with-current-buffer response-buffer
+          (let* ((data (progn
+                         (goto-char (point-min))
+                         (if (not (search-forward "\n\n" nil t))
+                             (error "Response headers missing; response corrupt")
+                           (delete-region (point-min) (point))
+                           (buffer-string))))
+                 (response (ignore-errors
+                             (json-read-from-string data))))
+            ;; If the response isn't nil, the response was in plain text
+            (unless response
+              ;; try to decompress the response
+              (setq response
+                    (with-demoted-errors "`json-read' error: %S"
+                      (shell-command-on-region
+                       (point-min) (point-max)
+                       sx-request-unzip-program
+                       nil t)
+                      (json-read-from-string
+                       (buffer-substring
+                        (point-min) (point-max)))))
+              ;; if it still fails, error outline
+              (unless response
+                (sx-message "Unable to parse response: %S" response)
+                (error "Response could not be read by `json-read-from-string'")))
+            ;; If we get here, the response is a valid data structure
+            (sx-assoc-let response
+              (when error_id
+                (error "Request failed: (%s) [%i %s] %S"
+                       method error_id error_name error_message))
+              (when (< (setq sx-request-remaining-api-requests
+                             quota_remaining)
+                       sx-request-remaining-api-requests-message-threshold)
+                (sx-message "%d API requests reamining"
+                            sx-request-remaining-api-requests))
+              items)))))))
 
-(defun sx-request--build (method keyword-arguments &optional kv-value-sep)
+
+;;; Support Functions
+
+(defun sx-request-build (method keyword-arguments &optional kv-value-sep root)
   "Build the request string that will be used to process REQUEST
 with the given KEYWORD-ARGUMENTS."
-  (let ((base (concat sx-request-api-root method))
+  (let ((base (concat (or root sx-request-api-root) method))
 	(args (sx-request--build-keyword-arguments
                keyword-arguments kv-value-sep)))
     (if (string-equal "" args)
@@ -177,17 +152,6 @@ false, use the symbol `false'.  Each element is processed with
 		(when (cdr pair) pair))
 	      alist))
    "&"))
-
-(defun sx-request--get-default-keyword-arguments (method)
-  "Gets the correct keyword arguments for METHOD."
-  (let ((entry (assoc method sx-request-default-keyword-arguments-alist)))
-    (cdr (or entry (assoc t sx-request-default-keyword-arguments-alist)))))
-
-;;; @todo sx-request-change-default-keyword-arguments
-;;;       (method new-keyword-arguments)
-;;; @todo sx-request-change-default-keyword-arguments-for-key
-;;;       (method key new-value)
-
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
