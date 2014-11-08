@@ -20,7 +20,12 @@
 
 ;;; Commentary:
 
+;; All caches are retrieved and set using symbols.  The symbol should
+;; be the sub-subpackage that is using the cache.  For example,
+;; `sx-pkg' would use `(sx-cache-get 'pkg)'.
 ;;
+;; This symbol is then converted into a filename within
+;; `sx-cache-directory'.
 
 ;;; Code:
 
@@ -30,7 +35,9 @@
 
 (defun sx-cache-get-file-name (filename)
   "Expands FILENAME in the context of `sx-cache-directory'."
-  (expand-file-name filename sx-cache-directory))
+  (expand-file-name
+   (concat (symbol-name filename) ".el")
+   sx-cache-directory))
 
 (defun sx-cache-get (cache)
   "Return the data within CACHE.

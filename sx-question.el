@@ -30,12 +30,9 @@
 (require 'sx-request)
 
 ;; I don't know why this is here, but it was causing an API request on require.
-(defvar sx-question-browse-filter nil)
-(sx-init-variable
- sx-question-browse-filter
- (sx-filter-compile nil '(user.profile_image shallow_user.profile_image)))
-
-;; (stack-filter-store 'question-browse sx-question-browse-filter)
+(defvar sx-question-browse-filter
+  ;; Remember: INCLUDE EXCLUDE BASE
+  '(nil (user.profile_image shallow_user.profile_image)))
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."

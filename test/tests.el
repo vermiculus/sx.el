@@ -9,8 +9,7 @@
 (defvar sx-test-data-dir
   (expand-file-name
    "data-samples/"
-   (or (file-name-directory load-file-name) "./"))
-  "")
+   (or (file-name-directory load-file-name) "./")))
 
 (defun sx-test-sample-data (method &optional directory)
   (let ((file (concat (when directory (concat directory "/"))
@@ -88,24 +87,6 @@
                       ((should-not-go))
                       ((1 . alpha) (2 . beta))]
                      '(1 2 3)))))
-
-(ert-deftest test-filters ()
-  (let ((stack-cache-directory (make-temp-file "stack-test" t)))
-    (should-error (sx-filter-store "names must be symbols"
-                                   "this is a filter"))
-    ;; basic use
-    (should (equal '((test . "filter"))
-                   (sx-filter-store 'test "filter")))
-    ;; aggregation
-    (should (equal '((test2 . "filter2") (test . "filter"))
-                   (sx-filter-store 'test2 "filter2")))
-    ;; mutation
-    (should (equal '((test2 . "filter2") (test . "filter-test"))
-                   (sx-filter-store 'test "filter-test")))
-    ;; clean up (note: the file should exist)
-    (delete-file
-     (sx-cache-get-file-name
-      sx-filter-cache-file))))
 
 (defmacro line-should-match (regexp)
   ""

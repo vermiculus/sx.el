@@ -26,6 +26,7 @@
 (require 'json)
 (require 'url)
 (require 'sx)
+(require 'sx-filter)
 
 (defcustom sx-request-silent-p
   t
@@ -95,8 +96,11 @@ entire response as a complex alist."
 	(call
 	 (sx-request--build
 	  method
-	  (append `((filter . ,(cond (filter filter)
-                                     ((boundp 'stack-filter) stack-filter)))
+	  (append `((filter . ,(unless (string-equal method "filter/create")
+                                 (sx-filter-get-var
+                                  (cond (filter filter)
+                                        ((boundp 'stack-filter)
+                                         stack-filter)))))
                     (key . ,sx-request-api-key))
 		(if keyword-arguments keyword-arguments
 		  (sx-request--get-default-keyword-arguments method))))))

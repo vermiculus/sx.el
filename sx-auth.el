@@ -65,7 +65,7 @@ questions)."
   (if (string-equal "" sx-auth-access-token)
       (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
-    (sx-cache-set "auth.el" `((access-token . ,sx-auth-access-token)))))
+    (sx-cache-set 'auth `((access-token . ,sx-auth-access-token)))))
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here
