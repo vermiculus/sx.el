@@ -68,7 +68,7 @@ questions)."
     (sx-cache-set "auth.el" `((access-token . ,sx-auth-access-token)))))
 
 (provide 'sx-auth)
-;;; stack-auth.el ends here
+;;; sx-auth.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil

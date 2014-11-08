@@ -1,20 +1,20 @@
-(defun -stack--nuke ()
+(defun -sx--nuke ()
   (interactive)
   (mapatoms
    (lambda (symbol)
-     (if (string-prefix-p "stack-" (symbol-name symbol))
+     (if (string-prefix-p "sx-" (symbol-name symbol))
          (unintern symbol)))))
 
 ;;; Tests
-(defvar stack-test-data-dir
+(defvar sx-test-data-dir
   (expand-file-name
    "data-samples/"
    (or (file-name-directory load-file-name) "./"))
   "")
 
-(defun stack-test-sample-data (method &optional directory)
+(defun sx-test-sample-data (method &optional directory)
   (let ((file (concat (when directory (concat directory "/"))
-                      stack-test-data-dir
+                      sx-test-data-dir
                       method ".el")))
     (when (file-exists-p file)
       (with-temp-buffer
@@ -27,14 +27,14 @@
  sx-request-silent-p nil
  user-emacs-directory "."
 
- stack-test-data-questions
- (stack-test-sample-data "questions")
- stack-test-data-sites
- (stack-test-sample-data "sites"))
+ sx-test-data-questions
+ (sx-test-sample-data "questions")
+ sx-test-data-sites
+ (sx-test-sample-data "sites"))
 
 (setq package-user-dir
       (expand-file-name (format "../../.cask/%s/elpa" emacs-version)
-                        stack-test-data-dir))
+                        sx-test-data-dir))
 (package-initialize)
 (require 'cl-lib)
 (require 'sx)
@@ -55,7 +55,7 @@
    (sx-request-make "questions" '(()))))
 
 (ert-deftest test-tree-filter ()
-  "`stack-core-filter-data'"
+  "`sx-core-filter-data'"
   ;; flat
   (should
    (equal
@@ -117,7 +117,7 @@
 
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
-             (lambda (&rest _) stack-test-data-questions)))
+             (lambda (&rest _) sx-test-data-questions)))
     (list-questions nil)
     (switch-to-buffer "*question-list*")
     (goto-char (point-min))
@@ -127,9 +127,9 @@
     (sx-question-list-next 5)
     (line-should-match
      "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
-    ;; ;; Use this when we have a real stack-question buffer.
-    ;; (call-interactively 'stack-question-list-display-question)
-    ;; (should (equal (buffer-name) "*stack-question*"))
+    ;; ;; Use this when we have a real sx-question buffer.
+    ;; (call-interactively 'sx-question-list-display-question)
+    ;; (should (equal (buffer-name) "*sx-question*"))
     (switch-to-buffer "*question-list*")
     (sx-question-list-previous 4)
     (line-should-match

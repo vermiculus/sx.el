@@ -29,7 +29,7 @@
   (sx-request-make "sites"))
 
 (provide 'sx-network)
-;;; stack-network.el ends here
+;;; sx-network.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil

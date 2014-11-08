@@ -66,14 +66,14 @@ by the API and read by `json-read'."
   '((((background light)) :background "Grey90")
     (((background dark)) :background "Grey10"))
   "Face used on the body content of questions and answers."
-  :group 'stack-mode-faces)
+  :group 'sx-faces)
 
 ;;; This is not used ATM since we got rid of HTML. But it can be used
 ;;; once we start extending markdown mode.
 (defcustom sx-lto-bullet (if (char-displayable-p ?•) " •"  " -")
   "Bullet used on the display of lists."
   :type 'string
-  :group 'stack-mode)
+  :group 'sx)
 
 (defun sx-lto--body (data)
   "Get and cleanup `body_markdown' from DATA."
