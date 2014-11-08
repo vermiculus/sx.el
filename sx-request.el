@@ -84,6 +84,58 @@ See `sx-request-get-default-keyword-arguments' and
   "0TE6s1tveCpP9K5r5JNDNQ(("
   "When passed, this key provides a higher request quota.")
 
+(defun sx-request--make
+    (method &optional args silent)
+  (let ((url-automatic-caching sx-request-cache-p)
+        (url-inhibit-uncompression t)
+        (silent (or silent sx-request-silent-p))
+        (call (sx-request--build method args)))
+    (unless silent (sx-message "Request: %S" call))
+    (let ((response-buffer (cond
+                            ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
+                             (url-retrieve-synchronously call silent))
+                            (t (url-retrieve-synchronously call)))))
+      (if (not response-buffer)
+          (error "Something went wrong in `url-retrieve-synchronously'")
+        (with-current-buffer response-buffer
+          (let* ((data (progn
+                         (goto-char (point-min))
+                         (if (not (search-forward "\n\n" nil t))
+                             (error "Response headers missing; response corrupt")
+                           (delete-region (point-min) (point))
+                           (buffer-string))))
+                 (response (ignore-errors
+                             (json-read-from-string data))))
+            ;; If the response isn't nil, the response was in plain text
+            (unless response
+              ;; try to decompress the response
+              (setq response
+                    (with-demoted-errors "`json-read' error: %S"
+                      (shell-command-on-region
+                       (point-min) (point-max)
+                       sx-request-unzip-program
+                       nil t)
+                      (json-read-from-string
+                       (buffer-substring
+                        (point-min) (point-max)))))
+              ;; if it still fails, error outline
+              (unless response
+                (sx-message "Unable to parse response: %S" response)
+                (error "Response could not be read by `json-read-from-string'")))
+            ;; If we get here, the response is a valid data structure
+            (when (assoc 'error_id response)
+              (error "Request failed: (%s) [%i %s] %S"
+                     method
+                     (cdr (assoc 'error_id response))
+                     (cdr (assoc 'error_name response))
+                     (cdr (assoc 'error_message response))))
+            (when (< (setq sx-request-remaining-api-requests
+                           (cdr (assoc 'quote_remaining response)))
+                     sx-request-remaining-api-requests-message-threshold)
+              (sx-message "%d API requests reamining"
+                          sx-request-remaining-api-requests))
+            (cdr (assoc 'items response))))))))
+
 (defun sx-request-make
     (method &optional keyword-arguments filter silent)
   "Make a request to the StackExchange API using METHOD and
