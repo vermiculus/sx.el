@@ -35,6 +35,7 @@
       (expand-file-name (format "../../.cask/%s/elpa" emacs-version)
                         sx-test-data-dir))
 (package-initialize)
+
 (require 'cl-lib)
 (require 'sx)
 (require 'sx-question)

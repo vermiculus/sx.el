@@ -1,9 +1,9 @@
-;;; sx-request.el --- requests for stack-mode
+;;; sx-request.el --- requests and url manipulation  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
-;; Author: Sean Allred <sallred@calamity.tcs.com>
-;; Keywords:
+;; Author: Sean Allred <code@seanallred.com>
+;; Keywords: help
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,10 +23,26 @@
 ;;
 
 ;;; Code:
-(require 'json)
+
 (require 'url)
+(require 'json)
+
 (require 'sx)
-(require 'sx-filter)
+
+
+;;; Variables
+
+(defconst sx-request-api-key
+  "0TE6s1tveCpP9K5r5JNDNQ(("
+  "When passed, this key provides a higher request quota.")
+
+(defconst sx-request-api-version
+  "2.2"
+  "The current version of the API.")
+
+(defconst sx-request-api-root
+  (format "http://api.stackexchange.com/%s/" sx-request-api-version)
+  "The base URL to make requests from.")
 
 (defcustom sx-request-silent-p
   t
@@ -51,45 +67,15 @@ recent call.  Set by `sx-request-make'.")
 number, `sx-request-make' will begin printing out the
 number of requests left every time it finishes a call.")
 
-(defcustom sx-request-default-keyword-arguments-alist
-  '(("filters/create")
-    ("sites")
-    ("questions" (site . emacs))
-    (t nil))
-  "Keywords to use as the default for a given method.
+
+;;; Making Requests
 
-The first element of each list is the method call the keywords
-apply to.  The remaining cons cells (and they must be conses) are
-the values for each keyword.
-
-For each list, if no keywords are provided, the method's
-arguments are forced to the default as determined by the API.
-
-For each cons cell, if the cdr is `nil', then the keyword will be
-forced to the default as determined by the API.
-
-See `sx-request-get-default-keyword-arguments' and
-`sx-request-build-keyword-arguments'.
-")
-
-(defconst sx-request-api-version
-  "2.2"
-  "The current version of the API.")
-
-(defconst sx-request-api-root
-  (format "http://api.stackexchange.com/%s/" sx-request-api-version)
-  "The base URL to make requests from.")
-
-(defconst sx-request-api-key
-  "0TE6s1tveCpP9K5r5JNDNQ(("
-  "When passed, this key provides a higher request quota.")
-
-(defun sx-request--make
+(defun sx-request-make
     (method &optional args silent)
   (let ((url-automatic-caching sx-request-cache-p)
         (url-inhibit-uncompression t)
         (silent (or silent sx-request-silent-p))
-        (call (sx-request--build
+        (call (sx-request-build
                method
                (cons (cons 'key sx-request-api-key)
                      args))))
@@ -133,30 +119,19 @@ See `sx-request-get-default-keyword-arguments' and
                      (cdr (assoc 'error_name response))
                      (cdr (assoc 'error_message response))))
             (when (< (setq sx-request-remaining-api-requests
-                           (cdr (assoc 'quote_remaining response)))
+                           (cdr (assoc 'quota_remaining response)))
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests reamining"
                           sx-request-remaining-api-requests))
             (cdr (assoc 'items response))))))))
 
-(defun sx-request-make
-    (method &optional keyword-arguments filter silent)
-  "Make a request to the StackExchange API using METHOD and
-optional KEYWORD-ARGUMENTS.  If no KEYWORD-ARGUMENTS are given,
-`sx-default-keyword-arguments-alist' is used.  Return the
-entire response as a complex alist."
-  (sx-request--make
-   method
-   (cons (cons 'filter
-               (sx-filter-get-var
-                (cond (filter filter)
-                      ((boundp 'stack-filter) stack-filter))))
-         keyword-arguments)))
+
+;;; Support Functions
 
-(defun sx-request--build (method keyword-arguments &optional kv-value-sep)
+(defun sx-request-build (method keyword-arguments &optional kv-value-sep root)
   "Build the request string that will be used to process REQUEST
 with the given KEYWORD-ARGUMENTS."
-  (let ((base (concat sx-request-api-root method))
+  (let ((base (concat (or root sx-request-api-root) method))
 	(args (sx-request--build-keyword-arguments
                keyword-arguments kv-value-sep)))
     (if (string-equal "" args)
@@ -180,17 +155,6 @@ false, use the symbol `false'.  Each element is processed with
 		(when (cdr pair) pair))
 	      alist))
    "&"))
-
-(defun sx-request--get-default-keyword-arguments (method)
-  "Gets the correct keyword arguments for METHOD."
-  (let ((entry (assoc method sx-request-default-keyword-arguments-alist)))
-    (cdr (or entry (assoc t sx-request-default-keyword-arguments-alist)))))
-
-;;; @todo sx-request-change-default-keyword-arguments
-;;;       (method new-keyword-arguments)
-;;; @todo sx-request-change-default-keyword-arguments-for-key
-;;;       (method key new-value)
-
 
 (provide 'sx-request)
 ;;; sx-request.el ends here

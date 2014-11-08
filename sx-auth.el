@@ -50,16 +50,15 @@ questions)."
   (interactive)
   (setq
    sx-auth-access-token
-   (let* ((sx-request-api-root sx-auth-root)
-          (url (sx-request--build
-                "dialog"
-                `((client_id . ,sx-auth-client-id)
-                  (scope . (read_inbox
-                            no_expiry
-                            write_access))
-                  (redirect_uri . ,(url-hexify-string
-                                    sx-auth-redirect-uri)))
-                ",")))
+   (let ((url (sx-request-build
+               "dialog"
+               `((client_id . ,sx-auth-client-id)
+                 (scope . (read_inbox
+                           no_expiry
+                           write_access))
+                 (redirect_uri . ,(url-hexify-string
+                                   sx-auth-redirect-uri)))
+               "," sx-auth-root)))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
   (if (string-equal "" sx-auth-access-token)

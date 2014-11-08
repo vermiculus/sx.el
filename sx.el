@@ -25,7 +25,8 @@
 ;;; Code:
 
 
-;;; Requirements
+;;; Utility Functions
+
 (defun sx-message (format-string &rest args)
   "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))

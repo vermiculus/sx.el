@@ -28,6 +28,7 @@
 
 (require 'sx)
 (require 'sx-cache)
+(require 'sx-request)
 
 
 ;;; Customizations
@@ -53,8 +54,7 @@ or string."
                      "filter/create"
                      keyword-arguments)))
       (url-hexify-string
-       (cdr (assoc 'filter
-                   (elt response 0)))))))
+       (cdr (assoc 'filter (elt response 0)))))))
 
 
 ;;; Storage and Retrieval
