@@ -1,8 +1,9 @@
-;;; sx-request.el --- requests for stack-mode
+;;; stack-exchange.el --- A StackExchange Mode       -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
-;; Author: Sean Allred <sallred@calamity.tcs.com>
+;; Author: Sean Allred <code@seanallred.com>
+;; Keywords: help, hypermedia, mail, news, tools
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,26 +23,8 @@
 ;;
 
 ;;; Code:
-(require 'json)
-(require 'url)
-(require 'sx)
-(require 'sx-request)
-(require 'sx-filter)
 
-(defun sx-method-call
-    (method &optional keyword-arguments filter silent)
-  "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
+(mapc #'load (file-expand-wildcards "sx*.el"))
 
-If SILENT is non-nil, no messages will be printed.
-
-Return the entire response as a complex alist."
-  (sx-request-make
-   method
-   (cons (cons 'filter
-               (sx-filter-get-var
-                (cond (filter filter)
-                      ((boundp 'stack-filter) stack-filter))))
-         keyword-arguments)))
-
-(provide 'sx-method)
-;;; sx-request.el ends here
+(provide 'stack-exchange)
+;;; stack-exchange.el ends here
