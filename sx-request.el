@@ -112,18 +112,16 @@ number of requests left every time it finishes a call.")
                 (sx-message "Unable to parse response: %S" response)
                 (error "Response could not be read by `json-read-from-string'")))
             ;; If we get here, the response is a valid data structure
-            (when (assoc 'error_id response)
-              (error "Request failed: (%s) [%i %s] %S"
-                     method
-                     (cdr (assoc 'error_id response))
-                     (cdr (assoc 'error_name response))
-                     (cdr (assoc 'error_message response))))
-            (when (< (setq sx-request-remaining-api-requests
-                           (cdr (assoc 'quota_remaining response)))
-                     sx-request-remaining-api-requests-message-threshold)
-              (sx-message "%d API requests reamining"
-                          sx-request-remaining-api-requests))
-            (cdr (assoc 'items response))))))))
+            (sx-assoc-let response
+              (when error_id
+                (error "Request failed: (%s) [%i %s] %S"
+                       method error_id error_name error_message))
+              (when (< (setq sx-request-remaining-api-requests
+                             quota_remaining)
+                       sx-request-remaining-api-requests-message-threshold)
+                (sx-message "%d API requests reamining"
+                            sx-request-remaining-api-requests))
+              items)))))))
 
 
 ;;; Support Functions

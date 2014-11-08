@@ -87,7 +87,11 @@ a string, just return it."
     display_name
     downvoted
     edited
+    error_id
+    error_name
+    error_message
     favorite_count
+    items
     is_accepted
     is_answered
     last_activity_date
@@ -97,6 +101,7 @@ a string, just return it."
     owner
     profile_image
     question_id
+    quota_remaining
     reopen_vote_count
     reputation
     score
