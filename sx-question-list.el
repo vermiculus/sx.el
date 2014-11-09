@@ -20,10 +20,12 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'sx-question)
-(require 'sx-time)
 (require 'tabulated-list)
 (require 'cl-lib)
+
+(require 'sx)
+(require 'sx-time)
+(require 'sx-question)
 
 
 ;;; Customization

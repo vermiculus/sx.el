@@ -25,7 +25,8 @@
 ;;; Code:
 
 
-;;; Requirements
+;;; Utility Functions
+
 (defun sx-message (format-string &rest args)
   "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
@@ -71,11 +72,47 @@ a string, just return it."
 
 ;;; Interpreting request data
 (defvar sx--api-symbols
-  '(accept_rate answer_count answer_id answers body body_markdown close_vote_count upvoted downvoted
-                comment_count comment_id creation_date delete_vote_count display_name
-                edited favorite_count is_accepted is_answered last_activity_date
-                last_edit_date last_editor link owner profile_image question_id
-                reopen_vote_count reputation score tags title user_id user_type view_count)
+  '(
+    accept_rate
+    answer_count
+    answer_id
+    answers
+    body
+    body_markdown
+    close_vote_count
+    comment_count
+    comment_id
+    creation_date
+    delete_vote_count
+    display_name
+    downvoted
+    edited
+    error_id
+    error_name
+    error_message
+    favorite_count
+    filter
+    items
+    is_accepted
+    is_answered
+    last_activity_date
+    last_edit_date
+    last_editor
+    link
+    owner
+    profile_image
+    question_id
+    quota_remaining
+    reopen_vote_count
+    reputation
+    score
+    tags
+    title
+    upvoted
+    user_id
+    user_type
+    view_count
+    )
   "")
 
 (defun sx--deep-search (symbol list)
@@ -111,6 +148,33 @@ is equivalent to
                   sx--api-symbols)))
     `(let ,(mapcar (lambda (x) `(,x (cdr (assoc ',x ,alist)))) symbols)
        ,@body)))
+
+(defcustom sx-init-hook nil
+  "Hook run when stack-mode initializes.
+
+Run after `sx-init--internal-hook'.")
+
+(defvar sx-init--internal-hook nil
+  "Hook run when stack-mode initializes.
+
+This is used internally to set initial values for variables such
+as filters.")
+
+(defmacro sx-init-variable (variable value &optional setter)
+  "Set VARIABLE to VALUE using SETTER.
+SETTER should be a function of two arguments.  If SETTER is nil,
+`set' is used."
+  (eval
+   `(add-hook
+     'sx-init--internal-hook
+     (lambda ()
+       (,(or setter #'setq) ,variable ,value))))
+  nil)
+
+(defun stack-initialize ()
+  (run-hooks
+   'sx-init--internal-hook
+   'sx-init-hook))
 
 (provide 'sx)
 ;;; sx.el ends here

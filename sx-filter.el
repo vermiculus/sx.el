@@ -28,21 +28,14 @@
 
 (require 'sx)
 (require 'sx-cache)
+(require 'sx-request)
 
 
 ;;; Customizations
 
-(defconst sx-filter-cache-file
-  "filters.el")
-
-(defvar sx-filter
-  'default
-  "The current filter.
-To customize the filter for the next call to `sx-request-make',
-let-bind this variable to the output of a call to
-`sx-filter-compile'.  Be careful!  If you're going to be using
-this new filter a lot, create a variable for it.  Creation
-requests count against `sx-request-remaining-api-requests'!")
+(defvar sx--filter-alist
+  (sx-cache-get 'filter)
+  "")
 
 
 ;;; Compilation
@@ -60,39 +53,26 @@ or string."
     (let ((response (sx-request-make
                      "filter/create"
                      keyword-arguments)))
-      (url-hexify-string
-       (cdr (assoc 'filter
-                   (elt response 0)))))))
+      (sx-assoc-let (elt response 0)
+        (url-hexify-string filter)))))
 
 
 ;;; Storage and Retrieval
 
-(defun sx-filter-get (filter)
-  "Retrieve named FILTER from `sx-filter-cache-file'."
-  (cdr (assoc filter (sx-cache-get sx-filter-cache-file))))
+(defun sx-filter-get-var (filter-variable)
+  "Return the string representation of FILTER-VARIABLE."
+  (apply #'sx-filter-get filter-variable))
 
-(defun sx-filter-store (name &optional filter)
-  "Store NAME as FILTER in `sx-filter-cache-file'.
-
-NAME should be a symbol and FILTER is a string as compiled by
-`sx-filter-compile'.
-
-If NAME is a cons cell, (car NAME) is taken to be the actual NAME
-and (cdr NAME) is taken to be the actual FILTER.  In this case,
-the second argument is simply ignored."
-  (let ((name   (if (consp name) (car name) name))
-        (filter (if (consp name) (cdr name) filter)))
-    (unless (symbolp name)
-      (error "Name must be a symbol: %S" name))
-    (let* ((dict (sx-cache-get sx-filter-cache-file))
-           (entry (assoc name dict)))
-      (if entry (setcdr entry filter)
-        (setq dict (cons (cons name filter) dict)))
-
-      (sx-cache-set sx-filter-cache-file dict))))
-
-(defun sx-filter-store-all (name-filter-alist)
-  (mapc #'sx-filter-store name-filter-alist))
+(defun sx-filter-get (&optional include exclude base)
+  "Return the string representation of the given filter."
+  ;; Maybe we alreay have this filter
+  (or (cdr (assoc (list include exclude base) sx--filter-alist))
+      ;; If we don't, build it, save it, and return it.
+      (let ((filter (sx-filter-compile include exclude base)))
+        (when filter
+          (push (cons (list include exclude base) filter) sx--filter-alist)
+          (sx-cache-set 'filter sx--filter-alist)
+          filter))))
 
 (provide 'sx-filter)
 ;;; sx-filter.el ends here

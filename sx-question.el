@@ -27,20 +27,14 @@
 (require 'sx)
 (require 'sx-filter)
 (require 'sx-lto)
-(require 'sx-request)
+(require 'sx-method)
 
-;; I don't know why this is here, but it was causing an API request on require.
-(defvar sx-question-browse-filter nil
-  ;; (stack-filter-compile
-  ;;  nil
-  ;;  '(user.profile_image shallow_user.profile_image))
-  )
-
-;; (stack-filter-store 'question-browse sx-question-browse-filter)
+(defvar sx-question-browse-filter
+  '(nil (user.profile_image shallow_user.profile_image)))
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
-  (sx-request-make
+  (sx-method-call
    "questions"
    `((site . ,site)
      (page . ,page))
