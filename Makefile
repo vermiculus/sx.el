@@ -24,6 +24,7 @@ $(VERSIONS) ::
 	evm install emacs-24.$@-bin --skip || true
 	evm use emacs-24.$@-bin
 	emacs --version
+	cask install
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
 
 install_cask:
