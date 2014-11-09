@@ -25,3 +25,9 @@ $(VERSIONS) ::
 	evm use emacs-24.$@-bin
 	emacs --version
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
+
+install_cask:
+	curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+
+install_evm:
+	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
