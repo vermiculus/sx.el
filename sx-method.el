@@ -1,8 +1,8 @@
-;;; sx-request.el --- requests for stack-mode
+;;; sx-method.el --- method calls
 
 ;; Copyright (C) 2014  Sean Allred
 
-;; Author: Sean Allred <sallred@calamity.tcs.com>
+;; Author: Sean Allred <code@seanallred.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -44,4 +44,4 @@ Return the entire response as a complex alist."
          keyword-arguments)))
 
 (provide 'sx-method)
-;;; sx-request.el ends here
+;;; sx-method.el ends here
