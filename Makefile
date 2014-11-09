@@ -16,9 +16,11 @@
 #     make all
 #
 
-all: 24.1 24.2 24.3 24.4
+VERSIONS = 24.1 24.2 24.3 24.4
 
-.DEFAULT:
+all :: $(VERSIONS)
+
+$(VERSIONS) ::
 	evm install emacs-$@-bin || true
 	emacs --version
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
