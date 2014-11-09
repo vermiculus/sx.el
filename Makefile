@@ -5,7 +5,7 @@
 #
 # To test Emacs 24.1, for example, use
 #
-#     make 24.1
+#     make 1
 #
 # To test on all versions, of course, simply use
 #
@@ -16,11 +16,11 @@
 #     make all
 #
 
-VERSIONS = 24.1 24.2 24.3 24.4
+VERSIONS = 1 2 3 4
 
 all :: $(VERSIONS)
 
 $(VERSIONS) ::
-	evm install emacs-$@-bin || true
+	evm install emacs-24.$@-bin --skip || true
 	emacs --version
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
