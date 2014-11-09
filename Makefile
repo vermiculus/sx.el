@@ -5,7 +5,7 @@
 #
 # To test Emacs 24.1, for example, use
 #
-#     make 24.1
+#     make 1
 #
 # To test on all versions, of course, simply use
 #
@@ -16,9 +16,23 @@
 #     make all
 #
 
-all: 24.1 24.2 24.3
+VERSIONS = 1 2 3 4
 
-%:
-	evm install emacs-$@-bin || true
+all :: $(VERSIONS)
+
+$(VERSIONS) ::
+	evm install emacs-24.$@-bin --skip || true
+	evm use emacs-24.$@-bin
 	emacs --version
+	cask install
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
+
+install_cask:
+	curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+
+install_evm:
+	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
+
+# Local Variables:
+# indent-tabs-mode: t
+# End:
