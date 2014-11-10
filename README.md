@@ -11,11 +11,6 @@
 </ul>
 </div>
 </div>
-
-[<https://travis-ci.org/vermiculus/stack-mode.svg?branch=master>](https://travis-ci.org/vermiculus/stack-mode)
-[<https://badges.gitter.im/Join> Chat.svg](https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![img](//badge.waffle.io/vermiculus/stack-mode.svg)](https://www.waffle.io/vermiculus/stack-mode)
-
 `Stack-mode` hopes to be a full featured Stack Exchange mode for
 GNU Emacs 24 and up. Using version 2.2, and subsequent versions as available, of
 the Stack Exchange API we aim to create a more versatile experience of Stack Exchange inside of Emacs.
