@@ -23,10 +23,26 @@
 
 ;;; Code:
 
-(require 'sx-request)
+(require 'sx-method)
+
+(defvar sx-site-browse-filter
+  '((.backoff
+     .error_id
+     .error_message
+     .error_name
+     .has_more
+     .items
+     .quota_max
+     .quota_remaining
+     site.site_type
+     site.name
+     site.site_url
+     site.api_site_parameter)
+    nil
+    none))
 
 (defun sx-site-get-sites ()
-  (sx-request-make "sites"))
+  (sx-method-call "sites" nil sx-site-browse-filter))
 
 (provide 'sx-site)
 ;;; stack-site.el ends here
