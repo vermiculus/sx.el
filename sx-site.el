@@ -24,6 +24,7 @@
 ;;; Code:
 
 (require 'sx-method)
+(require 'sx-cache)
 
 (defvar sx-site-browse-filter
   '((.backoff
@@ -44,8 +45,14 @@
     nil
     none))
 
-(defun sx-site-get-sites ()
-  (sx-method-call "sites" nil sx-site-browse-filter))
+(defun sx-site-get-sites ())
+
+(defun sx-site--get-site-list ()
+  (sx-cache-get
+   'site-list
+   '(sx-method-call
+     "sites" '((pagesize . 999))
+     sx-site-browse-filter)))
 
 (defcustom sx-site-favorites
   nil
