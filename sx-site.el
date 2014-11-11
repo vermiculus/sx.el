@@ -37,7 +37,10 @@
      site.site_type
      site.name
      site.site_url
-     site.api_site_parameter)
+     site.api_site_parameter
+     site.related_sites
+     related_site.api_site_parameter
+     related_site.relation)
     nil
     none))
 
