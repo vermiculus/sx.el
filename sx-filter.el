@@ -54,7 +54,7 @@ or string."
                      "filter/create"
                      keyword-arguments)))
       (sx-assoc-let (elt response 0)
-        (url-hexify-string filter)))))
+        filter))))
 
 
 ;;; Storage and Retrieval
