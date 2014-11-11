@@ -27,6 +27,7 @@
 (require 'json)
 
 (require 'sx)
+(require 'sx-encoding)
 
 
 ;;; Variables
