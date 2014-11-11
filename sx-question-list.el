@@ -120,7 +120,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (defun sx-question-list--date-more-recent-p (x y)
   "Non-nil if tabulated-entry X is newer than Y."
-  (sx-question--<
+  (sx--<
    sx-question-list-date-sort-method
    (car x) (car y) #'>))
 

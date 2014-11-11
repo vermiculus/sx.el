@@ -160,6 +160,13 @@ Run after `sx-init--internal-hook'.")
 This is used internally to set initial values for variables such
 as filters.")
 
+(defun sx--< (property x y &optional pred)
+  "Non-nil if PROPERTY attribute of question X is less than that of Y.
+With optional argument predicate, use it instead of `<'."
+  (funcall (or pred #'<)
+           (cdr (assoc property x))
+           (cdr (assoc property y))))
+
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.
 SETTER should be a function of two arguments.  If SETTER is nil,
