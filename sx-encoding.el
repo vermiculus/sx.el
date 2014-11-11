@@ -74,6 +74,35 @@
                                                        (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
+(defun sx-encoding-gzipped-p (data)
+  "Checks for magic bytes in DATA.
+
+Check if the first two bytes of a string in DATA match magic
+numbers identifying the gzip file format. See [1] for the file
+format description.
+
+http://www.gzip.org/zlib/rfc-gzip.html
+
+http://emacs.stackexchange.com/a/2978"
+  (equal (substring (string-as-unibyte data) 0 2)
+         (unibyte-string 31 139)))
+
+(defun sx-encoding-gzipped-buffer-p (filename)
+  "Check if the BUFFER is gzip-compressed.
+
+See `gzip-check-magic' for details."
+  (sx-encoding-gzip-check-magic (buffer-string)))
+
+(defun sx-encoding-gzipped-file-p (file)
+  "Check if the FILE is gzip-compressed.
+
+See `gzip-check-magic' for details."
+  (let ((first-two-bytes (with-temp-buffer
+                           (set-buffer-multibyte nil)
+                           (insert-file-contents-literally file nil 0 2)
+                           (buffer-string))))
+    (gzip-check-magic first-two-bytes)))
+
 (provide 'sx-encoding)
 ;;; sx-encoding.el ends here
 

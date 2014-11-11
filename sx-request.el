@@ -92,24 +92,18 @@ number of requests left every time it finishes a call.")
                              (error "Response headers missing; response corrupt")
                            (delete-region (point-min) (point))
                            (buffer-string))))
-                 (response (ignore-errors
+                 (response-zipped-p (sx-encoding-gzipped-p data))
+                 (data (if (not response-zipped-p) data
+                         (shell-command-on-region
+                          (point-min) (point-max)
+                          sx-request-unzip-program
+                          nil t)
+                         (buffer-string)))
+                 (response (with-demoted-errors "`json' error: %S"
                              (json-read-from-string data))))
-            ;; If the response isn't nil, the response was in plain text
-            (unless response
-              ;; try to decompress the response
-              (setq response
-                    (with-demoted-errors "`json-read' error: %S"
-                      (shell-command-on-region
-                       (point-min) (point-max)
-                       sx-request-unzip-program
-                       nil t)
-                      (json-read-from-string
-                       (buffer-substring
-                        (point-min) (point-max)))))
-              ;; if it still fails, error outline
-              (unless response
-                (sx-message "Unable to parse response: %S" response)
-                (error "Response could not be read by `json-read-from-string'")))
+            (unless (not (and (not response) (string-equal data "{}")))
+              (sx-message "Unable to parse response: %S" response)
+              (error "Response could not be read by `json-read-from-string'"))
             ;; If we get here, the response is a valid data structure
             (sx-assoc-let response
               (when error_id
