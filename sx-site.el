@@ -47,6 +47,11 @@
 (defun sx-site-get-sites ()
   (sx-method-call "sites" nil sx-site-browse-filter))
 
+(defcustom sx-site-favorites
+  nil
+  "Favorite sites."
+  :group 'sx-site)
+
 (provide 'sx-site)
 ;;; stack-site.el ends here
 
