@@ -102,7 +102,7 @@ number of requests left every time it finishes a call.")
                          (buffer-string)))
                  (response (with-demoted-errors "`json' error: %S"
                              (json-read-from-string data))))
-            (unless (not (and (not response) (string-equal data "{}")))
+            (when (and (not response) (string-equal data "{}"))
               (sx-message "Unable to parse response: %S" response)
               (error "Response could not be read by `json-read-from-string'"))
             ;; If we get here, the response is a valid data structure
