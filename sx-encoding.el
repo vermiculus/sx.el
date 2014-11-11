@@ -101,7 +101,7 @@ See `gzip-check-magic' for details."
                            (set-buffer-multibyte nil)
                            (insert-file-contents-literally file nil 0 2)
                            (buffer-string))))
-    (gzip-check-magic first-two-bytes)))
+    (sx-encoding-gzipped-p first-two-bytes)))
 
 (provide 'sx-encoding)
 ;;; sx-encoding.el ends here
