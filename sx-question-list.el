@@ -205,26 +205,26 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
     (list
      data
      (vector
-      (list (int-to-string score)
-            'face (if upvoted 'sx-question-list-score-upvoted
+      (list (int-to-string .score)
+            'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
-      (list (int-to-string answer_count)
-            'face (if (sx-question--accepted-answer data)
+      (list (int-to-string .answer_count)
+            'face (if (sx-question--accepted-answer .data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat
        (propertize
-        title
-        'face (if (sx-question--read-p data)
+        .title
+        'face (if (sx-question--read-p .data)
                   'sx-question-list-read-question
                 ;; Increment `sx-question-list--unread-count' for the mode-line.
                 (cl-incf sx-question-list--unread-count)
                 'sx-question-list-unread-question))
        (propertize " " 'display "\n         ")
-       (propertize (concat (sx-time-since last_activity_date)
+       (propertize (concat (sx-time-since .last_activity_date)
                            sx-question-list-ago-string)
                    'face 'sx-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity tags "] [") "]")
+       (propertize (concat " [" (mapconcat #'identity .tags "] [") "]")
                    'face 'sx-question-list-tags)
        (propertize " " 'display "\n"))))))
 

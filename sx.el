@@ -81,7 +81,7 @@ symbol, the cdr is the symbol without the `.'."
       (when (string-match "\\`\\." name)
         ;; Return the cons cell inside a list, so it can be appended
         ;; with other results in the clause below.
-        (list (cons data (intern (replace-match "" name)))))))
+        (list (cons data (intern (replace-match "" nil nil name)))))))
    ((not (listp data)) nil)
    (t (apply
        #'append
