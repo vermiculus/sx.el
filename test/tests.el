@@ -116,3 +116,19 @@
     (sx-question-list-previous 4)
     (line-should-match
      "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago\\s-+\\[autocomplete\\]")))
+
+(ert-deftest macro-test--sx-assoc-let ()
+  "Tests macro expansion for `sx-assoc-let'"
+  (should
+   (equal '(let ((.test (cdr (assoc 'test data))))
+             .test)
+          (macroexpand
+           '(sx-assoc-let data
+              .test))))
+  (should
+   (equal '(let ((.test-one (cdr (assoc 'test-one data)))
+                 (.test-two (cdr (assoc 'test-two data))))
+             (cons .test-one .test-two))
+          (macroexpand
+           '(sx-assoc-let data
+              (cons .test-one .test-two))))))
