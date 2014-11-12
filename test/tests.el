@@ -20,6 +20,14 @@
         (insert-file-contents file)
         (read (buffer-string))))))
 
+(defmacro line-should-match (regexp)
+  ""
+  `(let ((line (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position))))
+     (message "Line here is: %S" line)
+     (should (string-match ,regexp line))))
+
 (setq
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
@@ -88,14 +96,6 @@
                       ((should-not-go))
                       ((1 . alpha) (2 . beta))]
                      '(1 2 3)))))
-
-(defmacro line-should-match (regexp)
-  ""
-  `(let ((line (buffer-substring-no-properties
-                (line-beginning-position)
-                (line-end-position))))
-     (message "Line here is: %S" line)
-     (should (string-match ,regexp line))))
 
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
