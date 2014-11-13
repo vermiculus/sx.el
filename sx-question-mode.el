@@ -97,6 +97,11 @@ If WINDOW is given, use that to display the buffer."
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-title-comments
+  '((t :height 1.1 :inherit sx-question-mode-title))
+  "Face used on the question title in the question buffer."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-header-title "\n"
   "String used before the question title at the header."
   :type 'string
@@ -230,21 +235,36 @@ DATA can represent a question or an answer."
       (insert sx-question-mode-separator)
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
-        (insert
-         (sx-encoding-clean-content .body_markdown)
-         "\n")))
+        (insert "\n"
+                (sx-question-mode--fill-string
+                 (sx-encoding-clean-content .body_markdown))
+                sx-question-mode-separator)))
     ;; Comments
     (when .comments
       (insert
        "\n"
        (propertize
         sx-question-mode-comments-title
-        'font-lock-face 'sx-question-mode-title
+        'font-lock-face 'sx-question-mode-title-comments
         'sx-question-mode--section 3))
       (sx-question-mode--wrap-in-overlay
           '(sx-question-mode--section-content t)
         (insert "\n")
-        (mapc #'sx-question-mode--print-comment .comments)))))
+        (sx-question-mode--wrap-in-overlay
+            '(face sx-question-mode-content-face)
+          (mapc #'sx-question-mode--print-comment .comments))))))
+
+(defun sx-question-mode--fill-string (text)
+  "Fill TEXT according to `markdown-mode' and return it."
+  (with-temp-buffer
+    (insert text)
+    (markdown-mode)
+    (goto-char (point-min))
+    ;; ;; Do something here
+    ;; (while (null (eobp))
+    ;;   (skip-chars-forward "\r\n[:blank:]")
+    ;;   (markdown-pre-region))
+    (buffer-string)))
 
 (defun sx-question-mode--propertized-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
