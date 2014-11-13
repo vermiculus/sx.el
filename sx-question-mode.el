@@ -271,6 +271,24 @@ If DIRECTION is negative, move backwards instead."
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
 
+
+(defun sx-question-mode-hide-show-section ()
+  "Hide or show section under point."
+  (interactive)
+  (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
+                     (sx-question-mode--section-overlays-at
+                      (line-end-position))))))
+    (goto-char (overlay-start ov))
+    (forward-line 0)
+    (overlay-put
+     ov 'invisible
+     (null (overlay-get ov 'invisible)))))
+
+(defun sx-question-mode--section-overlays-at (pos)
+  "Return a list of `sx-question-mode--section-content' overlays at POS."
+  (cl-remove-if (lambda (x) (null (overlay-get x 'sx-question-mode--section-content)))
+                (overlays-at pos)))
+
 
 ;;; Major-mode
 (define-derived-mode sx-question-mode markdown-mode "Question"
@@ -286,14 +304,15 @@ Letters do not insert themselves; instead, they are commands.
 (mapc
  (lambda (x) (define-key sx-question-mode-map
           (car x) (cadr x)))
- '(("n" sx-question-mode-next-section)
+ `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("j" sx-question-mode-next-section)
    ("k" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
-   ([spc] scroll-up-command)
-   ([s-spc] scroll-down-command)
-   ([backspace] scroll-down-command)))
+   (" " scroll-up-command)
+   (,(kbd "S-SPC") scroll-down-command)
+   ([backspace] scroll-down-command)
+   ([tab] sx-question-mode-hide-show-section)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
