@@ -29,6 +29,16 @@
 (require 'sx-lto)
 (require 'markdown-mode)
 
+(defgroup sx-question-mode nil
+  "Customization group for sx-question-mode."
+  :prefix "sx-question-mode-"
+  :group 'sx)
+
+(defgroup sx-question-mode-faces nil
+  "Customization group for the faces of `sx-question-mode'."
+  :prefix "sx-question-mode-"
+  :group 'sx-question-mode)
+
 
 ;;; Displaying a question
 (defvar sx-question-mode--window nil
@@ -72,6 +82,7 @@ If WINDOW is given, use that to display the buffer."
 
 
 ;;; Printing a question's content
+;;;; Faces and Variables
 (defvar sx-question-mode--overlays nil 
   "")
 (make-variable-buffer-local 'sx-question-mode--overlays)
@@ -252,12 +263,15 @@ Letters do not insert themselves; instead, they are commands.
 
 (mapc
  (lambda (x) (define-key sx-question-mode-map
-               (car x) (cadr x)))
+          (car x) (cadr x)))
  '(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("j" sx-question-mode-next-section)
    ("k" sx-question-mode-previous-section)
-   ("g" sx-question-mode-refresh)))
+   ("g" sx-question-mode-refresh)
+   ([spc] scroll-up-command)
+   ([s-spc] scroll-down-command)
+   ([backspace] scroll-down-command)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
