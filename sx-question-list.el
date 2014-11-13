@@ -240,7 +240,8 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
        (propertize (concat (sx-time-since .last_activity_date)
                            sx-question-list-ago-string)
                    'face 'sx-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity .tags "] [") "]")
+       " "
+       (propertize (mapconcat #'sx-question--tag-format .tags " ")
                    'face 'sx-question-list-tags)
        (propertize " " 'display "\n"))))))
 

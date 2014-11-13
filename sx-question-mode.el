@@ -188,7 +188,7 @@ QUESTION must be a data structure returned by `json-read'."
        'sx-question-mode-date
        ;; Tags
        sx-question-mode-header-tags
-       (concat "(" (mapconcat 'identity .tags ") (") ")")
+       (mapconcat 'sx-question--tag-format .tags " ")
        'sx-question-mode-tags)
       (insert sx-question-mode-separator)
       (sx-question-mode--wrap-in-overlay

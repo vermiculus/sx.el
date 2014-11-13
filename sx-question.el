@@ -73,6 +73,10 @@ With optional argument predicate, use it instead of `<'."
            (cdr (assoc property x))
            (cdr (assoc property y))))
 
+(defun sx-question--tag-format (tag)
+  "Formats TAG for display"
+  (concat "[" tag "]"))
+
 (provide 'sx-question)
 ;;; sx-question.el ends here
 
