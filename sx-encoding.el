@@ -74,6 +74,18 @@
                                                        (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
+(defun sx-encoding-normalize-line-endings (string)
+  "Normalize the line endings for STRING"
+  (delete ? string))
+
+(defun sx-encoding-clean-content (string)
+  "Cleans STRING for display.
+Applies `sx-encoding-normalize-line-endings' and
+`sx-encoding-decode-entities'."
+  (sx-encoding-decode-entities
+   (sx-encoding-normalize-line-endings
+    string)))
+
 (defun sx-encoding-gzipped-p (data)
   "Checks for magic bytes in DATA.
 
