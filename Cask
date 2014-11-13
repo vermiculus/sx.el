@@ -8,6 +8,7 @@
 (depends-on "json" "1.4")
 (depends-on "url")
 (depends-on "cl-lib")
+(depends-on "markdown-mode")
 
 (development
  (depends-on "ert"))
