@@ -167,7 +167,7 @@ QUESTION must be a data structure returned by `json-read'."
   ;; Print everything
   (sx-assoc-let question
     (insert sx-question-mode-header-title
-            (propertize .title
+            (propertize (sx-encoding-clean-content .title)
                         'font-lock-face 'sx-question-mode-title
                         'sx-question-mode--section 1))
     ;; Sections are hidden with overlays
@@ -197,8 +197,8 @@ QUESTION must be a data structure returned by `json-read'."
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert
-         (sx-encoding-clean-content
-          .body_markdown) "\n")))))
+         (sx-encoding-clean-content .body_markdown)
+         "\n")))))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
