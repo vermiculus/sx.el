@@ -32,7 +32,14 @@
 (defvar sx-question-browse-filter
   '((question.body_markdown
      question.comments
-     question.answers 
+     question.answers
+     question.last_editor
+     user.display_name
+     comment.owner
+     comment.body_markdown
+     comment.body
+     answer.last_editor
+     answer.owner
      answer.body_markdown
      answer.comments)
     (user.profile_image shallow_user.profile_image)))

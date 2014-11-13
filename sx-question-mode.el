@@ -83,7 +83,7 @@ If WINDOW is given, use that to display the buffer."
 
 ;;; Printing a question's content
 ;;;; Faces and Variables
-(defvar sx-question-mode--overlays nil 
+(defvar sx-question-mode--overlays nil
   "")
 (make-variable-buffer-local 'sx-question-mode--overlays)
 
@@ -127,6 +127,11 @@ If WINDOW is given, use that to display the buffer."
   "Face used on the question tags in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-author
+  '((t :inherit font-lock-variable-name-face))
+  "Face used for author names in the question buffer."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-header-tags "\nTags:     "
   "String used before the question tags at the header."
   :type 'string
@@ -158,6 +163,11 @@ editor's name."
   :type 'string
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-comments-title "  Comments"
+  "Title used at the start of \"Comments\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
 
 ;;; Printing a question's content
 ;;;; Functions
@@ -167,12 +177,14 @@ editor's name."
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
   ;; Clear the overlays
-  (mapc #'delete-overlayj sx-question-mode--overlays)
+  (mapc #'delete-overlay sx-question-mode--overlays)
   (setq sx-question-mode--overlays nil)
   ;; Print everything
   (sx-question-mode--print-section question)
   (sx-assoc-let question
-    (mapc #'sx-question-mode--print-section .answers)))
+    (mapc #'sx-question-mode--print-section .answers))
+  (goto-char (point-min))
+  (sx-question-mode-next-section))
 
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
@@ -196,7 +208,7 @@ DATA can represent a question or an answer."
       (sx-question-mode--insert-header
        ;; Author
        sx-question-mode-header-author
-       (cdr (assoc 'display_name .owner))
+       (sx-question-mode--propertized-display-name .owner)
        'sx-question-mode-author
        ;; Date
        sx-question-mode-header-date
@@ -205,7 +217,7 @@ DATA can represent a question or an answer."
         (when .last_edit_date
           (format sx-question-mode-last-edit-format
                   (sx-time-since .last_edit_date)
-                  (cdr (assoc 'display_name .last_editor)))))
+                  (sx-question-mode--propertized-display-name .last_editor))))
        'sx-question-mode-date)
       (when .title
         ;; Tags
@@ -221,11 +233,32 @@ DATA can represent a question or an answer."
          (sx-encoding-clean-content .body_markdown)
          "\n")))
     ;; Answers
-    (mapc #'sx-question-mode--print-comment .comments)))
+    (when .comments
+      (insert
+       (propertize
+        sx-question-mode-comments-title
+        'font-lock-face 'sx-question-mode-title
+        'sx-question-mode--section 3))
+      (sx-question-mode--wrap-in-overlay
+          '(sx-question-mode--section-content t)
+        (insert "\n")
+        (mapc #'sx-question-mode--print-comment .comments)))))
+
+(defun sx-question-mode--propertized-display-name (author)
+  "Return display_name of AUTHOR with `sx-question-mode-author' face."
+  (sx-assoc-let author
+    (propertize .display_name
+                'font-lock-face 'sx-question-mode-author)))
 
 (defun sx-question-mode--print-comment (data)
   "Print the comment described by alist DATA."
-  )
+  (sx-assoc-let data
+    (insert
+     "    "
+     (sx-encoding-clean-content .body_markdown)
+     " – "
+     (sx-question-mode--propertized-display-name .owner)
+     "\n")))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
@@ -247,7 +280,7 @@ Return the result of BODY."
 HEADER is given `sx-question-mode-header' face, and value is given FACE.
 \(fn header value face [header value face] [header value face] ...)"
   (while args
-    (insert 
+    (insert
      (propertize (pop args) 'font-lock-face 'sx-question-mode-header)
      (propertize (pop args) 'font-lock-face (pop args)))))
 
@@ -261,16 +294,18 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
 ;; for comments).
 (defcustom sx-question-mode-recenter-line 1
   "Screen line to which we recenter after moving between sections.
-This is used as an argument to `recenter'. 
+This is used as an argument to `recenter', only used if the end
+of section is outside the window.
 If nil, no recentering is performed."
   :type '(choice (const :tag "Don't recenter" nil)
                  integer)
   :group 'sx-question-mode)
 
-(defun sx-question-mode-next-section (n)
+(defun sx-question-mode-next-section (&optional n)
   "Move down to next section (question or answer) of this buffer.
 Prefix argument N moves N sections down or up."
   (interactive "p")
+  (unless n (setq n 1))
   (dotimes (_ (abs n))
     ;; This will either move us to the next section, or move out of
     ;; the current one.
@@ -279,13 +314,15 @@ Prefix argument N moves N sections down or up."
       ;; and we're guaranteed to reach the next section.
       (sx-question-mode--goto-propety-change 'section n)))
   (when sx-question-mode-recenter-line
-    (recenter sx-question-mode-recenter-line)))
+    (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
+      (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
+        (recenter sx-question-mode-recenter-line)))))
 
-(defun sx-question-mode-previous-section (n)
+(defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
 Prefix argument N moves N sections up or down."
   (interactive "p")
-  (sx-question-mode-next-section (- n)))
+  (sx-question-mode-next-section (- (or n 1))))
 
 (defun sx-question-mode--goto-propety-change (prop &optional direction)
   "Move forward until the value of text-property `sx-question-mode--PROP' changes.
@@ -340,6 +377,7 @@ Letters do not insert themselves; instead, they are commands.
    ("j" sx-question-mode-next-section)
    ("k" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
+   ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
