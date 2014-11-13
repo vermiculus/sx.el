@@ -232,7 +232,7 @@ DATA can represent a question or an answer."
         (insert
          (sx-encoding-clean-content .body_markdown)
          "\n")))
-    ;; Answers
+    ;; Comments
     (when .comments
       (insert
        "\n"
