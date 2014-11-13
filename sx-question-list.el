@@ -20,10 +20,12 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'sx-question)
-(require 'sx-time)
 (require 'tabulated-list)
 (require 'cl-lib)
+
+(require 'sx)
+(require 'sx-time)
+(require 'sx-question)
 
 
 ;;; Customization
@@ -130,6 +132,7 @@ Letters do not insert themselves; instead, they are commands.
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
    ("g" sx-question-list-refresh)
+   ("v" sx-question-list-visit)
    ([?\r] sx-question-list-display-question)))
 
 (defvar sx-question-list--current-page "Latest"
@@ -198,6 +201,14 @@ a new list before redisplaying."
           (mapcar #'sx-question-list--print-info question-list)))
   (when redisplay (tabulated-list-print 'remember)))
 
+(defun sx-question-list-visit (&optional data)
+  "Visits question under point (or from DATA) using `browse-url'."
+  (interactive)
+  (unless data (setq data (tabulated-list-get-id)))
+  (unless data (error "No question here!"))
+  (sx-assoc-let data
+    (browse-url .link)))
+
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
 Used in the questions list to indicate a question was updated \"4d ago\"."
@@ -210,26 +221,26 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
     (list
      data
      (vector
-      (list (int-to-string score)
-            'face (if upvoted 'sx-question-list-score-upvoted
+      (list (int-to-string .score)
+            'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
-      (list (int-to-string answer_count)
-            'face (if (sx-question--accepted-answer data)
+      (list (int-to-string .answer_count)
+            'face (if (sx-question--accepted-answer .data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat
        (propertize
-        title
-        'face (if (sx-question--read-p data)
+        .title
+        'face (if (sx-question--read-p .data)
                   'sx-question-list-read-question
                 ;; Increment `sx-question-list--unread-count' for the mode-line.
                 (cl-incf sx-question-list--unread-count)
                 'sx-question-list-unread-question))
        (propertize " " 'display "\n         ")
-       (propertize (concat (sx-time-since last_activity_date)
+       (propertize (concat (sx-time-since .last_activity_date)
                            sx-question-list-ago-string)
                    'face 'sx-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity tags "] [") "]")
+       (propertize (concat " [" (mapconcat #'identity .tags "] [") "]")
                    'face 'sx-question-list-tags)
        (propertize " " 'display "\n"))))))
 

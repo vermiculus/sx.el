@@ -2,8 +2,7 @@
 
 ;; Copyright (C) 2014  Sean Allred
 
-;; Author: Sean Allred <sallred@calamity.tcs.com>
-;; Keywords: help
+;; Author: Sean Allred <code@seanallred.com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -74,6 +73,35 @@
                                          (format "%c" (string-to-number
                                                        (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
+
+(defun sx-encoding-gzipped-p (data)
+  "Checks for magic bytes in DATA.
+
+Check if the first two bytes of a string in DATA match magic
+numbers identifying the gzip file format. See [1] for the file
+format description.
+
+http://www.gzip.org/zlib/rfc-gzip.html
+
+http://emacs.stackexchange.com/a/2978"
+  (equal (substring (string-as-unibyte data) 0 2)
+         (unibyte-string 31 139)))
+
+(defun sx-encoding-gzipped-buffer-p (filename)
+  "Check if the BUFFER is gzip-compressed.
+
+See `gzip-check-magic' for details."
+  (sx-encoding-gzip-check-magic (buffer-string)))
+
+(defun sx-encoding-gzipped-file-p (file)
+  "Check if the FILE is gzip-compressed.
+
+See `gzip-check-magic' for details."
+  (let ((first-two-bytes (with-temp-buffer
+                           (set-buffer-multibyte nil)
+                           (insert-file-contents-literally file nil 0 2)
+                           (buffer-string))))
+    (sx-encoding-gzipped-p first-two-bytes)))
 
 (provide 'sx-encoding)
 ;;; sx-encoding.el ends here

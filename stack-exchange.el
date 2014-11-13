@@ -1,8 +1,9 @@
-;;; sx-network.el --- browsing networks  -*- lexical-binding: t; -*-
+;;; stack-exchange.el --- A StackExchange Mode       -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
+;; Keywords: help, hypermedia, mail, news, tools
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -23,14 +24,7 @@
 
 ;;; Code:
 
-(require 'sx-request)
+(mapc #'load (file-expand-wildcards "sx*.el"))
 
-(defun sx-network-get-networks ()
-  (sx-request-make "sites"))
-
-(provide 'sx-network)
-;;; sx-network.el ends here
-
-;; Local Variables:
-;; indent-tabs-mode: nil
-;; End:
+(provide 'stack-exchange)
+;;; stack-exchange.el ends here
