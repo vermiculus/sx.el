@@ -184,7 +184,8 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section .answers))
   (goto-char (point-min))
-  (sx-question-mode-next-section))
+  (with-selected-window sx-question-mode--window
+    (sx-question-mode-next-section)))
 
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.

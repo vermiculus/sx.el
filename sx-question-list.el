@@ -279,7 +279,8 @@ focus the relevant window."
   (when (sx-question--read-p data)
     (cl-decf sx-question-list--unread-count)
     (sx-question--mark-read data))
-  (unless (window-live-p sx-question-mode--window)
+  (unless (and (window-live-p sx-question-mode--window)
+               (null (equal sx-question-mode--window (selected-window))))
     (setq sx-question-mode--window
           (condition-case er
               (split-window-below sx-question-list-height)
