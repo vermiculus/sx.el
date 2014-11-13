@@ -202,16 +202,18 @@ QUESTION must be a data structure returned by `json-read'."
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
-Overlay is stored in `sx-question-mode--overlays' and given PROPERTIES."
+Overlay is pushed on `sx-question-mode--overlays' and given PROPERTIES.
+Return the result of BODY."
   (declare (indent 1)
            (debug t))
-  `(let ((p (point-marker)))
-     ,@body
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
      (let ((ov (make-overlay p (point)))
            (props ,properties))
        (while props
          (overlay-put ov (pop props) (pop props)))
-       (push ov sx-question-mode--overlays))))
+       (push ov sx-question-mode--overlays))
+     result))
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert HEADER and VALUE.
