@@ -26,6 +26,7 @@
 (require 'sx)
 (require 'sx-time)
 (require 'sx-question)
+(require 'sx-question-mode)
 
 
 ;;; Customization
