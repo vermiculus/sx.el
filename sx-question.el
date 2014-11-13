@@ -30,7 +30,7 @@
 (require 'sx-method)
 
 (defvar sx-question-browse-filter
-  '(question.body_markdown (user.profile_image shallow_user.profile_image)))
+  '((question.body_markdown question.comments question.answers answer.body_markdown answer.comments) (user.profile_image shallow_user.profile_image)))
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
