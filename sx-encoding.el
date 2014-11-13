@@ -76,7 +76,7 @@
 
 (defun sx-encoding-normalize-line-endings (string)
   "Normalize the line endings for STRING"
-  (delete ? string))
+  (delete ?\r string))
 
 (defun sx-encoding-clean-content (string)
   "Cleans STRING for display.
