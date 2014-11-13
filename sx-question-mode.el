@@ -235,6 +235,7 @@ DATA can represent a question or an answer."
     ;; Answers
     (when .comments
       (insert
+       "\n"
        (propertize
         sx-question-mode-comments-title
         'font-lock-face 'sx-question-mode-title
