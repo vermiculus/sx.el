@@ -153,6 +153,11 @@ editor's name."
   :type 'string
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-answer-title " Answer"
+  "Title used at the start of \"Answer\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
 
 ;;; Printing a question's content
 ;;;; Functions
@@ -162,15 +167,30 @@ editor's name."
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
   ;; Clear the overlays
-  (mapc #'delete-overlay sx-question-mode--overlays)
+  (mapc #'delete-overlayj sx-question-mode--overlays)
   (setq sx-question-mode--overlays nil)
   ;; Print everything
+  (sx-question-mode--print-section question)
   (sx-assoc-let question
+    (mapc #'sx-question-mode--print-section .answers)))
+
+(defun sx-question-mode--print-section (data)
+  "Print a section corresponding to DATA.
+DATA can represent a question or an answer."
+  (sx-assoc-let data
     (insert sx-question-mode-header-title
-            (propertize (sx-encoding-clean-content .title)
-                        'font-lock-face 'sx-question-mode-title
-                        'sx-question-mode--section 1))
-    ;; Sections are hidden with overlays
+            (if .title
+                ;; Questions have title
+                (propertize
+                 (sx-encoding-clean-content .title)
+                 'font-lock-face 'sx-question-mode-title
+                 'sx-question-mode--section 1)
+              ;; Answers don't
+              (propertize
+               sx-question-mode-answer-title
+               'font-lock-face 'sx-question-mode-title
+               'sx-question-mode--section 2)))
+    ;; Sections can be hidden with overlays
     (sx-question-mode--wrap-in-overlay
         '(sx-question-mode--section-content t)
       (sx-question-mode--insert-header
@@ -187,18 +207,25 @@ QUESTION must be a data structure returned by `json-read'."
                   (sx-time-since .last_edit_date)
                   (cdr (assoc 'display_name .last_editor)))))
        'sx-question-mode-date)
-      ;; Tags
-      (insert sx-question-mode-header-tags)
-      (sx-question-mode--wrap-in-overlay
-          '(face sx-question-mode-tags)
-        (insert (mapconcat #'sx-question--tag-format .tags " ")))
+      (when .title
+        ;; Tags
+        (insert sx-question-mode-header-tags)
+        (sx-question-mode--wrap-in-overlay
+            '(face sx-question-mode-tags)
+          (insert (mapconcat #'sx-question--tag-format .tags " "))))
       ;; Body
       (insert sx-question-mode-separator)
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert
          (sx-encoding-clean-content .body_markdown)
-         "\n")))))
+         "\n")))
+    ;; Answers
+    (mapc #'sx-question-mode--print-comment .comments)))
+
+(defun sx-question-mode--print-comment (data)
+  "Print the comment described by alist DATA."
+  )
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
