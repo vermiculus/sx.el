@@ -132,6 +132,14 @@ If WINDOW is given, use that to display the buffer."
   :type 'string
   :group 'sx-question-mode)
 
+(defface sx-question-mode-content-face
+  '((((background dark)) :background "#090909")
+    (((background light)) :background "#f4f4f4"))
+  "Face used on the question body in the question buffer.
+Shouldn't have a foreground, or this will interfere with
+font-locking."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-last-edit-format " (edited %s ago by %s)"
   "Format used to describe last edit date in the header.
 First %s is replaced with the date, and the second %s with the
@@ -145,48 +153,62 @@ editor's name."
   :type 'string
   :group 'sx-question-mode)
 
-;;; This is where most of the work is still left to be done! Need to
-;;; insert more data from QUESTION.
+
+;;; Printing a question's content
+;;;; Functions
+;; This is where most of the work is still left to be done! Need to
+;; insert more data from QUESTION.
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
+  ;; Clear the overlays
+  (mapc #'delete-overlay sx-question-mode--overlays)
+  (setq sx-question-mode--overlays nil)
+  ;; Print everything
   (sx-assoc-let question
     (insert sx-question-mode-header-title
             (propertize .title
                         'font-lock-face 'sx-question-mode-title
                         'sx-question-mode--section 1))
+    ;; Sections are hidden with overlays
     (sx-question-mode--wrap-in-overlay
-     (sx-question-mode--insert-header
-      sx-question-mode-header-author
-      (cdr (assoc 'display_name .owner))
-      'sx-question-mode-author
-      ;; Date
-      sx-question-mode-header-date
-      (concat
-       (sx-time-seconds-to-date creation_date)
-       (when .last_edit_date
-         (format sx-question-mode-last-edit-format
-                 (sx-time-since .last_edit_date)
-                 (cdr (assoc 'display_name .last_editor)))))
-      'sx-question-mode-date
-      ;; Tags
-      sx-question-mode-header-tags
-      (concat "(" (mapconcat 'identity .tags ") (") ")")
-      'sx-question-mode-tags)
-     (insert sx-question-mode-separator
-             ;; @TODO: This is temporary, of course. It prevents
-             ;; errors while the filters aren't setup yet.
-             (or .body "BODY")))))
+        '(sx-question-mode--section-content t)
+      (sx-question-mode--insert-header
+       sx-question-mode-header-author
+       (cdr (assoc 'display_name .owner))
+       'sx-question-mode-author
+       ;; Date
+       sx-question-mode-header-date
+       (concat
+        (sx-time-seconds-to-date .creation_date)
+        (when .last_edit_date
+          (format sx-question-mode-last-edit-format
+                  (sx-time-since .last_edit_date)
+                  (cdr (assoc 'display_name .last_editor)))))
+       'sx-question-mode-date
+       ;; Tags
+       sx-question-mode-header-tags
+       (concat "(" (mapconcat 'identity .tags ") (") ")")
+       'sx-question-mode-tags)
+      (insert sx-question-mode-separator)
+      (sx-question-mode--wrap-in-overlay
+          '(face sx-question-mode-content-face)
+        (insert        
+         ;; @TODO: This is temporary, of course. It prevents
+         ;; errors while the filters aren't setup yet.
+         (or .body_markdown "BODY") "\n")))))
 
-(defmacro sx-question-mode--wrap-in-overlay (&rest body)
+(defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
-Overlay is stored in `sx-question-mode--overlays' and given the
-property `sx-question-mode--section-content'."
+Overlay is stored in `sx-question-mode--overlays' and given PROPERTIES."
+  (declare (indent 1)
+           (debug t))
   `(let ((p (point-marker)))
      ,@body
-     (let ((ov (make-overlay p (point))))
-       (overlay-put ov 'sx-question-mode--section-content t)
-       (overlay-put ov 'face 'sx-question-mode-content-face)
+     (let ((ov (make-overlay p (point)))
+           (props ,properties))
+       (while props
+         (overlay-put ov (pop props) (pop props)))
        (push ov sx-question-mode--overlays))))
 
 (defun sx-question-mode--insert-header (&rest args)
