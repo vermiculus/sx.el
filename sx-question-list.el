@@ -277,8 +277,8 @@ focus the relevant window."
   (when (sx-question--read-p data)
     (cl-decf sx-question-list--unread-count)
     (sx-question--mark-read data))
-  (unless (window-live-p sx-question--window)
-    (setq sx-question--window
+  (unless (window-live-p sx-question-mode--window)
+    (setq sx-question-mode--window
           (condition-case er
               (split-window-below sx-question-list-height)
             (error
@@ -288,11 +288,11 @@ focus the relevant window."
                   (car (cdr-safe er)))
                  nil
                (error (cdr er)))))))
-  (sx-question-mode--display data sx-question--window)
+  (sx-question-mode--display data sx-question-mode--window)
   (when focus
-    (if sx-question--window
-        (select-window sx-question--window)
-      (switch-to-buffer sx-question--buffer))))
+    (if sx-question-mode--window
+        (select-window sx-question-mode--window)
+      (switch-to-buffer sx-question-mode--buffer))))
 
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
