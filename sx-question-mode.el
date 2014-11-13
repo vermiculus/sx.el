@@ -193,10 +193,9 @@ QUESTION must be a data structure returned by `json-read'."
       (insert sx-question-mode-separator)
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
-        (insert        
-         ;; @TODO: This is temporary, of course. It prevents
-         ;; errors while the filters aren't setup yet.
-         (or .body_markdown "BODY") "\n")))))
+        (insert
+         (sx-encoding-clean-content
+           .body_markdown) "\n")))))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.

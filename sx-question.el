@@ -30,7 +30,7 @@
 (require 'sx-method)
 
 (defvar sx-question-browse-filter
-  '(nil (user.profile_image shallow_user.profile_image)))
+  '(question.body_markdown (user.profile_image shallow_user.profile_image)))
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
