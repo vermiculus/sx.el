@@ -123,7 +123,7 @@ If WINDOW is given, use that to display the buffer."
   :group 'sx-question-mode)
 
 (defface sx-question-mode-tags
-  '((t :inherit font-lock-function-name-face))
+  '((t :underline nil :inherit font-lock-function-name-face))
   "Face used on the question tags in the question buffer."
   :group 'sx-question-mode-faces)
 
@@ -174,6 +174,7 @@ QUESTION must be a data structure returned by `json-read'."
     (sx-question-mode--wrap-in-overlay
         '(sx-question-mode--section-content t)
       (sx-question-mode--insert-header
+       ;; Author
        sx-question-mode-header-author
        (cdr (assoc 'display_name .owner))
        'sx-question-mode-author
@@ -185,17 +186,19 @@ QUESTION must be a data structure returned by `json-read'."
           (format sx-question-mode-last-edit-format
                   (sx-time-since .last_edit_date)
                   (cdr (assoc 'display_name .last_editor)))))
-       'sx-question-mode-date
-       ;; Tags
-       sx-question-mode-header-tags
-       (mapconcat 'sx-question--tag-format .tags " ")
-       'sx-question-mode-tags)
+       'sx-question-mode-date)
+      ;; Tags
+      (insert sx-question-mode-header-tags)
+      (sx-question-mode--wrap-in-overlay
+          '(face sx-question-mode-tags)
+        (insert (mapconcat #'sx-question--tag-format .tags " ")))
+      ;; Body
       (insert sx-question-mode-separator)
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert
          (sx-encoding-clean-content
-           .body_markdown) "\n")))))
+          .body_markdown) "\n")))))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
