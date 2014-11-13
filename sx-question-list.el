@@ -132,6 +132,7 @@ Letters do not insert themselves; instead, they are commands.
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
    ("g" sx-question-list-refresh)
+   ("v" sx-question-list-visit)
    ([?\r] sx-question-list-display-question)))
 
 (defvar sx-question-list--current-page "Latest"
@@ -192,6 +193,14 @@ a new list before redisplaying."
     (setq tabulated-list-entries
           (mapcar #'sx-question-list--print-info question-list)))
   (when redisplay (tabulated-list-print 'remember)))
+
+(defun sx-question-list-visit (&optional data)
+  "Visits question under point (or from DATA) using `browse-url'."
+  (interactive)
+  (unless data (setq data (tabulated-list-get-id)))
+  (unless data (error "No question here!"))
+  (sx-assoc-let data
+    (browse-url .link)))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
