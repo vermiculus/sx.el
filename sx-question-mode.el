@@ -245,15 +245,10 @@ If DIRECTION is negative, move backwards instead."
 Letters do not insert themselves; instead, they are commands.
 \\<sx-question-mode>
 \\{sx-question-mode}"
-  (sx-question-mode--update-mode-line)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
                'markdown-fontify-buffer-wiki-links t)
   (read-only-mode))
-
-(defun sx-question-mode--update-mode-line ()
-  ""
-  )
 
 (mapc
  (lambda (x) (define-key sx-question-mode-map
@@ -276,25 +271,6 @@ comments, and redisplays it."
      (sx-question-get-question
       sx-question-list--current-site .question_id)
      (selected-window))))
-
-(defconst stack-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
-    (:propertize stack-question-list--current-page
-                 face mode-line-buffer-id)
-    " ["
-    "Unread: "
-    (:propertize
-     (:eval (int-to-string stack-question-list--unread-count))
-     face mode-line-buffer-id)
-    ", "
-    "Total: "
-    (:propertize
-     (:eval (int-to-string stack-question-list--total-count))
-     face mode-line-buffer-id)
-    "] ")
-  "Mode-line construct to use in question-list buffers.")
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
