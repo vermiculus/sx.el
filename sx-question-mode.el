@@ -141,31 +141,31 @@ editor's name."
 QUESTION must be a data structure returned by `json-read'."
   (sx-assoc-let question
     (insert sx-question-mode-header-title
-            (propertize title
+            (propertize .title
                         'font-lock-face 'sx-question-mode-title
                         'sx-question-mode--section 1))
     (sx-question-mode--wrap-in-overlay
      (sx-question-mode--insert-header
       sx-question-mode-header-author
-      (cdr (assoc 'display_name owner))
+      (cdr (assoc 'display_name .owner))
       'sx-question-mode-author
       ;; Date
       sx-question-mode-header-date
       (concat
        (sx-time-seconds-to-date creation_date)
-       (when last_edit_date
+       (when .last_edit_date
          (format sx-question-mode-last-edit-format
-                 (sx-time-since last_edit_date)
-                 (cdr (assoc 'display_name last_editor)))))
+                 (sx-time-since .last_edit_date)
+                 (cdr (assoc 'display_name .last_editor)))))
       'sx-question-mode-date
       ;; Tags
       sx-question-mode-header-tags
-      (concat "(" (mapconcat 'identity tags ") (") ")")
+      (concat "(" (mapconcat 'identity .tags ") (") ")")
       'sx-question-mode-tags)
      (insert sx-question-mode-separator
              ;; @TODO: This is temporary, of course. It prevents
              ;; errors while the filters aren't setup yet.
-             (or body "BODY")))))
+             (or .body "BODY")))))
 
 (defmacro sx-question-mode--wrap-in-overlay (&rest body)
   "Execute BODY and wrap any inserted text in an overlay.
@@ -273,7 +273,8 @@ comments, and redisplays it."
     (error "Not in `sx-question-mode'"))
   (sx-assoc-let sx-question-mode--data
     (sx-question-mode--display
-     (sx-question-get-question sx-question-list--current-site question_id)
+     (sx-question-get-question
+      sx-question-list--current-site .question_id)
      (selected-window))))
 
 (defconst stack-question-list--mode-line-format
