@@ -26,7 +26,6 @@
 (require 'markdown-mode)
 
 (require 'sx)
-(require 'sx-filter)
 (require 'sx-question)
 
 (defgroup sx-question-mode nil

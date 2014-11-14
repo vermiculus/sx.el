@@ -54,13 +54,13 @@
 
 (defun sx-question-get-question (site id)
   "Get the question ID from SITE."
-  (let ((res (sx-request-make
+  (let ((res (sx-method-call
               (format "questions/%s" id)
               `((site . ,site))
               sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
-      (error "Couldn't find question %s in %s" id site))))
+      (error "Couldn't find question %S in %S" id site))))
 
 
 ;;; Question Properties
