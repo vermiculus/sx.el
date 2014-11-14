@@ -263,11 +263,20 @@ DATA can represent a question or an answer."
     (markdown-mode)
     (goto-char (point-min))
     (font-lock-fontify-region (point-min) (point-max))
-    ;; ;; Do something here
-    ;; (while (null (eobp))
-    ;;   (skip-chars-forward "\r\n[:blank:]")
-    ;;   (markdown-pre-region))
+    ;; Do something here
+    (while (null (eobp))
+      ;; Don't fill pre blocks.
+      (unless (sx-question-mode--move-over-pre)
+        (fill-paragraph)
+        (forward-paragraph)))
     (buffer-string)))
+
+(defun sx-question-mode--move-over-pre ()
+  "Non-nil if paragraph at point can be filled."
+  (markdown-match-pre-blocks
+   (save-excursion
+     (skip-chars-forward "\r\n[:blank:]")
+     (point))))
 
 (defun sx-question-mode--propertized-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
