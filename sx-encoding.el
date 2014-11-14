@@ -23,6 +23,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 (defcustom sx-encoding-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
            Agrave "À" agrave "à" alefsym "ℵ" Alpha "Α" alpha "α" amp "&" and "∧"
@@ -85,6 +87,36 @@ Applies `sx-encoding-normalize-line-endings' and
   (sx-encoding-decode-entities
    (sx-encoding-normalize-line-endings
     string)))
+
+;;; @TODO: This is a pretty ugly implementation.  It can likely be
+;;; simplified and it should be improved.
+(defun sx-encoding-clean-content-deep (data)
+  "Clean DATA recursively where necessary.
+
+See `sx-encoding-clean-content'."
+  (cond
+   ;; If we're looking at an atom, clean it if it's a string.
+   ;; Otherwise, just return it.
+   ((atom data)
+    (if (stringp data) (sx-encoding-clean-content data) data))
+   ;; Looking at a vector?  Recurse by mapping.
+   ((vectorp data)
+    (cl-map #'vector #'sx-encoding-clean-content-deep data))
+   ;; Is our cdr a vector?  Map again, but reconstruct the cons cell.
+   ((vectorp (cdr data))
+    (cons (car data) (cl-map #'vector
+                             #'sx-encoding-clean-content-deep
+                             (cdr data))))
+   ;; Is our cdr just a string?  Clean and return it, reconstructing.
+   ((stringp (cdr data))
+    (cons (car data) (sx-encoding-clean-content (cdr data))))
+   ;; Is this a cons cell where the other part is an atom?  Return the
+   ;; atom.  If we got here, it wasn't a string.
+   ((and (consp data) (atom (cdr data))) data)
+   ;; If it's a list, map.
+   ((listp data) (mapcar #'sx-encoding-clean-content-deep data))
+   ;; Default to identity.
+   (t data)))
 
 (defun sx-encoding-gzipped-p (data)
   "Checks for magic bytes in DATA.

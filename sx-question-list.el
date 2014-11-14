@@ -231,7 +231,7 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
                     'sx-question-list-answers))
       (concat
        (propertize
-        (sx-encoding-clean-content .title)
+        .title
         'face (if (sx-question--read-p .data)
                   'sx-question-list-read-question
                 ;; Increment `sx-question-list--unread-count' for the mode-line.

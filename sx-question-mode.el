@@ -200,7 +200,7 @@ DATA can represent a question or an answer."
             (if .title
                 ;; Questions have title
                 (propertize
-                 (sx-encoding-clean-content .title)
+                 .title
                  'font-lock-face 'sx-question-mode-title
                  'sx-question-mode--section 1)
               ;; Answers don't
@@ -237,7 +237,7 @@ DATA can represent a question or an answer."
           '(face sx-question-mode-content-face)
         (insert "\n"
                 (sx-question-mode--fill-string
-                 (sx-encoding-clean-content .body_markdown))
+                 .body_markdown)
                 sx-question-mode-separator)))
     ;; Comments
     (when .comments
@@ -277,7 +277,7 @@ DATA can represent a question or an answer."
   (sx-assoc-let data
     (insert
      "    "
-     (sx-encoding-clean-content .body_markdown)
+     .body_markdown
      " – "
      (sx-question-mode--propertized-display-name .owner)
      "\n")))
