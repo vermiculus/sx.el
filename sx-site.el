@@ -3,7 +3,6 @@
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
-;; Keywords: 
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -26,7 +25,7 @@
 
 ;;; @TODO use new caching system implemented in branch `network-list'
 (defun sx-site-get-api-tokens ()
-  "Return a list of all known "
+  "Return a list of all known site tokens."
   (mapcar
    (lambda (site) (cdr (assoc 'api_site_parameter site)))
    (sx-method-call "sites" '((pagesize . 9999)))))
