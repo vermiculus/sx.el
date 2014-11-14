@@ -25,6 +25,7 @@
 
 (require 'sx)
 (require 'sx-time)
+(require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
 
@@ -133,6 +134,7 @@ Letters do not insert themselves; instead, they are commands.
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
    ("g" sx-question-list-refresh)
+   (":" sx-question-list-switch-site)
    ("v" sx-question-list-visit)
    ([?\r] sx-question-list-display-question)))
 
@@ -296,6 +298,17 @@ focus the relevant window."
     (if sx-question-mode--window
         (select-window sx-question-mode--window)
       (switch-to-buffer sx-question-mode--buffer))))
+
+(defun sx-question-list-switch-site (site)
+  "Switch the current site to SITE and display its questions"
+  (interactive
+   (list (completing-read
+          "Switch to site: " (sx-site-get-api-tokens)
+          (lambda (site)
+            (not (equal site sx-question-list--current-site)))
+          t)))
+  (setq sx-question-list--current-site site)
+  (call-interactively #'sx-question-list-refresh))
 
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
