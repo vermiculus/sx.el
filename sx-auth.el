@@ -50,8 +50,7 @@ questions)."
   (interactive)
   (setq
    sx-auth-access-token
-   (let (
-         (url (concat
+   (let ((url (concat
                sx-auth-root
                "?"
                (sx-request--build-keyword-arguments
