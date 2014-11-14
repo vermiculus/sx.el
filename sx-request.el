@@ -71,19 +71,19 @@ number of requests left every time it finishes a call.")
 ;;; Making Requests
 
 (defun sx-request-make
-    (method &optional args silent)
+    (method &optional args use-auth use-post silent)
   (let ((url-automatic-caching sx-request-cache-p)
         (url-inhibit-uncompression t)
         (silent (or silent sx-request-silent-p))
-        (call (sx-request-build
-               method
-               (cons (cons 'key sx-request-api-key)
-                     args))))
+        (request-method (if use-post "POST" "GET"))
+        (request-args
+         (sx-request--build-keyword-arguments args nil use-auth))
+        (request-url (concat sx-request-api-root method)))
     (unless silent (sx-message "Request: %S" call))
-    (let ((response-buffer (cond
-                            ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
-                             (url-retrieve-synchronously call silent))
-                            (t (url-retrieve-synchronously call)))))
+    (let ((response-buffer (sx-request--request request-url
+                                                request-args
+                                                request-method
+                                                silent)))
       (if (not response-buffer)
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
@@ -120,22 +120,26 @@ number of requests left every time it finishes a call.")
 
 ;;; Support Functions
 
-(defun sx-request-build (method keyword-arguments &optional kv-value-sep root)
-  "Build the request string that will be used to process REQUEST
-with the given KEYWORD-ARGUMENTS."
-  (let ((base (concat (or root sx-request-api-root) method))
-	(args (sx-request--build-keyword-arguments
-               keyword-arguments kv-value-sep)))
-    (if (string-equal "" args)
-	base
-      (concat base "?" args))))
+(defun sx-request--request (url args method silent)
+  (let ((url-request-method method)
+        (url-request-extra-headers
+         '(("Content-Type" . "application/x-www-form-urlencoded")))
+        (url-request-data args))
+    (cond
+     ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
+      (url-retrieve-synchronously url silent))
+     (t (url-retrieve-synchronously url)))))
 
-(defun sx-request--build-keyword-arguments (alist &optional kv-value-sep)
+(defun sx-request--build-keyword-arguments (alist &optional
+                                                  kv-value-sep use-auth)
   "Build a \"key=value&key=value&...\"-style string with the elements
 of ALIST.  If any value in the alist is `nil', that pair will not
 be included in the return.  If you wish to pass a notion of
 false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
+  (when use-auth
+    (add-to-list 'alist (cons "key" sx-request-api-key))
+    (add-to-list 'alist (car (sx-cache-get 'auth))))
   (mapconcat
    (lambda (pair)
      (concat
