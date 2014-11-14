@@ -95,27 +95,23 @@ Applies `sx-encoding-normalize-line-endings' and
 
 See `sx-encoding-clean-content'."
   (cond
-   ;; If we're looking at an atom, clean it if it's a string.
-   ;; Otherwise, just return it.
+   ;; If we're looking at a cons cell, test to see if is a list.  If
+   ;; it is, map ourselves over the entire list.  If it is not,
+   ;; reconstruct the cons cell using a cleaned cdr.
+   ((consp data)
+    (if (listp (cdr data))
+        (cl-map #'list #'sx-encoding-clean-content-deep data)
+      (cons (car data) (sx-encoding-clean-content-deep (cdr data)))))
+   ;; If we're looking at an atom, clean and return if we're looking
+   ;; at a string, map if we're looking at a vector, and just return
+   ;; if we aren't looking at either.
    ((atom data)
-    (if (stringp data) (sx-encoding-clean-content data) data))
-   ;; Looking at a vector?  Recurse by mapping.
-   ((vectorp data)
-    (cl-map #'vector #'sx-encoding-clean-content-deep data))
-   ;; Is our cdr a vector?  Map again, but reconstruct the cons cell.
-   ((vectorp (cdr data))
-    (cons (car data) (cl-map #'vector
-                             #'sx-encoding-clean-content-deep
-                             (cdr data))))
-   ;; Is our cdr just a string?  Clean and return it, reconstructing.
-   ((stringp (cdr data))
-    (cons (car data) (sx-encoding-clean-content (cdr data))))
-   ;; Is this a cons cell where the other part is an atom?  Return the
-   ;; atom.  If we got here, it wasn't a string.
-   ((and (consp data) (atom (cdr data))) data)
-   ;; If it's a list, map.
-   ((listp data) (mapcar #'sx-encoding-clean-content-deep data))
-   ;; Default to identity.
+    (cond
+     ((stringp data)
+      (sx-encoding-clean-content data))
+     ((vectorp data)
+      (cl-map #'vector #'sx-encoding-clean-content-deep data))
+     (t data)))
    (t data)))
 
 (defun sx-encoding-gzipped-p (data)
