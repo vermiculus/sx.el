@@ -308,7 +308,7 @@ focus the relevant window."
             (not (equal site sx-question-list--current-site)))
           t)))
   (setq sx-question-list--current-site site)
-  (call-interactively #'sx-question-list-refresh))
+  (sx-question-list-refresh 'redisplay))
 
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
