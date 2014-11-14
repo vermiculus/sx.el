@@ -54,7 +54,7 @@
 
 (defun sx-question-get-question (site id)
   "Get the question ID from SITE."
-  (let ((res (sx-request-make
+  (let ((res (sx-method-call
               (format "questions/%s" id)
               `((site . ,site))
               sx-question-browse-filter)))
