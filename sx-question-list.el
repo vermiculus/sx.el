@@ -26,6 +26,7 @@
 (require 'sx)
 (require 'sx-time)
 (require 'sx-question)
+(require 'sx-question-mode)
 
 
 ;;; Customization
@@ -69,7 +70,7 @@
   :group 'sx-question-list-faces)
 
 (defface sx-question-list-tags
-  '((t :inherit font-lock-function-name-face))
+  '((t :inherit sx-question-mode-tags))
   ""
   :group 'sx-question-list-faces)
 
@@ -179,6 +180,9 @@ Letters do not insert themselves; instead, they are commands.
 (defvar sx-question-list--current-site "emacs"
   "Site being displayed in the *question-list* buffer.")
 
+(defvar sx-question-list--current-dataset nil
+  "")
+
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil, also call `tabulated-list-print'.
@@ -187,8 +191,12 @@ a new list before redisplaying."
   (interactive "pP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
-  (let ((question-list (sx-question-get-questions
-                        sx-question-list--current-site)))
+  (let ((question-list
+         (if (and no-update sx-question-list--current-dataset)
+             sx-question-list--current-dataset
+           (sx-question-get-questions
+            sx-question-list--current-site))))
+    (setq sx-question-list--current-dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar #'sx-question-list--print-info question-list)))
@@ -233,7 +241,8 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
        (propertize (concat (sx-time-since .last_activity_date)
                            sx-question-list-ago-string)
                    'face 'sx-question-list-date)
-       (propertize (concat " [" (mapconcat #'identity .tags "] [") "]")
+       " "
+       (propertize (mapconcat #'sx-question--tag-format .tags " ")
                    'face 'sx-question-list-tags)
        (propertize " " 'display "\n"))))))
 
@@ -270,8 +279,9 @@ focus the relevant window."
   (when (sx-question--read-p data)
     (cl-decf sx-question-list--unread-count)
     (sx-question--mark-read data))
-  (unless (window-live-p sx-question--window)
-    (setq sx-question--window
+  (unless (and (window-live-p sx-question-mode--window)
+               (null (equal sx-question-mode--window (selected-window))))
+    (setq sx-question-mode--window
           (condition-case er
               (split-window-below sx-question-list-height)
             (error
@@ -281,11 +291,11 @@ focus the relevant window."
                   (car (cdr-safe er)))
                  nil
                (error (cdr er)))))))
-  (sx-question--display data sx-question--window)
+  (sx-question-mode--display data sx-question-mode--window)
   (when focus
-    (if sx-question--window
-        (select-window sx-question--window)
-      (switch-to-buffer sx-question--buffer))))
+    (if sx-question-mode--window
+        (select-window sx-question-mode--window)
+      (switch-to-buffer sx-question-mode--buffer))))
 
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")

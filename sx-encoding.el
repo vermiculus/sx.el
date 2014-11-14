@@ -23,6 +23,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 (defcustom sx-encoding-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
            Agrave "À" agrave "à" alefsym "ℵ" Alpha "Α" alpha "α" amp "&" and "∧"
@@ -73,6 +75,39 @@
                                          (format "%c" (string-to-number
                                                        (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
+
+(defun sx-encoding-normalize-line-endings (string)
+  "Normalize the line endings for STRING"
+  (delete ?\r string))
+
+(defun sx-encoding-clean-content (string)
+  "Cleans STRING for display.
+Applies `sx-encoding-normalize-line-endings' and
+`sx-encoding-decode-entities'."
+  (sx-encoding-decode-entities
+   (sx-encoding-normalize-line-endings
+    string)))
+
+(defun sx-encoding-clean-content-deep (data)
+  "Clean DATA recursively where necessary.
+
+See `sx-encoding-clean-content'."
+  (if (consp data)
+   ;; If we're looking at a cons cell, test to see if is a list.  If
+   ;; it is, map ourselves over the entire list.  If it is not,
+   ;; reconstruct the cons cell using a cleaned cdr.
+      (if (listp (cdr data))
+          (cl-map #'list #'sx-encoding-clean-content-deep data)
+        (cons (car data) (sx-encoding-clean-content-deep (cdr data))))
+   ;; If we're looking at an atom, clean and return if we're looking
+   ;; at a string, map if we're looking at a vector, and just return
+   ;; if we aren't looking at either.
+    (cond
+     ((stringp data)
+      (sx-encoding-clean-content data))
+     ((vectorp data)
+      (cl-map #'vector #'sx-encoding-clean-content-deep data))
+     (t data))))
 
 (defun sx-encoding-gzipped-p (data)
   "Checks for magic bytes in DATA.

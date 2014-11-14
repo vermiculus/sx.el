@@ -115,7 +115,7 @@ number of requests left every time it finishes a call.")
                        sx-request-remaining-api-requests-message-threshold)
                 (sx-message "%d API requests reamining"
                             sx-request-remaining-api-requests))
-              .items)))))))
+              (sx-encoding-clean-content-deep .items))))))))
 
 
 ;;; Support Functions
