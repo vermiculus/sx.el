@@ -508,8 +508,6 @@ Letters do not insert themselves; instead, they are commands.
           (car x) (cadr x)))
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
-   ("j" sx-question-mode-next-section)
-   ("k" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("q" quit-window)
    (" " scroll-up-command)
