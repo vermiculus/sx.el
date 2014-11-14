@@ -41,7 +41,7 @@
   "The current version of the API.")
 
 (defconst sx-request-api-root
-  (format "http://api.stackexchange.com/%s/" sx-request-api-version)
+  (format "https://api.stackexchange.com/%s/" sx-request-api-version)
   "The base URL to make requests from.")
 
 (defcustom sx-request-silent-p
