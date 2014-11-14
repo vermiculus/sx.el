@@ -24,6 +24,8 @@
 
 ;;; Code:
 (require 'markdown-mode)
+(eval-when-compile
+  (require 'rx))
 
 (require 'sx)
 (require 'sx-question)
@@ -179,11 +181,14 @@ Second \"%s\" is replaced with the comment."
   :type 'string
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-pretty-links t
+  "If non-nil, markdown links are displayed in a compact form."
+  :type 'boolean
+  :group 'sx-question-mode)
+
 
 ;;; Printing a question's content
 ;;;; Functions
-;; This is where most of the work is still left to be done! Need to
-;; insert more data from QUESTION.
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
@@ -262,63 +267,7 @@ DATA can represent a question or an answer."
             '(face sx-question-mode-content-face)
           (mapc #'sx-question-mode--print-comment .comments))))))
 
-(defvar sx-question-mode-bullet-appearance
-  (propertize (if (char-displayable-p ?•) "  •" "  *")
-              'face 'markdown-list-face)
-  "String to be displayed as the bullet of markdown list items.")
-
-;; (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
-;;     (or (group-n 2 (and "(" (1+ (not (any ")"))) ")"))
-;;         (group-n 3 (and "[" (1+ (not (any "]"))) "]"))))
-
-(defvar sx-question-mode--removed-keywords
-  '("<\\(\\(\\sw\\|\\s_\\|\\s.\\)+@\\(\\sw\\|\\s_\\|\\s.\\)+\\)>"
-    "\\(?:acap\\|cid\\|da\\(?:ta\\|v\\)\\|f\\(?:ax\\|ile\\|tp\\)\\|gopher\\|https?\\|imap\\|ldap\\|m\\(?:ailto\\|id\\|odem\\)\\|n\\(?:ews\\|fs\\|ntp\\)\\|p\\(?:op\\|rospero\\)\\|rtsp\\|s\\(?:ervice\\|ip\\)\\|t\\(?:el\\(?:net\\)?\\|ip\\)\\|urn\\|vemmi\\|wais\\):[^]	\n<>,;() ]+"
-    "\\(<\\)\\(\\(?:acap\\|cid\\|da\\(?:ta\\|v\\)\\|f\\(?:ax\\|ile\\|tp\\)\\|gopher\\|https?\\|imap\\|ldap\\|m\\(?:ailto\\|id\\|odem\\)\\|n\\(?:ews\\|fs\\|ntp\\)\\|p\\(?:op\\|rospero\\)\\|rtsp\\|s\\(?:ervice\\|ip\\)\\|t\\(?:el\\(?:net\\)?\\|ip\\)\\|urn\\|vemmi\\|wais\\):[^]	\n<>,;()]+\\)\\(>\\)"
-    "\\(!\\)?\\(\\[\\([^]^][^]]*\\|\\)\\]\\)\\((\\([^)]*?\\)\\(?:\\s-+\\(\"[^\"]*\"\\)\\)?)\\)"
-    "\\(!\\)?\\(\\[\\([^]^][^]]*\\|\\)\\]\\)[ ]?\\(\\[\\([^]]*?\\)\\]\\)"
-    "^ \\{0,3\\}\\(\\[[^\n]+?\\]\\):\\s *\\(.*?\\)\\s *\\( \"[^\"]*\"$\\|$\\)") 
-  "Elements whose font-lock-keywords are blocked from the question buffer.")
-
-(defun sx-question-mode--fill-and-fontify (text)
-  "Fill TEXT according to `markdown-mode' and return it."
-  (with-temp-buffer
-    (erase-buffer)
-    (insert text)
-    (markdown-mode)
-    (font-lock-mode -1)
-    (setq markdown-mode-font-lock-keywords
-          (cl-remove-if (lambda (x) (member (car-safe x) sx-question-mode--removed-keywords))
-                        (copy-sequence markdown-mode-font-lock-keywords)))
-    (font-lock-add-keywords
-     nil
-     `(("^ *\\(\\*\\|\\+\\|-\\|\\) "
-        1 '(face nil display ,sx-question-mode-bullet-appearance) prepend)
-       ("\\[\\(?1:[^]]+\\)]\\(?:\\(?2:([^)]+)\\)\\|\\(?3:\\[[^]]+]\\)\\)"
-        1 '(face link)
-        2 '(face nil display "")
-        3 '(face nil display ""))
-       ;; Highlight usernames.
-       ("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
-        1 font-lock-builtin-face)))
-    ;; Do something here
-    (font-lock-fontify-region (point-min) (point-max))
-    (goto-char (point-min))
-    (while (null (eobp))
-      ;; Don't fill pre blocks.
-      (unless (sx-question-mode--move-over-pre)
-        (fill-paragraph)
-        (forward-paragraph)))
-    (buffer-string)))
-
-(defun sx-question-mode--move-over-pre ()
-  "Non-nil if paragraph at point can be filled."
-  (markdown-match-pre-blocks
-   (save-excursion
-     (skip-chars-forward "\r\n[:blank:]")
-     (point))))
-
-(defun sx-question-mode--propertized-display-name (author)
+(defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
   (sx-assoc-let author
     (propertize .display_name
@@ -363,6 +312,109 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)
      (propertize (pop args) 'face (pop args)))))
+
+
+;;;;; Font-locking the content
+(defvar sx-question-mode-bullet-appearance
+  (propertize (if (char-displayable-p ?•) "  •" "  *")
+              'face 'markdown-list-face)
+  "String to be displayed as the bullet of markdown list items.")
+
+(defun sx-question-mode--fill-and-fontify (text)
+  "Fill TEXT according to `markdown-mode' and return it."
+  (with-temp-buffer
+    (erase-buffer)
+    (insert text)
+    (markdown-mode)
+    (font-lock-mode -1)
+    (when sx-question-mode-bullet-appearance
+      (font-lock-add-keywords ;; Bullet items.
+       nil
+       `(("^ *\\(\\*\\|\\+\\|-\\|\\) "
+          1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
+    (font-lock-add-keywords ;; Highlight usernames.
+     nil
+     `(("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
+        1 font-lock-builtin-face)))
+    ;; Everything.
+    (font-lock-fontify-region (point-min) (point-max))
+    ;; Compact links.
+    (sx-question-mode--process-links-in-buffer)
+    ;; And now the filling
+    (goto-char (point-min))
+    (while (null (eobp))
+      ;; Don't fill pre blocks.
+      (unless (sx-question-mode--move-over-pre)
+        (skip-chars-forward "\r\n[:blank:]")
+        (fill-paragraph)
+        (forward-paragraph)))
+    (buffer-string)))
+
+(defvar sx-question-mode--link-regexp
+  ;; Done at compile time.
+  (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
+      (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
+          (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
+  "Regexp matching markdown links.")
+
+(defun sx-question-mode--process-links-in-buffer ()
+  "Turn all markdown links in this buffer into compact format."
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
+      (let* ((text (match-string-no-properties 1))
+             (url (or (match-string-no-properties 2)
+                      (sx-question-mode-find-reference
+                       (match-string-no-properties 3)
+                       text))))
+        (replace-match
+         (sx-question-mode--propertize-link
+          (if sx-question-mode-pretty-links
+              text
+            (match-string-no-properties 0))
+          url)
+         :fixedcase :literal nil 0)))))
+
+(defun sx-question-mode--propertize-link (text url)
+  "Return a link propertized version of string TEXT.
+URL is used as help-echo and as "
+  (propertize
+   text
+   'face        'link
+   'help-echo   url
+   'url         url
+   'follow-link t
+   'mouse-face  'highlight
+   'action      #'sx-question-mode-follow-link
+   'point-entered
+   (lambda (&rest _)
+     (message "%s%s" (propertize "URL: " 'face 'minibuffer-prompt) url))))
+
+(defun sx-question-mode-follow-link (&optional pos)
+  "Follow link at POS or point"
+  (interactive)
+  (browse-url
+   (or (get-text-property (or pos (point)) 'url)
+       (error "No url under point: %s" (or pos (point))))))
+
+(defun sx-question-mode-find-reference (id &optional id2)
+  "Find url identified by reference ID in current buffer.
+If ID is nil, use ID2 instead."
+  (save-excursion
+    (save-match-data
+      (goto-char (point-min))
+      (when (search-forward-regexp
+             (format "^\\s-*\\[\\(%s\\)]:\\s-+\\(?2:[^ ]+\\)"
+                     (or id id2))
+             nil t)
+        (match-string-no-properties 2)))))
+
+(defun sx-question-mode--move-over-pre ()
+  "Non-nil if paragraph at point can be filled."
+  (markdown-match-pre-blocks
+   (save-excursion
+     (skip-chars-forward "\r\n[:blank:]")
+     (point))))
 
 
 ;;; Movement commands
