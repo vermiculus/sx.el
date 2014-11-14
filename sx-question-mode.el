@@ -237,7 +237,7 @@ DATA can represent a question or an answer."
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert "\n"
-                (sx-question-mode--fill-string
+                (sx-question-mode--fill-and-fontify
                  .body_markdown)
                 (propertize sx-question-mode-separator
                             'face 'sx-question-mode-header))))
@@ -256,12 +256,13 @@ DATA can represent a question or an answer."
             '(face sx-question-mode-content-face)
           (mapc #'sx-question-mode--print-comment .comments))))))
 
-(defun sx-question-mode--fill-string (text)
+(defun sx-question-mode--fill-and-fontify (text)
   "Fill TEXT according to `markdown-mode' and return it."
   (with-temp-buffer
     (insert text)
     (markdown-mode)
     (goto-char (point-min))
+    (font-lock-fontify-region (point-min) (point-max))
     ;; ;; Do something here
     ;; (while (null (eobp))
     ;;   (skip-chars-forward "\r\n[:blank:]")
@@ -291,7 +292,7 @@ Second \"%s\" is replaced with the comment."
       (substring
        ;; We fill with three spaces at the start, so the comment is
        ;; slightly indented.
-       (sx-question-mode--fill-string
+       (sx-question-mode--fill-and-fontify
         (concat "   " .body_markdown))
        ;; Then we remove the spaces from the first line, since we'll
        ;; add the username there anyway.
