@@ -23,11 +23,11 @@
 
 
 ;;; Code:
+(require 'markdown-mode)
 
 (require 'sx)
 (require 'sx-filter)
-(require 'sx-lto)
-(require 'markdown-mode)
+(require 'sx-question)
 
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
