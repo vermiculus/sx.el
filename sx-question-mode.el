@@ -168,8 +168,15 @@ editor's name."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-comments-title "  Comments"
+(defcustom sx-question-mode-comments-title " Comments"
   "Title used at the start of \"Comments\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-comments-format "%s: %s\n"
+  "Format used to display comments.
+First \"%s\" is replaced with user name. 
+Second \"%s\" is replaced with the comment."
   :type 'string
   :group 'sx-question-mode)
 
@@ -273,13 +280,6 @@ DATA can represent a question or an answer."
   (sx-assoc-let author
     (propertize .display_name
                 'font-lock-face 'sx-question-mode-author)))
-
-(defcustom sx-question-mode-comments-format "   %s: %s\n"
-  "Format used to display comments.
-First \"%s\" is replaced with user name. 
-Second \"%s\" is replaced with the comment."
-  :type 'string
-  :group 'sx-question-mode)
 
 (defun sx-question-mode--print-comment (data)
   "Print the comment described by alist DATA."
