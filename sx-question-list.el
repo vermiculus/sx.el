@@ -302,7 +302,7 @@ focus the relevant window."
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions"
   (interactive
-   (list (completing-read
+   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
           "Switch to site: " (sx-site-get-api-tokens)
           (lambda (site)
             (not (equal site sx-question-list--current-site)))
