@@ -162,7 +162,7 @@ editor's name."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-answer-title " Answer"
+(defcustom sx-question-mode-answer-title "Answer"
   "Title used at the start of \"Answer\" sections."
   :type 'string
   :group 'sx-question-mode)
@@ -226,18 +226,20 @@ DATA can represent a question or an answer."
        'sx-question-mode-date)
       (when .title
         ;; Tags
-        (insert sx-question-mode-header-tags)
-        (sx-question-mode--wrap-in-overlay
-            '(face sx-question-mode-tags)
-          (insert (mapconcat #'sx-question--tag-format .tags " "))))
+        (sx-question-mode--insert-header
+         sx-question-mode-header-tags
+         (mapconcat #'sx-question--tag-format .tags " ")
+         'sx-question-mode-tags))
       ;; Body
-      (insert sx-question-mode-separator)
+      (insert (propertize sx-question-mode-separator
+                          'face 'sx-question-mode-header))
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert "\n"
                 (sx-question-mode--fill-string
                  .body_markdown)
-                sx-question-mode-separator)))
+                (propertize sx-question-mode-separator
+                            'face 'sx-question-mode-header))))
     ;; Comments
     (when .comments
       (insert
@@ -271,15 +273,28 @@ DATA can represent a question or an answer."
     (propertize .display_name
                 'font-lock-face 'sx-question-mode-author)))
 
+(defcustom sx-question-mode-comments-format "   %s: %s\n"
+  "Format used to display comments.
+First \"%s\" is replaced with user name. 
+Second \"%s\" is replaced with the comment."
+  :type 'string
+  :group 'sx-question-mode)
+
 (defun sx-question-mode--print-comment (data)
   "Print the comment described by alist DATA."
   (sx-assoc-let data
     (insert
-     "    "
-     .body_markdown
-     " – "
-     (sx-question-mode--propertized-display-name .owner)
-     "\n")))
+     (format
+      sx-question-mode-comments-format
+      (sx-question-mode--propertized-display-name .owner)
+      (substring
+       ;; We fill with three spaces at the start, so the comment is
+       ;; slightly indented.
+       (sx-question-mode--fill-string
+        (concat "   " .body_markdown))
+       ;; Then we remove the spaces from the first line, since we'll
+       ;; add the username there anyway.
+       3)))))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
