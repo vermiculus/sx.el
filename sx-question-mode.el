@@ -410,6 +410,7 @@ If DIRECTION is negative, move backwards instead."
 Letters do not insert themselves; instead, they are commands.
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  ;; We call font-lock-region manually. See `sx-question-mode--fill-and-fontify'
   (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
