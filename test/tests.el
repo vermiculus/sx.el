@@ -20,6 +20,14 @@
         (insert-file-contents file)
         (read (buffer-string))))))
 
+(defmacro line-should-match (regexp)
+  ""
+  `(let ((line (buffer-substring-no-properties
+                (line-beginning-position)
+                (line-end-position))))
+     (message "Line here is: %S" line)
+     (should (string-match ,regexp line))))
+
 (setq
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
@@ -89,14 +97,6 @@
                       ((1 . alpha) (2 . beta))]
                      '(1 2 3)))))
 
-(defmacro line-should-match (regexp)
-  ""
-  `(let ((line (buffer-substring-no-properties
-                (line-beginning-position)
-                (line-end-position))))
-     (message "Line here is: %S" line)
-     (should (string-match ,regexp line))))
-
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
              (lambda (&rest _) sx-test-data-questions)))
@@ -116,3 +116,19 @@
     (sx-question-list-previous 4)
     (line-should-match
      "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago\\s-+\\[autocomplete\\]")))
+
+(ert-deftest macro-test--sx-assoc-let ()
+  "Tests macro expansion for `sx-assoc-let'"
+  (should
+   (equal '(let ((.test (cdr (assoc 'test data))))
+             .test)
+          (macroexpand
+           '(sx-assoc-let data
+              .test))))
+  (should
+   (equal '(let ((.test-one (cdr (assoc 'test-one data)))
+                 (.test-two (cdr (assoc 'test-two data))))
+             (cons .test-one .test-two))
+          (macroexpand
+           '(sx-assoc-let data
+              (cons .test-one .test-two))))))

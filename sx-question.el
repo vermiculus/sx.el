@@ -26,11 +26,22 @@
 
 (require 'sx)
 (require 'sx-filter)
-(require 'sx-lto)
 (require 'sx-method)
 
 (defvar sx-question-browse-filter
-  '(nil (user.profile_image shallow_user.profile_image)))
+  '((question.body_markdown
+     question.comments
+     question.answers
+     question.last_editor
+     user.display_name
+     comment.owner
+     comment.body_markdown
+     comment.body
+     answer.last_editor
+     answer.owner
+     answer.body_markdown
+     answer.comments)
+    (user.profile_image shallow_user.profile_image)))
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
@@ -39,6 +50,16 @@
    `((site . ,site)
      (page . ,page))
    sx-question-browse-filter))
+
+(defun sx-question-get-question (site id)
+  "Get the question ID from SITE."
+  (let ((res (sx-method-call
+              (format "questions/%s" id)
+              `((site . ,site))
+              sx-question-browse-filter)))
+    (if (vectorp res)
+        (elt res 0)
+      (error "Couldn't find question %S in %S" id site))))
 
 
 ;;; Question Properties
@@ -56,54 +77,9 @@
   "Mark QUESTION as being read, until it is updated again."
   nil)
 
-
-;;; Displaying a question
-(defvar sx-question--window nil
-  "Window where the content of questions is displayed.")
-
-(defvar sx-question--buffer nil
-  "Buffer being used to display questions.")
-
-(defcustom sx-question-use-html t
-  "If nil, markdown is used for the body."
-  :type 'boolean
-  :group 'sx-question)
-
-(defun sx-question--display (data &optional window)
-  "Display question given by DATA on WINDOW.
-If WINDOW is nil, use selected one."
-  (let ((sx-lto--body-src-block
-         (if sx-question-use-html nil
-           sx-lto--body-src-block))
-        (inhibit-read-only t))
-    (with-current-buffer
-        (sx-question--display-buffer window)
-      (erase-buffer)
-      (insert
-       (org-element-interpret-data
-        (sx-lto--question data)))
-      (org-mode)
-      (show-all)
-      (view-mode)
-      (current-buffer))))
-
-(defun sx-question--display-buffer (window)
-  "Display and return the buffer used for displaying a question.
-Create the buffer if necessary.
-If WINDOW is given, use that to display the buffer."
-  ;; Create the buffer if necessary.
-  (unless (buffer-live-p sx-question--buffer)
-    (setq sx-question--buffer
-          (generate-new-buffer "*sx-question*")))
-  (cond
-   ;; Window was given, use it.
-   ((window-live-p window)
-    (set-window-buffer window sx-question--buffer))
-   ;; No window, but the buffer is already being displayed somewhere.
-   ((get-buffer-window sx-question--buffer 'visible))
-   ;; Neither, so we create the window.
-   (t (switch-to-buffer sx-question--buffer)))
-  sx-question--buffer)
+(defun sx-question--tag-format (tag)
+  "Formats TAG for display"
+  (concat "[" tag "]"))
 
 (provide 'sx-question)
 ;;; sx-question.el ends here

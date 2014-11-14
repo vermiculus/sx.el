@@ -45,8 +45,6 @@
     nil
     none))
 
-(defun sx-site-get-sites ())
-
 (defun sx-site--get-site-list ()
   (sx-cache-get
    'site-list
@@ -58,6 +56,12 @@
   nil
   "Favorite sites."
   :group 'sx-site)
+
+(defun sx-site-get-api-tokens ()
+  "Return a list of all known site tokens."
+  (mapcar
+   (lambda (site) (cdr (assoc 'api_site_parameter site)))
+   (sx-site--get-site-list)))
 
 (provide 'sx-site)
 ;;; stack-site.el ends here
