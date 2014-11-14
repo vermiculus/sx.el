@@ -377,18 +377,23 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
 
 (defun sx-question-mode--propertize-link (text url)
   "Return a link propertized version of string TEXT.
-URL is used as help-echo and as "
+URL is used as 'help-echo and 'url properties."
   (propertize
    text
-   'face        'link
-   'help-echo   url
+   ;; Mouse-over
+   'help-echo   (format 
+                 (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
+                 (propertize url 'face 'default) 
+                 (propertize "RET" 'face 'font-lock-function-name-face))
+   ;; In case we need it.
    'url         url
-   'follow-link t
+   ;; Decoration
+   'face        'link
    'mouse-face  'highlight
+   ;; What RET calls
    'action      #'sx-question-mode-follow-link
-   'point-entered
-   (lambda (&rest _)
-     (message "%s%s" (propertize "URL: " 'face 'minibuffer-prompt) url))))
+   ;; This is for `sx-question-mode--goto-propety-change'.
+   'sx-question-mode--action #'sx-question-mode-follow-link))
 
 (defun sx-question-mode-follow-link (&optional pos)
   "Follow link at POS or point"
@@ -456,6 +461,25 @@ Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
+(defun sx-question-mode-next-button (&optional n)
+  "Move to next interactible object in this buffer.
+These can be links, tags, or copiable code.
+With prefix argument N, move N times."
+  (interactive "p")
+  (or n (setq n 1))
+  (dotimes (_ (abs n))
+    (unless (sx-question-mode--goto-propety-change 'action n)
+      (sx-question-mode--goto-propety-change 'action n)))
+  (let ((echo (get-text-property (point) 'help-echo)))
+    (when echo (message "%s" echo))))
+
+(defun sx-question-mode-previous-button (&optional n)
+  "Move to previous interactible object in this buffer.
+These can be links, tags, or copiable code.
+With prefix argument N, move N times."
+  (interactive "p")
+  (sx-question-mode-next-button (- (or n 1))))
+
 (defun sx-question-mode--goto-propety-change (prop &optional direction)
   "Move forward until the value of text-property `sx-question-mode--PROP' changes.
 Return the new value of PROP at point.
@@ -470,7 +494,6 @@ If DIRECTION is negative, move backwards instead."
                    (point-min) (point-max))))
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
-
 
 (defun sx-question-mode-hide-show-section ()
   "Hide or show section under point."
@@ -513,7 +536,7 @@ Letters do not insert themselves; instead, they are commands.
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
-   ([tab] sx-question-mode-hide-show-section)))
+   ([tab] sx-question-mode-next-button)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
