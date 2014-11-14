@@ -267,6 +267,11 @@ DATA can represent a question or an answer."
   (with-temp-buffer
     (insert text)
     (markdown-mode)
+    ;; Highlight usernames.
+    (font-lock-add-keywords
+     nil
+     '(("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
+        1 font-lock-builtin-face)))
     (goto-char (point-min))
     (font-lock-fontify-region (point-min) (point-max))
     ;; Do something here
