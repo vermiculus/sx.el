@@ -201,12 +201,12 @@ DATA can represent a question or an answer."
                 ;; Questions have title
                 (propertize
                  .title
-                 'font-lock-face 'sx-question-mode-title
+                 'face 'sx-question-mode-title
                  'sx-question-mode--section 1)
               ;; Answers don't
               (propertize
                sx-question-mode-answer-title
-               'font-lock-face 'sx-question-mode-title
+               'face 'sx-question-mode-title
                'sx-question-mode--section 2)))
     ;; Sections can be hidden with overlays
     (sx-question-mode--wrap-in-overlay
@@ -247,7 +247,7 @@ DATA can represent a question or an answer."
        "\n"
        (propertize
         sx-question-mode-comments-title
-        'font-lock-face 'sx-question-mode-title-comments
+        'face 'sx-question-mode-title-comments
         'sx-question-mode--section 3))
       (sx-question-mode--wrap-in-overlay
           '(sx-question-mode--section-content t)
@@ -272,7 +272,7 @@ DATA can represent a question or an answer."
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
   (sx-assoc-let author
     (propertize .display_name
-                'font-lock-face 'sx-question-mode-author)))
+                'face 'sx-question-mode-author)))
 
 (defcustom sx-question-mode-comments-format "   %s: %s\n"
   "Format used to display comments.
@@ -318,8 +318,8 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
 \(fn header value face [header value face] [header value face] ...)"
   (while args
     (insert
-     (propertize (pop args) 'font-lock-face 'sx-question-mode-header)
-     (propertize (pop args) 'font-lock-face (pop args)))))
+     (propertize (pop args) 'face 'sx-question-mode-header)
+     (propertize (pop args) 'face (pop args)))))
 
 
 ;;; Movement commands
@@ -401,6 +401,7 @@ If DIRECTION is negative, move backwards instead."
 Letters do not insert themselves; instead, they are commands.
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
                'markdown-fontify-buffer-wiki-links t)
