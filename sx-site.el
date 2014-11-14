@@ -64,7 +64,7 @@
    (sx-site--get-site-list)))
 
 (provide 'sx-site)
-;;; stack-site.el ends here
+;;; sx-site.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
