@@ -225,7 +225,7 @@ DATA can represent a question or an answer."
       (sx-question-mode--insert-header
        ;; Author
        sx-question-mode-header-author
-       (sx-question-mode--propertized-display-name .owner)
+       (sx-question-mode--propertize-display-name .owner)
        'sx-question-mode-author
        ;; Date
        sx-question-mode-header-date
@@ -234,7 +234,7 @@ DATA can represent a question or an answer."
         (when .last_edit_date
           (format sx-question-mode-last-edit-format
                   (sx-time-since .last_edit_date)
-                  (sx-question-mode--propertized-display-name .last_editor))))
+                  (sx-question-mode--propertize-display-name .last_editor))))
        'sx-question-mode-date)
       (when .title
         ;; Tags
@@ -279,7 +279,7 @@ DATA can represent a question or an answer."
     (insert
      (format
       sx-question-mode-comments-format
-      (sx-question-mode--propertized-display-name .owner)
+      (sx-question-mode--propertize-display-name .owner)
       (substring
        ;; We fill with three spaces at the start, so the comment is
        ;; slightly indented.
