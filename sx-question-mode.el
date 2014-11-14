@@ -262,19 +262,48 @@ DATA can represent a question or an answer."
             '(face sx-question-mode-content-face)
           (mapc #'sx-question-mode--print-comment .comments))))))
 
+(defvar sx-question-mode-bullet-appearance
+  (propertize (if (char-displayable-p ?•) "  •" "  *")
+              'face 'markdown-list-face)
+  "String to be displayed as the bullet of markdown list items.")
+
+;; (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
+;;     (or (group-n 2 (and "(" (1+ (not (any ")"))) ")"))
+;;         (group-n 3 (and "[" (1+ (not (any "]"))) "]"))))
+
+(defvar sx-question-mode--removed-keywords
+  '("<\\(\\(\\sw\\|\\s_\\|\\s.\\)+@\\(\\sw\\|\\s_\\|\\s.\\)+\\)>"
+    "\\(?:acap\\|cid\\|da\\(?:ta\\|v\\)\\|f\\(?:ax\\|ile\\|tp\\)\\|gopher\\|https?\\|imap\\|ldap\\|m\\(?:ailto\\|id\\|odem\\)\\|n\\(?:ews\\|fs\\|ntp\\)\\|p\\(?:op\\|rospero\\)\\|rtsp\\|s\\(?:ervice\\|ip\\)\\|t\\(?:el\\(?:net\\)?\\|ip\\)\\|urn\\|vemmi\\|wais\\):[^]	\n<>,;() ]+"
+    "\\(<\\)\\(\\(?:acap\\|cid\\|da\\(?:ta\\|v\\)\\|f\\(?:ax\\|ile\\|tp\\)\\|gopher\\|https?\\|imap\\|ldap\\|m\\(?:ailto\\|id\\|odem\\)\\|n\\(?:ews\\|fs\\|ntp\\)\\|p\\(?:op\\|rospero\\)\\|rtsp\\|s\\(?:ervice\\|ip\\)\\|t\\(?:el\\(?:net\\)?\\|ip\\)\\|urn\\|vemmi\\|wais\\):[^]	\n<>,;()]+\\)\\(>\\)"
+    "\\(!\\)?\\(\\[\\([^]^][^]]*\\|\\)\\]\\)\\((\\([^)]*?\\)\\(?:\\s-+\\(\"[^\"]*\"\\)\\)?)\\)"
+    "\\(!\\)?\\(\\[\\([^]^][^]]*\\|\\)\\]\\)[ ]?\\(\\[\\([^]]*?\\)\\]\\)"
+    "^ \\{0,3\\}\\(\\[[^\n]+?\\]\\):\\s *\\(.*?\\)\\s *\\( \"[^\"]*\"$\\|$\\)") 
+  "Elements whose font-lock-keywords are blocked from the question buffer.")
+
 (defun sx-question-mode--fill-and-fontify (text)
   "Fill TEXT according to `markdown-mode' and return it."
   (with-temp-buffer
+    (erase-buffer)
     (insert text)
     (markdown-mode)
-    ;; Highlight usernames.
+    (font-lock-mode -1)
+    (setq markdown-mode-font-lock-keywords
+          (cl-remove-if (lambda (x) (member (car-safe x) sx-question-mode--removed-keywords))
+                        (copy-sequence markdown-mode-font-lock-keywords)))
     (font-lock-add-keywords
      nil
-     '(("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
+     `(("^ *\\(\\*\\|\\+\\|-\\|\\) "
+        1 '(face nil display ,sx-question-mode-bullet-appearance) prepend)
+       ("\\[\\(?1:[^]]+\\)]\\(?:\\(?2:([^)]+)\\)\\|\\(?3:\\[[^]]+]\\)\\)"
+        1 '(face link)
+        2 '(face nil display "")
+        3 '(face nil display ""))
+       ;; Highlight usernames.
+       ("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
         1 font-lock-builtin-face)))
-    (goto-char (point-min))
-    (font-lock-fontify-region (point-min) (point-max))
     ;; Do something here
+    (font-lock-fontify-region (point-min) (point-max))
+    (goto-char (point-min))
     (while (null (eobp))
       ;; Don't fill pre blocks.
       (unless (sx-question-mode--move-over-pre)
