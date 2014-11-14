@@ -88,31 +88,26 @@ Applies `sx-encoding-normalize-line-endings' and
    (sx-encoding-normalize-line-endings
     string)))
 
-;;; @TODO: This is a pretty ugly implementation.  It can likely be
-;;; simplified and it should be improved.
 (defun sx-encoding-clean-content-deep (data)
   "Clean DATA recursively where necessary.
 
 See `sx-encoding-clean-content'."
-  (cond
+  (if (consp data)
    ;; If we're looking at a cons cell, test to see if is a list.  If
    ;; it is, map ourselves over the entire list.  If it is not,
    ;; reconstruct the cons cell using a cleaned cdr.
-   ((consp data)
-    (if (listp (cdr data))
-        (cl-map #'list #'sx-encoding-clean-content-deep data)
-      (cons (car data) (sx-encoding-clean-content-deep (cdr data)))))
+      (if (listp (cdr data))
+          (cl-map #'list #'sx-encoding-clean-content-deep data)
+        (cons (car data) (sx-encoding-clean-content-deep (cdr data))))
    ;; If we're looking at an atom, clean and return if we're looking
    ;; at a string, map if we're looking at a vector, and just return
    ;; if we aren't looking at either.
-   ((atom data)
     (cond
      ((stringp data)
       (sx-encoding-clean-content data))
      ((vectorp data)
       (cl-map #'vector #'sx-encoding-clean-content-deep data))
-     (t data)))
-   (t data)))
+     (t data))))
 
 (defun sx-encoding-gzipped-p (data)
   "Checks for magic bytes in DATA.
