@@ -60,7 +60,7 @@
               sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
-      (error "Couldn't find question %s in %s" id site))))
+      (error "Couldn't find question %S in %S" id site))))
 
 
 ;;; Question Properties
