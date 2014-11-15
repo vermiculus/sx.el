@@ -226,7 +226,7 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
             'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
       (list (int-to-string .answer_count)
-            'face (if (sx-question--accepted-answer data)
+            'face (if (sx-question--accepted-answer-id data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat

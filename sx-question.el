@@ -71,16 +71,17 @@
 Each element has the form (SITE . QUESTION-LIST).
 And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
 
-(defun sx-question--ensure-read-list ()
-  "Ensure the `sx-question--user-read-list' has been read from cache."
+(defun sx-question--ensure-read-list (site)
+  "Ensure the `sx-question--user-read-list' has been read from cache.
+If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
-          (sx-cache-get 'read-questions))))
+          (sx-cache-get 'read-questions `(list ,site)))))
 
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated."
-  (sx-question--ensure-read-list)
   (sx-assoc-let question
+    (sx-question--ensure-read-list .site)
     (let ((ql (cdr (assoc .site sx-question--user-read-list))))
       (and ql
            (>= (or (cdr (assoc .question_id ql)) 0)
@@ -88,8 +89,8 @@ And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
-  (sx-question--ensure-read-list)
   (sx-assoc-let question
+    (sx-question--ensure-read-list .site)
     (let ((site-cell (assoc .site sx-question--user-read-list))
           (q-cell (cons .question_id .last_activity_date))
           cell)
@@ -103,6 +104,8 @@ And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).
        ;; Question wasn't present.
        (t 
         (setcdr site-cell (cons q-cell (cdr site-cell)))))))
+  ;; This causes a small lag on `j' and `k' as the list gets large.
+  ;; Should we do this on a timer?
   ;; Save the results.
   (sx-cache-set 'read-questions sx-question--user-read-list))
 
