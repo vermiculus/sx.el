@@ -72,22 +72,24 @@
 Each element has the form (SITE . QUESTION-LIST).
 And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
 
+(defun sx-question--ensure-read-list ()
+  "Ensure the `sx-question--user-read-list' has been read from cache."
+  (unless sx-question--user-read-list
+    (setq sx-question--user-read-list
+          (sx-cache-get 'read-questions))))
+
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated."
+  (sx-question--ensure-read-list)
   (sx-assoc-let question
     (let ((ql (cdr (assoc .site sx-question--user-read-list))))
       (and ql
            (>= (or (cdr (assoc .question_id ql)) 0)
                .last_activity_date)))))
 
-(defun sx-question--accepted-answer-id (question)
-  "Return accepted answer in QUESTION, or nil if none."
-  (sx-assoc-let question
-    (and (integerp .accepted_answer_id)
-         .accepted_answer_id)))
-
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
+  (sx-question--ensure-read-list)
   (sx-assoc-let question
     (let ((site-cell (assoc .site sx-question--user-read-list))
           (q-cell (cons .question_id .last_activity_date))
@@ -104,6 +106,12 @@ And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).
         (setcdr site-cell (cons q-cell (cdr site-cell)))))))
   ;; Save the results.
   (sx-cache-set 'read-questions sx-question--user-read-list))
+
+(defun sx-question--accepted-answer-id (question)
+  "Return accepted answer in QUESTION, or nil if none."
+  (sx-assoc-let question
+    (and (integerp .accepted_answer_id)
+         .accepted_answer_id)))
 
 (defun sx-question--< (property x y &optional pred)
   "Non-nil if PROPERTY attribute of question X is less than that of Y.
