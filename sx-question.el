@@ -47,11 +47,13 @@
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
-  (sx-method-call
-   "questions"
-   `((site . ,site)
-     (page . ,page))
-   sx-question-browse-filter))
+  (mapcar
+   (lambda (question) (cons (cons 'site site) question))
+   (sx-method-call
+    "questions"
+    `((site . ,site)
+      (page . ,page))
+    sx-question-browse-filter)))
 
 (defun sx-question-get-question (site id)
   "Get the question ID from SITE."
