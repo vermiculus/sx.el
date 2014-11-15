@@ -1,42 +1,28 @@
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Features</a>
-<ul>
-<li><a href="#sec-1-1">1.1. Planned</a></li>
-</ul>
-</li>
-<li><a href="#sec-2">2. Installation</a></li>
-<li><a href="#sec-3">3. Contributing</a></li>
-<li><a href="#sec-4">4. Resources</a>
-<ul>
-<li><a href="#sec-4-1">4.1. Icons</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
+Stack-Mode
+===
+[![Build Status](https://api.travis-ci.org/vermiculus/stack-mode.svg?branch=master)](https://travis-ci.org/vermiculus/stack-mode)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Stories in Ready](https://badge.waffle.io/vermiculus/stack-mode.svg?label=ready&title=Ready)](http://waffle.io/vermiculus/stack-mode)
 
-[<https://travis-ci.org/vermiculus/stack-mode.svg?branch=master>](https://travis-ci.org/vermiculus/stack-mode)
-[<https://badges.gitter.im/Join> Chat.svg](https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![img](//badge.waffle.io/vermiculus/stack-mode.svg)](https://www.waffle.io/vermiculus/stack-mode)
-
-StackMode will be a full featured Stack Exchange mode for GNU Emacs 24
+Stack-Mode will be a full featured Stack Exchange mode for GNU Emacs 24
 and up. Using the official API, we aim to create a more versatile
 experience for the Stack Exchange network within Emacs itself.
 
 # Features<a id="sec-1" name="sec-1"></a>
 
-1.  Listing Posts
+<b>Listing Posts</b><br/>
+<kbd>M-x</kbd>`list-questions` - List questions on a StackExchange site.
 
-    `list-questions` - List questions on a StackExchange site.
+<b>Navigating Posts</b><br/>
+<kbd>n</kbd> - Moves to the next question from within `list-questions`.<br/>
+<kbd>p</kbd> - Moves to the previous question from within `list-questions`.<br/>
 
-2.  Viewing Posts ::
-
-    `n` - moves to the next question from within `list-questions`
-    Use `v` to open the site in your browser.
-    Use `TAB` to fold questions and answers.
+<b>Viewing Posts</b><br/>
+<kbd>j</kbd> - Moves to the next question and opens it.<br/>
+<kbd>k</kbd> - Moves to the previous question and opens it.<br/>
+<kbd>RET</kbd> - Opens the question.<br/>
+<kbd>v</kbd> - Opens the site in your browser.<br/>
+<kbd>TAB</kbd> - Folds questions and answers.<br/>
 
 ## Planned<a id="sec-1-1" name="sec-1-1"></a>
 
@@ -47,7 +33,7 @@ experience for the Stack Exchange network within Emacs itself.
     native major mode)
 -   Notifications
 -   Reputation reporting
--   &#x2026;
+-   And much more!
 
 Have a feature in mind that isn't on the list?  Submit a pull request
 to add it to the list!  If you want to discuss it first, pop in our
