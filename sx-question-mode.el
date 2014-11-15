@@ -459,16 +459,18 @@ If nil, no recentering is performed."
   "Move down to next section (question or answer) of this buffer.
 Prefix argument N moves N sections down or up."
   (interactive "p")
-  (or n (setq n 1))
-  (dotimes (_ (abs n))
-    ;; This will either move us to the next section, or move out of
-    ;; the current one.
-    (unless (sx-question-mode--goto-propety-change
-             'sx-question-mode--section n)
-      ;; If all we did was move out the current one, then move again
-      ;; and we're guaranteed to reach the next section.
-      (sx-question-mode--goto-propety-change
-       'sx-question-mode--section n)))
+  (let ((count (if n (abs n) 1)))
+    (while (> count 0)
+      ;; This will either move us to the next section, or move out of
+      ;; the current one.
+      (unless (sx-question-mode--goto-propety-change 'section n)
+        ;; If all we did was move out the current one, then move again
+        ;; and we're guaranteed to reach the next section.
+        (sx-question-mode--goto-propety-change 'section n))
+      (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
+        (unless (and (overlayp ov)
+                     (overlay-get ov 'invisible))
+          (cl-decf count)))))
   (when sx-question-mode-recenter-line
     (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
       (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
