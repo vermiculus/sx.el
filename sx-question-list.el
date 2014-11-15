@@ -183,10 +183,10 @@ Letters do not insert themselves; instead, they are commands.
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
-If REDISPLAY is non-nil, also call `tabulated-list-print'.
+If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
 If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
-  (interactive "pP")
+  (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
   (let ((question-list
@@ -206,7 +206,9 @@ a new list before redisplaying."
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
   (sx-assoc-let data
-    (browse-url .link)))
+    (browse-url .link))
+  (sx-question--mark-read data)
+  (sx-question-list-refresh 'redisplay 'no-update))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
@@ -274,9 +276,10 @@ focus the relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
-  (when (sx-question--read-p data)
+  (unless (sx-question--read-p data)
     (cl-decf sx-question-list--unread-count)
-    (sx-question--mark-read data))
+    (sx-question--mark-read data)
+    (sx-question-list-refresh 'redisplay 'no-update))
   (unless (and (window-live-p sx-question-mode--window)
                (null (equal sx-question-mode--window (selected-window))))
     (setq sx-question-mode--window
