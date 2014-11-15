@@ -51,11 +51,7 @@
   :group 'sx-question-list-faces)
 
 (defface sx-question-list-answers-accepted
-  '((((background light)) :background "YellowGreen"
-     :inherit sx-question-list-answers)
-    (((background dark)) :background "DarkOliveGreen"
-     :inherit sx-question-list-answers)
-    (t :inherit sx-question-list-answers))
+  '((t :underline t :overline t :inherit sx-question-list-answers))
   ""
   :group 'sx-question-list-faces)
 
@@ -228,13 +224,13 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
             'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
       (list (int-to-string .answer_count)
-            'face (if (sx-question--accepted-answer .data)
+            'face (if (sx-question--accepted-answer data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat
        (propertize
         .title
-        'face (if (sx-question--read-p .data)
+        'face (if (sx-question--read-p data)
                   'sx-question-list-read-question
                 ;; Increment `sx-question-list--unread-count' for the mode-line.
                 (cl-incf sx-question-list--unread-count)

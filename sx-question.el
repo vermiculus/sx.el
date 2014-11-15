@@ -34,6 +34,7 @@
      question.comments
      question.answers
      question.last_editor
+     question.accepted_answer_id
      user.display_name
      comment.owner
      comment.body_markdown
@@ -69,10 +70,11 @@
   ;; @TODO:
   (cl-evenp (random)))
 
-(defun sx-question--accepted-answer (question)
+(defun sx-question--accepted-answer-id (question)
   "Return accepted answer in QUESTION, or nil if none."
-  ;; @TODO:
-  (cl-evenp (random)))
+  (sx-assoc-let question
+    (and (integerp .accepted_answer_id)
+         .accepted_answer_id)))
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
