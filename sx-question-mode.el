@@ -210,9 +210,11 @@ QUESTION must be a data structure returned by `json-read'."
   "")
 
 (defvar sx-question-mode--title-properties
-  '(face sx-question-mode-title
+  `(face sx-question-mode-title
          action sx-question-mode-hide-show-section
-         help-echo sx-question-mode--section-help-echo) 
+         help-echo ,sx-question-mode--section-help-echo
+         button t
+         follow-link t) 
   "")
 
 (defun sx-question-mode--print-section (data)
@@ -403,6 +405,10 @@ URL is used as 'help-echo and 'url properties."
    ;; Decoration
    'face        'link
    'mouse-face  'highlight
+   ;; So RET works
+   'button      t
+   ;; So mouse works
+   'follow-link t
    ;; What RET calls
    'action      #'sx-question-mode-follow-link))
 
@@ -475,29 +481,12 @@ Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
-(defun sx-question-mode-next-button (&optional n)
-  "Move to next interactible object in this buffer.
-These can be links, tags, or copiable code.
-With prefix argument N, move N times."
-  (interactive "p")
-  (or n (setq n 1))
-  (dotimes (_ (abs n))
-    (unless (sx-question-mode--goto-propety-change 'action n)
-      (sx-question-mode--goto-propety-change 'action n)))
-  (sx-message-help-echo))
-
-(defun sx-question-mode-previous-button (&optional n)
-  "Move to previous interactible object in this buffer.
-These can be links, tags, or copiable code.
-With prefix argument N, move N times."
-  (interactive "p")
-  (sx-question-mode-next-button (- (or n 1))))
-
 (defun sx-question-mode--goto-propety-change (prop &optional direction)
-  "Move forward until the value of text-property `sx-question-mode--PROP' changes.
+  "Move forward until the value of text-property sx-question-mode--PROP changes.
 Return the new value of PROP at point.
 If DIRECTION is negative, move backwards instead."
-  (let ((func (if (and (numberp direction)
+  (let ((prop (intern (format "sx-question-mode--%s" prop)))
+        (func (if (and (numberp direction)
                        (< direction 0))
                   #'previous-single-property-change
                 #'next-single-property-change))
@@ -507,7 +496,8 @@ If DIRECTION is negative, move backwards instead."
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
 
-(defun sx-question-mode-hide-show-section ()
+;;; Optional argument is for `push-button'.
+(defun sx-question-mode-hide-show-section (&optional _)
   "Hide or show section under point."
   (interactive)
   (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
@@ -548,7 +538,11 @@ Letters do not insert themselves; instead, they are commands.
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
-   ([tab] sx-question-mode-next-button)))
+   ([tab] forward-button)
+   (,(kbd "<S-iso-lefttab>") backward-button)
+   (,(kbd "<S-tab>") backward-button)
+   (,(kbd "<backtab>") backward-button)
+   ([return] push-button)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
