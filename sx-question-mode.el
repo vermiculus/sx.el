@@ -463,10 +463,10 @@ Prefix argument N moves N sections down or up."
     (while (> count 0)
       ;; This will either move us to the next section, or move out of
       ;; the current one.
-      (unless (sx-question-mode--goto-propety-change 'section n)
+      (unless (sx-question-mode--goto-property-change 'section n)
         ;; If all we did was move out the current one, then move again
         ;; and we're guaranteed to reach the next section.
-        (sx-question-mode--goto-propety-change 'section n))
+        (sx-question-mode--goto-property-change 'section n))
       (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
         (unless (and (overlayp ov)
                      (overlay-get ov 'invisible))
@@ -483,7 +483,7 @@ Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
-(defun sx-question-mode--goto-propety-change (prop &optional direction)
+(defun sx-question-mode--goto-property-change (prop &optional direction)
   "Move forward until the value of text-property sx-question-mode--PROP changes.
 Return the new value of PROP at point.
 If DIRECTION is negative, move backwards instead."
