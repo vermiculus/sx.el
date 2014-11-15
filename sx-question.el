@@ -33,6 +33,7 @@
      question.comments
      question.answers
      question.last_editor
+     question.accepted_answer_id
      user.display_name
      comment.owner
      comment.body_markdown
@@ -45,11 +46,13 @@
 
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE."
-  (sx-method-call
-   "questions"
-   `((site . ,site)
-     (page . ,page))
-   sx-question-browse-filter))
+  (mapcar
+   (lambda (question) (cons (cons 'site site) question))
+   (sx-method-call
+    "questions"
+    `((site . ,site)
+      (page . ,page))
+    sx-question-browse-filter)))
 
 (defun sx-question-get-question (site id)
   "Get the question ID from SITE."
@@ -63,19 +66,54 @@
 
 
 ;;; Question Properties
+(defvar sx-question--user-read-list nil 
+  "Alist of questions read by the user.
+Each element has the form (SITE . QUESTION-LIST).
+And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
+
+(defun sx-question--ensure-read-list (site)
+  "Ensure the `sx-question--user-read-list' has been read from cache.
+If no cache exists for it, initialize one with SITE."
+  (unless sx-question--user-read-list
+    (setq sx-question--user-read-list
+          (sx-cache-get 'read-questions `(list ,site)))))
+
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated."
-  ;; @TODO:
-  (cl-evenp (random)))
-
-(defun sx-question--accepted-answer (question)
-  "Return accepted answer in QUESTION, or nil if none."
-  ;; @TODO:
-  (cl-evenp (random)))
+  (sx-assoc-let question
+    (sx-question--ensure-read-list .site)
+    (let ((ql (cdr (assoc .site sx-question--user-read-list))))
+      (and ql
+           (>= (or (cdr (assoc .question_id ql)) 0)
+               .last_activity_date)))))
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
-  nil)
+  (sx-assoc-let question
+    (sx-question--ensure-read-list .site)
+    (let ((site-cell (assoc .site sx-question--user-read-list))
+          (q-cell (cons .question_id .last_activity_date))
+          cell)
+      (cond
+       ;; First question from this site.
+       ((null site-cell)
+        (push (list .site q-cell) sx-question--user-read-list))
+       ;; Question already has an older time.
+       ((setq cell (assoc .question_id site-cell))
+        (setcdr cell .last_activity_date))
+       ;; Question wasn't present.
+       (t 
+        (setcdr site-cell (cons q-cell (cdr site-cell)))))))
+  ;; This causes a small lag on `j' and `k' as the list gets large.
+  ;; Should we do this on a timer?
+  ;; Save the results.
+  (sx-cache-set 'read-questions sx-question--user-read-list))
+
+(defun sx-question--accepted-answer-id (question)
+  "Return accepted answer in QUESTION, or nil if none."
+  (sx-assoc-let question
+    (and (integerp .accepted_answer_id)
+         .accepted_answer_id)))
 
 (defun sx-question--tag-format (tag)
   "Formats TAG for display"

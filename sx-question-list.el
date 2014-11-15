@@ -51,11 +51,7 @@
   :group 'sx-question-list-faces)
 
 (defface sx-question-list-answers-accepted
-  '((((background light)) :background "YellowGreen"
-     :inherit sx-question-list-answers)
-    (((background dark)) :background "DarkOliveGreen"
-     :inherit sx-question-list-answers)
-    (t :inherit sx-question-list-answers))
+  '((t :underline t :overline t :inherit sx-question-list-answers))
   ""
   :group 'sx-question-list-faces)
 
@@ -187,10 +183,10 @@ Letters do not insert themselves; instead, they are commands.
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
-If REDISPLAY is non-nil, also call `tabulated-list-print'.
+If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
 If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
-  (interactive "pP")
+  (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
   (let ((question-list
@@ -210,7 +206,9 @@ a new list before redisplaying."
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
   (sx-assoc-let data
-    (browse-url .link)))
+    (browse-url .link))
+  (sx-question--mark-read data)
+  (sx-question-list-refresh 'redisplay 'no-update))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
@@ -228,13 +226,13 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
             'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
       (list (int-to-string .answer_count)
-            'face (if (sx-question--accepted-answer .data)
+            'face (if (sx-question--accepted-answer-id data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat
        (propertize
         .title
-        'face (if (sx-question--read-p .data)
+        'face (if (sx-question--read-p data)
                   'sx-question-list-read-question
                 ;; Increment `sx-question-list--unread-count' for the mode-line.
                 (cl-incf sx-question-list--unread-count)
@@ -278,14 +276,15 @@ focus the relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
-  (when (sx-question--read-p data)
+  (unless (sx-question--read-p data)
     (cl-decf sx-question-list--unread-count)
-    (sx-question--mark-read data))
+    (sx-question--mark-read data)
+    (sx-question-list-refresh 'redisplay 'no-update))
   (unless (and (window-live-p sx-question-mode--window)
                (null (equal sx-question-mode--window (selected-window))))
     (setq sx-question-mode--window
           (condition-case er
-              (split-window-below sx-question-list-height)
+              (split-window (selected-window) sx-question-list-height 'below)
             (error
              ;; If the window is too small to split, use current one.
              (if (string-match
@@ -293,7 +292,15 @@ focus the relevant window."
                   (car (cdr-safe er)))
                  nil
                (error (cdr er)))))))
+  ;; Display the question.
   (sx-question-mode--display data sx-question-mode--window)
+  ;; Configure the window to be closed on `q'.
+  (set-window-prev-buffers sx-question-mode--window nil)
+  (set-window-parameter
+   sx-question-mode--window
+   'quit-restore
+   ;; See https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html#Window-Parameters
+   `(window window ,(selected-window) ,sx-question-mode--buffer))
   (when focus
     (if sx-question-mode--window
         (select-window sx-question-mode--window)
