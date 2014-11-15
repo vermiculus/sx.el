@@ -345,11 +345,13 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
     (when sx-question-mode-bullet-appearance
       (font-lock-add-keywords ;; Bullet items.
        nil
-       `(("^ *\\(\\*\\|\\+\\|-\\|\\) "
+       `(((rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
           1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
     (font-lock-add-keywords ;; Highlight usernames.
      nil
-     `(("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
+     `(((rx (or blank line-start)
+            (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+            symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
     (font-lock-fontify-region (point-min) (point-max))
@@ -426,10 +428,11 @@ If ID is nil, use ID2 instead."
     (save-match-data
       (goto-char (point-min))
       (when (search-forward-regexp
-             (format "^\\s-*\\[\\(%s\\)]:\\s-+\\(?2:[^ ]+\\)"
+             (format (rx line-start (0+ blank) "[%s]:" (1+ blank)
+                         (group-n 1 (1+ (not blank))))
                      (or id id2))
              nil t)
-        (match-string-no-properties 2)))))
+        (match-string-no-properties 1)))))
 
 (defun sx-question-mode--move-over-pre ()
   "Non-nil if paragraph at point can be filled."
