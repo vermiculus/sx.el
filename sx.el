@@ -31,6 +31,11 @@
   "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
 
+(defun sx-message-help-echo ()
+  "If there's a 'help-echo property under point, message it."
+  (let ((echo (get-text-property (point) 'help-echo)))
+    (when echo (message "%s" echo))))
+
 (defun sx--thing-as-string (thing &optional sequence-sep)
   "Return a string representation of THING.  If THING is already
 a string, just return it."

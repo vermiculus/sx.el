@@ -159,7 +159,7 @@ editor's name."
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-separator
-  (concat "\n" (make-string 80 ?_) "\n")
+  (concat (make-string 80 ?_) "\n")
   "Separator used between header and body."
   :type 'string
   :group 'sx-question-mode)
@@ -203,22 +203,33 @@ QUESTION must be a data structure returned by `json-read'."
   (with-selected-window sx-question-mode--window
     (sx-question-mode-next-section)))
 
+(defvar sx-question-mode--section-help-echo
+  (format
+   (propertize "%s to hide/display content" 'face 'minibuffer-prompt) 
+   (propertize "RET" 'face 'font-lock-function-name-face)) 
+  "")
+
+(defvar sx-question-mode--title-properties
+  '(face sx-question-mode-title
+         action sx-question-mode-hide-show-section
+         help-echo sx-question-mode--section-help-echo) 
+  "")
+
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
   (sx-assoc-let data
     (insert sx-question-mode-header-title
-            (if .title
-                ;; Questions have title
-                (propertize
-                 .title
-                 'face 'sx-question-mode-title
-                 'sx-question-mode--section 1)
-              ;; Answers don't
-              (propertize
-               sx-question-mode-answer-title
-               'face 'sx-question-mode-title
-               'sx-question-mode--section 2)))
+            (apply
+             #'propertize
+             ;; Questions have title
+             (or .title
+                 ;; Answers don't
+                 sx-question-mode-answer-title)
+             ;; Section level
+             'sx-question-mode--section (if .title 1 2)
+             ;; face, action and help-echo
+             sx-question-mode--title-properties))
     ;; Sections can be hidden with overlays
     (sx-question-mode--wrap-in-overlay
         '(sx-question-mode--section-content t)
@@ -243,8 +254,10 @@ DATA can represent a question or an answer."
          (mapconcat #'sx-question--tag-format .tags " ")
          'sx-question-mode-tags))
       ;; Body
-      (insert (propertize sx-question-mode-separator
-                          'face 'sx-question-mode-header))
+      (insert "\n"
+              (propertize sx-question-mode-separator
+                          'face 'sx-question-mode-header
+                          'sx-question-mode--section 4))
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert "\n"
@@ -254,12 +267,12 @@ DATA can represent a question or an answer."
                             'face 'sx-question-mode-header))))
     ;; Comments
     (when .comments
-      (insert
-       "\n"
-       (propertize
-        sx-question-mode-comments-title
-        'face 'sx-question-mode-title-comments
-        'sx-question-mode--section 3))
+      (insert "\n"
+              (apply #'propertize
+                     sx-question-mode-comments-title
+                     'face 'sx-question-mode-title-comments
+                     'sx-question-mode--section 3
+                     sx-question-mode--title-properties))
       (sx-question-mode--wrap-in-overlay
           '(sx-question-mode--section-content t)
         (insert "\n")
@@ -381,7 +394,7 @@ URL is used as 'help-echo and 'url properties."
   (propertize
    text
    ;; Mouse-over
-   'help-echo   (format 
+   'help-echo   (format
                  (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
                  (propertize url 'face 'default) 
                  (propertize "RET" 'face 'font-lock-function-name-face))
@@ -391,9 +404,7 @@ URL is used as 'help-echo and 'url properties."
    'face        'link
    'mouse-face  'highlight
    ;; What RET calls
-   'action      #'sx-question-mode-follow-link
-   ;; This is for `sx-question-mode--goto-propety-change'.
-   'sx-question-mode--action #'sx-question-mode-follow-link))
+   'action      #'sx-question-mode-follow-link))
 
 (defun sx-question-mode-follow-link (&optional pos)
   "Follow link at POS or point"
@@ -442,18 +453,21 @@ If nil, no recentering is performed."
   "Move down to next section (question or answer) of this buffer.
 Prefix argument N moves N sections down or up."
   (interactive "p")
-  (unless n (setq n 1))
+  (or n (setq n 1))
   (dotimes (_ (abs n))
     ;; This will either move us to the next section, or move out of
     ;; the current one.
-    (unless (sx-question-mode--goto-propety-change 'section n)
+    (unless (sx-question-mode--goto-propety-change
+             'sx-question-mode--section n)
       ;; If all we did was move out the current one, then move again
       ;; and we're guaranteed to reach the next section.
-      (sx-question-mode--goto-propety-change 'section n)))
+      (sx-question-mode--goto-propety-change
+       'sx-question-mode--section n)))
   (when sx-question-mode-recenter-line
     (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
       (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
-        (recenter sx-question-mode-recenter-line)))))
+        (recenter sx-question-mode-recenter-line))))
+  (sx-message-help-echo))
 
 (defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
@@ -470,8 +484,7 @@ With prefix argument N, move N times."
   (dotimes (_ (abs n))
     (unless (sx-question-mode--goto-propety-change 'action n)
       (sx-question-mode--goto-propety-change 'action n)))
-  (let ((echo (get-text-property (point) 'help-echo)))
-    (when echo (message "%s" echo))))
+  (sx-message-help-echo))
 
 (defun sx-question-mode-previous-button (&optional n)
   "Move to previous interactible object in this buffer.
@@ -484,8 +497,7 @@ With prefix argument N, move N times."
   "Move forward until the value of text-property `sx-question-mode--PROP' changes.
 Return the new value of PROP at point.
 If DIRECTION is negative, move backwards instead."
-  (let ((prop (intern (format "sx-question-mode--%s" prop)))
-        (func (if (and (numberp direction)
+  (let ((func (if (and (numberp direction)
                        (< direction 0))
                   #'previous-single-property-change
                 #'next-single-property-change))
