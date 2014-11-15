@@ -134,6 +134,9 @@ Letters do not insert themselves; instead, they are commands.
    ("v" sx-question-list-visit)
    ([?\r] sx-question-list-display-question)))
 
+(global-set-key (kbd "<up>") 'sx-question-list-view-previous)
+(global-set-key (kbd "<down>") 'sx-question-list-view-next)
+
 (defvar sx-question-list--current-page "Latest"
   ;; Other values (once we implement them) are "Top Voted",
   ;; "Unanswered", etc.
