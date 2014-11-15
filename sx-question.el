@@ -26,7 +26,6 @@
 
 (require 'sx)
 (require 'sx-filter)
-(require 'sx-lto)
 (require 'sx-method)
 
 (defvar sx-question-browse-filter
@@ -112,13 +111,6 @@ And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).
   (sx-assoc-let question
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
-
-(defun sx-question--< (property x y &optional pred)
-  "Non-nil if PROPERTY attribute of question X is less than that of Y.
-With optional argument predicate, use it instead of `<'."
-  (funcall (or pred #'<)
-           (cdr (assoc property x))
-           (cdr (assoc property y))))
 
 (defun sx-question--tag-format (tag)
   "Formats TAG for display"
