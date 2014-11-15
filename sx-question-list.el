@@ -285,7 +285,7 @@ focus the relevant window."
                (null (equal sx-question-mode--window (selected-window))))
     (setq sx-question-mode--window
           (condition-case er
-              (split-window-below sx-question-list-height)
+              (split-window (selected-window) sx-question-list-height 'below)
             (error
              ;; If the window is too small to split, use current one.
              (if (string-match
@@ -293,7 +293,15 @@ focus the relevant window."
                   (car (cdr-safe er)))
                  nil
                (error (cdr er)))))))
+  ;; Display the question.
   (sx-question-mode--display data sx-question-mode--window)
+  ;; Configure the window to be closed on `q'.
+  (set-window-prev-buffers sx-question-mode--window nil)
+  (set-window-parameter
+   sx-question-mode--window
+   'quit-restore
+   ;; See https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html#Window-Parameters
+   `(window window ,(selected-window) ,sx-question-mode--buffer))
   (when focus
     (if sx-question-mode--window
         (select-window sx-question-mode--window)

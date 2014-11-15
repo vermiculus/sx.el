@@ -523,6 +523,11 @@ If DIRECTION is negative, move backwards instead."
 Letters do not insert themselves; instead, they are commands.
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  ;; Determine how to close this window.
+  (unless (window-parameter nil 'quit-restore)
+    (set-window-parameter
+     nil 'quit-restore
+     `(other window nil ,(current-buffer))))
   ;; We call font-lock-region manually. See `sx-question-mode--fill-and-fontify'
   (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
