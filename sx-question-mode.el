@@ -345,11 +345,13 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
     (when sx-question-mode-bullet-appearance
       (font-lock-add-keywords ;; Bullet items.
        nil
-       `(("^ *\\(\\*\\|\\+\\|-\\|\\) "
+       `(((rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
           1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
     (font-lock-add-keywords ;; Highlight usernames.
      nil
-     `(("\\(?: \\|^\\)\\(@\\(?:\\sw\\|\\s_\\)+\\)\\_>"
+     `(((rx (or blank line-start)
+            (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+            symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
     (font-lock-fontify-region (point-min) (point-max))
@@ -426,10 +428,11 @@ If ID is nil, use ID2 instead."
     (save-match-data
       (goto-char (point-min))
       (when (search-forward-regexp
-             (format "^\\s-*\\[\\(%s\\)]:\\s-+\\(?2:[^ ]+\\)"
+             (format (rx line-start (0+ blank) "[%s]:" (1+ blank)
+                         (group-n 1 (1+ (not blank))))
                      (or id id2))
              nil t)
-        (match-string-no-properties 2)))))
+        (match-string-no-properties 1)))))
 
 (defun sx-question-mode--move-over-pre ()
   "Non-nil if paragraph at point can be filled."
@@ -463,10 +466,10 @@ Prefix argument N moves N sections down or up."
     (while (> count 0)
       ;; This will either move us to the next section, or move out of
       ;; the current one.
-      (unless (sx-question-mode--goto-propety-change 'section n)
+      (unless (sx-question-mode--goto-property-change 'section n)
         ;; If all we did was move out the current one, then move again
         ;; and we're guaranteed to reach the next section.
-        (sx-question-mode--goto-propety-change 'section n))
+        (sx-question-mode--goto-property-change 'section n))
       (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
         (unless (and (overlayp ov)
                      (overlay-get ov 'invisible))
@@ -483,7 +486,7 @@ Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
-(defun sx-question-mode--goto-propety-change (prop &optional direction)
+(defun sx-question-mode--goto-property-change (prop &optional direction)
   "Move forward until the value of text-property sx-question-mode--PROP changes.
 Return the new value of PROP at point.
 If DIRECTION is negative, move backwards instead."

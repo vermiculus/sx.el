@@ -111,7 +111,7 @@ is equivalent to
            (debug t))
   (let ((symbol-alist (sx--deep-dot-search body)))
     `(let ,(mapcar (lambda (x) `(,(car x) (cdr (assoc ',(cdr x) ,alist))))
-                   symbol-alist)
+                   (delete-dups symbol-alist))
        ,@body)))
 
 (defcustom sx-init-hook nil
