@@ -26,7 +26,6 @@
 
 (require 'sx)
 (require 'sx-filter)
-(require 'sx-lto)
 (require 'sx-method)
 
 (defvar sx-question-browse-filter
@@ -77,13 +76,6 @@
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read, until it is updated again."
   nil)
-
-(defun sx-question--< (property x y &optional pred)
-  "Non-nil if PROPERTY attribute of question X is less than that of Y.
-With optional argument predicate, use it instead of `<'."
-  (funcall (or pred #'<)
-           (cdr (assoc property x))
-           (cdr (assoc property y))))
 
 (defun sx-question--tag-format (tag)
   "Formats TAG for display"

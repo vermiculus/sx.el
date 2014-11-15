@@ -1,4 +1,4 @@
-;;; sx-site.el --- site functions
+;;; sx-site.el --- browsing sites                    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,16 +19,53 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
-;;; @TODO use new caching system implemented in branch `network-list'
+(require 'sx-method)
+(require 'sx-cache)
+
+(defvar sx-site-browse-filter
+  '((.backoff
+     .error_id
+     .error_message
+     .error_name
+     .has_more
+     .items
+     .quota_max
+     .quota_remaining
+     site.site_type
+     site.name
+     site.site_url
+     site.api_site_parameter
+     site.related_sites
+     related_site.api_site_parameter
+     related_site.relation)
+    nil
+    none))
+
+(defun sx-site--get-site-list ()
+  (sx-cache-get
+   'site-list
+   '(sx-method-call
+     "sites" '((pagesize . 999))
+     sx-site-browse-filter)))
+
+(defcustom sx-site-favorites
+  nil
+  "Favorite sites."
+  :group 'sx-site)
+
 (defun sx-site-get-api-tokens ()
   "Return a list of all known site tokens."
   (mapcar
    (lambda (site) (cdr (assoc 'api_site_parameter site)))
-   (sx-method-call "sites" '((pagesize . 9999)))))
+   (sx-site--get-site-list)))
 
 (provide 'sx-site)
 ;;; sx-site.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
