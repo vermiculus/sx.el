@@ -323,6 +323,7 @@ focus the relevant window."
 (defun list-questions (no-update)
   "Display a list of StackExchange questions."
   (interactive "P")
+  (sx-initialize)
   (unless (buffer-live-p sx-question-list--buffer)
     (setq sx-question-list--buffer
           (generate-new-buffer "*question-list*")))
