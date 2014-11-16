@@ -143,10 +143,19 @@ SETTER should be a function of two arguments.  If SETTER is nil,
        (,(or setter #'setq) ,variable ,value))))
   nil)
 
-(defun stack-initialize ()
-  (run-hooks
-   'sx-init--internal-hook
-   'sx-init-hook))
+(defvar sx-initialized nil 
+  "Nil if sx hasn't been initialized yet.
+If it has, holds the time at which initialization happened.")
+
+(defun sx-initialize (&optional force)
+  "Run initialization hooks if they haven't been run yet.
+These are `sx-init--internal-hook' and `sx-init-hook'.
+If FORCE is non-nil, run them even if they've already been run."
+  (when (or force (not sx-initialized))
+    (prog1
+        (run-hooks 'sx-init--internal-hook
+                   'sx-init-hook)
+      (setq sx-initialized (current-time)))))
 
 (provide 'sx)
 ;;; sx.el ends here
