@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 (require 'cl-lib)
@@ -62,28 +60,48 @@
            ucirc "û" Ucirc "Û" ugrave "ù" Ugrave "Ù" uml "¨" upsih "ϒ" Upsilon "Υ"
            upsilon "υ" uuml "ü" Uuml "Ü" weierp "℘" Xi "Ξ" xi "ξ" yacute "ý"
            Yacute "Ý" yen "¥" yuml "ÿ" Yuml "Ÿ" Zeta "Ζ" zeta "ζ" zwj "" zwnj "")
-  "Plist of html entities to replace when displaying question titles and other text."
+  "Plist of HTML entities and their respective glyphs."
   :type '(repeat (choice symbol string))
   :group 'sx)
 
 (defun sx-encoding-decode-entities (string)
+  "Decode HTML entities (e.g. \"&quot;\") in STRING.
+
+Done according to `sx-encoding-html-entities-plist'.  If this
+list does not contain the entity, it is assumed to be a number
+and converted to a string (with `char-to-string').
+
+Return the decoded string."
+  ;; @TODO Why are we limiting ourselves to two digits, here?
+  ;; "&#400;" is perfectly valid, corresponding to "Ɛ".  (Note that
+  ;; "Ɛ" is not in our plist.)
   (let* ((plist sx-encoding-html-entities-plist)
-         (get-function (lambda (s) (let ((ss (substring s 1 -1)))
-                                     ;; Handle things like &quot;
-                                     (or (plist-get plist (intern ss))
-                                         ;; Handle things like &#39;
-                                         (format "%c" (string-to-number
-                                                       (substring ss 1))))))))
+         (get-function
+          (lambda (s)
+            (let ((ss (substring s 1 -1)))
+              ;; Handle things like &quot;
+              (or (plist-get plist (intern ss))
+                  ;; Handle things like &#39;
+                  (char-to-string
+                   (string-to-number
+                    (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
 (defun sx-encoding-normalize-line-endings (string)
-  "Normalize the line endings for STRING"
+  "Normalize the line endings for STRING.
+
+The API returns strings that use Windows-style line endings.
+These are largely useless in an Emacs environment.  Windows uses
+\"\\r\\n\", Unix uses just \"\\n\".  Deleting \"\\r\" is
+sufficient for conversion."
   (delete ?\r string))
 
 (defun sx-encoding-clean-content (string)
-  "Cleans STRING for display.
+  "Clean STRING for display.
+
 Applies `sx-encoding-normalize-line-endings' and
-`sx-encoding-decode-entities'."
+`sx-encoding-decode-entities' (in that order) to prepare STRING
+for sane display."
   (sx-encoding-decode-entities
    (sx-encoding-normalize-line-endings
     string)))
@@ -91,17 +109,24 @@ Applies `sx-encoding-normalize-line-endings' and
 (defun sx-encoding-clean-content-deep (data)
   "Clean DATA recursively where necessary.
 
-See `sx-encoding-clean-content'."
+If DATA is a list or a vector, map this function over DATA and
+return as the the same type of structure.
+
+If DATA is a cons cell (but not a list), use
+`sx-encoding-clean-content-deep' on the `cdr' of DATA.
+
+If DATA is a string, return DATA after applying
+`sx-encoding-clean-content'.
+
+Otherwise, return DATA.
+
+This function is highly specialized for the data structures
+returned by `json-read' via `sx-request-make'.  It may fail in
+some cases."
   (if (consp data)
-   ;; If we're looking at a cons cell, test to see if is a list.  If
-   ;; it is, map ourselves over the entire list.  If it is not,
-   ;; reconstruct the cons cell using a cleaned cdr.
       (if (listp (cdr data))
           (cl-map #'list #'sx-encoding-clean-content-deep data)
         (cons (car data) (sx-encoding-clean-content-deep (cdr data))))
-   ;; If we're looking at an atom, clean and return if we're looking
-   ;; at a string, map if we're looking at a vector, and just return
-   ;; if we aren't looking at either.
     (cond
      ((stringp data)
       (sx-encoding-clean-content data))
@@ -112,26 +137,24 @@ See `sx-encoding-clean-content'."
 (defun sx-encoding-gzipped-p (data)
   "Checks for magic bytes in DATA.
 
-Check if the first two bytes of a string in DATA match magic
-numbers identifying the gzip file format. See [1] for the file
-format description.
+Check if the first two bytes of a string in DATA match the magic
+numbers identifying the gzip file format.
 
-http://www.gzip.org/zlib/rfc-gzip.html
-
-http://emacs.stackexchange.com/a/2978"
+See URL `http://www.gzip.org/zlib/rfc-gzip.html'."
+  ;; Credit: http://emacs.stackexchange.com/a/2978
   (equal (substring (string-as-unibyte data) 0 2)
          (unibyte-string 31 139)))
 
 (defun sx-encoding-gzipped-buffer-p (filename)
   "Check if the BUFFER is gzip-compressed.
 
-See `gzip-check-magic' for details."
+See `sx-encoding-gzipped-p'."
   (sx-encoding-gzip-check-magic (buffer-string)))
 
 (defun sx-encoding-gzipped-file-p (file)
   "Check if the FILE is gzip-compressed.
 
-See `gzip-check-magic' for details."
+See `sx-encoding-gzipped-p'."
   (let ((first-two-bytes (with-temp-buffer
                            (set-buffer-multibyte nil)
                            (insert-file-contents-literally file nil 0 2)

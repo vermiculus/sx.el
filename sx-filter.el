@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 
@@ -35,25 +33,32 @@
 
 (defvar sx--filter-alist
   (sx-cache-get 'filter)
-  "")
+  "An alist of known filters.  See `sx-filter-compile'.
+
+Structure:
+
+    (((INCLUDE  EXCLUDE  BASE ) . \"compiled filter \")
+     ((INCLUDE2 EXCLUDE2 BASE2) . \"compiled filter2\")
+     ...)")
 
 
 ;;; Compilation
 
-;;; TODO allow BASE to be a precompiled filter name
+;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
   "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
 
-INCLUDE and EXCLUDE must both be lists; BASE should be a symbol
-or string."
+INCLUDE and EXCLUDE must both be lists; BASE should be a string.
+
+Returns the compiled filter as a string."
   (let ((keyword-arguments
          `((include . ,(if include (sx--thing-as-string include)))
            (exclude . ,(if exclude (sx--thing-as-string exclude)))
            (base    . ,(if base base)))))
-    (let ((response (sx-request-make
-                     "filter/create"
-                     keyword-arguments)))
-      (sx-assoc-let (elt response 0)
+    (let ((response (elt (sx-request-make
+                          "filter/create"
+                          keyword-arguments) 0)))
+      (sx-assoc-let response
         .filter))))
 
 
@@ -64,10 +69,13 @@ or string."
   (apply #'sx-filter-get filter-variable))
 
 (defun sx-filter-get (&optional include exclude base)
-  "Return the string representation of the given filter."
-  ;; Maybe we alreay have this filter
+  "Return the string representation of the given filter.
+
+If the filter data exist together in `sx--filter-alist', that
+value will be returned.  Otherwise, compile INCLUDE, EXCLUDE, and
+BASE into a filter with `sx-filter-compile' and push the
+association onto `sx--filter-alist'."
   (or (cdr (assoc (list include exclude base) sx--filter-alist))
-      ;; If we don't, build it, save it, and return it.
       (let ((filter (sx-filter-compile include exclude base)))
         (when filter
           (push (cons (list include exclude base) filter) sx--filter-alist)

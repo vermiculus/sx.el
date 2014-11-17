@@ -1,0 +1,211 @@
+#+MACRO: version 0.1
+#+MACRO: versiondate 16 November 2014
+#+MACRO: updated last updated {{{versiondate}}}
+
+#+TITLE: SX: A StackExchange Client (v{{{version}}})
+#+DATE: 16 November 2014
+#+AUTHOR: @@texinfo:@url{@@www.github.com/vermiculus/stack-mode@@texinfo:}@@
+#+LANGUAGE: en
+
+#+OPTIONS: ':t toc:t
+
+#+TEXINFO_FILENAME: sx.info
+#+TEXINFO_HEADER: @syncodeindex pg cp
+
+#+TEXINFO_DIR_CATEGORY: Texinfo documentation system
+#+TEXINFO_DIR_TITLE: SX: (StackExchange Client)
+#+TEXINFO_DIR_DESC: A StackExchange client for Emacs
+
+#+TEXINFO_PRINTED_TITLE: SX: A StackExchange Client
+#+SUBTITLE: for version {{{version}}}, last updated {{{versiondate}}}
+
+* Copying
+  :PROPERTIES:
+  :COPYING:  t
+  :END:
+
+This manual is for SX (version {{{version}}}, {{{updated}}}), a
+StackExchange client for Emacs.
+
+Copyright © 2014 Free Software Foundation, Inc.
+
+#+BEGIN_QUOTE
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.3 or any later version published by the Free Software
+Foundation; with no Invariant Sections, with no Front-Cover Texts,
+and with no Back-Cover Texts.  A copy of the license is included in
+the section entitled "GNU Free Documentation License".
+#+END_QUOTE
+
+* Introduction
+SX is a StackExchange client for Emacs.  This means that it supports
+many of the same features that the official web interface does, but in
+a way that is /specialized/ for Emacs:
+
+- question browsing for any site on the network
+- asking, answering, and commenting
+- advanced searching and filtering
+- offline archiving
+- inbox notifications
+- ...
+
+All of these features are implemented in a way that makes sense with
+Emacs conventions.  Of course, the core convention of Emacs is
+arbitrary customizability -- [[#hooks][hack away]]!
+
+* Basic Usage
+** Authenticating
+Use ~sx-auth-authenticate~.  Calling this function will open up a
+webpage on StackExchange that will prompt you to authorize this
+application.  Once you do this, StackExchange will redirect you to our
+own authorization landing page.  This landing page will prominately
+display your access token.  (This is /your/ token -- keep this
+private!)  Enter this token into Emacs.  Emacs will set and save it to
+a cache file.
+
+** Browsing Questions
+To browse a list of questions retrieved from the site, use
+~list-questions~.  This pulls the first page of questions from the
+current site and displays them in a list.  Refresh the page with =g=,
+use =n= and =p= to navigate without viewing the question, =j= and =k=
+to do the same /with/ viewing the question, and =RET= to visit the
+question at point.
+
+* List of Hooks
+  :PROPERTIES:
+  :CUSTOM_ID: hooks
+  :END:
+
+# Do not list internal hooks.
+
+- ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
+
+* Developer's Reference
+Creating a logically consistent piece of software requires that all
+developers know the patterns established and resources made available
+to them.  These sections hope to do just that.
+** Caching
+All cached data is stored in =sx-cache-directory=.  This defaults to
+=~/.emacs.d/.stackmode= where =user-emacs-directory= is =~/.emacs.d=.
+Each piece of cached data is stored in its own file.
+
+There are two main functions for interfacing with the cache system:
+
+- ~sx-cache-get~ :: Gets a cached variable's value, setting it if it
+                    does not exist.  This function will, as a
+                    side-effect, ensure that the cache file exists.
+- ~sx-cache-set~ :: Sets a cached variable's value.
+
+Each of these functions will ensure =sx-cache-directory= exists.
+
+** Making API Requests
+API requests are handled on three separate tiers:
+
+- ~sx-method-call~ :: This is the function that should be used most
+     often, since it runs necessary checks (authentication) and
+     provides basic processing of the result for consistency.
+- ~sx-request-make~ :: This is the fundamental function for
+     interacting with the API.  It makes no provisions for 'common'
+     usage, but it does ensure data is retrieved successfully or an
+     appropriate signal is thrown.
+- =url.el= and =json.el= :: The whole solution is built upon =url.el=
+     for making the request and =json.el= for parsing it into a
+     properly symbolic data structure.
+
+When at all possible, use ~sx-method-call~.  There are specialized
+cases for the use of ~sx-request-make~ outside of =sx-method.el=, but
+these must be well-documented inline with the code.
+
+*** ~sx-request-make~
+Requests are made by building a parameter string of the format
+
+#+BEGIN_EXAMPLE
+  key=value&key=value
+#+END_EXAMPLE
+
+and appending it to a root and a method:
+
+#+BEGIN_EXAMPLE
+  <root>/<method>?<parameters>
+#+END_EXAMPLE
+
+This works fine for 'GET' requests of the API, but will not work for
+'POST'.  A revised request system is being created that will support
+both of methods.
+
+** Working with Data
+The API returns data in JSON format.  When a method is called, the
+response is enclosed in a 'wrapper' that includes various metadata:
+
+- remaining requests for your quota
+- if the response has been truncated
+- etc.
+
+When ~sx-request-make~ receives the response, it sets variables
+related to the response (most notably the number of remaining
+requests) and returns just the main content of the response.  In order
+to access this content, you could use a lengthy ~let~-binding or you
+could use the ~sx-assoc-let~ macro.  That is,
+
+#+BEGIN_SRC elisp
+  (sx-assoc-let data
+    (some fancy .function with a .property
+          in 'data))
+#+END_SRC
+
+expands to
+
+#+BEGIN_SRC elisp
+  (let
+      ((.function (cdr (assoc 'function data)))
+       (.property (cdr (assoc 'property data))))
+    (some fancy .function with a .property
+          in 'data))
+#+END_SRC
+
+Use the following to highlight the special =.property= forms:
+
+#+BEGIN_SRC elisp
+
+#+END_SRC
+* About this Document
+This document is maintained in Org format.  Updates to the source code
+should almost always be accompanied by updates to this document.  Soem
+distinctions are made which may not be apparent when viewing the
+document with Info.
+
+** Markup Conventions
+Markup is used consistently as follows:
+
+- packages :: =package.el=
+- keybinding :: =C-x C-s= (use ~kbd~ format)
+- values :: =value=
+- symbols :: =symbol=
+- functions :: ~function~
+
+To make the Info export readable, lists and source code blocks are
+separated from body text with a blank line (as to start a new
+paragraph).
+
+** Document Attributes
+Attributes should be given in uppercase:
+
+#+BEGIN_SRC org
+  ,#+BEGIN_SRC elisp
+    (some elisp)
+  ,#+END_SRC
+#+END_SRC
+
+** Source Code Blocks
+The language for Emacs Lisp source code blocks should be given as
+=elisp= and its content should be indented by two spaces.  See
+~org-edit-src-content-indentation~.
+
+* COMMENT Local Variables
+#  LocalWords:  StackExchange SX inbox sx API url json inline Org
+#  LocalWords:  Markup keybinding keybindings customizability
+
+# Local Variables:
+# org-export-date-timestamp-format: "$B %e %Y"
+# End:

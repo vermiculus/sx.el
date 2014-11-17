@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 (require 'json)
 (require 'url)
@@ -29,12 +27,12 @@
 (require 'sx-filter)
 
 (defun sx-method-call
-    (method &optional keyword-arguments filter silent)
+    (method &optional keyword-arguments filter)
   "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
 
-If SILENT is non-nil, no messages will be printed.
+Return the entire response as a complex alist.
 
-Return the entire response as a complex alist."
+See `sx-request-make' and `sx-filter-get-var'."
   (sx-request-make
    method
    (cons (cons 'filter

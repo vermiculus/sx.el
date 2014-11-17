@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 
 ;;; Code:
 
@@ -42,10 +40,16 @@
      answer.owner
      answer.body_markdown
      answer.comments)
-    (user.profile_image shallow_user.profile_image)))
+    (user.profile_image shallow_user.profile_image))
+  "The filter applied with `sx-question-get-questions' and
+  `sx-question-get-question'.")
 
 (defun sx-question-get-questions (site &optional page)
-  "Get the page PAGE of questions from SITE."
+  "Get the page PAGE of questions from SITE.
+
+Return a list of questions, each consed with (site SITE).
+
+`sx-method-call' is used with `sx-question-browse-filter'."
   (mapcar
    (lambda (question) (cons (cons 'site site) question))
    (sx-method-call
@@ -55,7 +59,9 @@
     sx-question-browse-filter)))
 
 (defun sx-question-get-question (site id)
-  "Get the question ID from SITE."
+  "Query SITE for a question ID and return it.
+
+If ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call
               (format "questions/%s" id)
               `((site . ,site))
@@ -66,20 +72,30 @@
 
 
 ;;; Question Properties
+
 (defvar sx-question--user-read-list nil 
   "Alist of questions read by the user.
-Each element has the form (SITE . QUESTION-LIST).
-And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
+
+Each element has the form
+
+    (SITE . QUESTION-LIST)
+
+where each element in QUESTION-LIST has the form
+
+    (QUESTION_ID . LAST-VIEWED-DATE).")
 
 (defun sx-question--ensure-read-list (site)
-  "Ensure the `sx-question--user-read-list' has been read from cache.
+  "Ensure `sx-question--user-read-list' has been read from cache.
+
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
           (sx-cache-get 'read-questions `(list ,site)))))
 
 (defun sx-question--read-p (question)
-  "Non-nil if QUESTION has been read since last updated."
+  "Non-nil if QUESTION has been read since last updated.
+
+See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
     (let ((ql (cdr (assoc .site sx-question--user-read-list))))
@@ -88,7 +104,9 @@ If no cache exists for it, initialize one with SITE."
                .last_activity_date)))))
 
 (defun sx-question--mark-read (question)
-  "Mark QUESTION as being read, until it is updated again."
+  "Mark QUESTION as being read until it is updated again.
+
+See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
     (let ((site-cell (assoc .site sx-question--user-read-list))
@@ -102,21 +120,18 @@ If no cache exists for it, initialize one with SITE."
        ((setq cell (assoc .question_id site-cell))
         (setcdr cell .last_activity_date))
        ;; Question wasn't present.
-       (t 
-        (setcdr site-cell (cons q-cell (cdr site-cell)))))))
-  ;; This causes a small lag on `j' and `k' as the list gets large.
-  ;; Should we do this on a timer?
+       (t (setcdr site-cell (cons q-cell (cdr site-cell)))))))
   ;; Save the results.
   (sx-cache-set 'read-questions sx-question--user-read-list))
 
 (defun sx-question--accepted-answer-id (question)
-  "Return accepted answer in QUESTION, or nil if none."
+  "Return accepted answer in QUESTION or nil if none exists."
   (sx-assoc-let question
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
 
 (defun sx-question--tag-format (tag)
-  "Formats TAG for display"
+  "Formats TAG for display."
   (concat "[" tag "]"))
 
 (provide 'sx-question)

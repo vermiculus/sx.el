@@ -19,7 +19,30 @@
 
 ;;; Commentary:
 
+;; API requests are handled on three separate tiers:
+;; 
+;; `sx-method-call':
 ;;
+;;    This is the function that should be used most often, since it
+;;    runs necessary checks (authentication) and provides basic
+;;    processing of the result for consistency.
+;;
+;; `sx-request-make':
+;;
+;;    This is the fundamental function for interacting with the API.
+;;    It makes no provisions for 'common' usage, but it does ensure
+;;    data is retrieved successfully or an appropriate signal is
+;;    thrown.
+;;
+;; `url.el' and `json.el':
+;;
+;;    The whole solution is built upon `url-retrieve-synchronously'
+;;    for making the request and `json-read-from-string' for parsing
+;;    it into a properly symbolic data structure.
+;; 
+;; When at all possible, use ~sx-method-call~.  There are specialized
+;; cases for the use of ~sx-request-make~ outside of =sx-method.el=, but
+;; these must be well-documented inline with the code.
 
 ;;; Code:
 
@@ -44,26 +67,28 @@
   (format "https://api.stackexchange.com/%s/" sx-request-api-version)
   "The base URL to make requests from.")
 
-(defcustom sx-request-silent-p
-  t
-  "When `t', requests default to being silent.")
-
+;;; @TODO Shouldn't this be made moot by our caching system?
 (defcustom sx-request-cache-p
   t
   "Cache requests made to the StackExchange API.")
 
 (defcustom sx-request-unzip-program
   "gunzip"
-  "program used to unzip the response")
+  "Program used to unzip the response if it is compressed.
+
+This program must accept compressed data on standard input.")
 
 (defvar sx-request-remaining-api-requests
   nil
-  "The number of API requests remaining according to the most
-recent call.  Set by `sx-request-make'.")
+  "The number of API requests remaining.
+
+Set by `sx-request-make'.")
 
 (defcustom sx-request-remaining-api-requests-message-threshold
   50
-  "After `sx-request-remaining-api-requests' drops below this
+  "Lower bound for printed warnings of API usage limits.
+
+After `sx-request-remaining-api-requests' drops below this
 number, `sx-request-make' will begin printing out the
 number of requests left every time it finishes a call.")
 
@@ -71,26 +96,38 @@ number of requests left every time it finishes a call.")
 ;;; Making Requests
 
 (defun sx-request-make
-    (method &optional args silent)
+    (method &optional args)
+  "Make a request to the API, executing METHOD with ARGS.
+
+You should almost certainly be using `sx-method-call' instead of
+this function.
+
+The full call is built with `sx-request-build', prepending
+`sx-request-api-key' to receive a higher quota.  This call is
+then resolved with `url-retrieve-synchronously' to a temporary
+buffer that it returns.  The headers are then stripped using a
+search a blank line (\"\\n\\n\").  The main body of the response
+is then tested with `sx-encoding-gzipped-buffer-p' for
+compression.  If it is compressed, `sx-request-unzip-program' is
+called to uncompress the response.  The uncompressed respons is
+then read with `json-read-from-string'.
+`sx-request-remaining-api-requests' is updated appropriately and
+the main content of the response is returned."
   (let ((url-automatic-caching sx-request-cache-p)
         (url-inhibit-uncompression t)
-        (silent (or silent sx-request-silent-p))
         (call (sx-request-build
                method
                (cons (cons 'key sx-request-api-key)
                      args))))
-    (unless silent (sx-message "Request: %S" call))
-    (let ((response-buffer (cond
-                            ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
-                             (url-retrieve-synchronously call silent))
-                            (t (url-retrieve-synchronously call)))))
+    (sx-message "Request: %S" call)
+    (let ((response-buffer (url-retrieve-synchronously call)))
       (if (not response-buffer)
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
           (let* ((data (progn
                          (goto-char (point-min))
                          (if (not (search-forward "\n\n" nil t))
-                             (error "Response headers missing; response corrupt")
+                             (error "Headers missing; response corrupt")
                            (delete-region (point-min) (point))
                            (buffer-string))))
                  (response-zipped-p (sx-encoding-gzipped-p data))
@@ -100,6 +137,8 @@ number of requests left every time it finishes a call.")
                           sx-request-unzip-program
                           nil t)
                          (buffer-string)))
+                 ;; @TODO should use `condition-case' here -- set
+                 ;; RESPONSE to 'corrupt or something
                  (response (with-demoted-errors "`json' error: %S"
                              (json-read-from-string data))))
             (when (and (not response) (string-equal data "{}"))
@@ -110,8 +149,7 @@ number of requests left every time it finishes a call.")
               (when .error_id
                 (error "Request failed: (%s) [%i %s] %S"
                        .method .error_id .error_name .error_message))
-              (when (< (setq sx-request-remaining-api-requests
-                             .quota_remaining)
+              (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                        sx-request-remaining-api-requests-message-threshold)
                 (sx-message "%d API requests reamining"
                             sx-request-remaining-api-requests))
@@ -121,8 +159,10 @@ number of requests left every time it finishes a call.")
 ;;; Support Functions
 
 (defun sx-request-build (method keyword-arguments &optional kv-value-sep root)
-  "Build the request string that will be used to process REQUEST
-with the given KEYWORD-ARGUMENTS."
+  "Construct METHOD to use KEYWORD-ARGUMENTS.
+
+The KEYWORD-ARGUMENTS are joined with KV-VALUE-SEP when it
+contains a 'vector'.  See `sx-request--build-keyword-arguments'."
   (let ((base (concat (or root sx-request-api-root) method))
 	(args (sx-request--build-keyword-arguments
                keyword-arguments kv-value-sep)))
