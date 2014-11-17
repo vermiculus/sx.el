@@ -79,7 +79,7 @@ number of requests left every time it finishes a call.")
         (request-args
          (sx-request--build-keyword-arguments args nil use-auth))
         (request-url (concat sx-request-api-root method)))
-    (unless silent (sx-message "Request: %S" call))
+    (unless silent (sx-message "Request: %S" request-url))
     (let ((response-buffer (sx-request--request request-url
                                                 request-args
                                                 request-method
