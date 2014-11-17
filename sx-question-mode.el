@@ -192,6 +192,7 @@ Second \"%s\" is replaced with the comment."
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
+  (setq sx-question-mode--data question)
   ;; Clear the overlays
   (mapc #'delete-overlay sx-question-mode--overlays)
   (setq sx-question-mode--overlays nil)
@@ -544,6 +545,7 @@ Letters do not insert themselves; instead, they are commands.
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
+   ("v" sx-question-mode-visit)
    ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
@@ -554,18 +556,29 @@ Letters do not insert themselves; instead, they are commands.
    (,(kbd "<backtab>") backward-button)
    ([return] push-button)))
 
+(defun sx-question-mode-visit ()
+  "Visit the currently displayed question."
+  (interactive)
+  (sx-question-mode--ensure-mode)
+  (sx-assoc-let sx-question-mode--data
+    (browse-url .link)))
+
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
 Queries the API for any changes to the question or its answers or
 comments, and redisplays it."
   (interactive)
-  (unless (derived-mode-p 'sx-question-mode)
-    (error "Not in `sx-question-mode'"))
+  (sx-question-mode--ensure-mode)
   (sx-assoc-let sx-question-mode--data
     (sx-question-mode--display
      (sx-question-get-question
       sx-question-list--current-site .question_id)
      (selected-window))))
+
+(defun sx-question-mode--ensure-mode ()
+  "Ensures we are in question mode, erroring otherwise."
+  (unless (derived-mode-p 'sx-question-mode)
+    (error "Not in `sx-question-mode'")))
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
