@@ -71,13 +71,13 @@ number of requests left every time it finishes a call.")
 ;;; Making Requests
 
 (defun sx-request-make
-    (method &optional args use-auth use-post silent)
+    (method &optional args need-auth use-post silent)
   (let ((url-automatic-caching sx-request-cache-p)
         (url-inhibit-uncompression t)
         (silent (or silent sx-request-silent-p))
         (request-method (if use-post "POST" "GET"))
         (request-args
-         (sx-request--build-keyword-arguments args nil use-auth))
+         (sx-request--build-keyword-arguments args nil need-auth))
         (request-url (concat sx-request-api-root method)))
     (unless silent (sx-message "Request: %S" request-url))
     (let ((response-buffer (sx-request--request request-url
@@ -131,26 +131,42 @@ number of requests left every time it finishes a call.")
      (t (url-retrieve-synchronously url)))))
 
 (defun sx-request--build-keyword-arguments (alist &optional
-                                                  kv-value-sep use-auth)
+                                                  kv-value-sep need-auth)
   "Build a \"key=value&key=value&...\"-style string with the elements
 of ALIST.  If any value in the alist is `nil', that pair will not
 be included in the return.  If you wish to pass a notion of
 false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
-  (when use-auth
+  ;; Add API key to list of arguments, this allows for increased quota
+  ;; automatically.
+  (let* ((warn (equal need-auth 'warn))
+         (auth
+          (let ((auth (car (sx-cache-get 'auth))))
+            (cond
+             (auth)
+             ;; Pass user error when asking to warn
+             (warn
+              (user-error
+               "This query requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
+             ((not auth)
+              (lwarn "stack-mode" :debug
+                     "This query requires authentication")
+              nil)))))
     (add-to-list 'alist (cons "key" sx-request-api-key))
-    (add-to-list 'alist (car (sx-cache-get 'auth))))
-  (mapconcat
-   (lambda (pair)
-     (concat
-      (sx--thing-as-string (car pair))
-      "="
-      (sx--thing-as-string (cdr pair) kv-value-sep)))
-   (delq nil (mapcar
-	      (lambda (pair)
-		(when (cdr pair) pair))
-	      alist))
-   "&"))
+    (if (and need-auth auth)
+        (add-to-list 'alist auth))
+    (mapconcat
+     (lambda (pair)
+       (concat
+        (sx--thing-as-string (car pair))
+        "="
+        (sx--thing-as-string (cdr pair) kv-value-sep)))
+     (delq nil (mapcar
+                (lambda (pair)
+                  (when (cdr pair) pair))
+                alist))
+     "&")))
+
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
