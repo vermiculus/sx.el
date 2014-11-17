@@ -360,11 +360,11 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
     (when sx-question-mode-bullet-appearance
       (font-lock-add-keywords ;; Bullet items.
        nil
-       `(((rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
+       `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
           1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
     (font-lock-add-keywords ;; Highlight usernames.
      nil
-     `(((rx (or blank line-start)
+     `((,(rx (or blank line-start)
             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
             symbol-end)
         1 font-lock-builtin-face)))
