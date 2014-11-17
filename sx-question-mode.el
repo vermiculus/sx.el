@@ -324,6 +324,16 @@ Return the result of BODY."
        (push ov sx-question-mode--overlays))
      result))
 
+(defmacro sx-question-mode--wrap-in-text-property (properties &rest body)
+  "Execute BODY and PROPERTIES to any inserted text.
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (add-text-properties p (point) ,properties)
+     result))
+
 (defun sx-question-mode--insert-header (&rest args)
   "Insert HEADER and VALUE.
 HEADER is given `sx-question-mode-header' face, and value is given FACE.
@@ -564,7 +574,13 @@ Letters do not insert themselves; instead, they are commands.
   "Visit the currently displayed question."
   (interactive)
   (sx-question-mode--ensure-mode)
-  (sx-assoc-let sx-question-mode--data
+  (sx-assoc-let
+      ;; This allows us to visit the thing-at-point. Which could be a
+      ;; question or an answer. We use `append', so that if one
+      ;; doesn't have a `link' item we can fallback to
+      ;; `sx-question-mode--data'.
+      (append (get-text-property (point) 'sx-question-mode--data-here)
+              sx-question-mode--data)
     (browse-url .link)))
 
 (defun sx-question-mode-refresh ()
