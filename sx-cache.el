@@ -38,18 +38,21 @@
    (concat (symbol-name filename) ".el")
    sx-cache-directory))
 
-(defun sx-cache-get (cache)
+(defun sx-cache-get (cache &optional form)
   "Return the data within CACHE.
+
+If CACHE does not exist, evaluate FORM and set it to its return.
 
 As with `sx-cache-set', CACHE is a file name within the
 context of `sx-cache-directory'."
   (unless (file-exists-p sx-cache-directory)
     (mkdir sx-cache-directory))
   (let ((file (sx-cache-get-file-name cache)))
-    (when (file-exists-p file)
-      (with-temp-buffer
-        (insert-file-contents (sx-cache-get-file-name cache))
-        (read (buffer-string))))))
+    (if (file-exists-p file)
+        (with-temp-buffer
+          (insert-file-contents (sx-cache-get-file-name cache))
+          (read (buffer-string)))
+      (sx-cache-set cache (eval form)))))
 
 (defun sx-cache-set (cache data)
   "Set the content of CACHE to DATA.

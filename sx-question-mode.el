@@ -24,6 +24,8 @@
 
 ;;; Code:
 (require 'markdown-mode)
+(eval-when-compile
+  (require 'rx))
 
 (require 'sx)
 (require 'sx-question)
@@ -157,7 +159,7 @@ editor's name."
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-separator
-  (concat "\n" (make-string 80 ?_) "\n")
+  (concat (make-string 80 ?_) "\n")
   "Separator used between header and body."
   :type 'string
   :group 'sx-question-mode)
@@ -179,11 +181,14 @@ Second \"%s\" is replaced with the comment."
   :type 'string
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-pretty-links t
+  "If non-nil, markdown links are displayed in a compact form."
+  :type 'boolean
+  :group 'sx-question-mode)
+
 
 ;;; Printing a question's content
 ;;;; Functions
-;; This is where most of the work is still left to be done! Need to
-;; insert more data from QUESTION.
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
@@ -198,29 +203,42 @@ QUESTION must be a data structure returned by `json-read'."
   (with-selected-window sx-question-mode--window
     (sx-question-mode-next-section)))
 
+(defvar sx-question-mode--section-help-echo
+  (format
+   (propertize "%s to hide/display content" 'face 'minibuffer-prompt) 
+   (propertize "RET" 'face 'font-lock-function-name-face)) 
+  "")
+
+(defvar sx-question-mode--title-properties
+  `(face sx-question-mode-title
+         action sx-question-mode-hide-show-section
+         help-echo ,sx-question-mode--section-help-echo
+         button t
+         follow-link t) 
+  "")
+
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
   (sx-assoc-let data
     (insert sx-question-mode-header-title
-            (if .title
-                ;; Questions have title
-                (propertize
-                 .title
-                 'font-lock-face 'sx-question-mode-title
-                 'sx-question-mode--section 1)
-              ;; Answers don't
-              (propertize
-               sx-question-mode-answer-title
-               'font-lock-face 'sx-question-mode-title
-               'sx-question-mode--section 2)))
+            (apply
+             #'propertize
+             ;; Questions have title
+             (or .title
+                 ;; Answers don't
+                 sx-question-mode-answer-title)
+             ;; Section level
+             'sx-question-mode--section (if .title 1 2)
+             ;; face, action and help-echo
+             sx-question-mode--title-properties))
     ;; Sections can be hidden with overlays
     (sx-question-mode--wrap-in-overlay
         '(sx-question-mode--section-content t)
       (sx-question-mode--insert-header
        ;; Author
        sx-question-mode-header-author
-       (sx-question-mode--propertized-display-name .owner)
+       (sx-question-mode--propertize-display-name .owner)
        'sx-question-mode-author
        ;; Date
        sx-question-mode-header-date
@@ -229,7 +247,7 @@ DATA can represent a question or an answer."
         (when .last_edit_date
           (format sx-question-mode-last-edit-format
                   (sx-time-since .last_edit_date)
-                  (sx-question-mode--propertized-display-name .last_editor))))
+                  (sx-question-mode--propertize-display-name .last_editor))))
        'sx-question-mode-date)
       (when .title
         ;; Tags
@@ -238,23 +256,25 @@ DATA can represent a question or an answer."
          (mapconcat #'sx-question--tag-format .tags " ")
          'sx-question-mode-tags))
       ;; Body
-      (insert (propertize sx-question-mode-separator
-                          'face 'sx-question-mode-header))
+      (insert "\n"
+              (propertize sx-question-mode-separator
+                          'face 'sx-question-mode-header
+                          'sx-question-mode--section 4))
       (sx-question-mode--wrap-in-overlay
           '(face sx-question-mode-content-face)
         (insert "\n"
-                (sx-question-mode--fill-string
+                (sx-question-mode--fill-and-fontify
                  .body_markdown)
                 (propertize sx-question-mode-separator
                             'face 'sx-question-mode-header))))
     ;; Comments
     (when .comments
-      (insert
-       "\n"
-       (propertize
-        sx-question-mode-comments-title
-        'font-lock-face 'sx-question-mode-title-comments
-        'sx-question-mode--section 3))
+      (insert "\n"
+              (apply #'propertize
+                     sx-question-mode-comments-title
+                     'face 'sx-question-mode-title-comments
+                     'sx-question-mode--section 3
+                     sx-question-mode--title-properties))
       (sx-question-mode--wrap-in-overlay
           '(sx-question-mode--section-content t)
         (insert "\n")
@@ -262,23 +282,11 @@ DATA can represent a question or an answer."
             '(face sx-question-mode-content-face)
           (mapc #'sx-question-mode--print-comment .comments))))))
 
-(defun sx-question-mode--fill-string (text)
-  "Fill TEXT according to `markdown-mode' and return it."
-  (with-temp-buffer
-    (insert text)
-    (markdown-mode)
-    (goto-char (point-min))
-    ;; ;; Do something here
-    ;; (while (null (eobp))
-    ;;   (skip-chars-forward "\r\n[:blank:]")
-    ;;   (markdown-pre-region))
-    (buffer-string)))
-
-(defun sx-question-mode--propertized-display-name (author)
+(defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
   (sx-assoc-let author
     (propertize .display_name
-                'font-lock-face 'sx-question-mode-author)))
+                'face 'sx-question-mode-author)))
 
 (defun sx-question-mode--print-comment (data)
   "Print the comment described by alist DATA."
@@ -286,11 +294,11 @@ DATA can represent a question or an answer."
     (insert
      (format
       sx-question-mode-comments-format
-      (sx-question-mode--propertized-display-name .owner)
+      (sx-question-mode--propertize-display-name .owner)
       (substring
        ;; We fill with three spaces at the start, so the comment is
        ;; slightly indented.
-       (sx-question-mode--fill-string
+       (sx-question-mode--fill-and-fontify
         (concat "   " .body_markdown))
        ;; Then we remove the spaces from the first line, since we'll
        ;; add the username there anyway.
@@ -317,8 +325,121 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
 \(fn header value face [header value face] [header value face] ...)"
   (while args
     (insert
-     (propertize (pop args) 'font-lock-face 'sx-question-mode-header)
-     (propertize (pop args) 'font-lock-face (pop args)))))
+     (propertize (pop args) 'face 'sx-question-mode-header)
+     (propertize (pop args) 'face (pop args)))))
+
+
+;;;;; Font-locking the content
+(defvar sx-question-mode-bullet-appearance
+  (propertize (if (char-displayable-p ?•) "  •" "  *")
+              'face 'markdown-list-face)
+  "String to be displayed as the bullet of markdown list items.")
+
+(defun sx-question-mode--fill-and-fontify (text)
+  "Fill TEXT according to `markdown-mode' and return it."
+  (with-temp-buffer
+    (erase-buffer)
+    (insert text)
+    (markdown-mode)
+    (font-lock-mode -1)
+    (when sx-question-mode-bullet-appearance
+      (font-lock-add-keywords ;; Bullet items.
+       nil
+       `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
+          1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
+    (font-lock-add-keywords ;; Highlight usernames.
+     nil
+     `((,(rx (or blank line-start)
+            (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+            symbol-end)
+        1 font-lock-builtin-face)))
+    ;; Everything.
+    (font-lock-fontify-region (point-min) (point-max))
+    ;; Compact links.
+    (sx-question-mode--process-links-in-buffer)
+    ;; And now the filling
+    (goto-char (point-min))
+    (while (null (eobp))
+      ;; Don't fill pre blocks.
+      (unless (sx-question-mode--move-over-pre)
+        (skip-chars-forward "\r\n[:blank:]")
+        (fill-paragraph)
+        (forward-paragraph)))
+    (buffer-string)))
+
+(defvar sx-question-mode--link-regexp
+  ;; Done at compile time.
+  (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
+      (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
+          (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
+  "Regexp matching markdown links.")
+
+(defun sx-question-mode--process-links-in-buffer ()
+  "Turn all markdown links in this buffer into compact format."
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
+      (let* ((text (match-string-no-properties 1))
+             (url (or (match-string-no-properties 2)
+                      (sx-question-mode-find-reference
+                       (match-string-no-properties 3)
+                       text))))
+        (replace-match
+         (sx-question-mode--propertize-link
+          (if sx-question-mode-pretty-links
+              text
+            (match-string-no-properties 0))
+          url)
+         :fixedcase :literal nil 0)))))
+
+(defun sx-question-mode--propertize-link (text url)
+  "Return a link propertized version of string TEXT.
+URL is used as 'help-echo and 'url properties."
+  (propertize
+   text
+   ;; Mouse-over
+   'help-echo   (format
+                 (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
+                 (propertize url 'face 'default) 
+                 (propertize "RET" 'face 'font-lock-function-name-face))
+   ;; In case we need it.
+   'url         url
+   ;; Decoration
+   'face        'link
+   'mouse-face  'highlight
+   ;; So RET works
+   'button      t
+   ;; So mouse works
+   'follow-link t
+   ;; What RET calls
+   'action      #'sx-question-mode-follow-link))
+
+(defun sx-question-mode-follow-link (&optional pos)
+  "Follow link at POS or point"
+  (interactive)
+  (browse-url
+   (or (get-text-property (or pos (point)) 'url)
+       (error "No url under point: %s" (or pos (point))))))
+
+(defun sx-question-mode-find-reference (id &optional id2)
+  "Find url identified by reference ID in current buffer.
+If ID is nil, use ID2 instead."
+  (save-excursion
+    (save-match-data
+      (goto-char (point-min))
+      (when (search-forward-regexp
+             (format (rx line-start (0+ blank) "[%s]:" (1+ blank)
+                         (group-n 1 (1+ (not blank))))
+                     (or id id2))
+             nil t)
+        (match-string-no-properties 1)))))
+
+(defun sx-question-mode--move-over-pre ()
+  "Non-nil if paragraph at point can be filled."
+  (markdown-match-pre-blocks
+   (save-excursion
+     (skip-chars-forward "\r\n[:blank:]")
+     (point))))
 
 
 ;;; Movement commands
@@ -341,18 +462,23 @@ If nil, no recentering is performed."
   "Move down to next section (question or answer) of this buffer.
 Prefix argument N moves N sections down or up."
   (interactive "p")
-  (unless n (setq n 1))
-  (dotimes (_ (abs n))
-    ;; This will either move us to the next section, or move out of
-    ;; the current one.
-    (unless (sx-question-mode--goto-propety-change 'section n)
-      ;; If all we did was move out the current one, then move again
-      ;; and we're guaranteed to reach the next section.
-      (sx-question-mode--goto-propety-change 'section n)))
+  (let ((count (if n (abs n) 1)))
+    (while (> count 0)
+      ;; This will either move us to the next section, or move out of
+      ;; the current one.
+      (unless (sx-question-mode--goto-property-change 'section n)
+        ;; If all we did was move out the current one, then move again
+        ;; and we're guaranteed to reach the next section.
+        (sx-question-mode--goto-property-change 'section n))
+      (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
+        (unless (and (overlayp ov)
+                     (overlay-get ov 'invisible))
+          (cl-decf count)))))
   (when sx-question-mode-recenter-line
     (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
       (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
-        (recenter sx-question-mode-recenter-line)))))
+        (recenter sx-question-mode-recenter-line))))
+  (sx-message-help-echo))
 
 (defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
@@ -360,8 +486,8 @@ Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
-(defun sx-question-mode--goto-propety-change (prop &optional direction)
-  "Move forward until the value of text-property `sx-question-mode--PROP' changes.
+(defun sx-question-mode--goto-property-change (prop &optional direction)
+  "Move forward until the value of text-property sx-question-mode--PROP changes.
 Return the new value of PROP at point.
 If DIRECTION is negative, move backwards instead."
   (let ((prop (intern (format "sx-question-mode--%s" prop)))
@@ -375,8 +501,8 @@ If DIRECTION is negative, move backwards instead."
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
 
-
-(defun sx-question-mode-hide-show-section ()
+;;; Optional argument is for `push-button'.
+(defun sx-question-mode-hide-show-section (&optional _)
   "Hide or show section under point."
   (interactive)
   (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
@@ -400,6 +526,13 @@ If DIRECTION is negative, move backwards instead."
 Letters do not insert themselves; instead, they are commands.
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  ;; Determine how to close this window.
+  (unless (window-parameter nil 'quit-restore)
+    (set-window-parameter
+     nil 'quit-restore
+     `(other window nil ,(current-buffer))))
+  ;; We call font-lock-region manually. See `sx-question-mode--fill-and-fontify'
+  (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
                'markdown-fontify-buffer-wiki-links t)
@@ -410,14 +543,16 @@ Letters do not insert themselves; instead, they are commands.
           (car x) (cadr x)))
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
-   ("j" sx-question-mode-next-section)
-   ("k" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
-   ([tab] sx-question-mode-hide-show-section)))
+   ([tab] forward-button)
+   (,(kbd "<S-iso-lefttab>") backward-button)
+   (,(kbd "<S-tab>") backward-button)
+   (,(kbd "<backtab>") backward-button)
+   ([return] push-button)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.

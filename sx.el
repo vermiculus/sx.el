@@ -31,6 +31,11 @@
   "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
 
+(defun sx-message-help-echo ()
+  "If there's a 'help-echo property under point, message it."
+  (let ((echo (get-text-property (point) 'help-echo)))
+    (when echo (message "%s" echo))))
+
 (defun sx--thing-as-string (thing &optional sequence-sep)
   "Return a string representation of THING.  If THING is already
 a string, just return it."
@@ -106,7 +111,7 @@ is equivalent to
            (debug t))
   (let ((symbol-alist (sx--deep-dot-search body)))
     `(let ,(mapcar (lambda (x) `(,(car x) (cdr (assoc ',(cdr x) ,alist))))
-                   symbol-alist)
+                   (delete-dups symbol-alist))
        ,@body)))
 
 (defcustom sx-init-hook nil
@@ -120,6 +125,13 @@ Run after `sx-init--internal-hook'.")
 This is used internally to set initial values for variables such
 as filters.")
 
+(defun sx--< (property x y &optional pred)
+  "Non-nil if PROPERTY attribute of question X is less than that of Y.
+With optional argument predicate, use it instead of `<'."
+  (funcall (or pred #'<)
+           (cdr (assoc property x))
+           (cdr (assoc property y))))
+
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.
 SETTER should be a function of two arguments.  If SETTER is nil,
@@ -131,10 +143,19 @@ SETTER should be a function of two arguments.  If SETTER is nil,
        (,(or setter #'setq) ,variable ,value))))
   nil)
 
-(defun stack-initialize ()
-  (run-hooks
-   'sx-init--internal-hook
-   'sx-init-hook))
+(defvar sx-initialized nil 
+  "Nil if sx hasn't been initialized yet.
+If it has, holds the time at which initialization happened.")
+
+(defun sx-initialize (&optional force)
+  "Run initialization hooks if they haven't been run yet.
+These are `sx-init--internal-hook' and `sx-init-hook'.
+If FORCE is non-nil, run them even if they've already been run."
+  (when (or force (not sx-initialized))
+    (prog1
+        (run-hooks 'sx-init--internal-hook
+                   'sx-init-hook)
+      (setq sx-initialized (current-time)))))
 
 (provide 'sx)
 ;;; sx.el ends here
