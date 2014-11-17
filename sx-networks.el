@@ -76,7 +76,8 @@ This should be called during initialization."
     (or (sx-network--get-associated)
         (sx-network--update)))
    ((not sx-network--user-sites)
-    (sx-network--map-site-url-to-site-api))))
+    (setq sx-network--user-sites
+          (sx-network--map-site-url-to-site-api)))))
 
 (defun sx-network--map-site-url-to-site-api ()
   "Convert `me/associations' to a set of `api_site_parameter's.
@@ -93,7 +94,7 @@ list of sites the user is active on."
                (let ((u-site (cdr (assoc 'site_url loc))))
                  (when (member u-site (mapcar 'car sites-info))
                    (cdr (assoc u-site sites-info)))))
-            (sx-network--user-information))))
+            sx-network--user-information)))
 
 (defvar sx-network--user-information nil
   "User information for the various sites.")
