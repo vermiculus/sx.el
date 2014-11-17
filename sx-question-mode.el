@@ -192,6 +192,7 @@ Second \"%s\" is replaced with the comment."
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
+  (setq sx-question-mode--data question)
   ;; Clear the overlays
   (mapc #'delete-overlay sx-question-mode--overlays)
   (setq sx-question-mode--overlays nil)
