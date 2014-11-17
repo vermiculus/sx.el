@@ -29,8 +29,15 @@
 (require 'sx-filter)
 
 (defun sx-method-call
-    (method &optional keyword-arguments filter silent)
+    (method &optional keyword-arguments filter need-auth use-post silent)
   "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
+
+If NEED-AUTH is non-nil, an auth-token is required.  If 'WARN,
+warn the user `(user-error ...)' if they do not have an AUTH
+token set.
+
+If USE-POST is non-nil, use `POST' rather than `GET' for passing
+arguments.
 
 If SILENT is non-nil, no messages will be printed.
 
@@ -41,7 +48,9 @@ Return the entire response as a complex alist."
                (sx-filter-get-var
                 (cond (filter filter)
                       ((boundp 'stack-filter) stack-filter))))
-         keyword-arguments)))
+         keyword-arguments)
+   need-auth
+   use-post))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
