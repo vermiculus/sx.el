@@ -140,6 +140,7 @@ false, use the symbol `false'.  Each element is processed with
   ;; Add API key to list of arguments, this allows for increased quota
   ;; automatically.
   (let* ((warn (equal need-auth 'warn))
+         (api-key (cons "key" sx-request-api-key))
          (auth
           (let ((auth (car (sx-cache-get 'auth))))
             (cond
@@ -152,9 +153,9 @@ false, use the symbol `false'.  Each element is processed with
               (lwarn "stack-mode" :debug
                      "This query requires authentication")
               nil)))))
-    (add-to-list 'alist (cons "key" sx-request-api-key))
+    (push api-key alist)
     (if (and need-auth auth)
-        (add-to-list 'alist auth))
+        (push auth alist))
     (mapconcat
      (lambda (pair)
        (concat
