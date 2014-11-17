@@ -27,6 +27,31 @@
 (require 'sx-cache)
 (require 'sx-site)
 
+(defvar sx-network--user-filter
+  '((.backoff
+     .error_id
+     .error_message
+     .error_name
+     .has_more
+     .items
+     .quota_max
+     .quota_remaining
+     badge_count.bronze
+     badge_count.silver
+     badge_count.gold
+     network_user.account_id
+     network_user.answer_count
+     network_user.badge_counts
+     network_user.creation_date
+     network_user.last_access_date
+     network_user.reputation
+     network_user.site_name
+     network_user.site_url
+     network_user.user_id
+     network_user.user_type)
+    nil
+    none))
+
 (defun sx-network--get-associated ()
     (sx-cache-get
      'network-user
@@ -37,7 +62,7 @@
   (setq sx-network--user-information
         (sx-method-call "me/associated"
                         '((types . "main_site;meta_site"))
-                        'nil
+                        sx-network--user-filter
                         'warn))
   (setq sx-network--user-sites (sx-network--map-site-url-to-site-api))
   (sx-cache-set 'network-user sx-network--user-information))
