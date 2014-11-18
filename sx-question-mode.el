@@ -443,7 +443,7 @@ If ID is nil, use ID2 instead."
     (save-match-data
       (goto-char (point-min))
       (when (search-forward-regexp
-             (format (rx line-start (0+ blank) "[%s]:" (1+ blank)
+             (format (rx line-start (0+ blank) "[%s]:" (0+ blank)
                          (group-n 1 (1+ (not blank))))
                      (or id id2))
              nil t)
