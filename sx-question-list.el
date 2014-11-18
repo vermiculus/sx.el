@@ -132,7 +132,19 @@ Letters do not insert themselves; instead, they are commands.
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
    ("v" sx-question-list-visit)
+   ("h" sx-question-list-hide)
    ([?\r] sx-question-list-display-question)))
+
+(defun sx-question-list-hide (data)
+  "Hide question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-hidden data)
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
 
 (defvar sx-question-list--current-page "Latest"
   ;; Other values (once we implement them) are "Top Voted",
@@ -197,7 +209,8 @@ a new list before redisplaying."
     (setq sx-question-list--current-dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
-          (mapcar #'sx-question-list--print-info question-list)))
+          (mapcar #'sx-question-list--print-info
+                  (cl-remove-if #'sx-question--hidden-p question-list))))
   (when redisplay (tabulated-list-print 'remember)))
 
 (defun sx-question-list-visit (&optional data)
