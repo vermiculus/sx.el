@@ -56,28 +56,30 @@
   "Retrieve cached information for network user.
 
 If cache is not available, retrieve current data."
-  (or (and (sx-cache-get 'network-user)
-           (setq sx-network--user-sites
+  (or (and (setq sx-network--user-information (sx-cache-get 'network-user)
+                 sx-network--user-sites
                  (sx-network--map-site-url-to-site-api)))
       (sx-network--update)))
 
 (defun sx-network--update ()
-  "Update user information."
-  (setq sx-network--user-information
-        (sx-method-call "me/associated"
-                        '((types . (main_site meta_site)))
-                        sx-network--user-filter
-                        'warn))
-  (setq sx-network--user-sites (sx-network--map-site-url-to-site-api))
-  (sx-cache-set 'network-user sx-network--user-information))
+  "Update user information.
 
-(defun sx-network--ensure-user ()
-  "Ensure user-cache is available.
+Sets cache and then uses `sx-network--get-associated' to update
+the variables."
+  (sx-cache-set 'network-user
+                (sx-method-call "me/associated"
+                                '((types . (main_site meta_site)))
+                                sx-network--user-filter
+                                'warn))
+  (sx-network--get-associated))
 
-This should be called during initialization."
+(defun sx-network--initialize ()
+  "Ensure network-user cache is available.
+
+Added as hook to initialization."
   ;; Cache was not retrieved, retrieve it.
-  (unless sx-network--user-information
-    (sx-network--get-associated)))
+  (sx-network--get-associated))
+(add-hook 'sx-init--internal-hook #'sx-network--initialize)
 
 (defun sx-network--map-site-url-to-site-api ()
   "Convert `me/associations' to a set of `api_site_parameter's.

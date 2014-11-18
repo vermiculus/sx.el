@@ -43,16 +43,15 @@
 Each element has the form (SITE FAVORITE-LIST).  And each element
 in FAVORITE-LIST is the numerical QUESTION_ID.")
 
-(defun sx-favorites--ensure-favorite-list ()
-  (unless sx-favorites--user-favorite-list
-    (setq sx-favorites--user-favorite-list
-          (sx-cache-get
-           'question-favorites
-           (let ((sites
-                  (mapcar (lambda (site)
-                            `(,site))
-                          sx-network--user-sites)))
-             `(quote ,sites))))))
+(defun sx-favorites--initialize ()
+  "Ensure question-favorites cache is available.
+
+Added as hook to initialization."
+  (or   (setq sx-favorites--user-favorite-list
+              (sx-cache-get 'question-favorites))
+        (sx-favorites-update)))
+;; Append to ensure `sx-network--initialize is run before it.
+(add-hook 'sx-init--internal-hook #'sx-favorites--initialize 'append)
 
 (defun sx-favorites--retrieve-favorites (site)
   "Obtain list of starred QUESTION_IDs for SITE."
@@ -65,18 +64,17 @@ in FAVORITE-LIST is the numerical QUESTION_ID.")
   "Update list of starred QUESTION_IDs for SITE.
 
 Writes list to cache QUESTION-FAVORITES."
-  (sx-favorites--ensure-favorite-list site)
-  (let ((favs (sx-favorites--retrieve-favorites site))
-        (site-cell (assoc site
-                          sx-favorites--user-favorite-list)))
+  (let* ((favs (sx-favorites--retrieve-favorites site))
+         (site-cell (assoc site
+                           sx-favorites--user-favorite-list))
+         (fav-cell (mapcar #'cdar favs)))
     (if site-cell
-        (setcdr site-cell (mapcar #'cdar favs))
-      (push (cons site favs) sx-favorites--user-favorite-list))
+        (setcdr site-cell fav-cell)
+      (push (cons site fav-cell) sx-favorites--user-favorite-list))
   (sx-cache-set 'question-favorites sx-favorites--user-favorite-list)))
 
 (defun sx-favorites-update ()
   "Update all sites retrieved from `sx-network--user-sites'."
-  (sx-network--ensure-user)
   (mapc #'sx-favorites--update-site-favorites
         sx-network--user-sites))
 
