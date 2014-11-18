@@ -27,6 +27,21 @@
 
 ;;; Utility Functions
 
+(defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
+  "Inserted NEWELT into LIST sorted by PREDICATE.
+This is designed for the (site id id ...) lists. So the first car
+is intentionally skipped."
+  `(let ((tail ,list)
+         (x ,newelt))
+     ;; The first element is never less-than.
+     (while (and 
+             ;; We're at the end.
+             (cdr-safe tail)
+             ;; We're at the right place.
+             (,(or predicate #'<) x (cadr tail)))
+       (setq tail (cdr tail)))
+     (setcdr tail (cons x (cdr tail)))))
+
 (defun sx-message (format-string &rest args)
   "Display a message"
   (message "[stack] %s" (apply #'format format-string args)))
