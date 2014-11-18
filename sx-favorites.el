@@ -1,4 +1,4 @@
-;;; sx-site.el --- browsing sites                    -*- lexical-binding: t; -*-
+;;; sx-favorites.el --- Starred questions          -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -70,7 +70,7 @@ Writes list to cache QUESTION-FAVORITES."
         (site-cell (assoc site
                           sx-favorites--user-favorite-list)))
     (if site-cell
-        (setcdr site-cell (mapcar 'cdar favs))
+        (setcdr site-cell (mapcar #'cdar favs))
       (push (cons site favs) sx-favorites--user-favorite-list))
   (sx-cache-set 'question-favorites sx-favorites--user-favorite-list)))
 
