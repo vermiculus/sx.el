@@ -70,8 +70,7 @@ DATA will be written as returned by `prin1'."
 (defun sx-cache--invalidate (cache &optional vars init-method)
   "Set cache CACHE to nil.
 
-VARS is a list of variables to set to unbind to ensure cache is
-cleared.
+VARS is a list of variables to unbind to ensure cache is cleared.
 If INIT-METHOD is defined, call it after all invalidation to
 re-initialize the cache."
   (sx-cache-set cache nil)
