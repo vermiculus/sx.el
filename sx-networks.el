@@ -53,15 +53,19 @@
     none))
 
 (defun sx-network--get-associated ()
-  (or (sx-cache-get
-       'network-user)
-      (sx-network--update))
+  "Retrieve cached information for network user.
+
+If cache is not available, retrieve current data."
+  (or (and (sx-cache-get 'network-user)
+           (setq sx-network--user-sites
+                 (sx-network--map-site-url-to-site-api)))
+      (sx-network--update)))
 
 (defun sx-network--update ()
   "Update user information."
   (setq sx-network--user-information
         (sx-method-call "me/associated"
-                        '((types . "main_site;meta_site"))
+                        '((types . (main_site meta_site)))
                         sx-network--user-filter
                         'warn))
   (setq sx-network--user-sites (sx-network--map-site-url-to-site-api))
@@ -71,13 +75,9 @@
   "Ensure user-cache is available.
 
 This should be called during initialization."
-  (cond
-   ((not sx-network--user-information)
-    (or (sx-network--get-associated)
-        (sx-network--update)))
-   ((not sx-network--user-sites)
-    (setq sx-network--user-sites
-          (sx-network--map-site-url-to-site-api)))))
+  ;; Cache was not retrieved, retrieve it.
+  (unless sx-network--user-information
+    (sx-network--get-associated)))
 
 (defun sx-network--map-site-url-to-site-api ()
   "Convert `me/associations' to a set of `api_site_parameter's.
@@ -90,10 +90,10 @@ list of sites the user is active on."
                                     (cdr (assoc 'api_site_parameter
                                                 x))))
                             (sx-site--get-site-list))))
-    (mapcar '(lambda (loc)
-               (let ((u-site (cdr (assoc 'site_url loc))))
-                 (when (member u-site (mapcar 'car sites-info))
-                   (cdr (assoc u-site sites-info)))))
+    (mapcar (lambda (loc)
+              (let ((u-site (cdr (assoc 'site_url loc))))
+                (when (member u-site (mapcar 'car sites-info))
+                  (cdr (assoc u-site sites-info)))))
             sx-network--user-information)))
 
 (defvar sx-network--user-information nil
