@@ -39,17 +39,18 @@
 
 (defvar sx-favorites--user-favorite-list nil
   "Alist of questions favorited by the user.
-Each element has the form (SITE FAVORITE-LIST).
-And each element in FAVORITE-LIST has the form QUESTION_ID.")
 
-(defun sx-favorites--ensure-favorite-list (site)
+Each element has the form (SITE FAVORITE-LIST).  And each element
+in FAVORITE-LIST is the numerical QUESTION_ID.")
+
+(defun sx-favorites--ensure-favorite-list ()
   (unless sx-favorites--user-favorite-list
     (setq sx-favorites--user-favorite-list
           (sx-cache-get
            'question-favorites
            (let ((sites
-                  (mapcar '(lambda (site)
-                             `(,site))
+                  (mapcar (lambda (site)
+                            `(,site))
                           sx-network--user-sites)))
              `(quote ,sites))))))
 
