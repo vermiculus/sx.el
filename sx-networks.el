@@ -92,7 +92,7 @@ list of sites the user is active on."
                             (sx-site--get-site-list))))
     (mapcar (lambda (loc)
               (let ((u-site (cdr (assoc 'site_url loc))))
-                (when (member u-site (mapcar 'car sites-info))
+                (when (member u-site (mapcar #'car sites-info))
                   (cdr (assoc u-site sites-info)))))
             sx-network--user-information)))
 
