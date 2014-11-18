@@ -221,67 +221,71 @@ QUESTION must be a data structure returned by `json-read'."
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
-  (sx-assoc-let data
-    (insert sx-question-mode-header-title
-            (apply
-             #'propertize
-             ;; Questions have title
-             (or .title
-                 ;; Answers don't
-                 sx-question-mode-answer-title)
-             ;; Section level
-             'sx-question-mode--section (if .title 1 2)
-             ;; face, action and help-echo
-             sx-question-mode--title-properties))
-    ;; Sections can be hidden with overlays
-    (sx-question-mode--wrap-in-overlay
-        '(sx-question-mode--section-content t)
-      (sx-question-mode--insert-header
-       ;; Author
-       sx-question-mode-header-author
-       (sx-question-mode--propertize-display-name .owner)
-       'sx-question-mode-author
-       ;; Date
-       sx-question-mode-header-date
-       (concat
-        (sx-time-seconds-to-date .creation_date)
-        (when .last_edit_date
-          (format sx-question-mode-last-edit-format
-                  (sx-time-since .last_edit_date)
-                  (sx-question-mode--propertize-display-name .last_editor))))
-       'sx-question-mode-date)
-      (when .title
-        ;; Tags
-        (sx-question-mode--insert-header
-         sx-question-mode-header-tags
-         (mapconcat #'sx-question--tag-format .tags " ")
-         'sx-question-mode-tags))
-      ;; Body
-      (insert "\n"
-              (propertize sx-question-mode-separator
-                          'face 'sx-question-mode-header
-                          'sx-question-mode--section 4))
-      (sx-question-mode--wrap-in-overlay
-          '(face sx-question-mode-content-face)
-        (insert "\n"
-                (sx-question-mode--fill-and-fontify
-                 .body_markdown)
-                (propertize sx-question-mode-separator
-                            'face 'sx-question-mode-header))))
-    ;; Comments
-    (when .comments
-      (insert "\n"
-              (apply #'propertize
-                     sx-question-mode-comments-title
-                     'face 'sx-question-mode-title-comments
-                     'sx-question-mode--section 3
-                     sx-question-mode--title-properties))
+  ;; This makes `data' accessible through
+  ;; `(get-text-property (point) 'sx-question-mode--data-here)'
+  (sx-question-mode--wrap-in-text-property
+      (list 'sx-question-mode--data-here data)
+    (sx-assoc-let data
+      (insert sx-question-mode-header-title
+              (apply
+               #'propertize
+               ;; Questions have title
+               (or .title
+                   ;; Answers don't
+                   sx-question-mode-answer-title)
+               ;; Section level
+               'sx-question-mode--section (if .title 1 2)
+               ;; face, action and help-echo
+               sx-question-mode--title-properties))
+      ;; Sections can be hidden with overlays
       (sx-question-mode--wrap-in-overlay
           '(sx-question-mode--section-content t)
-        (insert "\n")
+        (sx-question-mode--insert-header
+         ;; Author
+         sx-question-mode-header-author
+         (sx-question-mode--propertize-display-name .owner)
+         'sx-question-mode-author
+         ;; Date
+         sx-question-mode-header-date
+         (concat
+          (sx-time-seconds-to-date .creation_date)
+          (when .last_edit_date
+            (format sx-question-mode-last-edit-format
+                    (sx-time-since .last_edit_date)
+                    (sx-question-mode--propertize-display-name .last_editor))))
+         'sx-question-mode-date)
+        (when .title
+          ;; Tags
+          (sx-question-mode--insert-header
+           sx-question-mode-header-tags
+           (mapconcat #'sx-question--tag-format .tags " ")
+           'sx-question-mode-tags))
+        ;; Body
+        (insert "\n"
+                (propertize sx-question-mode-separator
+                            'face 'sx-question-mode-header
+                            'sx-question-mode--section 4))
         (sx-question-mode--wrap-in-overlay
             '(face sx-question-mode-content-face)
-          (mapc #'sx-question-mode--print-comment .comments))))))
+          (insert "\n"
+                  (sx-question-mode--fill-and-fontify
+                   .body_markdown)
+                  (propertize sx-question-mode-separator
+                              'face 'sx-question-mode-header))))
+      ;; Comments
+      (when .comments
+        (insert "\n"
+                (apply #'propertize
+                       sx-question-mode-comments-title
+                       'face 'sx-question-mode-title-comments
+                       'sx-question-mode--section 3
+                       sx-question-mode--title-properties))
+        (sx-question-mode--wrap-in-overlay
+            '(sx-question-mode--section-content t)
+          (insert "\n")
+          (sx-question-mode--wrap-in-overlay
+              '(face sx-question-mode-content-face)
+            (mapc #'sx-question-mode--print-comment .comments)))))))
 
 (defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
@@ -318,6 +322,16 @@ Return the result of BODY."
        (while props
          (overlay-put ov (pop props) (pop props)))
        (push ov sx-question-mode--overlays))
+     result))
+
+(defmacro sx-question-mode--wrap-in-text-property (properties &rest body)
+  "Execute BODY and PROPERTIES to any inserted text.
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (add-text-properties p (point) ,properties)
      result))
 
 (defun sx-question-mode--insert-header (&rest args)
@@ -560,7 +574,13 @@ Letters do not insert themselves; instead, they are commands.
   "Visit the currently displayed question."
   (interactive)
   (sx-question-mode--ensure-mode)
-  (sx-assoc-let sx-question-mode--data
+  (sx-assoc-let
+      ;; This allows us to visit the thing-at-point. Which could be a
+      ;; question or an answer. We use `append', so that if one
+      ;; doesn't have a `link' item we can fallback to
+      ;; `sx-question-mode--data'.
+      (append (get-text-property (point) 'sx-question-mode--data-here)
+              sx-question-mode--data)
     (browse-url .link)))
 
 (defun sx-question-mode-refresh ()
