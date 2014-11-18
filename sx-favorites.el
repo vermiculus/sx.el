@@ -71,7 +71,7 @@ Writes list to cache QUESTION-FAVORITES."
                           sx-favorites--user-favorite-list)))
     (if site-cell
         (setcdr site-cell (mapcar 'cdar favs))
-      (push (list site favs) sx-favorites--user-favorite-list))
+      (push (cons site favs) sx-favorites--user-favorite-list))
   (sx-cache-set 'question-favorites sx-favorites--user-favorite-list)))
 
 (defun sx-favorites-update ()
