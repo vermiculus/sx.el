@@ -34,11 +34,13 @@
      question.answers
      question.last_editor
      question.accepted_answer_id
+     question.link
      user.display_name
      comment.owner
      comment.body_markdown
      comment.body
      answer.last_editor
+     answer.link
      answer.owner
      answer.body_markdown
      answer.comments)
