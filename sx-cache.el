@@ -86,7 +86,7 @@ If SAVE-AUTH is non-nil, do not clear AUTH cache."
   (let ((caches (let ((default-directory sx-cache-directory))
                   (file-expand-wildcards "*.el"))))
     (when save-auth
-      (setq caches (remove-if (lambda (x)
+      (setq caches (cl-remove-if (lambda (x)
                                 (string= x "auth.el")) caches)))
     (lwarn 'stack-mode :debug "Invalidating: %S" caches)
     (mapc #'sx-cache--invalidate caches)
