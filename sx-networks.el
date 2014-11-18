@@ -53,9 +53,9 @@
     none))
 
 (defun sx-network--get-associated ()
-    (sx-cache-get
-     'network-user
-     '(sx-network--update)))
+  (or (sx-cache-get
+       'network-user)
+      (sx-network--update))
 
 (defun sx-network--update ()
   "Update user information."
@@ -102,7 +102,7 @@ list of sites the user is active on."
 (defvar sx-network--user-sites nil
   "List of sites where user already has an account.")
 
-(provide sx-networks)
+(provide 'sx-networks)
 ;;; sx-networks.el ends here
 
 ;; Local Variables:

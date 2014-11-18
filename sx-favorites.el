@@ -79,7 +79,7 @@ Writes list to cache QUESTION-FAVORITES."
   (mapc #'sx-favorites--update-site-favorites
         sx-network--user-sites))
 
-(provide sx-favorites)
+(provide 'sx-favorites)
 ;;; sx-favorites.el ends here
 
 ;; Local Variables:
