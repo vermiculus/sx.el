@@ -74,7 +74,7 @@ the variables."
   (sx-network--get-associated))
 
 (defun sx-network--initialize ()
-  "Ensure user-cache is available.
+  "Ensure network-user cache is available.
 
 Added as hook to initialization."
   ;; Cache was not retrieved, retrieve it.
