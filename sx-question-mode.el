@@ -304,7 +304,7 @@ DATA can represent a question or an answer."
 (defun sx-question-mode--print-comment (comment-data)
   "Print the comment described by alist COMMENT-DATA.
 
-The comment is printed according to
+The comment is indented, filled, and then printed according to
 `sx-question-mode-comments-format'."
   (sx-assoc-let comment-data
     (insert
@@ -356,8 +356,9 @@ ARGS is a list of repeating values -- `header', `value', and
 `face'.  `header' is given `sx-question-mode-header' as a face,
 where `value' is given `face' as its face.
 
-Use as (fn header value face
-          [header value face] ...)"
+Syntax:
+
+  \(fn HEADER VALUE FACE [HEADER VALUE FACE] [HEADER VALUE FACE] ...)"
   (while args
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)

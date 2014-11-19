@@ -210,7 +210,10 @@ Non-interactively, DATA is a question alist."
   "Site being displayed in the *question-list* buffer.")
 
 (defvar sx-question-list--current-dataset nil
-  "The logical data behind the displayed list of questions.")
+  "The logical data behind the displayed list of questions.
+
+This dataset contains even questions that are hidden by the user,
+and thus not displayed in the list of questions.")
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.

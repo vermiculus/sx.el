@@ -49,7 +49,9 @@
 (defun sx-question-get-questions (site &optional page)
   "Get the page PAGE of questions from SITE.
 
-Return a list of questions, each consed with (site SITE).
+Return a list of question.  Each question is an alist of
+properties returned by the API with an added (site SITE)
+property.
 
 `sx-method-call' is used with `sx-question-browse-filter'."
   (mapcar
