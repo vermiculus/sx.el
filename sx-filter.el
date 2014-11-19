@@ -71,10 +71,11 @@ Returns the compiled filter as a string."
 (defun sx-filter-get (&optional include exclude base)
   "Return the string representation of the given filter.
 
-If the filter data exist together in `sx--filter-alist', that
-value will be returned.  Otherwise, compile INCLUDE, EXCLUDE, and
-BASE into a filter with `sx-filter-compile' and push the
-association onto `sx--filter-alist'."
+If the filter data exist in `sx--filter-alist', that value will
+be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
+a filter with `sx-filter-compile' and push the association onto
+`sx--filter-alist'.  Re-cache the alise with `sx-cache-set' and
+return the compiled filter."
   (or (cdr (assoc (list include exclude base) sx--filter-alist))
       (let ((filter (sx-filter-compile include exclude base)))
         (when filter

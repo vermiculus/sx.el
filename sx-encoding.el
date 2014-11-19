@@ -60,7 +60,9 @@
            ucirc "û" Ucirc "Û" ugrave "ù" Ugrave "Ù" uml "¨" upsih "ϒ" Upsilon "Υ"
            upsilon "υ" uuml "ü" Uuml "Ü" weierp "℘" Xi "Ξ" xi "ξ" yacute "ý"
            Yacute "Ý" yen "¥" yuml "ÿ" Yuml "Ÿ" Zeta "Ζ" zeta "ζ" zwj "" zwnj "")
-  "Plist of HTML entities and their respective glyphs."
+  "Plist of HTML entities and their respective glyphs.
+
+See `sx-encoding-decode-entities'."
   :type '(repeat (choice symbol string))
   :group 'sx)
 
@@ -72,9 +74,6 @@ list does not contain the entity, it is assumed to be a number
 and converted to a string (with `char-to-string').
 
 Return the decoded string."
-  ;; @TODO Why are we limiting ourselves to two digits, here?
-  ;; "&#400;" is perfectly valid, corresponding to "Ɛ".  (Note that
-  ;; "Ɛ" is not in our plist.)
   (let* ((plist sx-encoding-html-entities-plist)
          (get-function
           (lambda (s)
@@ -84,6 +83,7 @@ Return the decoded string."
                   ;; Handle things like &#39;
                   (char-to-string
                    (string-to-number
+                    ;; Skip the `#'
                     (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
@@ -92,8 +92,8 @@ Return the decoded string."
 
 The API returns strings that use Windows-style line endings.
 These are largely useless in an Emacs environment.  Windows uses
-\"\\r\\n\", Unix uses just \"\\n\".  Deleting \"\\r\" is
-sufficient for conversion."
+\"\\r\\n\", Unix uses just \"\\n\".  Deleting \"\\r\" is sufficient for
+conversion."
   (delete ?\r string))
 
 (defun sx-encoding-clean-content (string)

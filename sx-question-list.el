@@ -135,7 +135,7 @@ Letters do not insert themselves; instead, they are commands.
    ([?\r] sx-question-list-display-question)))
 
 (defvar sx-question-list--current-page "Latest"
-  ;; Other values (once we implement them) are "Top Voted",
+  ;; @TODO Other values (once we implement them) are "Top Voted",
   ;; "Unanswered", etc.
   "Variable describing current page being viewed.")
 
@@ -179,10 +179,11 @@ Letters do not insert themselves; instead, they are commands.
   "Site being displayed in the *question-list* buffer.")
 
 (defvar sx-question-list--current-dataset nil
-  "")
+  "The logical data behind the displayed list of questions.")
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
+
 If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
 If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
@@ -212,29 +213,33 @@ a new list before redisplaying."
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
+
 Used in the questions list to indicate a question was updated \"4d ago\"."
   :type 'string
   :group 'sx-question-list)
 
-(defun sx-question-list--print-info (data)
-  "Convert `json-read' DATA into tabulated-list format."
-  (sx-assoc-let data
+(defun sx-question-list--print-info (question-data)
+  "Format QUESTION-DATA for display in the list.
+
+See `sx-question-list-refresh'."
+  (sx-assoc-let question-data
     (list
-     data
+     question-data
      (vector
       (list (int-to-string .score)
             'face (if .upvoted 'sx-question-list-score-upvoted
                     'sx-question-list-score))
       (list (int-to-string .answer_count)
-            'face (if (sx-question--accepted-answer-id data)
+            'face (if (sx-question--accepted-answer-id question-data)
                       'sx-question-list-answers-accepted
                     'sx-question-list-answers))
       (concat
        (propertize
         .title
-        'face (if (sx-question--read-p data)
+        'face (if (sx-question--read-p question-data)
                   'sx-question-list-read-question
-                ;; Increment `sx-question-list--unread-count' for the mode-line.
+                ;; Increment `sx-question-list--unread-count' for the
+                ;; mode-line.
                 (cl-incf sx-question-list--unread-count)
                 'sx-question-list-unread-question))
        (propertize " " 'display "\n         ")
@@ -247,32 +252,42 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
        (propertize " " 'display "\n"))))))
 
 (defun sx-question-list-view-previous (n)
-  "Hide this question, move to previous one, display it."
+  "Move to the previous question and display it.
+
+Displayed in `sx-question-mode--window', replacing any question
+that may currently be there."
   (interactive "p")
   (sx-question-list-view-next (- n)))
 
 (defun sx-question-list-view-next (n)
-  "Hide this question, move to next one, display it."
+  "Move to the next question and display it.
+
+Displayed in `sx-question-mode--window', replacing any question
+that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
   (sx-question-list-display-question))
 
 (defun sx-question-list-next (n)
-  "Move to the next entry."
+  "Move to the next entry.
+
+This does not update `sx-question-mode--window'."
   (interactive "p")
   (forward-line n))
 
 (defun sx-question-list-previous (n)
-  "Move to the previous entry."
+  "Move to the previous entry.
+
+This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next (- n)))
 
 (defun sx-question-list-display-question (&optional data focus)
   "Display question given by DATA.
-If called interactively (or with DATA being nil), display
-question under point.
-Also when called interactively (or when FOCUS is non-nil), also
-focus the relevant window."
+
+When DATA is nil, display question under point.  When FOCUS is
+non-nil (the default when called interactively), also focus the
+relevant window."
   (interactive '(nil t))
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
@@ -299,7 +314,7 @@ focus the relevant window."
   (set-window-parameter
    sx-question-mode--window
    'quit-restore
-   ;; See https://www.gnu.org/software/emacs/manual/html_node/elisp/Window-Parameters.html#Window-Parameters
+   ;; See (info "(elisp) Window Parameters")
    `(window window ,(selected-window) ,sx-question-mode--buffer))
   (when focus
     (if sx-question-mode--window
@@ -307,7 +322,12 @@ focus the relevant window."
       (switch-to-buffer sx-question-mode--buffer))))
 
 (defun sx-question-list-switch-site (site)
-  "Switch the current site to SITE and display its questions"
+  "Switch the current site to SITE and display its questions.
+
+Uses `ido-completing-read' if `ido-mode' is active.  Retrieves
+completions from `sx-site-get-api-tokens'.  Sets
+`sx-question-list--current-site' and then
+`sx-question-list-refresh' with `redisplay'."
   (interactive
    (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
           "Switch to site: " (sx-site-get-api-tokens)
@@ -320,8 +340,10 @@ focus the relevant window."
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
 
-(defun list-questions (no-update)
-  "Display a list of StackExchange questions."
+(defun sx-list-questions (no-update)
+  "Display a list of StackExchange questions.
+
+NO-UPDATE is passed to `sx-question-list-refresh'."
   (interactive "P")
   (unless (buffer-live-p sx-question-list--buffer)
     (setq sx-question-list--buffer
@@ -331,7 +353,7 @@ focus the relevant window."
     (sx-question-list-refresh 'redisplay no-update))
   (switch-to-buffer sx-question-list--buffer))
 
-(defalias 'sx-list-questions #'list-questions)
+(defalias 'list-questions #'sx-list-questions)
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here

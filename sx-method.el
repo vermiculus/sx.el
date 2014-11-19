@@ -19,6 +19,11 @@
 
 ;;; Commentary:
 
+;;; This file is effectively a common-use wrapper for
+;;; `sx-request-make'.  It provides higher-level handling such as
+;;; (authentication, filters, ...) that `sx-request-make' doesn't need
+;;; to handle.
+
 ;;; Code:
 (require 'json)
 (require 'url)
@@ -30,7 +35,7 @@
     (method &optional keyword-arguments filter)
   "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
 
-Return the entire response as a complex alist.
+Return the response content as a complex alist.
 
 See `sx-request-make' and `sx-filter-get-var'."
   (sx-request-make

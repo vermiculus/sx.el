@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 
 ;;; Code:
 (require 'markdown-mode)
@@ -53,7 +51,9 @@
 
 (defun sx-question-mode--display (data &optional window)
   "Display question given by DATA on WINDOW.
+
 If WINDOW is nil, use selected one.
+
 Returns the question buffer."
   (let ((inhibit-read-only t))
     (with-current-buffer
@@ -65,7 +65,9 @@ Returns the question buffer."
 
 (defun sx-question-mode--display-buffer (window)
   "Display and return the buffer used for displaying a question.
-Create the buffer if necessary.
+
+Create `sx-question-mode--buffer' if necessary.
+
 If WINDOW is given, use that to display the buffer."
   ;; Create the buffer if necessary.
   (unless (buffer-live-p sx-question-mode--buffer)
@@ -84,6 +86,7 @@ If WINDOW is given, use that to display the buffer."
 
 ;;; Printing a question's content
 ;;;; Faces and Variables
+
 (defvar sx-question-mode--overlays nil
   "")
 (make-variable-buffer-local 'sx-question-mode--overlays)
