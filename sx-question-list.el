@@ -251,7 +251,7 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
   :group 'sx-question-list)
 
 (defun sx-question-list--print-info (question-data)
-  "Convert `json-read' DATA into tabulated-list format.
+  "Convert `json-read' QUESTION-DATA into tabulated-list format.
 
 See `sx-question-list-refresh'."
   (sx-assoc-let question-data

@@ -74,7 +74,7 @@ Returns the compiled filter as a string."
 If the filter data exist in `sx--filter-alist', that value will
 be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
 a filter with `sx-filter-compile' and push the association onto
-`sx--filter-alist'.  Re-cache the alise with `sx-cache-set' and
+`sx--filter-alist'.  Re-cache the alist with `sx-cache-set' and
 return the compiled filter."
   (or (cdr (assoc (list include exclude base) sx--filter-alist))
       (let ((filter (sx-filter-compile include exclude base)))

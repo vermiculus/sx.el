@@ -339,7 +339,7 @@ Return the result of BODY."
      result))
 
 (defmacro sx-question-mode--wrap-in-text-property (properties &rest body)
-  "Execute BODY and PROPERTIES to any inserted text.
+  "Execute BODY and add PROPERTIES to any inserted text.
 
 Return the result of BODY."
   (declare (indent 1)

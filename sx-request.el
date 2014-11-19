@@ -40,8 +40,8 @@
 ;;    for making the request and `json-read-from-string' for parsing
 ;;    it into a properly symbolic data structure.
 ;; 
-;; When at all possible, use ~sx-method-call~.  There are specialized
-;; cases for the use of ~sx-request-make~ outside of =sx-method.el=, but
+;; When at all possible, use `sx-method-call'.  There are specialized
+;; cases for the use of `sx-request-make' outside of sx-method.el, but
 ;; these must be well-documented inline with the code.
 
 ;;; Code:

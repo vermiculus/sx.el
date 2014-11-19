@@ -128,7 +128,6 @@ See `sx-question--user-read-list'."
         (sx-sorted-insert-skip-first
          q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
   ;; Save the results.
-
   ;; @TODO This causes a small lag on `j' and `k' as the list gets
   ;; large.  Should we do this on a timer?
   (sx-cache-set 'read-questions sx-question--user-read-list))
@@ -140,11 +139,7 @@ See `sx-question--user-read-list'."
 
 Each element has the form
 
-  (SITE . QUESTION-LIST).
-
-And each element in QUESTION-LIST has the form
-
-  (QUESTION_ID . LAST-VIEWED-DATE).")
+  (SITE QUESTION_ID QUESTION_ID ...)")
 
 (defun sx-question--ensure-hidden-list (site)
   "Ensure the `sx-question--user-hidden-list' has been read from cache.

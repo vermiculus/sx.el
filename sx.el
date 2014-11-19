@@ -155,7 +155,7 @@ present in BODY are letbound, which leads to optimal performance.
 
 For instance, the following code
 
-  (stack-core-with-data alist
+  (sx-assoc-let alist
     (list .title .body))
 
 is equivalent to
