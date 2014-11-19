@@ -59,7 +59,7 @@ arbitrary customizability -- [[#hooks][hack away]]!
 Use ~sx-auth-authenticate~.  Calling this function will open up a
 webpage on StackExchange that will prompt you to authorize this
 application.  Once you do this, StackExchange will redirect you to our
-own authorization landing page.  This landing page will prominately
+own authorization landing page.  This landing page will prominently
 display your access token.  (This is /your/ token -- keep this
 private!)  Enter this token into Emacs.  Emacs will set and save it to
 a cache file.
@@ -77,101 +77,14 @@ question at point.
   :CUSTOM_ID: hooks
   :END:
 
-# Do not list internal hooks.
+# Do not list internal hooks.  While they are useful, they should be
+# used only by contributors.
 
 - ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
 
-* Developer's Reference
-Creating a logically consistent piece of software requires that all
-developers know the patterns established and resources made available
-to them.  These sections hope to do just that.
-** Caching
-All cached data is stored in =sx-cache-directory=.  This defaults to
-=~/.emacs.d/.stackmode= where =user-emacs-directory= is =~/.emacs.d=.
-Each piece of cached data is stored in its own file.
-
-There are two main functions for interfacing with the cache system:
-
-- ~sx-cache-get~ :: Gets a cached variable's value, setting it if it
-                    does not exist.  This function will, as a
-                    side-effect, ensure that the cache file exists.
-- ~sx-cache-set~ :: Sets a cached variable's value.
-
-Each of these functions will ensure =sx-cache-directory= exists.
-
-** Making API Requests
-API requests are handled on three separate tiers:
-
-- ~sx-method-call~ :: This is the function that should be used most
-     often, since it runs necessary checks (authentication) and
-     provides basic processing of the result for consistency.
-- ~sx-request-make~ :: This is the fundamental function for
-     interacting with the API.  It makes no provisions for 'common'
-     usage, but it does ensure data is retrieved successfully or an
-     appropriate signal is thrown.
-- =url.el= and =json.el= :: The whole solution is built upon =url.el=
-     for making the request and =json.el= for parsing it into a
-     properly symbolic data structure.
-
-When at all possible, use ~sx-method-call~.  There are specialized
-cases for the use of ~sx-request-make~ outside of =sx-method.el=, but
-these must be well-documented inline with the code.
-
-*** ~sx-request-make~
-Requests are made by building a parameter string of the format
-
-#+BEGIN_EXAMPLE
-  key=value&key=value
-#+END_EXAMPLE
-
-and appending it to a root and a method:
-
-#+BEGIN_EXAMPLE
-  <root>/<method>?<parameters>
-#+END_EXAMPLE
-
-This works fine for 'GET' requests of the API, but will not work for
-'POST'.  A revised request system is being created that will support
-both of methods.
-
-** Working with Data
-The API returns data in JSON format.  When a method is called, the
-response is enclosed in a 'wrapper' that includes various metadata:
-
-- remaining requests for your quota
-- if the response has been truncated
-- etc.
-
-When ~sx-request-make~ receives the response, it sets variables
-related to the response (most notably the number of remaining
-requests) and returns just the main content of the response.  In order
-to access this content, you could use a lengthy ~let~-binding or you
-could use the ~sx-assoc-let~ macro.  That is,
-
-#+BEGIN_SRC elisp
-  (sx-assoc-let data
-    (some fancy .function with a .property
-          in 'data))
-#+END_SRC
-
-expands to
-
-#+BEGIN_SRC elisp
-  (let
-      ((.function (cdr (assoc 'function data)))
-       (.property (cdr (assoc 'property data))))
-    (some fancy .function with a .property
-          in 'data))
-#+END_SRC
-
-Use the following to highlight the special =.property= forms:
-
-#+BEGIN_SRC elisp
-
-#+END_SRC
 * About this Document
 This document is maintained in Org format.  Updates to the source code
-should almost always be accompanied by updates to this document.  Soem
+should almost always be accompanied by updates to this document.  Some
 distinctions are made which may not be apparent when viewing the
 document with Info.
 
@@ -204,7 +117,7 @@ The language for Emacs Lisp source code blocks should be given as
 
 * COMMENT Local Variables
 #  LocalWords:  StackExchange SX inbox sx API url json inline Org
-#  LocalWords:  Markup keybinding keybindings customizability
+#  LocalWords:  Markup keybinding keybindings customizability webpage
 
 # Local Variables:
 # org-export-date-timestamp-format: "$B %e %Y"
