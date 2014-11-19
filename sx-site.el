@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 (require 'sx-method)
@@ -43,7 +41,8 @@
      related_site.api_site_parameter
      related_site.relation)
     nil
-    none))
+    none)
+  "")
 
 (defun sx-site--get-site-list ()
   (sx-cache-get
@@ -54,7 +53,10 @@
 
 (defcustom sx-site-favorites
   nil
-  "Favorite sites."
+  "List of favorite sites.
+
+Each entry is a string corresponding to a single site's
+api_site_parameter."
   :group 'sx-site)
 
 (defun sx-site-get-api-tokens ()

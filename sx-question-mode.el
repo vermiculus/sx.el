@@ -150,14 +150,16 @@ If WINDOW is given, use that to display the buffer."
   '((((background dark)) :background "#090909")
     (((background light)) :background "#f4f4f4"))
   "Face used on the question body in the question buffer.
-Shouldn't have a foreground, or this will interfere with
+
+This shouldn't have a foreground, or this will interfere with
 font-locking."
   :group 'sx-question-mode-faces)
 
 (defcustom sx-question-mode-last-edit-format " (edited %s ago by %s)"
   "Format used to describe last edit date in the header.
-First %s is replaced with the date, and the second %s with the
-editor's name."
+
+First \"%s\" is replaced with the date and the second \"%s\" with
+the editor's name."
   :type 'string
   :group 'sx-question-mode)
 
@@ -179,8 +181,9 @@ editor's name."
 
 (defcustom sx-question-mode-comments-format "%s: %s\n"
   "Format used to display comments.
-First \"%s\" is replaced with user name. 
-Second \"%s\" is replaced with the comment."
+
+First \"%s\" is replaced with user name.  Second \"%s\" is
+replaced with the comment."
   :type 'string
   :group 'sx-question-mode)
 
@@ -194,6 +197,7 @@ Second \"%s\" is replaced with the comment."
 ;;;; Functions
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
+
 QUESTION must be a data structure returned by `json-read'."
   ;; Clear the overlays
   (mapc #'delete-overlay sx-question-mode--overlays)
@@ -220,10 +224,11 @@ QUESTION must be a data structure returned by `json-read'."
          follow-link t) 
   "")
 
-(defun sx-question-mode--print-section (data)
-  "Print a section corresponding to DATA.
-DATA can represent a question or an answer."
-  (sx-assoc-let data
+(defun sx-question-mode--print-section (question-data)
+  "Print a section corresponding to QUESTION-DATA.
+
+QUESTION-DATA can represent a question or an answer."
+  (sx-assoc-let question-data
     (insert sx-question-mode-header-title
             (apply
              #'propertize
@@ -291,9 +296,12 @@ DATA can represent a question or an answer."
     (propertize .display_name
                 'face 'sx-question-mode-author)))
 
-(defun sx-question-mode--print-comment (data)
-  "Print the comment described by alist DATA."
-  (sx-assoc-let data
+(defun sx-question-mode--print-comment (comment-data)
+  "Print the comment described by alist COMMENT-DATA.
+
+The comment is printed according to
+`sx-question-mode-comments-format'."
+  (sx-assoc-let comment-data
     (insert
      (format
       sx-question-mode-comments-format
@@ -309,7 +317,10 @@ DATA can represent a question or an answer."
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
   "Execute BODY and wrap any inserted text in an overlay.
-Overlay is pushed on `sx-question-mode--overlays' and given PROPERTIES.
+
+Overlay is pushed on `sx-question-mode--overlays' and given
+PROPERTIES.
+
 Return the result of BODY."
   (declare (indent 1)
            (debug t))
@@ -323,9 +334,14 @@ Return the result of BODY."
      result))
 
 (defun sx-question-mode--insert-header (&rest args)
-  "Insert HEADER and VALUE.
-HEADER is given `sx-question-mode-header' face, and value is given FACE.
-\(fn header value face [header value face] [header value face] ...)"
+  "Insert propertized ARGS.
+
+ARGS is a list of repeating values -- `header', `value', and
+`face'.  `header' is given `sx-question-mode-header' as a face,
+where `value' is given `face' as its face.
+
+Use as (fn header value face
+          [header value face] ...)"
   (while args
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)
@@ -339,7 +355,7 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
   "String to be displayed as the bullet of markdown list items.")
 
 (defun sx-question-mode--fill-and-fontify (text)
-  "Fill TEXT according to `markdown-mode' and return it."
+  "Return TEXT filled according to `markdown-mode'."
   (with-temp-buffer
     (erase-buffer)
     (insert text)
@@ -397,6 +413,7 @@ HEADER is given `sx-question-mode-header' face, and value is given FACE.
 
 (defun sx-question-mode--propertize-link (text url)
   "Return a link propertized version of string TEXT.
+
 URL is used as 'help-echo and 'url properties."
   (propertize
    text
@@ -418,22 +435,23 @@ URL is used as 'help-echo and 'url properties."
    'action      #'sx-question-mode-follow-link))
 
 (defun sx-question-mode-follow-link (&optional pos)
-  "Follow link at POS or point"
+  "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
   (browse-url
    (or (get-text-property (or pos (point)) 'url)
        (error "No url under point: %s" (or pos (point))))))
 
-(defun sx-question-mode-find-reference (id &optional id2)
+(defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
-If ID is nil, use ID2 instead."
+
+If ID is nil, use FALLBACK-ID instead."
   (save-excursion
     (save-match-data
       (goto-char (point-min))
       (when (search-forward-regexp
              (format (rx line-start (0+ blank) "[%s]:" (1+ blank)
                          (group-n 1 (1+ (not blank))))
-                     (or id id2))
+                     (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
 
@@ -454,8 +472,10 @@ If ID is nil, use ID2 instead."
 ;; for comments).
 (defcustom sx-question-mode-recenter-line 1
   "Screen line to which we recenter after moving between sections.
+
 This is used as an argument to `recenter', only used if the end
 of section is outside the window.
+
 If nil, no recentering is performed."
   :type '(choice (const :tag "Don't recenter" nil)
                  integer)
@@ -463,6 +483,7 @@ If nil, no recentering is performed."
 
 (defun sx-question-mode-next-section (&optional n)
   "Move down to next section (question or answer) of this buffer.
+
 Prefix argument N moves N sections down or up."
   (interactive "p")
   (let ((count (if n (abs n) 1)))
@@ -485,13 +506,16 @@ Prefix argument N moves N sections down or up."
 
 (defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
+
 Prefix argument N moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
 (defun sx-question-mode--goto-property-change (prop &optional direction)
   "Move forward until the value of text-property sx-question-mode--PROP changes.
+
 Return the new value of PROP at point.
+
 If DIRECTION is negative, move backwards instead."
   (let ((prop (intern (format "sx-question-mode--%s" prop)))
         (func (if (and (numberp direction)
@@ -525,8 +549,10 @@ If DIRECTION is negative, move backwards instead."
 
 ;;; Major-mode
 (define-derived-mode sx-question-mode markdown-mode "Question"
-  "Major mode for a question and its answers.
+  "Major mode to display and navigate a question and its answers.
+
 Letters do not insert themselves; instead, they are commands.
+
 \\<sx-question-mode>
 \\{sx-question-mode}"
   ;; Determine how to close this window.
@@ -559,6 +585,7 @@ Letters do not insert themselves; instead, they are commands.
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
+
 Queries the API for any changes to the question or its answers or
 comments, and redisplays it."
   (interactive)

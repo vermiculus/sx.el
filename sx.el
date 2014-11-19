@@ -28,7 +28,7 @@
 ;;; Utility Functions
 
 (defun sx-message (format-string &rest args)
-  "Display a message"
+  "Display a message."
   (message "[stack] %s" (apply #'format format-string args)))
 
 (defun sx-message-help-echo ()
@@ -37,8 +37,9 @@
     (when echo (message "%s" echo))))
 
 (defun sx--thing-as-string (thing &optional sequence-sep)
-  "Return a string representation of THING.  If THING is already
-a string, just return it."
+  "Return a string representation of THING.
+
+If THING is already a string, just return it."
   (cond
    ((stringp thing) thing)
    ((symbolp thing) (symbol-name thing))
@@ -48,7 +49,24 @@ a string, just return it."
                thing (if sequence-sep sequence-sep ";")))))
 
 (defun sx--filter-data (data desired-tree)
-  "Filters DATA and returns the DESIRED-TREE"
+  "Filters DATA and returns the DESIRED-TREE.
+
+For example:
+
+  (sx--filter-data
+    '((prop1 . value1)
+      (prop2 . value2)
+      (prop3
+       (test1 . 1)
+       (test2 . 2))
+      (prop4 . t))
+    '(prop1 (prop3 test2)))
+
+would yeild
+
+  ((prop1 . value1)
+   (prop3
+    (test2 . 2)))"
   (if (vectorp data)
       (apply #'vector
              (mapcar (lambda (entry)
@@ -58,7 +76,7 @@ a string, just return it."
     (delq
      nil
      (mapcar (lambda (cons-cell)
-               ;; TODO the resolution of `f' is O(2n) in the worst
+               ;; @TODO the resolution of `f' is O(2n) in the worst
                ;; case.  It may be faster to implement the same
                ;; functionality as a `while' loop to stop looking the
                ;; list once it has found a match.  Do speed tests.
@@ -78,6 +96,7 @@ a string, just return it."
 ;;; Interpreting request data
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
+
 Returns a list where each element is a cons cell. The car is the
 symbol, the cdr is the symbol without the `.'."
   (cond
@@ -93,11 +112,12 @@ symbol, the cdr is the symbol without the `.'."
        (remove nil (mapcar #'sx--deep-dot-search data))))))
 
 (defmacro sx-assoc-let (alist &rest body)
-  "Execute BODY while let-binding dotted symbols to their values in ALIST.
+  "Execute BODY with dotted symbols let-bound to their values in ALIST.
+
 Dotted symbol is any symbol starting with a `.'. Only those
 present in BODY are letbound, which leads to optimal performance.
 
-For instance the following code
+For instance, the following code
 
   (stack-core-with-data alist
     (list .title .body))
@@ -125,15 +145,17 @@ Run after `sx-init--internal-hook'.")
 This is used internally to set initial values for variables such
 as filters.")
 
-(defun sx--< (property x y &optional pred)
+(defun sx--< (property x y &optional predicate)
   "Non-nil if PROPERTY attribute of question X is less than that of Y.
-With optional argument predicate, use it instead of `<'."
-  (funcall (or pred #'<)
+
+With optional argument PREDICATE, use it instead of `<'."
+  (funcall (or predicate #'<)
            (cdr (assoc property x))
            (cdr (assoc property y))))
 
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.
+
 SETTER should be a function of two arguments.  If SETTER is nil,
 `set' is used."
   (eval
@@ -144,6 +166,9 @@ SETTER should be a function of two arguments.  If SETTER is nil,
   nil)
 
 (defun stack-initialize ()
+  "Initialize SX.
+
+Runs `sx-init--internal-hook' and `sx-init-hook', in that order."
   (run-hooks
    'sx-init--internal-hook
    'sx-init-hook))

@@ -58,17 +58,18 @@ Return a list of questions, each consed with (site SITE).
       (page . ,page))
     sx-question-browse-filter)))
 
-(defun sx-question-get-question (site id)
-  "Query SITE for a question ID and return it.
+(defun sx-question-get-question (site question-id)
+  "Query SITE for a QUESTION-ID and return it.
 
-If ID doesn't exist on SITE, raise an error."
+If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call
-              (format "questions/%s" id)
+              (format "questions/%s" question-id)
               `((site . ,site))
               sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
-      (error "Couldn't find question %S in %S" id site))))
+      (error "Couldn't find question %S in %S"
+             question-id site))))
 
 
 ;;; Question Properties

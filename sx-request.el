@@ -171,7 +171,9 @@ contains a 'vector'.  See `sx-request--build-keyword-arguments'."
       (concat base "?" args))))
 
 (defun sx-request--build-keyword-arguments (alist &optional kv-value-sep)
-  "Build a \"key=value&key=value&...\"-style string with the elements
+  "Format ALIST as a key-value joined with KV-VALUE-SEP.
+
+Build a \"key=value&key=value&...\"-style string with the elements
 of ALIST.  If any value in the alist is `nil', that pair will not
 be included in the return.  If you wish to pass a notion of
 false, use the symbol `false'.  Each element is processed with
