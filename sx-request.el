@@ -130,6 +130,7 @@ the main content of the response is returned."
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
           (let* ((data (progn
+                         ;; @TODO use url-http-end-of-headers
                          (goto-char (point-min))
                          (if (not (search-forward "\n\n" nil t))
                              (error "Headers missing; response corrupt")

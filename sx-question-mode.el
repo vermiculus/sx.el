@@ -456,7 +456,7 @@ URL is used as 'help-echo and 'url properties."
   (interactive)
   (browse-url
    (or (get-text-property (or pos (point)) 'url)
-       (error "No url under point: %s" (or pos (point))))))
+       (user-error "No url under point: %s" (or pos (point))))))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
