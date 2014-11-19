@@ -67,11 +67,6 @@
   (format "https://api.stackexchange.com/%s/" sx-request-api-version)
   "The base URL to make requests from.")
 
-;;; @TODO Shouldn't this be made moot by our caching system?
-(defcustom sx-request-cache-p
-  t
-  "Cache requests made to the StackExchange API.")
-
 (defcustom sx-request-unzip-program
   "gunzip"
   "Program used to unzip the response if it is compressed.
@@ -121,7 +116,7 @@ then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
-  (let ((url-automatic-caching sx-request-cache-p)
+  (let ((url-automatic-caching t)
         (url-inhibit-uncompression t)
         (request-method (if use-post "POST" "GET"))
         (request-args
