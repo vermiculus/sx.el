@@ -38,12 +38,8 @@
 Return the response content as a complex alist.
 
 See `sx-request-make' and `sx-filter-get-var'."
-  (sx-request-make
-   method
-   (cons (cons 'filter
-               (sx-filter-get-var
-                (cond (filter filter)
-                      ((boundp 'stack-filter) stack-filter))))
+  (sx-request-make method
+   (cons (cons 'filter (sx-filter-get-var filter))
          keyword-arguments)))
 
 (provide 'sx-method)
