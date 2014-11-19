@@ -87,6 +87,8 @@ parsed and displayed prominently on the page)."
              (error "You must enter this code to use this client fully"))
     (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
 
+(defalias 'sx-authenticate #'sx-auth-authenticate)
+
 (provide 'sx-auth)
 ;;; sx-auth.el ends here
 
