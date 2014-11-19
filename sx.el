@@ -1,8 +1,12 @@
-;;; sx.el --- core functions                         -*- lexical-binding: t; -*-
+;;; sx.el --- Core functions of the sx package.      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
+;; URL: https://github.com/vermiculus/stack-mode/
+;; Version: 0.1
+;; Keywords: help, hypermedia, tools
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,6 +28,22 @@
 
 ;;; Code:
 
+(defconst sx-version "0.1" "Version of the `sx' package.")
+
+
+;;; User commands
+(defun sx-version ()
+  "Print and return the version of the `sx' package."
+  (interactive)
+  (message "%s: %s" 'sx-version sx-version)
+  sx-version)
+
+;;;###autoload
+(defun sx-bug-report ()
+  "File a bug report about the `sx' package."
+  (interactive)
+  (browse-url "https://github.com/vermiculus/stack-mode/issues/new"))
+
 
 ;;; Utility Functions
 
@@ -33,17 +53,15 @@ This is designed for the (site id id ...) lists. So the first car
 is intentionally skipped."
   `(let ((tail ,list)
          (x ,newelt))
-     ;; The first element is never less-than.
-     (while (and 
-             ;; We're at the end.
+     (while (and ;; We're not at the end.
              (cdr-safe tail)
-             ;; We're at the right place.
+             ;; We're not at the right place.
              (,(or predicate #'<) x (cadr tail)))
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
 (defun sx-message (format-string &rest args)
-  "Display a message"
+  "Display a message."
   (message "[stack] %s" (apply #'format format-string args)))
 
 (defun sx-message-help-echo ()
@@ -52,8 +70,9 @@ is intentionally skipped."
     (when echo (message "%s" echo))))
 
 (defun sx--thing-as-string (thing &optional sequence-sep)
-  "Return a string representation of THING.  If THING is already
-a string, just return it."
+  "Return a string representation of THING.
+If THING is already a string, just return it.
+Optional argument SEQUENCE-SEP is the separator applied between elements of a sequence."
   (cond
    ((stringp thing) thing)
    ((symbolp thing) (symbol-name thing))
@@ -63,7 +82,7 @@ a string, just return it."
                thing (if sequence-sep sequence-sep ";")))))
 
 (defun sx--filter-data (data desired-tree)
-  "Filters DATA and returns the DESIRED-TREE"
+  "Filters DATA and return the DESIRED-TREE."
   (if (vectorp data)
       (apply #'vector
              (mapcar (lambda (entry)
@@ -141,8 +160,8 @@ This is used internally to set initial values for variables such
 as filters.")
 
 (defun sx--< (property x y &optional pred)
-  "Non-nil if PROPERTY attribute of question X is less than that of Y.
-With optional argument predicate, use it instead of `<'."
+  "Non-nil if PROPERTY attribute of alist X is less than that of Y.
+With optional argument PRED, use it instead of `<'."
   (funcall (or pred #'<)
            (cdr (assoc property x))
            (cdr (assoc property y))))
@@ -158,7 +177,7 @@ SETTER should be a function of two arguments.  If SETTER is nil,
        (,(or setter #'setq) ,variable ,value))))
   nil)
 
-(defvar sx-initialized nil 
+(defvar sx-initialized nil
   "Nil if sx hasn't been initialized yet.
 If it has, holds the time at which initialization happened.")
 
