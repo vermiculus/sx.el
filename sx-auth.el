@@ -41,6 +41,44 @@ This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
 what you are doing!")
 
+(defvar sx-auth-method-auth '((me . t)
+                              (inbox . t)
+                              (notifications . t)
+                              (events . t)
+                              (posts (comments add))
+                              (comments delete
+                                        edit
+                                        flags
+                                        upvote)
+                              (answers accept
+                                       delete
+                                       downvote
+                                       edit
+                                       flags
+                                       upvote)
+                              (questions answers
+                                         add
+                                         close
+                                         delete
+                                         downvote
+                                         edit
+                                         favorite
+                                         flags
+                                         render
+                                         upvote
+                                         (unanswered my-tags)))
+  "List of methods that require auth.
+Methods are of form (METHOD SUBMETHODS) where SUBMETHODS
+  is (METHOD METHOD METHOD ...).
+
+If all SUBMETHODS require auth or there are no submethods, form
+will be (METHOD  . t)")
+
+(defvar sx-auth-filter-auth '()
+  "List of filter types that require auth.
+Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
+FILTER).")
+
 (defun sx-auth-authenticate ()
   "Authenticate this application.
 
@@ -67,6 +105,36 @@ questions)."
       (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
     (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
+
+(defun sx-auth--method-p (method &optional submethod)
+  "Check if METHOD is one that may require authentication.
+If it has `auth required` SUBMETHODs, return t."
+  (let ((method-auth (cdr (assoc method sx-auth-method-auth)))
+        ;; If the submethod has additional options, they may all be
+        ;; eligible, in which case we only need to check the `car'.
+        (sub-head (if (listp submethod)
+                      (car submethod))))
+    (and method-auth
+         (or
+          ;; All submethods require auth.
+          (eq t method-auth)
+          ;; All sub-submethods require auth.
+          (member sub-head method-auth)
+          ;; Specific submethod requires auth.
+          (member submethod method-auth))))))
+
+;; Temporary solution.  When we switch to pre-defined filters we will
+;; have to change the logic to match against specific filters.
+(defun sx-auth--filter-p (object &optional filter)
+  "Check if OBJECT is one that may require authentication.
+If it has `auth required` FILTERs, return t."
+  (let ((object-auth (cdr (assoc object sx-auth-filter-auth))))
+    (and object-auth
+         (or
+          ;; All elements of object require auth.
+          (eq t object-auth)
+          ;; Specific filters on object require auth.
+          (member filter object-auth))))))
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here
