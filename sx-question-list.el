@@ -381,7 +381,7 @@ completions from `sx-site-get-api-tokens'.  Sets
 (defvar sx-question-list--buffer nil
   "Buffer where the list of questions is displayed.")
 
-(defun sx-list-questions (no-update)
+(defun list-questions (no-update)
   "Display a list of StackExchange questions.
 
 NO-UPDATE is passed to `sx-question-list-refresh'."
@@ -395,7 +395,7 @@ NO-UPDATE is passed to `sx-question-list-refresh'."
     (sx-question-list-refresh 'redisplay no-update))
   (switch-to-buffer sx-question-list--buffer))
 
-(defalias 'list-questions #'sx-list-questions)
+(defalias 'sx-list-questions #'list-questions)
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
