@@ -28,6 +28,7 @@
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
+(require 'sx-favorites)
 
 
 ;;; Customization
@@ -86,6 +87,11 @@
   ""
   :group 'sx-question-list-faces)
 
+(defface sx-question-list-favorite
+  '((t :inherit sx-question-list-score-upvoted))
+  ""
+  :group 'sx-question-list-faces)
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode tabulated-list-mode "Question List"
@@ -132,7 +138,32 @@ Letters do not insert themselves; instead, they are commands.
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
    ("v" sx-question-list-visit)
+   ("h" sx-question-list-hide)
+   ("m" sx-question-list-mark-read)
    ([?\r] sx-question-list-display-question)))
+
+(defun sx-question-list-hide (data)
+  "Hide question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-hidden data)
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
+
+(defun sx-question-list-mark-read (data)
+  "Mark as read question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-read data)
+  (sx-question-list-next 1)  
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
 
 (defvar sx-question-list--current-page "Latest"
   ;; @TODO Other values (once we implement them) are "Top Voted",
@@ -198,7 +229,8 @@ a new list before redisplaying."
     (setq sx-question-list--current-dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
-          (mapcar #'sx-question-list--print-info question-list)))
+          (mapcar #'sx-question-list--print-info
+                  (cl-remove-if #'sx-question--hidden-p question-list))))
   (when redisplay (tabulated-list-print 'remember)))
 
 (defun sx-question-list-visit (&optional data)
@@ -219,37 +251,43 @@ Used in the questions list to indicate a question was updated \"4d ago\"."
   :group 'sx-question-list)
 
 (defun sx-question-list--print-info (question-data)
-  "Format QUESTION-DATA for display in the list.
+  "Convert `json-read' DATA into tabulated-list format.
 
 See `sx-question-list-refresh'."
   (sx-assoc-let question-data
-    (list
-     question-data
-     (vector
-      (list (int-to-string .score)
-            'face (if .upvoted 'sx-question-list-score-upvoted
-                    'sx-question-list-score))
-      (list (int-to-string .answer_count)
-            'face (if (sx-question--accepted-answer-id question-data)
-                      'sx-question-list-answers-accepted
-                    'sx-question-list-answers))
-      (concat
-       (propertize
-        .title
-        'face (if (sx-question--read-p question-data)
-                  'sx-question-list-read-question
-                ;; Increment `sx-question-list--unread-count' for the
-                ;; mode-line.
-                (cl-incf sx-question-list--unread-count)
-                'sx-question-list-unread-question))
-       (propertize " " 'display "\n         ")
-       (propertize (concat (sx-time-since .last_activity_date)
-                           sx-question-list-ago-string)
-                   'face 'sx-question-list-date)
-       " "
-       (propertize (mapconcat #'sx-question--tag-format .tags " ")
-                   'face 'sx-question-list-tags)
-       (propertize " " 'display "\n"))))))
+    (let ((favorite (if (member .question_id
+                                (assoc .site
+                                       sx-favorites--user-favorite-list))
+                        (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
+      (list
+       question-data
+       (vector
+        (list (int-to-string .score)
+              'face (if .upvoted 'sx-question-list-score-upvoted
+                      'sx-question-list-score))
+        (list (int-to-string .answer_count)
+              'face (if (sx-question--accepted-answer-id question-data)
+                        'sx-question-list-answers-accepted
+                      'sx-question-list-answers))
+        (concat
+         (propertize
+          .title
+          'face (if (sx-question--read-p question-data)
+                    'sx-question-list-read-question
+                  ;; Increment `sx-question-list--unread-count' for
+                  ;; the mode-line.
+                  (cl-incf sx-question-list--unread-count)
+                  'sx-question-list-unread-question))
+         (propertize " " 'display "\n   ")
+         (propertize favorite 'face 'sx-question-list-favorite)
+         "     "
+         (propertize (concat (sx-time-since .last_activity_date)
+                             sx-question-list-ago-string)
+                     'face 'sx-question-list-date)
+         " "
+         (propertize (mapconcat #'sx-question--tag-format .tags " ")
+                     'face 'sx-question-list-tags)
+         (propertize " " 'display "\n")))))))
 
 (defun sx-question-list-view-previous (n)
   "Move to the previous question and display it.
@@ -345,6 +383,7 @@ completions from `sx-site-get-api-tokens'.  Sets
 
 NO-UPDATE is passed to `sx-question-list-refresh'."
   (interactive "P")
+  (sx-initialize)
   (unless (buffer-live-p sx-question-list--buffer)
     (setq sx-question-list--buffer
           (generate-new-buffer "*question-list*")))

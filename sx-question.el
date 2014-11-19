@@ -32,11 +32,13 @@
      question.answers
      question.last_editor
      question.accepted_answer_id
+     question.link
      user.display_name
      comment.owner
      comment.body_markdown
      comment.body
      answer.last_editor
+     answer.link
      answer.owner
      answer.body_markdown
      answer.comments)
@@ -74,6 +76,7 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
 
 ;;; Question Properties
 
+;;;; Read/unread
 (defvar sx-question--user-read-list nil 
   "Alist of questions read by the user.
 
@@ -91,7 +94,7 @@ where each element in QUESTION-LIST has the form
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
-          (sx-cache-get 'read-questions `(list ,site)))))
+          (sx-cache-get 'read-questions `'((,site))))))
 
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated.
@@ -121,9 +124,65 @@ See `sx-question--user-read-list'."
        ((setq cell (assoc .question_id site-cell))
         (setcdr cell .last_activity_date))
        ;; Question wasn't present.
-       (t (setcdr site-cell (cons q-cell (cdr site-cell)))))))
+       (t
+        (sx-sorted-insert-skip-first
+         q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
   ;; Save the results.
+
+  ;; @TODO This causes a small lag on `j' and `k' as the list gets
+  ;; large.  Should we do this on a timer?
   (sx-cache-set 'read-questions sx-question--user-read-list))
+
+
+;;;; Hidden
+(defvar sx-question--user-hidden-list nil 
+  "Alist of questions hidden by the user.
+
+Each element has the form
+
+  (SITE . QUESTION-LIST).
+
+And each element in QUESTION-LIST has the form
+
+  (QUESTION_ID . LAST-VIEWED-DATE).")
+
+(defun sx-question--ensure-hidden-list (site)
+  "Ensure the `sx-question--user-hidden-list' has been read from cache.
+
+If no cache exists for it, initialize one with SITE."
+  (unless sx-question--user-hidden-list
+    (setq sx-question--user-hidden-list
+          (sx-cache-get 'hidden-questions `'((,site))))))
+
+(defun sx-question--hidden-p (question)
+  "Non-nil if QUESTION has been hidden."
+  (sx-assoc-let question
+    (sx-question--ensure-hidden-list .site)
+    (let ((ql (cdr (assoc .site sx-question--user-hidden-list))))
+      (and ql (memq .question_id ql)))))
+
+(defun sx-question--mark-hidden (question)
+  "Mark QUESTION as being hidden."
+  (sx-assoc-let question
+    (sx-question--ensure-hidden-list .site)
+    (let ((site-cell (assoc .site sx-question--user-hidden-list))
+          cell)
+      ;; If question already hidden, do nothing.
+      (unless (memq .question_id site-cell)
+        ;; First question from this site.
+        (if (null site-cell)
+            (push (list .site .question_id) sx-question--user-hidden-list)
+          ;; Question wasn't present.
+          ;; Add it in, but make sure it's sorted (just in case we need
+          ;; it later).
+          (sx-sorted-insert-skip-first .question_id site-cell >))
+        ;; This causes a small lag on `j' and `k' as the list gets large.
+        ;; Should we do this on a timer?
+        ;; Save the results.
+        (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
+
+
+;;;; Other data
 
 (defun sx-question--accepted-answer-id (question)
   "Return accepted answer in QUESTION or nil if none exists."

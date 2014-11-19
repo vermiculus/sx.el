@@ -1,8 +1,12 @@
-;;; sx.el --- core functions                         -*- lexical-binding: t; -*-
+;;; sx.el --- Core functions of the sx package.      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
+;; URL: https://github.com/vermiculus/stack-mode/
+;; Version: 0.1
+;; Keywords: help, hypermedia, tools
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,8 +28,37 @@
 
 ;;; Code:
 
+(defconst sx-version "0.1" "Version of the `sx' package.")
+
+
+;;; User commands
+(defun sx-version ()
+  "Print and return the version of the `sx' package."
+  (interactive)
+  (message "%s: %s" 'sx-version sx-version)
+  sx-version)
+
+;;;###autoload
+(defun sx-bug-report ()
+  "File a bug report about the `sx' package."
+  (interactive)
+  (browse-url "https://github.com/vermiculus/stack-mode/issues/new"))
+
 
 ;;; Utility Functions
+
+(defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
+  "Inserted NEWELT into LIST sorted by PREDICATE.
+This is designed for the (site id id ...) lists. So the first car
+is intentionally skipped."
+  `(let ((tail ,list)
+         (x ,newelt))
+     (while (and ;; We're not at the end.
+             (cdr-safe tail)
+             ;; We're not at the right place.
+             (,(or predicate #'<) x (cadr tail)))
+       (setq tail (cdr tail)))
+     (setcdr tail (cons x (cdr tail)))))
 
 (defun sx-message (format-string &rest args)
   "Display a message."
@@ -39,7 +72,10 @@
 (defun sx--thing-as-string (thing &optional sequence-sep)
   "Return a string representation of THING.
 
-If THING is already a string, just return it."
+If THING is already a string, just return it.
+
+Optional argument SEQUENCE-SEP is the separator applied between
+elements of a sequence."
   (cond
    ((stringp thing) thing)
    ((symbolp thing) (symbol-name thing))
@@ -49,7 +85,7 @@ If THING is already a string, just return it."
                thing (if sequence-sep sequence-sep ";")))))
 
 (defun sx--filter-data (data desired-tree)
-  "Filters DATA and returns the DESIRED-TREE.
+  "Filter DATA and return the DESIRED-TREE.
 
 For example:
 
@@ -146,7 +182,7 @@ This is used internally to set initial values for variables such
 as filters.")
 
 (defun sx--< (property x y &optional predicate)
-  "Non-nil if PROPERTY attribute of question X is less than that of Y.
+  "Non-nil if PROPERTY attribute of alist X is less than that of Y.
 
 With optional argument PREDICATE, use it instead of `<'."
   (funcall (or predicate #'<)
@@ -165,13 +201,21 @@ SETTER should be a function of two arguments.  If SETTER is nil,
        (,(or setter #'setq) ,variable ,value))))
   nil)
 
-(defun stack-initialize ()
-  "Initialize SX.
+(defvar sx-initialized nil
+  "Nil if sx hasn't been initialized yet.
+If it has, holds the time at which initialization happened.")
 
-Runs `sx-init--internal-hook' and `sx-init-hook', in that order."
-  (run-hooks
-   'sx-init--internal-hook
-   'sx-init-hook))
+(defun sx-initialize (&optional force)
+  "Run initialization hooks if they haven't been run yet.
+
+These are `sx-init--internal-hook' and `sx-init-hook'.
+
+If FORCE is non-nil, run them even if they've already been run."
+  (when (or force (not sx-initialized))
+    (prog1
+        (run-hooks 'sx-init--internal-hook
+                   'sx-init-hook)
+      (setq sx-initialized (current-time)))))
 
 (provide 'sx)
 ;;; sx.el ends here

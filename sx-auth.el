@@ -28,7 +28,7 @@
 (require 'sx-cache)
 
 (defconst sx-auth-root
-  "https://stackexchange.com/oauth/")
+  "https://stackexchange.com/oauth/dialog")
 (defconst sx-auth-redirect-uri
   "http://vermiculus.github.io/stack-mode/auth/auth.htm")
 (defconst sx-auth-client-id
@@ -69,15 +69,17 @@ parsed and displayed prominently on the page)."
   (interactive)
   (setq
    sx-auth-access-token
-   (let ((url (sx-request-build
-               "dialog"
-               `((client_id . ,sx-auth-client-id)
-                 (scope . (read_inbox
-                           no_expiry
-                           write_access))
-                 (redirect_uri . ,(url-hexify-string
-                                   sx-auth-redirect-uri)))
-               "," sx-auth-root)))
+   (let ((url (concat
+               sx-auth-root
+               "?"
+               (sx-request--build-keyword-arguments
+                `((client_id . ,sx-auth-client-id)
+                  (scope . (read_inbox
+                            no_expiry
+                            write_access))
+                  (redirect_uri . ,(url-hexify-string
+                                    sx-auth-redirect-uri)))
+                ","))))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
   (if (string-equal "" sx-auth-access-token)

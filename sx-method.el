@@ -32,15 +32,23 @@
 (require 'sx-filter)
 
 (defun sx-method-call
-    (method &optional keyword-arguments filter)
+    (method &optional keyword-arguments filter need-auth use-post)
   "Call METHOD with KEYWORD-ARGUMENTS using FILTER.
+
+If NEED-AUTH is non-nil, an auth-token is required.  If 'WARN,
+warn the user `(user-error ...)' if they do not have an AUTH
+token set.
+
+If USE-POST is non-nil, use `POST' rather than `GET' for passing
+arguments.
 
 Return the response content as a complex alist.
 
 See `sx-request-make' and `sx-filter-get-var'."
   (sx-request-make method
    (cons (cons 'filter (sx-filter-get-var filter))
-         keyword-arguments)))
+         keyword-arguments)
+   need-auth use-post))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
