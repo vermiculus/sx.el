@@ -173,7 +173,9 @@ is equivalent to
 (defcustom sx-init-hook nil
   "Hook run when stack-mode initializes.
 
-Run after `sx-init--internal-hook'.")
+Run after `sx-init--internal-hook'."
+  :group 'sx
+  :type 'hook)
 
 (defvar sx-init--internal-hook nil
   "Hook run when stack-mode initializes.

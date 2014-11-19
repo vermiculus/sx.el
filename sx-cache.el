@@ -30,7 +30,9 @@
 
 (defcustom sx-cache-directory
   (expand-file-name ".stackmode" user-emacs-directory)
-  "Directory containining cached data.")
+  "Directory containing cached data."
+  :type 'directory
+  :group 'sx-cache)
 
 (defun sx-cache--ensure-sx-cache-directory-exists ()
   "Ensure `sx-cache-directory' exists."
