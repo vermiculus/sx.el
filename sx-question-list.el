@@ -139,6 +139,7 @@ Letters do not insert themselves; instead, they are commands.
    (":" sx-question-list-switch-site)
    ("v" sx-question-list-visit)
    ("h" sx-question-list-hide)
+   ("m" sx-question-list-mark-read)
    ([?\r] sx-question-list-display-question)))
 
 (defun sx-question-list-hide (data)
@@ -149,6 +150,18 @@ Non-interactively, DATA is a question alist."
              (tabulated-list-get-id)
            (user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-hidden data)
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
+
+(defun sx-question-list-mark-read (data)
+  "Mark as read question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-read data)
+  (sx-question-list-next 1)  
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
