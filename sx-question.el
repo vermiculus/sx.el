@@ -63,6 +63,7 @@
   (let ((res (sx-method-call 'questions
                              :id id
                              :site site
+                             :auth t
                              :filter sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)

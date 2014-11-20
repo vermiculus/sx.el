@@ -58,7 +58,7 @@ Added as hook to initialization."
   (sx-method-call 'me
                   :submethod (format "favorites?site=%s" site)
                   :filter sx-favorite-list-filter
-                  :auth 'warn))
+                  :auth t))
 
 (defun sx-favorites--update-site-favorites (site)
   "Update list of starred QUESTION_IDs for SITE.

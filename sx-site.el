@@ -50,8 +50,7 @@
    'site-list
    '(sx-method-call 'sites
                     :keywords '((pagesize . 999))
-                    :filter sx-site-browse-filter
-                    :auth 'warn)))
+                    :filter sx-site-browse-filter)))
 
 (defcustom sx-site-favorites
   nil

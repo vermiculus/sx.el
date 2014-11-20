@@ -71,7 +71,7 @@ the variables."
                                 :submethod 'associated
                                 :keywords '((types . (main_site meta_site)))
                                 :filter sx-network--user-filter
-                                :auth 'warn))
+                                :auth t))
   (sx-network--get-associated))
 
 (defun sx-network--initialize ()
