@@ -71,19 +71,16 @@ number of requests left every time it finishes a call.")
 ;;; Making Requests
 
 (defun sx-request-make
-    (method &optional args need-auth use-post silent)
-  (let ((url-automatic-caching sx-request-cache-p)
-        (url-inhibit-uncompression t)
-        (silent (or silent sx-request-silent-p))
-        (request-method (if use-post "POST" "GET"))
-        (request-args
-         (sx-request--build-keyword-arguments args nil need-auth))
-        (request-url (concat sx-request-api-root method)))
-    (unless silent (sx-message "Request: %S" request-url))
-    (let ((response-buffer (sx-request--request request-url
-                                                request-args
-                                                request-method
-                                                silent)))
+    (method &optional args request-method)
+  (let* ((url-automatic-caching sx-request-cache-p)
+         (url-inhibit-uncompression t)
+         (url-request-data (sx-request--build-keyword-arguments args
+                                                            nil))
+         (request-url (concat sx-request-api-root method))
+         (url-request-method request-method)
+         (url-request-extra-headers
+          '(("Content-Type" . "application/x-www-form-urlencoded")))
+         (response-buffer (url-retrieve-synchronously request-url)))
       (if (not response-buffer)
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
@@ -115,23 +112,21 @@ number of requests left every time it finishes a call.")
                        sx-request-remaining-api-requests-message-threshold)
                 (sx-message "%d API requests reamining"
                             sx-request-remaining-api-requests))
-              (sx-encoding-clean-content-deep .items))))))))
+              (sx-encoding-clean-content-deep .items)))))))
+
+(defun sx-request-fallback (method &optional args request-method)
+  "Fallback method when authentication is not available.
+This is for UI generation when the associated API call would
+require authentication.
+
+Currently returns nil."
+  nil)
 
 
 ;;; Support Functions
 
-(defun sx-request--request (url args method silent)
-  (let ((url-request-method method)
-        (url-request-extra-headers
-         '(("Content-Type" . "application/x-www-form-urlencoded")))
-        (url-request-data args))
-    (cond
-     ((equal '(24 . 4) (cons emacs-major-version emacs-minor-version))
-      (url-retrieve-synchronously url silent))
-     (t (url-retrieve-synchronously url)))))
-
 (defun sx-request--build-keyword-arguments (alist &optional
-                                                  kv-value-sep need-auth)
+                                                  kv-value-sep)
   "Build a \"key=value&key=value&...\"-style string with the elements
 of ALIST.  If any value in the alist is `nil', that pair will not
 be included in the return.  If you wish to pass a notion of
@@ -139,23 +134,11 @@ false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
   ;; Add API key to list of arguments, this allows for increased quota
   ;; automatically.
-  (let* ((warn (equal need-auth 'warn))
-         (api-key (cons "key" sx-request-api-key))
-         (auth
-          (let ((auth (car (sx-cache-get 'auth))))
-            (cond
-             (auth)
-             ;; Pass user error when asking to warn
-             (warn
-              (user-error
-               "This query requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
-             ((not auth)
-              (lwarn "stack-mode" :debug
-                     "This query requires authentication")
-              nil)))))
+  (let ((api-key (cons "key" sx-request-api-key))
+         (auth (car (sx-cache-get 'auth))))
     (push api-key alist)
-    (if (and need-auth auth)
-        (push auth alist))
+    (when auth
+      (push auth alist))
     (mapconcat
      (lambda (pair)
        (concat
