@@ -35,7 +35,7 @@
                                       (filter 'none)
                                       auth
                                       (url-method "GET")
-                                      (site sx-site-default))
+                                      site)
     "Call METHOD with additional keys.
 
 :ID is the id associated with a question, answer, comment, post or
@@ -58,7 +58,7 @@ Return the entire response as a complex alist."
                                (when submethod
                                  (format "/%s" submethod))))
           (call 'sx-request-make))
-      (lwarn "sx-call-method" :warning "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
+      (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
 	     access-token method-auth full-method filter-auth)
       (unless access-token
         (cond
