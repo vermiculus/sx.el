@@ -109,7 +109,7 @@ questions)."
 
 (defun sx-auth--method-p (method &optional submethod)
   "Check if METHOD is one that may require authentication.
-If it has `auth required` SUBMETHODs, return t."
+If it has `auth-required' SUBMETHODs, or no submethod, return t."
   (let ((method-auth (cdr (assoc method sx-auth-method-auth)))
         ;; If the submethod has additional options, they may all be
         ;; eligible, in which case we only need to check the `car'.
@@ -117,12 +117,14 @@ If it has `auth required` SUBMETHODs, return t."
                       (car submethod))))
     (and method-auth
          (or
+          ;; No submethod specified
+          (not submethod)
           ;; All submethods require auth.
           (eq t method-auth)
           ;; All sub-submethods require auth.
           (member sub-head method-auth)
           ;; Specific submethod requires auth.
-          (member submethod method-auth))))))
+          (member submethod method-auth)))))
 
 ;; Temporary solution.  When we switch to pre-defined filters we will
 ;; have to change the logic to match against specific filters.
