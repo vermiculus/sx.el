@@ -120,7 +120,7 @@ This is for UI generation when the associated API call would
 require authentication.
 
 Currently returns nil."
-  nil)
+  '(()))
 
 
 ;;; Support Functions
