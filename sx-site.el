@@ -48,9 +48,10 @@
 (defun sx-site--get-site-list ()
   (sx-cache-get
    'site-list
-   '(sx-method-call
-     "sites" '((pagesize . 999))
-     sx-site-browse-filter)))
+   '(sx-method-call 'sites
+                    :keywords '((pagesize . 999))
+                    :filter sx-site-browse-filter
+                    :auth 'warn)))
 
 (defcustom sx-site-favorites
   nil

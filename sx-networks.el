@@ -67,10 +67,11 @@ If cache is not available, retrieve current data."
 Sets cache and then uses `sx-network--get-associated' to update
 the variables."
   (sx-cache-set 'network-user
-                (sx-method-call "me/associated"
-                                '((types . (main_site meta_site)))
-                                sx-network--user-filter
-                                'warn))
+                (sx-method-call 'me
+                                :submethod 'associated
+                                :keywords '((types . (main_site meta_site)))
+                                :filter sx-network--user-filter
+                                :auth 'warn))
   (sx-network--get-associated))
 
 (defun sx-network--initialize ()

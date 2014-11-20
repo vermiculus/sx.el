@@ -35,6 +35,8 @@
      question.last_editor
      question.accepted_answer_id
      question.link
+     question.upvoted
+     question.downvoted
      user.display_name
      comment.owner
      comment.body_markdown
@@ -50,18 +52,18 @@
   "Get the page PAGE of questions from SITE."
   (mapcar
    (lambda (question) (cons (cons 'site site) question))
-   (sx-method-call
-    "questions"
-    `((site . ,site)
-      (page . ,page))
-    sx-question-browse-filter)))
+   (sx-method-call 'questions
+                   :keywords `((page . ,page))
+                   :site site
+                   :auth t
+                   :filter sx-question-browse-filter)))
 
 (defun sx-question-get-question (site id)
   "Get the question ID from SITE."
-  (let ((res (sx-method-call
-              (format "questions/%s" id)
-              `((site . ,site))
-              sx-question-browse-filter)))
+  (let ((res (sx-method-call 'questions
+                             :id id
+                             :site site
+                             :filter sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find question %S in %S" id site))))
