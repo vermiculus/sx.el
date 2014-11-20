@@ -131,22 +131,31 @@ If it has `auth-required' SUBMETHODs, or no submethod, return t."
   "Check if FILTER contains properties that require authentication.
 If it has `auth-required' properties, return a filter that has
 removed those properties."
-  (let ((auth-filters (cl-remove-if #'nil
-                                 ;; Only retrieve the elements that
-                                 ;; are issues.
-                                 (mapcar (lambda (prop)
-                                           (car
-                                            (member prop
-                                                    sx-auth-filter-auth)))
-                                         filter)))
-        (clean-filter))
-        ;; Auth-filters is the filters that are issues
+  (let* ((incl-filter (if (listp filter) (car filter)))
+         (rest-filter (if incl-filter (cdr filter)))
+         (auth-filters (cl-remove-if #'nil
+                                     ;; Only retrieve the elements that
+                                     ;; are issues.
+                                     (mapcar (lambda (prop)
+                                               (car
+                                                (member prop
+                                                        sx-auth-filter-auth)))
+                                             (or incl-filter filter))))
+         clean-filter out-filter)
+    (lwarn "sx-auth filter" :debug "Filter: %S" filter)
+    ;; Auth-filters is the filters that are issues
     (when auth-filters
       (setq clean-filter
             (cl-remove-if (lambda (prop)
                             (member prop auth-filters))
-                          filter)))
-    clean-filter))
+                          (or incl-filter filter))))
+    (if (and incl-filter clean-filter)
+        (setq out-filter
+              (cons clean-filter rest-filter))
+      (setq out-filter clean-filter))
+    (lwarn "sx-auth filter2" :debug "Filter property %s requires auth. %S"
+           auth-filters out-filter)
+    out-filter))
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here
