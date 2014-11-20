@@ -74,7 +74,8 @@ Methods are of form (METHOD SUBMETHODS) where SUBMETHODS
 If all SUBMETHODS require auth or there are no submethods, form
 will be (METHOD  . t)")
 
-(defvar sx-auth-filter-auth '()
+(defvar sx-auth-filter-auth '(question.upvoted
+                              question.downvoted)
   "List of filter types that require auth.
 Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
 FILTER).")
@@ -125,16 +126,26 @@ If it has `auth required` SUBMETHODs, return t."
 
 ;; Temporary solution.  When we switch to pre-defined filters we will
 ;; have to change the logic to match against specific filters.
-(defun sx-auth--filter-p (object &optional filter)
-  "Check if OBJECT is one that may require authentication.
-If it has `auth required` FILTERs, return t."
-  (let ((object-auth (cdr (assoc object sx-auth-filter-auth))))
-    (and object-auth
-         (or
-          ;; All elements of object require auth.
-          (eq t object-auth)
-          ;; Specific filters on object require auth.
-          (member filter object-auth))))))
+(defun sx-auth--filter-p (filter)
+  "Check if FILTER contains properties that require authentication.
+If it has `auth-required' properties, return a filter that has
+removed those properties."
+  (let ((auth-filters (cl-remove-if #'nil
+                                 ;; Only retrieve the elements that
+                                 ;; are issues.
+                                 (mapcar (lambda (prop)
+                                           (car
+                                            (member prop
+                                                    sx-auth-filter-auth)))
+                                         filter)))
+        (clean-filter))
+        ;; Auth-filters is the filters that are issues
+    (when auth-filters
+      (setq clean-filter
+            (cl-remove-if (lambda (prop)
+                            (member prop auth-filters))
+                          filter)))
+    clean-filter))
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here
