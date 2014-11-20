@@ -115,10 +115,9 @@ If it has `auth-required' SUBMETHODs, or no submethod, return t."
         ;; eligible, in which case we only need to check the `car'.
         (sub-head (if (listp submethod)
                       (car submethod))))
+    (lwarn " sx-auth method" :debug "Method %s requires auth" method-auth)
     (and method-auth
          (or
-          ;; No submethod specified
-          (not submethod)
           ;; All submethods require auth.
           (eq t method-auth)
           ;; All sub-submethods require auth.
