@@ -63,7 +63,7 @@ but could still be used without authenticating (i.e a launch/home page).
 
 When AUTH is 'warn, methods will signal a `user-error'.  This is meant
 for interactive commands that absolutely require authentication
- (submitting questions/answers, reading inbox, etc).  Filters will
+\(submitting questions/answers, reading inbox, etc).  Filters will
 treat 'warn as equivalent to t.
 
 Return the entire response as a complex alist."
