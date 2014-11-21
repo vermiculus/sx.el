@@ -51,6 +51,21 @@ authentication.
 :URL-METHOD is either \"POST\" or \"GET\"
 :SITE is the api parameter specifying the site.
 
+When AUTH is nil, it is assumed that no auth-requiring filters or
+methods will be used.  If they are an error will be signaled.  This is
+to ensure awareness of where auth is needed.
+
+When AUTH Is t, filters will automatically use a non-auth subset if
+no `access_token' is available.  Methods requiring auth will instead
+use `sx-request-fallback' rather than have a failed API response.
+This is meant to allow for UI pages where portions may require AUTH
+but could still be used without authenticating (i.e a launch/home page).
+
+When AUTH is 'warn, methods will signal a `user-error'.  This is meant
+for interactive commands that absolutely require authentication
+(submitting questions/answers, reading inbox, etc).  Filters will
+treat 'warn as equivalent to t.
+
 Return the entire response as a complex alist."
     (let ((access-token (sx-cache-get 'auth))
           (method-auth (sx-auth--method-p method submethod))
