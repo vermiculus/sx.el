@@ -58,19 +58,19 @@ property.
   (mapcar
    (lambda (question) (cons (cons 'site site) question))
    (sx-method-call 'questions
-                   :keywords `((page . ,page))
-                   :site site
-                   :auth t
-                   :filter sx-question-browse-filter)))
+     :keywords `((page . ,page))
+     :site site
+     :auth t
+     :filter sx-question-browse-filter)))
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
 If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call 'questions
-                             :id id
-                             :site site
-                             :auth t
-                             :filter sx-question-browse-filter)))
+               :id id
+               :site site
+               :auth t
+               :filter sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find question %S in %S"
