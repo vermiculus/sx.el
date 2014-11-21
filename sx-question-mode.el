@@ -270,6 +270,7 @@ DATA can represent a question or an answer."
           (insert "\n"
                   (sx-question-mode--fill-and-fontify
                    .body_markdown)
+                  "\n"
                   (propertize sx-question-mode-separator
                               'face 'sx-question-mode-header))))
       ;; Comments
