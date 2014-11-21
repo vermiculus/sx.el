@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 (require 'sx)
@@ -36,17 +34,34 @@
 (defvar sx-auth-access-token
   nil
   "Your access token.
-
 This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
 what you are doing!")
 
 (defun sx-auth-authenticate ()
   "Authenticate this application.
-
 Authentication is required to read your personal data (such as
 notifications) and to write with the API (asking and answering
-questions)."
+questions).
+
+When this function is called, `browse-url' is used to send the
+user to an authorization page managed by StackExchange.  The
+following privileges are requested:
+
+* read_inbox
+    use SX to manage and visit items in your inbox
+
+* write_acesss
+    write comments, ask questions, and post answers on your
+    behalf
+
+* no_expiry
+    do not pester you to reauthorize again
+
+After authorization with StackExchange, the user is then
+redirected to a website managed by SX.  The access token required
+to use authenticated methods is included in the hash (which is
+parsed and displayed prominently on the page)."
   (interactive)
   (setq
    sx-auth-access-token
@@ -67,6 +82,8 @@ questions)."
       (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
     (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
+
+(defalias 'sx-authenticate #'sx-auth-authenticate)
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here

@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 (require 'sx-method)
@@ -54,7 +52,6 @@
 
 (defun sx-network--get-associated ()
   "Retrieve cached information for network user.
-
 If cache is not available, retrieve current data."
   (or (and (setq sx-network--user-information (sx-cache-get 'network-user)
                  sx-network--user-sites
@@ -63,7 +60,6 @@ If cache is not available, retrieve current data."
 
 (defun sx-network--update ()
   "Update user information.
-
 Sets cache and then uses `sx-network--get-associated' to update
 the variables."
   (sx-cache-set 'network-user
@@ -75,7 +71,6 @@ the variables."
 
 (defun sx-network--initialize ()
   "Ensure network-user cache is available.
-
 Added as hook to initialization."
   ;; Cache was not retrieved, retrieve it.
   (sx-network--get-associated))
@@ -83,7 +78,6 @@ Added as hook to initialization."
 
 (defun sx-network--map-site-url-to-site-api ()
   "Convert `me/associations' to a set of `api_site_parameter's.
-
 `me/associations' does not return `api_site_parameter' so cannot
 be directly used to retrieve content per site.  This creates a
 list of sites the user is active on."

@@ -31,7 +31,6 @@
 (setq
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
- sx-request-silent-p nil
  user-emacs-directory "."
 
  sx-test-data-questions
