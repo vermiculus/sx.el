@@ -19,7 +19,30 @@
 
 ;;; Commentary:
 
+;; API requests are handled on three separate tiers:
 ;;
+;; `sx-method-call':
+;;
+;;    This is the function that should be used most often, since it
+;;    runs necessary checks (authentication) and provides basic
+;;    processing of the result for consistency.
+;;
+;; `sx-request-make':
+;;
+;;    This is the fundamental function for interacting with the API.
+;;    It makes no provisions for 'common' usage, but it does ensure
+;;    data is retrieved successfully or an appropriate signal is
+;;    thrown.
+;;
+;; `url.el' and `json.el':
+;;
+;;    The whole solution is built upon `url-retrieve-synchronously'
+;;    for making the request and `json-read-from-string' for parsing
+;;    it into a properly symbolic data structure.
+;;
+;; When at all possible, use `sx-method-call'.  There are specialized
+;; cases for the use of `sx-request-make' outside of sx-method.el, but
+;; these must be well-documented inline with the code.
 
 ;;; Code:
 
@@ -44,33 +67,52 @@
   (format "https://api.stackexchange.com/%s/" sx-request-api-version)
   "The base URL to make requests from.")
 
-(defcustom sx-request-silent-p
-  t
-  "When `t', requests default to being silent.")
-
-(defcustom sx-request-cache-p
-  t
-  "Cache requests made to the StackExchange API.")
-
 (defcustom sx-request-unzip-program
   "gunzip"
-  "program used to unzip the response")
+  "Program used to unzip the response if it is compressed.
+This program must accept compressed data on standard input."
+  :group 'sx-request
+  :type 'string)
 
 (defvar sx-request-remaining-api-requests
   nil
-  "The number of API requests remaining according to the most
-recent call.  Set by `sx-request-make'.")
+  "The number of API requests remaining.
+Set by `sx-request-make'.")
 
 (defcustom sx-request-remaining-api-requests-message-threshold
   50
-  "After `sx-request-remaining-api-requests' drops below this
+  "Lower bound for printed warnings of API usage limits.
+After `sx-request-remaining-api-requests' drops below this
 number, `sx-request-make' will begin printing out the
-number of requests left every time it finishes a call.")
+number of requests left every time it finishes a call."
+  :group 'sx-request
+  :type 'integer)
 
 
 ;;; Making Requests
 
 (defun sx-request-make
+  "Make a request to the API, executing METHOD with ARGS.
+You should almost certainly be using `sx-method-call' instead of
+this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
+
+Returns cleaned response content.
+See (`sx-encoding-clean-content-deep').
+
+The full set of arguments is built with
+`sx-request--build-keyword-arguments', prepending
+`sx-request-api-key' to receive a higher quota. It will also
+include user's `access_token` if it is avaialble. This call is
+then resolved with `url-retrieve-synchronously' to a temporary
+buffer that it returns.  The headers are then stripped using a
+search a blank line (\"\\n\\n\").  The main body of the response
+is then tested with `sx-encoding-gzipped-buffer-p' for
+compression.  If it is compressed, `sx-request-unzip-program' is
+called to uncompress the response.  The uncompressed respons is
+then read with `json-read-from-string'.
+
+`sx-request-remaining-api-requests' is updated appropriately and
+the main content of the response is returned."
     (method &optional args request-method)
   (let* ((url-automatic-caching sx-request-cache-p)
          (url-inhibit-uncompression t)
@@ -85,9 +127,10 @@ number of requests left every time it finishes a call.")
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
           (let* ((data (progn
+                         ;; @TODO use url-http-end-of-headers
                          (goto-char (point-min))
                          (if (not (search-forward "\n\n" nil t))
-                             (error "Response headers missing; response corrupt")
+                             (error "Headers missing; response corrupt")
                            (delete-region (point-min) (point))
                            (buffer-string))))
                  (response-zipped-p (sx-encoding-gzipped-p data))
@@ -97,6 +140,8 @@ number of requests left every time it finishes a call.")
                           sx-request-unzip-program
                           nil t)
                          (buffer-string)))
+                 ;; @TODO should use `condition-case' here -- set
+                 ;; RESPONSE to 'corrupt or something
                  (response (with-demoted-errors "`json' error: %S"
                              (json-read-from-string data))))
             (when (and (not response) (string-equal data "{}"))
@@ -107,8 +152,7 @@ number of requests left every time it finishes a call.")
               (when .error_id
                 (error "Request failed: (%s) [%i %s] %S"
                        .method .error_id .error_name .error_message))
-              (when (< (setq sx-request-remaining-api-requests
-                             .quota_remaining)
+              (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                        sx-request-remaining-api-requests-message-threshold)
                 (sx-message "%d API requests reamining"
                             sx-request-remaining-api-requests))
@@ -126,9 +170,15 @@ Currently returns nil."
 ;;; Support Functions
 
 (defun sx-request--build-keyword-arguments (alist &optional
-                                                  kv-value-sep)
-  "Build a \"key=value&key=value&...\"-style string with the elements
-of ALIST.  If any value in the alist is `nil', that pair will not
+						  kv-sep need-auth)
+  "Format ALIST as a key-value list joined with KV-SEP.
+If authentication is needed, include it also or error if it is
+not available.
+
+If NEED-AUTH is non-nil, authentication is required.
+
+Build a \"key=value&key=value&...\"-style string with the elements
+of ALIST.  If any value in the alist is nil, that pair will not
 be included in the return.  If you wish to pass a notion of
 false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
@@ -144,7 +194,7 @@ false, use the symbol `false'.  Each element is processed with
        (concat
         (sx--thing-as-string (car pair))
         "="
-        (sx--thing-as-string (cdr pair) kv-value-sep)))
+        (sx--thing-as-string (cdr pair) kv-sep)))
      (delq nil (mapcar
                 (lambda (pair)
                   (when (cdr pair) pair))

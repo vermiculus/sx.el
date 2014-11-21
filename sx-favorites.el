@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 ;;; Code:
 
 (require 'sx-method)
@@ -39,13 +37,11 @@
 
 (defvar sx-favorites--user-favorite-list nil
   "Alist of questions favorited by the user.
-
 Each element has the form (SITE FAVORITE-LIST).  And each element
 in FAVORITE-LIST is the numerical QUESTION_ID.")
 
 (defun sx-favorites--initialize ()
   "Ensure question-favorites cache is available.
-
 Added as hook to initialization."
   (or   (setq sx-favorites--user-favorite-list
               (sx-cache-get 'question-favorites))
@@ -62,7 +58,6 @@ Added as hook to initialization."
 
 (defun sx-favorites--update-site-favorites (site)
   "Update list of starred QUESTION_IDs for SITE.
-
 Writes list to cache QUESTION-FAVORITES."
   (let* ((favs (sx-favorites--retrieve-favorites site))
          (site-cell (assoc site

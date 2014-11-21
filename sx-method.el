@@ -19,7 +19,10 @@
 
 ;;; Commentary:
 
-;;
+;;; This file is effectively a common-use wrapper for
+;;; `sx-request-make'.  It provides higher-level handling such as
+;;; (authentication, filters, ...) that `sx-request-make' doesn't need
+;;; to handle.
 
 ;;; Code:
 (require 'json)

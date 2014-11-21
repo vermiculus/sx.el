@@ -30,39 +30,44 @@
 
 (defcustom sx-cache-directory
   (expand-file-name ".stackmode" user-emacs-directory)
-  "Directory containined cached files and precompiled filters.")
+  "Directory containing cached data."
+  :type 'directory
+  :group 'sx-cache)
+
+(defun sx-cache--ensure-sx-cache-directory-exists ()
+  "Ensure `sx-cache-directory' exists."
+  (unless (file-exists-p sx-cache-directory)
+    (mkdir sx-cache-directory)))
 
 (defun sx-cache-get-file-name (filename)
-  "Expands FILENAME in the context of `sx-cache-directory'."
+  "Expand FILENAME in the context of `sx-cache-directory'."
   (expand-file-name
    (concat (symbol-name filename) ".el")
    sx-cache-directory))
 
 (defun sx-cache-get (cache &optional form)
   "Return the data within CACHE.
+If CACHE does not exist, use `sx-cache-set' to set CACHE to the
+result of evaluating FORM.
 
-If CACHE does not exist, evaluate FORM and set it to its return.
-
-As with `sx-cache-set', CACHE is a file name within the
-context of `sx-cache-directory'."
-  (unless (file-exists-p sx-cache-directory)
-    (mkdir sx-cache-directory))
+CACHE is resolved to a file name by `sx-cache-get-file-name'."
+  (sx-cache--ensure-sx-cache-directory-exists)
   (let ((file (sx-cache-get-file-name cache)))
+    ;; If the file exists, return the data it contains
     (if (file-exists-p file)
         (with-temp-buffer
           (insert-file-contents (sx-cache-get-file-name cache))
           (read (buffer-string)))
+      ;; Otherwise, set CACHE to the evaluation of FORM.
+      ;; `sx-cache-set' returns the data that CACHE was set to.
       (sx-cache-set cache (eval form)))))
 
 (defun sx-cache-set (cache data)
-  "Set the content of CACHE to DATA.
+  "Set the content of CACHE to DATA and save.
+DATA will be written as returned by `prin1'.
 
-As with `sx-cache-get', CACHE is a file name within the
-context of `sx-cache-directory'.
-
-DATA will be written as returned by `prin1'."
-  (unless (file-exists-p sx-cache-directory)
-    (mkdir sx-cache-directory))
+CACHE is resolved to a file name by `sx-cache-get-file-name'."
+  (sx-cache--ensure-sx-cache-directory-exists)
   (write-region (prin1-to-string data) nil
                 (sx-cache-get-file-name cache))
   data)
@@ -79,10 +84,8 @@ re-initialize the cache."
 
 (defun sx-cache-invalidate-all (&optional save-auth)
   "Invalidate all caches using `sx-cache--invalidate'.
-
-Afterwards reinitialize caches using `sx-initialize'.
-
-If SAVE-AUTH is non-nil, do not clear AUTH cache."
+Afterwards reinitialize caches using `sx-initialize'.  If
+SAVE-AUTH is non-nil, do not clear AUTH cache."
   (let ((caches (let ((default-directory sx-cache-directory))
                   (file-expand-wildcards "*.el"))))
     (when save-auth

@@ -19,8 +19,6 @@
 
 ;;; Commentary:
 
-;;
-
 
 ;;; Code:
 
@@ -46,10 +44,17 @@
      answer.owner
      answer.body_markdown
      answer.comments)
-    (user.profile_image shallow_user.profile_image)))
+    (user.profile_image shallow_user.profile_image))
+  "The filter applied when retrieving question data.
+See `sx-question-get-questions' and `sx-question-get-question'.")
 
 (defun sx-question-get-questions (site &optional page)
-  "Get the page PAGE of questions from SITE."
+  "Get SITE questions.  Return page PAGE (the first if nil).
+Return a list of question.  Each question is an alist of
+properties returned by the API with an added (site SITE)
+property.
+
+`sx-method-call' is used with `sx-question-browse-filter'."
   (mapcar
    (lambda (question) (cons (cons 'site site) question))
    (sx-method-call 'questions
@@ -58,8 +63,9 @@
                    :auth t
                    :filter sx-question-browse-filter)))
 
-(defun sx-question-get-question (site id)
-  "Get the question ID from SITE."
+(defun sx-question-get-question (site question-id)
+  "Query SITE for a QUESTION-ID and return it.
+If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call 'questions
                              :id id
                              :site site
@@ -67,25 +73,34 @@
                              :filter sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
-      (error "Couldn't find question %S in %S" id site))))
+      (error "Couldn't find question %S in %S"
+             question-id site))))
 
 
 ;;; Question Properties
+
 ;;;; Read/unread
-(defvar sx-question--user-read-list nil 
+(defvar sx-question--user-read-list nil
   "Alist of questions read by the user.
-Each element has the form (SITE . QUESTION-LIST).
-And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
+
+Each element has the form
+
+    (SITE . QUESTION-LIST)
+
+where each element in QUESTION-LIST has the form
+
+    (QUESTION_ID . LAST-VIEWED-DATE).")
 
 (defun sx-question--ensure-read-list (site)
-  "Ensure the `sx-question--user-read-list' has been read from cache.
+  "Ensure `sx-question--user-read-list' has been read from cache.
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
           (sx-cache-get 'read-questions `'((,site))))))
 
 (defun sx-question--read-p (question)
-  "Non-nil if QUESTION has been read since last updated."
+  "Non-nil if QUESTION has been read since last updated.
+See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
     (let ((ql (cdr (assoc .site sx-question--user-read-list))))
@@ -94,7 +109,8 @@ If no cache exists for it, initialize one with SITE."
                .last_activity_date)))))
 
 (defun sx-question--mark-read (question)
-  "Mark QUESTION as being read, until it is updated again."
+  "Mark QUESTION as being read until it is updated again.
+See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
     (let ((site-cell (assoc .site sx-question--user-read-list))
@@ -111,20 +127,23 @@ If no cache exists for it, initialize one with SITE."
        (t
         (sx-sorted-insert-skip-first
          q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
-  ;; This causes a small lag on `j' and `k' as the list gets large.
-  ;; Should we do this on a timer?
   ;; Save the results.
+  ;; @TODO This causes a small lag on `j' and `k' as the list gets
+  ;; large.  Should we do this on a timer?
   (sx-cache-set 'read-questions sx-question--user-read-list))
 
 
 ;;;; Hidden
-(defvar sx-question--user-hidden-list nil 
+(defvar sx-question--user-hidden-list nil
   "Alist of questions hidden by the user.
-Each element has the form (SITE . QUESTION-LIST).
-And each element in QUESTION-LIST has the form (QUESTION_ID . LAST-VIEWED-DATE).")
+
+Each element has the form
+
+  (SITE QUESTION_ID QUESTION_ID ...)")
 
 (defun sx-question--ensure-hidden-list (site)
   "Ensure the `sx-question--user-hidden-list' has been read from cache.
+
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-hidden-list
     (setq sx-question--user-hidden-list
@@ -161,13 +180,13 @@ If no cache exists for it, initialize one with SITE."
 ;;;; Other data
 
 (defun sx-question--accepted-answer-id (question)
-  "Return accepted answer in QUESTION, or nil if none."
+  "Return accepted answer in QUESTION or nil if none exists."
   (sx-assoc-let question
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
 
 (defun sx-question--tag-format (tag)
-  "Formats TAG for display"
+  "Formats TAG for display."
   (concat "[" tag "]"))
 
 (provide 'sx-question)
