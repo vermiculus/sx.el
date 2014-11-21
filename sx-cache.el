@@ -78,21 +78,26 @@ CACHE is resolved to a file name by `sx-cache-get-file-name'."
 VARS is a list of variables to unbind to ensure cache is cleared.
 If INIT-METHOD is defined, call it after all invalidation to
 re-initialize the cache."
-  (sx-cache-set cache nil)
+  (let ((file (sx-cache-get-file-name cache)))
+    (delete-file file))
   (mapc #'makunbound vars)
-  (funcall init-method))
+  (when init-method
+    (funcall init-method)))
 
 (defun sx-cache-invalidate-all (&optional save-auth)
   "Invalidate all caches using `sx-cache--invalidate'.
-Afterwards reinitialize caches using `sx-initialize'.  If
-SAVE-AUTH is non-nil, do not clear AUTH cache."
-  (let ((caches (let ((default-directory sx-cache-directory))
-                  (file-expand-wildcards "*.el"))))
+Afterwards reinitialize caches using `sx-initialize'. If
+SAVE-AUTH is non-nil, do not clear AUTH cache.
+
+Note:  This will also remove read/unread status of questions as well
+as delete the list of hidden questions."
+  (let* ((default-directory sx-cache-directory)
+         (caches (file-expand-wildcards "*.el")))
     (when save-auth
       (setq caches (cl-remove-if (lambda (x)
-                                (string= x "auth.el")) caches)))
+                                   (string= x "auth.el")) caches)))
     (lwarn 'stack-mode :debug "Invalidating: %S" caches)
-    (mapc #'sx-cache--invalidate caches)
+    (mapc #'delete-file caches)
     (sx-initialize 'force)))
 
 (provide 'sx-cache)
