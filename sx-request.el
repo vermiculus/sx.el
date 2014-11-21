@@ -92,7 +92,8 @@ number of requests left every time it finishes a call."
 ;;; Making Requests
 
 (defun sx-request-make
-  "Make a request to the API, executing METHOD with ARGS.
+    (method &optional args request-method)
+    "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
 this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
 
@@ -113,8 +114,7 @@ then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
-    (method &optional args request-method)
-  (let* ((url-automatic-caching sx-request-cache-p)
+  (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args
                                                             nil))
