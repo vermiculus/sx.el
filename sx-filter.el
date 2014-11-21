@@ -34,7 +34,6 @@
 (defvar sx--filter-alist
   (sx-cache-get 'filter)
   "An alist of known filters.  See `sx-filter-compile'.
-
 Structure:
 
     (((INCLUDE  EXCLUDE  BASE ) . \"compiled filter \")
@@ -47,7 +46,6 @@ Structure:
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
   "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
-
 INCLUDE and EXCLUDE must both be lists; BASE should be a string.
 
 Returns the compiled filter as a string."

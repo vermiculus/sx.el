@@ -20,7 +20,7 @@
 ;;; Commentary:
 
 ;; API requests are handled on three separate tiers:
-;; 
+;;
 ;; `sx-method-call':
 ;;
 ;;    This is the function that should be used most often, since it
@@ -39,7 +39,7 @@
 ;;    The whole solution is built upon `url-retrieve-synchronously'
 ;;    for making the request and `json-read-from-string' for parsing
 ;;    it into a properly symbolic data structure.
-;; 
+;;
 ;; When at all possible, use `sx-method-call'.  There are specialized
 ;; cases for the use of `sx-request-make' outside of sx-method.el, but
 ;; these must be well-documented inline with the code.
@@ -70,7 +70,6 @@
 (defcustom sx-request-unzip-program
   "gunzip"
   "Program used to unzip the response if it is compressed.
-
 This program must accept compressed data on standard input."
   :group 'sx-request
   :type 'string)
@@ -78,13 +77,11 @@ This program must accept compressed data on standard input."
 (defvar sx-request-remaining-api-requests
   nil
   "The number of API requests remaining.
-
 Set by `sx-request-make'.")
 
 (defcustom sx-request-remaining-api-requests-message-threshold
   50
   "Lower bound for printed warnings of API usage limits.
-
 After `sx-request-remaining-api-requests' drops below this
 number, `sx-request-make' will begin printing out the
 number of requests left every time it finishes a call."
@@ -97,9 +94,11 @@ number of requests left every time it finishes a call."
 (defun sx-request-make
     (method &optional args need-auth use-post)
   "Make a request to the API, executing METHOD with ARGS.
-
 You should almost certainly be using `sx-method-call' instead of
 this function.
+
+If NEED-AUTH is non-nil, authentication will be provided.  If
+USE-POST is non-nil, the request will use POST instead of GET.
 
 Returns cleaned response content.
 See (`sx-encoding-clean-content-deep').
@@ -176,12 +175,13 @@ the main content of the response is returned."
 (defun sx-request--build-keyword-arguments (alist &optional
 						  kv-sep need-auth)
   "Format ALIST as a key-value list joined with KV-SEP.
-
 If authentication is needed, include it also or error if it is
 not available.
 
+If NEED-AUTH is non-nil, authentication is required.
+
 Build a \"key=value&key=value&...\"-style string with the elements
-of ALIST.  If any value in the alist is `nil', that pair will not
+of ALIST.  If any value in the alist is nil, that pair will not
 be included in the return.  If you wish to pass a notion of
 false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."

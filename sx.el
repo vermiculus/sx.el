@@ -49,7 +49,7 @@
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
-This is designed for the (site id id ...) lists. So the first car
+This is designed for the (site id id ...) lists.  So the first car
 is intentionally skipped."
   `(let ((tail ,list)
          (x ,newelt))
@@ -61,7 +61,8 @@ is intentionally skipped."
      (setcdr tail (cons x (cdr tail)))))
 
 (defun sx-message (format-string &rest args)
-  "Display a message."
+  "Display FORMAT-STRING as a message with ARGS.
+See `format'."
   (message "[stack] %s" (apply #'format format-string args)))
 
 (defun sx-message-help-echo ()
@@ -71,7 +72,6 @@ is intentionally skipped."
 
 (defun sx--thing-as-string (thing &optional sequence-sep)
   "Return a string representation of THING.
-
 If THING is already a string, just return it.
 
 Optional argument SEQUENCE-SEP is the separator applied between
@@ -98,7 +98,7 @@ For example:
       (prop4 . t))
     '(prop1 (prop3 test2)))
 
-would yeild
+would yield
 
   ((prop1 . value1)
    (prop3
@@ -132,8 +132,7 @@ would yeild
 ;;; Interpreting request data
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
-
-Returns a list where each element is a cons cell. The car is the
+Returns a list where each element is a cons cell.  The car is the
 symbol, the cdr is the symbol without the `.'."
   (cond
    ((symbolp data)
@@ -148,9 +147,8 @@ symbol, the cdr is the symbol without the `.'."
        (remove nil (mapcar #'sx--deep-dot-search data))))))
 
 (defmacro sx-assoc-let (alist &rest body)
-  "Execute BODY with dotted symbols let-bound to their values in ALIST.
-
-Dotted symbol is any symbol starting with a `.'. Only those
+  "Use dotted symbols let-bound to their values in ALIST and execute BODY.
+Dotted symbol is any symbol starting with a `.'.  Only those
 present in BODY are letbound, which leads to optimal performance.
 
 For instance, the following code
@@ -172,20 +170,17 @@ is equivalent to
 
 (defcustom sx-init-hook nil
   "Hook run when stack-mode initializes.
-
 Run after `sx-init--internal-hook'."
   :group 'sx
   :type 'hook)
 
 (defvar sx-init--internal-hook nil
   "Hook run when stack-mode initializes.
-
 This is used internally to set initial values for variables such
 as filters.")
 
 (defun sx--< (property x y &optional predicate)
   "Non-nil if PROPERTY attribute of alist X is less than that of Y.
-
 With optional argument PREDICATE, use it instead of `<'."
   (funcall (or predicate #'<)
            (cdr (assoc property x))
@@ -193,7 +188,6 @@ With optional argument PREDICATE, use it instead of `<'."
 
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.
-
 SETTER should be a function of two arguments.  If SETTER is nil,
 `set' is used."
   (eval
@@ -209,7 +203,6 @@ If it has, holds the time at which initialization happened.")
 
 (defun sx-initialize (&optional force)
   "Run initialization hooks if they haven't been run yet.
-
 These are `sx-init--internal-hook' and `sx-init-hook'.
 
 If FORCE is non-nil, run them even if they've already been run."

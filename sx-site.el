@@ -42,9 +42,10 @@
      related_site.relation)
     nil
     none)
-  "")
+  "Filter for browsing sites.")
 
 (defun sx-site--get-site-list ()
+  "Return all sites with `sx-site-browse-filter'."
   (sx-cache-get
    'site-list
    '(sx-method-call
@@ -54,7 +55,6 @@
 (defcustom sx-site-favorites
   nil
   "List of favorite sites.
-
 Each entry is a string corresponding to a single site's
 api_site_parameter."
   :group 'sx-site)

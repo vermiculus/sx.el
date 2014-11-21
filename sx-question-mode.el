@@ -51,7 +51,6 @@
 
 (defun sx-question-mode--display (data &optional window)
   "Display question given by DATA on WINDOW.
-
 If WINDOW is nil, use selected one.
 
 Returns the question buffer."
@@ -65,9 +64,7 @@ Returns the question buffer."
 
 (defun sx-question-mode--display-buffer (window)
   "Display and return the buffer used for displaying a question.
-
 Create `sx-question-mode--buffer' if necessary.
-
 If WINDOW is given, use that to display the buffer."
   ;; Create the buffer if necessary.
   (unless (buffer-live-p sx-question-mode--buffer)
@@ -88,7 +85,7 @@ If WINDOW is given, use that to display the buffer."
 ;;;; Faces and Variables
 
 (defvar sx-question-mode--overlays nil
-  "")
+  "Question mode overlays.")
 (make-variable-buffer-local 'sx-question-mode--overlays)
 
 (defface sx-question-mode-header
@@ -150,14 +147,12 @@ If WINDOW is given, use that to display the buffer."
   '((((background dark)) :background "#090909")
     (((background light)) :background "#f4f4f4"))
   "Face used on the question body in the question buffer.
-
 This shouldn't have a foreground, or this will interfere with
 font-locking."
   :group 'sx-question-mode-faces)
 
 (defcustom sx-question-mode-last-edit-format " (edited %s ago by %s)"
   "Format used to describe last edit date in the header.
-
 First \"%s\" is replaced with the date and the second \"%s\" with
 the editor's name."
   :type 'string
@@ -181,7 +176,6 @@ the editor's name."
 
 (defcustom sx-question-mode-comments-format "%s: %s\n"
   "Format used to display comments.
-
 First \"%s\" is replaced with user name.  Second \"%s\" is
 replaced with the comment."
   :type 'string
@@ -197,7 +191,6 @@ replaced with the comment."
 ;;;; Functions
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
-
 QUESTION must be a data structure returned by `json-read'."
   (setq sx-question-mode--data question)
   ;; Clear the overlays
@@ -213,21 +206,20 @@ QUESTION must be a data structure returned by `json-read'."
 
 (defvar sx-question-mode--section-help-echo
   (format
-   (propertize "%s to hide/display content" 'face 'minibuffer-prompt) 
-   (propertize "RET" 'face 'font-lock-function-name-face)) 
-  "")
+   (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
+   (propertize "RET" 'face 'font-lock-function-name-face))
+  "Help echoed in the minibuffer when point is on a section.")
 
 (defvar sx-question-mode--title-properties
   `(face sx-question-mode-title
          action sx-question-mode-hide-show-section
          help-echo ,sx-question-mode--section-help-echo
          button t
-         follow-link t) 
-  "")
+         follow-link t)
+  "Title properties.")
 
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
-
 DATA can represent a question or an answer."
   ;; This makes `data' accessible through
   ;; `(get-text-property (point) 'sx-question-mode--data-here)'
@@ -303,7 +295,6 @@ DATA can represent a question or an answer."
 
 (defun sx-question-mode--print-comment (comment-data)
   "Print the comment described by alist COMMENT-DATA.
-
 The comment is indented, filled, and then printed according to
 `sx-question-mode-comments-format'."
   (sx-assoc-let comment-data
@@ -321,8 +312,7 @@ The comment is indented, filled, and then printed according to
        3)))))
 
 (defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
-  "Execute BODY and wrap any inserted text in an overlay.
-
+  "Start a scope with overlay PROPERTIES and execute BODY.
 Overlay is pushed on `sx-question-mode--overlays' and given
 PROPERTIES.
 
@@ -339,8 +329,7 @@ Return the result of BODY."
      result))
 
 (defmacro sx-question-mode--wrap-in-text-property (properties &rest body)
-  "Execute BODY and add PROPERTIES to any inserted text.
-
+  "Start a scope with PROPERTIES and execute BODY.
 Return the result of BODY."
   (declare (indent 1)
            (debug t))
@@ -351,7 +340,6 @@ Return the result of BODY."
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert propertized ARGS.
-
 ARGS is a list of repeating values -- `header', `value', and
 `face'.  `header' is given `sx-question-mode-header' as a face,
 where `value' is given `face' as its face.
@@ -430,14 +418,13 @@ Syntax:
 
 (defun sx-question-mode--propertize-link (text url)
   "Return a link propertized version of string TEXT.
-
 URL is used as 'help-echo and 'url properties."
   (propertize
    text
    ;; Mouse-over
    'help-echo   (format
                  (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
-                 (propertize url 'face 'default) 
+                 (propertize url 'face 'default)
                  (propertize "RET" 'face 'font-lock-function-name-face))
    ;; In case we need it.
    'url         url
@@ -460,7 +447,6 @@ URL is used as 'help-echo and 'url properties."
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
-
 If ID is nil, use FALLBACK-ID instead."
   (save-excursion
     (save-match-data
@@ -489,7 +475,6 @@ If ID is nil, use FALLBACK-ID instead."
 ;; for comments).
 (defcustom sx-question-mode-recenter-line 1
   "Screen line to which we recenter after moving between sections.
-
 This is used as an argument to `recenter', only used if the end
 of section is outside the window.
 
@@ -500,7 +485,6 @@ If nil, no recentering is performed."
 
 (defun sx-question-mode-next-section (&optional n)
   "Move down to next section (question or answer) of this buffer.
-
 Prefix argument N moves N sections down or up."
   (interactive "p")
   (let ((count (if n (abs n) 1)))
@@ -523,14 +507,12 @@ Prefix argument N moves N sections down or up."
 
 (defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
-
-Prefix argument N moves N sections up or down."
+Prefix argument moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
 
 (defun sx-question-mode--goto-property-change (prop &optional direction)
-  "Move forward until the value of text-property sx-question-mode--PROP changes.
-
+  "Move forward to the next change of text-property sx-question-mode--PROP.
 Return the new value of PROP at point.
 
 If DIRECTION is negative, move backwards instead."
@@ -545,9 +527,9 @@ If DIRECTION is negative, move backwards instead."
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
 
-;;; Optional argument is for `push-button'.
 (defun sx-question-mode-hide-show-section (&optional _)
-  "Hide or show section under point."
+  "Hide or show section under point.
+Optional argument _ is for `push-button'."
   (interactive)
   (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
                      (sx-question-mode--section-overlays-at
@@ -567,7 +549,6 @@ If DIRECTION is negative, move backwards instead."
 ;;; Major-mode
 (define-derived-mode sx-question-mode markdown-mode "Question"
   "Major mode to display and navigate a question and its answers.
-
 Letters do not insert themselves; instead, they are commands.
 
 \\<sx-question-mode>
@@ -616,7 +597,6 @@ Letters do not insert themselves; instead, they are commands.
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.
-
 Queries the API for any changes to the question or its answers or
 comments, and redisplays it."
   (interactive)

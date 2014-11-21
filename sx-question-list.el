@@ -161,7 +161,7 @@ Non-interactively, DATA is a question alist."
              (tabulated-list-get-id)
            (user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-read data)
-  (sx-question-list-next 1)  
+  (sx-question-list-next 1)
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
@@ -211,13 +211,11 @@ Non-interactively, DATA is a question alist."
 
 (defvar sx-question-list--current-dataset nil
   "The logical data behind the displayed list of questions.
-
 This dataset contains even questions that are hidden by the user,
 and thus not displayed in the list of questions.")
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
-
 If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
 If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
@@ -248,14 +246,13 @@ a new list before redisplaying."
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
-
-Used in the questions list to indicate a question was updated \"4d ago\"."
+Used in the questions list to indicate a question was updated
+\"4d ago\"."
   :type 'string
   :group 'sx-question-list)
 
 (defun sx-question-list--print-info (question-data)
   "Convert `json-read' QUESTION-DATA into tabulated-list format.
-
 See `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
@@ -293,16 +290,14 @@ See `sx-question-list-refresh'."
          (propertize " " 'display "\n")))))))
 
 (defun sx-question-list-view-previous (n)
-  "Move to the previous question and display it.
-
+  "Move cursor up N questions up and display this question.
 Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
   (sx-question-list-view-next (- n)))
 
 (defun sx-question-list-view-next (n)
-  "Move to the next question and display it.
-
+  "Move cursor down N questions and display this question.
 Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
@@ -310,22 +305,19 @@ that may currently be there."
   (sx-question-list-display-question))
 
 (defun sx-question-list-next (n)
-  "Move to the next entry.
-
+  "Move cursor down N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (forward-line n))
 
 (defun sx-question-list-previous (n)
-  "Move to the previous entry.
-
+  "Move cursor up N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next (- n)))
 
 (defun sx-question-list-display-question (&optional data focus)
   "Display question given by DATA.
-
 When DATA is nil, display question under point.  When FOCUS is
 non-nil (the default when called interactively), also focus the
 relevant window."
@@ -364,8 +356,7 @@ relevant window."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-
-Uses `ido-completing-read' if `ido-mode' is active.  Retrieves
+Uses `ido-completing-read' if variable `ido-mode' is active.  Retrieves
 completions from `sx-site-get-api-tokens'.  Sets
 `sx-question-list--current-site' and then
 `sx-question-list-refresh' with `redisplay'."
@@ -383,7 +374,6 @@ completions from `sx-site-get-api-tokens'.  Sets
 
 (defun list-questions (no-update)
   "Display a list of StackExchange questions.
-
 NO-UPDATE is passed to `sx-question-list-refresh'."
   (interactive "P")
   (sx-initialize)

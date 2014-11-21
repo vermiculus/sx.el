@@ -47,7 +47,6 @@
 
 (defun sx-cache-get (cache &optional form)
   "Return the data within CACHE.
-
 If CACHE does not exist, use `sx-cache-set' to set CACHE to the
 result of evaluating FORM.
 
@@ -64,8 +63,7 @@ CACHE is resolved to a file name by `sx-cache-get-file-name'."
       (sx-cache-set cache (eval form)))))
 
 (defun sx-cache-set (cache data)
-  "Set the content of CACHE to DATA and save changes permanently.
-
+  "Set the content of CACHE to DATA and save.
 DATA will be written as returned by `prin1'.
 
 CACHE is resolved to a file name by `sx-cache-get-file-name'."
@@ -86,10 +84,8 @@ re-initialize the cache."
 
 (defun sx-cache-invalidate-all (&optional save-auth)
   "Invalidate all caches using `sx-cache--invalidate'.
-
-Afterwards reinitialize caches using `sx-initialize'.
-
-If SAVE-AUTH is non-nil, do not clear AUTH cache."
+Afterwards reinitialize caches using `sx-initialize'.  If
+SAVE-AUTH is non-nil, do not clear AUTH cache."
   (let ((caches (let ((default-directory sx-cache-directory))
                   (file-expand-wildcards "*.el"))))
     (when save-auth

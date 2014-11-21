@@ -61,7 +61,6 @@
            upsilon "υ" uuml "ü" Uuml "Ü" weierp "℘" Xi "Ξ" xi "ξ" yacute "ý"
            Yacute "Ý" yen "¥" yuml "ÿ" Yuml "Ÿ" Zeta "Ζ" zeta "ζ" zwj "" zwnj "")
   "Plist of HTML entities and their respective glyphs.
-
 See `sx-encoding-decode-entities'."
   :type '(repeat (choice symbol string))
   :group 'sx)
@@ -89,7 +88,6 @@ Return the decoded string."
 
 (defun sx-encoding-normalize-line-endings (string)
   "Normalize the line endings for STRING.
-
 The API returns strings that use Windows-style line endings.
 These are largely useless in an Emacs environment.  Windows uses
 \"\\r\\n\", Unix uses just \"\\n\".  Deleting \"\\r\" is sufficient for
@@ -98,7 +96,6 @@ conversion."
 
 (defun sx-encoding-clean-content (string)
   "Clean STRING for display.
-
 Applies `sx-encoding-normalize-line-endings' and
 `sx-encoding-decode-entities' (in that order) to prepare STRING
 for sane display."
@@ -135,8 +132,7 @@ some cases."
      (t data))))
 
 (defun sx-encoding-gzipped-p (data)
-  "Checks for magic bytes in DATA.
-
+  "Check for magic bytes in DATA.
 Check if the first two bytes of a string in DATA match the magic
 numbers identifying the gzip file format.
 
@@ -145,15 +141,15 @@ See URL `http://www.gzip.org/zlib/rfc-gzip.html'."
   (equal (substring (string-as-unibyte data) 0 2)
          (unibyte-string 31 139)))
 
-(defun sx-encoding-gzipped-buffer-p (filename)
-  "Check if the BUFFER is gzip-compressed.
-
+(defun sx-encoding-gzipped-buffer-p (buffer)
+  "Check if BUFFER is gzip-compressed.
 See `sx-encoding-gzipped-p'."
-  (sx-encoding-gzip-check-magic (buffer-string)))
+  (with-current-buffer buffer
+    (sx-encoding-gzip-check-magic
+     (buffer-string))))
 
 (defun sx-encoding-gzipped-file-p (file)
   "Check if the FILE is gzip-compressed.
-
 See `sx-encoding-gzipped-p'."
   (let ((first-two-bytes (with-temp-buffer
                            (set-buffer-multibyte nil)

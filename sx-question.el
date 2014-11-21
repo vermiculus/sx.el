@@ -43,12 +43,11 @@
      answer.body_markdown
      answer.comments)
     (user.profile_image shallow_user.profile_image))
-  "The filter applied with `sx-question-get-questions' and
-  `sx-question-get-question'.")
+  "The filter applied when retrieving question data.
+See `sx-question-get-questions' and `sx-question-get-question'.")
 
 (defun sx-question-get-questions (site &optional page)
-  "Get the page PAGE of questions from SITE.
-
+  "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
 property.
@@ -64,7 +63,6 @@ property.
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
-
 If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call
               (format "questions/%s" question-id)
@@ -79,7 +77,7 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
 ;;; Question Properties
 
 ;;;; Read/unread
-(defvar sx-question--user-read-list nil 
+(defvar sx-question--user-read-list nil
   "Alist of questions read by the user.
 
 Each element has the form
@@ -92,7 +90,6 @@ where each element in QUESTION-LIST has the form
 
 (defun sx-question--ensure-read-list (site)
   "Ensure `sx-question--user-read-list' has been read from cache.
-
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
@@ -100,7 +97,6 @@ If no cache exists for it, initialize one with SITE."
 
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated.
-
 See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
@@ -111,7 +107,6 @@ See `sx-question--user-read-list'."
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read until it is updated again.
-
 See `sx-question--user-read-list'."
   (sx-assoc-let question
     (sx-question--ensure-read-list .site)
@@ -136,7 +131,7 @@ See `sx-question--user-read-list'."
 
 
 ;;;; Hidden
-(defvar sx-question--user-hidden-list nil 
+(defvar sx-question--user-hidden-list nil
   "Alist of questions hidden by the user.
 
 Each element has the form
