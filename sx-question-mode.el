@@ -547,7 +547,7 @@ Optional argument _ is for `push-button'."
 
 
 ;;; Major-mode
-(define-derived-mode sx-question-mode markdown-mode "Question"
+(define-derived-mode sx-question-mode special-mode "Question"
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
