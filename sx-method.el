@@ -67,6 +67,7 @@ for interactive commands that absolutely require authentication
 treat 'warn as equivalent to t.
 
 Return the entire response as a complex alist."
+  (declare (indent 1))
   (let ((access-token (sx-cache-get 'auth))
 	(method-auth (sx-auth--method-p method submethod))
 	(filter-auth (sx-auth--filter-p filter))
