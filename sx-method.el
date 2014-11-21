@@ -69,41 +69,41 @@ treat 'warn as equivalent to t.
 Return the entire response as a complex alist."
   (declare (indent 1))
   (let ((access-token (sx-cache-get 'auth))
-	(method-auth (sx-auth--method-p method submethod))
-	(filter-auth (sx-auth--filter-p filter))
-	(full-method (concat (format "%s" method)
-			     (when id
-			       (format "/%s" id))
-			     (when submethod
-			       (format "/%s" submethod))))
-	(call 'sx-request-make))
+        (method-auth (sx-auth--method-p method submethod))
+        (filter-auth (sx-auth--filter-p filter))
+        (full-method (concat (format "%s" method)
+                             (when id
+                               (format "/%s" id))
+                             (when submethod
+                               (format "/%s" submethod))))
+        (call 'sx-request-make))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
-	   access-token method-auth full-method filter-auth)
+           access-token method-auth full-method filter-auth)
     (unless access-token
       (cond
        ;; 1. Need auth and warn user (interactive use)
        ((and method-auth (equal 'warn auth))
-	(user-error
-	 "This request requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
+        (user-error
+         "This request requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
        ;; 2. Need auth to populate UI, cannot provide subset
        ((and method-auth auth)
-	(setq call 'sx-request-fallback))
+        (setq call 'sx-request-fallback))
        ;; 3. Need auth for type.  Use auth-less filter.
        ((and filter-auth auth)
-	(setq filter filter-auth))
+        (setq filter filter-auth))
        ;; 4. Requires auth but no value set for auth
        ((and (or filter-auth method-auth) (not auth))
-	(error "This request requires authentication."))))
+        (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
     (setq parameters
-	  (cons `(site . ,site)
-		(cons (cons 'filter
-			    (sx-filter-get-var filter))
-		      keywords)))
+          (cons `(site . ,site)
+                (cons (cons 'filter
+                            (sx-filter-get-var filter))
+                      keywords)))
     (funcall call
-	     full-method
-	     parameters
-	     url-method)))
+             full-method
+             parameters
+             url-method)))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
