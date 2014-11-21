@@ -82,11 +82,13 @@ question at point.
 
 - ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
 
-* About this Document
+* Contributing
 This document is maintained in Org format.  Updates to the source code
-should almost always be accompanied by updates to this document.  Some
-distinctions are made which may not be apparent when viewing the
-document with Info.
+should be accompanied by updates to this document when user-facing
+functionality is changed.
+
+Note that some distinctions are made which may not be apparent when
+viewing the document with Info.
 
 ** Markup Conventions
 Markup is used consistently as follows:
