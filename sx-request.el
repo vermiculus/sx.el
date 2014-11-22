@@ -92,19 +92,18 @@ number of requests left every time it finishes a call."
 ;;; Making Requests
 
 (defun sx-request-make
-    (method &optional args need-auth use-post)
-  "Make a request to the API, executing METHOD with ARGS.
+    (method &optional args request-method)
+    "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
-this function.
-
-If NEED-AUTH is non-nil, authentication will be provided.  If
-USE-POST is non-nil, the request will use POST instead of GET.
+this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
 
 Returns cleaned response content.
 See (`sx-encoding-clean-content-deep').
 
-The full call is built with `sx-request-build', prepending
-`sx-request-api-key' to receive a higher quota.  This call is
+The full set of arguments is built with
+`sx-request--build-keyword-arguments', prepending
+`sx-request-api-key' to receive a higher quota. It will also
+include user's `access_token` if it is avaialble. This call is
 then resolved with `url-retrieve-synchronously' to a temporary
 buffer that it returns.  The headers are then stripped using a
 search a blank line (\"\\n\\n\").  The main body of the response
@@ -115,16 +114,15 @@ then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
-  (let ((url-automatic-caching t)
-        (url-inhibit-uncompression t)
-        (request-method (if use-post "POST" "GET"))
-        (request-args
-         (sx-request--build-keyword-arguments args nil need-auth))
-        (request-url (concat sx-request-api-root method)))
-    (sx-message "Request: %S" request-url)
-    (let ((response-buffer (sx-request--request request-url
-                                                request-args
-                                                request-method)))
+  (let* ((url-automatic-caching t)
+         (url-inhibit-uncompression t)
+         (url-request-data (sx-request--build-keyword-arguments args
+                                                            nil))
+         (request-url (concat sx-request-api-root method))
+         (url-request-method request-method)
+         (url-request-extra-headers
+          '(("Content-Type" . "application/x-www-form-urlencoded")))
+         (response-buffer (url-retrieve-synchronously request-url)))
       (if (not response-buffer)
           (error "Something went wrong in `url-retrieve-synchronously'")
         (with-current-buffer response-buffer
@@ -158,19 +156,18 @@ the main content of the response is returned."
                        sx-request-remaining-api-requests-message-threshold)
                 (sx-message "%d API requests reamining"
                             sx-request-remaining-api-requests))
-              (sx-encoding-clean-content-deep .items))))))))
+              (sx-encoding-clean-content-deep .items)))))))
+
+(defun sx-request-fallback (method &optional args request-method)
+  "Fallback method when authentication is not available.
+This is for UI generation when the associated API call would
+require authentication.
+
+Currently returns nil."
+  '(()))
 
 
 ;;; Support Functions
-
-(defun sx-request--request (url args method)
-  "Return the response buffer for URL with ARGS using METHOD."
-  (let ((url-request-method method)
-        (url-request-extra-headers
-         '(("Content-Type" . "application/x-www-form-urlencoded")))
-        (url-request-data args))
-    (url-retrieve-synchronously url)))
-
 
 (defun sx-request--build-keyword-arguments (alist &optional
 						  kv-sep need-auth)
@@ -187,23 +184,11 @@ false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
   ;; Add API key to list of arguments, this allows for increased quota
   ;; automatically.
-  (let* ((warn (equal need-auth 'warn))
-         (api-key (cons "key" sx-request-api-key))
-         (auth
-          (let ((auth (car (sx-cache-get 'auth))))
-            (cond
-             (auth)
-             ;; Pass user error when asking to warn
-             (warn
-              (user-error
-               "This query requires authentication; run `M-x sx-auth-authenticate' and try again"))
-             ((not auth)
-              (lwarn "stack-mode" :debug
-                     "This query requires authentication")
-              nil)))))
+  (let ((api-key (cons "key" sx-request-api-key))
+         (auth (car (sx-cache-get 'auth))))
     (push api-key alist)
-    (if (and need-auth auth)
-        (push auth alist))
+    (when auth
+      (push auth alist))
     (mapconcat
      (lambda (pair)
        (concat

@@ -38,6 +38,45 @@ This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
 what you are doing!")
 
+(defvar sx-auth-method-auth '((me . t)
+                              (inbox . t)
+                              (notifications . t)
+                              (events . t)
+                              (posts (comments add))
+                              (comments delete
+                                        edit
+                                        flags
+                                        upvote)
+                              (answers accept
+                                       delete
+                                       downvote
+                                       edit
+                                       flags
+                                       upvote)
+                              (questions answers
+                                         add
+                                         close
+                                         delete
+                                         downvote
+                                         edit
+                                         favorite
+                                         flags
+                                         render
+                                         upvote
+                                         (unanswered my-tags)))
+  "List of methods that require auth.
+Methods are of form (METHOD SUBMETHODS) where SUBMETHODS
+  is (METHOD METHOD METHOD ...).
+
+If all SUBMETHODS require auth or there are no submethods, form
+will be (METHOD  . t)")
+
+(defvar sx-auth-filter-auth '(question.upvoted
+                              question.downvoted)
+  "List of filter types that require auth.
+Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
+FILTER).")
+
 (defun sx-auth-authenticate ()
   "Authenticate this application.
 Authentication is required to read your personal data (such as
@@ -84,6 +123,56 @@ parsed and displayed prominently on the page)."
     (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
 
 (defalias 'sx-authenticate #'sx-auth-authenticate)
+
+(defun sx-auth--method-p (method &optional submethod)
+  "Check if METHOD is one that may require authentication.
+If it has `auth-required' SUBMETHODs, or no submethod, return t."
+  (let ((method-auth (cdr (assoc method sx-auth-method-auth)))
+        ;; If the submethod has additional options, they may all be
+        ;; eligible, in which case we only need to check the `car'.
+        (sub-head (if (listp submethod)
+                      (car submethod))))
+    (lwarn " sx-auth method" :debug "Method %s requires auth" method-auth)
+    (and method-auth
+         (or
+          ;; All submethods require auth.
+          (eq t method-auth)
+          ;; All sub-submethods require auth.
+          (member sub-head method-auth)
+          ;; Specific submethod requires auth.
+          (member submethod method-auth)))))
+
+;; Temporary solution.  When we switch to pre-defined filters we will
+;; have to change the logic to match against specific filters.
+(defun sx-auth--filter-p (filter)
+  "Check if FILTER contains properties that require authentication.
+If it has `auth-required' properties, return a filter that has
+removed those properties."
+  (let* ((incl-filter (if (listp filter) (car filter)))
+         (rest-filter (if incl-filter (cdr filter)))
+         (auth-filters (cl-remove-if #'nil
+                                     ;; Only retrieve the elements that
+                                     ;; are issues.
+                                     (mapcar (lambda (prop)
+                                               (car
+                                                (member prop
+                                                        sx-auth-filter-auth)))
+                                             (or incl-filter filter))))
+         clean-filter out-filter)
+    (lwarn "sx-auth filter" :debug "Filter: %S" filter)
+    ;; Auth-filters is the filters that are issues
+    (when auth-filters
+      (setq clean-filter
+            (cl-remove-if (lambda (prop)
+                            (member prop auth-filters))
+                          (or incl-filter filter))))
+    (if (and incl-filter clean-filter)
+        (setq out-filter
+              (cons clean-filter rest-filter))
+      (setq out-filter clean-filter))
+    (lwarn "sx-auth filter2" :debug "Filter property %s requires auth. %S"
+           auth-filters out-filter)
+    out-filter))
 
 (provide 'sx-auth)
 ;;; sx-auth.el ends here

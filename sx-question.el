@@ -33,6 +33,8 @@
      question.last_editor
      question.accepted_answer_id
      question.link
+     question.upvoted
+     question.downvoted
      user.display_name
      comment.owner
      comment.body_markdown
@@ -55,19 +57,20 @@ property.
 `sx-method-call' is used with `sx-question-browse-filter'."
   (mapcar
    (lambda (question) (cons (cons 'site site) question))
-   (sx-method-call
-    "questions"
-    `((site . ,site)
-      (page . ,page))
-    sx-question-browse-filter)))
+   (sx-method-call 'questions
+     :keywords `((page . ,page))
+     :site site
+     :auth t
+     :filter sx-question-browse-filter)))
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
 If QUESTION-ID doesn't exist on SITE, raise an error."
-  (let ((res (sx-method-call
-              (format "questions/%s" question-id)
-              `((site . ,site))
-              sx-question-browse-filter)))
+  (let ((res (sx-method-call 'questions
+               :id id
+               :site site
+               :auth t
+               :filter sx-question-browse-filter)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find question %S in %S"

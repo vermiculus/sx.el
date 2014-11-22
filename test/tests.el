@@ -29,6 +29,7 @@
      (should (string-match ,regexp line))))
 
 (setq
+ sx-initialized t
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
  user-emacs-directory "."
