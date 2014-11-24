@@ -48,6 +48,7 @@
 (require 'sx)
 (require 'sx-question)
 (require 'sx-question-list)
+(require 'sx-tab)
 
 (ert-deftest test-basic-request ()
   "Test basic request functionality"
