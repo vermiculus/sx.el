@@ -32,12 +32,18 @@
   :type 'string 
   :group 'stack-exchange)
 
-(defmacro sx-view--define-page (page)
+(defmacro sx-view--define-page (page &optional printer refresher pager)
   "Define a stack-exchange page called PAGE.
 Page is a capitalized string.
 
 This defines a command `sx-view-PAGE' for displaying the page,
-and a variable `sx-view--PAGE-buffer' for holding the bufer."
+and a variable `sx-view--PAGE-buffer' for holding the bufer.
+
+The arguments PRINTER, REFRESHER, and PAGER, if non-nil, are
+respectively used to set the value of the variables
+`sx-question-list--print-function',
+`sx-question-list--refresh-function', and
+`sx-question-list--next-page-function'."
   (declare (indent 1) (debug t))
   (let* ((name (downcase page))
          (buffer-variable
@@ -69,6 +75,12 @@ If SITE is nil, use `sx-view-default-site'."
          ;; Fill the buffer with content.
          (with-current-buffer ,buffer-variable
            (sx-question-list-mode)
+           (when printer
+             (setq sx-question-list--next-page-function printer))
+           (when refresher
+             (setq sx-question-list--refresh-function refresher))
+           (when pager
+             (setq sx-question-list--print-function pager))
            (setq sx-question-list--current-site site)
            (setq sx-question-list--current-page ,page)
            (sx-question-list-refresh 'redisplay no-update))

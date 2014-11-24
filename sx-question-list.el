@@ -148,10 +148,12 @@ Also see `sx-question-list-refresh'."
                      'face 'sx-question-list-tags)
          (propertize " " 'display "\n")))))))
 
-(defvar sx-question-list--refresh-function
-  (lambda () 
-    (sx-question-get-questions
-     sx-question-list--current-site)) 
+(defvar sx-question-list--pages-so-far 0
+  "Number of pages currently being displayed.
+This variable gets reset to 0 before every refresh.
+It should be used by `sx-question-list--next-page-function'.")
+
+(defvar sx-question-list--refresh-function nil 
   "Function used to refresh the list of questions to be displayed.
 Used by `sx-question-list-mode', this is a function, called with
 no arguments, which returns a list questions to be displayed,
@@ -161,7 +163,14 @@ If this is not set, the value of `sx-question-list--dataset' is
 used, and the list is simply redisplayed.")
 (make-variable-buffer-local 'sx-question-list--refresh-function)
 
-(defvar sx-question-list--next-page-function nil 
+(defvar sx-question-list--next-page-function
+  (lambda ()
+    (or (sx-question-get-questions
+         sx-question-list--current-site
+         (cl-incf sx-question-list--pages-so-far))
+        ;; If the `get' failed, don't increment.
+        (and (cl-decf sx-question-list--pages-so-far)
+             nil)))
   "Function used to fetch the next page of questions to be displayed.
 Used by `sx-question-list-mode'. This is a function, called with
 no arguments, which returns a list questions to be displayed,
@@ -196,27 +205,38 @@ following variables:
 
  1. `sx-question-list--print-function'
  2. `sx-question-list--refresh-function'
- 3. `sx-question-list--dataset'
- 4. `sx-question-list--next-page-function'
+ 3. `sx-question-list--next-page-function'
+ 4. `sx-question-list--dataset'
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
 `sx-question-list--current-site'.
 
-As long as one of 2, 3, or 4 is provided, the other are entirely
-optional.
- - If function 2 is not given, the value of 3 is used instead.
- - If 3 is also not given, it is populated by calling 4.
- - If 4 is also not given, the page will display nothing.
+Function 1 is mandatory, but it also has a sane default which is
+usually enough.
 
-For beter integration, items 2 and 4 should take into
+As long as one of 2, 3, or 4 is provided, the other two are
+entirely optional. Populating or refreshing the list of questions
+is done in the following way:
+ - Set `sx-question-list--pages-so-far' to 0.
+ - Call function 2.
+ - If function 2 is not given, call function 3 instead.
+ - If 3 is also not given, it has a safe default (see the doc).
+ - If 3 is set to nil use the value of 4.
+
+For better integration, items 2 and 3 should take into
 consideration the variable `sx-question-list--current-site'. If
 the application in question has no use for this variable, it
 should unbind \\[sx-question-list-switch-site].
 
+Function 3 should probably use the value of
+`sx-question-list--pages-so-far'. If it does, it needs to update
+the value manually.
+
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
   (sx-question-list--update-mode-line)
+  (setq sx-question-list--pages-so-far 0)
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
          ("  A" 3 t :right-align t)
@@ -339,11 +359,14 @@ a new list before redisplaying."
   (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
+  (setq sx-question-list--pages-so-far 0)
   (let ((question-list
-         (if (or no-update
-                 (null (functionp sx-question-list--refresh-function)))
-             sx-question-list--dataset
-           (funcall sx-question-list--refresh-function))))
+         (or (and no-update sx-question-list--dataset)
+             (and (functionp sx-question-list--refresh-function)
+                  (funcall sx-question-list--refresh-function))
+             (and (functionp sx-question-list--next-page-function)
+                  (funcall sx-question-list--next-page-function))
+             sx-question-list--dataset)))
     (setq sx-question-list--dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
