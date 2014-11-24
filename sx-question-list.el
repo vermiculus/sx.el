@@ -152,6 +152,7 @@ Also see `sx-question-list-refresh'."
   "Number of pages currently being displayed.
 This variable gets reset to 0 before every refresh.
 It should be used by `sx-question-list--next-page-function'.")
+(make-variable-buffer-local 'sx-question-list--pages-so-far)
 
 (defvar sx-question-list--refresh-function nil 
   "Function used to refresh the list of questions to be displayed.
@@ -244,7 +245,7 @@ the value manually.
   (setq tabulated-list-padding 1)
   ;; Sorting by title actually sorts by date. It's what we want, but
   ;; it's not terribly intuitive.
-  (setq tabulated-list-sort-key '("Title" . nil))
+  (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
             #'sx-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
@@ -359,7 +360,8 @@ a new list before redisplaying."
   (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
-  (setq sx-question-list--pages-so-far 0)
+  (unless no-update
+    (setq sx-question-list--pages-so-far 0))
   (let ((question-list
          (or (and no-update sx-question-list--dataset)
              (and (functionp sx-question-list--refresh-function)
