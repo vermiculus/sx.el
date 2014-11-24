@@ -93,10 +93,115 @@
   :group 'sx-question-list-faces)
 
 
+;;; Backend variables
+(defvar sx-question-list--print-function #'sx-question-list--print-info
+  "Function to convert a question alist into a tabulated-list entry.
+Used by `sx-question-list-mode', the default value is
+`sx-question-list--print-info'.
+
+If this is set to a different value, it may be necessary to
+change `tabulated-list-format' accordingly.")
+(make-variable-buffer-local 'sx-question-list--print-function)
+
+(defun sx-question-list--print-info (question-data)
+  "Convert `json-read' QUESTION-DATA into tabulated-list format.
+
+This is the default printer used by `sx-question-list'. It
+assumes QUESTION-DATA is an alist containing (at least) the
+elements:
+ `site', `score', `upvoted', `answer_count', `title',
+ `last_activity_date', `tags', `uestion_id'.
+
+Also see `sx-question-list-refresh'."
+  (sx-assoc-let question-data
+    (let ((favorite (if (member .question_id
+                                (assoc .site
+                                       sx-favorites--user-favorite-list))
+                        (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
+      (list
+       question-data
+       (vector
+        (list (int-to-string .score)
+              'face (if .upvoted 'sx-question-list-score-upvoted
+                      'sx-question-list-score))
+        (list (int-to-string .answer_count)
+              'face (if (sx-question--accepted-answer-id question-data)
+                        'sx-question-list-answers-accepted
+                      'sx-question-list-answers))
+        (concat
+         (propertize
+          .title
+          'face (if (sx-question--read-p question-data)
+                    'sx-question-list-read-question
+                  ;; Increment `sx-question-list--unread-count' for
+                  ;; the mode-line.
+                  (cl-incf sx-question-list--unread-count)
+                  'sx-question-list-unread-question))
+         (propertize " " 'display "\n   ")
+         (propertize favorite 'face 'sx-question-list-favorite)
+         "     "
+         (propertize (concat (sx-time-since .last_activity_date)
+                             sx-question-list-ago-string)
+                     'face 'sx-question-list-date)
+         " "
+         (propertize (mapconcat #'sx-question--tag-format .tags " ")
+                     'face 'sx-question-list-tags)
+         (propertize " " 'display "\n")))))))
+
+(defvar sx-question-list--refresh-function
+  (lambda () 
+    (sx-question-get-questions
+     sx-question-list--current-site)) 
+  "Function used to refresh the list of questions to be displayed.
+Used by `sx-question-list-mode', this is a function, called with
+no arguments, which returns a list questions to be displayed,
+like the one returned by `sx-question-get-questions'.
+
+If this is not set, the value of `sx-question-list--dataset' is
+used, and the list is simply redisplayed.")
+(make-variable-buffer-local 'sx-question-list--refresh-function)
+
+(defvar sx-question-list--next-page-function nil 
+  "Function used to fetch the next page of questions to be displayed.
+Used by `sx-question-list-mode'. This is a function, called with
+no arguments, which returns a list questions to be displayed,
+like the one returned by `sx-question-get-questions'.
+
+This function will be called when the user presses \\<sx-question-list-mode-map>\\[sx-question-list-next] at the end
+of the question list. It should either return nil (indicating
+\"no more questions\") or return a list of questions which will
+appended to the currently displayed list.
+
+If this is not set, it's the same as a function which always
+returns nil.")
+(make-variable-buffer-local 'sx-question-list--next-page-function)
+
+(defvar sx-question-list--dataset nil
+  "The logical data behind the displayed list of questions.
+This dataset contains even questions that are hidden by the user,
+and thus not displayed in the list of questions.
+
+This is ignored if `sx-question-list--refresh-function' is set.")
+(make-variable-buffer-local 'sx-question-list--dataset)
+
+
 ;;; Mode Definition
-(define-derived-mode sx-question-list-mode tabulated-list-mode "Question List"
+(define-derived-mode sx-question-list-mode
+  tabulated-list-mode "Question List"
   "Major mode for browsing a list of questions from StackExchange.
 Letters do not insert themselves; instead, they are commands.
+
+To use this mode, activate it and then optionally set some of the
+following variables:
+
+ - `sx-question-list--print-function'
+ - `sx-question-list--refresh-function' or `sx-question-list--dataset'
+ - `sx-question-list--next-page-function'
+
+If none of these is configured, the behaviour is that of a
+\"Frontpage\", for the site given by
+`sx-question-list--current-site'.
+
 \\<sx-question-list>
 \\{sx-question-list}"
   (hl-line-mode 1)
@@ -209,11 +314,6 @@ Non-interactively, DATA is a question alist."
 (defvar sx-question-list--current-site "emacs"
   "Site being displayed in the *question-list* buffer.")
 
-(defvar sx-question-list--current-dataset nil
-  "The logical data behind the displayed list of questions.
-This dataset contains even questions that are hidden by the user,
-and thus not displayed in the list of questions.")
-
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
@@ -223,14 +323,14 @@ a new list before redisplaying."
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
   (let ((question-list
-         (if (and no-update sx-question-list--current-dataset)
-             sx-question-list--current-dataset
-           (sx-question-get-questions
-            sx-question-list--current-site))))
-    (setq sx-question-list--current-dataset question-list)
+         (if (or no-update
+                 (null (functionp sx-question-list--refresh-function)))
+             sx-question-list--dataset
+           (funcall sx-question-list--refresh-function))))
+    (setq sx-question-list--dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
-          (mapcar #'sx-question-list--print-info
+          (mapcar sx-question-list--print-function
                   (cl-remove-if #'sx-question--hidden-p question-list))))
   (when redisplay (tabulated-list-print 'remember)))
 
@@ -250,44 +350,6 @@ Used in the questions list to indicate a question was updated
 \"4d ago\"."
   :type 'string
   :group 'sx-question-list)
-
-(defun sx-question-list--print-info (question-data)
-  "Convert `json-read' QUESTION-DATA into tabulated-list format.
-See `sx-question-list-refresh'."
-  (sx-assoc-let question-data
-    (let ((favorite (if (member .question_id
-                                (assoc .site
-                                       sx-favorites--user-favorite-list))
-                        (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
-      (list
-       question-data
-       (vector
-        (list (int-to-string .score)
-              'face (if .upvoted 'sx-question-list-score-upvoted
-                      'sx-question-list-score))
-        (list (int-to-string .answer_count)
-              'face (if (sx-question--accepted-answer-id question-data)
-                        'sx-question-list-answers-accepted
-                      'sx-question-list-answers))
-        (concat
-         (propertize
-          .title
-          'face (if (sx-question--read-p question-data)
-                    'sx-question-list-read-question
-                  ;; Increment `sx-question-list--unread-count' for
-                  ;; the mode-line.
-                  (cl-incf sx-question-list--unread-count)
-                  'sx-question-list-unread-question))
-         (propertize " " 'display "\n   ")
-         (propertize favorite 'face 'sx-question-list-favorite)
-         "     "
-         (propertize (concat (sx-time-since .last_activity_date)
-                             sx-question-list-ago-string)
-                     'face 'sx-question-list-date)
-         " "
-         (propertize (mapconcat #'sx-question--tag-format .tags " ")
-                     'face 'sx-question-list-tags)
-         (propertize " " 'display "\n")))))))
 
 (defun sx-question-list-view-previous (n)
   "Move cursor up N questions up and display this question.
