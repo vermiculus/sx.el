@@ -1,4 +1,4 @@
-;;; sx-view.el --- User-level functions for viewing frontpages.       -*- lexical-binding: t; -*-
+;;; sx-tab.el --- User-level functions for viewing frontpages.       -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -27,17 +27,17 @@
 (require 'sx)
 (require 'sx-question-list)
 
-(defcustom sx-view-default-site "emacs"
+(defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
   :type 'string 
   :group 'stack-exchange)
 
-(defmacro sx-view--define-page (page &optional printer refresher pager)
+(defmacro sx-tab--define (page &optional printer refresher pager)
   "Define a stack-exchange page called PAGE.
 Page is a capitalized string.
 
-This defines a command `sx-view-PAGE' for displaying the page,
-and a variable `sx-view--PAGE-buffer' for holding the bufer.
+This defines a command `sx-tab-PAGE' for displaying the page,
+and a variable `sx-tab--PAGE-buffer' for holding the bufer.
 
 The arguments PRINTER, REFRESHER, and PAGER, if non-nil, are
 respectively used to set the value of the variables
@@ -47,27 +47,27 @@ respectively used to set the value of the variables
   (declare (indent 1) (debug t))
   (let* ((name (downcase page))
          (buffer-variable
-          (intern (concat "sx-view--" name "-buffer"))))
+          (intern (concat "sx-tab--" name "-buffer"))))
     `(progn
        (defvar ,buffer-variable nil
          ,(format "Buffer where the %s questions are displayed."
                   page))
        (defun
-           ,(intern (concat "sx-view-" name))
+           ,(intern (concat "sx-tab-" name))
            (&optional no-update site)
          ,(format "Display a list of %s questions for SITE.
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
-If SITE is nil, use `sx-view-default-site'."
+If SITE is nil, use `sx-tab-default-site'."
                   page)
          (interactive
           (list current-prefix-arg
                 (funcall (if ido-mode #'ido-completing-read #'completing-read)
-                  (format "Site (%s): " sx-view-default-site)
+                  (format "Site (%s): " sx-tab-default-site)
                   (sx-site-get-api-tokens) nil t nil nil
-                  sx-view-default-site)))
+                  sx-tab-default-site)))
          (sx-initialize)
-         (unless site (setq site sx-view-default-site))
+         (unless site (setq site sx-tab-default-site))
          ;; Create the buffer
          (unless (buffer-live-p ,buffer-variable)
            (setq ,buffer-variable
@@ -88,7 +88,7 @@ If SITE is nil, use `sx-view-default-site'."
 
 
 ;;; FrontPage
-(sx-view--define-page "FrontPage")
+(sx-tab--define-tab "FrontPage")
 
-(provide 'sx-view)
-;;; sx-view.el ends here
+(provide 'sx-tab)
+;;; sx-tab.el ends here
