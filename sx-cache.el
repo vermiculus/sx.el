@@ -87,10 +87,11 @@ re-initialize the cache."
 (defun sx-cache-invalidate-all (&optional save-auth)
   "Invalidate all caches using `sx-cache--invalidate'.
 Afterwards reinitialize caches using `sx-initialize'. If
-SAVE-AUTH is non-nil, do not clear AUTH cache.
+SAVE-AUTH (the prefix arg) is non-nil, do not clear AUTH cache.
 
 Note:  This will also remove read/unread status of questions as well
 as delete the list of hidden questions."
+  (interactive "P")
   (let* ((default-directory sx-cache-directory)
          (caches (file-expand-wildcards "*.el")))
     (when save-auth
