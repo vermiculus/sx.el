@@ -244,6 +244,8 @@ should unbind \\[sx-question-list-switch-site].
    sx-question-list-date-sort-method
    (car x) (car y) #'>))
 
+
+;;; Keybinds
 (mapc
  (lambda (x) (define-key sx-question-list-mode-map
           (car x) (cadr x)))
@@ -251,6 +253,10 @@ should unbind \\[sx-question-list-switch-site].
    ("p" sx-question-list-previous)
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
+   ("N" sx-question-list-next-far)
+   ("P" sx-question-list-previous-far)
+   ("J" sx-question-list-next-far)
+   ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
    ("v" sx-question-list-visit)
@@ -410,6 +416,24 @@ This does not update `sx-question-mode--window'."
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next (- n)))
+
+(defcustom sx-question-list-far-step-size 5
+  "How many questions `sx-question-list-next-far' skips."
+  :type 'integer
+  :group 'sx-question-list
+  :package-version '(sx-question-list . ""))
+
+(defun sx-question-list-next-far (n)
+  "Move cursor up N*`sx-question-list-far-step-size' questions.
+This does not update `sx-question-mode--window'."
+  (interactive "p")
+  (sx-question-list-next (* n sx-question-list-far-step-size)))
+
+(defun sx-question-list-previous-far (n)
+  "Move cursor up N questions.
+This does not update `sx-question-mode--window'."
+  (interactive "p")
+  (sx-question-list-next-far (- n)))
 
 (defun sx-question-list-display-question (&optional data focus)
   "Display question given by DATA.
