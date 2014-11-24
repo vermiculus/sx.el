@@ -58,7 +58,7 @@ If SITE is nil, use `sx-view-default-site'."
           (list current-prefix-arg
                 (funcall (if ido-mode #'ido-completing-read #'completing-read)
                   (format "Site (%s): " sx-view-default-site)
-                  (sx-site-get-api-tokens) nil t nil
+                  (sx-site-get-api-tokens) nil t nil nil
                   sx-view-default-site)))
          (sx-initialize)
          (unless site (setq site sx-view-default-site))
