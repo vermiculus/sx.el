@@ -39,9 +39,9 @@ Page is a capitalized string.
 This defines a command `sx-view-PAGE' for displaying the page,
 and a variable `sx-view--PAGE-buffer' for holding the bufer."
   (declare (indent 1) (debug t))
-  (let ((name (downcase page))
-        (buffer-variable
-         (intern (concat "sx-view--" name "-buffer"))))
+  (let* ((name (downcase page))
+         (buffer-variable
+          (intern (concat "sx-view--" name "-buffer"))))
     `(progn
        (defvar ,buffer-variable nil
          ,(format "Buffer where the %s questions are displayed."
