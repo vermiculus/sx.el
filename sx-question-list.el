@@ -307,10 +307,10 @@ Non-interactively, DATA is a question alist."
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
-(defvar sx-question-list--current-page "Latest"
+(defvar sx-question-list--current-tab "Latest"
   ;; @TODO Other values (once we implement them) are "Top Voted",
   ;; "Unanswered", etc.
-  "Variable describing current page being viewed.")
+  "Variable describing current tab being viewed.")
 
 (defvar sx-question-list--unread-count 0
   "Holds the number of unread questions in the current buffer.")
@@ -324,7 +324,7 @@ Non-interactively, DATA is a question alist."
   '("  "
     mode-name
     " "
-    (:propertize sx-question-list--current-page
+    (:propertize sx-question-list--current-tab
                  face mode-line-buffer-id)
     " ["
     "Unread: "

@@ -1,4 +1,4 @@
-;;; sx-tab.el --- User-level functions for viewing frontpages.       -*- lexical-binding: t; -*-
+;;; sx-tab.el --- Functions for viewing different tabs.       -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -32,12 +32,12 @@
   :type 'string 
   :group 'stack-exchange)
 
-(defmacro sx-tab--define (page &optional printer refresher pager)
-  "Define a stack-exchange page called PAGE.
-Page is a capitalized string.
+(defmacro sx-tab--define (tab &optional printer refresher pager)
+  "Define a stack-exchange tab called TAB.
+TAB is a capitalized string.
 
-This defines a command `sx-tab-PAGE' for displaying the page,
-and a variable `sx-tab--PAGE-buffer' for holding the bufer.
+This defines a command `sx-tab-TAB' for displaying the tab,
+and a variable `sx-tab--TAB-buffer' for holding the bufer.
 
 The arguments PRINTER, REFRESHER, and PAGER, if non-nil, are
 respectively used to set the value of the variables
@@ -45,13 +45,13 @@ respectively used to set the value of the variables
 `sx-question-list--refresh-function', and
 `sx-question-list--next-page-function'."
   (declare (indent 1) (debug t))
-  (let* ((name (downcase page))
+  (let* ((name (downcase tab))
          (buffer-variable
           (intern (concat "sx-tab--" name "-buffer"))))
     `(progn
        (defvar ,buffer-variable nil
          ,(format "Buffer where the %s questions are displayed."
-                  page))
+                  tab))
        (defun
            ,(intern (concat "sx-tab-" name))
            (&optional no-update site)
@@ -59,7 +59,7 @@ respectively used to set the value of the variables
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
 If SITE is nil, use `sx-tab-default-site'."
-                  page)
+                  tab)
          (interactive
           (list current-prefix-arg
                 (funcall (if ido-mode #'ido-completing-read #'completing-read)
@@ -76,13 +76,13 @@ If SITE is nil, use `sx-tab-default-site'."
          (with-current-buffer ,buffer-variable
            (sx-question-list-mode)
            (when printer
-             (setq sx-question-list--next-page-function printer))
+             (setq sx-question-list--print-function printer))
            (when refresher
              (setq sx-question-list--refresh-function refresher))
            (when pager
-             (setq sx-question-list--print-function pager))
+             (setq sx-question-list--next-page-function pager))
            (setq sx-question-list--current-site site)
-           (setq sx-question-list--current-page ,page)
+           (setq sx-question-list--current-tab ,tab)
            (sx-question-list-refresh 'redisplay no-update))
          (switch-to-buffer ,buffer-variable)))))
 
