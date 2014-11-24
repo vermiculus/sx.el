@@ -446,30 +446,11 @@ completions from `sx-site-get-api-tokens'.  Sets
 `sx-question-list-refresh' with `redisplay'."
   (interactive
    (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
-          "Switch to site: " (sx-site-get-api-tokens)
-          (lambda (site)
-            (not (equal site sx-question-list--current-site)))
-          t)))
+           "Switch to site: " (sx-site-get-api-tokens)
+           (lambda (site) (not (equal site sx-question-list--current-site)))
+           t)))
   (setq sx-question-list--current-site site)
   (sx-question-list-refresh 'redisplay))
-
-(defvar sx-question-list--buffer nil
-  "Buffer where the list of questions is displayed.")
-
-(defun list-questions (no-update)
-  "Display a list of StackExchange questions.
-NO-UPDATE is passed to `sx-question-list-refresh'."
-  (interactive "P")
-  (sx-initialize)
-  (unless (buffer-live-p sx-question-list--buffer)
-    (setq sx-question-list--buffer
-          (generate-new-buffer "*question-list*")))
-  (with-current-buffer sx-question-list--buffer
-    (sx-question-list-mode)
-    (sx-question-list-refresh 'redisplay no-update))
-  (switch-to-buffer sx-question-list--buffer))
-
-(defalias 'sx-list-questions #'list-questions)
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
