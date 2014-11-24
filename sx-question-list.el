@@ -194,16 +194,27 @@ Letters do not insert themselves; instead, they are commands.
 To use this mode, activate it and then optionally set some of the
 following variables:
 
- - `sx-question-list--print-function'
- - `sx-question-list--refresh-function' or `sx-question-list--dataset'
- - `sx-question-list--next-page-function'
-
+ 1. `sx-question-list--print-function'
+ 2. `sx-question-list--refresh-function'
+ 3. `sx-question-list--dataset'
+ 4. `sx-question-list--next-page-function'
+\\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
 `sx-question-list--current-site'.
 
-\\<sx-question-list>
-\\{sx-question-list}"
+As long as one of 2, 3, or 4 is provided, the other are entirely
+optional.
+ - If function 2 is not given, the value of 3 is used instead.
+ - If 3 is also not given, it is populated by calling 4.
+ - If 4 is also not given, the page will display nothing.
+
+For beter integration, items 2 and 4 should take into
+consideration the variable `sx-question-list--current-site'. If
+the application in question has no use for this variable, it
+should unbind \\[sx-question-list-switch-site].
+
+\\{sx-question-list-mode-map}"
   (hl-line-mode 1)
   (sx-question-list--update-mode-line)
   (setq tabulated-list-format
