@@ -111,6 +111,7 @@ parsed and displayed prominently on the page)."
                 `((client_id . ,sx-auth-client-id)
                   (scope . (read_inbox
                             no_expiry
+                            private_info
                             write_access))
                   (redirect_uri . ,(url-hexify-string
                                     sx-auth-redirect-uri)))
