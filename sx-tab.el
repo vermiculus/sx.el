@@ -75,12 +75,12 @@ If SITE is nil, use `sx-tab-default-site'."
          ;; Fill the buffer with content.
          (with-current-buffer ,buffer-variable
            (sx-question-list-mode)
-           (when printer
-             (setq sx-question-list--print-function printer))
-           (when refresher
-             (setq sx-question-list--refresh-function refresher))
-           (when pager
-             (setq sx-question-list--next-page-function pager))
+           ,(when printer
+              `(setq sx-question-list--print-function ,printer))
+           ,(when refresher
+              `(setq sx-question-list--refresh-function ,refresher))
+           ,(when pager
+              `(setq sx-question-list--next-page-function ,pager))
            (setq sx-question-list--current-site site)
            (setq sx-question-list--current-tab ,tab)
            (sx-question-list-refresh 'redisplay no-update))
@@ -88,7 +88,7 @@ If SITE is nil, use `sx-tab-default-site'."
 
 
 ;;; FrontPage
-(sx-tab--define-tab "FrontPage")
+(sx-tab--define "FrontPage")
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
