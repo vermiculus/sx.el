@@ -100,7 +100,7 @@
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
              (lambda (&rest _) sx-test-data-questions)))
-    (list-questions nil)
+    (sx-tab-frontpage nil "emacs")
     (switch-to-buffer "*question-list*")
     (goto-char (point-min))
     (should (equal (buffer-name) "*question-list*"))
