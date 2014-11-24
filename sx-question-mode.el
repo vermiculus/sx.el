@@ -604,8 +604,7 @@ comments, and redisplays it."
   (sx-question-mode--ensure-mode)
   (sx-assoc-let sx-question-mode--data
     (sx-question-mode--display
-     (sx-question-get-question
-      sx-question-list--current-site .question_id)
+     (sx-question-get-question .site .question_id)
      (selected-window))))
 
 (defun sx-question-mode--ensure-mode ()

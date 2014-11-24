@@ -32,18 +32,22 @@
   :type 'string 
   :group 'stack-exchange)
 
-(defmacro sx-tab--define (tab &optional printer refresher pager)
+(defmacro sx-tab--define (tab pager &optional printer refresher
+                              &rest body)
   "Define a stack-exchange tab called TAB.
 TAB is a capitalized string.
 
 This defines a command `sx-tab-TAB' for displaying the tab,
 and a variable `sx-tab--TAB-buffer' for holding the bufer.
 
-The arguments PRINTER, REFRESHER, and PAGER, if non-nil, are
+The arguments PAGER, PRINTER, and REFRESHER, if non-nil, are
 respectively used to set the value of the variables
 `sx-question-list--print-function',
 `sx-question-list--refresh-function', and
-`sx-question-list--next-page-function'."
+`sx-question-list--next-page-function'.
+
+BODY is evaluated after activating the mode and setting these
+variables, but before refreshing the display."
   (declare (indent 1) (debug t))
   (let* ((name (downcase tab))
          (buffer-variable
@@ -81,14 +85,18 @@ If SITE is nil, use `sx-tab-default-site'."
               `(setq sx-question-list--refresh-function ,refresher))
            ,(when pager
               `(setq sx-question-list--next-page-function ,pager))
-           (setq sx-question-list--current-site site)
+           (setq sx-question-list--site site)
            (setq sx-question-list--current-tab ,tab)
+           ,@body
            (sx-question-list-refresh 'redisplay no-update))
          (switch-to-buffer ,buffer-variable)))))
 
 
 ;;; FrontPage
-(sx-tab--define "FrontPage")
+(sx-tab--define "FrontPage"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page)))
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here

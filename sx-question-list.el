@@ -164,14 +164,7 @@ If this is not set, the value of `sx-question-list--dataset' is
 used, and the list is simply redisplayed.")
 (make-variable-buffer-local 'sx-question-list--refresh-function)
 
-(defvar sx-question-list--next-page-function
-  (lambda ()
-    (or (sx-question-get-questions
-         sx-question-list--current-site
-         (cl-incf sx-question-list--pages-so-far))
-        ;; If the `get' failed, don't increment.
-        (and (cl-decf sx-question-list--pages-so-far)
-             nil)))
+(defvar sx-question-list--next-page-function nil
   "Function used to fetch the next page of questions to be displayed.
 Used by `sx-question-list-mode'. This is a function, called with
 no arguments, which returns a list questions to be displayed,
@@ -201,38 +194,52 @@ This is ignored if `sx-question-list--refresh-function' is set.")
   "Major mode for browsing a list of questions from StackExchange.
 Letters do not insert themselves; instead, they are commands.
 
-To use this mode, activate it and then optionally set some of the
-following variables:
+The recommended way of using this mode is to activate it and then
+set `sx-question-list--next-page-function'. The return value of
+this function is mapped with `sx-question-list--print-function',
+so you may need to customize the latter if the former does not
+return a list of questions.
 
- 1. `sx-question-list--print-function'
- 2. `sx-question-list--refresh-function'
- 3. `sx-question-list--next-page-function'
- 4. `sx-question-list--dataset'
+The full list of variables which can be set is:
+ 1. `sx-question-list--site'
+      Set this to the name of the site if that makes sense. If it
+      doesn't leave it as nil.
+ 2. `sx-question-list--print-function'
+      Change this if the data you're dealing with is not strictly a
+      list of questions (see the doc for details).
+ 3. `sx-question-list--refresh-function'
+      This is used to populate the initial list. It is only necessary
+      if item 4 does not fit your needs.
+ 4. `sx-question-list--next-page-function'
+      This is used to fetch further questions. If item 3 is nil, it is
+      also used to populate the initial list.
+ 5. `sx-question-list--dataset'
+      This is only used if both 3 and 4 are nil. It can be used to
+      display a static list.
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
-`sx-question-list--current-site'.
+`sx-question-list--site'.
 
-Function 1 is mandatory, but it also has a sane default which is
+Item 2 is mandatory, but it also has a sane default which is
 usually enough.
 
-As long as one of 2, 3, or 4 is provided, the other two are
+As long as one of 3, 4, or 5 is provided, the other two are
 entirely optional. Populating or refreshing the list of questions
 is done in the following way:
- - Set `sx-question-list--pages-so-far' to 0.
+ - Set `sx-question-list--pages-so-far' to 1.
  - Call function 2.
- - If function 2 is not given, call function 3 instead.
- - If 3 is also not given, it has a safe default (see the doc).
- - If 3 is set to nil use the value of 4.
+ - If function 2 is not given, call function 3 with argument 1.
+ - If 3 is not given use the value of 4.
 
-For better integration, items 2 and 3 should take into
-consideration the variable `sx-question-list--current-site'. If
-the application in question has no use for this variable, it
-should unbind \\[sx-question-list-switch-site].
+Adding further questions to the bottom of the list is done by:
+ - Increment `sx-question-list--pages-so-far'.
+ - Call function 3 with argument `sx-question-list--pages-so-far'.
+ - If it returns anything, append to the dataset and refresh the
+   display; otherwise, decrement `sx-question-list--pages-so-far'.
 
-Function 3 should probably use the value of
-`sx-question-list--pages-so-far'. If it does, it needs to update
-the value manually.
+If `sx-question-list--site' is given, items 3 and 4 should take it
+into consideration.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
@@ -349,7 +356,7 @@ Non-interactively, DATA is a question alist."
     (setq sx-question-list--total-count
           (length tabulated-list-entries))))
 
-(defvar sx-question-list--current-site "emacs"
+(defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
@@ -361,13 +368,13 @@ a new list before redisplaying."
   ;; Reset the mode-line unread count (we rebuild it here).
   (setq sx-question-list--unread-count 0)
   (unless no-update
-    (setq sx-question-list--pages-so-far 0))
+    (setq sx-question-list--pages-so-far 1))
   (let ((question-list
          (or (and no-update sx-question-list--dataset)
              (and (functionp sx-question-list--refresh-function)
                   (funcall sx-question-list--refresh-function))
              (and (functionp sx-question-list--next-page-function)
-                  (funcall sx-question-list--next-page-function))
+                  (funcall sx-question-list--next-page-function 1))
              sx-question-list--dataset)))
     (setq sx-question-list--dataset question-list)
     ;; Print the result.
@@ -423,18 +430,23 @@ This does not update `sx-question-mode--window'."
 (defun sx-question-list-next-page ()
   "Fetch and display the next page of questions."
   (interactive)
-  (let ((list (when sx-question-list--next-page-function
-                (funcall sx-question-list--next-page-function))))
-    ;; Try to be at the right place.
-    (goto-char (point-max))
-    (forward-line -1)
-    (if (null list)
-        (message "No further questions.")
-      ;; @TODO: Check for duplicates.
-      (setq sx-question-list--dataset
-            (append sx-question-list--dataset list))
-      (sx-question-list-refresh 'redisplay 'no-update)
-      (forward-line 1))))
+  ;; Stay at the last line.
+  (goto-char (point-max))
+  (forward-line -1)
+  (when (functionp sx-question-list--next-page-function)
+    ;; Try to get more questions
+    (let ((list (funcall sx-question-list--next-page-function
+                  (1+ sx-question-list--pages-so-far))))
+      (if (null list)
+          (message "No further questions.")
+        ;; If it worked, increment the variable.
+        (cl-incf sx-question-list--pages-so-far)
+        ;; And update the dataset.
+        ;; @TODO: Check for duplicates.
+        (setq sx-question-list--dataset
+              (append sx-question-list--dataset list))
+        (sx-question-list-refresh 'redisplay 'no-update)
+        (forward-line 1)))))
 
 (defun sx-question-list-previous (n)
   "Move cursor up N questions.
@@ -502,15 +514,15 @@ relevant window."
   "Switch the current site to SITE and display its questions.
 Use `ido-completing-read' if variable `ido-mode' is active.  
 Retrieve completions from `sx-site-get-api-tokens'.
-Sets `sx-question-list--current-site' and then call
+Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
    (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
            "Switch to site: " (sx-site-get-api-tokens)
-           (lambda (site) (not (equal site sx-question-list--current-site)))
+           (lambda (site) (not (equal site sx-question-list--site)))
            t)))
   (when (and (stringp site) (> (length site) 0))
-    (setq sx-question-list--current-site site)
+    (setq sx-question-list--site site)
     (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)
