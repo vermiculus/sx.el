@@ -440,17 +440,18 @@ relevant window."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Uses `ido-completing-read' if variable `ido-mode' is active.  Retrieves
-completions from `sx-site-get-api-tokens'.  Sets
-`sx-question-list--current-site' and then
+Use `ido-completing-read' if variable `ido-mode' is active.  
+Retrieve completions from `sx-site-get-api-tokens'.
+Sets `sx-question-list--current-site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
    (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
            "Switch to site: " (sx-site-get-api-tokens)
            (lambda (site) (not (equal site sx-question-list--current-site)))
            t)))
-  (setq sx-question-list--current-site site)
-  (sx-question-list-refresh 'redisplay))
+  (when (and (stringp site) (> (length site) 0))
+    (setq sx-question-list--current-site site)
+    (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
