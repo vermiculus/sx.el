@@ -370,7 +370,29 @@ that may currently be there."
   "Move cursor down N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
-  (forward-line n))
+  (if (and (< n 0) (bobp))
+      (sx-question-list-refresh 'redisplay)
+    (let ((line (line-number-at-pos (point))))
+      (forward-line n)
+      ;; If we were trying to move forward, but we hit the end.
+      (when (and (> n 0) (= line (line-number-at-pos (point))))
+        ;; Try to get more questions.
+        (sx-question-list-next-page)))))
+
+(defun sx-question-list-next-page ()
+  "Fetch and display the next page of questions."
+  (interactive)
+  (let ((list (when sx-question-list--next-page-function
+                (funcall sx-question-list--next-page-function))))
+    (if (null list)
+        (progn (message "No further questions.")
+               (forward-line 0))
+      ;; Try to be at the right place.
+      (goto-char (point-max))
+      (setq sx-question-list--dataset
+            (append sx-question-list--dataset list))
+      (sx-question-list-refresh 'redisplay 'no-update)
+      (forward-line 1))))
 
 (defun sx-question-list-previous (n)
   "Move cursor up N questions.
