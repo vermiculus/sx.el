@@ -412,23 +412,23 @@ This does not update `sx-question-mode--window'."
   (interactive "p")
   (if (and (< n 0) (bobp))
       (sx-question-list-refresh 'redisplay)
-    (let ((line (line-number-at-pos (point))))
-      (forward-line n)
-      ;; If we were trying to move forward, but we hit the end.
-      (when (and (> n 0) (= line (line-number-at-pos (point))))
-        ;; Try to get more questions.
-        (sx-question-list-next-page)))))
+    (forward-line n)
+    ;; If we were trying to move forward, but we hit the end.
+    (when (eobp)
+      ;; Try to get more questions.
+      (sx-question-list-next-page))))
 
 (defun sx-question-list-next-page ()
   "Fetch and display the next page of questions."
   (interactive)
   (let ((list (when sx-question-list--next-page-function
                 (funcall sx-question-list--next-page-function))))
+    ;; Try to be at the right place.
+    (goto-char (point-max))
+    (forward-line -1)
     (if (null list)
-        (progn (message "No further questions.")
-               (forward-line 0))
-      ;; Try to be at the right place.
-      (goto-char (point-max))
+        (message "No further questions.")
+      ;; @TODO: Check for duplicates.
       (setq sx-question-list--dataset
             (append sx-question-list--dataset list))
       (sx-question-list-refresh 'redisplay 'no-update)
