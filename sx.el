@@ -27,6 +27,7 @@
 ;; StackMode.
 
 ;;; Code:
+(require 'tabulated-list)
 
 (defconst sx-version "0.1" "Version of the `sx' package.")
 
@@ -165,15 +166,22 @@ Return the result of BODY."
 ;;; Using data in buffer
 (defun sx--data-here ()
   "Get the text property `sx--data-here'."
-  (get-text-property (point) 'sx--data-here))
+  (or (get-text-property (point) 'sx--data-here)
+      (and (derived-mode-p 'sx-question-list-mode)
+           (tabulated-list-get-id))))
 
 (defun sx-visit ()
   "Visit in a web browser the object under point.
 Object can be a question, answer, or comment."
   (interactive)
-  (sx-assoc-let (sx--data-here)
-    (when (stringp .link)
-      (browse-url .link))))
+  (let ((data (sx--data-here)))
+    (sx-assoc-let data
+      (when (stringp .link)
+        (browse-url .link))
+      (when .title
+        (sx-question--mark-read data)
+        (when (derived-mode-p 'sx-question-list-mode)
+          (sx-question-list-refresh 'redisplay 'no-update))))))
 
 
 ;;; Assoc-let
