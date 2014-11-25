@@ -61,6 +61,10 @@
      comment.body_markdown
      comment.body
      comment.link
+     comment.edited
+     comment.creation_date
+     comment.upvoted
+     comment.score
      answer.last_editor
      answer.link
      answer.owner
