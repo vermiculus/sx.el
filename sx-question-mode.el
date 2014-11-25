@@ -332,7 +332,6 @@ where `value' is given `face' as its face.
 (defun sx-question-mode--fill-and-fontify (text)
   "Return TEXT filled according to `markdown-mode'."
   (with-temp-buffer
-    (erase-buffer)
     (insert text)
     (markdown-mode)
     (font-lock-mode -1)
@@ -344,8 +343,8 @@ where `value' is given `face' as its face.
     (font-lock-add-keywords ;; Highlight usernames.
      nil
      `((,(rx (or blank line-start)
-            (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
-            symbol-end)
+             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+             symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
     (font-lock-fontify-region (point-min) (point-max))
