@@ -56,13 +56,11 @@ properties returned by the API with an added (site SITE)
 property.
 
 `sx-method-call' is used with `sx-question-browse-filter'."
-  (mapcar
-   (lambda (question) (cons (cons 'site site) question))
-   (sx-method-call 'questions
-     :keywords `((page . ,page))
-     :site site
-     :auth t
-     :filter sx-question-browse-filter)))
+  (sx-method-call 'questions
+    :keywords `((page . ,page))
+    :site site
+    :auth t
+    :filter sx-question-browse-filter))
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
@@ -159,23 +157,20 @@ If no cache exists for it, initialize one with SITE."
 
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
-  (sx-assoc-let question
-    (sx-question--ensure-hidden-list .site)
-    (let ((site-cell (assoc .site sx-question--user-hidden-list))
-          cell)
-      ;; If question already hidden, do nothing.
-      (unless (memq .question_id site-cell)
-        ;; First question from this site.
-        (if (null site-cell)
-            (push (list .site .question_id) sx-question--user-hidden-list)
-          ;; Question wasn't present.
-          ;; Add it in, but make sure it's sorted (just in case we need
-          ;; it later).
-          (sx-sorted-insert-skip-first .question_id site-cell >))
-        ;; This causes a small lag on `j' and `k' as the list gets large.
-        ;; Should we do this on a timer?
-        ;; Save the results.
-        (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
+  (let ((site-cell (assoc .site sx-question--user-hidden-list))
+        cell)
+    ;; If question already hidden, do nothing.
+    (unless (memq .question_id site-cell)
+      ;; First question from this site.
+      (push (list .site .question_id) sx-question--user-hidden-list)
+      ;; Question wasn't present.
+      ;; Add it in, but make sure it's sorted (just in case we need
+      ;; it later).
+      (sx-sorted-insert-skip-first .question_id site-cell >)
+      ;; This causes a small lag on `j' and `k' as the list gets large.
+      ;; Should we do this on a timer?
+      ;; Save the results.
+      (sx-cache-set 'hidden-questions sx-question--user-hidden-list))))
 
 
 ;;;; Other data
