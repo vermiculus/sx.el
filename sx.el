@@ -198,6 +198,13 @@ Return the result of BODY."
      (add-text-properties p (point) ,properties)
      result))
 
+(defun sx--user-@name (user)
+  "Get the `display_name' of USER prepended with @."
+  (sx-assoc-let user
+    (when (stringp .display_name)
+      (concat "@" .display_name))))
+
+
 ;;; Assoc-let
 (defun sx--site (data)
   "Get the site in which DATA belongs.
