@@ -199,6 +199,8 @@ Return the result of BODY."
   "Refresh the question list if we're inside it."
   (cond
    ((derived-mode-p 'sx-question-list-mode)
+    (sx-question-list-refresh 'redisplay 'no-update))
+   ((derived-mode-p 'sx-question-mode)
     (sx-question-list-refresh 'redisplay 'no-update))))
 
 (defun sx--copy-data (from to)

@@ -552,16 +552,21 @@ Letters do not insert themselves; instead, they are commands.
    (,(kbd "<backtab>") backward-button)
    ([return] push-button)))
 
-(defun sx-question-mode-refresh ()
+(defun sx-question-mode-refresh (&optional no-update)
   "Refresh currently displayed question.
 Queries the API for any changes to the question or its answers or
-comments, and redisplays it."
-  (interactive)
+comments, and redisplays it.
+
+With non-nil prefix argument NO-UPDATE, just redisplay, don't
+query the api."
+  (interactive "P")
   (sx-question-mode--ensure-mode)
-  (sx-assoc-let sx-question-mode--data
-    (sx-question-mode--display
-     (sx-question-get-question .site .question_id)
-     (selected-window))))
+  (sx-question-mode--display
+   (if no-update
+       sx-question-mode--data
+     (sx-assoc-let sx-question-mode--data
+       (sx-question-get-question .site .question_id)))
+   (selected-window)))
 
 (defun sx-question-mode--ensure-mode ()
   "Ensures we are in question mode, erroring otherwise."
