@@ -106,5 +106,78 @@ changes."
       ;; Display the changes in `data'.
       (sx--maybe-update-display))))
 
+
+;;; Commenting
+(defun sx-comment (data text)
+  "Post a comment on DATA given by TEXT.
+DATA can be a question, an answer, or a comment. Interactively,
+it is guessed from context at point.
+If DATA is a comment, the comment is posted as a reply to it.
+
+TEXT is a string. Interactively, it is read from the minibufer."
+  (interactive
+   (list (sx--data-here) 'query))
+  (sx-assoc-let data
+    ;; Get the comment text
+    (when (eq text 'query)
+      (setq text (read-string
+                  "Comment text:"
+                  (when .comment_id
+                    (sx--user-@name .author))))
+      (while (< (string-width text) 15)
+        (message "Comments must have more than 15 characters.")
+        (setq text (read-string "Comment text:" text))))
+    ;; If non-interactive, `text' could be anything.
+    (unless (stringp text)
+      (error "Comment body must be a string"))
+    ;; And post
+    (let ((result
+           (sx-method-call 'posts
+             :id (or .post_id .answer_id .question_id)
+             :submethod "comments/add"
+             :auth 'warn
+             :url-method "POST"
+             :filter sx-browse-filter
+             :site .site
+             :keywords `((body ,text)))))
+      ;; The api returns the new DATA.
+      (when (> (length result) 0)
+        (sx--add-comment-to-object
+         (elt result 0)
+         (if .post_id
+             (sx--get-post .post_type .site .post_id)
+           data))
+        ;; Display the changes in `data'.
+        (sx--maybe-update-display)))))
+
+(defun sx--get-post (type site id)
+  "Find in the database a post identified by TYPE, SITE and ID.
+TYPE is `question' or `answer'. 
+SITE is a string.
+ID is an integer."
+  (let ((db (cons sx-question-mode--data
+                  sx-question-list--dataset))))
+  (setq db
+        (cl-case type
+          (question db)
+          (answer
+           (cl-map 'list (lambda (x) (cdr (assoc 'answers x)))
+                   db))))
+  (car (cl-member-if
+        (lambda (x) (sx-assoc-let x
+                 (and (eq .id id) (eq .site site))))
+        db)))
+
+(defun sx--add-comment-to-object (comment object)
+  "Add COMMENT to OBJECT's `comments' property.
+OBJECT can be a question or an answer."
+  (let ((com-cell (assoc 'comments object))
+        (count-cel (assoc 'comment_count object)))
+    (setcdr
+     com-cell
+     (cl-map 'vector #'identity
+             (cdr cell) (list comment)))
+    (cl-incf (cdr count-cell))))
+
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
