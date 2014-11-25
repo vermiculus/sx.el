@@ -52,7 +52,7 @@
   :group 'sx-question-list-faces)
 
 (defface sx-question-list-answers-accepted
-  '((t :underline t :overline t :inherit sx-question-list-answers))
+  '((t :box 1 :inherit sx-question-list-answers))
   ""
   :group 'sx-question-list-faces)
 
