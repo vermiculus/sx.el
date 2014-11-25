@@ -217,8 +217,7 @@ QUESTION must be a data structure returned by `json-read'."
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
-  ;; This makes `data' accessible through
-  ;; `(get-text-property (point) 'sx--data-here)'
+  ;; This makes `data' accessible through `sx--data-here'.
   (sx-assoc-let data
     (sx--wrap-in-text-property
         (list 'sx--data-here data)
@@ -542,7 +541,7 @@ Letters do not insert themselves; instead, they are commands.
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
-   ("v" sx-question-mode-visit)
+   ("v" sx-visit)
    ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
@@ -552,19 +551,6 @@ Letters do not insert themselves; instead, they are commands.
    (,(kbd "<S-tab>") backward-button)
    (,(kbd "<backtab>") backward-button)
    ([return] push-button)))
-
-(defun sx-question-mode-visit ()
-  "Visit the currently displayed question."
-  (interactive)
-  (sx-question-mode--ensure-mode)
-  (sx-assoc-let
-      ;; This allows us to visit the thing-at-point. Which could be a
-      ;; question or an answer. We use `append', so that if one
-      ;; doesn't have a `link' item we can fallback to
-      ;; `sx-question-mode--data'.
-      (append (get-text-property (point) 'sx--data-here)
-              sx-question-mode--data)
-    (browse-url .link)))
 
 (defun sx-question-mode-refresh ()
   "Refresh currently displayed question.

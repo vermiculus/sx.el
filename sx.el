@@ -162,6 +162,20 @@ Return the result of BODY."
      result))
 
 
+;;; Using data in buffer
+(defun sx--data-here ()
+  "Get the text property `sx--data-here'."
+  (get-text-property (point) 'sx--data-here))
+
+(defun sx-visit ()
+  "Visit in a web browser the object under point.
+Object can be a question, answer, or comment."
+  (interactive)
+  (sx-assoc-let (sx--data-here)
+    (when (stringp .link)
+      (browse-url .link))))
+
+
 ;;; Assoc-let
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
