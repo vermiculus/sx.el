@@ -156,27 +156,27 @@ TYPE is `question' or `answer'.
 SITE is a string.
 ID is an integer."
   (let ((db (cons sx-question-mode--data
-                  sx-question-list--dataset))))
-  (setq db
-        (cl-case type
-          (question db)
-          (answer
-           (cl-map 'list (lambda (x) (cdr (assoc 'answers x)))
-                   db))))
-  (car (cl-member-if
-        (lambda (x) (sx-assoc-let x
-                 (and (eq .id id) (eq .site site))))
-        db)))
+                  sx-question-list--dataset)))
+    (setq db
+          (cl-case type
+            (question db)
+            (answer
+             (cl-map 'list (lambda (x) (cdr (assoc 'answers x)))
+                     db))))
+    (car (cl-member-if
+          (lambda (x) (sx-assoc-let x
+                   (and (eq .id id) (eq .site site))))
+          db))))
 
 (defun sx--add-comment-to-object (comment object)
   "Add COMMENT to OBJECT's `comments' property.
 OBJECT can be a question or an answer."
   (let ((com-cell (assoc 'comments object))
-        (count-cel (assoc 'comment_count object)))
+        (count-cell (assoc 'comment_count object)))
     (setcdr
      com-cell
      (cl-map 'vector #'identity
-             (cdr cell) (list comment)))
+             (cdr com-cell) (list comment)))
     (cl-incf (cdr count-cell))))
 
 (provide 'sx-interaction)
