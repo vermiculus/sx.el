@@ -93,167 +93,26 @@
   :group 'sx-question-list-faces)
 
 
-;;; Mode Definition
-(define-derived-mode sx-question-list-mode tabulated-list-mode "Question List"
-  "Major mode for browsing a list of questions from StackExchange.
-Letters do not insert themselves; instead, they are commands.
-\\<sx-question-list>
-\\{sx-question-list}"
-  (hl-line-mode 1)
-  (sx-question-list--update-mode-line)
-  (setq tabulated-list-format
-        [("  V" 3 t :right-align t)
-         ("  A" 3 t :right-align t)
-         ("Title" 0 sx-question-list--date-more-recent-p)])
-  (setq tabulated-list-padding 1)
-  ;; Sorting by title actually sorts by date. It's what we want, but
-  ;; it's not terribly intuitive.
-  (setq tabulated-list-sort-key '("Title" . nil))
-  (add-hook 'tabulated-list-revert-hook
-            #'sx-question-list-refresh nil t)
-  (add-hook 'tabulated-list-revert-hook
-            #'sx-question-list--update-mode-line nil t)
-  (tabulated-list-init-header))
+;;; Backend variables
+(defvar sx-question-list--print-function #'sx-question-list--print-info
+  "Function to convert a question alist into a tabulated-list entry.
+Used by `sx-question-list-mode', the default value is
+`sx-question-list--print-info'.
 
-(defcustom sx-question-list-date-sort-method 'last_activity_date
-  "Parameter which controls date sorting."
-  ;; This should be made into a (choice ...) of constants.
-  :type 'symbol
-  ;; Add a setter to protect the value.
-  :group 'sx-question-list)
-
-(defun sx-question-list--date-more-recent-p (x y)
-  "Non-nil if tabulated-entry X is newer than Y."
-  (sx--<
-   sx-question-list-date-sort-method
-   (car x) (car y) #'>))
-
-(mapc
- (lambda (x) (define-key sx-question-list-mode-map
-          (car x) (cadr x)))
- '(("n" sx-question-list-next)
-   ("p" sx-question-list-previous)
-   ("j" sx-question-list-view-next)
-   ("k" sx-question-list-view-previous)
-   ("g" sx-question-list-refresh)
-   (":" sx-question-list-switch-site)
-   ("v" sx-question-list-visit)
-   ("h" sx-question-list-hide)
-   ("m" sx-question-list-mark-read)
-   ([?\r] sx-question-list-display-question)))
-
-(defun sx-question-list-hide (data)
-  "Hide question under point.
-Non-interactively, DATA is a question alist."
-  (interactive
-   (list (if (derived-mode-p 'sx-question-list-mode)
-             (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
-  (sx-question--mark-hidden data)
-  (when (called-interactively-p 'any)
-    (sx-question-list-refresh 'redisplay 'noupdate)))
-
-(defun sx-question-list-mark-read (data)
-  "Mark as read question under point.
-Non-interactively, DATA is a question alist."
-  (interactive
-   (list (if (derived-mode-p 'sx-question-list-mode)
-             (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
-  (sx-question--mark-read data)
-  (sx-question-list-next 1)
-  (when (called-interactively-p 'any)
-    (sx-question-list-refresh 'redisplay 'noupdate)))
-
-(defvar sx-question-list--current-page "Latest"
-  ;; @TODO Other values (once we implement them) are "Top Voted",
-  ;; "Unanswered", etc.
-  "Variable describing current page being viewed.")
-
-(defvar sx-question-list--unread-count 0
-  "Holds the number of unread questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--unread-count)
-
-(defvar sx-question-list--total-count 0
-  "Holds the total number of questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--total-count)
-
-(defconst sx-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
-    (:propertize sx-question-list--current-page
-                 face mode-line-buffer-id)
-    " ["
-    "Unread: "
-    (:propertize
-     (:eval (int-to-string sx-question-list--unread-count))
-     face mode-line-buffer-id)
-    ", "
-    "Total: "
-    (:propertize
-     (:eval (int-to-string sx-question-list--total-count))
-     face mode-line-buffer-id)
-    "] ")
-  "Mode-line construct to use in question-list buffers.")
-
-(defun sx-question-list--update-mode-line ()
-  "Fill the mode-line with useful information."
-  ;; All the data we need is right in the buffer.
-  (when (derived-mode-p 'sx-question-list-mode)
-    (setq mode-line-format
-          sx-question-list--mode-line-format)
-    (setq sx-question-list--total-count
-          (length tabulated-list-entries))))
-
-(defvar sx-question-list--current-site "emacs"
-  "Site being displayed in the *question-list* buffer.")
-
-(defvar sx-question-list--current-dataset nil
-  "The logical data behind the displayed list of questions.
-This dataset contains even questions that are hidden by the user,
-and thus not displayed in the list of questions.")
-
-(defun sx-question-list-refresh (&optional redisplay no-update)
-  "Update the list of questions.
-If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
-If the prefix argument NO-UPDATE is nil, query StackExchange for
-a new list before redisplaying."
-  (interactive "p\nP")
-  ;; Reset the mode-line unread count (we rebuild it here).
-  (setq sx-question-list--unread-count 0)
-  (let ((question-list
-         (if (and no-update sx-question-list--current-dataset)
-             sx-question-list--current-dataset
-           (sx-question-get-questions
-            sx-question-list--current-site))))
-    (setq sx-question-list--current-dataset question-list)
-    ;; Print the result.
-    (setq tabulated-list-entries
-          (mapcar #'sx-question-list--print-info
-                  (cl-remove-if #'sx-question--hidden-p question-list))))
-  (when redisplay (tabulated-list-print 'remember)))
-
-(defun sx-question-list-visit (&optional data)
-  "Visits question under point (or from DATA) using `browse-url'."
-  (interactive)
-  (unless data (setq data (tabulated-list-get-id)))
-  (unless data (error "No question here!"))
-  (sx-assoc-let data
-    (browse-url .link))
-  (sx-question--mark-read data)
-  (sx-question-list-refresh 'redisplay 'no-update))
-
-(defcustom sx-question-list-ago-string " ago"
-  "String appended to descriptions of the time since something happened.
-Used in the questions list to indicate a question was updated
-\"4d ago\"."
-  :type 'string
-  :group 'sx-question-list)
+If this is set to a different value, it may be necessary to
+change `tabulated-list-format' accordingly.")
+(make-variable-buffer-local 'sx-question-list--print-function)
 
 (defun sx-question-list--print-info (question-data)
   "Convert `json-read' QUESTION-DATA into tabulated-list format.
-See `sx-question-list-refresh'."
+
+This is the default printer used by `sx-question-list'. It
+assumes QUESTION-DATA is an alist containing (at least) the
+elements:
+ `site', `score', `upvoted', `answer_count', `title',
+ `last_activity_date', `tags', `uestion_id'.
+
+Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
                                 (assoc .site
@@ -289,6 +148,258 @@ See `sx-question-list-refresh'."
                      'face 'sx-question-list-tags)
          (propertize " " 'display "\n")))))))
 
+(defvar sx-question-list--pages-so-far 0
+  "Number of pages currently being displayed.
+This variable gets reset to 0 before every refresh.
+It should be used by `sx-question-list--next-page-function'.")
+(make-variable-buffer-local 'sx-question-list--pages-so-far)
+
+(defvar sx-question-list--refresh-function nil 
+  "Function used to refresh the list of questions to be displayed.
+Used by `sx-question-list-mode', this is a function, called with
+no arguments, which returns a list questions to be displayed,
+like the one returned by `sx-question-get-questions'.
+
+If this is not set, the value of `sx-question-list--dataset' is
+used, and the list is simply redisplayed.")
+(make-variable-buffer-local 'sx-question-list--refresh-function)
+
+(defvar sx-question-list--next-page-function nil
+  "Function used to fetch the next page of questions to be displayed.
+Used by `sx-question-list-mode'. This is a function, called with
+no arguments, which returns a list questions to be displayed,
+like the one returned by `sx-question-get-questions'.
+
+This function will be called when the user presses \\<sx-question-list-mode-map>\\[sx-question-list-next] at the end
+of the question list. It should either return nil (indicating
+\"no more questions\") or return a list of questions which will
+appended to the currently displayed list.
+
+If this is not set, it's the same as a function which always
+returns nil.")
+(make-variable-buffer-local 'sx-question-list--next-page-function)
+
+(defvar sx-question-list--dataset nil
+  "The logical data behind the displayed list of questions.
+This dataset contains even questions that are hidden by the user,
+and thus not displayed in the list of questions.
+
+This is ignored if `sx-question-list--refresh-function' is set.")
+(make-variable-buffer-local 'sx-question-list--dataset)
+
+
+;;; Mode Definition
+(define-derived-mode sx-question-list-mode
+  tabulated-list-mode "Question List"
+  "Major mode for browsing a list of questions from StackExchange.
+Letters do not insert themselves; instead, they are commands.
+
+The recommended way of using this mode is to activate it and then
+set `sx-question-list--next-page-function'. The return value of
+this function is mapped with `sx-question-list--print-function',
+so you may need to customize the latter if the former does not
+return a list of questions.
+
+The full list of variables which can be set is:
+ 1. `sx-question-list--site'
+      Set this to the name of the site if that makes sense. If it
+      doesn't leave it as nil.
+ 2. `sx-question-list--print-function'
+      Change this if the data you're dealing with is not strictly a
+      list of questions (see the doc for details).
+ 3. `sx-question-list--refresh-function'
+      This is used to populate the initial list. It is only necessary
+      if item 4 does not fit your needs.
+ 4. `sx-question-list--next-page-function'
+      This is used to fetch further questions. If item 3 is nil, it is
+      also used to populate the initial list.
+ 5. `sx-question-list--dataset'
+      This is only used if both 3 and 4 are nil. It can be used to
+      display a static list.
+\\<sx-question-list-mode-map>
+If none of these is configured, the behaviour is that of a
+\"Frontpage\", for the site given by
+`sx-question-list--site'.
+
+Item 2 is mandatory, but it also has a sane default which is
+usually enough.
+
+As long as one of 3, 4, or 5 is provided, the other two are
+entirely optional. Populating or refreshing the list of questions
+is done in the following way:
+ - Set `sx-question-list--pages-so-far' to 1.
+ - Call function 2.
+ - If function 2 is not given, call function 3 with argument 1.
+ - If 3 is not given use the value of 4.
+
+Adding further questions to the bottom of the list is done by:
+ - Increment `sx-question-list--pages-so-far'.
+ - Call function 3 with argument `sx-question-list--pages-so-far'.
+ - If it returns anything, append to the dataset and refresh the
+   display; otherwise, decrement `sx-question-list--pages-so-far'.
+
+If `sx-question-list--site' is given, items 3 and 4 should take it
+into consideration.
+
+\\{sx-question-list-mode-map}"
+  (hl-line-mode 1)
+  (sx-question-list--update-mode-line)
+  (setq sx-question-list--pages-so-far 0)
+  (setq tabulated-list-format
+        [("  V" 3 t :right-align t)
+         ("  A" 3 t :right-align t)
+         ("Title" 0 sx-question-list--date-more-recent-p)])
+  (setq tabulated-list-padding 1)
+  ;; Sorting by title actually sorts by date. It's what we want, but
+  ;; it's not terribly intuitive.
+  (setq tabulated-list-sort-key nil)
+  (add-hook 'tabulated-list-revert-hook
+            #'sx-question-list-refresh nil t)
+  (add-hook 'tabulated-list-revert-hook
+            #'sx-question-list--update-mode-line nil t)
+  (tabulated-list-init-header))
+
+(defcustom sx-question-list-date-sort-method 'last_activity_date
+  "Parameter which controls date sorting."
+  ;; This should be made into a (choice ...) of constants.
+  :type 'symbol
+  ;; Add a setter to protect the value.
+  :group 'sx-question-list)
+
+(defun sx-question-list--date-more-recent-p (x y)
+  "Non-nil if tabulated-entry X is newer than Y."
+  (sx--<
+   sx-question-list-date-sort-method
+   (car x) (car y) #'>))
+
+
+;;; Keybinds
+(mapc
+ (lambda (x) (define-key sx-question-list-mode-map
+          (car x) (cadr x)))
+ '(("n" sx-question-list-next)
+   ("p" sx-question-list-previous)
+   ("j" sx-question-list-view-next)
+   ("k" sx-question-list-view-previous)
+   ("N" sx-question-list-next-far)
+   ("P" sx-question-list-previous-far)
+   ("J" sx-question-list-next-far)
+   ("K" sx-question-list-previous-far)
+   ("g" sx-question-list-refresh)
+   (":" sx-question-list-switch-site)
+   ("v" sx-question-list-visit)
+   ("h" sx-question-list-hide)
+   ("m" sx-question-list-mark-read)
+   ([?\r] sx-question-list-display-question)))
+
+(defun sx-question-list-hide (data)
+  "Hide question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-hidden data)
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
+
+(defun sx-question-list-mark-read (data)
+  "Mark as read question under point.
+Non-interactively, DATA is a question alist."
+  (interactive
+   (list (if (derived-mode-p 'sx-question-list-mode)
+             (tabulated-list-get-id)
+           (user-error "Not in `sx-question-list-mode'"))))
+  (sx-question--mark-read data)
+  (sx-question-list-next 1)
+  (when (called-interactively-p 'any)
+    (sx-question-list-refresh 'redisplay 'noupdate)))
+
+(defvar sx-question-list--current-tab "Latest"
+  ;; @TODO Other values (once we implement them) are "Top Voted",
+  ;; "Unanswered", etc.
+  "Variable describing current tab being viewed.")
+
+(defvar sx-question-list--unread-count 0
+  "Holds the number of unread questions in the current buffer.")
+(make-variable-buffer-local 'sx-question-list--unread-count)
+
+(defvar sx-question-list--total-count 0
+  "Holds the total number of questions in the current buffer.")
+(make-variable-buffer-local 'sx-question-list--total-count)
+
+(defconst sx-question-list--mode-line-format
+  '("  "
+    mode-name
+    " "
+    (:propertize sx-question-list--current-tab
+                 face mode-line-buffer-id)
+    " ["
+    "Unread: "
+    (:propertize
+     (:eval (int-to-string sx-question-list--unread-count))
+     face mode-line-buffer-id)
+    ", "
+    "Total: "
+    (:propertize
+     (:eval (int-to-string sx-question-list--total-count))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in question-list buffers.")
+
+(defun sx-question-list--update-mode-line ()
+  "Fill the mode-line with useful information."
+  ;; All the data we need is right in the buffer.
+  (when (derived-mode-p 'sx-question-list-mode)
+    (setq mode-line-format
+          sx-question-list--mode-line-format)
+    (setq sx-question-list--total-count
+          (length tabulated-list-entries))))
+
+(defvar sx-question-list--site nil
+  "Site being displayed in the *question-list* buffer.")
+
+(defun sx-question-list-refresh (&optional redisplay no-update)
+  "Update the list of questions.
+If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
+If the prefix argument NO-UPDATE is nil, query StackExchange for
+a new list before redisplaying."
+  (interactive "p\nP")
+  ;; Reset the mode-line unread count (we rebuild it here).
+  (setq sx-question-list--unread-count 0)
+  (unless no-update
+    (setq sx-question-list--pages-so-far 1))
+  (let ((question-list
+         (or (and no-update sx-question-list--dataset)
+             (and (functionp sx-question-list--refresh-function)
+                  (funcall sx-question-list--refresh-function))
+             (and (functionp sx-question-list--next-page-function)
+                  (funcall sx-question-list--next-page-function 1))
+             sx-question-list--dataset)))
+    (setq sx-question-list--dataset question-list)
+    ;; Print the result.
+    (setq tabulated-list-entries
+          (mapcar sx-question-list--print-function
+                  (cl-remove-if #'sx-question--hidden-p question-list))))
+  (when redisplay (tabulated-list-print 'remember)))
+
+(defun sx-question-list-visit (&optional data)
+  "Visits question under point (or from DATA) using `browse-url'."
+  (interactive)
+  (unless data (setq data (tabulated-list-get-id)))
+  (unless data (error "No question here!"))
+  (sx-assoc-let data
+    (browse-url .link))
+  (sx-question--mark-read data)
+  (sx-question-list-refresh 'redisplay 'no-update))
+
+(defcustom sx-question-list-ago-string " ago"
+  "String appended to descriptions of the time since something happened.
+Used in the questions list to indicate a question was updated
+\"4d ago\"."
+  :type 'string
+  :group 'sx-question-list)
+
 (defun sx-question-list-view-previous (n)
   "Move cursor up N questions up and display this question.
 Displayed in `sx-question-mode--window', replacing any question
@@ -308,13 +419,58 @@ that may currently be there."
   "Move cursor down N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
-  (forward-line n))
+  (if (and (< n 0) (bobp))
+      (sx-question-list-refresh 'redisplay)
+    (forward-line n)
+    ;; If we were trying to move forward, but we hit the end.
+    (when (eobp)
+      ;; Try to get more questions.
+      (sx-question-list-next-page))))
+
+(defun sx-question-list-next-page ()
+  "Fetch and display the next page of questions."
+  (interactive)
+  ;; Stay at the last line.
+  (goto-char (point-max))
+  (forward-line -1)
+  (when (functionp sx-question-list--next-page-function)
+    ;; Try to get more questions
+    (let ((list (funcall sx-question-list--next-page-function
+                  (1+ sx-question-list--pages-so-far))))
+      (if (null list)
+          (message "No further questions.")
+        ;; If it worked, increment the variable.
+        (cl-incf sx-question-list--pages-so-far)
+        ;; And update the dataset.
+        ;; @TODO: Check for duplicates.
+        (setq sx-question-list--dataset
+              (append sx-question-list--dataset list))
+        (sx-question-list-refresh 'redisplay 'no-update)
+        (forward-line 1)))))
 
 (defun sx-question-list-previous (n)
   "Move cursor up N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next (- n)))
+
+(defcustom sx-question-list-far-step-size 5
+  "How many questions `sx-question-list-next-far' skips."
+  :type 'integer
+  :group 'sx-question-list
+  :package-version '(sx-question-list . ""))
+
+(defun sx-question-list-next-far (n)
+  "Move cursor up N*`sx-question-list-far-step-size' questions.
+This does not update `sx-question-mode--window'."
+  (interactive "p")
+  (sx-question-list-next (* n sx-question-list-far-step-size)))
+
+(defun sx-question-list-previous-far (n)
+  "Move cursor up N questions.
+This does not update `sx-question-mode--window'."
+  (interactive "p")
+  (sx-question-list-next-far (- n)))
 
 (defun sx-question-list-display-question (&optional data focus)
   "Display question given by DATA.
@@ -356,36 +512,18 @@ relevant window."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Uses `ido-completing-read' if variable `ido-mode' is active.  Retrieves
-completions from `sx-site-get-api-tokens'.  Sets
-`sx-question-list--current-site' and then
+Use `ido-completing-read' if variable `ido-mode' is active.  
+Retrieve completions from `sx-site-get-api-tokens'.
+Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
    (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
-          "Switch to site: " (sx-site-get-api-tokens)
-          (lambda (site)
-            (not (equal site sx-question-list--current-site)))
-          t)))
-  (setq sx-question-list--current-site site)
-  (sx-question-list-refresh 'redisplay))
-
-(defvar sx-question-list--buffer nil
-  "Buffer where the list of questions is displayed.")
-
-(defun list-questions (no-update)
-  "Display a list of StackExchange questions.
-NO-UPDATE is passed to `sx-question-list-refresh'."
-  (interactive "P")
-  (sx-initialize)
-  (unless (buffer-live-p sx-question-list--buffer)
-    (setq sx-question-list--buffer
-          (generate-new-buffer "*question-list*")))
-  (with-current-buffer sx-question-list--buffer
-    (sx-question-list-mode)
-    (sx-question-list-refresh 'redisplay no-update))
-  (switch-to-buffer sx-question-list--buffer))
-
-(defalias 'sx-list-questions #'list-questions)
+           "Switch to site: " (sx-site-get-api-tokens)
+           (lambda (site) (not (equal site sx-question-list--site)))
+           t)))
+  (when (and (stringp site) (> (length site) 0))
+    (setq sx-question-list--site site)
+    (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here

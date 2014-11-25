@@ -66,11 +66,16 @@ a cache file.
 
 ** Browsing Questions
 To browse a list of questions retrieved from the site, use
-~list-questions~.  This pulls the first page of questions from the
-current site and displays them in a list.  Refresh the page with =g=,
-use =n= and =p= to navigate without viewing the question, =j= and =k=
-to do the same /with/ viewing the question, and =RET= to visit the
-question at point.
+~sx-tab-frontpage~.  This queries for a site, pulls the first page of
+questions for that site, and displays them in a list.  
+
+- Refresh the page with =g= or by scrolling past the top.
+- Use =n=, =p=, =N=, =P= to navigate without viewing the question.
+- =j=, =k=, =J=, =K= to do the same /with/ viewing the question.
+- =RET= to open the question with Emacs.
+- =v= to visit it with a browser.
+
+Scrolling past the bottom of the list fetches more questions.
 
 * List of Hooks
   :PROPERTIES:
@@ -123,4 +128,5 @@ The language for Emacs Lisp source code blocks should be given as
 
 # Local Variables:
 # org-export-date-timestamp-format: "$B %e %Y"
+# sentence-end-double-space: t
 # End:
