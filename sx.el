@@ -56,6 +56,7 @@
      question.link
      question.upvoted
      question.downvoted
+     question.question_id
      user.display_name
      comment.owner
      comment.body_markdown
@@ -65,6 +66,10 @@
      comment.creation_date
      comment.upvoted
      comment.score
+     comment.post_type
+     comment.post_id
+     comment.comment_id
+     answer.answer_id
      answer.last_editor
      answer.link
      answer.owner
