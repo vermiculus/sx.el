@@ -26,41 +26,18 @@
 (require 'sx-filter)
 (require 'sx-method)
 
-(defvar sx-question-browse-filter
-  '((question.body_markdown
-     question.comments
-     question.answers
-     question.last_editor
-     question.accepted_answer_id
-     question.link
-     question.upvoted
-     question.downvoted
-     user.display_name
-     comment.owner
-     comment.body_markdown
-     comment.body
-     comment.link
-     answer.last_editor
-     answer.link
-     answer.owner
-     answer.body_markdown
-     answer.comments)
-    (user.profile_image shallow_user.profile_image))
-  "The filter applied when retrieving question data.
-See `sx-question-get-questions' and `sx-question-get-question'.")
-
 (defun sx-question-get-questions (site &optional page)
   "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
 property.
 
-`sx-method-call' is used with `sx-question-browse-filter'."
+`sx-method-call' is used with `sx-browse-filter'."
   (sx-method-call 'questions
     :keywords `((page . ,page))
     :site site
     :auth t
-    :filter sx-question-browse-filter))
+    :filter sx-browse-filter))
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
@@ -69,7 +46,7 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
                :id id
                :site site
                :auth t
-               :filter sx-question-browse-filter)))
+               :filter sx-browse-filter)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find question %S in %S"

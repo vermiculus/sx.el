@@ -46,6 +46,31 @@
   (browse-url "https://github.com/vermiculus/stack-mode/issues/new"))
 
 
+;;; Browsing filter
+(defvar sx-browse-filter
+  '((question.body_markdown
+     question.comments
+     question.answers
+     question.last_editor
+     question.accepted_answer_id
+     question.link
+     question.upvoted
+     question.downvoted
+     user.display_name
+     comment.owner
+     comment.body_markdown
+     comment.body
+     comment.link
+     answer.last_editor
+     answer.link
+     answer.owner
+     answer.body_markdown
+     answer.comments)
+    (user.profile_image shallow_user.profile_image))
+  "The filter applied when retrieving question data.
+See `sx-question-get-questions' and `sx-question-get-question'.")
+
+
 ;;; Utility Functions
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
@@ -212,9 +237,10 @@ Status is a boolean."
          (.answer_id "answers")
          (.question_id "questions"))
       :id (or .comment_id .answer_id .question_id)
-      :submethod type
+      :submethod (concat type (unless status "/undo"))
       :auth 'warn
       :url-method "POST"
+      :filter sx-browse-filter
       :site .site)))
 
 
