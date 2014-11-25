@@ -193,84 +193,6 @@ Return the result of BODY."
      (add-text-properties p (point) ,properties)
      result))
 
-
-;;; Using data in buffer
-(defun sx--data-here ()
-  "Get the text property `sx--data-here'."
-  (or (get-text-property (point) 'sx--data-here)
-      (and (derived-mode-p 'sx-question-list-mode)
-           (tabulated-list-get-id))))
-
-(defun sx--maybe-update-display ()
-  "Refresh the question list if we're inside it."
-  (cond
-   ((derived-mode-p 'sx-question-list-mode)
-    (sx-question-list-refresh 'redisplay 'no-update))
-   ((derived-mode-p 'sx-question-mode)
-    (sx-question-mode-refresh 'no-update))))
-
-(defun sx--copy-data (from to)
-  "Copy all fields of alist FORM onto TO.
-Only fields contained in TO are copied."
-  (setcar to (car from))
-  (setcdr to (cdr from)))
-
-(defun sx-visit (data)
-  "Visit DATA in a web browser.
-DATA can be a question, answer, or comment. Interactively, it is
-derived from point position.
-If DATA is a question, also mark it as read."
-  (interactive (list (sx--data-here)))
-  (sx-assoc-let data
-    (when (stringp .link)
-      (browse-url .link))
-    (when (and .title (fboundp 'sx-question--mark-read))
-      (sx-question--mark-read data)
-      (sx--maybe-update-display))))
-
-(defun sx-toggle-upvote (data)
-  "Apply or remove upvote from DATA.
-DATA can be a question, answer, or comment. Interactively, it is
-guessed from context at point."
-  (interactive (list (sx--data-here)))
-  (let ((result
-         (sx-assoc-let data
-           (sx-set-vote data "upvote" (null (eq .upvoted t))))))
-    (when (> (length result) 0)
-      (sx--copy-data (elt result 0) data)))
-  (sx--maybe-update-display))
-
-(defun sx-toggle-downvote (data)
-  "Apply or remove downvote from DATA.
-DATA can be a question or an answer. Interactively, it is guessed
-from context at point."
-  (interactive (list (sx--data-here)))
-  (let ((result
-         (sx-assoc-let data
-           (sx-set-vote data "downvote" (null (eq .downvoted t))))))
-    (when (> (length result) 0)
-      (sx--copy-data (elt result 0) data)))
-  (sx--maybe-update-display))
-
-(defun sx-set-vote (data type status)
-  "Set the DATA's vote TYPE to STATUS.
-DATA can be a question, answer, or comment.
-TYPE can be \"upvote\" or \"downvote\".
-Status is a boolean."
-  (sx-assoc-let data
-    (sx-method-call
-        (cond
-         (.comment_id "comments")
-         (.answer_id "answers")
-         (.question_id "questions"))
-      :id (or .comment_id .answer_id .question_id)
-      :submethod (concat type (unless status "/undo"))
-      :auth 'warn
-      :url-method "POST"
-      :filter sx-browse-filter
-      :site .site)))
-
-
 ;;; Assoc-let
 (defun sx--site (data)
   "Get the site in which DATA belongs.
