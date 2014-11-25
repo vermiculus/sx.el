@@ -39,6 +39,7 @@
      comment.owner
      comment.body_markdown
      comment.body
+     comment.link
      answer.last_editor
      answer.link
      answer.owner
