@@ -184,6 +184,39 @@ If DATA is a question, also mark it as read."
       (when ((derived-mode-p 'sx-question-list-mode))
         (sx-question-list-refresh 'redisplay 'no-update)))))
 
+(defun sx-toggle-upvote (data)
+  "Apply or remove upvote from DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point."
+  (interactive (list (sx--data-here)))
+  (sx-assoc-let data
+    (sx-set-vote data "upvote" (null .upvoted))))
+
+(defun sx-toggle-downvote (data)
+  "Apply or remove downvote from DATA.
+DATA can be a question or an answer. Interactively, it is guessed
+from context at point."
+  (interactive (list (sx--data-here)))
+  (sx-assoc-let data
+    (sx-set-vote data "downvote" (null .downvoted))))
+
+(defun sx-set-vote (data type status)
+  "Set the DATA's vote TYPE to STATUS.
+DATA can be a question, answer, or comment.
+TYPE can be \"upvote\" or \"downvote\".
+Status is a boolean."
+  (sx-assoc-let data
+    (sx-method-call
+        (cond
+         (.comment_id "comments")
+         (.answer_id "answers")
+         (.question_id "questions"))
+      :id (or .comment_id .answer_id .question_id)
+      :submethod type
+      :auth 'warn
+      :url-method "POST"
+      :site .site)))
+
 
 ;;; Assoc-let
 (defun sx--site (data)
