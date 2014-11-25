@@ -207,7 +207,7 @@ Return the result of BODY."
    ((derived-mode-p 'sx-question-list-mode)
     (sx-question-list-refresh 'redisplay 'no-update))
    ((derived-mode-p 'sx-question-mode)
-    (sx-question-list-refresh 'redisplay 'no-update))))
+    (sx-question-mode-refresh 'no-update))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
