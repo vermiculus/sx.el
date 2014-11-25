@@ -542,6 +542,8 @@ Letters do not insert themselves; instead, they are commands.
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("v" sx-visit)
+   ("u" sx-toggle-upvote)
+   ("d" sx-toggle-downvote)
    ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
