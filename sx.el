@@ -233,7 +233,7 @@ guessed from context at point."
   (interactive (list (sx--data-here)))
   (let ((result
          (sx-assoc-let data
-           (sx-set-vote data "upvote" (eq .upvoted :json-false)))))
+           (sx-set-vote data "upvote" (null (eq .upvoted t))))))
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)))
   (sx--maybe-update-display))
@@ -245,7 +245,7 @@ from context at point."
   (interactive (list (sx--data-here)))
   (let ((result
          (sx-assoc-let data
-           (sx-set-vote data "downvote" (eq .downvoted :json-false)))))
+           (sx-set-vote data "downvote" (null (eq .downvoted t))))))
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)))
   (sx--maybe-update-display))
