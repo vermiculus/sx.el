@@ -195,6 +195,18 @@ Return the result of BODY."
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))))
 
+(defun sx--maybe-update-display ()
+  "Refresh the question list if we're inside it."
+  (cond
+   ((derived-mode-p 'sx-question-list-mode)
+    (sx-question-list-refresh 'redisplay 'no-update))))
+
+(defun sx--copy-data (from to)
+  "Copy all fields of alist FORM onto TO.
+Only fields contained in TO are copied."
+  (setcar to (car from))
+  (setcdr to (cdr from)))
+
 (defun sx-visit (data)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
@@ -206,24 +218,31 @@ If DATA is a question, also mark it as read."
       (browse-url .link))
     (when (and .title (fboundp 'sx-question--mark-read))
       (sx-question--mark-read data)
-      (when ((derived-mode-p 'sx-question-list-mode))
-        (sx-question-list-refresh 'redisplay 'no-update)))))
+      (sx--maybe-update-display))))
 
 (defun sx-toggle-upvote (data)
   "Apply or remove upvote from DATA.
 DATA can be a question, answer, or comment. Interactively, it is
 guessed from context at point."
   (interactive (list (sx--data-here)))
-  (sx-assoc-let data
-    (sx-set-vote data "upvote" (null .upvoted))))
+  (let ((result
+         (sx-assoc-let data
+           (sx-set-vote data "upvote" (eq .upvoted :json-false)))))
+    (when (> (length result) 0)
+      (sx--copy-data (elt result 0) data)))
+  (sx--maybe-update-display))
 
 (defun sx-toggle-downvote (data)
   "Apply or remove downvote from DATA.
 DATA can be a question or an answer. Interactively, it is guessed
 from context at point."
   (interactive (list (sx--data-here)))
-  (sx-assoc-let data
-    (sx-set-vote data "downvote" (null .downvoted))))
+  (let ((result
+         (sx-assoc-let data
+           (sx-set-vote data "downvote" (eq .downvoted :json-false)))))
+    (when (> (length result) 0)
+      (sx--copy-data (elt result 0) data)))
+  (sx--maybe-update-display))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
