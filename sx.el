@@ -69,6 +69,8 @@
      answer.link
      answer.owner
      answer.body_markdown
+     answer.upvoted
+     answer.downvoted
      answer.comments)
     (user.profile_image shallow_user.profile_image))
   "The filter applied when retrieving question data.
