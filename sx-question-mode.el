@@ -84,10 +84,6 @@ If WINDOW is given, use that to display the buffer."
 ;;; Printing a question's content
 ;;;; Faces and Variables
 
-(defvar sx-question-mode--overlays nil
-  "Question mode overlays.")
-(make-variable-buffer-local 'sx-question-mode--overlays)
-
 (defface sx-question-mode-header
   '((t :inherit font-lock-variable-name-face))
   "Face used on the question headers in the question buffer."
@@ -194,12 +190,12 @@ replaced with the comment."
 QUESTION must be a data structure returned by `json-read'."
   (setq sx-question-mode--data question)
   ;; Clear the overlays
-  (mapc #'delete-overlay sx-question-mode--overlays)
-  (setq sx-question-mode--overlays nil)
+  (mapc #'delete-overlay sx--overlays)
+  (setq sx--overlays nil)
   ;; Print everything
   (sx-question-mode--print-section question)
   (sx-assoc-let question
-    (mapc #'sx-question-mode--print-section .answers))
+                (mapc #'sx-question-mode--print-section .answers))
   (goto-char (point-min))
   (with-selected-window sx-question-mode--window
     (sx-question-mode-next-section)))
@@ -222,10 +218,10 @@ QUESTION must be a data structure returned by `json-read'."
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
   ;; This makes `data' accessible through
-  ;; `(get-text-property (point) 'sx-question-mode--data-here)'
-  (sx-question-mode--wrap-in-text-property
-      (list 'sx-question-mode--data-here data)
-    (sx-assoc-let data
+  ;; `(get-text-property (point) 'sx--data-here)'
+  (sx-assoc-let data
+    (sx--wrap-in-text-property
+        (list 'sx--data-here data)
       (insert sx-question-mode-header-title
               (apply
                #'propertize
@@ -238,7 +234,7 @@ DATA can represent a question or an answer."
                ;; face, action and help-echo
                sx-question-mode--title-properties))
       ;; Sections can be hidden with overlays
-      (sx-question-mode--wrap-in-overlay
+      (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
         (sx-question-mode--insert-header
          ;; Author
@@ -265,28 +261,29 @@ DATA can represent a question or an answer."
                 (propertize sx-question-mode-separator
                             'face 'sx-question-mode-header
                             'sx-question-mode--section 4))
-        (sx-question-mode--wrap-in-overlay
+        (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
           (insert "\n"
                   (sx-question-mode--fill-and-fontify
                    .body_markdown)
                   "\n"
                   (propertize sx-question-mode-separator
-                              'face 'sx-question-mode-header))))
-      ;; Comments
-      (when .comments
-        (insert "\n"
-                (apply #'propertize
-                       sx-question-mode-comments-title
-                       'face 'sx-question-mode-title-comments
-                       'sx-question-mode--section 3
-                       sx-question-mode--title-properties))
-        (sx-question-mode--wrap-in-overlay
-            '(sx-question-mode--section-content t)
-          (insert "\n")
-          (sx-question-mode--wrap-in-overlay
-              '(face sx-question-mode-content-face)
-            (mapc #'sx-question-mode--print-comment .comments)))))))
+                              'face 'sx-question-mode-header)))))
+    ;; Comments have their own `sx--data-here' property (so they can
+    ;; be upvoted too).
+    (when .comments
+      (insert "\n"
+              (apply #'propertize
+                     sx-question-mode-comments-title
+                     'face 'sx-question-mode-title-comments
+                     'sx-question-mode--section 3
+                     sx-question-mode--title-properties))
+      (sx--wrap-in-overlay
+          '(sx-question-mode--section-content t)
+        (insert "\n")
+        (sx--wrap-in-overlay
+            '(face sx-question-mode-content-face)
+          (mapc #'sx-question-mode--print-comment .comments))))))
 
 (defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
@@ -298,46 +295,21 @@ DATA can represent a question or an answer."
   "Print the comment described by alist COMMENT-DATA.
 The comment is indented, filled, and then printed according to
 `sx-question-mode-comments-format'."
-  (sx-assoc-let comment-data
-    (insert
-     (format
-      sx-question-mode-comments-format
-      (sx-question-mode--propertize-display-name .owner)
-      (substring
-       ;; We fill with three spaces at the start, so the comment is
-       ;; slightly indented.
-       (sx-question-mode--fill-and-fontify
-        (concat "   " .body_markdown))
-       ;; Then we remove the spaces from the first line, since we'll
-       ;; add the username there anyway.
-       3)))))
-
-(defmacro sx-question-mode--wrap-in-overlay (properties &rest body)
-  "Start a scope with overlay PROPERTIES and execute BODY.
-Overlay is pushed on `sx-question-mode--overlays' and given
-PROPERTIES.
-
-Return the result of BODY."
-  (declare (indent 1)
-           (debug t))
-  `(let ((p (point-marker))
-         (result (progn ,@body)))
-     (let ((ov (make-overlay p (point)))
-           (props ,properties))
-       (while props
-         (overlay-put ov (pop props) (pop props)))
-       (push ov sx-question-mode--overlays))
-     result))
-
-(defmacro sx-question-mode--wrap-in-text-property (properties &rest body)
-  "Start a scope with PROPERTIES and execute BODY.
-Return the result of BODY."
-  (declare (indent 1)
-           (debug t))
-  `(let ((p (point-marker))
-         (result (progn ,@body)))
-     (add-text-properties p (point) ,properties)
-     result))
+  (sx--wrap-in-text-property
+      (list 'sx--data-here comment-data)
+    (sx-assoc-let comment-data
+      (insert
+       (format
+        sx-question-mode-comments-format
+        (sx-question-mode--propertize-display-name .owner)
+        (substring
+         ;; We fill with three spaces at the start, so the comment is
+         ;; slightly indented.
+         (sx-question-mode--fill-and-fontify
+          (concat "   " .body_markdown))
+         ;; Then we remove the spaces from the first line, since we'll
+         ;; add the username there anyway.
+         3))))))
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert propertized ARGS.
@@ -345,9 +317,7 @@ ARGS is a list of repeating values -- `header', `value', and
 `face'.  `header' is given `sx-question-mode-header' as a face,
 where `value' is given `face' as its face.
 
-Syntax:
-
-  \(fn HEADER VALUE FACE [HEADER VALUE FACE] [HEADER VALUE FACE] ...)"
+\(fn HEADER VALUE FACE [HEADER VALUE FACE] [HEADER VALUE FACE] ...)"
   (while args
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)
@@ -592,7 +562,7 @@ Letters do not insert themselves; instead, they are commands.
       ;; question or an answer. We use `append', so that if one
       ;; doesn't have a `link' item we can fallback to
       ;; `sx-question-mode--data'.
-      (append (get-text-property (point) 'sx-question-mode--data-here)
+      (append (get-text-property (point) 'sx--data-here)
               sx-question-mode--data)
     (browse-url .link)))
 

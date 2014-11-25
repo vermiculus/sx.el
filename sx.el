@@ -129,7 +129,40 @@ would yield
              data))))
 
 
-;;; Interpreting request data
+;;; Printing request data
+(defvar sx--overlays nil
+  "Overlays created by sx on this buffer.")
+(make-variable-buffer-local 'sx--overlays)
+
+(defmacro sx--wrap-in-overlay (properties &rest body)
+  "Start a scope with overlay PROPERTIES and execute BODY.
+Overlay is pushed on the buffer-local variable `sx--overlays' and
+given PROPERTIES.
+
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (let ((ov (make-overlay p (point)))
+           (props ,properties))
+       (while props
+         (overlay-put ov (pop props) (pop props)))
+       (push ov sx--overlays))
+     result))
+
+(defmacro sx--wrap-in-text-property (properties &rest body)
+  "Start a scope with PROPERTIES and execute BODY.
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (add-text-properties p (point) ,properties)
+     result))
+
+
+;;; Assoc-let
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
 Returns a list where each element is a cons cell.  The car is the
