@@ -170,18 +170,19 @@ Return the result of BODY."
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))))
 
-(defun sx-visit ()
-  "Visit in a web browser the object under point.
-Object can be a question, answer, or comment."
-  (interactive)
-  (let ((data (sx--data-here)))
-    (sx-assoc-let data
-      (when (stringp .link)
-        (browse-url .link))
-      (when .title
-        (sx-question--mark-read data)
-        (when (derived-mode-p 'sx-question-list-mode)
-          (sx-question-list-refresh 'redisplay 'no-update))))))
+(defun sx-visit (data)
+  "Visit DATA in a web browser.
+DATA can be a question, answer, or comment. Interactively, it is
+derived from point position.
+If DATA is a question, also mark it as read."
+  (interactive (list (sx--data-here)))
+  (sx-assoc-let data
+    (when (stringp .link)
+      (browse-url .link))
+    (when (and .title (fboundp 'sx-question--mark-read))
+      (sx-question--mark-read data)
+      (when ((derived-mode-p 'sx-question-list-mode))
+        (sx-question-list-refresh 'redisplay 'no-update)))))
 
 
 ;;; Assoc-let
