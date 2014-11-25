@@ -89,8 +89,11 @@ re-initialize the cache."
 Afterwards reinitialize caches using `sx-initialize'. If
 SAVE-AUTH is non-nil, do not clear AUTH cache.
 
+Interactively only clear AUTH cache if prefix arg was given.
+
 Note:  This will also remove read/unread status of questions as well
 as delete the list of hidden questions."
+  (interactive (list (not current-prefix-arg)))
   (let* ((default-directory sx-cache-directory)
          (caches (file-expand-wildcards "*.el")))
     (when save-auth
