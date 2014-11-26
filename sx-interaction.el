@@ -121,12 +121,11 @@ TEXT is a string. Interactively, it is read from the minibufer."
     ;; Get the comment text
     (when (eq text 'query)
       (setq text (read-string
-                  "Comment text:"
+                  "Comment text: "
                   (when .comment_id
-                    (sx--user-@name .author))))
+                    (sx--user-@name .owner))))
       (while (< (string-width text) 15)
-        (message "Comments must have more than 15 characters.")
-        (setq text (read-string "Comment text:" text))))
+        (setq text (read-string "Comment text (at least 15 characters): " text))))
     ;; If non-interactive, `text' could be anything.
     (unless (stringp text)
       (error "Comment body must be a string"))
@@ -158,14 +157,15 @@ ID is an integer."
   (let ((db (cons sx-question-mode--data
                   sx-question-list--dataset)))
     (setq db
-          (cl-case type
-            (question db)
-            (answer
-             (cl-map 'list (lambda (x) (cdr (assoc 'answers x)))
-                     db))))
+          (cond 
+           ((string= type "question") db)
+           ((string= type "answer")
+            (apply #'cl-map 'list #'identity
+                   (mapcar (lambda (x) (cdr (assoc 'answers x))) db)))))
     (car (cl-member-if
           (lambda (x) (sx-assoc-let x
-                   (and (eq .id id) (eq .site site))))
+                   (and (equal (or .answer_id .question_id) id)
+                        (equal .site site))))
           db))))
 
 (defun sx--add-comment-to-object (comment object)
@@ -173,11 +173,18 @@ ID is an integer."
 OBJECT can be a question or an answer."
   (let ((com-cell (assoc 'comments object))
         (count-cell (assoc 'comment_count object)))
-    (setcdr
-     com-cell
-     (cl-map 'vector #'identity
-             (cdr com-cell) (list comment)))
-    (cl-incf (cdr count-cell))))
+    (if com-cell
+        (progn
+          (setcdr
+           com-cell
+           (apply #'vector
+                  (append
+                   (cl-map 'list #'identity
+                           (cdr com-cell))
+                   (list comment)))))
+      ;; No previous comments, add it manually.
+      (setcdr object (cons (car object) (cdr object)))
+      (setcar object `(comments . [,comment])))))
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
