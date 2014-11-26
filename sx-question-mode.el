@@ -103,6 +103,13 @@ If WINDOW is given, use that to display the buffer."
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defcustom sx-question-mode-deleted-user
+  '((display_name . "(deleted user)"))
+  "The structure used to represent a deleted account."
+  :type '(alist :options (display_name))
+  :risky t
+  :group 'sx-question-mode)
+
 (defcustom sx-question-mode-header-title "\n"
   "String used before the question title at the header."
   :type 'string
@@ -272,7 +279,7 @@ DATA can represent a question or an answer."
             (format sx-question-mode-last-edit-format
                     (sx-time-since .last_edit_date)
                     (sx-question-mode--propertize-display-name
-                     (if .last_editor .last_editor .owner)))))
+                     (or .last_editor sx-question-mode-deleted-user)))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
