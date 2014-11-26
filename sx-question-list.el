@@ -427,8 +427,10 @@ This does not update `sx-question-mode--window'."
   (forward-line -1)
   (when (functionp sx-question-list--next-page-function)
     ;; Try to get more questions
-    (let ((list (funcall sx-question-list--next-page-function
-                  (1+ sx-question-list--pages-so-far))))
+    (let ((list
+           (cl-map 'list #'identity
+                   (funcall sx-question-list--next-page-function
+                     (1+ sx-question-list--pages-so-far)))))
       (if (null list)
           (message "No further questions.")
         ;; If it worked, increment the variable.
@@ -436,7 +438,8 @@ This does not update `sx-question-mode--window'."
         ;; And update the dataset.
         ;; @TODO: Check for duplicates.
         (setq sx-question-list--dataset
-              (append sx-question-list--dataset list))
+              (append sx-question-list--dataset
+                      list))
         (sx-question-list-refresh 'redisplay 'no-update)
         (forward-line 1)))))
 
