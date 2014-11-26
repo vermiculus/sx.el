@@ -371,22 +371,25 @@ a new list before redisplaying."
   (setq sx-question-list--unread-count 0)
   (unless no-update
     (setq sx-question-list--pages-so-far 1))
-  (cl-letf ((question-list
-             (or (and no-update sx-question-list--dataset)
-                 (and (functionp sx-question-list--refresh-function)
-                      (funcall sx-question-list--refresh-function))
-                 (and (functionp sx-question-list--next-page-function)
-                      (funcall sx-question-list--next-page-function 1))
-                 sx-question-list--dataset))
-            ;; Preserve window positioning.
-            ((window-start)))
+  (let* ((question-list
+          (or (and no-update sx-question-list--dataset)
+              (and (functionp sx-question-list--refresh-function)
+                   (funcall sx-question-list--refresh-function))
+              (and (functionp sx-question-list--next-page-function)
+                   (funcall sx-question-list--next-page-function 1))
+              sx-question-list--dataset))
+         ;; Preserve window positioning.
+         (window (get-buffer-window (current-buffer)))
+         (old-start (when window (window-start window))))
     (setq sx-question-list--dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
                   (cl-remove-if #'sx-question--hidden-p question-list)))
     (when redisplay (tabulated-list-print 'remember))
-    (sx-message "Done.")))
+    (when window
+      (set-window-start window old-start)))
+  (sx-message "Done."))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
