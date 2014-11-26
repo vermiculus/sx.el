@@ -391,6 +391,13 @@ where `value' is given `face' as its face.
         (forward-paragraph)))
     (buffer-string)))
 
+(defvar sx-question-mode--reference-regexp
+  (rx line-start (0+ blank) "[%s]:" (0+ blank)
+      (group-n 1 (1+ (not blank)))) 
+  "Regexp used to find the url of labeled links.
+E.g.:
+   [1]: https://...")
+
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
   (or (sx-question-mode--move-over-pre)
@@ -398,7 +405,7 @@ where `value' is given `face' as its face.
       (let ((pos (point)))
         (skip-chars-forward "\r\n[:blank:]")
         (goto-char (line-beginning-position))
-        (if (or (looking-at-p sx-question-mode--reference-regexp)
+        (if (or (looking-at-p (format sx-question-mode--reference-regexp ".+"))
                 (looking-at-p "^#"))
             ;; Returns non-nil
             (forward-paragraph)
@@ -459,13 +466,6 @@ URL is used as 'help-echo and 'url properties."
   (browse-url
    (or (get-text-property (or pos (point)) 'url)
        (user-error "No url under point: %s" (or pos (point))))))
-
-(defvar sx-question-mode--reference-regexp
-  (rx line-start (0+ blank) "[%s]:" (0+ blank)
-      (group-n 1 (1+ (not blank)))) 
-  "Regexp used to find the url of labeled links.
-E.g.:
-   [1]: https://...")
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
