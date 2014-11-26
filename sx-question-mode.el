@@ -271,7 +271,8 @@ DATA can represent a question or an answer."
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
                     (sx-time-since .last_edit_date)
-                    (sx-question-mode--propertize-display-name .last_editor))))
+                    (sx-question-mode--propertize-display-name
+                     (if .last_editor .last_editor .owner)))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
