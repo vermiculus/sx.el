@@ -54,13 +54,17 @@
 If WINDOW is nil, use selected one.
 
 Returns the question buffer."
+  (with-current-buffer
+      (sx-question-mode--display-buffer window)
+    (sx-question-mode--erase-and-print-question data)))
+
+(defun sx-question-mode--erase-and-print-question (data)
+  "Erase contents of buffer and print question given by DATA."
   (let ((inhibit-read-only t))
-    (with-current-buffer
-        (sx-question-mode--display-buffer window)
-      (erase-buffer)
-      (sx-question-mode)
-      (sx-question-mode--print-question data)
-      (current-buffer))))
+    (erase-buffer)
+    (sx-question-mode)
+    (sx-question-mode--print-question data)
+    (current-buffer)))
 
 (defun sx-question-mode--display-buffer (window)
   "Display and return the buffer used for displaying a question.
@@ -134,8 +138,29 @@ If WINDOW is given, use that to display the buffer."
   "Face used for author names in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-score
+  '((t))
+  "Face used for the score in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-score-downvoted
+  '((t :inherit (font-lock-warning-face sx-question-mode-score)))
+  "Face used for downvoted score in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-score-upvoted
+  '((t :weight bold
+       :inherit (font-lock-function-name-face sx-question-mode-score)))
+  "Face used for downvoted score in the question buffer."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-header-tags "\nTags:     "
   "String used before the question tags at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-header-score "\nScore:    "
+  "String used before the question score at the header."
   :type 'string
   :group 'sx-question-mode)
 
@@ -195,10 +220,9 @@ QUESTION must be a data structure returned by `json-read'."
   ;; Print everything
   (sx-question-mode--print-section question)
   (sx-assoc-let question
-                (mapc #'sx-question-mode--print-section .answers))
+    (mapc #'sx-question-mode--print-section .answers))
   (goto-char (point-min))
-  (with-selected-window sx-question-mode--window
-    (sx-question-mode-next-section)))
+  (sx-question-mode-next-section))
 
 (defvar sx-question-mode--section-help-echo
   (format
@@ -249,6 +273,13 @@ DATA can represent a question or an answer."
                     (sx-time-since .last_edit_date)
                     (sx-question-mode--propertize-display-name .last_editor))))
          'sx-question-mode-date)
+        (sx-question-mode--insert-header
+         sx-question-mode-header-score
+         (format "%s" .score)
+         (cond
+          ((eq .upvoted t) 'sx-question-mode-score-upvoted)
+          ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+          (t 'sx-question-mode-score)))
         (when .title
           ;; Tags
           (sx-question-mode--insert-header
@@ -332,7 +363,6 @@ where `value' is given `face' as its face.
 (defun sx-question-mode--fill-and-fontify (text)
   "Return TEXT filled according to `markdown-mode'."
   (with-temp-buffer
-    (erase-buffer)
     (insert text)
     (markdown-mode)
     (font-lock-mode -1)
@@ -344,8 +374,8 @@ where `value' is given `face' as its face.
     (font-lock-add-keywords ;; Highlight usernames.
      nil
      `((,(rx (or blank line-start)
-            (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
-            symbol-end)
+             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+             symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
     (font-lock-fontify-region (point-min) (point-max))
@@ -542,6 +572,8 @@ Letters do not insert themselves; instead, they are commands.
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("v" sx-visit)
+   ("u" sx-toggle-upvote)
+   ("d" sx-toggle-downvote)
    ("q" quit-window)
    (" " scroll-up-command)
    (,(kbd "S-SPC") scroll-down-command)
@@ -552,16 +584,24 @@ Letters do not insert themselves; instead, they are commands.
    (,(kbd "<backtab>") backward-button)
    ([return] push-button)))
 
-(defun sx-question-mode-refresh ()
+(defun sx-question-mode-refresh (&optional no-update)
   "Refresh currently displayed question.
 Queries the API for any changes to the question or its answers or
-comments, and redisplays it."
-  (interactive)
+comments, and redisplays it.
+
+With non-nil prefix argument NO-UPDATE, just redisplay, don't
+query the api."
+  (interactive "P")
   (sx-question-mode--ensure-mode)
-  (sx-assoc-let sx-question-mode--data
-    (sx-question-mode--display
-     (sx-question-get-question .site .question_id)
-     (selected-window))))
+  (let ((point (point)))
+    (sx-question-mode--erase-and-print-question
+     (if no-update
+         sx-question-mode--data
+       (sx-assoc-let sx-question-mode--data
+         (sx-question-get-question .site .question_id))))
+    (goto-char point)
+    (when (get-buffer-window (current-buffer))
+      (recenter))))
 
 (defun sx-question-mode--ensure-mode ()
   "Ensures we are in question mode, erroring otherwise."

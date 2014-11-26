@@ -46,6 +46,37 @@
   (browse-url "https://github.com/vermiculus/stack-mode/issues/new"))
 
 
+;;; Browsing filter
+(defvar sx-browse-filter
+  '((question.body_markdown
+     question.comments
+     question.answers
+     question.last_editor
+     question.accepted_answer_id
+     question.link
+     question.upvoted
+     question.downvoted
+     user.display_name
+     comment.owner
+     comment.body_markdown
+     comment.body
+     comment.link
+     comment.edited
+     comment.creation_date
+     comment.upvoted
+     comment.score
+     answer.last_editor
+     answer.link
+     answer.owner
+     answer.body_markdown
+     answer.upvoted
+     answer.downvoted
+     answer.comments)
+    (user.profile_image shallow_user.profile_image))
+  "The filter applied when retrieving question data.
+See `sx-question-get-questions' and `sx-question-get-question'.")
+
+
 ;;; Utility Functions
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
@@ -162,30 +193,20 @@ Return the result of BODY."
      (add-text-properties p (point) ,properties)
      result))
 
-
-;;; Using data in buffer
-(defun sx--data-here ()
-  "Get the text property `sx--data-here'."
-  (or (get-text-property (point) 'sx--data-here)
-      (and (derived-mode-p 'sx-question-list-mode)
-           (tabulated-list-get-id))))
-
-(defun sx-visit (data)
-  "Visit DATA in a web browser.
-DATA can be a question, answer, or comment. Interactively, it is
-derived from point position.
-If DATA is a question, also mark it as read."
-  (interactive (list (sx--data-here)))
-  (sx-assoc-let data
-    (when (stringp .link)
-      (browse-url .link))
-    (when (and .title (fboundp 'sx-question--mark-read))
-      (sx-question--mark-read data)
-      (when ((derived-mode-p 'sx-question-list-mode))
-        (sx-question-list-refresh 'redisplay 'no-update)))))
-
-
 ;;; Assoc-let
+(defun sx--site (data)
+  "Get the site in which DATA belongs.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property).
+DATA can also be the link itself."
+  (let ((link (if (stringp data) data
+                (cdr (assoc 'link data)))))
+    (unless (stringp link)
+      (error "Data has no link property"))
+    (replace-regexp-in-string
+     "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+     "\\1\\2" link)))
+
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
 Returns a list where each element is a cons cell.  The car is the
@@ -206,6 +227,8 @@ symbol, the cdr is the symbol without the `.'."
   "Use dotted symbols let-bound to their values in ALIST and execute BODY.
 Dotted symbol is any symbol starting with a `.'.  Only those
 present in BODY are letbound, which leads to optimal performance.
+The .site symbol is special, it is derived from the .link symbol
+using `sx--site'.
 
 For instance, the following code
 
@@ -217,11 +240,13 @@ is equivalent to
   (let ((.title (cdr (assoc 'title alist)))
         (.body (cdr (assoc 'body alist))))
     (list .title .body))"
-  (declare (indent 1)
-           (debug t))
-  (let ((symbol-alist (sx--deep-dot-search body)))
-    `(let ,(mapcar (lambda (x) `(,(car x) (cdr (assoc ',(cdr x) ,alist))))
-                   (delete-dups symbol-alist))
+  (declare (indent 1) (debug t))
+  (let* ((symbol-alist (sx--deep-dot-search body))
+         (has-site (assoc '.site symbol-alist)))
+    `(let ,(append
+            (when has-site `((.site (sx--site (cdr (assoc 'link ,alist))))))
+            (mapcar (lambda (x) `(,(car x) (cdr (assoc ',(cdr x) ,alist))))
+                    (remove '(.site . site) (delete-dups symbol-alist))))
        ,@body)))
 
 (defcustom sx-init-hook nil

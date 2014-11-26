@@ -72,7 +72,10 @@ If all SUBMETHODS require auth or there are no submethods, form
 will be (METHOD  . t)")
 
 (defvar sx-auth-filter-auth '(question.upvoted
-                              question.downvoted)
+                              question.downvoted
+                              answer.upvoted
+                              answer.downvoted
+                              comment.upvoted)
   "List of filter types that require auth.
 Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
 FILTER).")

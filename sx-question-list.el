@@ -288,6 +288,8 @@ into consideration.
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
    ("v" sx-visit)
+   ("u" sx-toggle-upvote)
+   ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
    ([?\r] sx-question-list-display-question)))
