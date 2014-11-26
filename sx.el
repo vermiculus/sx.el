@@ -27,6 +27,7 @@
 ;; StackMode.
 
 ;;; Code:
+(require 'tabulated-list)
 
 (defconst sx-version "0.1" "Version of the `sx' package.")
 
@@ -129,7 +130,62 @@ would yield
              data))))
 
 
-;;; Interpreting request data
+;;; Printing request data
+(defvar sx--overlays nil
+  "Overlays created by sx on this buffer.")
+(make-variable-buffer-local 'sx--overlays)
+
+(defmacro sx--wrap-in-overlay (properties &rest body)
+  "Start a scope with overlay PROPERTIES and execute BODY.
+Overlay is pushed on the buffer-local variable `sx--overlays' and
+given PROPERTIES.
+
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (let ((ov (make-overlay p (point)))
+           (props ,properties))
+       (while props
+         (overlay-put ov (pop props) (pop props)))
+       (push ov sx--overlays))
+     result))
+
+(defmacro sx--wrap-in-text-property (properties &rest body)
+  "Start a scope with PROPERTIES and execute BODY.
+Return the result of BODY."
+  (declare (indent 1)
+           (debug t))
+  `(let ((p (point-marker))
+         (result (progn ,@body)))
+     (add-text-properties p (point) ,properties)
+     result))
+
+
+;;; Using data in buffer
+(defun sx--data-here ()
+  "Get the text property `sx--data-here'."
+  (or (get-text-property (point) 'sx--data-here)
+      (and (derived-mode-p 'sx-question-list-mode)
+           (tabulated-list-get-id))))
+
+(defun sx-visit (data)
+  "Visit DATA in a web browser.
+DATA can be a question, answer, or comment. Interactively, it is
+derived from point position.
+If DATA is a question, also mark it as read."
+  (interactive (list (sx--data-here)))
+  (sx-assoc-let data
+    (when (stringp .link)
+      (browse-url .link))
+    (when (and .title (fboundp 'sx-question--mark-read))
+      (sx-question--mark-read data)
+      (when ((derived-mode-p 'sx-question-list-mode))
+        (sx-question-list-refresh 'redisplay 'no-update)))))
+
+
+;;; Assoc-let
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
 Returns a list where each element is a cons cell.  The car is the

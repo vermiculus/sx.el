@@ -287,7 +287,7 @@ into consideration.
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
-   ("v" sx-question-list-visit)
+   ("v" sx-visit)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
    ([?\r] sx-question-list-display-question)))
@@ -382,16 +382,6 @@ a new list before redisplaying."
           (mapcar sx-question-list--print-function
                   (cl-remove-if #'sx-question--hidden-p question-list))))
   (when redisplay (tabulated-list-print 'remember)))
-
-(defun sx-question-list-visit (&optional data)
-  "Visits question under point (or from DATA) using `browse-url'."
-  (interactive)
-  (unless data (setq data (tabulated-list-get-id)))
-  (unless data (error "No question here!"))
-  (sx-assoc-let data
-    (browse-url .link))
-  (sx-question--mark-read data)
-  (sx-question-list-refresh 'redisplay 'no-update))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.
