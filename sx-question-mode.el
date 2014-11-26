@@ -572,6 +572,7 @@ Letters do not insert themselves; instead, they are commands.
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
+   ("c" sx-comment)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
