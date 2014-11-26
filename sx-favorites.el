@@ -52,7 +52,8 @@ Added as hook to initialization."
 (defun sx-favorites--retrieve-favorites (site)
   "Obtain list of starred QUESTION_IDs for SITE."
   (sx-method-call 'me
-    :submethod (format "favorites?site=%s" site)
+    :submethod 'favorites
+    :site site
     :filter sx-favorite-list-filter
     :auth t))
 
