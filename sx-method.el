@@ -76,8 +76,12 @@ Return the entire response as a complex alist."
                                (format "/%s" id))
                              (when submethod
                                (format "/%s" submethod))
-                             (when (stringp site)
-                               (format "?site=%s" site))))
+                             ;; On GET methods site is buggy, so we
+                             ;; need to provide it as a url argument.
+                             (when (and site (string= url-method "GET"))
+                               (prog1
+                                   (format "?site=%s" site)
+                                 (setq site nil)))))
         (call 'sx-request-make))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
@@ -100,6 +104,8 @@ Return the entire response as a complex alist."
     (setq parameters
           (cons (cons 'filter (sx-filter-get-var filter))
                 keywords))
+    (when site
+      (setq parameters (cons (cons 'site site) parameters)))
     (funcall call
              full-method
              parameters
