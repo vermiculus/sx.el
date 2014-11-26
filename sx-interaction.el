@@ -123,7 +123,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
       (setq text (read-string
                   "Comment text: "
                   (when .comment_id
-                    (sx--user-@name .owner))))
+                    (concat (sx--user-@name .owner) " "))))
       (while (< (string-width text) 15)
         (setq text (read-string "Comment text (at least 15 characters): " text))))
     ;; If non-interactive, `text' could be anything.
