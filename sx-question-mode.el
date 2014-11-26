@@ -595,15 +595,19 @@ With non-nil prefix argument NO-UPDATE, just redisplay, don't
 query the api."
   (interactive "P")
   (sx-question-mode--ensure-mode)
-  (let ((point (point)))
+  (let ((point (point))
+        (line (count-screen-lines
+               (window-start) (point))))
     (sx-question-mode--erase-and-print-question
      (if no-update
          sx-question-mode--data
        (sx-assoc-let sx-question-mode--data
          (sx-question-get-question .site .question_id))))
     (goto-char point)
-    (when (get-buffer-window (current-buffer))
-      (recenter))))
+    (when (equal (selected-window)
+                 (get-buffer-window (current-buffer)))
+      (recenter line)))
+  (sx-message "Done."))
 
 (defun sx-question-mode--ensure-mode ()
   "Ensures we are in question mode, erroring otherwise."
