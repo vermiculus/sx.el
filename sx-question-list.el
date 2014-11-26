@@ -385,7 +385,8 @@ a new list before redisplaying."
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
                   (cl-remove-if #'sx-question--hidden-p question-list)))
-    (when redisplay (tabulated-list-print 'remember))))
+    (when redisplay (tabulated-list-print 'remember))
+    (sx-message "Done.")))
 
 (defcustom sx-question-list-ago-string " ago"
   "String appended to descriptions of the time since something happened.

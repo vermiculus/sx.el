@@ -606,7 +606,8 @@ query the api."
     (goto-char point)
     (when (equal (selected-window)
                  (get-buffer-window (current-buffer)))
-      (recenter line))))
+      (recenter line)))
+  (sx-message "Done."))
 
 (defun sx-question-mode--ensure-mode ()
   "Ensures we are in question mode, erroring otherwise."
