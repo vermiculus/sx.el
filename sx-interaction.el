@@ -51,16 +51,25 @@ Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
-(defun sx-visit (data)
+(defun sx-visit (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
 derived from point position.
+
+If copy-as-kill is non-nil, do not call `browse-url'.
+Instead, copy the link as a new kill with `kill-new'.
+Interactively, this is specified with a prefix argument.
+
 If DATA is a question, also mark it as read."
-  (interactive (list (sx--data-here)))
+  (interactive (list (sx--data-here) current-prefix-arg))
   (sx-assoc-let data
-    (when (stringp .link)
-      (browse-url .link))
-    (when .title
+    (let ((link
+           (when (stringp .link)
+             (funcall (if copy-as-kill #'kill-new #'browse-url)
+                      .link))))
+      (when (and (called-interactively-p 'any) copy-as-kill)
+        (message "Copied: %S" link)))
+    (when (and .title (not copy-as-kill))
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
