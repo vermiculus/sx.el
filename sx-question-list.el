@@ -286,6 +286,8 @@ into consideration.
    ("J" sx-question-list-next-far)
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
+   ([down] sx-question-list-view-next)
+   ([up] sx-question-list-view-previous)
    (":" sx-question-list-switch-site)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
