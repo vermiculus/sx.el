@@ -499,11 +499,12 @@ Prefix argument N moves N sections down or up."
         (unless (and (overlayp ov)
                      (overlay-get ov 'invisible))
           (cl-decf count)))))
-  (when sx-question-mode-recenter-line
-    (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
-      (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
-        (recenter sx-question-mode-recenter-line))))
-  (sx-message-help-echo))
+  (when (equal (selected-window) (get-buffer-window))
+    (when sx-question-mode-recenter-line
+      (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
+        (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
+          (recenter sx-question-mode-recenter-line))))
+    (sx-message-help-echo)))
 
 (defun sx-question-mode-previous-section (&optional n)
   "Move down to previous section (question or answer) of this buffer.
@@ -571,6 +572,7 @@ Letters do not insert themselves; instead, they are commands.
  `(("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
+   ("c" sx-comment)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)

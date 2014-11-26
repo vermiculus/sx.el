@@ -43,7 +43,7 @@ property.
   "Query SITE for a QUESTION-ID and return it.
 If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call 'questions
-               :id id
+               :id question-id
                :site site
                :auth t
                :filter sx-browse-filter)))
