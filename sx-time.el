@@ -29,11 +29,15 @@
   ;; (LIMIT NAME VALUE)
   ;; We use an entry if the number of seconds in question is less than
   ;; LIMIT, but more than the previous entry's LIMIT.
+  ;; For instance, if time is less than 100 sec, we write it in seconds;
+  ;; if it is between 100 and 6000 sec, we use minutes.
+  ;; VALUE is the actual number of seconds which NAME represents.
   '((100      "s"  1)
     (6000     "m"  60.0)
     (108000   "h"  3600.0)
-    (34560000 "d"  86400.0)
-    (nil      "y"  31557600.0))
+    (3456000  "d"  86400.0)
+    (31622400 "M" 2628000.0)
+    (nil      "Y"  31557600.0))
   "Auxiliary variable used by `sx-time-since'.")
 
 (defun sx-time-since (time)
