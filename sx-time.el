@@ -36,8 +36,8 @@
     (6000     "m"  60.0)
     (108000   "h"  3600.0)
     (3456000  "d"  86400.0)
-    (31622400 "M" 2628000.0)
-    (nil      "Y"  31557600.0))
+    (31622400 "mo" 2628000.0)
+    (nil      "y"  31557600.0))
   "Auxiliary variable used by `sx-time-since'.")
 
 (defun sx-time-since (time)
