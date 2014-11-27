@@ -33,7 +33,7 @@
 
 ;;; Customization
 (defcustom sx-question-list-height 12
-  "Height, in lines, of stack-mode's *question-list* buffer."
+  "Height, in lines, of SX's *question-list* buffer."
   :type 'integer
   :group 'sx-question-list)
 

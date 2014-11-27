@@ -1,4 +1,4 @@
-;;; sx-encoding.el --- encoding for stack-mode
+;;; sx-encoding.el --- encoding
 
 ;; Copyright (C) 2014  Sean Allred
 

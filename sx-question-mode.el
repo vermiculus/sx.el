@@ -73,7 +73,7 @@ If WINDOW is given, use that to display the buffer."
   ;; Create the buffer if necessary.
   (unless (buffer-live-p sx-question-mode--buffer)
     (setq sx-question-mode--buffer
-          (generate-new-buffer "*stack-question*")))
+          (generate-new-buffer "*sx-question*")))
   (cond
    ;; Window was given, use it.
    ((window-live-p window)

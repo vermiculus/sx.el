@@ -1,4 +1,4 @@
-;;; sx-time.el --- time for stack-mode
+;;; sx-time.el --- time
 
 ;; Copyright (C) 2014  Sean Allred
 

@@ -30,11 +30,11 @@
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
   :type 'string 
-  :group 'stack-exchange)
+  :group 'sx-tab)
 
 (defmacro sx-tab--define (tab pager &optional printer refresher
                               &rest body)
-  "Define a stack-exchange tab called TAB.
+  "Define a StackExchange tab called TAB.
 TAB is a capitalized string.
 
 This defines a command `sx-tab-TAB' for displaying the tab,

@@ -1,8 +1,8 @@
-#+Title: Stack-Mode
+#+Title: SX -- Stack Exchange for Emacs
 
-[[https://travis-ci.org/vermiculus/stack-mode][https://travis-ci.org/vermiculus/stack-mode.svg?branch=master]]
-[[https://gitter.im/vermiculus/stack-mode?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
-[[https://www.waffle.io/vermiculus/stack-mode][https://badge.waffle.io/vermiculus/stack-mode.svg]]
+[[https://travis-ci.org/vermiculus/sx.el][https://travis-ci.org/vermiculus/sx.el.svg?branch=master]]
+[[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
+[[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
 StackMode will be a full featured Stack Exchange mode for GNU Emacs 24
 and up. Using the official API, we aim to create a more versatile
@@ -43,13 +43,13 @@ Depending on community involvement, it may even be submitted to the
 official GNU ELPA.
 * Contributing
 Please help contribute! Doing any of the following will help us immensely:
- - [[https://github.com/vermiculus/stack-mode/issues/new][Open an issue]]
- - [[https://github.com/vermiculus/stack-mode/pulls][Submit a pull request]]
- - [[https://gitter.im/vermiculus/stack-mode][Suggest a package or library in our Chat on Gitter]]
+ - [[https://github.com/vermiculus/sx.el/issues/new][Open an issue]]
+ - [[https://github.com/vermiculus/sx.el/pulls][Submit a pull request]]
+ - [[https://gitter.im/vermiculus/sx.el][Suggest a package or library in our Chat on Gitter]]
  - Spread the word!
 
 For a better view of all of the open issues, take a look at our lovely
-[[http://www.waffle.io/vermiculus/stack-mode][Waffle board]].  Feel free to take the torch on anything in =backlog= or
+[[http://www.waffle.io/vermiculus/sx.el][Waffle board]].  Feel free to take the torch on anything in =backlog= or
 =ready=.  If you have thoughts on any other issues, don't hesitate to
 chime in!
 * Resources
