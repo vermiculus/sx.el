@@ -35,7 +35,7 @@
 (cl-defun sx-method-call (method &key id
                                       submethod
                                       keywords
-                                      (filter 'none)
+                                      (filter '(()))
                                       auth
                                       (url-method "GET")
                                       site)

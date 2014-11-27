@@ -199,10 +199,13 @@ Return the result of BODY."
      result))
 
 (defun sx--user-@name (user)
-  "Get the `display_name' of USER prepended with @."
+  "Get the `display_name' of USER prepended with @.
+In order to correctly @mention the user, all whitespace is
+removed from the display name before it is returned."
   (sx-assoc-let user
     (when (stringp .display_name)
-      (concat "@" .display_name))))
+      (concat "@" (replace-regexp-in-string
+                   "[[:space:]]" "" .display_name)))))
 
 
 ;;; Assoc-let
