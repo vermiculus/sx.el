@@ -75,8 +75,14 @@ Return the entire response as a complex alist."
                              (when id
                                (format "/%s" id))
                              (when submethod
-                               (format "/%s" submethod))))
-        (call 'sx-request-make))
+                               (format "/%s" submethod))
+                             ;; On GET methods site is buggy, so we
+                             ;; need to provide it as a url argument.
+                             (when (and site (string= url-method "GET"))
+                               (prog1
+                                   (format "?site=%s" site)
+                                 (setq site nil)))))
+        (call #'sx-request-make))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
@@ -96,10 +102,10 @@ Return the entire response as a complex alist."
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
     (setq parameters
-          (cons `(site . ,site)
-                (cons (cons 'filter
-                            (sx-filter-get-var filter))
-                      keywords)))
+          (cons (cons 'filter (sx-filter-get-var filter))
+                keywords))
+    (when site
+      (setq parameters (cons (cons 'site site) parameters)))
     (funcall call
              full-method
              parameters
