@@ -71,7 +71,7 @@
   "gunzip"
   "Program used to unzip the response if it is compressed.
 This program must accept compressed data on standard input."
-  :group 'sx-request
+  :group 'sx
   :type 'string)
 
 (defvar sx-request-remaining-api-requests
@@ -85,7 +85,7 @@ Set by `sx-request-make'.")
 After `sx-request-remaining-api-requests' drops below this
 number, `sx-request-make' will begin printing out the
 number of requests left every time it finishes a call."
-  :group 'sx-request
+  :group 'sx
   :type 'integer)
 
 

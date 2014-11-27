@@ -32,7 +32,7 @@
   (expand-file-name ".sx" user-emacs-directory)
   "Directory containing cached data."
   :type 'directory
-  :group 'sx-cache)
+  :group 'sx)
 
 (defun sx-cache--ensure-sx-cache-directory-exists ()
   "Ensure `sx-cache-directory' exists."

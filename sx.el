@@ -1,4 +1,4 @@
-;;; sx.el --- Core functions of the sx package.      -*- lexical-binding: t; -*-
+;;; sx.el --- core functions of the sx package.
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -29,6 +29,13 @@
 (require 'tabulated-list)
 
 (defconst sx-version "0.1" "Version of the `sx' package.")
+
+(defgroup sx nil
+  "Customization group for sx-question-mode."
+  :prefix "sx-"
+  :tag "SX"
+  :group 'applications)
+
 
 
 ;;; User commands
@@ -312,4 +319,5 @@ If FORCE is non-nil, run them even if they've already been run."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

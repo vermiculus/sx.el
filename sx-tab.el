@@ -30,7 +30,7 @@
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
   :type 'string 
-  :group 'sx-tab)
+  :group 'sx)
 
 (defmacro sx-tab--define (tab pager &optional printer refresher
                               &rest body)

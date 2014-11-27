@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Creating the buffer that displays questions  -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- Creating the buffer that displays questions
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -31,11 +31,13 @@
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
   :prefix "sx-question-mode-"
+  :tag "SX Question Mode"
   :group 'sx)
 
 (defgroup sx-question-mode-faces nil
   "Customization group for the faces of `sx-question-mode'."
   :prefix "sx-question-mode-"
+  :tag "SX Question Mode Faces"
   :group 'sx-question-mode)
 
 
@@ -616,3 +618,7 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
+
+;; Local Variables:
+;; lexical-binding: t
+;; End:
