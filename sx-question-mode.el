@@ -385,11 +385,33 @@ where `value' is given `face' as its face.
     (goto-char (point-min))
     (while (null (eobp))
       ;; Don't fill pre blocks.
-      (unless (sx-question-mode--move-over-pre)
+      (unless (sx-question-mode--dont-fill-here)
         (skip-chars-forward "\r\n[:blank:]")
         (fill-paragraph)
         (forward-paragraph)))
     (buffer-string)))
+
+(defvar sx-question-mode--reference-regexp
+  (rx line-start (0+ blank) "[%s]:" (0+ blank)
+      (group-n 1 (1+ (not blank)))) 
+  "Regexp used to find the url of labeled links.
+E.g.:
+   [1]: https://...")
+
+(defun sx-question-mode--dont-fill-here ()
+  "If text shouldn't be filled here, return t and skip over it."
+  (or (sx-question-mode--move-over-pre)
+      ;; Skip headers and references
+      (let ((pos (point)))
+        (skip-chars-forward "\r\n[:blank:]")
+        (goto-char (line-beginning-position))
+        (if (or (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+                (looking-at-p "^#"))
+            ;; Returns non-nil
+            (forward-paragraph)
+          ;; Go back and return nil
+          (goto-char pos)
+          nil))))
 
 (defvar sx-question-mode--link-regexp
   ;; Done at compile time.
@@ -452,8 +474,7 @@ If ID is nil, use FALLBACK-ID instead."
     (save-match-data
       (goto-char (point-min))
       (when (search-forward-regexp
-             (format (rx line-start (0+ blank) "[%s]:" (0+ blank)
-                         (group-n 1 (1+ (not blank))))
+             (format sx-question-mode--reference-regexp
                      (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
