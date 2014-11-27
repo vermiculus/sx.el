@@ -1,4 +1,4 @@
-;;; sx-cache.el --- caching for stack-mode
+;;; sx-cache.el --- caching
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -29,10 +29,10 @@
 ;;; Code:
 
 (defcustom sx-cache-directory
-  (expand-file-name ".stackmode" user-emacs-directory)
+  (expand-file-name ".sx" user-emacs-directory)
   "Directory containing cached data."
   :type 'directory
-  :group 'sx-cache)
+  :group 'sx)
 
 (defun sx-cache--ensure-sx-cache-directory-exists ()
   "Ensure `sx-cache-directory' exists."
@@ -99,7 +99,7 @@ as delete the list of hidden questions."
     (when save-auth
       (setq caches (cl-remove-if (lambda (x)
                                    (string= x "auth.el")) caches)))
-    (lwarn 'stack-mode :debug "Invalidating: %S" caches)
+    (lwarn 'sx :debug "Invalidating: %S" caches)
     (mapc #'delete-file caches)
     (sx-initialize 'force)))
 

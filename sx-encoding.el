@@ -1,4 +1,4 @@
-;;; sx-encoding.el --- encoding for stack-mode
+;;; sx-encoding.el --- encoding
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -145,7 +145,7 @@ See URL `http://www.gzip.org/zlib/rfc-gzip.html'."
   "Check if BUFFER is gzip-compressed.
 See `sx-encoding-gzipped-p'."
   (with-current-buffer buffer
-    (sx-encoding-gzip-check-magic
+    (sx-encoding-gzipped-p
      (buffer-string))))
 
 (defun sx-encoding-gzipped-file-p (file)

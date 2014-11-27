@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Creating the buffer that displays questions  -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- Creating the buffer that displays questions
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -31,11 +31,13 @@
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
   :prefix "sx-question-mode-"
+  :tag "SX Question Mode"
   :group 'sx)
 
 (defgroup sx-question-mode-faces nil
   "Customization group for the faces of `sx-question-mode'."
   :prefix "sx-question-mode-"
+  :tag "SX Question Mode Faces"
   :group 'sx-question-mode)
 
 
@@ -73,7 +75,7 @@ If WINDOW is given, use that to display the buffer."
   ;; Create the buffer if necessary.
   (unless (buffer-live-p sx-question-mode--buffer)
     (setq sx-question-mode--buffer
-          (generate-new-buffer "*stack-question*")))
+          (generate-new-buffer "*sx-question*")))
   (cond
    ;; Window was given, use it.
    ((window-live-p window)
@@ -637,3 +639,7 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
+
+;; Local Variables:
+;; lexical-binding: t
+;; End:
