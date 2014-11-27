@@ -55,8 +55,6 @@ chime in!
 * Resources
 - [[http://www.gnu.org/software/emacs/][GNU Emacs]]
 - [[https://api.stackexchange.com/docs][Stack Exchange API v2.2]]
-- [[http://stackapps.com/apps/oauth/register][StackApps Registration Page]]
-- [[http://www.emacswiki.org/emacs/ModeTutorial][Creating Major Modes for Emacs]]
 ** Icons
 Stack Exchange Mode for Emacs has no explicit use for an icon,
 although standard SVG files have been gathered in =resources/= if
