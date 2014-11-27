@@ -107,7 +107,6 @@ If WINDOW is given, use that to display the buffer."
   '((display_name . "(deleted user)"))
   "The structure used to represent a deleted account."
   :type '(alist :options ((display_name string)))
-  :risky t
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-header-title "\n"
