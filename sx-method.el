@@ -82,7 +82,7 @@ Return the entire response as a complex alist."
                                (prog1
                                    (format "?site=%s" site)
                                  (setq site nil)))))
-        (call 'sx-request-make))
+        (call #'sx-request-make))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
