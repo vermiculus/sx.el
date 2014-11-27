@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Stack-mode : Stack Exchange for Emacs">
+    <meta name="description" content="SX : Stack Exchange for Emacs">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Stack-mode</title>
+    <title>SX</title>
   </head>
 
   <body>
@@ -16,14 +16,14 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/vermiculus/stack-mode">View on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/vermiculus/sx.el">View on GitHub</a>
 
-          <h1 id="project_title">Stack-mode</h1>
+          <h1 id="project_title">SX</h1>
           <h2 id="project_tagline">Stack Exchange for Emacs</h2>
 
             <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/vermiculus/stack-mode/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/vermiculus/stack-mode/tarball/master">Download this project as a tar.gz file</a>
+              <a class="zip_download_link" href="https://github.com/vermiculus/sx.el/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/vermiculus/sx.el/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
@@ -31,88 +31,56 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <div id="table-of-contents">
-<h2>
-<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#sec-1">1. Contributing</a></li>
-<li>
-<a href="#sec-2">2. Resources</a>
-<ul>
-<li><a href="#sec-2-1">2.1. Icons</a></li>
-</ul>
-</li>
-</ul>
-</div>
+        SX hopes to be a full featured Stack Exchange mode for GNU
+        Emacs 24+.  SX aims to create a more versatile experience of
+        Stack Exchange inside of Emacs.
 
-<p></p>
-</div>
-<code>Stack-mode</code> hopes to be a full featured Stack Exchange mode for
-GNU Emacs 24 and up. Using version 2.2, and subsequent versions as available, of
-the Stack Exchange API we aim to create a more versatile experience of Stack Exchange inside of Emacs.
+        <h1>
+          <a id="contributing"
+             class="anchor"
+             href="#contributing"
+             aria-hidden="true">
+            <span class="octicon octicon-link"></span>
+          </a>Contributing<a id="sec-1" name="sec-1"></a>
+        </h1>
 
-<p>This README will eventually hold a high-level feature list and details
-on installation and configuration.</p>
+        <p>
+          Please help contribute! Doing any of the following will help us immensely:
+        </p>
 
-<h1>
-<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing<a id="sec-1" name="sec-1"></a>
-</h1>
+        <ul>
+          <li><a href="https://github.com/vermiculus/sx.el/issues/new">Open an issue</a></li>
+          <li><a href="https://github.com/vermiculus/sx.el/pulls">Submit a pull request</a></li>
+          <li><a href="https://gitter.im/vermiculus/sx.el">Suggest a package or library in our Chat on Gitter</a></li>
+          <li>Spread the word!</li>
+        </ul>
 
-<p>Please help contribute! Doing any of the following will help us immensely:</p>
+        <p>
+          For a better view of all of the open issues, take a look at
+          our lovely
+	  <a href="http://www.waffle.io/vermiculus/sx.el">
+	    Waffle board.
+	  </a>
+	  Feel free to take the torch on anything in
+	  <code>backlog</code> or <code>ready</code>.  If you have
+	  thoughts on any other issues, don't hesitate to chime in!
+        </p>
 
-<ul>
-<li>  <a href="https://github.com/vermiculus/stack-mode/issues/new">Open an issue</a>
-</li>
-<li>  <a href="https://github.com/vermiculus/stack-mode/pulls">Submit a pull request</a>
-</li>
-<li>  <a href="https://gitter.im/vermiculus/stack-mode">Suggest a package or library in our Chat on Gitter</a>
-</li>
-<li>  Spread the word!</li>
-</ul>
-
-<p>For a better view of all of the open issues, take a look at our lovely
-<a href="http://www.waffle.io/vermiculus/stack-mode">Waffle board</a>.  Feel free to take the torch on anything in <code>backlog</code> or
-<code>ready</code>.  If you have thoughts on any other issues, don't hesitate to
-chime in!</p>
-
-<h1>
-<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources<a id="sec-2" name="sec-2"></a>
-</h1>
-
-<ul>
-<li>  <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a>
-</li>
-<li>  <a href="https://api.stackexchange.com/docs">Stack Exchange API v2.2</a>
-</li>
-<li>  <a href="http://stackapps.com/apps/oauth/register">StackApps Registration Page</a>
-</li>
-<li>  <a href="http://www.emacswiki.org/emacs/ModeTutorial">Creating Major Modes for Emacs</a>
-</li>
-</ul>
-
-<h2>
-<a id="icons" class="anchor" href="#icons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Icons<a id="sec-2-1" name="sec-2-1"></a>
-</h2>
-
-<p>Stack Exchange Mode for Emacs has no explicit use for an icon,
-although standard SVG files have been gathered in <code>resources/</code> if
-anyone would fancy a crack at it.</p>
-
-<ul>
-<li>  <a href="resources/emacs.svg">Emacs icon</a>
-</li>
-<li>  <a href="resources/stackexchange.svg">Stack Exchange icon</a>
-</li>
-</ul>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Stack-mode maintained by <a href="https://github.com/vermiculus">Vermiculus</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p class="copyright">
+	  SX maintained by
+	  <a href="https://github.com/vermiculus">vermiculus</a>,
+	  <a href="https://github.com/bruce-connor">bruce-connor</a>, and
+	  <a href="https://github.com/jleechpe">jleechpe</a>
+	</p>
+        <p>
+	  Style by <a href="http://pages.github.com">GitHub Pages</a>.
+	</p>
       </footer>
     </div>
 
