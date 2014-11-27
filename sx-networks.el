@@ -1,4 +1,4 @@
-;;; sx-networks.el --- user network information  -*- lexical-binding: t; -*-
+;;; sx-networks.el --- user network information
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -104,4 +104,5 @@ list of sites the user is active on."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

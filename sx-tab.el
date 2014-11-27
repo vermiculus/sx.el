@@ -1,4 +1,4 @@
-;;; sx-tab.el --- Functions for viewing different tabs.       -*- lexical-binding: t; -*-
+;;; sx-tab.el --- functions for viewing different tabs
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -100,3 +100,7 @@ If SITE is nil, use `sx-tab-default-site'."
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
+
+;; Local Variables:
+;; lexical-binding: t
+;; End:

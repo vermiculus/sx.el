@@ -1,4 +1,4 @@
-;;; sx-interaction.el --- Voting, commenting, and otherwise interacting with questions.  -*- lexical-binding: t; -*-
+;;; sx-interaction.el --- voting, commenting, and other interaction
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -196,3 +196,7 @@ OBJECT can be a question or an answer."
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
+
+;; Local Variables:
+;; lexical-binding: t
+;; End:

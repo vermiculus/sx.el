@@ -1,4 +1,4 @@
-;;; sx-favorites.el --- Starred questions          -*- lexical-binding: t; -*-
+;;; sx-favorites.el --- starred questions
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -79,4 +79,5 @@ Writes list to cache QUESTION-FAVORITES."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

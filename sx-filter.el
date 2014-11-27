@@ -1,4 +1,4 @@
-;;; sx-filter.el --- filters                         -*- lexical-binding: t; -*-
+;;; sx-filter.el --- filters
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -86,4 +86,5 @@ return the compiled filter."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

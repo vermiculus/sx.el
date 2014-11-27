@@ -1,4 +1,4 @@
-;;; sx.el --- core functions of the sx package.
+;;; sx.el --- core functions
 
 ;; Copyright (C) 2014  Sean Allred
 

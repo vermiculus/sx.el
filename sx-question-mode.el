@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Creating the buffer that displays questions
+;;; sx-question-mode.el --- major-mode for displaying questions
 
 ;; Copyright (C) 2014  Artur Malabarba
 
