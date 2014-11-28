@@ -72,7 +72,7 @@ what you are doing!")
                                          upvote
                                          (unanswered my-tags)))
   "List of methods that require auth.
-Methods are of form (METHOD SUBMETHODS) where SUBMETHODS
+Methods are of form (METHOD . SUBMETHODS) where SUBMETHODS
   is (METHOD METHOD METHOD ...).
 
 If all SUBMETHODS require auth or there are no submethods, form
