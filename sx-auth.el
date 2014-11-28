@@ -43,7 +43,9 @@
   "Your access token.
 This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
-what you are doing!")
+what you are doing!
+
+This variable is set with `sx-auth-authenticate'.")
 
 (defvar sx-auth-method-auth '((me . t)
                               (inbox . t)
