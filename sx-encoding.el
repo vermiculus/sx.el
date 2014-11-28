@@ -28,6 +28,9 @@
 
 (require 'cl-lib)
 
+
+;;;; HTML Encoding
+
 (defcustom sx-encoding-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
            Agrave "À" agrave "à" alefsym "ℵ" Alpha "Α" alpha "α" amp "&" and "∧"
@@ -91,6 +94,9 @@ Return the decoded string."
                     (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
+
+;;;; Convenience Functions
+
 (defun sx-encoding-normalize-line-endings (string)
   "Normalize the line endings for STRING.
 The API returns strings that use Windows-style line endings.
@@ -135,6 +141,9 @@ some cases."
      ((vectorp data)
       (cl-map #'vector #'sx-encoding-clean-content-deep data))
      (t data))))
+
+
+;;;; GZIP
 
 (defun sx-encoding-gzipped-p (data)
   "Check for magic bytes in DATA.
