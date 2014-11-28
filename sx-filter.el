@@ -19,6 +19,10 @@
 
 ;;; Commentary:
 
+;; This file manages filters and provides an API to compile filters
+;; and retrieve them from the cache.  See `sx-filter-compile' and
+;; `sx-filter-get-var', respectively.
+
 ;;; Code:
 
 

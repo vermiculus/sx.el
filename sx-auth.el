@@ -19,6 +19,13 @@
 
 ;;; Commentary:
 
+;; This file handles logic related to authentication.  This includes
+;; determining if a certain filter requires authentication (via the
+;; variable `sx-auth-filter-auth' and function `sx-auth--filter-p'),
+;; determining if a method requires authentication (via the variable
+;; `sx-auth-method-auth' and function `sx-auth--method-p'), and
+;; actually authenticating the user (with `sx-auth-authenticate').
+
 ;;; Code:
 
 (require 'sx)

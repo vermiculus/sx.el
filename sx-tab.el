@@ -19,7 +19,12 @@
 
 ;;; Commentary:
 
-;;
+;; This file provides a single macro to define 'tabs' to view lists of
+;; questions.
+
+;;; Tabs:
+
+;; - frontpage :: the frontpage of a single site
 
 
 ;;; Code:

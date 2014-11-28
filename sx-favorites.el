@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides logic for retrieving and managing a user's
+;; starred questions.
+
 ;;; Code:
 
 (require 'sx-method)

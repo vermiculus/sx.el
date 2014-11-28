@@ -19,6 +19,11 @@
 
 ;;; Commentary:
 
+;; This file handles decoding the responses we get from the API.  They
+;; are received either as plain-text or as a `gzip' compressed archive.
+;; For this, `sx-encoding-gzipped-p' is used to determine if content
+;; has been compressed under `gzip'.
+
 ;;; Code:
 
 (require 'cl-lib)

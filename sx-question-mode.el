@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides a means to print questions with their answers
+;; and all comments.  See the customizable group `sx-question-mode'.
+
 
 ;;; Code:
 (eval-when-compile

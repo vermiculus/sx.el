@@ -19,6 +19,8 @@
 
 ;;; Commentary:
 
+;; Provides question list logic (as used in e.g. `sx-tab-frontpage').
+
 ;;; Code:
 (require 'tabulated-list)
 (require 'cl-lib)

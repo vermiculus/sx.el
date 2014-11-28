@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides logic for retrieving information about the user
+;; across the entire network, e.g. their registered sites.
+
 ;;; Code:
 
 (require 'sx-method)

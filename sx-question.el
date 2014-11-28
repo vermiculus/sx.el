@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; Thie file provides an API for retrieving questions and defines
+;; additional logic for marking questions as read or hidden.
+
 
 ;;; Code:
 
