@@ -19,7 +19,8 @@
 
 ;;; Commentary:
 
-;;
+;; This file provides functions for manipulating and displaying
+;; timestamps.
 
 ;;; Code:
 

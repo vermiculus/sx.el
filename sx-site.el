@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides various pieces of site logic, such as retrieving
+;; the list of sites and the list of a user's favorited questions.
+
 ;;; Code:
 
 (require 'sx-method)

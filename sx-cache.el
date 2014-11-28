@@ -19,12 +19,18 @@
 
 ;;; Commentary:
 
-;; All caches are retrieved and set using symbols.  The symbol should
-;; be the sub-subpackage that is using the cache.  For example,
-;; `sx-pkg' would use `(sx-cache-get 'pkg)'.
+;; This file handles the cache system.  All caches are retrieved and
+;; set using symbols.  The symbol should be the sub-package that is
+;; using the cache.  For example, `sx-pkg' would use
+;;
+;;   `(sx-cache-get 'pkg)'
 ;;
 ;; This symbol is then converted into a filename within
-;; `sx-cache-directory'.
+;; `sx-cache-directory' using `sx-cache-get-file-name'.
+;;
+;; Currently, the cache is written at every `sx-cache-set', but this
+;; write will eventually be done by some write-all function which will
+;; be set on an idle timer.
 
 ;;; Code:
 

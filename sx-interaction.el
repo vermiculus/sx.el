@@ -19,6 +19,10 @@
 
 ;;; Commentary:
 
+;; This file provides voting, commenting, and other interactive
+;; facilities.  Most functions are scoped relative to `sx--data-here'
+;; when called interactively.
+
 
 ;;; Code:
 
