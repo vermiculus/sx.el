@@ -97,12 +97,12 @@ If WINDOW is given, use that to display the buffer."
   :group 'sx-question-mode-faces)
 
 (defface sx-question-mode-title
-  '((t :height 1.3 :weight bold :inherit default))
+  '((t :weight bold :inherit default))
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
 (defface sx-question-mode-title-comments
-  '((t :height 1.1 :inherit sx-question-mode-title))
+  '((t :inherit sx-question-mode-title))
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
