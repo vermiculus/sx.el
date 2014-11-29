@@ -173,6 +173,21 @@ would yield
                      cons-cell))))
              data))))
 
+(defun sx--shorten-url (url)
+  "Shorten URL hiding anything other than the domain.
+Paths after the domain are replaced with \"...\".
+Anything before the (sub)domain is removed."
+  (replace-regexp-in-string
+   ;; Remove anything after domain.
+   (rx (group-n 1 (and (1+ (any word ".")) "/"))
+       (1+ anything) string-end)
+   (eval-when-compile
+     (concat "\\1" (if (char-displayable-p ?…) "…" "...")))
+   ;; Remove anything before subdomain.
+   (replace-regexp-in-string 
+    (rx string-start (or (and (0+ word) (optional ":") "//")))
+    "" url)))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
