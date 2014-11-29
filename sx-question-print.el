@@ -425,6 +425,7 @@ font-locking."
                 (goto-char beg)
                 (line-beginning-position))
               end)))
+      (put-text-property beg end 'display nil)
       (make-text-button
        beg             end
        'face           'markdown-pre-face
