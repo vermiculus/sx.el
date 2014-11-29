@@ -82,7 +82,7 @@ If WINDOW is given, use that to display the buffer."
 ;; To move between sections, just search for the property. The value
 ;; of the text-property is the depth of the section (1 for contents, 2
 ;; for comments).
-(defcustom sx-question-mode-recenter-line 1
+(defcustom sx-question-mode-recenter-line 2
   "Screen line to which we recenter after moving between sections.
 This is used as an argument to `recenter', only used if the end
 of section is outside the window.
