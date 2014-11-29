@@ -25,7 +25,6 @@
 
 (require 'sx)
 (require 'sx-question)
-(require 'sx-interaction)
 
 
 ;;; Command definitions
