@@ -1,0 +1,440 @@
+;;; sx-question-print.el --- Populating the question-mode buffer with content.
+
+;; Copyright (C) 2014  Artur Malabarba
+
+;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+
+;;; Code:
+(require 'markdown-mode)
+(require 'button)
+(eval-when-compile
+  (require 'rx))
+
+(require 'sx)
+(require 'sx-question)
+
+(defgroup sx-question-mode nil
+  "Customization group for sx-question-mode."
+  :prefix "sx-question-mode-"
+  :tag "SX Question Mode"
+  :group 'sx)
+
+(defgroup sx-question-mode-faces nil
+  "Customization group for the faces of `sx-question-mode'."
+  :prefix "sx-question-mode-"
+  :tag "SX Question Mode Faces"
+  :group 'sx-question-mode)
+
+
+;;; Faces and Variables
+
+(defface sx-question-mode-header
+  '((t :inherit font-lock-variable-name-face))
+  "Face used on the question headers in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-title
+  '((t :weight bold :inherit default))
+  "Face used on the question title in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-title-comments
+  '((t :inherit sx-question-mode-title))
+  "Face used on the question title in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-header-title "\n"
+  "String used before the question title at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defface sx-question-mode-author
+  '((t :inherit font-lock-string-face))
+  "Face used on the question author in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-header-author "\nAuthor:   "
+  "String used before the question author at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defface sx-question-mode-date
+  '((t :inherit font-lock-string-face))
+  "Face used on the question date in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-header-date "\nAsked on: "
+  "String used before the question date at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defface sx-question-mode-tags
+  '((t :underline nil :inherit font-lock-function-name-face))
+  "Face used on the question tags in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-author
+  '((t :inherit font-lock-variable-name-face))
+  "Face used for author names in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-score
+  '((t))
+  "Face used for the score in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-score-downvoted
+  '((t :inherit (font-lock-warning-face sx-question-mode-score)))
+  "Face used for downvoted score in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defface sx-question-mode-score-upvoted
+  '((t :weight bold
+       :inherit (font-lock-function-name-face sx-question-mode-score)))
+  "Face used for downvoted score in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-header-tags "\nTags:     "
+  "String used before the question tags at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-header-score "\nScore:    "
+  "String used before the question score at the header."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defface sx-question-mode-content-face
+  '((((background dark)) :background "#090909")
+    (((background light)) :background "#f4f4f4"))
+  "Face used on the question body in the question buffer.
+This shouldn't have a foreground, or this will interfere with
+font-locking."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-last-edit-format " (edited %s ago by %s)"
+  "Format used to describe last edit date in the header.
+First \"%s\" is replaced with the date and the second \"%s\" with
+the editor's name."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-separator
+  (concat (make-string 80 ?_) "\n")
+  "Separator used between header and body."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-answer-title "Answer"
+  "Title used at the start of \"Answer\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-comments-title " Comments"
+  "Title used at the start of \"Comments\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-comments-format "%s: %s\n"
+  "Format used to display comments.
+First \"%s\" is replaced with user name.  Second \"%s\" is
+replaced with the comment."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-pretty-links t
+  "If non-nil, markdown links are displayed in a compact form."
+  :type 'boolean
+  :group 'sx-question-mode)
+
+
+;;; Buttons
+(define-button-type 'sx-question-mode-title
+  'face 'sx-question-mode-title
+  'action #'sx-question-mode-hide-show-section
+  'help-echo 'sx-question-mode--section-help-echo
+  'follow-link t)
+
+(define-button-type 'sx-question-mode-link
+  'follow-link t
+  'action      #'sx-question-mode-follow-link)
+
+
+;;; Functions
+;;;; Printing the general structure
+(defvar sx-question-mode--section-help-echo
+  (format
+      (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
+    (propertize "RET" 'face 'font-lock-function-name-face))
+  "Help echoed in the minibuffer when point is on a section.")
+
+(defun sx-question-mode--print-question (question)
+  "Print a buffer describing QUESTION.
+QUESTION must be a data structure returned by `json-read'."
+  (setq sx-question-mode--data question)
+  ;; Clear the overlays
+  (mapc #'delete-overlay sx--overlays)
+  (setq sx--overlays nil)
+  ;; Print everything
+  (sx-question-mode--print-section question)
+  (sx-assoc-let question
+    (mapc #'sx-question-mode--print-section .answers))
+  (goto-char (point-min))
+  (sx-question-mode-next-section))
+
+(defun sx-question-mode--print-section (data)
+  "Print a section corresponding to DATA.
+DATA can represent a question or an answer."
+  ;; This makes `data' accessible through `sx--data-here'.
+  (sx-assoc-let data
+    (sx--wrap-in-text-property
+        (list 'sx--data-here data)
+      (insert sx-question-mode-header-title)
+      (insert-text-button
+       ;; Questions have title, Answers don't
+       (or .title sx-question-mode-answer-title)
+       ;; Section level
+       'sx-question-mode--section (if .title 1 2)
+       :type 'sx-question-mode-title)
+      ;; Sections can be hidden with overlays
+      (sx--wrap-in-overlay
+          '(sx-question-mode--section-content t)
+        (sx-question-mode--insert-header
+         ;; Author
+         sx-question-mode-header-author
+         (sx-question-mode--propertize-display-name .owner)
+         'sx-question-mode-author
+         ;; Date
+         sx-question-mode-header-date
+         (concat
+          (sx-time-seconds-to-date .creation_date)
+          (when .last_edit_date
+            (format sx-question-mode-last-edit-format
+              (sx-time-since .last_edit_date)
+              (sx-question-mode--propertize-display-name .last_editor))))
+         'sx-question-mode-date)
+        (sx-question-mode--insert-header
+         sx-question-mode-header-score
+         (format "%s" .score)
+         (cond
+          ((eq .upvoted t) 'sx-question-mode-score-upvoted)
+          ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+          (t 'sx-question-mode-score)))
+        (when .title
+          ;; Tags
+          (sx-question-mode--insert-header
+           sx-question-mode-header-tags
+           (mapconcat #'sx-question--tag-format .tags " ")
+           'sx-question-mode-tags))
+        ;; Body
+        (insert "\n"
+                (propertize sx-question-mode-separator
+                            'face 'sx-question-mode-header
+                            'sx-question-mode--section 4))
+        (sx--wrap-in-overlay
+            '(face sx-question-mode-content-face)
+          (insert "\n"
+                  (sx-question-mode--fill-and-fontify
+                   .body_markdown)
+                  "\n"
+                  (propertize sx-question-mode-separator
+                              'face 'sx-question-mode-header)))))
+    ;; Comments have their own `sx--data-here' property (so they can
+    ;; be upvoted too).
+    (when .comments
+      (insert "\n")
+      (insert-text-button
+       sx-question-mode-comments-title
+       'face 'sx-question-mode-title-comments
+       'sx-question-mode--section 3
+       :type 'sx-question-mode-title)
+      (sx--wrap-in-overlay
+          '(sx-question-mode--section-content t)
+        (insert "\n")
+        (sx--wrap-in-overlay
+            '(face sx-question-mode-content-face)
+          (mapc #'sx-question-mode--print-comment .comments))))))
+
+(defun sx-question-mode--propertize-display-name (author)
+  "Return display_name of AUTHOR with `sx-question-mode-author' face."
+  (sx-assoc-let author
+    (propertize .display_name
+                'face 'sx-question-mode-author)))
+
+(defun sx-question-mode--print-comment (comment-data)
+  "Print the comment described by alist COMMENT-DATA.
+The comment is indented, filled, and then printed according to
+`sx-question-mode-comments-format'."
+  (sx--wrap-in-text-property
+      (list 'sx--data-here comment-data)
+    (sx-assoc-let comment-data
+      (insert
+       (format
+        sx-question-mode-comments-format
+        (sx-question-mode--propertize-display-name .owner)
+        (substring
+         ;; We fill with three spaces at the start, so the comment is
+         ;; slightly indented.
+         (sx-question-mode--fill-and-fontify
+          (concat "   " .body_markdown))
+         ;; Then we remove the spaces from the first line, since we'll
+         ;; add the username there anyway.
+         3))))))
+
+(defun sx-question-mode--insert-header (&rest args)
+  "Insert propertized ARGS.
+ARGS is a list of repeating values -- `header', `value', and
+`face'.  `header' is given `sx-question-mode-header' as a face,
+where `value' is given `face' as its face.
+
+\(fn HEADER VALUE FACE [HEADER VALUE FACE] [HEADER VALUE FACE] ...)"
+  (while args
+    (insert
+     (propertize (pop args) 'face 'sx-question-mode-header)
+     (propertize (pop args) 'face (pop args)))))
+
+
+;;;; Printing and Font-locking the content (body)
+(defvar sx-question-mode-bullet-appearance
+  (propertize (if (char-displayable-p ?•) "  •" "  *")
+              'face 'markdown-list-face)
+  "String to be displayed as the bullet of markdown list items.")
+
+(defvar sx-question-mode--reference-regexp
+  (rx line-start (0+ blank) "[%s]:" (0+ blank)
+      (group-n 1 (1+ (not blank)))) 
+  "Regexp used to find the url of labeled links.
+E.g.:
+   [1]: https://...")
+
+(defvar sx-question-mode--link-regexp
+  ;; Done at compile time.
+  (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
+      (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
+          (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
+  "Regexp matching markdown links.")
+
+(defun sx-question-mode--fill-and-fontify (text)
+  "Return TEXT filled according to `markdown-mode'."
+  (with-temp-buffer
+    (insert text)
+    (markdown-mode)
+    (font-lock-mode -1)
+    (when sx-question-mode-bullet-appearance
+      (font-lock-add-keywords ;; Bullet items.
+       nil
+       `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
+          1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
+    (font-lock-add-keywords ;; Highlight usernames.
+     nil
+     `((,(rx (or blank line-start)
+             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+             symbol-end)
+        1 font-lock-builtin-face)))
+    ;; Everything.
+    (font-lock-fontify-region (point-min) (point-max))
+    ;; Compact links.
+    (sx-question-mode--process-links-in-buffer)
+    ;; And now the filling
+    (goto-char (point-min))
+    (while (null (eobp))
+      ;; Don't fill pre blocks.
+      (unless (sx-question-mode--dont-fill-here)
+        (skip-chars-forward "\r\n[:blank:]")
+        (fill-paragraph)
+        (forward-paragraph)))
+    (buffer-string)))
+
+(defun sx-question-mode--dont-fill-here ()
+  "If text shouldn't be filled here, return t and skip over it."
+  (or (sx-question-mode--move-over-pre)
+      ;; Skip headers and references
+      (let ((pos (point)))
+        (skip-chars-forward "\r\n[:blank:]")
+        (goto-char (line-beginning-position))
+        (if (or (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+                (looking-at-p "^#"))
+            ;; Returns non-nil
+            (forward-paragraph)
+          ;; Go back and return nil
+          (goto-char pos)
+          nil))))
+
+(defun sx-question-mode--process-links-in-buffer ()
+  "Turn all markdown links in this buffer into compact format."
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
+      (let* ((text (match-string-no-properties 1))
+             (url (or (match-string-no-properties 2)
+                      (sx-question-mode-find-reference
+                       (match-string-no-properties 3)
+                       text)))
+             (full-text (match-string-no-properties 0)))
+        (replace-match "")
+        (sx-question-mode--insert-link
+         (if sx-question-mode-pretty-links text full-text)
+         url)))))
+
+(defun sx-question-mode--insert-link (text url)
+  "Return a link propertized version of string TEXT.
+URL is used as 'help-echo and 'url properties."
+  (insert-text-button
+   text
+   ;; Mouse-over
+   'help-echo
+   (format (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
+     (propertize url 'face 'default)
+     (propertize "RET" 'face 'font-lock-function-name-face))
+   ;; For visiting and stuff.
+   'url  url
+   :type 'sx-question-mode-link))
+
+(defun sx-question-mode-follow-link (&optional pos)
+  "Follow link at POS.  If POS is nil, use `point'."
+  (interactive)
+  (browse-url
+   (or (get-text-property (or pos (point)) 'url)
+       (user-error "No url under point: %s" (or pos (point))))))
+
+(defun sx-question-mode-find-reference (id &optional fallback-id)
+  "Find url identified by reference ID in current buffer.
+If ID is nil, use FALLBACK-ID instead."
+  (save-excursion
+    (save-match-data
+      (goto-char (point-min))
+      (when (search-forward-regexp
+             (format sx-question-mode--reference-regexp
+                     (or id fallback-id))
+             nil t)
+        (match-string-no-properties 1)))))
+
+(defun sx-question-mode--move-over-pre ()
+  "Non-nil if paragraph at point can be filled."
+  (markdown-match-pre-blocks
+   (save-excursion
+     (skip-chars-forward "\r\n[:blank:]")
+     (point))))
+
+(provide 'sx-question-print)
+;;; sx-question-print.el ends here
+
+;; Local Variables:
+;; lexical-binding: t
+;; End:
