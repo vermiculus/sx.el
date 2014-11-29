@@ -117,15 +117,18 @@ changes."
 
 
 ;;; Commenting
-(defun sx-comment (data text)
+(defun sx-comment (data &optional text)
   "Post a comment on DATA given by TEXT.
 DATA can be a question, an answer, or a comment. Interactively,
 it is guessed from context at point.
 If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
-  (interactive
-   (list (sx--data-here) 'query))
+  (interactive (list (sx--data-here) 'query))
+  ;; When clicking the "Add a Comment" button, first arg is a marker.
+  (when (markerp data)
+    (setq data (sx--data-here))
+    (setq text 'query))
   (sx-assoc-let data
     ;; Get the comment text
     (when (eq text 'query)

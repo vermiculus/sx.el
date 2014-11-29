@@ -237,7 +237,12 @@ DATA can represent a question or an answer."
                    .body_markdown)
                   "\n"
                   (propertize sx-question-mode-separator
-                              'face 'sx-question-mode-header)))))
+                              'face 'sx-question-mode-header))))
+      ;; This is where the "add a comment" button is printed.
+      (insert "                        ")
+      (insert-text-button "Add a Comment"
+                          :type 'sx-button-comment)
+      (insert "\n"))
     ;; Comments have their own `sx--data-here' property (so they can
     ;; be upvoted too).
     (when .comments

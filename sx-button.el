@@ -25,6 +25,7 @@
 
 (require 'sx)
 (require 'sx-question)
+(require 'sx-interaction)
 
 
 ;;; Command definitions
@@ -90,6 +91,13 @@ This is usually a link's URL, or the content of a code block."
 
 (define-button-type 'sx-button-link
   'action    #'sx-button-follow-link
+  :supertype 'sx-button)
+
+(define-button-type 'sx-button-comment
+  'help-echo (concat "mouse-1, RET"
+                     (propertize ": write a comment"
+                                 'face 'minibuffer-prompt))
+  'action    #'sx-comment
   :supertype 'sx-button)
 
 (provide 'sx-button)
