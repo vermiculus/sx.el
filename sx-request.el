@@ -91,9 +91,8 @@ number of requests left every time it finishes a call."
 
 ;;; Making Requests
 
-(defun sx-request-make
-    (method &optional args request-method)
-    "Make a request to the API, executing METHOD with ARGS.
+(defun sx-request-make (method &optional args request-method)
+  "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
 this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
 
@@ -116,8 +115,7 @@ then read with `json-read-from-string'.
 the main content of the response is returned."
   (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
-         (url-request-data (sx-request--build-keyword-arguments args
-                                                            nil))
+         (url-request-data (sx-request--build-keyword-arguments args nil))
          (request-url (concat sx-request-api-root method))
          (url-request-method request-method)
          (url-request-extra-headers
@@ -168,14 +166,10 @@ Currently returns nil."
 
 
 ;;; Support Functions
-
-(defun sx-request--build-keyword-arguments (alist &optional
-						  kv-sep need-auth)
+(defun sx-request--build-keyword-arguments (alist &optional kv-sep)
   "Format ALIST as a key-value list joined with KV-SEP.
 If authentication is needed, include it also or error if it is
 not available.
-
-If NEED-AUTH is non-nil, authentication is required.
 
 Build a \"key=value&key=value&...\"-style string with the elements
 of ALIST.  If any value in the alist is nil, that pair will not
@@ -185,7 +179,7 @@ false, use the symbol `false'.  Each element is processed with
   ;; Add API key to list of arguments, this allows for increased quota
   ;; automatically.
   (let ((api-key (cons "key" sx-request-api-key))
-         (auth (car (sx-cache-get 'auth))))
+        (auth (car (sx-cache-get 'auth))))
     (push api-key alist)
     (when auth
       (push auth alist))
