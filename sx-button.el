@@ -72,6 +72,8 @@ code-block."
    (or (get-text-property (or pos (point)) 'sx-button-url)
        (user-error "No url under point: %s" (or pos (point))))))
 
+
+;;; Help-echo definitions
 (defvar sx-button--help-echo
   (concat "mouse-1, RET" 
           (propertize ": %s -- " 'face 'minibuffer-prompt)
