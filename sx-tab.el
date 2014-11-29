@@ -102,6 +102,13 @@ If SITE is nil, use `sx-tab-default-site'."
   (lambda (page)
     (sx-question-get-questions
      sx-question-list--site page)))
+;;;###autoload
+(autoload 'sx-tab-frontpage
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
