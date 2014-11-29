@@ -22,7 +22,7 @@
 
 ;;; Code:
 (require 'markdown-mode)
-(require 'button)
+(require 'sx-button)
 (eval-when-compile
   (require 'rx))
 
@@ -162,18 +162,6 @@ replaced with the comment."
   "If non-nil, markdown links are displayed in a compact form."
   :type 'boolean
   :group 'sx-question-mode)
-
-
-;;; Buttons
-(define-button-type 'sx-question-mode-title
-  'face 'sx-question-mode-title
-  'action #'sx-question-mode-hide-show-section
-  'help-echo 'sx-question-mode--section-help-echo
-  'follow-link t)
-
-(define-button-type 'sx-question-mode-link
-  'follow-link t
-  'action      #'sx-question-mode-follow-link)
 
 
 ;;; Functions
@@ -403,15 +391,8 @@ URL is used as 'help-echo and 'url properties."
      (propertize url 'face 'default)
      (propertize "RET" 'face 'font-lock-function-name-face))
    ;; For visiting and stuff.
-   'url  url
-   :type 'sx-question-mode-link))
-
-(defun sx-question-mode-follow-link (&optional pos)
-  "Follow link at POS.  If POS is nil, use `point'."
-  (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'url)
-       (user-error "No url under point: %s" (or pos (point))))))
+   'sx-button-url url
+   :type 'sx-button-link))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
@@ -421,7 +402,7 @@ If ID is nil, use FALLBACK-ID instead."
       (goto-char (point-min))
       (when (search-forward-regexp
              (format sx-question-mode--reference-regexp
-                     (or id fallback-id))
+               (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
 
