@@ -63,6 +63,7 @@
      question.upvoted
      question.downvoted
      question.question_id
+     question.share_link
      user.display_name
      comment.owner
      comment.body_markdown
@@ -78,6 +79,7 @@
      answer.answer_id
      answer.last_editor
      answer.link
+     answer.share_link
      answer.owner
      answer.body_markdown
      answer.upvoted

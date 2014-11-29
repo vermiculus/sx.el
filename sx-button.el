@@ -40,11 +40,14 @@
 This is usually a link's URL, or the content of a code block."
   (interactive)
   (let ((content
-         (get-text-property
-          (point) 'sx-button-copy-content)))
-    (if content
-        (kill-new content)
-      (sx-message "Nothing to copy here."))))
+         (get-text-property (point) 'sx-button-copy)))
+    (if (null content)
+        (sx-message "Nothing to copy here.")
+      (kill-new content)
+      (sx-message "Copied %s to kill ring."
+                  (or (get-text-property
+                       (point) 'sx-button-copy-type)
+                      content)))))
 
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
@@ -63,6 +66,7 @@ This is usually a link's URL, or the content of a code block."
   'face      'sx-question-mode-title
   'action    #'sx-question-mode-hide-show-section
   'help-echo 'sx-question-mode--section-help-echo
+  'sx-button-copy-type "Share Link"
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-link

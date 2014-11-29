@@ -199,6 +199,7 @@ DATA can represent a question or an answer."
        (or .title sx-question-mode-answer-title)
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
+       'sx-button-copy .share_link
        :type 'sx-question-mode-title)
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
@@ -251,6 +252,7 @@ DATA can represent a question or an answer."
        sx-question-mode-comments-title
        'face 'sx-question-mode-title-comments
        'sx-question-mode--section 3
+       'sx-button-copy .share_link
        :type 'sx-question-mode-title)
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
@@ -392,19 +394,20 @@ URL is used as 'help-echo and 'url properties."
      (propertize "RET" 'face 'font-lock-function-name-face))
    ;; For visiting and stuff.
    'sx-button-url url
-   :type 'sx-button-link))
+   'sx-button-copy url
+   :type 'sx-button-link)
 
-(defun sx-question-mode-find-reference (id &optional fallback-id)
-  "Find url identified by reference ID in current buffer.
+  (defun sx-question-mode-find-reference (id &optional fallback-id)
+    "Find url identified by reference ID in current buffer.
 If ID is nil, use FALLBACK-ID instead."
-  (save-excursion
-    (save-match-data
-      (goto-char (point-min))
-      (when (search-forward-regexp
-             (format sx-question-mode--reference-regexp
-               (or id fallback-id))
-             nil t)
-        (match-string-no-properties 1)))))
+    (save-excursion
+      (save-match-data
+        (goto-char (point-min))
+        (when (search-forward-regexp
+               (format sx-question-mode--reference-regexp
+                 (or id fallback-id))
+               nil t)
+          (match-string-no-properties 1))))))
 
 (defun sx-question-mode--move-over-pre ()
   "Non-nil if paragraph at point can be filled."
