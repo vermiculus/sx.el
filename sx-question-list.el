@@ -30,10 +30,22 @@
 (require 'sx-question-mode)
 (require 'sx-favorites)
 
+(defgroup sx-question-list nil
+  "Customization group for sx-question-list."
+  :prefix "sx-question-list-"
+  :tag "SX Question List"
+  :group 'sx)
+
+(defgroup sx-question-list-faces nil
+  "Customization group for the faces of `sx-question-list'."
+  :prefix "sx-question-list-"
+  :tag "SX Question List Faces"
+  :group 'sx-question-list)
+
 
 ;;; Customization
 (defcustom sx-question-list-height 12
-  "Height, in lines, of stack-mode's *question-list* buffer."
+  "Height, in lines, of SX's *question-list* buffer."
   :type 'integer
   :group 'sx-question-list)
 

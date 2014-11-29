@@ -1,4 +1,4 @@
-;;; sx-question.el --- question logic for stack-mode  -*- lexical-binding: t; -*-
+;;; sx-question.el --- question logic
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -134,20 +134,21 @@ If no cache exists for it, initialize one with SITE."
 
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
-  (let ((site-cell (assoc .site sx-question--user-hidden-list))
-        cell)
-    ;; If question already hidden, do nothing.
-    (unless (memq .question_id site-cell)
-      ;; First question from this site.
-      (push (list .site .question_id) sx-question--user-hidden-list)
-      ;; Question wasn't present.
-      ;; Add it in, but make sure it's sorted (just in case we need
-      ;; it later).
-      (sx-sorted-insert-skip-first .question_id site-cell >)
-      ;; This causes a small lag on `j' and `k' as the list gets large.
-      ;; Should we do this on a timer?
-      ;; Save the results.
-      (sx-cache-set 'hidden-questions sx-question--user-hidden-list))))
+  (sx-assoc-let question
+    (let ((site-cell (assoc .site sx-question--user-hidden-list))
+          cell)
+      ;; If question already hidden, do nothing.
+      (unless (memq .question_id site-cell)
+        ;; First question from this site.
+        (push (list .site .question_id) sx-question--user-hidden-list)
+        ;; Question wasn't present.
+        ;; Add it in, but make sure it's sorted (just in case we need
+        ;; it later).
+        (sx-sorted-insert-skip-first .question_id site-cell >)
+        ;; This causes a small lag on `j' and `k' as the list gets large.
+        ;; Should we do this on a timer?
+        ;; Save the results.
+        (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
 
 
 ;;;; Other data
@@ -167,4 +168,5 @@ If no cache exists for it, initialize one with SITE."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

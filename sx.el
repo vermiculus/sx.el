@@ -1,9 +1,9 @@
-;;; sx.el --- Core functions of the sx package.      -*- lexical-binding: t; -*-
+;;; sx.el --- core functions of the sx package.
 
 ;; Copyright (C) 2014  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
-;; URL: https://github.com/vermiculus/stack-mode/
+;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
 ;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0"))
@@ -23,13 +23,19 @@
 
 ;;; Commentary:
 
-;; This file defines basic commands used by all other parts of
-;; StackMode.
+;; This file defines basic commands used by all other parts of SX.
 
 ;;; Code:
 (require 'tabulated-list)
 
 (defconst sx-version "0.1" "Version of the `sx' package.")
+
+(defgroup sx nil
+  "Customization group for sx-question-mode."
+  :prefix "sx-"
+  :tag "SX"
+  :group 'applications)
+
 
 
 ;;; User commands
@@ -43,7 +49,7 @@
 (defun sx-bug-report ()
   "File a bug report about the `sx' package."
   (interactive)
-  (browse-url "https://github.com/vermiculus/stack-mode/issues/new"))
+  (browse-url "https://github.com/vermiculus/sx.el/issues/new"))
 
 
 ;;; Browsing filter
@@ -100,7 +106,7 @@ is intentionally skipped."
 (defun sx-message (format-string &rest args)
   "Display FORMAT-STRING as a message with ARGS.
 See `format'."
-  (message "[stack] %s" (apply #'format format-string args)))
+  (message "[sx] %s" (apply #'format format-string args)))
 
 (defun sx-message-help-echo ()
   "If there's a 'help-echo property under point, message it."
@@ -265,13 +271,13 @@ is equivalent to
        ,@body)))
 
 (defcustom sx-init-hook nil
-  "Hook run when stack-mode initializes.
+  "Hook run when SX initializes.
 Run after `sx-init--internal-hook'."
   :group 'sx
   :type 'hook)
 
 (defvar sx-init--internal-hook nil
-  "Hook run when stack-mode initializes.
+  "Hook run when SX initializes.
 This is used internally to set initial values for variables such
 as filters.")
 
@@ -313,4 +319,5 @@ If FORCE is non-nil, run them even if they've already been run."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
+;; lexical-binding: t
 ;; End:

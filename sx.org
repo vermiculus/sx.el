@@ -4,7 +4,7 @@
 
 #+TITLE: SX: A StackExchange Client (v{{{version}}})
 #+DATE: 16 November 2014
-#+AUTHOR: @@texinfo:@url{@@www.github.com/vermiculus/stack-mode@@texinfo:}@@
+#+AUTHOR: @@texinfo:@url{@@www.github.com/vermiculus/sx.el@@texinfo:}@@
 #+LANGUAGE: en
 
 #+OPTIONS: ':t toc:t

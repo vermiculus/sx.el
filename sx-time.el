@@ -1,4 +1,4 @@
-;;; sx-time.el --- time for stack-mode
+;;; sx-time.el --- time
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -57,13 +57,13 @@
   "Format used for dates on a past year.
 See also `sx-time-date-format'."
   :type 'string
-  :group 'sx-time)
+  :group 'sx)
 
 (defcustom sx-time-date-format "%H:%M - %d %b"
   "Format used for dates on this year.
 See also `sx-time-date-format-year'."
   :type 'string
-  :group 'sx-time)
+  :group 'sx)
 
 (defun sx-time-seconds-to-date (seconds)
   "Return the integer SECONDS as a date string."

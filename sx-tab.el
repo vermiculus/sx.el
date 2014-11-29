@@ -30,11 +30,11 @@
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
   :type 'string 
-  :group 'stack-exchange)
+  :group 'sx)
 
 (defmacro sx-tab--define (tab pager &optional printer refresher
                               &rest body)
-  "Define a stack-exchange tab called TAB.
+  "Define a StackExchange tab called TAB.
 TAB is a capitalized string.
 
 This defines a command `sx-tab-TAB' for displaying the tab,
@@ -97,6 +97,13 @@ If SITE is nil, use `sx-tab-default-site'."
   (lambda (page)
     (sx-question-get-questions
      sx-question-list--site page)))
+;;;###autoload
+(autoload 'sx-tab-frontpage
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here

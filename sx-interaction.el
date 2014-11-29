@@ -180,8 +180,7 @@ ID is an integer."
 (defun sx--add-comment-to-object (comment object)
   "Add COMMENT to OBJECT's `comments' property.
 OBJECT can be a question or an answer."
-  (let ((com-cell (assoc 'comments object))
-        (count-cell (assoc 'comment_count object)))
+  (let ((com-cell (assoc 'comments object)))
     (if com-cell
         (progn
           (setcdr

@@ -28,7 +28,7 @@
 (defconst sx-auth-root
   "https://stackexchange.com/oauth/dialog")
 (defconst sx-auth-redirect-uri
-  "http://vermiculus.github.io/stack-mode/auth/auth.htm")
+  "http://vermiculus.github.io/sx.el/auth/auth.htm")
 (defconst sx-auth-client-id
   "3291")
 (defvar sx-auth-access-token
@@ -154,14 +154,14 @@ If it has `auth-required' properties, return a filter that has
 removed those properties."
   (let* ((incl-filter (if (listp filter) (car filter)))
          (rest-filter (if incl-filter (cdr filter)))
-         (auth-filters (cl-remove-if #'nil
-                                     ;; Only retrieve the elements that
-                                     ;; are issues.
-                                     (mapcar (lambda (prop)
-                                               (car
-                                                (member prop
-                                                        sx-auth-filter-auth)))
-                                             (or incl-filter filter))))
+         (auth-filters (remove nil
+                               ;; Only retrieve the elements that
+                               ;; are issues.
+                               (mapcar (lambda (prop)
+                                         (car
+                                          (member prop
+                                                  sx-auth-filter-auth)))
+                                       (or incl-filter filter))))
          clean-filter out-filter)
     (lwarn "sx-auth filter" :debug "Filter: %S" filter)
     ;; Auth-filters is the filters that are issues
