@@ -394,19 +394,11 @@ URL is used as 'help-echo and 'url properties."
    ;; For visiting and stuff.
    'sx-button-url url
    'sx-button-copy url
-   :type 'sx-button-link)
+   :type 'sx-button-link))
 
-  (defun sx-question-mode-find-reference (id &optional fallback-id)
-    "Find url identified by reference ID in current buffer.
+(defun sx-question-mode-find-reference (id &optional fallback-id)
+  "Find url identified by reference ID in current buffer.
 If ID is nil, use FALLBACK-ID instead."
-    (save-excursion
-      (save-match-data
-        (goto-char (point-min))
-        (when (search-forward-regexp
-               (format sx-question-mode--reference-regexp
-                 (or id fallback-id))
-               nil t)
-          (match-string-no-properties 1))))))
 
 (defun sx-question-mode--move-over-pre ()
   "Non-nil if paragraph at point can be filled."
