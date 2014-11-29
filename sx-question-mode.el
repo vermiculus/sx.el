@@ -22,6 +22,7 @@
 
 ;;; Code:
 (require 'markdown-mode)
+(require 'button)
 (eval-when-compile
   (require 'rx))
 
@@ -96,12 +97,12 @@ If WINDOW is given, use that to display the buffer."
   :group 'sx-question-mode-faces)
 
 (defface sx-question-mode-title
-  '((t :height 1.3 :weight bold :inherit default))
+  '((t :weight bold :inherit default))
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
 (defface sx-question-mode-title-comments
-  '((t :height 1.1 :inherit sx-question-mode-title))
+  '((t :inherit sx-question-mode-title))
   "Face used on the question title in the question buffer."
   :group 'sx-question-mode-faces)
 
@@ -228,17 +229,15 @@ QUESTION must be a data structure returned by `json-read'."
 
 (defvar sx-question-mode--section-help-echo
   (format
-   (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
-   (propertize "RET" 'face 'font-lock-function-name-face))
+      (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
+    (propertize "RET" 'face 'font-lock-function-name-face))
   "Help echoed in the minibuffer when point is on a section.")
 
-(defvar sx-question-mode--title-properties
-  `(face sx-question-mode-title
-         action sx-question-mode-hide-show-section
-         help-echo ,sx-question-mode--section-help-echo
-         button t
-         follow-link t)
-  "Title properties.")
+(define-button-type 'sx-question-mode-title
+  'face 'sx-question-mode-title
+  'action #'sx-question-mode-hide-show-section
+  'help-echo 'sx-question-mode--section-help-echo
+  'follow-link t)
 
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
@@ -247,17 +246,13 @@ DATA can represent a question or an answer."
   (sx-assoc-let data
     (sx--wrap-in-text-property
         (list 'sx--data-here data)
-      (insert sx-question-mode-header-title
-              (apply
-               #'propertize
-               ;; Questions have title
-               (or .title
-                   ;; Answers don't
-                   sx-question-mode-answer-title)
-               ;; Section level
-               'sx-question-mode--section (if .title 1 2)
-               ;; face, action and help-echo
-               sx-question-mode--title-properties))
+      (insert sx-question-mode-header-title)
+      (insert-text-button
+       ;; Questions have title, Answers don't
+       (or .title sx-question-mode-answer-title)
+       ;; Section level
+       'sx-question-mode--section (if .title 1 2)
+       :type 'sx-question-mode-title)
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
@@ -272,8 +267,8 @@ DATA can represent a question or an answer."
           (sx-time-seconds-to-date .creation_date)
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
-                    (sx-time-since .last_edit_date)
-                    (sx-question-mode--propertize-display-name .last_editor))))
+              (sx-time-since .last_edit_date)
+              (sx-question-mode--propertize-display-name .last_editor))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
@@ -304,12 +299,12 @@ DATA can represent a question or an answer."
     ;; Comments have their own `sx--data-here' property (so they can
     ;; be upvoted too).
     (when .comments
-      (insert "\n"
-              (apply #'propertize
-                     sx-question-mode-comments-title
-                     'face 'sx-question-mode-title-comments
-                     'sx-question-mode--section 3
-                     sx-question-mode--title-properties))
+      (insert "\n")
+      (insert-text-button
+       sx-question-mode-comments-title
+       'face 'sx-question-mode-title-comments
+       'sx-question-mode--section 3
+       :type 'sx-question-mode-title)
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
         (insert "\n")
@@ -431,36 +426,30 @@ E.g.:
              (url (or (match-string-no-properties 2)
                       (sx-question-mode-find-reference
                        (match-string-no-properties 3)
-                       text))))
-        (replace-match
-         (sx-question-mode--propertize-link
-          (if sx-question-mode-pretty-links
-              text
-            (match-string-no-properties 0))
-          url)
-         :fixedcase :literal nil 0)))))
+                       text)))
+             (full-text (match-string-no-properties 0)))
+        (replace-match "")
+        (sx-question-mode--insert-link
+         (if sx-question-mode-pretty-links text full-text)
+         url)))))
 
-(defun sx-question-mode--propertize-link (text url)
+(define-button-type 'sx-question-mode-link
+  'follow-link t
+  'action      #'sx-question-mode-follow-link)
+
+(defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of string TEXT.
 URL is used as 'help-echo and 'url properties."
-  (propertize
+  (insert-text-button
    text
    ;; Mouse-over
-   'help-echo   (format
-                 (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
-                 (propertize url 'face 'default)
-                 (propertize "RET" 'face 'font-lock-function-name-face))
-   ;; In case we need it.
-   'url         url
-   ;; Decoration
-   'face        'link
-   'mouse-face  'highlight
-   ;; So RET works
-   'button      t
-   ;; So mouse works
-   'follow-link t
-   ;; What RET calls
-   'action      #'sx-question-mode-follow-link))
+   'help-echo
+   (format (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
+     (propertize url 'face 'default)
+     (propertize "RET" 'face 'font-lock-function-name-face))
+   ;; For visiting and stuff.
+   'url  url
+   :type 'sx-question-mode-link))
 
 (defun sx-question-mode-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
