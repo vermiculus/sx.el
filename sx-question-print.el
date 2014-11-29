@@ -352,7 +352,7 @@ E.g.:
 
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
-  (or (sx-question-mode--move-over-pre)
+  (or (sx-question-mode--skip-and-fontify-pre)
       ;; Skip headers and references
       (let ((pos (point)))
         (skip-chars-forward "\r\n[:blank:]")
@@ -399,13 +399,37 @@ URL is used as 'help-echo and 'url properties."
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
 If ID is nil, use FALLBACK-ID instead."
+  (save-excursion
+    (save-match-data
+      (goto-char (point-min))
+      (when (search-forward-regexp
+             (format sx-question-mode--reference-regexp
+               (or id fallback-id))
+             nil t)
+        (match-string-no-properties 1)))))
 
-(defun sx-question-mode--move-over-pre ()
-  "Non-nil if paragraph at point can be filled."
-  (markdown-match-pre-blocks
-   (save-excursion
-     (skip-chars-forward "\r\n[:blank:]")
-     (point))))
+(defun sx-question-mode--skip-and-fontify-pre ()
+  "If there's a pre block ahead, handle it, skip it and return t.
+Handling means to turn it into a button and remove erroneous
+font-locking."
+  (let (beg end text)
+    (when (markdown-match-pre-blocks
+           (save-excursion
+             (skip-chars-forward "\r\n[:blank:]")
+             (setq beg (point))))
+      (setq end (point))
+      (setq text
+            (sx--unindent-text
+             (buffer-substring
+              (save-excursion
+                (goto-char beg)
+                (line-beginning-position))
+              end)))
+      (make-text-button
+       beg             end
+       'face           'markdown-pre-face
+       'sx-button-copy text
+       :type 'sx-question-mode-code-block))))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here

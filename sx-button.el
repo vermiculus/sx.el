@@ -50,6 +50,21 @@ This is usually a link's URL, or the content of a code block."
                        (point) 'sx-button-copy-type)
                       content)))))
 
+(defun sx-button-edit-this (text-or-marker)
+  "Open a temp buffer populated with the string TEXT-OR-MARKER.
+When given a marker (or interactively), use the 'sx-button-copy
+text-property under the marker. This is usually the content of a
+code-block."
+  (interactive (list (point-marker)))
+  ;; Buttons receive markers.
+  (when (markerp text-or-marker)
+    (unless (setq text-or-marker 
+                  (get-text-property text-or-marker 'sx-button-copy))
+      (sx-message "Nothing of interest here.")))
+  (with-current-buffer (pop-to-buffer (generate-new-buffer
+                                       "*sx temp buffer*"))
+    (insert text-or-marker)))
+
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
@@ -87,6 +102,11 @@ This is usually a link's URL, or the content of a code block."
   'action    #'sx-question-mode-hide-show-section
   'help-echo sx-button--question-title-help-echo
   'sx-button-copy-type "Share Link"
+  :supertype 'sx-button)
+
+(define-button-type 'sx-question-mode-code-block
+  'action    #'sx-button-edit-this
+  'face      nil
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-link
