@@ -26,6 +26,7 @@
 
 (require 'sx)
 (require 'sx-question-list)
+(require 'sx-interaction)
 
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
