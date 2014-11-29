@@ -56,6 +56,25 @@ This is usually a link's URL, or the content of a code block."
    (or (get-text-property (or pos (point)) 'sx-button-url)
        (user-error "No url under point: %s" (or pos (point))))))
 
+(defvar sx-button--help-echo
+  (concat "mouse-1, RET" 
+          (propertize ": %s -- " 'face 'minibuffer-prompt)
+          "w" 
+          (propertize ": copy %s" 'face 'minibuffer-prompt))
+  "Base help-echo on which others can be written.")
+
+(defvar sx-button--question-title-help-echo
+  (format sx-button--help-echo
+    (propertize "hide content" 'face 'minibuffer-prompt)
+    (propertize "link" 'face 'minibuffer-prompt))
+  "Help echoed in the minibuffer when point is on a section.")
+
+(defvar sx-button--link-help-echo
+  (format sx-button--help-echo
+    (propertize "visit %s" 'face 'minibuffer-prompt)
+    (propertize "URL" 'face 'minibuffer-prompt))
+  "Help echoed in the minibuffer when point is on a section.")
+
 
 ;;; Type definitions
 (define-button-type 'sx-button
@@ -65,7 +84,7 @@ This is usually a link's URL, or the content of a code block."
 (define-button-type 'sx-question-mode-title
   'face      'sx-question-mode-title
   'action    #'sx-question-mode-hide-show-section
-  'help-echo 'sx-question-mode--section-help-echo
+  'help-echo sx-button--question-title-help-echo
   'sx-button-copy-type "Share Link"
   :supertype 'sx-button)
 

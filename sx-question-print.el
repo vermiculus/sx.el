@@ -166,12 +166,6 @@ replaced with the comment."
 
 ;;; Functions
 ;;;; Printing the general structure
-(defvar sx-question-mode--section-help-echo
-  (format
-      (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
-    (propertize "RET" 'face 'font-lock-function-name-face))
-  "Help echoed in the minibuffer when point is on a section.")
-
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
