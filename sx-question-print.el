@@ -318,7 +318,7 @@ where `value' is given `face' as its face.
 
 (defvar sx-question-mode--reference-regexp
   (rx line-start (0+ blank) "[%s]:" (0+ blank)
-      (group-n 1 (1+ (not blank)))) 
+      (group-n 1 (1+ (not blank))))
   "Regexp used to find the url of labeled links.
 E.g.:
    [1]: https://...")
