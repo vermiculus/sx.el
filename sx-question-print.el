@@ -383,9 +383,9 @@ URL is used as 'help-echo and 'url properties."
    text
    ;; Mouse-over
    'help-echo
-   (format (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
-     (propertize url 'face 'default)
-     (propertize "RET" 'face 'font-lock-function-name-face))
+   (format sx-button--link-help-echo
+     (propertize (sx--shorten-url url)
+                 'face 'font-lock-function-name-face))
    ;; For visiting and stuff.
    'sx-button-url url
    'sx-button-copy url
