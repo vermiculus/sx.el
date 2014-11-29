@@ -28,12 +28,12 @@
 
 
 ;;; Command definitions
-(defvar sx-button-keymap
+;; This extends `button-map', which already defines RET and mouse-1.
+(defvar sx-button-map
   (let ((map (copy-keymap button-map)))
-    (define-key map "w" #'sx-button-copy))
-  "Keymap used on buttons.
-This extends `button-map', which already defines RET and
-mouse-1.")
+    (define-key map "w" #'sx-button-copy)
+    map)
+  "Keymap used on buttons.")
 
 (defun sx-button-copy ()
   "Copy the content of thing at point.
@@ -57,7 +57,7 @@ This is usually a link's URL, or the content of a code block."
 ;;; Type definitions
 (define-button-type 'sx-button
   'follow-link t
-  'keymap 'sx-button-map)
+  'keymap sx-button-map)
 
 (define-button-type 'sx-question-mode-title
   'face      'sx-question-mode-title
