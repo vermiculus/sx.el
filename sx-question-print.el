@@ -195,6 +195,10 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-question-mode--print-section question)
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section .answers))
+  ;; Display weird chars correctly
+  (set-buffer-multibyte nil)
+  (set-buffer-multibyte t)
+  ;; Go up
   (goto-char (point-min))
   (sx-question-mode-next-section))
 
