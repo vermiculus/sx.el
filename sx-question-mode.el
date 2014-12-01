@@ -30,6 +30,14 @@
 
 
 ;;; Displaying a question
+(defcustom sx-question-mode-display-buffer-function #'switch-to-buffer
+  "Function used to display the question buffer.
+Called, for instance, when hitting \\<sx-question-list-mode-map>`\\[sx-question-list-display-question]' on an entry in the
+question list.
+This is not used when navigating the question list with `\\[sx-question-list-view-next]."
+  :type 'function
+  :group 'sx-question-mode)
+
 (defvar sx-question-mode--window nil
   "Window where the content of questions is displayed.")
 
@@ -71,7 +79,8 @@ If WINDOW is given, use that to display the buffer."
    ;; No window, but the buffer is already being displayed somewhere.
    ((get-buffer-window sx-question-mode--buffer 'visible))
    ;; Neither, so we create the window.
-   (t (switch-to-buffer sx-question-mode--buffer)))
+   (t (funcall sx-question-mode-display-buffer-function
+        sx-question-mode--buffer)))
   sx-question-mode--buffer)
 
 
