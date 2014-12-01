@@ -96,9 +96,83 @@ If SITE is nil, use `sx-tab-default-site'."
 (sx-tab--define "FrontPage"
   (lambda (page)
     (sx-question-get-questions
-     sx-question-list--site page)))
+     sx-question-list--site page '((sort . activity)))))
 ;;;###autoload
 (autoload 'sx-tab-frontpage
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Newest
+(sx-tab--define "Newest"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page '((sort . creation)))))
+;;;###autoload
+(autoload 'sx-tab-newest
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+
+;;; TopVoted
+(sx-tab--define "TopVoted"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page '((sort . votes)))))
+;;;###autoload
+(autoload 'sx-tab-topvoted
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+
+;;; Hot
+(sx-tab--define "Hot"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page '((sort . hot)))))
+;;;###autoload
+(autoload 'sx-tab-hot
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+
+;;; Week
+(sx-tab--define "Week"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page '((sort . week)))))
+;;;###autoload
+(autoload 'sx-tab-week
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+
+;;; Month
+(sx-tab--define "Month"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page '((sort . month)))))
+;;;###autoload
+(autoload 'sx-tab-month
   (expand-file-name
    "sx-tab"
    (when load-file-name
