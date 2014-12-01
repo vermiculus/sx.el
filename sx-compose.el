@@ -46,7 +46,8 @@ to be POSTed.")
 
 (defvar sx-compose-after-send-functions nil 
   "Hook run after POSTing to the API.
-Functions on this hook should take one argument, the data
+Functions on this hook should take two arguments, the
+`sx-compose-mode' buffer (which not be live) and the data
 returned by `sx-compose--send-function' (usually the object
 created by the API). They are only called if the transaction
 succeeds.")
@@ -69,9 +70,38 @@ set. To make sure you set it correctly, you can create the buffer
 with the `sx-compose--create' function.
 
 \\<sx-compose-mode>
-\\{sx-compose-mode}")
+\\{sx-compose-mode}"
+  (add-hook 'sx-compose-after-send-functions
+    #'sx-compose-quit nil t)
+  (add-hook 'sx-compose-after-send-functions
+    #'sx-compose--copy-as-kill nil t))
 
 (define-key sx-compose-mode-map "\C-c\C-c" #'sx-compose-send)
+(define-key sx-compose-mode-map "\C-c\C-k" #'sx-compose-quit)
+
+(defun sx-compose-send ()
+  "Finish composing current buffer and send it.
+Calls `sx-compose-before-send-hook', POSTs the the current buffer
+contents to the API, then calls `sx-compose-after-send-functions'."
+  (interactive)
+  (when (run-hook-with-args-until-failure
+         sx-compose-before-send-hook)
+    (let ((result (funcall sx-compose--send-function)))
+      (with-demoted-errors
+          (run-hook-with-args sx-compose-after-send-functions
+                              (current-buffer) result)))))
+
+(defun sx-compose-quit (buffer _)
+  "Kill BUFFER."
+  (interactive (list (current-buffer) nil))
+  (when (buffer-live-p buffer)
+    (kill-buffer buffer)))
+
+(defun sx-compose--copy-as-kill (buffer _)
+  "Copy BUFFER contents to the kill-ring."
+  (when (buffer-live-p buffer)
+    (with-current-buffer buffer
+      (kill-new (buffer-string)))))
 
 
 ;;; Functions to help preparing buffers
@@ -95,11 +125,17 @@ added locally to `sx-compose-before-send-hook' and
           (if (consp parent)
               (sx-assoc-let parent
                 (lambda () (sx-method-call (if .title 'questions 'answers)
+                        :auth 'warn
+                        :url-method "POST"
+                        :filter sx-browse-filter
                         :site site
                         :keywords (sx-compose--generate-keywords .title)
                         :id (or .answer_id .question_id)
                         :submethod 'edit)))
             (lambda () (sx-method-call 'questions
+                    :auth 'warn
+                    :url-method "POST"
+                    :filter sx-browse-filter
                     :site site
                     :keywords (sx-compose--generate-keywords (null parent))
                     :id parent
@@ -116,10 +152,10 @@ added locally to `sx-compose-before-send-hook' and
   "Reading current buffer, generate a keywords alist.
 Keywords meant to be used in `sx-method-call'.
 
-`body_markdown' is read as the `buffer-string'. If IS-QUESTION is
-non-nil, other keywords are read from the header "
+`body' is read as the `buffer-string'. If IS-QUESTION is non-nil,
+other keywords are read from the header "
   (if (null is-question)
-      `((body_markdown . ,(buffer-string)))
+      `((body . ,(buffer-string)))
     ;; Question code will go here.
     ))
 
@@ -139,25 +175,12 @@ the id property."
      (format "*sx draft question %s*" site)))
    ((integerp data)
     (get-buffer-create
-     (format "*sx draft answer %s %s"
+     (format "*sx draft answer %s %s*"
        site data)))
    (t
     (get-buffer-create
-     (format "*sx draft edit %s %s"
+     (format "*sx draft edit %s %s*"
        site (sx-assoc-let data (or .answer_id .question_id)))))))
-
-
-;;; Functions
-(defun sx-compose-send ()
-  "Finish composing current buffer and send it.
-Calls `sx-compose-before-send-hook', POSTs the the current buffer
-contents to the API, then calls `sx-compose-after-send-functions'."
-  (interactive)
-  (unless (run-hook-with-args-until-failure
-           sx-compose-before-send-hook)
-    (let ((result (funcall sx-compose--send-function)))
-      (run-hook-with-args sx-compose-after-send-functions
-                          result))))
 
 (provide 'sx-compose)
 ;;; sx-compose.el ends here
