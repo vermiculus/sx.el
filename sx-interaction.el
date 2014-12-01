@@ -31,7 +31,7 @@
 ;;; Using data in buffer
 (defun sx--data-here ()
   "Get the text property `sx--data-here'."
-  (or (get-pos-property (point) 'sx--data-here)
+  (or (get-char-property (point) 'sx--data-here)
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))
       (and (derived-mode-p 'sx-question-mode)
