@@ -105,7 +105,17 @@ contents to the API, then calls `sx-compose-after-send-functions'."
 
 
 ;;; Functions to help preparing buffers
-(defun sx-compose--create (site parent &optional before-hooks after-functions)
+(defvar sx-compose--question-headers
+  (insert (concat
+           (propertize "Title: " 'rear-nonsticky t
+                       'read-only t 
+                       'field 'sx-compose-header-title)
+           (propertize "\nTags:  " 'rear-nonsticky t
+                       'field 'sx-compose-header-tags
+                       'read-only t )))
+  "")
+
+(defun sx-compose--create (site parent &optional before-functions after-functions)
   "Create a `sx-compose-mode' buffer.
 SITE is the site where it will be posted. 
 
@@ -114,39 +124,47 @@ If composing answers, it is the `question_id'.
 If editing answers or questions, it should be the alist data
 related to that object.
 
-Each element of BEFORE-HOOKS and AFTER-FUNCTIONS are respectively
-added locally to `sx-compose-before-send-hook' and
+Each element of BEFORE-FUNCTIONS and AFTER-FUNCTIONS are
+respectively added locally to `sx-compose-before-send-hook' and
 `sx-compose-after-send-functions'."
   (or (integerp parent) (listp parent)
       (error "Invalid PARENT"))
-  (with-current-buffer (sx-compose--get-buffer-create site parent)
-    (sx-compose-mode)
-    (setq sx-compose--send-function
-          (if (consp parent)
-              (sx-assoc-let parent
-                (lambda () (sx-method-call (if .title 'questions 'answers)
-                        :auth 'warn
-                        :url-method "POST"
-                        :filter sx-browse-filter
-                        :site site
-                        :keywords (sx-compose--generate-keywords .title)
-                        :id (or .answer_id .question_id)
-                        :submethod 'edit)))
-            (lambda () (sx-method-call 'questions
-                    :auth 'warn
-                    :url-method "POST"
-                    :filter sx-browse-filter
-                    :site site
-                    :keywords (sx-compose--generate-keywords (null parent))
-                    :id parent
-                    :submethod (if parent 'answers/add 'add)))))
-    ;; Reverse so they're left in the same order.
-    (dolist (it (reverse before-hooks))
-      (add-hook 'sx-compose-before-send-hook it nil t))
-    (dolist (it (reverse after-functions))
-      (add-hook 'sx-compose-after-send-functions it nil t))
-    ;; Return the buffer
-    (current-buffer)))
+  (let ((is-question
+         (and (listp parent)
+              (null (cdr (assoc 'answer_id parent))))))
+    (with-current-buffer (sx-compose--get-buffer-create site parent)
+      (sx-compose-mode)
+      (setq sx-compose--send-function
+            (if (consp parent)
+                (sx-assoc-let parent
+                  (lambda () (sx-method-call (if .title 'questions 'answers)
+                          :auth 'warn
+                          :url-method "POST"
+                          :filter sx-browse-filter
+                          :site site
+                          :keywords (sx-compose--generate-keywords is-question)
+                          :id (or .answer_id .question_id)
+                          :submethod 'edit)))
+              (lambda () (sx-method-call 'questions
+                      :auth 'warn
+                      :url-method "POST"
+                      :filter sx-browse-filter
+                      :site site
+                      :keywords (sx-compose--generate-keywords is-question)
+                      :id parent
+                      :submethod (if parent 'answers/add 'add)))))
+      ;; Reverse so they're left in the same order.
+      (dolist (it (reverse before-functions))
+        (add-hook 'sx-compose-before-send-hook it nil t))
+      (dolist (it (reverse after-functions))
+        (add-hook 'sx-compose-after-send-functions it nil t))
+      ;; If the buffer is empty, the draft didn't exist. So prepare the
+      ;; question.
+      (when (and is-question
+                 (string= (buffer-string) ""))
+        (insert sx-compose--question-headers))
+      ;; Return the buffer
+      (current-buffer))))
 
 (defun sx-compose--generate-keywords (is-question)
   "Reading current buffer, generate a keywords alist.
