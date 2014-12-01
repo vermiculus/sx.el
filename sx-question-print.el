@@ -185,7 +185,7 @@ QUESTION must be a data structure returned by `json-read'."
 DATA can represent a question or an answer."
   ;; This makes `data' accessible through `sx--data-here'.
   (sx-assoc-let data
-    (sx--wrap-in-text-property
+    (sx--wrap-in-overlay
         (list 'sx--data-here data)
       (insert sx-question-mode-header-title)
       (insert-text-button
@@ -270,7 +270,7 @@ DATA can represent a question or an answer."
   "Print the comment described by alist COMMENT-DATA.
 The comment is indented, filled, and then printed according to
 `sx-question-mode-comments-format'."
-  (sx--wrap-in-text-property
+  (sx--wrap-in-overlay
       (list 'sx--data-here comment-data)
     (sx-assoc-let comment-data
       (insert

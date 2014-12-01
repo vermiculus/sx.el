@@ -31,11 +31,11 @@
 ;;; Using data in buffer
 (defun sx--data-here ()
   "Get the text property `sx--data-here'."
-  (or (get-text-property (point) 'sx--data-here)
+  (or (get-pos-property (point) 'sx--data-here)
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))
-      (or (derived-mode-p 'sx-question-mode)
-          sx-question-mode--data)))
+      (and (derived-mode-p 'sx-question-mode)
+           sx-question-mode--data)))
 
 (defun sx--maybe-update-display ()
   "Refresh the question list if we're inside it."

@@ -215,6 +215,11 @@ Anything before the (sub)domain is removed."
   "Overlays created by sx on this buffer.")
 (make-variable-buffer-local 'sx--overlays)
 
+(defvar sx--overlay-printing-depth 0 
+  "Track how many overlays we're printing on top of each other.
+Used for assigning higher priority to inner overlays.")
+(make-variable-buffer-local 'sx--overlay-printing-depth)
+
 (defmacro sx--wrap-in-overlay (properties &rest body)
   "Start a scope with overlay PROPERTIES and execute BODY.
 Overlay is pushed on the buffer-local variable `sx--overlays' and
@@ -224,22 +229,19 @@ Return the result of BODY."
   (declare (indent 1)
            (debug t))
   `(let ((p (point-marker))
-         (result (progn ,@body)))
+         (result (progn ,@body))
+         ;; The first overlay is the shallowest. Any overlays created
+         ;; while the first one is still being created go deeper and
+         ;; deeper.
+         (sx--overlay-printing-depth (1+ sx--overlay-printing-depth)))
      (let ((ov (make-overlay p (point)))
            (props ,properties))
        (while props
          (overlay-put ov (pop props) (pop props)))
+       ;; Let's multiply by 10 just in case we ever want to put
+       ;; something in the middle.
+       (overlay-put ov 'priority (* 10 sx--overlay-printing-depth))
        (push ov sx--overlays))
-     result))
-
-(defmacro sx--wrap-in-text-property (properties &rest body)
-  "Start a scope with PROPERTIES and execute BODY.
-Return the result of BODY."
-  (declare (indent 1)
-           (debug t))
-  `(let ((p (point-marker))
-         (result (progn ,@body)))
-     (add-text-properties p (point) ,properties)
      result))
 
 (defun sx--user-@name (user)
