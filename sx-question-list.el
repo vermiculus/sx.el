@@ -145,9 +145,6 @@ Also see `sx-question-list-refresh'."
           .title
           'face (if (sx-question--read-p question-data)
                     'sx-question-list-read-question
-                  ;; Increment `sx-question-list--unread-count' for
-                  ;; the mode-line.
-                  (cl-incf sx-question-list--unread-count)
                   'sx-question-list-unread-question))
          (propertize " " 'display "\n   ")
          (propertize favorite 'face 'sx-question-list-favorite)
@@ -334,10 +331,6 @@ Non-interactively, DATA is a question alist."
   ;; "Unanswered", etc.
   "Variable describing current tab being viewed.")
 
-(defvar sx-question-list--unread-count 0
-  "Holds the number of unread questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--unread-count)
-
 (defvar sx-question-list--total-count 0
   "Holds the total number of questions in the current buffer.")
 (make-variable-buffer-local 'sx-question-list--total-count)
@@ -351,7 +344,7 @@ Non-interactively, DATA is a question alist."
     " ["
     "Unread: "
     (:propertize
-     (:eval (int-to-string sx-question-list--unread-count))
+     (:eval (sx-question-list--unread-count))
      face mode-line-buffer-id)
     ", "
     "Total: "
@@ -360,6 +353,12 @@ Non-interactively, DATA is a question alist."
      face mode-line-buffer-id)
     "] ")
   "Mode-line construct to use in question-list buffers.")
+
+(defun sx-question-list--unread-count ()
+  "Number of unread questions in current dataset, as a string."
+  (int-to-string
+   (cl-count-if-not
+    #'sx-question--read-p sx-question-list--dataset)))
 
 (defun sx-question-list--update-mode-line ()
   "Fill the mode-line with useful information."
@@ -380,7 +379,6 @@ If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
   (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
-  (setq sx-question-list--unread-count 0)
   (unless no-update
     (setq sx-question-list--pages-so-far 1))
   (let* ((question-list
@@ -494,7 +492,6 @@ relevant window."
   (unless data (setq data (tabulated-list-get-id)))
   (unless data (error "No question here!"))
   (unless (sx-question--read-p data)
-    (cl-decf sx-question-list--unread-count)
     (sx-question--mark-read data)
     (sx-question-list-refresh 'redisplay 'no-update))
   (unless (and (window-live-p sx-question-mode--window)
