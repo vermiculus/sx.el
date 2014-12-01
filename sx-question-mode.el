@@ -141,9 +141,9 @@ If DIRECTION is negative, move backwards instead."
   "Hide or show section under point.
 Optional argument _ is for `push-button'."
   (interactive)
-  (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
-                     (sx-question-mode--section-overlays-at
-                      (line-end-position))))))
+  (let ((ov (or (sx-question-mode--section-overlays-at
+                 (line-end-position))
+                (sx-question-mode--section-overlays-at (point)))))
     (goto-char (overlay-start ov))
     (forward-line 0)
     (overlay-put
@@ -151,9 +151,11 @@ Optional argument _ is for `push-button'."
      (null (overlay-get ov 'invisible)))))
 
 (defun sx-question-mode--section-overlays-at (pos)
-  "Return a list of `sx-question-mode--section-content' overlays at POS."
-  (cl-remove-if (lambda (x) (null (overlay-get x 'sx-question-mode--section-content)))
-                (overlays-at pos)))
+  "Return the highest priority section overlay at POS.
+A section overlay has a `sx-question-mode--section-content'
+property."
+  (cdr-safe (get-char-property-and-overlay
+             pos 'sx-question-mode--section-content nil)))
 
 
 ;;; Major-mode
