@@ -301,7 +301,7 @@ into consideration.
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-question-list-display-question)))
+   ([?\r] sx-display-question)))
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
@@ -421,7 +421,37 @@ Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
-  (sx-question-list-display-question))
+  (sx-display-question
+   (tabulated-list-get-id)
+   nil 
+   (sx-question-list--create-question-window)))
+
+(defun sx-question-list--create-question-window ()
+  "Create or find a window where a question can be displayed.
+
+If any current window displays a question, that window is
+returned. If none do, a new one is created such that the
+question-list window remains `sx-question-list-height' lines
+high (if possible)."
+  (or (sx-question-mode--get-window)
+      ;; Create a proper window.
+      (let ((window
+             (condition-case er
+                 (split-window (selected-window) sx-question-list-height 'below)
+               (error
+                ;; If the window is too small to split, use any one.
+                (if (string-match
+                     "Window #<window .*> too small for splitting"
+                     (car (cdr-safe er)))
+                    (next-window)
+                  (error (cdr er)))))))
+        ;; Configure the window to be closed on `q'.
+        (set-window-prev-buffers window nil)
+        (set-window-parameter
+         window 'quit-restore
+         ;; See (info "(elisp) Window Parameters")
+         `(window window ,(selected-window) ,sx-question-mode--buffer))
+        window)))
 
 (defun sx-question-list-next (n)
   "Move cursor down N questions.
@@ -482,42 +512,6 @@ This does not update `sx-question-mode--window'."
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next-far (- n)))
-
-(defun sx-question-list-display-question (&optional data focus)
-  "Display question given by DATA.
-When DATA is nil, display question under point.  When FOCUS is
-non-nil (the default when called interactively), also focus the
-relevant window."
-  (interactive '(nil t))
-  (unless data (setq data (tabulated-list-get-id)))
-  (unless data (error "No question here!"))
-  (when (sx-question--mark-read data)
-    (sx-question-list-refresh 'redisplay 'no-update))
-  (unless (and (window-live-p sx-question-mode--window)
-               (null (equal sx-question-mode--window (selected-window))))
-    (setq sx-question-mode--window
-          (condition-case er
-              (split-window (selected-window) sx-question-list-height 'below)
-            (error
-             ;; If the window is too small to split, use current one.
-             (if (string-match
-                  "Window #<window .*> too small for splitting"
-                  (car (cdr-safe er)))
-                 nil
-               (error (cdr er)))))))
-  ;; Display the question.
-  (sx-question-mode--display data sx-question-mode--window)
-  ;; Configure the window to be closed on `q'.
-  (set-window-prev-buffers sx-question-mode--window nil)
-  (set-window-parameter
-   sx-question-mode--window
-   'quit-restore
-   ;; See (info "(elisp) Window Parameters")
-   `(window window ,(selected-window) ,sx-question-mode--buffer))
-  (when focus
-    (if sx-question-mode--window
-        (select-window sx-question-mode--window)
-      (switch-to-buffer sx-question-mode--buffer))))
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.

@@ -82,6 +82,30 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+
+;;; Displaying
+(defun sx-display-question (&optional data focus window)
+  "Display question given by DATA, on WINDOW.
+When DATA is nil, display question under point. When FOCUS is
+non-nil (the default when called interactively), also focus the
+relevant window. 
+
+If WINDOW nil, the window is decided by
+`sx-question-mode-display-buffer-function'."
+  (interactive (list (sx--data-here) t))
+  (when (sx-question--mark-read data)
+    (sx--maybe-update-display))
+  ;; Display the question.
+  (setq window
+        (get-buffer-window
+         (sx-question-mode--display data window)))
+  (when focus
+    (if (window-live-p window)
+        (select-window window)
+      (switch-to-buffer sx-question-mode--buffer))))
+
+
+;;; Voting
 (defun sx-toggle-upvote (data)
   "Apply or remove upvote from DATA.
 DATA can be a question, answer, or comment. Interactively, it is
