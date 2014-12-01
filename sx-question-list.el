@@ -1,4 +1,4 @@
-;;; sx-question-list.el --- major-mode for navigating questions list
+;;; sx-question-list.el --- major-mode for navigating questions list -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -544,5 +544,5 @@ Sets `sx-question-list--site' and then call
 ;;; sx-question-list.el ends here
 
 ;; Local Variables:
-;; lexical-binding: t
+;; indent-tabs-mode: nil
 ;; End:

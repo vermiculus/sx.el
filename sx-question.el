@@ -1,4 +1,4 @@
-;;; sx-question.el --- question logic
+;;; sx-question.el --- question logic -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -171,5 +171,4 @@ If no cache exists for it, initialize one with SITE."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:

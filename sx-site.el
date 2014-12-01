@@ -1,4 +1,4 @@
-;;; sx-site.el --- browsing sites
+;;; sx-site.el --- browsing sites -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -73,5 +73,4 @@ api_site_parameter."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:

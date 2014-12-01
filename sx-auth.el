@@ -1,4 +1,4 @@
-;;; sx-auth.el --- user authentication
+;;; sx-auth.el --- user authentication -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -192,5 +192,4 @@ removed those properties."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:

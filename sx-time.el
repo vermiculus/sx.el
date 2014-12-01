@@ -1,4 +1,4 @@
-;;; sx-time.el --- time
+;;; sx-time.el --- time -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -78,3 +78,7 @@ See also `sx-time-date-format-year'."
 
 (provide 'sx-time)
 ;;; sx-time.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

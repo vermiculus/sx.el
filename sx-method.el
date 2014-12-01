@@ -1,4 +1,4 @@
-;;; sx-method.el --- method calls
+;;; sx-method.el --- method calls -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -114,3 +114,7 @@ Return the entire response as a complex alist."
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

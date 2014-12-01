@@ -1,4 +1,4 @@
-;;; sx-question-print.el --- Populating the question-mode buffer with content.
+;;; sx-question-print.el --- Populating the question-mode buffer with content. -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -436,5 +436,5 @@ If ID is nil, use FALLBACK-ID instead."
 ;;; sx-question-print.el ends here
 
 ;; Local Variables:
-;; lexical-binding: t
+;; indent-tabs-mode: nil
 ;; End:
