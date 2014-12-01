@@ -38,14 +38,19 @@ This is not used when navigating the question list with `\\[sx-question-list-vie
   :type 'function
   :group 'sx-question-mode)
 
-(defvar sx-question-mode--window nil
-  "Window where the content of questions is displayed.")
-
 (defvar sx-question-mode--buffer nil
   "Buffer being used to display questions.")
 
 (defvar sx-question-mode--data nil
   "The data of the question being displayed.")
+
+(defun sx-question-mode--get-window ()
+  "Return a window displaying a question, or nil."
+  (car-safe
+   (cl-member-if
+    (lambda (x) (with-selected-window x
+             (derived-mode-p 'sx-question-mode)))
+    (window-list nil 'never nil))))
 
 (defun sx-question-mode--display (data &optional window)
   "Display question given by DATA on WINDOW.
