@@ -86,27 +86,32 @@ See `sx-question--user-read-list'."
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read until it is updated again.
+Returns nil if question (in its current state) was already marked
+read, i.e., if it was `sx-question--read-p'.
 See `sx-question--user-read-list'."
-  (sx-assoc-let question
-    (sx-question--ensure-read-list .site)
-    (let ((site-cell (assoc .site sx-question--user-read-list))
-          (q-cell (cons .question_id .last_activity_date))
-          cell)
-      (cond
-       ;; First question from this site.
-       ((null site-cell)
-        (push (list .site q-cell) sx-question--user-read-list))
-       ;; Question already has an older time.
-       ((setq cell (assoc .question_id site-cell))
-        (setcdr cell .last_activity_date))
-       ;; Question wasn't present.
-       (t
-        (sx-sorted-insert-skip-first
-         q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
-  ;; Save the results.
-  ;; @TODO This causes a small lag on `j' and `k' as the list gets
-  ;; large.  Should we do this on a timer?
-  (sx-cache-set 'read-questions sx-question--user-read-list))
+  (prog1
+      (sx-assoc-let question
+        (sx-question--ensure-read-list .site)
+        (let ((site-cell (assoc .site sx-question--user-read-list))
+              (q-cell (cons .question_id .last_activity_date))
+              cell)
+          (cond
+           ;; First question from this site.
+           ((null site-cell)
+            (push (list .site q-cell) sx-question--user-read-list))
+           ;; Question already present.
+           ((setq cell (assoc .question_id site-cell))
+            ;; Current version is newer than cached version.
+            (when (> .last_activity_date (cdr cell))
+              (setcdr cell .last_activity_date)))
+           ;; Question wasn't present.
+           (t
+            (sx-sorted-insert-skip-first
+             q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
+    ;; Save the results.
+    ;; @TODO This causes a small lag on `j' and `k' as the list gets
+    ;; large.  Should we do this on a timer?
+    (sx-cache-set 'read-questions sx-question--user-read-list)))
 
 
 ;;;; Hidden
