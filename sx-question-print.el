@@ -238,27 +238,34 @@ DATA can represent a question or an answer."
                   "\n"
                   (propertize sx-question-mode-separator
                               'face 'sx-question-mode-header))))
+      ;; Comments have their own `sx--data-here' property (so they can
+      ;; be upvoted too).
+      (when .comments
+        (insert "\n")
+        (insert-text-button
+         sx-question-mode-comments-title
+         'face 'sx-question-mode-title-comments
+         'sx-question-mode--section 3
+         'sx-button-copy .share_link
+         :type 'sx-question-mode-title)
+        (sx--wrap-in-overlay
+            '(sx-question-mode--section-content t)
+          (insert "\n")
+          (sx--wrap-in-overlay
+              '(face sx-question-mode-content-face)
+            (mapc #'sx-question-mode--print-comment .comments))
+          ;; If there are comments, we want part of this margin to go
+          ;; inside them, so the button get's placed beside the
+          ;; "Comments" header when you hide them.
+          (insert "         ")))
+      ;; If there are no comments, we have to add this margin here.
+      (unless .comments
+        (insert "         "))
+      (insert "               ")
       ;; This is where the "add a comment" button is printed.
-      (insert "                        ")
       (insert-text-button "Add a Comment"
                           :type 'sx-button-comment)
-      (insert "\n"))
-    ;; Comments have their own `sx--data-here' property (so they can
-    ;; be upvoted too).
-    (when .comments
-      (insert "\n")
-      (insert-text-button
-       sx-question-mode-comments-title
-       'face 'sx-question-mode-title-comments
-       'sx-question-mode--section 3
-       'sx-button-copy .share_link
-       :type 'sx-question-mode-title)
-      (sx--wrap-in-overlay
-          '(sx-question-mode--section-content t)
-        (insert "\n")
-        (sx--wrap-in-overlay
-            '(face sx-question-mode-content-face)
-          (mapc #'sx-question-mode--print-comment .comments))))))
+      (insert "\n"))))
 
 (defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
