@@ -1,5 +1,12 @@
-* {
+body {
     text-align: center;
+    max-width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+* {
+    /* text-align: inherit; */
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -23,7 +30,12 @@ h1 {
     text-align: center;
 }
 
-p {
+p, ul, li {
+    text-align: left;
+    font-size: 16px;
+}
+
+p.successful-auth {
     text-align: center;
     font-size: 16px;
 }
@@ -40,6 +52,6 @@ a {
 }
 
 hr {
-    width: 35%;
+    width: 50%;
     margin-bottom: 30px;
 }
