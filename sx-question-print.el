@@ -43,6 +43,11 @@
 
 
 ;;; Faces and Variables
+(defcustom sx-question-mode-deleted-user
+  '((display_name . "(deleted user)"))
+  "The structure used to represent a deleted account."
+  :type '(alist :options ((display_name string)))
+  :group 'sx-question-mode)
 
 (defface sx-question-mode-header
   '((t :inherit font-lock-variable-name-face))
@@ -231,7 +236,8 @@ DATA can represent a question or an answer."
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
               (sx-time-since .last_edit_date)
-              (sx-question-mode--propertize-display-name .last_editor))))
+              (sx-question-mode--propertize-display-name
+               (or .last_editor sx-question-mode-deleted-user)))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
