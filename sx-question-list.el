@@ -463,7 +463,21 @@ This does not update `sx-question-mode--window'."
     ;; If we were trying to move forward, but we hit the end.
     (when (eobp)
       ;; Try to get more questions.
-      (sx-question-list-next-page))))
+      (sx-question-list-next-page))
+    (sx-question-list--ensure-line-good-line-position)))
+
+(defun sx-question-list--ensure-line-good-line-position ()
+  "Scroll window such that current line is a good place.
+Check if we're at least 6 lines from the bottom. Scroll up if
+we're not. Do the same for 3 lines from the top."
+  ;; At least one entry below us.
+  (let ((lines-to-bottom (count-screen-lines (point) (window-end))))
+    (unless (>= lines-to-bottom 6)
+      (recenter (- 6))))
+  ;; At least one entry above us.
+  (let ((lines-to-top (count-screen-lines (point) (window-start))))
+    (unless (>= lines-to-top 3)
+      (recenter 3))))
 
 (defun sx-question-list-next-page ()
   "Fetch and display the next page of questions."
