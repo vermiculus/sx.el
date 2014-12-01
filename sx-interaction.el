@@ -58,6 +58,8 @@ Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
+
+;;; Visiting
 (defun sx-visit (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
