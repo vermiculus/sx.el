@@ -1,4 +1,4 @@
-;;; sx-question.el --- Base question logic. -*- lexical-binding: t; -*-
+;;; sx-question.el --- base question logic           -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 

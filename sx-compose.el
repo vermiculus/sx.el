@@ -1,4 +1,4 @@
-;;; sx-compose.el --- Major-mode for coposing questions and answers. -*- lexical-binding: t; -*-
+;;; sx-compose.el --- major-mode for coposing questions and answers -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -302,3 +302,7 @@ the id property."
 
 (provide 'sx-compose)
 ;;; sx-compose.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

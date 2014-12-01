@@ -1,4 +1,4 @@
-;;; sx-filter.el --- Handles retrieval of filters.                         -*- lexical-binding: t; -*-
+;;; sx-filter.el --- handles retrieval of filters    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 

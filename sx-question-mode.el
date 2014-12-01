@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Major-mode for displaying a question. -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- major-mode for displaying a question  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -274,3 +274,7 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

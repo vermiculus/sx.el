@@ -33,7 +33,3 @@ install_cask:
 
 install_evm:
 	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
-
-# Local Variables:
-# indent-tabs-mode: t
-# End:

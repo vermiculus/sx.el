@@ -1,4 +1,4 @@
-;;; sx-method.el --- Main interface for API method calls. -*- lexical-binding: t; -*-
+;;; sx-method.el --- main interface for API method calls  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -144,3 +144,7 @@ Return the entire response as a complex alist."
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

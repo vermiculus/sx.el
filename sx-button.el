@@ -1,4 +1,4 @@
-;;; sx-button.el --- Defining buttons used throughout SX. -*- lexical-binding: t; -*-
+;;; sx-button.el --- defining buttons -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -163,3 +163,7 @@ usually part of a code-block."
 
 (provide 'sx-button)
 ;;; sx-button.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

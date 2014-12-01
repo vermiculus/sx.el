@@ -1,4 +1,4 @@
-;;; sx-babel.el --- Font-locking pre blocks according to language. -*- lexical-binding: t; -*-
+;;; sx-babel.el --- font-locking pre blocks according to language  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -122,3 +122,6 @@ Returns the amount of indentation removed."
 (provide 'sx-babel)
 ;;; sx-babel.el ends here
 
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
