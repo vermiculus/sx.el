@@ -118,6 +118,7 @@ code-block."
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write a comment"
                                  'face 'minibuffer-prompt))
+  'face 'custom-button
   'action    #'sx-comment
   :supertype 'sx-button)
 
