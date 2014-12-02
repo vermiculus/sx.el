@@ -121,6 +121,14 @@ code-block."
   'action    #'sx-comment
   :supertype 'sx-button)
 
+(define-button-type 'sx-button-answer
+  'help-echo (concat "mouse-1, RET"
+                     (propertize ": write an answer"
+                                 'face 'minibuffer-prompt))
+  'face 'custom-button
+  'action    #'sx-answer
+  :supertype 'sx-button)
+
 (provide 'sx-button)
 ;;; sx-button.el ends here
 
