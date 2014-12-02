@@ -26,6 +26,8 @@
 (require 'sx-question)
 (require 'sx-question-mode)
 (require 'sx-question-list)
+(require 'sx-compose)
+(require 'sx-tab)
 
 
 ;;; Using data in buffer
@@ -220,6 +222,21 @@ from context at point."
         (list (lambda (_ res)
                 (sx--copy-data (elt res 0) data)
                 (sx--maybe-update-display buffer))))))))
+
+
+;;; Asking
+(defun sx-ask (site)
+  "Start composing a question for SITE.
+SITE is a string, indicating where the question will be posted."
+  ;; Answering doesn't really make sense from anywhere other than
+  ;; inside a question. So we don't need `sx--data-here' here.
+  (interactive (list (sx-tab--interactive-site-prompt)))
+  (let ((buffer (current-buffer)))
+    (pop-to-buffer
+     (sx-compose--create
+      site nil nil
+      ;; After send functions
+      (list (lambda (_ res) (sx--maybe-update-display buffer)))))))
 
 
 ;;; Answering

@@ -299,6 +299,7 @@ into consideration.
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
+   ("a" sx-ask)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)

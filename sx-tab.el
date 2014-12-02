@@ -26,13 +26,24 @@
 
 (require 'sx)
 (require 'sx-question-list)
-(require 'sx-interaction)
 
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
   :type 'string 
   :group 'sx)
 
+(defun sx-tab--interactive-site-prompt ()
+  "Query the user for a site."
+  (let ((default (or sx-question-list--site
+                     (sx-assoc-let sx-question-mode--data
+                       .site)
+                     sx-tab-default-site)))
+    (funcall (if ido-mode #'ido-completing-read #'completing-read)
+      (format "Site (%s): " default)
+      (sx-site-get-api-tokens) nil t nil nil
+      default)))
+
+;;; The main macro
 (defmacro sx-tab--define (tab pager &optional printer refresher
                               &rest body)
   "Define a StackExchange tab called TAB.
@@ -56,7 +67,7 @@ variables, but before refreshing the display."
     `(progn
        (defvar ,buffer-variable nil
          ,(format "Buffer where the %s questions are displayed."
-                  tab))
+            tab))
        (defun
            ,(intern (concat "sx-tab-" name))
            (&optional no-update site)
@@ -64,13 +75,10 @@ variables, but before refreshing the display."
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
 If SITE is nil, use `sx-tab-default-site'."
-                  tab)
+            tab)
          (interactive
           (list current-prefix-arg
-                (funcall (if ido-mode #'ido-completing-read #'completing-read)
-                  (format "Site (%s): " sx-tab-default-site)
-                  (sx-site-get-api-tokens) nil t nil nil
-                  sx-tab-default-site)))
+                (sx-tab--interactive-site-prompt)))
          (sx-initialize)
          (unless site (setq site sx-tab-default-site))
          ;; Create the buffer
