@@ -110,7 +110,7 @@ Prefix argument N moves N sections down or up."
           (cl-decf count)))))
   (when (equal (selected-window) (get-buffer-window))
     (when sx-question-mode-recenter-line
-      (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
+      (let ((ov (sx-question-mode--section-overlays-at (line-end-position))))
         (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
           (recenter sx-question-mode-recenter-line))))
     (sx-message-help-echo)))
