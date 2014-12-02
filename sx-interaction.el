@@ -189,13 +189,48 @@ OBJECT can be a question or an answer."
           (setcdr
            com-cell
            (apply #'vector
-                  (append
-                   (cl-map 'list #'identity
-                           (cdr com-cell))
-                   (list comment)))))
+             (append
+              (cl-map 'list #'identity
+                      (cdr com-cell))
+              (list comment)))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
       (setcar object `(comments . [,comment])))))
+
+
+;;; Answering
+(defun sx-answer (data)
+  "Start composing an answer for question given by DATA.
+DATA is a question alist. Interactively, it is guessed from
+context at point. 
+
+TEXT is a string. Interactively, it is read from the minibufer."
+  ;; Answering doesn't really make sense from anywhere other than
+  ;; inside a question. So we don't need `sx--data-here' here.
+  (interactive (list sx-question-mode--data))
+  ;; When clicking the "Write an Answer" button, first arg is a marker.
+  (when (markerp data) (setq data (sx--data-here)))
+  (let ((buffer (current-buffer)))
+    (sx-assoc-let data
+      (pop-to-buffer
+       (sx-compose--create
+        .site .question_id nil
+        ;; After change functions
+        (lambda (_ res)
+          (sx--add-answer-to-question-object res sx-question-mode--data)
+          (when (buffer-live-p buffer)
+            (with-current-buffer buffer
+              (sx-question-mode-refresh 'no-update)))))))))
+
+(defun sx--add-answer-to-question-object (answer question)
+  "Add alist ANSWER to alist QUESTION in the right place."
+  (let ((cell (assoc 'answers question)))
+    (if cell
+        (setcdr cell (apply #'vector
+                       (append (cdr cell) (list answer))))
+      ;; No previous comments, add it manually.
+      (setcdr question (cons (car question) (cdr question)))
+      (setcar question `(answers . [,answer])))))
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
