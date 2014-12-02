@@ -67,7 +67,7 @@ Is invoked between `sx-compose-before-send-hook' and
      0 42 (read-only t rear-nonsticky t intangible t
                      sx-compose-separator t)))
   "Headers inserted when composing a new question.
-Used by `sx-compose--create'.")
+Used by `sx-compose-create'.")
 
 
 ;;; Major-mode
@@ -79,7 +79,7 @@ API.
 
 This mode won't function if `sx-compose--send-function' isn't
 set. To make sure you set it correctly, you can create the buffer
-with the `sx-compose--create' function.
+with the `sx-compose-create' function.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
@@ -117,8 +117,8 @@ contents to the API, then calls `sx-compose-after-send-functions'."
 
 
 ;;; Functions to help preparing buffers
-(defun sx-compose--create (site parent &optional before-functions after-functions)
-  "Create a `sx-compose-mode' buffer.
+(defun sx-compose-create (site parent &optional before-functions after-functions)
+  "Create an `sx-compose-mode' buffer.
 SITE is the site where it will be posted. 
 
 If composing questions, PARENT is nil. 

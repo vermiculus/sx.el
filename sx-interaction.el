@@ -216,7 +216,7 @@ from context at point."
     (when .comment_id (user-error "Editing comments is not supported yet"))
     (let ((buffer (current-buffer)))
       (pop-to-buffer
-       (sx-compose--create
+       (sx-compose-create
         .site data nil
         ;; After send functions
         (list (lambda (_ res)
@@ -233,7 +233,7 @@ SITE is a string, indicating where the question will be posted."
   (interactive (list (sx-tab--interactive-site-prompt)))
   (let ((buffer (current-buffer)))
     (pop-to-buffer
-     (sx-compose--create
+     (sx-compose-create
       site nil nil
       ;; After send functions
       (list (lambda (_ res) (sx--maybe-update-display buffer)))))))
@@ -252,7 +252,7 @@ context at point. "
   (let ((buffer (current-buffer)))
     (sx-assoc-let data
       (pop-to-buffer
-       (sx-compose--create
+       (sx-compose-create
         .site .question_id nil
         ;; After send functions
         (list (lambda (_ res)
