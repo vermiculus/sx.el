@@ -170,7 +170,7 @@ Currently returns nil."
 ;;; Support Functions
 
 (defun sx-request--build-keyword-arguments (alist &optional
-						  kv-sep need-auth)
+						  kv-sep)
   "Format ALIST as a key-value list joined with KV-SEP.
 If authentication is needed, include it also or error if it is
 not available.
