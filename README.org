@@ -40,10 +40,27 @@ To install the development version, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
 - Issue ~(require 'sx)~
+- Issue ~(require 'sx-tab)~
 This should give you access to the only entry point function at the
 moment, ~sx-tab-frontpage~.
 
 Eventually, this package will be available on MELPA.
+
+** Some Basic Controls
+- =RET= :: interact with things under point (collapse headers, visit
+           links, etc.)
+- =TAB= :: go to next element
+- =n= :: go to next section
+- =p= :: go to previous section
+- =j= :: go to next question, viewing it
+- =k= :: go to previous question, viewing it
+- =v= :: visit a question on the browser
+- =w= :: copy things under point (usually a url)
+- =e= :: edit
+- =a= :: answer
+- =c= :: comment
+- =u= :: vote up
+- =d= :: vote down
 
 * Contributing
 Please help contribute! Doing any of the following will help us immensely:
