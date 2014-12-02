@@ -133,3 +133,35 @@
           (macroexpand
            '(sx-assoc-let data
               (cons .test-one .test-two))))))
+
+(ert-deftest thing-as-string ()
+  "Tests `sx--thing-as-string'"
+  (should
+   (string= (sx--thing-as-string
+             '(hello world (this is a test))
+             '(";" "+"))
+            "hello;world;this+is+a+test"))
+  (should
+   (string= (sx--thing-as-string
+             '(this is a test) '(";" "+"))
+            "this;is;a;test"))
+  (should
+   (string= (sx--thing-as-string
+             '(this is a test) "+")
+            "this+is+a+test"))
+  (should
+   (string= (sx--thing-as-string
+             '(this is a test))
+            "this;is;a;test"))
+  (should
+   (string= (sx--thing-as-string
+             'test)
+            "test"))
+  (should
+   (string= (sx--thing-as-string
+             'test&)
+            "test&"))
+  (should
+   (string= (sx--thing-as-string
+             'test& nil t)
+            "test%26")))
