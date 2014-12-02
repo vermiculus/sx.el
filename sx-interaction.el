@@ -200,6 +200,28 @@ OBJECT can be a question or an answer."
       (setcar object `(comments . [,comment])))))
 
 
+;;; Editing
+(defun sx-edit (data)
+  "Start editing an answer or question given by DATA.
+DATA is an answer or question alist. Interactively, it is guessed
+from context at point."
+  ;; Answering doesn't really make sense from anywhere other than
+  ;; inside a question. So we don't need `sx--data-here' here.
+  (interactive (list (sx--data-here)))
+  ;; If we ever make an "Edit" button, first arg is a marker.
+  (when (markerp data) (setq data (sx--data-here)))
+  (sx-assoc-let data
+    (when .comment_id (user-error "Editing comments is not supported yet"))
+    (let ((buffer (current-buffer)))
+      (pop-to-buffer
+       (sx-compose--create
+        .site data nil
+        ;; After send functions
+        (list (lambda (_ res)
+                (sx--copy-data (elt res 0) data)
+                (sx--maybe-update-display buffer))))))))
+
+
 ;;; Answering
 (defun sx-answer (data)
   "Start composing an answer for question given by DATA.
@@ -215,10 +237,11 @@ context at point. "
       (pop-to-buffer
        (sx-compose--create
         .site .question_id nil
-        ;; After change functions
-        (lambda (_ res)
-          (sx--add-answer-to-question-object res sx-question-mode--data)
-          (sx--maybe-update-display buffer)))))))
+        ;; After send functions
+        (list (lambda (_ res)
+                (sx--add-answer-to-question-object
+                 (elt res 0) sx-question-mode--data)
+                (sx--maybe-update-display buffer))))))))
 
 (defun sx--add-answer-to-question-object (answer question)
   "Add alist ANSWER to alist QUESTION in the right place."

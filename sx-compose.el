@@ -165,6 +165,11 @@ respectively added locally to `sx-compose-before-send-hook' and
           (insert sx-compose--question-headers)
           (goto-char (point-min))
           (goto-char (line-end-position))))
+      (when (consp parent)
+        (when (or (string= (buffer-string) "")
+                  (y-or-n-p "Draft buffer exists. Reset it? "))
+          (erase-buffer)
+          (insert (cdr (assoc 'body_markdown parent)))))
       ;; Return the buffer
       (current-buffer))))
 

@@ -189,6 +189,7 @@ Letters do not insert themselves; instead, they are commands.
    ("q" quit-window)
    (" " scroll-up-command)
    ("a" sx-answer)
+   ("e" sx-edit)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)
