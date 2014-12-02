@@ -61,9 +61,11 @@ Is invoked between `sx-compose-before-send-hook' and
   (concat
    #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
    #("\n" 0 1 (read-only t))
-   #("Tags:  " 0 7 (read-only t intangible t rear-nonsticky t))
-   #("\n----------------------------------------\n"
-     0 42 (read-only t)))
+   #("Tags : " 0 7 (read-only t intangible t rear-nonsticky t))
+   #("\n" 0 1 (read-only t rear-nonsticky t))
+   #("________________________________________\n\n"
+     0 42 (read-only t rear-nonsticky t intangible t
+                     sx-compose-separator t)))
   "Headers inserted when composing a new question.
 Used by `sx-compose--create'.")
 
@@ -188,21 +190,24 @@ other keywords are read from the header "
               keywords)
           ;; Read the Title.
           (goto-char (point-min))
-          (when (search-forward-regexp "^Title: *\\(.*\\) *$" header-end 'noerror)
+          (unless (search-forward-regexp
+                   "^Title: *\\(.*\\) *$" header-end 'noerror)
             (error "No Title header found"))
           (push (cons 'title (match-string 1)) keywords)
           ;; And the tags
           (goto-char (point-min))
-          (unless (search-forward-regexp "^Tags: *\\([^[:space:]].*\\) *$" header-end 'noerror)
+          (unless (search-forward-regexp "^Tags : *\\([^[:space:]].*\\) *$"
+                                         header-end 'noerror)
             (error "No Tags header found"))
-          (push (cons 'tags (replace-regexp-in-string
-                             "[[:space:],]" ";" (match-string 1)))
+          (push (cons 'tags (split-string (match-string 1) "[[:space:],;]"
+                                          'omit-nulls "[[:space:]]"))
                 keywords)
           ;; And erase the header so it doesn't get sent.
           (delete-region
            (point-min)
            (next-single-property-change
-            header-end 'sx-compose-separator))))
+            header-end 'sx-compose-separator))
+          keywords))
     (body . ,(buffer-string))))
 
 (defun sx-compose--get-buffer-create (site data)
