@@ -29,13 +29,20 @@
 
 
 ;;; Using data in buffer
-(defun sx--data-here ()
-  "Get the text property `sx--data-here'."
-  (or (get-char-property (point) 'sx--data-here)
+(defun sx--data-here (&optional noerror)
+  "Get data for the question or other object under point.
+If NOERROR is non-nil, don't throw an error on failure.
+
+This looks at the text property `sx--data-here'. If it's not set,
+it looks at a few other reasonable variables. If those fail too,
+it throws an error."
+  (or (get-text-property (point) 'sx--data-here)
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))
       (and (derived-mode-p 'sx-question-mode)
-           sx-question-mode--data)))
+           sx-question-mode--data)
+      (and (null noerror)
+           (error "No question data found here"))))
 
 (defun sx--maybe-update-display ()
   "Refresh the question list if we're inside it."
