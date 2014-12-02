@@ -202,9 +202,7 @@ OBJECT can be a question or an answer."
 (defun sx-answer (data)
   "Start composing an answer for question given by DATA.
 DATA is a question alist. Interactively, it is guessed from
-context at point. 
-
-TEXT is a string. Interactively, it is read from the minibufer."
+context at point. "
   ;; Answering doesn't really make sense from anywhere other than
   ;; inside a question. So we don't need `sx--data-here' here.
   (interactive (list sx-question-mode--data))
