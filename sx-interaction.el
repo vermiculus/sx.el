@@ -37,13 +37,15 @@
       (and (derived-mode-p 'sx-question-mode)
            sx-question-mode--data)))
 
-(defun sx--maybe-update-display ()
-  "Refresh the question list if we're inside it."
-  (cond
-   ((derived-mode-p 'sx-question-list-mode)
-    (sx-question-list-refresh 'redisplay 'no-update))
-   ((derived-mode-p 'sx-question-mode)
-    (sx-question-mode-refresh 'no-update))))
+(defun sx--maybe-update-display (&optional buffer)
+  "Refresh whatever is displayed in BUFFER or the current buffer.
+If BUFFER is not live, nothing is done."
+  (setq buffer (or buffer (current-buffer)))
+  (when (buffer-live-p buffer)
+    (cond ((derived-mode-p 'sx-question-list-mode)
+           (sx-question-list-refresh 'redisplay 'no-update))
+          ((derived-mode-p 'sx-question-mode)
+           (sx-question-mode-refresh 'no-update)))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
@@ -216,9 +218,7 @@ context at point. "
         ;; After change functions
         (lambda (_ res)
           (sx--add-answer-to-question-object res sx-question-mode--data)
-          (when (buffer-live-p buffer)
-            (with-current-buffer buffer
-              (sx-question-mode-refresh 'no-update)))))))))
+          (sx--maybe-update-display buffer)))))))
 
 (defun sx--add-answer-to-question-object (answer question)
   "Add alist ANSWER to alist QUESTION in the right place."
