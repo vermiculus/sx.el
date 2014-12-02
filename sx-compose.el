@@ -57,6 +57,16 @@ succeeds.")
 Is invoked between `sx-compose-before-send-hook' and
 `sx-compose-after-send-functions'.")
 
+(defvar sx-compose--question-headers
+  (concat
+   #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
+   #("\n" 0 1 (read-only t))
+   #("Tags:  " 0 7 (read-only t intangible t rear-nonsticky t))
+   #("\n----------------------------------------\n"
+     0 42 (read-only t)))
+  "Headers inserted when composing a new question.
+Used by `sx-compose--create'.")
+
 
 ;;; Major-mode
 (define-derived-mode sx-compose-mode markdown-mode "Compose"
@@ -85,10 +95,10 @@ Calls `sx-compose-before-send-hook', POSTs the the current buffer
 contents to the API, then calls `sx-compose-after-send-functions'."
   (interactive)
   (when (run-hook-with-args-until-failure
-         sx-compose-before-send-hook)
+         'sx-compose-before-send-hook)
     (let ((result (funcall sx-compose--send-function)))
       (with-demoted-errors
-          (run-hook-with-args sx-compose-after-send-functions
+          (run-hook-with-args 'sx-compose-after-send-functions
                               (current-buffer) result)))))
 
 (defun sx-compose-quit (buffer _)
@@ -105,21 +115,11 @@ contents to the API, then calls `sx-compose-after-send-functions'."
 
 
 ;;; Functions to help preparing buffers
-(defvar sx-compose--question-headers
-  (insert (concat
-           (propertize "Title: " 'rear-nonsticky t
-                       'read-only t 
-                       'field 'sx-compose-header-title)
-           (propertize "\nTags:  " 'rear-nonsticky t
-                       'field 'sx-compose-header-tags
-                       'read-only t )))
-  "")
-
 (defun sx-compose--create (site parent &optional before-functions after-functions)
   "Create a `sx-compose-mode' buffer.
 SITE is the site where it will be posted. 
 
-If composing questions (not yet supported), PARENT is nil. 
+If composing questions, PARENT is nil. 
 If composing answers, it is the `question_id'.
 If editing answers or questions, it should be the alist data
 related to that object.
@@ -160,9 +160,11 @@ respectively added locally to `sx-compose-before-send-hook' and
         (add-hook 'sx-compose-after-send-functions it nil t))
       ;; If the buffer is empty, the draft didn't exist. So prepare the
       ;; question.
-      (when (and is-question
-                 (string= (buffer-string) ""))
-        (insert sx-compose--question-headers))
+      (when (and is-question (string= (buffer-string) ""))
+        (let ((inhibit-point-motion-hooks))
+          (insert sx-compose--question-headers)
+          (goto-char (point-min))
+          (goto-char (line-end-position))))
       ;; Return the buffer
       (current-buffer))))
 
@@ -172,10 +174,31 @@ Keywords meant to be used in `sx-method-call'.
 
 `body' is read as the `buffer-string'. If IS-QUESTION is non-nil,
 other keywords are read from the header "
-  (if (null is-question)
-      `((body . ,(buffer-string)))
-    ;; Question code will go here.
-    ))
+  `(,@(when is-question
+        (let ((inhibit-point-motion-hooks t)
+              (inhibit-read-only t)
+              (header-end 
+               (next-single-property-change
+                (point-min) 'sx-compose-separator))
+              keywords)
+          ;; Read the Title.
+          (goto-char (point-min))
+          (when (search-forward-regexp "^Title: *\\(.*\\) *$" header-end 'noerror)
+            (error "No Title header found"))
+          (push (cons 'title (match-string 1)) keywords)
+          ;; And the tags
+          (goto-char (point-min))
+          (unless (search-forward-regexp "^Tags: *\\([^[:space:]].*\\) *$" header-end 'noerror)
+            (error "No Tags header found"))
+          (push (cons 'tags (replace-regexp-in-string
+                             "[[:space:],]" ";" (match-string 1)))
+                keywords)
+          ;; And erase the header so it doesn't get sent.
+          (delete-region
+           (point-min)
+           (next-single-property-change
+            header-end 'sx-compose-separator))))
+    (body . ,(buffer-string))))
 
 (defun sx-compose--get-buffer-create (site data)
   "Get or create a buffer for use with `sx-compose-mode'.
