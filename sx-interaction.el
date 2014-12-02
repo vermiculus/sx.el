@@ -19,6 +19,21 @@
 
 ;;; Commentary:
 
+;; This file holds a series of functions for performing arbitrary
+;; interactions with arbitrary objects (objects here always mean the
+;; alist of a question, answer, or comment). All commands take at
+;; least a DATA argument corresponding to the object which, when
+;; called interactively, is always derived from the context at point
+;; (usually using the `sx--data-here' function).
+;;
+;; Interactions represented here involve voting, commenting, asking,
+;; answering, editing.
+;;
+;; These are commands are meant to be available throughout the
+;; interface. So it didn't make sense to put them in a specific
+;; module. They also rely on a lot of dependencies, so they couldn't
+;; be put in sx.el.
+
 
 ;;; Code:
 
@@ -70,7 +85,7 @@ If DATA is a question, also mark it as read."
     (let ((link
            (when (stringp .link)
              (funcall (if copy-as-kill #'kill-new #'browse-url)
-                      .link))))
+               .link))))
       (when (and (called-interactively-p 'any) copy-as-kill)
         (message "Copied: %S" link)))
     (when (and .title (not copy-as-kill))
