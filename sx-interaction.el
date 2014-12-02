@@ -29,20 +29,13 @@
 
 
 ;;; Using data in buffer
-(defun sx--data-here (&optional noerror)
-  "Get data for the question or other object under point.
-If NOERROR is non-nil, don't throw an error on failure.
-
-This looks at the text property `sx--data-here'. If it's not set,
-it looks at a few other reasonable variables. If those fail too,
-it throws an error."
-  (or (get-text-property (point) 'sx--data-here)
+(defun sx--data-here ()
+  "Get the text property `sx--data-here'."
+  (or (get-char-property (point) 'sx--data-here)
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))
-      (or (derived-mode-p 'sx-question-mode)
-          sx-question-mode--data)
-      (and (null noerror)
-           (error "No question data found here"))))
+      (and (derived-mode-p 'sx-question-mode)
+           sx-question-mode--data)))
 
 (defun sx--maybe-update-display ()
   "Refresh the question list if we're inside it."
@@ -150,15 +143,18 @@ changes."
 
 
 ;;; Commenting
-(defun sx-comment (data text)
+(defun sx-comment (data &optional text)
   "Post a comment on DATA given by TEXT.
 DATA can be a question, an answer, or a comment. Interactively,
 it is guessed from context at point.
 If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
-  (interactive
-   (list (sx--data-here) 'query))
+  (interactive (list (sx--data-here) 'query))
+  ;; When clicking the "Add a Comment" button, first arg is a marker.
+  (when (markerp data)
+    (setq data (sx--data-here))
+    (setq text 'query))
   (sx-assoc-let data
     ;; Get the comment text
     (when (eq text 'query)

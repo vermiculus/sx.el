@@ -22,7 +22,7 @@
 
 ;;; Code:
 (require 'markdown-mode)
-(require 'button)
+(require 'sx-button)
 (eval-when-compile
   (require 'rx))
 
@@ -43,6 +43,11 @@
 
 
 ;;; Faces and Variables
+(defcustom sx-question-mode-deleted-user
+  '((display_name . "(deleted user)"))
+  "The structure used to represent a deleted account."
+  :type '(alist :options ((display_name string)))
+  :group 'sx-question-mode)
 
 (defface sx-question-mode-header
   '((t :inherit font-lock-variable-name-face))
@@ -164,26 +169,8 @@ replaced with the comment."
   :group 'sx-question-mode)
 
 
-;;; Buttons
-(define-button-type 'sx-question-mode-title
-  'face 'sx-question-mode-title
-  'action #'sx-question-mode-hide-show-section
-  'help-echo 'sx-question-mode--section-help-echo
-  'follow-link t)
-
-(define-button-type 'sx-question-mode-link
-  'follow-link t
-  'action      #'sx-question-mode-follow-link)
-
-
 ;;; Functions
 ;;;; Printing the general structure
-(defvar sx-question-mode--section-help-echo
-  (format
-      (propertize "%s to hide/display content" 'face 'minibuffer-prompt)
-    (propertize "RET" 'face 'font-lock-function-name-face))
-  "Help echoed in the minibuffer when point is on a section.")
-
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
@@ -207,7 +194,7 @@ QUESTION must be a data structure returned by `json-read'."
 DATA can represent a question or an answer."
   ;; This makes `data' accessible through `sx--data-here'.
   (sx-assoc-let data
-    (sx--wrap-in-text-property
+    (sx--wrap-in-overlay
         (list 'sx--data-here data)
       (insert sx-question-mode-header-title)
       (insert-text-button
@@ -215,6 +202,7 @@ DATA can represent a question or an answer."
        (or .title sx-question-mode-answer-title)
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
+       'sx-button-copy .share_link
        :type 'sx-question-mode-title)
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
@@ -231,7 +219,8 @@ DATA can represent a question or an answer."
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
               (sx-time-since .last_edit_date)
-              (sx-question-mode--propertize-display-name .last_editor))))
+              (sx-question-mode--propertize-display-name
+               (or .last_editor sx-question-mode-deleted-user)))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
@@ -258,22 +247,35 @@ DATA can represent a question or an answer."
                    .body_markdown)
                   "\n"
                   (propertize sx-question-mode-separator
-                              'face 'sx-question-mode-header)))))
-    ;; Comments have their own `sx--data-here' property (so they can
-    ;; be upvoted too).
-    (when .comments
-      (insert "\n")
-      (insert-text-button
-       sx-question-mode-comments-title
-       'face 'sx-question-mode-title-comments
-       'sx-question-mode--section 3
-       :type 'sx-question-mode-title)
-      (sx--wrap-in-overlay
-          '(sx-question-mode--section-content t)
-        (insert "\n")
-        (sx--wrap-in-overlay
-            '(face sx-question-mode-content-face)
-          (mapc #'sx-question-mode--print-comment .comments))))))
+                              'face 'sx-question-mode-header)))
+        ;; Comments have their own `sx--data-here' property (so they can
+        ;; be upvoted too).
+        (when .comments
+          (insert "\n")
+          (insert-text-button
+           sx-question-mode-comments-title
+           'face 'sx-question-mode-title-comments
+           'sx-question-mode--section 3
+           'sx-button-copy .share_link
+           :type 'sx-question-mode-title)
+          (sx--wrap-in-overlay
+              '(sx-question-mode--section-content t)
+            (insert "\n")
+            (sx--wrap-in-overlay
+                '(face sx-question-mode-content-face)
+              (mapc #'sx-question-mode--print-comment .comments))
+            ;; If there are comments, we want part of this margin to go
+            ;; inside them, so the button get's placed beside the
+            ;; "Comments" header when you hide them.
+            (insert "         ")))
+        ;; If there are no comments, we have to add this margin here.
+        (unless .comments
+          (insert "         "))
+        (insert "               ")
+        ;; This is where the "add a comment" button is printed.
+        (insert-text-button "Add a Comment"
+                            :type 'sx-button-comment)
+        (insert "\n")))))
 
 (defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
@@ -285,7 +287,7 @@ DATA can represent a question or an answer."
   "Print the comment described by alist COMMENT-DATA.
 The comment is indented, filled, and then printed according to
 `sx-question-mode-comments-format'."
-  (sx--wrap-in-text-property
+  (sx--wrap-in-overlay
       (list 'sx--data-here comment-data)
     (sx-assoc-let comment-data
       (insert
@@ -367,7 +369,7 @@ E.g.:
 
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
-  (or (sx-question-mode--move-over-pre)
+  (or (sx-question-mode--skip-and-fontify-pre)
       ;; Skip headers and references
       (let ((pos (point)))
         (skip-chars-forward "\r\n[:blank:]")
@@ -403,19 +405,13 @@ URL is used as 'help-echo and 'url properties."
    text
    ;; Mouse-over
    'help-echo
-   (format (propertize "URL: %s, %s to visit" 'face 'minibuffer-prompt)
-     (propertize url 'face 'default)
-     (propertize "RET" 'face 'font-lock-function-name-face))
+   (format sx-button--link-help-echo
+     (propertize (sx--shorten-url url)
+                 'face 'font-lock-function-name-face))
    ;; For visiting and stuff.
-   'url  url
-   :type 'sx-question-mode-link))
-
-(defun sx-question-mode-follow-link (&optional pos)
-  "Follow link at POS.  If POS is nil, use `point'."
-  (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'url)
-       (user-error "No url under point: %s" (or pos (point))))))
+   'sx-button-url url
+   'sx-button-copy url
+   :type 'sx-button-link))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
@@ -425,16 +421,33 @@ If ID is nil, use FALLBACK-ID instead."
       (goto-char (point-min))
       (when (search-forward-regexp
              (format sx-question-mode--reference-regexp
-                     (or id fallback-id))
+               (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
 
-(defun sx-question-mode--move-over-pre ()
-  "Non-nil if paragraph at point can be filled."
-  (markdown-match-pre-blocks
-   (save-excursion
-     (skip-chars-forward "\r\n[:blank:]")
-     (point))))
+(defun sx-question-mode--skip-and-fontify-pre ()
+  "If there's a pre block ahead, handle it, skip it and return t.
+Handling means to turn it into a button and remove erroneous
+font-locking."
+  (let (beg end text)
+    (when (markdown-match-pre-blocks
+           (save-excursion
+             (skip-chars-forward "\r\n[:blank:]")
+             (setq beg (point))))
+      (setq end (point))
+      (setq text
+            (sx--unindent-text
+             (buffer-substring
+              (save-excursion
+                (goto-char beg)
+                (line-beginning-position))
+              end)))
+      (put-text-property beg end 'display nil)
+      (make-text-button
+       beg             end
+       'face           'markdown-pre-face
+       'sx-button-copy text
+       :type 'sx-question-mode-code-block))))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here

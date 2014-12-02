@@ -63,6 +63,7 @@
      question.upvoted
      question.downvoted
      question.question_id
+     question.share_link
      user.display_name
      comment.owner
      comment.body_markdown
@@ -78,6 +79,7 @@
      answer.answer_id
      answer.last_editor
      answer.link
+     answer.share_link
      answer.owner
      answer.body_markdown
      answer.upvoted
@@ -171,11 +173,52 @@ would yield
                      cons-cell))))
              data))))
 
+(defun sx--shorten-url (url)
+  "Shorten URL hiding anything other than the domain.
+Paths after the domain are replaced with \"...\".
+Anything before the (sub)domain is removed."
+  (replace-regexp-in-string
+   ;; Remove anything after domain.
+   (rx (group-n 1 (and (1+ (any word ".")) "/"))
+       (1+ anything) string-end)
+   (eval-when-compile
+     (concat "\\1" (if (char-displayable-p ?…) "…" "...")))
+   ;; Remove anything before subdomain.
+   (replace-regexp-in-string 
+    (rx string-start (or (and (0+ word) (optional ":") "//")))
+    "" url)))
+
+(defun sx--unindent-text (text)
+  "Remove indentation from TEXT."
+  (with-temp-buffer
+    (insert text)
+    (goto-char (point-min))
+    (let (result)
+      (while (null (eobp))
+        (skip-chars-forward "[:blank:]")
+        (unless (looking-at "$")
+          (push (current-column) result))
+        (forward-line 1))
+      (when result
+        (let ((rx (format "^ \\{0,%s\\}"
+                    (apply #'min result))))
+          (goto-char (point-min))
+          (while (and (null (eobp))
+                      (search-forward-regexp rx nil 'noerror))
+            (replace-match "")
+            (forward-line 1)))))
+    (buffer-string)))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
   "Overlays created by sx on this buffer.")
 (make-variable-buffer-local 'sx--overlays)
+
+(defvar sx--overlay-printing-depth 0 
+  "Track how many overlays we're printing on top of each other.
+Used for assigning higher priority to inner overlays.")
+(make-variable-buffer-local 'sx--overlay-printing-depth)
 
 (defmacro sx--wrap-in-overlay (properties &rest body)
   "Start a scope with overlay PROPERTIES and execute BODY.
@@ -186,22 +229,19 @@ Return the result of BODY."
   (declare (indent 1)
            (debug t))
   `(let ((p (point-marker))
-         (result (progn ,@body)))
+         (result (progn ,@body))
+         ;; The first overlay is the shallowest. Any overlays created
+         ;; while the first one is still being created go deeper and
+         ;; deeper.
+         (sx--overlay-printing-depth (1+ sx--overlay-printing-depth)))
      (let ((ov (make-overlay p (point)))
            (props ,properties))
        (while props
          (overlay-put ov (pop props) (pop props)))
+       ;; Let's multiply by 10 just in case we ever want to put
+       ;; something in the middle.
+       (overlay-put ov 'priority (* 10 sx--overlay-printing-depth))
        (push ov sx--overlays))
-     result))
-
-(defmacro sx--wrap-in-text-property (properties &rest body)
-  "Start a scope with PROPERTIES and execute BODY.
-Return the result of BODY."
-  (declare (indent 1)
-           (debug t))
-  `(let ((p (point-marker))
-         (result (progn ,@body)))
-     (add-text-properties p (point) ,properties)
      result))
 
 (defun sx--user-@name (user)
