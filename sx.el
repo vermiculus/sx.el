@@ -115,19 +115,32 @@ See `format'."
   (let ((echo (get-text-property (point) 'help-echo)))
     (when echo (message "%s" echo))))
 
-(defun sx--thing-as-string (thing &optional sequence-sep)
+(defun sx--thing-as-string (thing &optional sequence-sep url-hexify)
   "Return a string representation of THING.
 If THING is already a string, just return it.
 
 Optional argument SEQUENCE-SEP is the separator applied between
-elements of a sequence."
-  (cond
-   ((stringp thing) thing)
-   ((symbolp thing) (symbol-name thing))
-   ((numberp thing) (number-to-string thing))
-   ((sequencep thing)
-    (mapconcat #'sx--thing-as-string
-               thing (if sequence-sep sequence-sep ";")))))
+elements of a sequence.  If SEQUENCE-SEP is a list, use the first
+element for the top level joining, the second for the next level,
+etc.  \";\" is used as a default.
+
+If optional argument URL-HEXIFY is non-nil, this function behaves
+as `url-hexify-string'; this option is only effective on strings
+and sequences of strings."
+  (let ((process (if url-hexify #'url-hexify-string #'identity))
+        (first-f (if (listp sequence-sep) #'car #'identity))
+        (rest-f (if (listp sequence-sep) #'cdr #'identity)))
+    (cond
+     ((stringp thing) (funcall process thing))
+     ((symbolp thing) (funcall process (symbol-name thing)))
+     ((numberp thing) (number-to-string thing))
+     ((sequencep thing)
+      (mapconcat (lambda (thing)
+                   (sx--thing-as-string
+                    thing (funcall rest-f sequence-sep) url-hexify))
+                 thing (if sequence-sep
+                           (funcall first-f sequence-sep)
+                         ";"))))))
 
 (defun sx--filter-data (data desired-tree)
   "Filter DATA and return the DESIRED-TREE.
