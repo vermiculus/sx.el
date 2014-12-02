@@ -194,7 +194,7 @@ false, use the symbol `false'.  Each element is processed with
        (concat
         (sx--thing-as-string (car pair))
         "="
-        (sx--thing-as-string (cdr pair) kv-sep)))
+        (sx--thing-as-string (cdr pair) kv-sep t)))
      (delq nil (mapcar
                 (lambda (pair)
                   (when (cdr pair) pair))
