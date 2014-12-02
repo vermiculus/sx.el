@@ -26,15 +26,17 @@
 (require 'sx-filter)
 (require 'sx-method)
 
-(defun sx-question-get-questions (site &optional page)
+(defun sx-question-get-questions (site &optional page keywords)
   "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
 property.
 
+KEYWORDS are added to the method call along with PAGE.
+
 `sx-method-call' is used with `sx-browse-filter'."
   (sx-method-call 'questions
-    :keywords `((page . ,page))
+    :keywords `((page . ,page) ,@keywords)
     :site site
     :auth t
     :filter sx-browse-filter))
