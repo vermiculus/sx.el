@@ -29,13 +29,20 @@
 
 
 ;;; Using data in buffer
-(defun sx--data-here ()
-  "Get the text property `sx--data-here'."
-  (or (get-char-property (point) 'sx--data-here)
+(defun sx--data-here (&optional noerror)
+  "Get data for the question or other object under point.
+If NOERROR is non-nil, don't throw an error on failure.
+
+This looks at the text property `sx--data-here'. If it's not set,
+it looks at a few other reasonable variables. If those fail too,
+it throws an error."
+  (or (get-text-property (point) 'sx--data-here)
       (and (derived-mode-p 'sx-question-list-mode)
            (tabulated-list-get-id))
       (and (derived-mode-p 'sx-question-mode)
-           sx-question-mode--data)))
+           sx-question-mode--data)
+      (and (null noerror)
+           (error "No question data found here"))))
 
 (defun sx--maybe-update-display ()
   "Refresh the question list if we're inside it."
@@ -51,6 +58,8 @@ Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
+
+;;; Visiting
 (defun sx-visit (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
@@ -73,6 +82,30 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+
+;;; Displaying
+(defun sx-display-question (&optional data focus window)
+  "Display question given by DATA, on WINDOW.
+When DATA is nil, display question under point. When FOCUS is
+non-nil (the default when called interactively), also focus the
+relevant window. 
+
+If WINDOW nil, the window is decided by
+`sx-question-mode-display-buffer-function'."
+  (interactive (list (sx--data-here) t))
+  (when (sx-question--mark-read data)
+    (sx--maybe-update-display))
+  ;; Display the question.
+  (setq window
+        (get-buffer-window
+         (sx-question-mode--display data window)))
+  (when focus
+    (if (window-live-p window)
+        (select-window window)
+      (switch-to-buffer sx-question-mode--buffer))))
+
+
+;;; Voting
 (defun sx-toggle-upvote (data)
   "Apply or remove upvote from DATA.
 DATA can be a question, answer, or comment. Interactively, it is
