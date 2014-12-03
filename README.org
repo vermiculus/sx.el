@@ -48,7 +48,7 @@ authentication token to act on your behalf.
 Eventually, this package will be available on MELPA.
 
 * Contributing
-Please help contribute! Doing any of the following will help us immensely:
+Please help contribute!  Doing any of the following will help us immensely:
  - [[https://github.com/vermiculus/sx.el/issues/new][Open an issue]]
  - [[https://github.com/vermiculus/sx.el/pulls][Submit a pull request]]
  - [[https://gitter.im/vermiculus/sx.el][Suggest a package or library in our Chat on Gitter]] (or just hang out =:)=)
@@ -57,6 +57,8 @@ Please help contribute! Doing any of the following will help us immensely:
 For a better view of all of the open issues, take a look at our lovely [[http://www.waffle.io/vermiculus/sx.el][Waffle
 board]].  Feel free to take the torch on anything in =backlog= or =ready=.  If you
 have thoughts on any other issues, don't hesitate to chime in!
+
+See also =CONTRIBUTING.org=.
 
 * Resources
 - [[http://www.gnu.org/software/emacs/][GNU Emacs]]
