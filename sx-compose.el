@@ -20,9 +20,9 @@
 ;;; Commentary:
 
 ;; This file defines `sx-compose-mode' and its auxiliary functions and
-;; variables. In order to use `sx-compose-mode', it is adamant that
-;; the variable `sx-compose--send-function' be set. Otherwise it's
-;; just a regular markdown buffer.
+;; variables. In order to use `sx-compose-mode', it is vital that the
+;; variable `sx-compose--send-function' be set. Otherwise it's just a
+;; regular markdown buffer.
 ;;
 ;; In order to help avoid mistakes, there is the function
 ;; `sx-compose-create'. This is the preferred way of activating the
