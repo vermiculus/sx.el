@@ -4,9 +4,9 @@
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
-SX will be a full featured Stack Exchange mode for GNU Emacs 24+.
-Using the official API, we aim to create a more versatile experience
-for the Stack Exchange network within Emacs itself.
+SX will be a full featured Stack Exchange mode for GNU Emacs 24+.  Using the
+official API, we aim to create a more versatile experience for the Stack
+Exchange network within Emacs itself.
 
 * Features
 - ~sx-tab-frontpage~ ::
@@ -69,10 +69,9 @@ Please help contribute! Doing any of the following will help us immensely:
  - [[https://gitter.im/vermiculus/sx.el][Suggest a package or library in our Chat on Gitter]] (or just hang out =:)=)
  - Spread the word!
 
-For a better view of all of the open issues, take a look at our lovely
-[[http://www.waffle.io/vermiculus/sx.el][Waffle board]].  Feel free to take the torch on anything in =backlog= or
-=ready=.  If you have thoughts on any other issues, don't hesitate to
-chime in!
+For a better view of all of the open issues, take a look at our lovely [[http://www.waffle.io/vermiculus/sx.el][Waffle
+board]].  Feel free to take the torch on anything in =backlog= or =ready=.  If you
+have thoughts on any other issues, don't hesitate to chime in!
 
 * Resources
 - [[http://www.gnu.org/software/emacs/][GNU Emacs]]
@@ -85,3 +84,7 @@ it.
 
 - [[file:resources/emacs.svg][Emacs icon]]
 - [[file:resources/stackexchange.svg][Stack Exchange icon]]
+* COMMENT Local Variables
+# Local Variables:
+# fill-column: 80
+# End:
