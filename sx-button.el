@@ -46,6 +46,14 @@
 (require 'sx-question)
 
 
+;;; Face
+(defface sx-custom-button
+  '((((type x w32 ns) (class color))	; Like default mode line
+     :box (:line-width 2 :style released-button)
+     :background "lightgrey" :foreground "black"))
+  "Face used on buttons such as \"Write an Answer\".")
+
+
 ;;; Command definitions
 ;; This extends `button-map', which already defines RET and mouse-1.
 (defvar sx-button-map
@@ -137,7 +145,7 @@ code-block."
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write a comment"
                                  'face 'minibuffer-prompt))
-  'face 'custom-button
+  'face 'sx-custom-button
   'action    #'sx-comment
   :supertype 'sx-button)
 
@@ -145,7 +153,7 @@ code-block."
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write an answer"
                                  'face 'minibuffer-prompt))
-  'face 'custom-button
+  'face 'sx-custom-button
   'action    #'sx-answer
   :supertype 'sx-button)
 
