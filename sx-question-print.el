@@ -352,7 +352,7 @@ E.g.:
     (font-lock-add-keywords ;; Highlight usernames.
      nil
      `((,(rx (or blank line-start)
-             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol) (any ".-_")))))
+             (group-n 1 (and "@" (1+ (not space))))
              symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
