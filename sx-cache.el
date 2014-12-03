@@ -34,6 +34,47 @@
   :type 'directory
   :group 'sx)
 
+(defvar sx-cache--cache-volatility-alist
+  nil
+  "Known caches and their states.
+The list consists of cons cells (CACHE . STATE).  STATE is a
+vector [VARIABLE VOLATILE READ]:
+
+  VARIABLE  symbol for variable
+  VOLATILE  t if volatile
+  READ      t if variable's value has been read from disk")
+
+(defun sx-cache-register (cache variable isvolatile)
+  "Register CACHE with VARIABLE and mark with ISVOLATILE.
+See `sx-cache--cache-volatility-alist'."
+  (add-to-list 'sx-cache--cache-volatility-alist
+               (cons cache (vector variable isvolatile nil))))
+
+(defun sx-cache--variable-value (cache)
+  "Returns the value of the variable bound to CACHE.
+See `sx-cache--variable-name'."
+  (symbol-value (sx-cache--variable-name cache)))
+
+(defun sx-cache--variable-name (cache)
+  "Return the variable name CACHE is bound to."
+  (elt (sx-cache--state cache) 0))
+ 
+(defun sx-cache--volatile-p (cache)
+  "Return t when CACHE is volatile."
+  (elt (sx-cache--state cache) 1))
+
+(defun sx-cache--read-p (cache)
+  "Return t when CACHE has been read from disk."
+  (elt (sx-cache--state cache) 2))
+
+(defun sx-cache--state (cache)
+  "Ensure CACHE is registered and return its state.
+See `sx-cache--cache-volatility-alist'.
+
+If CACHE is not registered, `unknown-cache' is signaled."
+  (or (cdr (assoc cache sx-cache--cache-volatility-alist))
+      (signal 'unknown-cache cache)))
+
 (defun sx-cache--ensure-sx-cache-directory-exists ()
   "Ensure `sx-cache-directory' exists."
   (unless (file-exists-p sx-cache-directory)
