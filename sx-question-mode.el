@@ -124,7 +124,7 @@ Prefix argument N moves N sections down or up."
           (cl-decf count)))))
   (when (equal (selected-window) (get-buffer-window))
     (when sx-question-mode-recenter-line
-      (let ((ov (car-safe (sx-question-mode--section-overlays-at (line-end-position)))))
+      (let ((ov (sx-question-mode--section-overlays-at (line-end-position))))
         (when (and (overlayp ov) (> (overlay-end ov) (window-end)))
           (recenter sx-question-mode-recenter-line))))
     (sx-message-help-echo)))
@@ -202,6 +202,8 @@ Letters do not insert themselves; instead, they are commands.
    ("d" sx-toggle-downvote)
    ("q" quit-window)
    (" " scroll-up-command)
+   ("a" sx-answer)
+   ("e" sx-edit)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)

@@ -263,9 +263,9 @@ into consideration.
   ;; it's not terribly intuitive.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
-            #'sx-question-list-refresh nil t)
+    #'sx-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
-            #'sx-question-list--update-mode-line nil t)
+    #'sx-question-list--update-mode-line nil t)
   (tabulated-list-init-header))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
@@ -297,6 +297,7 @@ into consideration.
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
    ("t" sx-question-list-switch-tab)
+   ("a" sx-ask)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
@@ -397,7 +398,11 @@ a new list before redisplaying."
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
                   (cl-remove-if #'sx-question--hidden-p question-list)))
-    (when redisplay (tabulated-list-print 'remember))
+    (when redisplay
+      (tabulated-list-print 'remember)
+      ;; Display weird chars correctly
+      (set-buffer-multibyte nil)
+      (set-buffer-multibyte t))
     (when window
       (set-window-start window old-start)))
   (sx-message "Done."))

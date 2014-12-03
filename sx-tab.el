@@ -26,14 +26,13 @@
 
 (require 'sx)
 (require 'sx-question-list)
-(require 'sx-interaction)
 
 (defcustom sx-tab-default-site "emacs"
   "Name of the site to use by default when listing questions."
-  :type 'string 
+  :type 'string
   :group 'sx)
 
-(defvar sx-tab--list nil 
+(defvar sx-tab--list nil
   "List of the names of all defined tabs.")
 
 (defun sx-tab-switch (tab)
@@ -45,6 +44,19 @@
            t)))
   (funcall (intern (format "sx-tab-%s" (downcase tab)))))
 
+(defun sx-tab--interactive-site-prompt ()
+  "Query the user for a site."
+  (let ((default (or sx-question-list--site
+                     (sx-assoc-let sx-question-mode--data
+                       .site)
+                     sx-tab-default-site)))
+    (funcall (if ido-mode #'ido-completing-read #'completing-read)
+      (format "Site (%s): " default)
+      (sx-site-get-api-tokens) nil t nil nil
+      default)))
+
+
+;;; The main macro
 (defmacro sx-tab--define (tab pager &optional printer refresher
                               &rest body)
   "Define a StackExchange tab called TAB.
@@ -79,10 +91,7 @@ If SITE is nil, use `sx-tab-default-site'."
             tab)
          (interactive
           (list current-prefix-arg
-                (funcall (if ido-mode #'ido-completing-read #'completing-read)
-                  (format "Site (%s): " sx-tab-default-site)
-                  (sx-site-get-api-tokens) nil t nil nil
-                  sx-tab-default-site)))
+                (sx-tab--interactive-site-prompt)))
          (sx-initialize)
          (unless site (setq site sx-tab-default-site))
          ;; Create the buffer

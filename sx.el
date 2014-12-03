@@ -189,24 +189,31 @@ Anything before the (sub)domain is removed."
     "" url)))
 
 (defun sx--unindent-text (text)
-  "Remove indentation from TEXT."
+  "Remove indentation from TEXT.
+Primarily designed to extract the content of markdown code
+blocks."
   (with-temp-buffer
     (insert text)
     (goto-char (point-min))
     (let (result)
+      ;; Get indentation of each non-blank line
       (while (null (eobp))
         (skip-chars-forward "[:blank:]")
         (unless (looking-at "$")
           (push (current-column) result))
         (forward-line 1))
       (when result
+        ;; Build a regexp with the smallest indentation
         (let ((rx (format "^ \\{0,%s\\}"
                     (apply #'min result))))
           (goto-char (point-min))
+          ;; Use this regexp to remove that much indentation
+          ;; throughout the buffer.
           (while (and (null (eobp))
                       (search-forward-regexp rx nil 'noerror))
             (replace-match "")
             (forward-line 1)))))
+    ;; Return the buffer
     (buffer-string)))
 
 
@@ -262,11 +269,10 @@ with a `link' property).
 DATA can also be the link itself."
   (let ((link (if (stringp data) data
                 (cdr (assoc 'link data)))))
-    (unless (stringp link)
-      (error "Data has no link property"))
-    (replace-regexp-in-string
-     "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
-     "\\1\\2" link)))
+    (when (stringp link)
+      (replace-regexp-in-string
+       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+       "\\1\\2" link))))
 
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
