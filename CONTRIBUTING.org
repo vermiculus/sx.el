@@ -10,10 +10,10 @@ Emacs; we should take advantage of its abilities.
 
 To see what we're working on /right now/, check out our [[http://www.waffle.io/vermiculus/sx.el][Waffle board]].
 If you would like to contribute, feel free to take on anything in the
-=ready= column (which translates to the =ready= label in GitHub
-issues).  These are issues which have been discussed enough to provide
-a good idea of what should be done.  Issues in =backlog= are either
-still under discussion or simply are in the backlog.
+=ready= Waffle column (or the [[https://github.com/vermiculus/sx.el/issues?q=is%3Aopen+is%3Aissue+label%3Aready+-label%3A%22in+progress%22][=ready= GitHub label]]).  These are issues
+which have been discussed enough to provide a good idea of what should
+be done.  Issues in =backlog= are either still under discussion or
+simply are in the backlog.
 
 Of course, the greatest gift you can give to SX is a good word.  Star
 the project on GitHub, mention it to others who would use it in your
