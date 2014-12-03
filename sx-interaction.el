@@ -84,9 +84,9 @@ thrown unless NOERROR is non-nil."
   "Throw a user-error if DATA is an unread question.
 If it's not a question, or if it is read, return DATA."
   ;; If we found a question, we may need to check if it's read.
-  (if (assoc 'title data)
-      (if (sx-question--read-p data) data
-        (user-error "Question not yet read. View it before acting on it"))
+  (if (and (assoc 'title data)
+           (null (sx-question--read-p data)))
+      (user-error "Question not yet read. View it before acting on it")
     data))
 
 (defun sx--maybe-update-display (&optional buffer)
