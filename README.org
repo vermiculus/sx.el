@@ -9,31 +9,28 @@ official API, we aim to create a more versatile experience for the Stack
 Exchange network within Emacs itself.
 
 * Features
-- ~sx-tab-frontpage~ ::
-     List questions on a StackExchange site.
-- Viewing Posts ::
-  - Use =jknp= to open questions from within ~list-questions~; use
-    =RET= to move focus.
-  - Use =v= to open the object at point in your browser.
-  - Use =TAB= to fold questions and answers.
-  - Use =RET= to open a link at point.
-  - Use =:= to switch sites.
-  - Vote up and down with =u= and =d=.
+** Viewing Questions
+View questions with one of the ~sx-tab-~ commands.  These translate to the
+different 'tabs' that you can view on the official site.  Implemented tabs
+include:
+- =frontpage= :: The default front page of questions.
+- =newest= :: Newest questions first.
+- =topvoted= :: Highest-voted questions first.
+- =hot= :: Questions with the most views, answers, and votes over the last few
+           days.
+- =week= :: Questions with the most views, answers, and votes this week.
+- =month= :: Questions with the most views, answers, and votes this month.
+The meaning of these tabs hopefully needs no explanation, but the official
+behavior is given as a tooltip on any site in the StackExchange network.
 
-** Planned
-- Archiving questions for offline access
-- Browsing and favoriting networks
-- Advanced searching
-- Writing questions, answers, and comments (with source code in its
-  native major mode)
-- Notifications
-- Reputation reporting
-- ...
+Each of these opens up a list of questions.  Switch sites with =:=.  Navigate
+this list of questions with =jk= or =np=.  =jk= will also view the question in a
+separate buffer.  =v= will visit the question in your browser where =w= will
+simply copy a link.  Upvote and downvote with =u= and =d=.  =RET= will take you
+to the question buffer, where =RET= on headlines will expand and collapse each
+section.  Add comments with =c=.
 
-Have a feature in mind that isn't on the list?  Submit a pull request
-to add it to the list!  If you want to discuss it first, pop in our
-Gitter chatroom (badge above) -- someone will be around shortly to
-talk about it.
+As always, =C-h m= is the definitive resource for the functions of this mode.
 
 * Installation
 To install the development version, follow the usual steps:
@@ -41,26 +38,14 @@ To install the development version, follow the usual steps:
 - Add this directory to your ~load-path~
 - Issue ~(require 'sx)~
 - Issue ~(require 'sx-tab)~
-This should give you access to the only entry point function at the
-moment, ~sx-tab-frontpage~.
+This should give you access to the ~sx-tab-~ functions (the main entry points at
+this time).
+
+If you are going to be doing any asking / answering / commenting / upvoting /
+downvoting / /etc./, you must use ~sx-authenticate~ to provide SX with an
+authentication token to act on your behalf.
 
 Eventually, this package will be available on MELPA.
-
-** Some Basic Controls
-- =RET= :: interact with things under point (collapse headers, visit
-           links, etc.)
-- =TAB= :: go to next element
-- =n= :: go to next section
-- =p= :: go to previous section
-- =j= :: go to next question, viewing it
-- =k= :: go to previous question, viewing it
-- =v= :: visit a question on the browser
-- =w= :: copy things under point (usually a url)
-- =e= :: edit
-- =a= :: answer
-- =c= :: comment
-- =u= :: vote up
-- =d= :: vote down
 
 * Contributing
 Please help contribute! Doing any of the following will help us immensely:
