@@ -36,6 +36,8 @@
 
 
 ;;; Code:
+(eval-when-compile
+  '(require 'cl-lib))
 
 (require 'sx)
 (require 'sx-question)
@@ -46,13 +48,46 @@
 
 
 ;;; Using data in buffer
-(defun sx--data-here ()
-  "Get the text property `sx--data-here'."
-  (or (get-char-property (point) 'sx--data-here)
-      (and (derived-mode-p 'sx-question-list-mode)
-           (tabulated-list-get-id))
-      (and (derived-mode-p 'sx-question-mode)
-           sx-question-mode--data)))
+(defun sx--data-here (&optional type noerror)
+  "Get the alist regarding object under point of type TYPE.
+Looks at the text property `sx--data-here'. If it's not set, it
+looks at a few other reasonable variables. If those fail too, it
+throws an error.
+
+TYPE is a symbol restricting the type of object desired. Possible
+values are 'question, 'answer, 'comment, or nil (for any type).
+
+If no object of the requested type could be returned, an error is
+thrown unless NOERROR is non-nil."
+  (or (let ((data (get-char-property (point) 'sx--data-here)))
+        (if (null type) data
+          (sx-assoc-let type
+            ;; Is data of the right type?
+            (cl-case type
+              (question (when .title data))
+              (answer (when .answer_id data))
+              (comment (when .comment_id data))))))
+      ;; The following two only ever return questions.
+      (when (or (null type) (eq type 'question))
+        ;; @TODO: `sx-question-list-mode' may one day display answers.
+        ;; Ideally, it would use the `sx--data-here' (so no special
+        ;; handling would be necessary.
+        (or (and (derived-mode-p 'sx-question-list-mode)
+                 (tabulated-list-get-id))
+            (and (derived-mode-p 'sx-question-mode)
+                 sx-question-mode--data)))
+      ;; Nothing was found
+      (and (null noerror)
+           (error "No %s found here" (or type "data")))))
+
+(defun sx--error-if-unread (data)
+  "Throw a user-error if DATA is an unread question.
+If it's not a question, or if it is read, return DATA."
+  ;; If we found a question, we may need to check if it's read.
+  (if (and (assoc 'title data)
+           (null (sx-question--read-p data)))
+      (user-error "Question not yet read. View it before acting on it")
+    data))
 
 (defun sx--maybe-update-display (&optional buffer)
   "Refresh whatever is displayed in BUFFER or the current buffer.
@@ -70,6 +105,8 @@ Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
+
+;;; Visiting
 (defun sx-visit (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
@@ -92,11 +129,35 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+
+;;; Displaying
+(defun sx-display-question (&optional data focus window)
+  "Display question given by DATA, on WINDOW.
+When DATA is nil, display question under point. When FOCUS is
+non-nil (the default when called interactively), also focus the
+relevant window. 
+
+If WINDOW nil, the window is decided by
+`sx-question-mode-display-buffer-function'."
+  (interactive (list (sx--data-here) t))
+  (when (sx-question--mark-read data)
+    (sx--maybe-update-display))
+  ;; Display the question.
+  (setq window
+        (get-buffer-window
+         (sx-question-mode--display data window)))
+  (when focus
+    (if (window-live-p window)
+        (select-window window)
+      (switch-to-buffer sx-question-mode--buffer))))
+
+
+;;; Voting
 (defun sx-toggle-upvote (data)
   "Apply or remove upvote from DATA.
 DATA can be a question, answer, or comment. Interactively, it is
 guessed from context at point."
-  (interactive (list (sx--data-here)))
+  (interactive (list (sx--error-if-unread (sx--data-here))))
   (sx-assoc-let data
     (sx-set-vote data "upvote" (null (eq .upvoted t)))))
 
@@ -104,7 +165,7 @@ guessed from context at point."
   "Apply or remove downvote from DATA.
 DATA can be a question or an answer. Interactively, it is guessed
 from context at point."
-  (interactive (list (sx--data-here)))
+  (interactive (list (sx--error-if-unread (sx--data-here))))
   (sx-assoc-let data
     (sx-set-vote data "downvote" (null (eq .downvoted t)))))
 
@@ -143,7 +204,7 @@ it is guessed from context at point.
 If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
-  (interactive (list (sx--data-here) 'query))
+  (interactive (list (sx--error-if-unread (sx--data-here)) 'query))
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
     (setq data (sx--data-here))
@@ -222,8 +283,6 @@ OBJECT can be a question or an answer."
   "Start editing an answer or question given by DATA.
 DATA is an answer or question alist. Interactively, it is guessed
 from context at point."
-  ;; Answering doesn't really make sense from anywhere other than
-  ;; inside a question. So we don't need `sx--data-here' here.
   (interactive (list (sx--data-here)))
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
@@ -243,8 +302,6 @@ from context at point."
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
-  ;; Answering doesn't really make sense from anywhere other than
-  ;; inside a question. So we don't need `sx--data-here' here.
   (interactive (list (sx-tab--interactive-site-prompt)))
   (let ((buffer (current-buffer)))
     (pop-to-buffer
@@ -259,9 +316,10 @@ SITE is a string, indicating where the question will be posted."
   "Start composing an answer for question given by DATA.
 DATA is a question alist. Interactively, it is guessed from
 context at point. "
-  ;; Answering doesn't really make sense from anywhere other than
-  ;; inside a question. So we don't need `sx--data-here' here.
-  (interactive (list sx-question-mode--data))
+  ;; If the user tries to answer a question that's not viewed, he
+  ;; probaby hit the button by accident.
+  (interactive
+   (list (sx--error-if-unread (sx--data-here 'question))))
   ;; When clicking the "Write an Answer" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (let ((buffer (current-buffer)))

@@ -26,15 +26,17 @@
 (require 'sx-filter)
 (require 'sx-method)
 
-(defun sx-question-get-questions (site &optional page)
+(defun sx-question-get-questions (site &optional page keywords)
   "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
 property.
 
+KEYWORDS are added to the method call along with PAGE.
+
 `sx-method-call' is used with `sx-browse-filter'."
   (sx-method-call 'questions
-    :keywords `((page . ,page))
+    :keywords `((page . ,page) ,@keywords)
     :site site
     :auth t
     :filter sx-browse-filter))
@@ -86,27 +88,32 @@ See `sx-question--user-read-list'."
 
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read until it is updated again.
+Returns nil if question (in its current state) was already marked
+read, i.e., if it was `sx-question--read-p'.
 See `sx-question--user-read-list'."
-  (sx-assoc-let question
-    (sx-question--ensure-read-list .site)
-    (let ((site-cell (assoc .site sx-question--user-read-list))
-          (q-cell (cons .question_id .last_activity_date))
-          cell)
-      (cond
-       ;; First question from this site.
-       ((null site-cell)
-        (push (list .site q-cell) sx-question--user-read-list))
-       ;; Question already has an older time.
-       ((setq cell (assoc .question_id site-cell))
-        (setcdr cell .last_activity_date))
-       ;; Question wasn't present.
-       (t
-        (sx-sorted-insert-skip-first
-         q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
-  ;; Save the results.
-  ;; @TODO This causes a small lag on `j' and `k' as the list gets
-  ;; large.  Should we do this on a timer?
-  (sx-cache-set 'read-questions sx-question--user-read-list))
+  (prog1
+      (sx-assoc-let question
+        (sx-question--ensure-read-list .site)
+        (let ((site-cell (assoc .site sx-question--user-read-list))
+              (q-cell (cons .question_id .last_activity_date))
+              cell)
+          (cond
+           ;; First question from this site.
+           ((null site-cell)
+            (push (list .site q-cell) sx-question--user-read-list))
+           ;; Question already present.
+           ((setq cell (assoc .question_id site-cell))
+            ;; Current version is newer than cached version.
+            (when (> .last_activity_date (cdr cell))
+              (setcdr cell .last_activity_date)))
+           ;; Question wasn't present.
+           (t
+            (sx-sorted-insert-skip-first
+             q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
+    ;; Save the results.
+    ;; @TODO This causes a small lag on `j' and `k' as the list gets
+    ;; large.  Should we do this on a timer?
+    (sx-cache-set 'read-questions sx-question--user-read-list)))
 
 
 ;;;; Hidden
@@ -134,20 +141,21 @@ If no cache exists for it, initialize one with SITE."
 
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
-  (let ((site-cell (assoc .site sx-question--user-hidden-list))
-        cell)
-    ;; If question already hidden, do nothing.
-    (unless (memq .question_id site-cell)
-      ;; First question from this site.
-      (push (list .site .question_id) sx-question--user-hidden-list)
-      ;; Question wasn't present.
-      ;; Add it in, but make sure it's sorted (just in case we need
-      ;; it later).
-      (sx-sorted-insert-skip-first .question_id site-cell >)
-      ;; This causes a small lag on `j' and `k' as the list gets large.
-      ;; Should we do this on a timer?
-      ;; Save the results.
-      (sx-cache-set 'hidden-questions sx-question--user-hidden-list))))
+  (sx-assoc-let question
+    (let ((site-cell (assoc .site sx-question--user-hidden-list))
+          cell)
+      ;; If question already hidden, do nothing.
+      (unless (memq .question_id site-cell)
+        ;; First question from this site.
+        (push (list .site .question_id) sx-question--user-hidden-list)
+        ;; Question wasn't present.
+        ;; Add it in, but make sure it's sorted (just in case we need
+        ;; it later).
+        (sx-sorted-insert-skip-first .question_id site-cell >)
+        ;; This causes a small lag on `j' and `k' as the list gets large.
+        ;; Should we do this on a timer?
+        ;; Save the results.
+        (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
 
 
 ;;;; Other data
