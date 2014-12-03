@@ -33,14 +33,27 @@
 
 
 ;;; Displaying a question
-(defvar sx-question-mode--window nil
-  "Window where the content of questions is displayed.")
+(defcustom sx-question-mode-display-buffer-function #'switch-to-buffer
+  "Function used to display the question buffer.
+Called, for instance, when hitting \\<sx-question-list-mode-map>`\\[sx-question-list-display-question]' on an entry in the
+question list.
+This is not used when navigating the question list with `\\[sx-question-list-view-next]."
+  :type 'function
+  :group 'sx-question-mode)
 
 (defvar sx-question-mode--buffer nil
   "Buffer being used to display questions.")
 
 (defvar sx-question-mode--data nil
   "The data of the question being displayed.")
+
+(defun sx-question-mode--get-window ()
+  "Return a window displaying a question, or nil."
+  (car-safe
+   (cl-member-if
+    (lambda (x) (with-selected-window x
+             (derived-mode-p 'sx-question-mode)))
+    (window-list nil 'never nil))))
 
 (defun sx-question-mode--display (data &optional window)
   "Display question given by DATA on WINDOW.
@@ -74,7 +87,8 @@ If WINDOW is given, use that to display the buffer."
    ;; No window, but the buffer is already being displayed somewhere.
    ((get-buffer-window sx-question-mode--buffer 'visible))
    ;; Neither, so we create the window.
-   (t (switch-to-buffer sx-question-mode--buffer)))
+   (t (funcall sx-question-mode-display-buffer-function
+        sx-question-mode--buffer)))
   sx-question-mode--buffer)
 
 
@@ -85,7 +99,7 @@ If WINDOW is given, use that to display the buffer."
 ;; To move between sections, just search for the property. The value
 ;; of the text-property is the depth of the section (1 for contents, 2
 ;; for comments).
-(defcustom sx-question-mode-recenter-line 1
+(defcustom sx-question-mode-recenter-line 2
   "Screen line to which we recenter after moving between sections.
 This is used as an argument to `recenter', only used if the end
 of section is outside the window.
@@ -144,9 +158,9 @@ If DIRECTION is negative, move backwards instead."
   "Hide or show section under point.
 Optional argument _ is for `push-button'."
   (interactive)
-  (let ((ov (car (or (sx-question-mode--section-overlays-at (point))
-                     (sx-question-mode--section-overlays-at
-                      (line-end-position))))))
+  (let ((ov (or (sx-question-mode--section-overlays-at
+                 (line-end-position))
+                (sx-question-mode--section-overlays-at (point)))))
     (goto-char (overlay-start ov))
     (forward-line 0)
     (overlay-put
@@ -154,9 +168,11 @@ Optional argument _ is for `push-button'."
      (null (overlay-get ov 'invisible)))))
 
 (defun sx-question-mode--section-overlays-at (pos)
-  "Return a list of `sx-question-mode--section-content' overlays at POS."
-  (cl-remove-if (lambda (x) (null (overlay-get x 'sx-question-mode--section-content)))
-                (overlays-at pos)))
+  "Return the highest priority section overlay at POS.
+A section overlay has a `sx-question-mode--section-content'
+property."
+  (cdr-safe (get-char-property-and-overlay
+             pos 'sx-question-mode--section-content nil)))
 
 
 ;;; Major-mode

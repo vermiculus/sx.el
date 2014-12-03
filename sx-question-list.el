@@ -147,9 +147,6 @@ Also see `sx-question-list-refresh'."
           .title
           'face (if (sx-question--read-p question-data)
                     'sx-question-list-read-question
-                  ;; Increment `sx-question-list--unread-count' for
-                  ;; the mode-line.
-                  (cl-incf sx-question-list--unread-count)
                   'sx-question-list-unread-question))
          (propertize " " 'display "\n   ")
          (propertize favorite 'face 'sx-question-list-favorite)
@@ -301,12 +298,13 @@ into consideration.
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
+   ("t" sx-question-list-switch-tab)
    ("v" sx-visit)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-question-list-display-question)))
+   ([?\r] sx-display-question)))
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
@@ -336,10 +334,6 @@ Non-interactively, DATA is a question alist."
   ;; "Unanswered", etc.
   "Variable describing current tab being viewed.")
 
-(defvar sx-question-list--unread-count 0
-  "Holds the number of unread questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--unread-count)
-
 (defvar sx-question-list--total-count 0
   "Holds the total number of questions in the current buffer.")
 (make-variable-buffer-local 'sx-question-list--total-count)
@@ -353,7 +347,7 @@ Non-interactively, DATA is a question alist."
     " ["
     "Unread: "
     (:propertize
-     (:eval (int-to-string sx-question-list--unread-count))
+     (:eval (sx-question-list--unread-count))
      face mode-line-buffer-id)
     ", "
     "Total: "
@@ -362,6 +356,12 @@ Non-interactively, DATA is a question alist."
      face mode-line-buffer-id)
     "] ")
   "Mode-line construct to use in question-list buffers.")
+
+(defun sx-question-list--unread-count ()
+  "Number of unread questions in current dataset, as a string."
+  (int-to-string
+   (cl-count-if-not
+    #'sx-question--read-p sx-question-list--dataset)))
 
 (defun sx-question-list--update-mode-line ()
   "Fill the mode-line with useful information."
@@ -382,7 +382,6 @@ If the prefix argument NO-UPDATE is nil, query StackExchange for
 a new list before redisplaying."
   (interactive "p\nP")
   ;; Reset the mode-line unread count (we rebuild it here).
-  (setq sx-question-list--unread-count 0)
   (unless no-update
     (setq sx-question-list--pages-so-far 1))
   (let* ((question-list
@@ -425,7 +424,37 @@ Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
-  (sx-question-list-display-question))
+  (sx-display-question
+   (tabulated-list-get-id)
+   nil 
+   (sx-question-list--create-question-window)))
+
+(defun sx-question-list--create-question-window ()
+  "Create or find a window where a question can be displayed.
+
+If any current window displays a question, that window is
+returned. If none do, a new one is created such that the
+question-list window remains `sx-question-list-height' lines
+high (if possible)."
+  (or (sx-question-mode--get-window)
+      ;; Create a proper window.
+      (let ((window
+             (condition-case er
+                 (split-window (selected-window) sx-question-list-height 'below)
+               (error
+                ;; If the window is too small to split, use any one.
+                (if (string-match
+                     "Window #<window .*> too small for splitting"
+                     (car (cdr-safe er)))
+                    (next-window)
+                  (error (cdr er)))))))
+        ;; Configure the window to be closed on `q'.
+        (set-window-prev-buffers window nil)
+        (set-window-parameter
+         window 'quit-restore
+         ;; See (info "(elisp) Window Parameters")
+         `(window window ,(selected-window) ,sx-question-mode--buffer))
+        window)))
 
 (defun sx-question-list-next (n)
   "Move cursor down N questions.
@@ -437,7 +466,21 @@ This does not update `sx-question-mode--window'."
     ;; If we were trying to move forward, but we hit the end.
     (when (eobp)
       ;; Try to get more questions.
-      (sx-question-list-next-page))))
+      (sx-question-list-next-page))
+    (sx-question-list--ensure-line-good-line-position)))
+
+(defun sx-question-list--ensure-line-good-line-position ()
+  "Scroll window such that current line is a good place.
+Check if we're at least 6 lines from the bottom. Scroll up if
+we're not. Do the same for 3 lines from the top."
+  ;; At least one entry below us.
+  (let ((lines-to-bottom (count-screen-lines (point) (window-end))))
+    (unless (>= lines-to-bottom 6)
+      (recenter (- 6))))
+  ;; At least one entry above us.
+  (let ((lines-to-top (count-screen-lines (point) (window-start))))
+    (unless (>= lines-to-top 3)
+      (recenter 3))))
 
 (defun sx-question-list-next-page ()
   "Fetch and display the next page of questions."
@@ -486,44 +529,6 @@ This does not update `sx-question-mode--window'."
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (sx-question-list-next-far (- n)))
-
-(defun sx-question-list-display-question (&optional data focus)
-  "Display question given by DATA.
-When DATA is nil, display question under point.  When FOCUS is
-non-nil (the default when called interactively), also focus the
-relevant window."
-  (interactive '(nil t))
-  (unless data (setq data (tabulated-list-get-id)))
-  (unless data (error "No question here!"))
-  (unless (sx-question--read-p data)
-    (cl-decf sx-question-list--unread-count)
-    (sx-question--mark-read data)
-    (sx-question-list-refresh 'redisplay 'no-update))
-  (unless (and (window-live-p sx-question-mode--window)
-               (null (equal sx-question-mode--window (selected-window))))
-    (setq sx-question-mode--window
-          (condition-case er
-              (split-window (selected-window) sx-question-list-height 'below)
-            (error
-             ;; If the window is too small to split, use current one.
-             (if (string-match
-                  "Window #<window .*> too small for splitting"
-                  (car (cdr-safe er)))
-                 nil
-               (error (cdr er)))))))
-  ;; Display the question.
-  (sx-question-mode--display data sx-question-mode--window)
-  ;; Configure the window to be closed on `q'.
-  (set-window-prev-buffers sx-question-mode--window nil)
-  (set-window-parameter
-   sx-question-mode--window
-   'quit-restore
-   ;; See (info "(elisp) Window Parameters")
-   `(window window ,(selected-window) ,sx-question-mode--buffer))
-  (when focus
-    (if sx-question-mode--window
-        (select-window sx-question-mode--window)
-      (switch-to-buffer sx-question-mode--buffer))))
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
