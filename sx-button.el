@@ -1,4 +1,4 @@
-;;; sx-button.el --- Defining buttons used throughout SX.
+;;; sx-button.el --- Defining buttons used throughout SX. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -18,6 +18,25 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+;;
+;; This file defines all buttons used by SX. For information on
+;; buttons, see:
+;;   http://www.gnu.org/software/emacs/manual/html_node/elisp/Buttons.html
+;;
+;; Most interactible parts of the SX buffers are buttons. Wherever you
+;; are, you can always cycle through all buttons by hitting `TAB',
+;; that should help identify what's a button in each buffer.
+;;
+;; To define a new type of button follow the examples below using
+;; `define-button-type' with :supertype `sx-button'. Required
+;; properties are `action' and `help-echo'. You'll probably want to
+;; give it a `face' as well, unless you want it to look like a link.
+;;
+;; Buttons can then be inserted in their respective files using
+;; `insert-text-button'. Give it the string, the `:type' you defined,
+;; and any aditional properties that can only be determined at
+;; creation. Existing text can be transformed into a button with
+;; `make-text-button' instead.
 
 
 ;;; Code:
@@ -132,7 +151,3 @@ code-block."
 
 (provide 'sx-button)
 ;;; sx-button.el ends here
-
-;; Local Variables:
-;; lexical-binding: t
-;; End:
