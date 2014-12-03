@@ -269,11 +269,10 @@ with a `link' property).
 DATA can also be the link itself."
   (let ((link (if (stringp data) data
                 (cdr (assoc 'link data)))))
-    (unless (stringp link)
-      (error "Data has no link property"))
-    (replace-regexp-in-string
-     "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
-     "\\1\\2" link)))
+    (when (stringp link)
+      (replace-regexp-in-string
+       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+       "\\1\\2" link))))
 
 (defun sx--deep-dot-search (data)
   "Find symbols somewhere inside DATA which start with a `.'.
