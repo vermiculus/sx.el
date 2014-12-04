@@ -230,7 +230,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :url-method "POST"
              :filter sx-browse-filter
              :site .site
-             :keywords `((body ,text)))))
+             :keywords `((body . ,text)))))
       ;; The api returns the new DATA.
       (when (> (length result) 0)
         (sx--add-comment-to-object
