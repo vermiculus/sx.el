@@ -43,7 +43,7 @@
 
 
 ;;; Faces and Variables
-(defvar sx-compose-before-send-hook nil 
+(defvar sx-compose-before-send-hook nil
   "Hook run before POSTing to the API.
 Functions are called without arguments and should return non-nil.
 
@@ -54,7 +54,7 @@ notifying the user.
 Current buffer is the compose-mode buffer whose content is about
 to be POSTed.")
 
-(defvar sx-compose-after-send-functions nil 
+(defvar sx-compose-after-send-functions nil
   "Hook run after POSTing to the API.
 Functions on this hook should take two arguments, the
 `sx-compose-mode' buffer (which not be live) and the data
@@ -155,9 +155,9 @@ contents to the API, then calls `sx-compose-after-send-functions'."
 ;;; Functions to help preparing buffers
 (defun sx-compose-create (site parent &optional before-functions after-functions)
   "Create an `sx-compose-mode' buffer.
-SITE is the site where it will be posted. 
+SITE is the site where it will be posted.
 
-If composing questions, PARENT is nil. 
+If composing questions, PARENT is nil.
 If composing answers, it is the `question_id'.
 If editing answers or questions, it should be the alist data
 related to that object.
@@ -223,7 +223,7 @@ other keywords are read from the header "
   `(,@(when is-question
         (let ((inhibit-point-motion-hooks t)
               (inhibit-read-only t)
-              (header-end 
+              (header-end
                (next-single-property-change
                 (point-min) 'sx-compose-separator))
               keywords)
