@@ -43,7 +43,7 @@
 
 
 ;;; Faces and Variables
-(defvar sx-compose-before-send-hook nil 
+(defvar sx-compose-before-send-hook nil
   "Hook run before POSTing to the API.
 Functions are called without arguments and should return non-nil.
 
@@ -54,7 +54,7 @@ notifying the user.
 Current buffer is the compose-mode buffer whose content is about
 to be POSTed.")
 
-(defvar sx-compose-after-send-functions nil 
+(defvar sx-compose-after-send-functions nil
   "Hook run after POSTing to the API.
 Functions on this hook should take two arguments, the
 `sx-compose-mode' buffer (which not be live) and the data
@@ -70,12 +70,15 @@ Is invoked between `sx-compose-before-send-hook' and
 (defvar sx-compose--question-headers
   (concat
    #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
+   "%s"
    #("\n" 0 1 (read-only t))
    #("Tags : " 0 7 (read-only t intangible t rear-nonsticky t))
+   "%s"
    #("\n" 0 1 (read-only t rear-nonsticky t))
-   #("________________________________________\n\n"
-     0 42 (read-only t rear-nonsticky t intangible t
-                     sx-compose-separator t)))
+   #("________________________________________\n"
+     0 41 (read-only t rear-nonsticky t intangible t
+                     sx-compose-separator t))
+   "\n")
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
@@ -129,9 +132,9 @@ contents to the API, then calls `sx-compose-after-send-functions'."
 ;;; Functions to help preparing buffers
 (defun sx-compose-create (site parent &optional before-functions after-functions)
   "Create an `sx-compose-mode' buffer.
-SITE is the site where it will be posted. 
+SITE is the site where it will be posted.
 
-If composing questions, PARENT is nil. 
+If composing questions, PARENT is nil.
 If composing answers, it is the `question_id'.
 If editing answers or questions, it should be the alist data
 related to that object.
@@ -172,18 +175,31 @@ respectively added locally to `sx-compose-before-send-hook' and
         (add-hook 'sx-compose-after-send-functions it nil t))
       ;; If the buffer is empty, the draft didn't exist. So prepare the
       ;; question.
-      (when (and is-question (string= (buffer-string) ""))
-        (let ((inhibit-point-motion-hooks))
-          (insert sx-compose--question-headers)
-          (goto-char (point-min))
-          (goto-char (line-end-position))))
-      (when (consp parent)
-        (when (or (string= (buffer-string) "")
-                  (y-or-n-p "Draft buffer exists. Reset it? "))
+      (when (or (string= (buffer-string) "")
+                (y-or-n-p "Draft buffer exists. Reset it? "))
+        (let ((inhibit-point-motion-hooks t)
+              (inhibit-read-only t))
           (erase-buffer)
-          (insert (cdr (assoc 'body_markdown parent)))))
+          (when (consp parent)
+            (insert (cdr (assoc 'body_markdown parent))))
+          (when is-question
+            (sx-compose--print-question-headers
+             (when (consp parent) parent))
+            (unless (consp parent)
+              (goto-char (point-min))
+              (goto-char (line-end-position))))))
       ;; Return the buffer
       (current-buffer))))
+
+(defun sx-compose--print-question-headers (question)
+  "Print question headers for the compose buffer.
+If QUESTION is non-nil, fill the headers with the data from
+QUESTION."
+  (sx-assoc-let question
+    (goto-char (point-min))
+    (insert
+     (format sx-compose--question-headers
+       (or .title "") (mapconcat #'identity .tags " ")))))
 
 (defun sx-compose--generate-keywords (is-question)
   "Reading current buffer, generate a keywords alist.
@@ -194,7 +210,7 @@ other keywords are read from the header "
   `(,@(when is-question
         (let ((inhibit-point-motion-hooks t)
               (inhibit-read-only t)
-              (header-end 
+              (header-end
                (next-single-property-change
                 (point-min) 'sx-compose-separator))
               keywords)
