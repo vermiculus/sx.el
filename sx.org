@@ -67,7 +67,8 @@ a cache file.
 ** Browsing Questions
 To browse a list of questions retrieved from the site, use
 ~sx-tab-frontpage~.  This queries for a site, pulls the first page of
-questions for that site, and displays them in a list.  
+questions for that site, and displays them in a list.  Alternatively,
+use any of the other ~sx-tab-~ commands.
 
 - Refresh the page with =g= or by scrolling past the top.
 - Use =n=, =p=, =N=, =P= to navigate without viewing the question.
@@ -86,6 +87,12 @@ Scrolling past the bottom of the list fetches more questions.
 # used only by contributors.
 
 - ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
+- ~sx-compose-before-send-hook~ :: Run before POSTing to the API from
+     a buffer in ~sx-compose-mode~.  If any of the functions in this
+     hook, return nil, the transaction is cancelled.
+- ~sx-compose-after-send-functions~ :: Run after POSTing to the API
+     from a buffer in ~sx-compose-mode~, if the transaction was
+     successful.
 
 * Contributing
 This document is maintained in Org format.  Updates to the source code
