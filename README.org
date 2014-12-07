@@ -36,8 +36,7 @@ As always, =C-h m= is the definitive resource for the functions of this mode.
 To install the development version, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
-- Issue ~(require 'sx)~
-- Issue ~(require 'sx-tab)~
+- Issue ~(require 'sx-load)~
 This should give you access to the ~sx-tab-~ functions (the main entry points at
 this time).
 
