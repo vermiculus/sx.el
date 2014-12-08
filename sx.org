@@ -55,6 +55,14 @@ Emacs conventions.  Of course, the core convention of Emacs is
 arbitrary customizability -- [[#hooks][hack away]]!
 
 * Basic Usage
+
+** Activation
+
+If you install ~SX~ with ~package-install~, you should have every
+needed command properly autoloaded.  If you install it manually,
+require the ~sx-load~ file to make sure everything is correctly
+loaded.
+
 ** Authenticating
 Use ~sx-auth-authenticate~.  Calling this function will open up a
 webpage on StackExchange that will prompt you to authorize this
@@ -182,6 +190,8 @@ structure. This list is very loosely ordered form low to high-level.
 - ~sx-compose.el~ - Major-mode for composing questions and answers.
 - ~sx-interaction.el~ - Voting, commenting, and otherwise interacting with questions.
 - ~sx-tab.el~ - Functions for viewing different tabs.
+
+- ~sx-load.el~ - Load all files of the sx package.  Designed as an easy way in for users who install the package manually (since they don't have autoloads).
 
 * COMMENT Local Variables
 #  LocalWords:  StackExchange SX inbox sx API url json inline Org
