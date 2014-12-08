@@ -23,11 +23,9 @@
 ;;; Code:
 (require 'markdown-mode)
 (require 'sx-button)
-(eval-when-compile
-  (require 'rx))
-
 (require 'sx)
 (require 'sx-question)
+(require 'sx-babel)
 
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
