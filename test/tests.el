@@ -134,6 +134,17 @@
            '(sx-assoc-let data
               (cons .test-one .test-two))))))
 
+(ert-deftest sx--user-@name ()
+  "Tests macro expansion for `sx-assoc-let'"
+  (should
+   (string=
+    (sx--user-@name '((display_name . "ĥÞßđłřğĝýÿñńśşšŝżźžçćčĉùúûüŭůòóôõöøőðìíîïıèéêëęàåáâäãåąĵ★")))
+    "@hTHssdlrggyynnsssszzzccccuuuuuuooooooooiiiiieeeeeaaaaaaaaj"))
+  (should
+   (string=
+    (sx--user-@name '((display_name . "ĤÞßĐŁŘĞĜÝŸÑŃŚŞŠŜŻŹŽÇĆČĈÙÚÛÜŬŮÒÓÔÕÖØŐÐÌÍÎÏıÈÉÊËĘÀÅÁÂÄÃÅĄĴ")))
+    "@HTHssDLRGGYYNNSSSSZZZCCCCUUUUUUOOOOOOOOIIIIiEEEEEAAAAAAAAJ")))
+
 (ert-deftest thing-as-string ()
   "Tests `sx--thing-as-string'"
   (should
