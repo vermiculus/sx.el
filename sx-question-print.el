@@ -436,11 +436,10 @@ font-locking."
              (setq beg (point))))
       (setq end (point))
       (sx-babel--make-pre-button
-       (buffer-substring
-        (save-excursion
-          (goto-char beg)
-          (line-beginning-position))
-        end)))))
+       (save-excursion
+         (goto-char beg)
+         (line-beginning-position))
+       end))))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here

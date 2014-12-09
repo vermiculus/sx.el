@@ -30,7 +30,11 @@
 
 (defvar sx-babel-major-mode-alist
   `((,(rx (or "*" "#+")) org-mode)
-    (,(rx (or "[" "(" ";" "#(")) emacs-lisp-mode))
+    (,(rx (or "[" "(" ";" "#(")) emacs-lisp-mode)
+    ;; @TODO: Make shell-mode work here. Currently errors because it
+    ;; needs a process. `sh-mode' isn't as nice.
+    (,(rx (or "$ " "# ")) sh-mode)
+    )
   "List of cons cells determining which major-mode to use when.
 Each car is a rule and each cdr is a major-mode.  The first rule
 which is satisfied activates the major-mode.
@@ -59,7 +63,7 @@ on a match.")
       (sx-babel--determine-and-activate-major-mode)
       (font-lock-fontify-region (point-min) (point-max))
       (goto-char (point-min))
-      (let ((space (make-string indent " ")))
+      (let ((space (make-string indent ?\s)))
         (while (not (eobp))
           (insert space)
           (forward-line 1)))
@@ -78,7 +82,7 @@ on a match.")
       (let ((kar (car cell)))
         (when (if (stringp kar) (looking-at kar) (funcall kar))
           (setq alist nil)
-          (funcall (cdr cell)))))))
+          (funcall (cadr cell)))))))
 
 (defun sx-babel--unindent-buffer ()
   "Remove absolute indentation in current buffer.
