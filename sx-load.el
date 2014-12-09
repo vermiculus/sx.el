@@ -25,6 +25,7 @@
         sx-time
         sx-auth
         sx-button
+        sx-babel
         sx-cache
         sx-compose
         sx-encoding
