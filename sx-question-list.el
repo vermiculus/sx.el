@@ -286,7 +286,11 @@ into consideration.
 (mapc
  (lambda (x) (define-key sx-question-list-mode-map
           (car x) (cadr x)))
- '(("n" sx-question-list-next)
+ '(
+   ;; S-down and S-up would collide with `windmove'.
+   ([down] sx-question-list-view-next)
+   ([up] sx-question-list-view-previous)
+   ("n" sx-question-list-next)
    ("p" sx-question-list-previous)
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
@@ -303,7 +307,8 @@ into consideration.
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)))
+   ([?\r] sx-display-question)
+   ))
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
