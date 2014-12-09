@@ -33,7 +33,6 @@
         sx-interaction
         sx-method
         sx-networks
-        sx.org
         sx-question
         sx-question-list
         sx-question-mode
