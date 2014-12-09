@@ -1,4 +1,4 @@
-;;; sx-question-print.el --- Populating the question-mode buffer with content.
+;;; sx-question-print.el --- Populating the question-mode buffer with content. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

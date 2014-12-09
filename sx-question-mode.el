@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Creating the buffer that displays questions
+;;; sx-question-mode.el --- Major-mode for displaying a question. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

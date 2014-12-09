@@ -1,4 +1,4 @@
-;;; sx-request.el --- requests and url manipulation  -*- lexical-binding: t; -*-
+;;; sx-request.el --- Requests and url manipulation.  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -188,7 +188,7 @@ false, use the symbol `false'.  Each element is processed with
        (concat
         (sx--thing-as-string (car pair))
         "="
-        (sx--thing-as-string (cdr pair) kv-sep)))
+        (sx--thing-as-string (cdr pair) kv-sep t)))
      (delq nil (mapcar
                 (lambda (pair)
                   (when (cdr pair) pair))
