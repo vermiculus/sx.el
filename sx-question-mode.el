@@ -193,7 +193,10 @@ Letters do not insert themselves; instead, they are commands.
 (mapc
  (lambda (x) (define-key sx-question-mode-map
           (car x) (cadr x)))
- `(("n" sx-question-mode-next-section)
+ `(
+   ([down] sx-question-mode-next-section)
+   ([up] sx-question-mode-previous-section)
+   ("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("c" sx-comment)
