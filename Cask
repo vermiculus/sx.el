@@ -9,6 +9,7 @@
 (depends-on "url")
 (depends-on "cl-lib")
 (depends-on "markdown-mode")
+(depends-on "let-alist")
 
 (development
  (depends-on "ert"))
