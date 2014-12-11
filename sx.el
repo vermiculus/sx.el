@@ -197,7 +197,7 @@ Anything before the (sub)domain is removed."
    (eval-when-compile
      (concat "\\1" (if (char-displayable-p ?…) "…" "...")))
    ;; Remove anything before subdomain.
-   (replace-regexp-in-string 
+   (replace-regexp-in-string
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
 
@@ -235,7 +235,7 @@ blocks."
   "Overlays created by sx on this buffer.")
 (make-variable-buffer-local 'sx--overlays)
 
-(defvar sx--overlay-printing-depth 0 
+(defvar sx--overlay-printing-depth 0
   "Track how many overlays we're printing on top of each other.
 Used for assigning higher priority to inner overlays.")
 (make-variable-buffer-local 'sx--overlay-printing-depth)
@@ -264,7 +264,7 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defvar sx--ascii-replacement-list  
+(defvar sx--ascii-replacement-list
   '(("[:space:]" . "")
     ("àåáâäãåą" .  "a")
     ("èéêëę" .  "e")
