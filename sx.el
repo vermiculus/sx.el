@@ -1,4 +1,4 @@
-;;; sx.el --- core functions of the sx package.
+;;; sx.el --- StackExchange client
 
 ;; Copyright (C) 2014  Sean Allred
 
