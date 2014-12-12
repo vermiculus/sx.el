@@ -91,7 +91,7 @@ Return the entire response as a complex alist."
        ;; 1. Need auth and warn user (interactive use)
        ((and method-auth (equal 'warn auth))
         (user-error
-         "This request requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
+         "This request requires authentication.  Please run `M-x sx-authenticate' and try again."))
        ;; 2. Need auth to populate UI, cannot provide subset
        ((and method-auth auth)
         (setq call 'sx-request-fallback))

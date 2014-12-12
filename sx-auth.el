@@ -80,7 +80,8 @@ will be (METHOD  . t)")
 Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
 FILTER).")
 
-(defun sx-auth-authenticate ()
+;;;###autoload
+(defun sx-authenticate ()
   "Authenticate this application.
 Authentication is required to read your personal data (such as
 notifications) and to write with the API (asking and answering
@@ -125,8 +126,6 @@ parsed and displayed prominently on the page)."
       (progn (setq sx-auth-access-token nil)
              (error "You must enter this code to use this client fully"))
     (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
-
-(defalias 'sx-authenticate #'sx-auth-authenticate)
 
 (defun sx-auth--method-p (method &optional submethod)
   "Check if METHOD is one that may require authentication.
