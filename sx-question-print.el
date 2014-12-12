@@ -23,11 +23,9 @@
 ;;; Code:
 (require 'markdown-mode)
 (require 'sx-button)
-(eval-when-compile
-  (require 'rx))
-
 (require 'sx)
 (require 'sx-question)
+(require 'sx-babel)
 
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
@@ -431,29 +429,18 @@ If ID is nil, use FALLBACK-ID instead."
   "If there's a pre block ahead, handle it, skip it and return t.
 Handling means to turn it into a button and remove erroneous
 font-locking."
-  (let (beg end text)
+  (let (beg end)
     (when (markdown-match-pre-blocks
            (save-excursion
              (skip-chars-forward "\r\n[:blank:]")
              (setq beg (point))))
       (setq end (point))
-      (setq text
-            (sx--unindent-text
-             (buffer-substring
-              (save-excursion
-                (goto-char beg)
-                (line-beginning-position))
-              end)))
-      (put-text-property beg end 'display nil)
-      (make-text-button
-       beg             end
-       'face           'markdown-pre-face
-       'sx-button-copy text
-       :type 'sx-question-mode-code-block))))
+      (sx-babel--make-pre-button
+       (save-excursion
+         (goto-char beg)
+         (line-beginning-position))
+       end))))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
 
-;; Local Variables:
-;; lexical-binding: t
-;; End:
