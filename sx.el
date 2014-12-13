@@ -297,10 +297,11 @@ DATA can also be the link itself."
   "Add a `site' property to DATA if it doesn't have one. Return DATA.
 DATA can be a question, answer, comment, or user (or any object
 with a `link' property)."
-  (unless (assq 'site data)
-    (setcdr data (cons (cons 'site (sx--site data))
-                       (cdr data))))
-  data)
+  (when data
+    (unless (assq 'site data)
+      (setcdr data (cons (cons 'site (sx--site data))
+                         (cdr data))))
+    data))
 
 (defmacro sx-assoc-let (alist &rest body)
   "Identical to `let-alist', except `.site' has a special meaning.
