@@ -62,7 +62,9 @@ Returns the question buffer."
     (sx-question-mode--erase-and-print-question data)))
 
 (defun sx-question-mode--erase-and-print-question (data)
-  "Erase contents of buffer and print question given by DATA."
+  "Erase contents of buffer and print question given by DATA.
+Also marks the question as read with `sx-question--mark-read'."
+  (sx-question--mark-read data)
   (let ((inhibit-read-only t))
     (erase-buffer)
     (sx-question-mode)
