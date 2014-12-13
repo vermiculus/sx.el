@@ -1,4 +1,4 @@
-;;; sx.el --- core functions of the sx package.
+;;; sx.el --- StackExchange client
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -200,34 +200,6 @@ Anything before the (sub)domain is removed."
    (replace-regexp-in-string
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
-
-(defun sx--unindent-text (text)
-  "Remove indentation from TEXT.
-Primarily designed to extract the content of markdown code
-blocks."
-  (with-temp-buffer
-    (insert text)
-    (goto-char (point-min))
-    (let (result)
-      ;; Get indentation of each non-blank line
-      (while (null (eobp))
-        (skip-chars-forward "[:blank:]")
-        (unless (looking-at "$")
-          (push (current-column) result))
-        (forward-line 1))
-      (when result
-        ;; Build a regexp with the smallest indentation
-        (let ((rx (format "^ \\{0,%s\\}"
-                    (apply #'min result))))
-          (goto-char (point-min))
-          ;; Use this regexp to remove that much indentation
-          ;; throughout the buffer.
-          (while (and (null (eobp))
-                      (search-forward-regexp rx nil 'noerror))
-            (replace-match "")
-            (forward-line 1)))))
-    ;; Return the buffer
-    (buffer-string)))
 
 
 ;;; Printing request data

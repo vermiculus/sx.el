@@ -186,6 +186,8 @@ structure. This list is very loosely ordered form low to high-level.
 - ~sx-question-print.el~ - Populating the question buffer with
   content. Used by ~sx-question-mode.el~ to actually print the content
   of a question.
+- ~sx-babel.el~ - Font-locking code blocks printed by
+  ~sx-question-print.el~ according to the language.
 
 - ~sx-compose.el~ - Major-mode for composing questions and answers.
 - ~sx-interaction.el~ - Voting, commenting, and otherwise interacting with questions.
