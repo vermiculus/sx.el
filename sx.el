@@ -6,7 +6,7 @@
 ;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
-;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0"))
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -197,7 +197,7 @@ Anything before the (sub)domain is removed."
    (eval-when-compile
      (concat "\\1" (if (char-displayable-p ?…) "…" "...")))
    ;; Remove anything before subdomain.
-   (replace-regexp-in-string 
+   (replace-regexp-in-string
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
 
@@ -207,7 +207,7 @@ Anything before the (sub)domain is removed."
   "Overlays created by sx on this buffer.")
 (make-variable-buffer-local 'sx--overlays)
 
-(defvar sx--overlay-printing-depth 0 
+(defvar sx--overlay-printing-depth 0
   "Track how many overlays we're printing on top of each other.
 Used for assigning higher priority to inner overlays.")
 (make-variable-buffer-local 'sx--overlay-printing-depth)
@@ -236,7 +236,7 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defvar sx--ascii-replacement-list  
+(defvar sx--ascii-replacement-list
   '(("[:space:]" . "")
     ("àåáâäãåą" .  "a")
     ("èéêëę" .  "e")
@@ -280,7 +280,7 @@ removed from the display name before it is returned."
     string))
 
 
-;;; Assoc-let
+;;; Site
 (defun sx--site (data)
   "Get the site in which DATA belongs.
 DATA can be a question, answer, comment, or user (or any object
@@ -293,47 +293,22 @@ DATA can also be the link itself."
        "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
        "\\1\\2" link))))
 
-(defun sx--deep-dot-search (data)
-  "Find symbols somewhere inside DATA which start with a `.'.
-Returns a list where each element is a cons cell.  The car is the
-symbol, the cdr is the symbol without the `.'."
-  (cond
-   ((symbolp data)
-    (let ((name (symbol-name data)))
-      (when (string-match "\\`\\." name)
-        ;; Return the cons cell inside a list, so it can be appended
-        ;; with other results in the clause below.
-        (list (cons data (intern (replace-match "" nil nil name)))))))
-   ((not (listp data)) nil)
-   (t (apply
-       #'append
-       (remove nil (mapcar #'sx--deep-dot-search data))))))
+(defun sx--ensure-site (data)
+  "Add a `site' property to DATA if it doesn't have one. Return DATA.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property)."
+  (unless (assq 'site data)
+    (setcdr data (cons (cons 'site (sx--site data))
+                       (cdr data))))
+  data)
 
 (defmacro sx-assoc-let (alist &rest body)
-  "Use dotted symbols let-bound to their values in ALIST and execute BODY.
-Dotted symbol is any symbol starting with a `.'.  Only those
-present in BODY are letbound, which leads to optimal performance.
-The .site symbol is special, it is derived from the .link symbol
-using `sx--site'.
-
-For instance, the following code
-
-  (sx-assoc-let alist
-    (list .title .body))
-
-is equivalent to
-
-  (let ((.title (cdr (assoc 'title alist)))
-        (.body (cdr (assoc 'body alist))))
-    (list .title .body))"
+  "Identical to `let-alist', except `.site' has a special meaning.
+If ALIST doesn't have a `site' property, one is created using the
+`link' property."
   (declare (indent 1) (debug t))
-  (let* ((symbol-alist (sx--deep-dot-search body))
-         (has-site (assoc '.site symbol-alist)))
-    `(let ,(append
-            (when has-site `((.site (sx--site (cdr (assoc 'link ,alist))))))
-            (mapcar (lambda (x) `(,(car x) (cdr (assoc ',(cdr x) ,alist))))
-                    (remove '(.site . site) (delete-dups symbol-alist))))
-       ,@body)))
+  `(progn (sx--ensure-site ,alist)
+          (let-alist ,alist ,@body)))
 
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.

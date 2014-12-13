@@ -9,7 +9,7 @@
 (defvar sx-test-data-dir
   (expand-file-name
    "data-samples/"
-   (or (file-name-directory load-file-name) "./")))
+   (file-name-directory (or load-file-name "./"))))
 
 (defun sx-test-sample-data (method &optional directory)
   (let ((file (concat (when directory (concat directory "/"))
@@ -106,31 +106,33 @@
     (goto-char (point-min))
     (should (equal (buffer-name) "*question-list*"))
     (line-should-match
-     "^\\s-+1\\s-+0\\s-+Focus-hook: attenuate colours when losing focus [ 0-9]+[ydhms] ago\\s-+\\[frames\\] \\[hooks\\] \\[focus\\]")
+     "^\\s-+1\\s-+0\\s-+Focus-hook: attenuate colours when losing focus [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[frames\\] \\[hooks\\] \\[focus\\]")
     (sx-question-list-next 5)
     (line-should-match
-     "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+[ydhms] ago\\s-+\\[org-mode\\]")
+     "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[org-mode\\]")
     ;; ;; Use this when we have a real sx-question buffer.
     ;; (call-interactively 'sx-question-list-display-question)
     ;; (should (equal (buffer-name) "*sx-question*"))
     (switch-to-buffer "*question-list*")
     (sx-question-list-previous 4)
     (line-should-match
-     "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+[ydhms] ago\\s-+\\[autocomplete\\]")))
+     "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[autocomplete\\]")))
 
 (ert-deftest macro-test--sx-assoc-let ()
   "Tests macro expansion for `sx-assoc-let'"
   (should
-   (equal '(let ((.test (cdr (assoc 'test data))))
-             .test)
-          (macroexpand
+   (equal '(progn (sx--ensure-site data)
+                  (let ((.test (cdr (assq 'test data))))
+                    .test))
+          (macroexpand-all
            '(sx-assoc-let data
               .test))))
   (should
-   (equal '(let ((.test-one (cdr (assoc 'test-one data)))
-                 (.test-two (cdr (assoc 'test-two data))))
-             (cons .test-one .test-two))
-          (macroexpand
+   (equal '(progn (sx--ensure-site data)
+                  (let ((.test-one (cdr (assq 'test-one data)))
+                        (.test-two (cdr (assq 'test-two data))))
+                    (cons .test-one .test-two)))
+          (macroexpand-all
            '(sx-assoc-let data
               (cons .test-one .test-two))))))
 
