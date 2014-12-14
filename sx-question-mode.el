@@ -190,7 +190,10 @@ property."
     ": Answer"
     "    "
     (:propertize "e" face mode-line-buffer-id)
-    ": Edit")
+    ": Edit"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
   "Header-line used on the question list.")
 
 (define-derived-mode sx-question-mode special-mode "Question"

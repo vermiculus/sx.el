@@ -205,7 +205,10 @@ This is ignored if `sx-question-list--refresh-function' is set.")
     ": View question"
     "    "
     (:propertize "v" face mode-line-buffer-id)
-    ": Visit externally")
+    ": Visit externally"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
   "Header-line used on the question list.")
 
 
