@@ -268,7 +268,3 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
-
-;; Local Variables:
-;; lexical-binding: t
-;; End:

@@ -1,4 +1,4 @@
-;;; sx.el --- StackExchange client
+;;; sx.el --- StackExchange client. Ask and answer questions on Stack Overflow, Super User, and the likes. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -35,7 +35,6 @@
   :prefix "sx-"
   :tag "SX"
   :group 'applications)
-
 
 
 ;;; User commands
@@ -360,5 +359,4 @@ If FORCE is non-nil, run them even if they've already been run."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:

@@ -175,5 +175,4 @@ If no cache exists for it, initialize one with SITE."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:
