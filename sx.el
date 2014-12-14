@@ -31,7 +31,7 @@
 (defconst sx-version "0.1" "Version of the `sx' package.")
 
 (defgroup sx nil
-  "Customization group for sx-question-mode."
+  "Customization group for the `sx' package."
   :prefix "sx-"
   :tag "SX"
   :group 'applications)
