@@ -300,8 +300,8 @@ into consideration.
           (car x) (cadr x)))
  '(
    ;; S-down and S-up would collide with `windmove'.
-   ([down] sx-question-list-view-next)
-   ([up] sx-question-list-view-previous)
+   ([down] sx-question-list-next)
+   ([up] sx-question-list-previous)
    ("n" sx-question-list-next)
    ("p" sx-question-list-previous)
    ("j" sx-question-list-view-next)
