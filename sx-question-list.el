@@ -196,6 +196,21 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
+(defvar sx-question-list--header-line
+  '("    "
+    (:propertize "n p j k" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "RET" face mode-line-buffer-id)
+    ": View question"
+    "    "
+    (:propertize "v" face mode-line-buffer-id)
+    ": Visit externally"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used on the question list.")
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
@@ -266,7 +281,7 @@ into consideration.
     #'sx-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
     #'sx-question-list--update-mode-line nil t)
-  (tabulated-list-init-header))
+  (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
   "Parameter which controls date sorting."
@@ -288,8 +303,8 @@ into consideration.
           (car x) (cadr x)))
  '(
    ;; S-down and S-up would collide with `windmove'.
-   ([down] sx-question-list-view-next)
-   ([up] sx-question-list-view-previous)
+   ([down] sx-question-list-next)
+   ([up] sx-question-list-previous)
    ("n" sx-question-list-next)
    ("p" sx-question-list-previous)
    ("j" sx-question-list-view-next)

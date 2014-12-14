@@ -175,12 +175,34 @@ property."
 
 
 ;;; Major-mode
+(defvar sx-question-mode--header-line
+  '("    "
+    (:propertize "n p TAB" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "u d" face mode-line-buffer-id)
+    ": Up/Down Vote"
+    "    "
+    (:propertize "c" face mode-line-buffer-id)
+    ": Comment"
+    "    "
+    (:propertize "a" face mode-line-buffer-id)
+    ": Answer"
+    "    "
+    (:propertize "e" face mode-line-buffer-id)
+    ": Edit"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used on the question list.")
+
 (define-derived-mode sx-question-mode special-mode "Question"
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  (setq header-line-format sx-question-mode--header-line)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
