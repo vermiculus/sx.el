@@ -26,11 +26,7 @@
 
 (require 'sx)
 (require 'sx-question-list)
-
-(defcustom sx-tab-default-site "emacs"
-  "Name of the site to use by default when listing questions."
-  :type 'string
-  :group 'sx)
+(require 'sx-interaction)
 
 (defvar sx-tab--list nil
   "List of the names of all defined tabs.")
@@ -43,17 +39,6 @@
            (lambda (tab) (not (equal tab sx-question-list--current-tab)))
            t)))
   (funcall (intern (format "sx-tab-%s" (downcase tab)))))
-
-(defun sx-tab--interactive-site-prompt ()
-  "Query the user for a site."
-  (let ((default (or sx-question-list--site
-                     (sx-assoc-let sx-question-mode--data
-                       .site)
-                     sx-tab-default-site)))
-    (funcall (if ido-mode #'ido-completing-read #'completing-read)
-      (format "Site (%s): " default)
-      (sx-site-get-api-tokens) nil t nil nil
-      default)))
 
 
 ;;; The main macro
@@ -91,7 +76,7 @@ If SITE is nil, use `sx-tab-default-site'."
             tab)
          (interactive
           (list current-prefix-arg
-                (sx-tab--interactive-site-prompt)))
+                (sx--interactive-site-prompt)))
          (sx-initialize)
          (unless site (setq site sx-tab-default-site))
          ;; Create the buffer

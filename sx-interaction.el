@@ -44,7 +44,6 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
-(require 'sx-tab)
 
 
 ;;; Using data in buffer
@@ -299,6 +298,21 @@ from context at point."
 
 
 ;;; Asking
+(defcustom sx-default-site "emacs"
+  "Name of the site to use by default when listing questions."
+  :type 'string
+  :group 'sx)
+
+(defun sx--interactive-site-prompt ()
+  "Query the user for a site."
+  (let ((default (or sx-question-list--site
+                     (sx-assoc-let sx-question-mode--data .site)
+                     sx-default-site)))
+    (funcall (if ido-mode #'ido-completing-read #'completing-read)
+      (format "Site (%s): " default)
+      (sx-site-get-api-tokens) nil t nil nil
+      default)))
+
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
@@ -308,7 +322,7 @@ SITE is a string, indicating where the question will be posted."
      (sx-compose-create
       site nil nil
       ;; After send functions
-      (list (lambda (_ res) (sx--maybe-update-display buffer)))))))
+      (list (lambda (_b _res) (sx--maybe-update-display buffer)))))))
 
 
 ;;; Answering
