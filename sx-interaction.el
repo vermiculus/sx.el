@@ -316,7 +316,7 @@ from context at point."
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
-  (interactive (list (sx-tab--interactive-site-prompt)))
+  (interactive (list (sx--interactive-site-prompt)))
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
