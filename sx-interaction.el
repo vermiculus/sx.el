@@ -85,7 +85,7 @@ If it's not a question, or if it is read, return DATA."
   ;; If we found a question, we may need to check if it's read.
   (if (and (assoc 'title data)
            (null (sx-question--read-p data)))
-      (user-error "Question not yet read. View it before acting on it")
+      (sx-user-error "Question not yet read. View it before acting on it")
     data))
 
 (defun sx--maybe-update-display (&optional buffer)
@@ -286,7 +286,7 @@ from context at point."
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
-    (when .comment_id (user-error "Editing comments is not supported yet"))
+    (when .comment_id (sx-user-error "Editing comments is not supported yet"))
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create

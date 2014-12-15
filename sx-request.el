@@ -156,7 +156,7 @@ the main content of the response is returned."
                             sx-request-remaining-api-requests))
               (sx-encoding-clean-content-deep .items)))))))
 
-(defun sx-request-fallback (method &optional args request-method)
+(defun sx-request-fallback (_method &optional _args _request-method)
   "Fallback method when authentication is not available.
 This is for UI generation when the associated API call would
 require authentication.

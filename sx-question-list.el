@@ -331,7 +331,7 @@ Non-interactively, DATA is a question alist."
   (interactive
    (list (if (derived-mode-p 'sx-question-list-mode)
              (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
+           (sx-user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-hidden data)
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
@@ -342,7 +342,7 @@ Non-interactively, DATA is a question alist."
   (interactive
    (list (if (derived-mode-p 'sx-question-list-mode)
              (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
+           (sx-user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-read data)
   (sx-question-list-next 1)
   (when (called-interactively-p 'any)
@@ -447,9 +447,8 @@ Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
-  (sx-display-question
-   (tabulated-list-get-id)
-   nil 
+  (sx-question-mode--display
+   (tabulated-list-get-id) 
    (sx-question-list--create-question-window)))
 
 (defun sx-question-list--create-question-window ()

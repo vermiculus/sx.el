@@ -225,8 +225,8 @@ other keywords are read from the header "
           (unless (search-forward-regexp "^Tags : *\\([^[:space:]].*\\) *$"
                                          header-end 'noerror)
             (error "No Tags header found"))
-          (push (cons 'tags (split-string (match-string 1) "[[:space:],;]"
-                                          'omit-nulls "[[:space:]]"))
+          (push (cons 'tags (split-string (match-string 1)
+                                          "[[:space:],;]" 'omit-nulls))
                 keywords)
           ;; And erase the header so it doesn't get sent.
           (delete-region

@@ -51,7 +51,8 @@
   '((((type x w32 ns) (class color))	; Like default mode line
      :box (:line-width 2 :style released-button)
      :background "lightgrey" :foreground "black"))
-  "Face used on buttons such as \"Write an Answer\".")
+  "Face used on buttons such as \"Write an Answer\"."
+  :group 'sx)
 
 
 ;;; Command definitions
@@ -96,7 +97,7 @@ code-block."
   (interactive)
   (browse-url
    (or (get-text-property (or pos (point)) 'sx-button-url)
-       (user-error "No url under point: %s" (or pos (point))))))
+       (sx-user-error "No url under point: %s" (or pos (point))))))
 
 
 ;;; Help-echo definitions
