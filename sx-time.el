@@ -42,7 +42,7 @@
 
 (defun sx-time-since (time)
   "Convert the time interval since TIME (in seconds) to a short string."
-  (let ((delay (- (time-to-seconds) time)))
+  (let ((delay (- (float-time) time)))
     (concat
      (if (> 0 delay) "-" "")
      (if (= 0 delay) "0s"
