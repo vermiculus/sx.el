@@ -104,6 +104,11 @@ is intentionally skipped."
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
+(defun sx-user-error (format-string &rest args)
+  "Like `user-error', but prepend FORMAT-STRING with \"[sx]\".
+See `format'."
+  (signal 'user-error (list (apply #'format (concat "[sx] " format) args))))
+
 (defun sx-message (format-string &rest args)
   "Display FORMAT-STRING as a message with ARGS.
 See `format'."

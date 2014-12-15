@@ -96,7 +96,7 @@ code-block."
   (interactive)
   (browse-url
    (or (get-text-property (or pos (point)) 'sx-button-url)
-       (user-error "No url under point: %s" (or pos (point))))))
+       (sx-user-error "No url under point: %s" (or pos (point))))))
 
 
 ;;; Help-echo definitions
