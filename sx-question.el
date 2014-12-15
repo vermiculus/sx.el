@@ -142,8 +142,7 @@ If no cache exists for it, initialize one with SITE."
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
   (sx-assoc-let question
-    (let ((site-cell (assoc .site sx-question--user-hidden-list))
-          cell)
+    (let ((site-cell (assoc .site sx-question--user-hidden-list)))
       ;; If question already hidden, do nothing.
       (unless (memq .question_id site-cell)
         ;; First question from this site.
