@@ -72,13 +72,13 @@ variables, but before refreshing the display."
          ,(format "Display a list of %s questions for SITE.
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
-If SITE is nil, use `sx-tab-default-site'."
+If SITE is nil, use `sx-default-site'."
             tab)
          (interactive
           (list current-prefix-arg
                 (sx--interactive-site-prompt)))
          (sx-initialize)
-         (unless site (setq site sx-tab-default-site))
+         (unless site (setq site sx-default-site))
          ;; Create the buffer
          (unless (buffer-live-p ,buffer-variable)
            (setq ,buffer-variable
