@@ -51,7 +51,8 @@
   '((((type x w32 ns) (class color))	; Like default mode line
      :box (:line-width 2 :style released-button)
      :background "lightgrey" :foreground "black"))
-  "Face used on buttons such as \"Write an Answer\".")
+  "Face used on buttons such as \"Write an Answer\"."
+  :group 'sx)
 
 
 ;;; Command definitions
