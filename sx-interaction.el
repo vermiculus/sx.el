@@ -60,7 +60,7 @@ If no object of the requested type could be returned, an error is
 thrown unless NOERROR is non-nil."
   (or (let ((data (get-char-property (point) 'sx--data-here)))
         (if (null type) data
-          (sx-assoc-let type
+          (sx-assoc-let data
             ;; Is data of the right type?
             (cl-case type
               (question (when .title data))
