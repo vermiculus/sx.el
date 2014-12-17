@@ -234,8 +234,8 @@ TEXT is a string. Interactively, it is read from the minibufer."
                   "Comment text: "
                   (when .comment_id
                     (concat (sx--user-@name .owner) " "))))
-      (while (< (string-width text) 15)
-        (setq text (read-string "Comment text (at least 15 characters): " text))))
+      (while (not (sx--comment-valid-p text 'silent))
+        (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
     (unless (stringp text)
       (error "Comment body must be a string"))
@@ -258,6 +258,18 @@ TEXT is a string. Interactively, it is read from the minibufer."
            data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
+
+(defun sx--comment-valid-p (&optional text silent)
+  "Non-nil if TEXT fits stack exchange comment length limits.
+If TEXT is nil, use `buffer-string'. Must have more than 15 and
+less than 601 characters.
+If SILENT is nil, message the user about this limit."
+  (let ((w (string-width (or text (buffer-string)))))
+    (if (and (< 15 w) (< w 601))
+        t
+      (unless silent
+        (message "Comments must be within 16 and 600 characters."))
+      nil)))
 
 (defun sx--get-post (type site id)
   "Find in the database a post identified by TYPE, SITE and ID.
