@@ -362,10 +362,11 @@ E.g.:
     (while (null (eobp))
       ;; Don't fill pre blocks.
       (unless (sx-question-mode--dont-fill-here)
-        (skip-chars-forward "\r\n[:blank:]")
-        (fill-paragraph)
-        (forward-paragraph)))
-    (buffer-string)))
+        (let ((beg (point)))
+          (skip-chars-forward "\r\n[:blank:]")
+          (forward-paragraph)
+          (fill-region beg (point)))))
+    (string-trim-right (buffer-string))))
 
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
@@ -429,18 +430,21 @@ If ID is nil, use FALLBACK-ID instead."
   "If there's a pre block ahead, handle it, skip it and return t.
 Handling means to turn it into a button and remove erroneous
 font-locking."
-  (let (beg end)
-    (when (markdown-match-pre-blocks
+  (let ((before (point))
+        beg end)
+    (if (markdown-match-pre-blocks
+         (save-excursion
+           (skip-chars-forward "\r\n[:blank:]")
+           (setq beg (point))))
+        (progn
+          (setq end (point))
+          (sx-babel--make-pre-button
            (save-excursion
-             (skip-chars-forward "\r\n[:blank:]")
-             (setq beg (point))))
-      (setq end (point))
-      (sx-babel--make-pre-button
-       (save-excursion
-         (goto-char beg)
-         (line-beginning-position))
-       end))))
+             (goto-char beg)
+             (line-beginning-position))
+           end))
+      (goto-char before)
+      nil)))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
-
