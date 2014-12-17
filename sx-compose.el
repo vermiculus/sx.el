@@ -146,19 +146,22 @@ respectively added locally to `sx-compose-before-send-hook' and
       (error "Invalid PARENT"))
   (let ((is-question
          (and (listp parent)
-              (null (cdr (assoc 'answer_id parent))))))
+              (cdr (assoc 'title parent)))))
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
       (setq sx-compose--send-function
             (if (consp parent)
                 (sx-assoc-let parent
-                  (lambda () (sx-method-call (if .title 'questions 'answers)
+                  (lambda () (sx-method-call (cond
+                                         (.title 'questions)
+                                         (.comment_id 'comments)
+                                         (t 'answers))
                           :auth 'warn
                           :url-method "POST"
                           :filter sx-browse-filter
                           :site site
                           :keywords (sx-compose--generate-keywords is-question)
-                          :id (or .answer_id .question_id)
+                          :id (or .comment_id .answer_id .question_id)
                           :submethod 'edit)))
               (lambda () (sx-method-call 'questions
                       :auth 'warn
@@ -256,8 +259,13 @@ the id property."
        site data)))
    (t
     (get-buffer-create
-     (format "*sx draft edit %s %s*"
-       site (sx-assoc-let data (or .answer_id .question_id)))))))
+     (sx-assoc-let data
+       (format "*sx draft edit %s %s %s*"
+         site
+         (cond (.title "question")
+               (.comment_id "comment")
+               (t "answer"))
+         (or .comment_id .answer_id .question_id)))))))
 
 (provide 'sx-compose)
 ;;; sx-compose.el ends here
