@@ -128,6 +128,19 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+(defun sx-open-link (link)
+  "Visit element given by LINK inside Emacs.
+Element can be a question, answer, or comment."
+  (interactive "sLink: ")
+  (let ((data (sx--link-to-data link)))
+    (sx-assoc-let data
+      (cl-case .type
+        (answer
+         (sx-display-question
+          (sx-question-get-from-answer .site .id) 'focus))
+        (question
+         (sx-display-question
+          (sx-question-get-question .site .id) 'focus))))))
 
 
 ;;; Displaying
