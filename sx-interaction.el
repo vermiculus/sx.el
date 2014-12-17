@@ -93,10 +93,11 @@ If it's not a question, or if it is read, return DATA."
 If BUFFER is not live, nothing is done."
   (setq buffer (or buffer (current-buffer)))
   (when (buffer-live-p buffer)
-    (cond ((derived-mode-p 'sx-question-list-mode)
-           (sx-question-list-refresh 'redisplay 'no-update))
-          ((derived-mode-p 'sx-question-mode)
-           (sx-question-mode-refresh 'no-update)))))
+    (with-current-buffer buffer
+      (cond ((derived-mode-p 'sx-question-list-mode)
+             (sx-question-list-refresh 'redisplay 'no-update))
+            ((derived-mode-p 'sx-question-mode)
+             (sx-question-mode-refresh 'no-update))))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
