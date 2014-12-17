@@ -54,6 +54,20 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
       (error "Couldn't find question %S in %S"
              question-id site))))
 
+(defun sx-question-get-from-answer (site answer-id)
+  "Get question from SITE to which ANSWER-ID belongs.
+If ANSWER-ID doesn't exist on SITE, raise an error."
+  (let ((res (sx-method-call 'answers
+               :id answer-id
+               :site site
+               :submethod 'questions
+               :auth t
+               :filter sx-browse-filter)))
+    (if (vectorp res)
+        (elt res 0)
+      (error "Couldn't find answer %S in %S"
+             answer-id site))))
+
 
 ;;; Question Properties
 
