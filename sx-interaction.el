@@ -302,7 +302,9 @@ from context at point."
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
-        .site data nil
+        .site data
+        ;; Before send hook
+        (when .comment_id (list #'sx--comment-valid-p))
         ;; After send functions
         (list (lambda (_ res)
                 (sx--copy-data (elt res 0) data)
