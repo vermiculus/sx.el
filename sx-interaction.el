@@ -304,7 +304,6 @@ from context at point."
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
-    (when .comment_id (sx-user-error "Editing comments is not supported yet"))
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
