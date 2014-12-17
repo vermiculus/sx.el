@@ -117,9 +117,12 @@ contents to the API, then calls `sx-compose-after-send-functions'."
                               (current-buffer) result)))))
 
 (defun sx-compose-quit (buffer _)
-  "Kill BUFFER."
+  "Close BUFFER's window and kill it."
   (interactive (list (current-buffer) nil))
   (when (buffer-live-p buffer)
+    (let ((w (get-buffer-window buffer)))
+      (when (window-live-p w)
+        (delete-window w)))
     (kill-buffer buffer)))
 
 (defun sx-compose--copy-as-kill (buffer _)
