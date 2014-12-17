@@ -317,6 +317,22 @@ If ALIST doesn't have a `site' property, one is created using the
      (sx--ensure-site ,alist)
      (let-alist ,alist ,@body)))
 
+(defun sx--link-to-data (link)
+  "Convert string LINK into data that can be displayed."
+  (let ((result (list (cons 'site (sx--site link)))))
+    (when (or
+           ;; Answer
+           (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
+                    (string-match "/questions/[0-9]+/[^/]+/\\([0-9]\\)/?\\(#.*\\|\\)\\'" link))
+                (push (cons 'type 'answer) result))
+           ;; Question
+           (and (or (string-match "/q/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
+                    (string-match "/questions/\\([0-9]+\\)/" link))
+                (push (cons 'type 'question) result)))
+      (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
+            result))
+    result))
+
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.
 Run after `sx-init--internal-hook'."

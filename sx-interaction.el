@@ -128,6 +128,7 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+
 
 ;;; Displaying
 (defun sx-display-question (&optional data focus window)
