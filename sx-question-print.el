@@ -369,7 +369,7 @@ E.g.:
           (skip-chars-forward "\r\n[:blank:]")
           (forward-paragraph)
           (fill-region beg (point)))))
-    (string-trim-right (buffer-string))))
+    (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
