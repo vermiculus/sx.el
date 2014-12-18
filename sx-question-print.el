@@ -344,7 +344,7 @@ E.g.:
   "Return TEXT filled according to `markdown-mode'."
   (with-temp-buffer
     (insert text)
-    (markdown-mode)
+    (delay-mode-hooks (markdown-mode))
     (font-lock-mode -1)
     (when sx-question-mode-bullet-appearance
       (font-lock-add-keywords ;; Bullet items.

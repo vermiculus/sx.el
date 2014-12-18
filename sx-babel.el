@@ -56,11 +56,16 @@ on a match.")
       (insert text)
       (setq indent (sx-babel--unindent-buffer))
       (goto-char (point-min))
-      (make-text-button
-       (point-min) (point-max)
-       'sx-button-copy (buffer-string)
-       :type 'sx-question-mode-code-block)
-      (sx-babel--determine-and-activate-major-mode)
+      (let ((mode (sx-babel--determine-major-mode)))
+        (make-text-button
+         (point-min) (point-max)
+         'sx-button-copy (buffer-string)
+         ;; We store the mode here so it can be used if the user wants
+         ;; to edit the code block.
+         'sx-mode mode
+         :type 'sx-question-mode-code-block)
+        (when mode
+          (delay-mode-hooks (funcall mode))))
       (font-lock-fontify-region (point-min) (point-max))
       (goto-char (point-min))
       (let ((space (make-string indent ?\s)))
@@ -72,17 +77,18 @@ on a match.")
     (delete-region beg end)
     (insert text)))
 
-(defun sx-babel--determine-and-activate-major-mode ()
-  "Activate the major-mode most suitable for the current buffer."
+(defun sx-babel--determine-major-mode ()
+  "Return the major-mode most suitable for the current buffer."
   (let ((alist sx-babel-major-mode-alist)
-        cell)
+        cell out)
     (while (setq cell (pop alist))
       (goto-char (point-min))
       (skip-chars-forward "\r\n[:blank:]")
       (let ((kar (car cell)))
         (when (if (stringp kar) (looking-at kar) (funcall kar))
           (setq alist nil)
-          (funcall (cadr cell)))))))
+          (setq out (cadr cell)))))
+    out))
 
 (defun sx-babel--unindent-buffer ()
   "Remove absolute indentation in current buffer.
