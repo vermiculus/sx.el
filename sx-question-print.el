@@ -368,24 +368,8 @@ E.g.:
           (fill-region beg (point)))))
     (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
-(defun sx-question-mode--dont-fill-here ()
-  "If text shouldn't be filled here, return t and skip over it."
-  (catch 'sx-question-mode-done
-    (let ((before (point)))
-      (skip-chars-forward "\r\n[:blank:]")
-      (let ((first-non-blank (point)))
-        (dolist (it '(sx-question-mode--skip-and-fontify-pre
-                      sx-question-mode--skip-headline
-                      sx-question-mode--skip-references
-                      sx-question-mode--skip-comments))
-          ;; If something worked, keep point where it is and return t.
-          (if (funcall it) (throw 'sx-question-mode-done t)
-            ;; Before calling each new function. Go back to the first
-            ;; non-blank char.
-            (goto-char first-non-blank)))
-        ;; If nothing matched, go back to the very beginning.
-        (goto-char before)))))
-
+
+;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
   "Turn all markdown links in this buffer into compact format."
   (save-excursion
@@ -428,6 +412,26 @@ If ID is nil, use FALLBACK-ID instead."
                (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
+
+
+;;; Things we don't fill
+(defun sx-question-mode--dont-fill-here ()
+  "If text shouldn't be filled here, return t and skip over it."
+  (catch 'sx-question-mode-done
+    (let ((before (point)))
+      (skip-chars-forward "\r\n[:blank:]")
+      (let ((first-non-blank (point)))
+        (dolist (it '(sx-question-mode--skip-and-fontify-pre
+                      sx-question-mode--skip-headline
+                      sx-question-mode--skip-references
+                      sx-question-mode--skip-comments))
+          ;; If something worked, keep point where it is and return t.
+          (if (funcall it) (throw 'sx-question-mode-done t)
+            ;; Before calling each new function. Go back to the first
+            ;; non-blank char.
+            (goto-char first-non-blank)))
+        ;; If nothing matched, go back to the very beginning.
+        (goto-char before)))))
 
 (defun sx-question-mode--skip-and-fontify-pre ()
   "If there's a pre block ahead, handle it, skip it and return t.
