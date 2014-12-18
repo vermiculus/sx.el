@@ -375,6 +375,7 @@ E.g.:
       (skip-chars-forward "\r\n[:blank:]")
       (let ((first-non-blank (point)))
         (dolist (it '(sx-question-mode--skip-and-fontify-pre
+                      sx-question-mode--skip-headline
                       sx-question-mode--skip-comments))
           ;; If something worked, keep point where it is and return t.
           (if (funcall it) (throw 'sx-question-mode-done t)
@@ -442,6 +443,13 @@ font-locking."
   ;; @TODO: Handle the comment.
   ;; "Handling means to store any relevant metadata it might be holding."
   (markdown-match-comments (line-end-position)))
+
+(defun sx-question-mode--skip-headline ()
+  "If there's a headline ahead, skip it and return non-nil."
+  (when (or (looking-at-p "^#+ ")
+            (progn (forward-line 1) (looking-at-p "===\\|---")))
+    ;; Returns non-nil.
+    (forward-line 1)))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
