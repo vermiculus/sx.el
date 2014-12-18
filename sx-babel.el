@@ -51,31 +51,31 @@ on a match.")
 (defun sx-babel--make-pre-button (beg end)
   "Turn the region between BEG and END into a button."
   (let ((text (buffer-substring-no-properties beg end))
-        indent)
+        indent mode copy)
     (with-temp-buffer
       (insert text)
       (setq indent (sx-babel--unindent-buffer))
       (goto-char (point-min))
-      (let ((mode (sx-babel--determine-major-mode)))
-        (make-text-button
-         (point-min) (point-max)
-         'sx-button-copy (buffer-string)
-         ;; We store the mode here so it can be used if the user wants
-         ;; to edit the code block.
-         'sx-mode mode
-         :type 'sx-question-mode-code-block)
-        (when mode
-          (delay-mode-hooks (funcall mode))))
+      (setq mode (sx-babel--determine-major-mode))
+      (setq copy (string-trim-right (buffer-string)))
+      (when mode
+        (delay-mode-hooks (funcall mode)))
       (font-lock-fontify-region (point-min) (point-max))
       (goto-char (point-min))
       (let ((space (make-string indent ?\s)))
         (while (not (eobp))
-          (insert space)
+          (insert-and-inherit space)
           (forward-line 1)))
       (setq text (buffer-string)))
     (goto-char beg)
     (delete-region beg end)
-    (insert text)))
+    (insert-text-button
+     text
+     'sx-button-copy copy
+     ;; We store the mode here so it can be used if the user wants
+     ;; to edit the code block.
+     'sx-mode mode
+     :type 'sx-question-mode-code-block)))
 
 (defun sx-babel--determine-major-mode ()
   "Return the major-mode most suitable for the current buffer."
