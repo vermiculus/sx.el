@@ -374,6 +374,7 @@ E.g.:
 (defun sx-question-mode--dont-fill-here ()
   "If text shouldn't be filled here, return t and skip over it."
   (or (sx-question-mode--skip-and-fontify-pre)
+      (sx-question-mode--skip-comments)
       ;; Skip headers and references
       (let ((pos (point)))
         (skip-chars-forward "\r\n[:blank:]")
@@ -446,6 +447,17 @@ font-locking."
              (goto-char beg)
              (line-beginning-position))
            end))
+      (goto-char before)
+      nil)))
+
+(defun sx-question-mode--skip-comments ()
+  "If there's an html comment ahead, skip it and return t."
+  ;; @TODO: Handle the comment.
+  ;; "Handling means to store any relevant metadata it might be holding."
+  (let ((before (point)))
+    (skip-chars-forward "\r\n[:blank:]")
+    (if (markdown-match-comments (line-end-position))
+        t
       (goto-char before)
       nil)))
 
