@@ -93,10 +93,11 @@ If it's not a question, or if it is read, return DATA."
 If BUFFER is not live, nothing is done."
   (setq buffer (or buffer (current-buffer)))
   (when (buffer-live-p buffer)
-    (cond ((derived-mode-p 'sx-question-list-mode)
-           (sx-question-list-refresh 'redisplay 'no-update))
-          ((derived-mode-p 'sx-question-mode)
-           (sx-question-mode-refresh 'no-update)))))
+    (with-current-buffer buffer
+      (cond ((derived-mode-p 'sx-question-list-mode)
+             (sx-question-list-refresh 'redisplay 'no-update))
+            ((derived-mode-p 'sx-question-mode)
+             (sx-question-mode-refresh 'no-update))))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
@@ -215,8 +216,8 @@ TEXT is a string. Interactively, it is read from the minibufer."
                   "Comment text: "
                   (when .comment_id
                     (concat (sx--user-@name .owner) " "))))
-      (while (< (string-width text) 15)
-        (setq text (read-string "Comment text (at least 15 characters): " text))))
+      (while (not (sx--comment-valid-p text 'silent))
+        (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
     (unless (stringp text)
       (error "Comment body must be a string"))
@@ -239,6 +240,18 @@ TEXT is a string. Interactively, it is read from the minibufer."
            data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
+
+(defun sx--comment-valid-p (&optional text silent)
+  "Non-nil if TEXT fits stack exchange comment length limits.
+If TEXT is nil, use `buffer-string'. Must have more than 15 and
+less than 601 characters.
+If SILENT is nil, message the user about this limit."
+  (let ((w (string-width (or text (buffer-string)))))
+    (if (and (< 15 w) (< w 601))
+        t
+      (unless silent
+        (message "Comments must be within 16 and 600 characters."))
+      nil)))
 
 (defun sx--get-post (type site id)
   "Find in the database a post identified by TYPE, SITE and ID.
@@ -286,11 +299,12 @@ from context at point."
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
-    (when .comment_id (sx-user-error "Editing comments is not supported yet"))
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
-        .site data nil
+        .site data
+        ;; Before send hook
+        (when .comment_id (list #'sx--comment-valid-p))
         ;; After send functions
         (list (lambda (_ res)
                 (sx--copy-data (elt res 0) data)

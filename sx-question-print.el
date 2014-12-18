@@ -290,18 +290,22 @@ The comment is indented, filled, and then printed according to
   (sx--wrap-in-overlay
       (list 'sx--data-here comment-data)
     (sx-assoc-let comment-data
-      (insert
+      (when (> .score 0) 
+        (insert (number-to-string .score)
+                (if (eq .upvoted t) "^" "")
+                " "))
+      (insert 
        (format
-        sx-question-mode-comments-format
-        (sx-question-mode--propertize-display-name .owner)
-        (substring
-         ;; We fill with three spaces at the start, so the comment is
-         ;; slightly indented.
-         (sx-question-mode--fill-and-fontify
-          (concat "   " .body_markdown))
-         ;; Then we remove the spaces from the first line, since we'll
-         ;; add the username there anyway.
-         3))))))
+           sx-question-mode-comments-format
+         (sx-question-mode--propertize-display-name .owner)
+         (substring
+          ;; We fill with three spaces at the start, so the comment is
+          ;; slightly indented.
+          (sx-question-mode--fill-and-fontify
+           (concat "   " .body_markdown))
+          ;; Then we remove the spaces from the first line, since we'll
+          ;; add the username there anyway.
+          3))))))
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert propertized ARGS.
