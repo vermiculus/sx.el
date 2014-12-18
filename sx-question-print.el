@@ -290,10 +290,11 @@ The comment is indented, filled, and then printed according to
   (sx--wrap-in-overlay
       (list 'sx--data-here comment-data)
     (sx-assoc-let comment-data
-      (insert
-       (if (> .score 0) (number-to-string .score) "")
-       (if (eq .upvoted t) "^"                    "")
-       (if (or (> .score 0) .upvoted) " "         "")
+      (when (> .score 0) 
+        (insert (number-to-string .score)
+                (if (eq .upvoted t) "^" "")
+                " "))
+      (insert 
        (format
            sx-question-mode-comments-format
          (sx-question-mode--propertize-display-name .owner)
