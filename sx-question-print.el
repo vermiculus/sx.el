@@ -434,7 +434,9 @@ If ID is nil, use FALLBACK-ID instead."
             ;; non-blank char.
             (goto-char first-non-blank)))
         ;; If nothing matched, go back to the very beginning.
-        (goto-char before)))))
+        (goto-char before)
+        ;; And return nil
+        nil))))
 
 (defun sx-question-mode--skip-and-fontify-pre ()
   "If there's a pre block ahead, handle it, skip it and return t.
@@ -444,7 +446,8 @@ font-locking."
     ;; To identify code-blocks we need to be at start of line.
     (goto-char beg)
     (when (markdown-match-pre-blocks (line-end-position))
-      (sx-babel--make-pre-button beg (point)))))
+      (sx-babel--make-pre-button beg (point))
+      t)))
 
 (defun sx-question-mode--skip-comments ()
   "If there's an html comment ahead, skip it and return t."
