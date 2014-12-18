@@ -376,6 +376,7 @@ E.g.:
       (let ((first-non-blank (point)))
         (dolist (it '(sx-question-mode--skip-and-fontify-pre
                       sx-question-mode--skip-headline
+                      sx-question-mode--skip-references
                       sx-question-mode--skip-comments))
           ;; If something worked, keep point where it is and return t.
           (if (funcall it) (throw 'sx-question-mode-done t)
@@ -449,6 +450,12 @@ font-locking."
   (when (or (looking-at-p "^#+ ")
             (progn (forward-line 1) (looking-at-p "===\\|---")))
     ;; Returns non-nil.
+    (forward-line 1)))
+
+(defun sx-question-mode--skip-references ()
+  "If there's a reference ahead, skip it and return non-nil."
+  (while (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+    ;; Returns non-nil
     (forward-line 1)))
 
 (provide 'sx-question-print)
