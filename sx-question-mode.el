@@ -120,10 +120,8 @@ Prefix argument N moves N sections down or up."
         ;; If all we did was move out the current one, then move again
         ;; and we're guaranteed to reach the next section.
         (sx-question-mode--goto-property-change 'section n))
-      (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
-        (unless (and (overlayp ov)
-                     (overlay-get ov 'invisible))
-          (cl-decf count)))))
+      (unless (get-char-property (point) 'invisible)
+        (cl-decf count))))
   (when (equal (selected-window) (get-buffer-window))
     (when sx-question-mode-recenter-line
       (let ((ov (sx-question-mode--section-overlays-at (line-end-position))))

@@ -238,8 +238,7 @@ DATA can represent a question or an answer."
         ;; Body
         (insert "\n"
                 (propertize sx-question-mode-separator
-                            'face 'sx-question-mode-header
-                            'sx-question-mode--section 4))
+                            'face 'sx-question-mode-header))
         (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
           (insert "\n"
