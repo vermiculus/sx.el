@@ -136,13 +136,18 @@ the main content of the response is returned."
                          (delete-region (point-min) (point))
                          (buffer-string))))
                (response-zipped-p (sx-encoding-gzipped-p data))
-               (data (if (not response-zipped-p) data
-                       (if (fboundp 'zlib-decompress-region)
-                           (zlib-decompress-region (point-min) (point-max))
-                         (shell-command-on-region
-                          (point-min) (point-max)
-                          sx-request-unzip-program nil t))
-                       (buffer-string)))
+               (data
+                ;; Turn string of bytes into string of characters. See
+                ;; http://emacs.stackexchange.com/q/4100/50
+                (decode-coding-string
+                 (if (not response-zipped-p) data
+                   (if (fboundp 'zlib-decompress-region)
+                       (zlib-decompress-region (point-min) (point-max))
+                     (shell-command-on-region
+                      (point-min) (point-max)
+                      sx-request-unzip-program nil t))
+                   (buffer-string))
+                 'utf-8 'nocopy))
                ;; @TODO should use `condition-case' here -- set
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
