@@ -70,7 +70,11 @@
 (defcustom sx-request-unzip-program
   "gunzip"
   "Program used to unzip the response if it is compressed.
-This program must accept compressed data on standard input."
+This program must accept compressed data on standard input.
+
+This is only used (and necessary) if the function
+`zlib-decompress-region' is not defined, which is the case for
+Emacs versions < 24.4."
   :group 'sx
   :type 'string)
 
@@ -133,10 +137,11 @@ the main content of the response is returned."
                          (buffer-string))))
                (response-zipped-p (sx-encoding-gzipped-p data))
                (data (if (not response-zipped-p) data
-                       (shell-command-on-region
-                        (point-min) (point-max)
-                        sx-request-unzip-program
-                        nil t)
+                       (if (fboundp 'zlib-decompress-region)
+                           (zlib-decompress-region (point-min) (point-max))
+                         (shell-command-on-region
+                          (point-min) (point-max)
+                          sx-request-unzip-program nil t))
                        (buffer-string)))
                ;; @TODO should use `condition-case' here -- set
                ;; RESPONSE to 'corrupt or something
