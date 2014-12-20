@@ -384,10 +384,11 @@ E.g.:
                        (match-string-no-properties 3)
                        text)))
              (full-text (match-string-no-properties 0)))
-        (replace-match "")
-        (sx-question-mode--insert-link
-         (if sx-question-mode-pretty-links text full-text)
-         url)))))
+        (when (stringp url)
+          (replace-match "")
+          (sx-question-mode--insert-link
+           (if sx-question-mode-pretty-links text full-text)
+           url))))))
 
 (defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of string TEXT.
