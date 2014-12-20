@@ -371,21 +371,8 @@ E.g.:
           (fill-region beg (point)))))
     (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
-(defun sx-question-mode--dont-fill-here ()
-  "If text shouldn't be filled here, return t and skip over it."
-  (or (sx-question-mode--skip-and-fontify-pre)
-      ;; Skip headers and references
-      (let ((pos (point)))
-        (skip-chars-forward "\r\n[:blank:]")
-        (goto-char (line-beginning-position))
-        (if (or (looking-at-p (format sx-question-mode--reference-regexp ".+"))
-                (looking-at-p "^#"))
-            ;; Returns non-nil
-            (forward-paragraph)
-          ;; Go back and return nil
-          (goto-char pos)
-          nil))))
-
+
+;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
   "Turn all markdown links in this buffer into compact format."
   (save-excursion
@@ -429,25 +416,57 @@ If ID is nil, use FALLBACK-ID instead."
              nil t)
         (match-string-no-properties 1)))))
 
+
+;;; Things we don't fill
+(defun sx-question-mode--dont-fill-here ()
+  "If text shouldn't be filled here, return t and skip over it."
+  (catch 'sx-question-mode-done
+    (let ((before (point)))
+      (skip-chars-forward "\r\n[:blank:]")
+      (let ((first-non-blank (point)))
+        (dolist (it '(sx-question-mode--skip-and-fontify-pre
+                      sx-question-mode--skip-headline
+                      sx-question-mode--skip-references
+                      sx-question-mode--skip-comments))
+          ;; If something worked, keep point where it is and return t.
+          (if (funcall it) (throw 'sx-question-mode-done t)
+            ;; Before calling each new function. Go back to the first
+            ;; non-blank char.
+            (goto-char first-non-blank)))
+        ;; If nothing matched, go back to the very beginning.
+        (goto-char before)
+        ;; And return nil
+        nil))))
+
 (defun sx-question-mode--skip-and-fontify-pre ()
   "If there's a pre block ahead, handle it, skip it and return t.
 Handling means to turn it into a button and remove erroneous
 font-locking."
-  (let ((before (point))
-        beg end)
-    (if (markdown-match-pre-blocks
-         (save-excursion
-           (skip-chars-forward "\r\n[:blank:]")
-           (setq beg (point))))
-        (progn
-          (setq end (point))
-          (sx-babel--make-pre-button
-           (save-excursion
-             (goto-char beg)
-             (line-beginning-position))
-           end))
-      (goto-char before)
-      nil)))
+  (let ((beg (line-beginning-position)))
+    ;; To identify code-blocks we need to be at start of line.
+    (goto-char beg)
+    (when (markdown-match-pre-blocks (line-end-position))
+      (sx-babel--make-pre-button beg (point))
+      t)))
+
+(defun sx-question-mode--skip-comments ()
+  "If there's an html comment ahead, skip it and return t."
+  ;; @TODO: Handle the comment.
+  ;; "Handling means to store any relevant metadata it might be holding."
+  (markdown-match-comments (line-end-position)))
+
+(defun sx-question-mode--skip-headline ()
+  "If there's a headline ahead, skip it and return non-nil."
+  (when (or (looking-at-p "^#+ ")
+            (progn (forward-line 1) (looking-at-p "===\\|---")))
+    ;; Returns non-nil.
+    (forward-line 1)))
+
+(defun sx-question-mode--skip-references ()
+  "If there's a reference ahead, skip it and return non-nil."
+  (while (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+    ;; Returns non-nil
+    (forward-line 1)))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
