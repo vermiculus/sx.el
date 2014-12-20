@@ -70,7 +70,11 @@
 (defcustom sx-request-unzip-program
   "gunzip"
   "Program used to unzip the response if it is compressed.
-This program must accept compressed data on standard input."
+This program must accept compressed data on standard input.
+
+This is only used (and necessary) if the function
+`zlib-decompress-region' is not defined, which is the case for
+Emacs versions < 24.4."
   :group 'sx
   :type 'string)
 
@@ -121,40 +125,46 @@ the main content of the response is returned."
          (url-request-extra-headers
           '(("Content-Type" . "application/x-www-form-urlencoded")))
          (response-buffer (url-retrieve-synchronously request-url)))
-      (if (not response-buffer)
-          (error "Something went wrong in `url-retrieve-synchronously'")
-        (with-current-buffer response-buffer
-          (let* ((data (progn
-                         ;; @TODO use url-http-end-of-headers
-                         (goto-char (point-min))
-                         (if (not (search-forward "\n\n" nil t))
-                             (error "Headers missing; response corrupt")
-                           (delete-region (point-min) (point))
-                           (buffer-string))))
-                 (response-zipped-p (sx-encoding-gzipped-p data))
-                 (data (if (not response-zipped-p) data
-                         (shell-command-on-region
-                          (point-min) (point-max)
-                          sx-request-unzip-program
-                          nil t)
-                         (buffer-string)))
-                 ;; @TODO should use `condition-case' here -- set
-                 ;; RESPONSE to 'corrupt or something
-                 (response (with-demoted-errors "`json' error: %S"
-                             (json-read-from-string data))))
-            (when (and (not response) (string-equal data "{}"))
-              (sx-message "Unable to parse response: %S" response)
-              (error "Response could not be read by `json-read-from-string'"))
-            ;; If we get here, the response is a valid data structure
-            (sx-assoc-let response
-              (when .error_id
-                (error "Request failed: (%s) [%i %s] %S"
-                       .method .error_id .error_name .error_message))
-              (when (< (setq sx-request-remaining-api-requests .quota_remaining)
-                       sx-request-remaining-api-requests-message-threshold)
-                (sx-message "%d API requests reamining"
-                            sx-request-remaining-api-requests))
-              (sx-encoding-clean-content-deep .items)))))))
+    (if (not response-buffer)
+        (error "Something went wrong in `url-retrieve-synchronously'")
+      (with-current-buffer response-buffer
+        (let* ((data (progn
+                       ;; @TODO use url-http-end-of-headers
+                       (goto-char (point-min))
+                       (if (not (search-forward "\n\n" nil t))
+                           (error "Headers missing; response corrupt")
+                         (delete-region (point-min) (point))
+                         (buffer-string))))
+               (response-zipped-p (sx-encoding-gzipped-p data))
+               (data
+                ;; Turn string of bytes into string of characters. See
+                ;; http://emacs.stackexchange.com/q/4100/50
+                (decode-coding-string
+                 (if (not response-zipped-p) data
+                   (if (fboundp 'zlib-decompress-region)
+                       (zlib-decompress-region (point-min) (point-max))
+                     (shell-command-on-region
+                      (point-min) (point-max)
+                      sx-request-unzip-program nil t))
+                   (buffer-string))
+                 'utf-8 'nocopy))
+               ;; @TODO should use `condition-case' here -- set
+               ;; RESPONSE to 'corrupt or something
+               (response (with-demoted-errors "`json' error: %S"
+                           (json-read-from-string data))))
+          (when (and (not response) (string-equal data "{}"))
+            (sx-message "Unable to parse response: %S" response)
+            (error "Response could not be read by `json-read-from-string'"))
+          ;; If we get here, the response is a valid data structure
+          (sx-assoc-let response
+            (when .error_id
+              (error "Request failed: (%s) [%i %s] %S"
+                     .method .error_id .error_name .error_message))
+            (when (< (setq sx-request-remaining-api-requests .quota_remaining)
+                     sx-request-remaining-api-requests-message-threshold)
+              (sx-message "%d API requests reamining"
+                          sx-request-remaining-api-requests))
+            (sx-encoding-clean-content-deep .items)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method)
   "Fallback method when authentication is not available.

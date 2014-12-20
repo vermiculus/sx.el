@@ -182,9 +182,6 @@ QUESTION must be a data structure returned by `json-read'."
     (mapc #'sx-question-mode--print-section .answers))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
-  ;; Display weird chars correctly
-  (set-buffer-multibyte nil)
-  (set-buffer-multibyte t)
   ;; Go up
   (goto-char (point-min))
   (sx-question-mode-next-section))
