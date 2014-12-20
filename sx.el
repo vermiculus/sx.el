@@ -107,7 +107,8 @@ is intentionally skipped."
 (defun sx-user-error (format-string &rest args)
   "Like `user-error', but prepend FORMAT-STRING with \"[sx]\".
 See `format'."
-  (signal 'user-error (list (apply #'format (concat "[sx] " format) args))))
+  (signal 'user-error
+          (list (apply #'format (concat "[sx] " format-string) args))))
 
 (defun sx-message (format-string &rest args)
   "Display FORMAT-STRING as a message with ARGS.
