@@ -30,11 +30,13 @@
 
 
 ;;; Displaying a question
-(defcustom sx-question-mode-display-buffer-function #'switch-to-buffer
+(defcustom sx-question-mode-display-buffer-function #'pop-to-buffer
   "Function used to display the question buffer.
 Called, for instance, when hitting \\<sx-question-list-mode-map>`\\[sx-question-list-display-question]' on an entry in the
 question list.
-This is not used when navigating the question list with `\\[sx-question-list-view-next]."
+This is not used when navigating the question list with `\\[sx-question-list-view-next].
+
+Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
   :type 'function
   :group 'sx-question-mode)
 
