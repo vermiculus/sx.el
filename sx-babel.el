@@ -26,6 +26,7 @@
 
 
 ;;; Code:
+(require 'subr-x)
 (require 'sx-button)
 
 (defvar sx-babel-major-mode-alist
