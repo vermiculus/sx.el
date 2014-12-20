@@ -152,7 +152,7 @@ Element can be a question, answer, or comment."
   "Display question given by DATA, on WINDOW.
 When DATA is nil, display question under point. When FOCUS is
 non-nil (the default when called interactively), also focus the
-relevant window. 
+relevant window.
 
 If WINDOW nil, the window is decided by
 `sx-question-mode-display-buffer-function'."
@@ -260,13 +260,13 @@ TEXT is a string. Interactively, it is read from the minibufer."
 
 (defun sx--get-post (type site id)
   "Find in the database a post identified by TYPE, SITE and ID.
-TYPE is `question' or `answer'. 
+TYPE is `question' or `answer'.
 SITE is a string.
 ID is an integer."
   (let ((db (cons sx-question-mode--data
                   sx-question-list--dataset)))
     (setq db
-          (cond 
+          (cond
            ((string= type "question") db)
            ((string= type "answer")
             (apply #'cl-map 'list #'identity
