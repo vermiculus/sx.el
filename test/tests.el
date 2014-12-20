@@ -121,14 +121,16 @@
 (ert-deftest macro-test--sx-assoc-let ()
   "Tests macro expansion for `sx-assoc-let'"
   (should
-   (equal '(progn (require 'let-alist)
-                  (sx--ensure-site data)
-                  (let-alist data .test))
-          (macroexpand '(sx-assoc-let data .test))))
+   (equal `(progn (sx--ensure-site data)
+                  ,(macroexpand
+                    '(let-alist data .test)))
+          (macroexpand
+           '(sx-assoc-let data .test))))
   (should
-   (equal '(progn (require 'let-alist)
-                  (sx--ensure-site data)
-                  (let-alist data (cons .test-one .test-two)))
+   (equal `(progn (sx--ensure-site data)
+                  ,(macroexpand
+                    '(let-alist data
+                       (cons .test-one .test-two))))
           (macroexpand
            '(sx-assoc-let data (cons .test-one .test-two))))))
 
