@@ -106,7 +106,7 @@ Only fields contained in TO are copied."
 
 
 ;;; Visiting
-(defun sx-visit (data &optional copy-as-kill)
+(defun sx-visit-externally (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
 derived from point position.
