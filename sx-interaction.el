@@ -131,7 +131,11 @@ If DATA is a question, also mark it as read."
 (defun sx-open-link (link)
   "Visit element given by LINK inside Emacs.
 Element can be a question, answer, or comment."
-  (interactive "sLink: ")
+  (interactive
+   (let ((def (with-temp-buffer
+                (save-excursion (yank))
+                (thing-at-point 'url))))
+     (list (read-string (concat "Link (" def "): ") nil nil def))))
   (let ((data (sx--link-to-data link)))
     (sx-assoc-let data
       (cl-case .type
