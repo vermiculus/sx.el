@@ -47,16 +47,19 @@
      site.related_sites))
   "Filter used when retrieving inbox items.")
 
-(defun sx-inbox-get (&optional page keywords)
+(defun sx-inbox-get (&optional notifications page keywords)
   "Get an array of inbox items for the current user.
-Return an list of items.  Each item is an alist of properties
+If NOTIFICATIONS is non-nil, query from `notifications' method,
+otherwise use `inbox' method.
+
+Return an array of items.  Each item is an alist of properties
 returned by the API.
 See https://api.stackexchange.com/docs/types/inbox-item
 
 KEYWORDS are added to the method call along with PAGE.
 
 `sx-method-call' is used with `sx-inbox-filter'."
-  (sx-method-call 'inbox
+  (sx-method-call (if notifications 'notifications 'inbox)
     :keywords keywords
     :filter sx-inbox-filter))
 
