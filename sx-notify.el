@@ -27,20 +27,28 @@
 
 
 ;;; mode-line notification
-(defvar sx-notify--unread-inbox nil 
+(defvar sx-notify--unread-inbox nil
   "List of inbox items still unread.")
 
-(defvar sx-notify--unread-notifications nil 
+(defvar sx-notify--unread-notifications nil
   "List of notifications items still unread.")
 
+(defvar sx-notify--read-inbox nil
+  "List of inbox items which are read.
+These are identified by their links.")
+
+(defvar sx-notify--read-notifications nil
+  "List of notification items which are read.
+These are identified by their links.")
+
 (defvar sx-notify--mode-line
-  '((sx-notify--unread-inbox (sx-notify--unread-notifications "["))
+  '((sx-notify--unread-inbox (sx-notify--unread-notifications " ["))
     (sx-notify--unread-inbox
      (:propertize
       (:eval (format "i:%s" (length sx-notify--unread-inbox)))
       face mode-line-buffer-id
       mouse-face mode-line-highlight))
-    (sx-notify--unread-inbox (sx-notify--unread-notifications ","))
+    (sx-notify--unread-inbox (sx-notify--unread-notifications " "))
     (sx-notify--unread-notifications
      (:propertize
       (:eval (format "n:%s" (length sx-notify--unread-notifications)))
@@ -51,12 +59,38 @@
 
 
 ;;; minor-mode definition
-(define-minor-mode sx-notify-mode nil nil "sx" nil
+(defcustom sx-notify-timer-delay (* 60 5)
+  "Idle time, in seconds, before querying for inbox items."
+  :type 'integer
+  :group 'sx-notify)
+
+(defvar sx-notify--timer nil
+  "Timer used for fetching notifications.")
+
+(define-minor-mode sx-notify-mode nil nil nil nil
+  :global t
   (if sx-notify-mode
-      (add-to-list 'global-mode-string '(t sx-notify--mode-line) 'append)
+      (progn
+        (add-to-list 'global-mode-string '(t sx-notify--mode-line) 'append)
+        (setq sx-notify--timer
+              (run-with-idle-timer sx-notify-timer-delay 'repeat
+                                   #'sx-notify--update-unread)))
+    (when (timerp sx-notify--timer)
+      (cancel-timer sx-notify--timer)
+      (setq sx-notify--timer nil))
     (setq global-mode-string
           (delete '(t sx-notify--mode-line) global-mode-string))))
 
+(defun sx-notify--update-unread ()
+  "Update the lists of unread notifications."
+  (setq sx-notify--unread-inbox
+        (cl-remove-if
+         (lambda (x) (member (cdr (assq 'link x)) sx-notify--read-inbox))
+         (append (sx-inbox-get) nil)))
+  (setq sx-notify--unread-notifications
+        (cl-remove-if
+         (lambda (x) (member (cdr (assq 'link x)) sx-notify--read-notifications))
+         (append (sx-inbox-get t) nil))))
 
 (provide 'sx-notify)
 ;;; sx-notify.el ends here
