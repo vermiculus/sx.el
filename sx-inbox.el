@@ -63,6 +63,21 @@ KEYWORDS are added to the method call along with PAGE.
     :keywords keywords
     :filter sx-inbox-filter))
 
+
+;;; Major-mode
+(defvar sx-inbox--unread-inbox nil
+  "List of inbox items still unread.")
+
+(defvar sx-inbox--unread-notifications nil
+  "List of notifications items still unread.")
+
+(defvar sx-inbox--read-inbox nil
+  "List of inbox items which are read.
+These are identified by their links.")
+
+(defvar sx-inbox--read-notifications nil
+  "List of notification items which are read.
+These are identified by their links.")
 (provide 'sx-inbox)
 ;;; sx-inbox.el ends here
 

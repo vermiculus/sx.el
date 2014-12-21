@@ -27,33 +27,19 @@
 
 
 ;;; mode-line notification
-(defvar sx-notify--unread-inbox nil
-  "List of inbox items still unread.")
-
-(defvar sx-notify--unread-notifications nil
-  "List of notifications items still unread.")
-
-(defvar sx-notify--read-inbox nil
-  "List of inbox items which are read.
-These are identified by their links.")
-
-(defvar sx-notify--read-notifications nil
-  "List of notification items which are read.
-These are identified by their links.")
-
 (defvar sx-notify--mode-line
-  '((sx-notify--unread-inbox (sx-notify--unread-notifications " ["))
-    (sx-notify--unread-inbox
+  '((sx-inbox--unread-inbox (sx-inbox--unread-notifications " ["))
+    (sx-inbox--unread-inbox
      (:propertize
-      (:eval (format "i:%s" (length sx-notify--unread-inbox)))
+      (:eval (format "i:%s" (length sx-inbox--unread-inbox)))
       face mode-line-buffer-id
       mouse-face mode-line-highlight))
-    (sx-notify--unread-inbox (sx-notify--unread-notifications " "))
-    (sx-notify--unread-notifications
+    (sx-inbox--unread-inbox (sx-inbox--unread-notifications " "))
+    (sx-inbox--unread-notifications
      (:propertize
-      (:eval (format "n:%s" (length sx-notify--unread-notifications)))
+      (:eval (format "n:%s" (length sx-inbox--unread-notifications)))
       mouse-face mode-line-highlight))
-    (sx-notify--unread-inbox (sx-notify--unread-notifications "]")))
+    (sx-inbox--unread-inbox (sx-notify--unread-notifications "]")))
   "")
 (put 'sx-notify--mode-line 'risky-local-variable t)
 
@@ -83,13 +69,13 @@ These are identified by their links.")
 
 (defun sx-notify--update-unread ()
   "Update the lists of unread notifications."
-  (setq sx-notify--unread-inbox
+  (setq sx-inbox--unread-inbox
         (cl-remove-if
-         (lambda (x) (member (cdr (assq 'link x)) sx-notify--read-inbox))
+         (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-inbox))
          (append (sx-inbox-get) nil)))
-  (setq sx-notify--unread-notifications
+  (setq sx-inbox--unread-notifications
         (cl-remove-if
-         (lambda (x) (member (cdr (assq 'link x)) sx-notify--read-notifications))
+         (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-notifications))
          (append (sx-inbox-get t) nil))))
 
 (provide 'sx-notify)
