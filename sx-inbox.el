@@ -19,24 +19,26 @@
 
 ;;; Commentary:
 
-
 ;;; Code:
 
 (require 'sx)
 (require 'sx-filter)
 (require 'sx-method)
+(require 'sx-question-list)
 
+
+;;; API
 (defvar sx-inbox-filter 
-  '((inbox.answer_id
-     inbox.body
-     inbox.comment_id
-     inbox.creation_date
-     inbox.is_unread
-     inbox.item_type
-     inbox.link
-     inbox.question_id
-     inbox.site
-     inbox.title)
+  '((inbox_item.answer_id
+     inbox_item.body
+     inbox_item.comment_id
+     inbox_item.creation_date
+     inbox_item.is_unread
+     inbox_item.item_type
+     inbox_item.link
+     inbox_item.question_id
+     inbox_item.site
+     inbox_item.title)
     (site.logo_url
      site.audience
      site.icon_url
@@ -44,7 +46,8 @@
      site.site_state
      site.launch_date
      site.markdown_extensions
-     site.related_sites))
+     site.related_sites
+     site.styling))
   "Filter used when retrieving inbox items.")
 
 (defun sx-inbox-get (&optional notifications page keywords)
