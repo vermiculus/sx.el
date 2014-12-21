@@ -78,6 +78,79 @@ These are identified by their links.")
 (defvar sx-inbox--read-notifications nil
   "List of notification items which are read.
 These are identified by their links.")
+
+(defvar sx-inbox--header-line
+  '("    "
+    (:propertize "n p j k" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "RET" face mode-line-buffer-id)
+    ": View"
+    "    "
+    (:propertize "v" face mode-line-buffer-id)
+    ": Visit externally"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used on the question list.")
+
+(define-derived-mode sx-inbox-mode
+  sx-question-list-mode "Question List"
+  "Mode used to list inbox and notification items."
+  (setq sx-question-list--print-function
+        #'sx-inbox--print-info)
+  (setq sx-question-list--dataset sx-inbox--unread-inbox)
+  (setq tabulated-list-format
+        [("Type" 30 t :right-align t)
+         ("Date" 10 t :right-align t)
+         ("Title" 0 sx-inbox--date-more-recent-p)])
+  (setq header-line-format sx-inbox--header-line))
+
+
+;;; Keybinds
+(mapc
+    (lambda (x) (define-key sx-inbox-mode-map
+             (car x) (cadr x)))
+  '(
+    ("t" nil)
+    ("a" nil)
+    ("u" nil)
+    ("d" nil)
+    ("h" nil)
+    ("m" sx-inbox-mark-read)
+    ([?\r] sx-display)
+    ))
+
+
+;;; print-info
+(defun sx-inbox--print-info (data)
+  "Convert `json-read' DATA into tabulated-list format.
+
+This is the default printer used by `sx-inbox'. It assumes DATA
+is an alist containing the elements:
+ `answer_id', `body', `comment_id', `creation_date', `is_unread',
+ `item_type', `link', `question_id', `site', `title'.
+
+Also see `sx-question-list-refresh'."
+  (list
+   data
+   (sx-assoc-let data
+     (vector
+      (list
+       (concat (capitalize (replace-regexp-in-string "_" " " .item_type))
+               (cond
+                (.answer_id " on Answer at:")
+                (.question_id " on:"))))
+      (list (propertize (concat (sx-time-since .last_activity_date)
+                                sx-question-list-ago-string)
+                        'face 'sx-question-list-date))
+      (list
+       (concat
+        (propertize " " 'display "\n")
+        .title
+        (propertize " " 'display "\n")
+        .body))))))
+
 (provide 'sx-inbox)
 ;;; sx-inbox.el ends here
 
