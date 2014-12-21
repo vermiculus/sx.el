@@ -1,4 +1,4 @@
-p;;; sx-inbox.el --- Base question logic. -*- lexical-binding: t; -*-
+;;; sx-inbox.el --- Base inbox logic. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
