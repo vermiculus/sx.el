@@ -119,15 +119,14 @@ Interactively, this is specified with a prefix argument.
 If DATA is a question, also mark it as read."
   (interactive (list (sx--data-here) current-prefix-arg))
   (sx-assoc-let data
-    (let ((link
-           (when (stringp .link)
-             (funcall (if copy-as-kill #'kill-new #'browse-url)
-               .link))))
+    (if (not (stringp .link))
+        (sx-message "Nothing to visit here.")
+      (funcall (if copy-as-kill #'kill-new #'browse-url) .link)
       (when (and (called-interactively-p 'any) copy-as-kill)
-        (message "Copied: %S" link)))
-    (when (and .title (not copy-as-kill))
-      (sx-question--mark-read data)
-      (sx--maybe-update-display))))
+        (message "Copied: %S" .link))
+      (when (and .title (not copy-as-kill))
+        (sx-question--mark-read data)
+        (sx--maybe-update-display)))))
 
 (defun sx-open-link (link)
   "Visit element given by LINK inside Emacs.
@@ -157,9 +156,11 @@ question, an answer, or an inbox_item.
 This is meant for interactive use. In lisp code, use
 object-specific functions such as `sx-display-question' and the
 likes."
-  (interactive (list (sx--data-here) t))
+  (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
      (.item_type (sx-open-link .link))
      (.answer_id
       (sx-display-question
