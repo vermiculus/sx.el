@@ -323,7 +323,7 @@ If ALIST doesn't have a `site' property, one is created using the
 
 (defun sx--link-to-data (link)
   "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site (sx--site link)))))
+  (let ((result (list (cons 'site_par (sx--site link)))))
     (when (or
            ;; Answer
            (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
