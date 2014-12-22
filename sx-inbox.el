@@ -104,7 +104,16 @@ These are identified by their links.")
     "    "
     (:propertize "q" face mode-line-buffer-id)
     ": Quit")
-  "Header-line used on the question list.")
+  "Header-line used on the inbox list.")
+
+(defvar sx-inbox--mode-line
+  '("    "
+    (:propertize
+     (sx-inbox--notification-p
+      "Notifications"
+      "Inbox")
+     face mode-line-buffer-id))
+  "Mode-line used on the inbox list.")
 
 (define-derived-mode sx-inbox-mode
   sx-question-list-mode "Question List"
@@ -116,7 +125,12 @@ These are identified by their links.")
         (lambda (page) (sx-inbox-get sx-inbox--notification-p page)))
   (setq tabulated-list-format
         [("Type" 30 t nil t) ("Date" 10 t :right-align t) ("Title" 0)])
-  (setq header-line-format sx-inbox--header-line))
+  (setq mode-line-format sx-inbox--mode-line)
+  (setq header-line-format sx-inbox--header-line)
+  ;; @TODO: This will no longer be necessary once we properly
+  ;; refactor sx-question-list-mode.
+  (remove-hook 'tabulated-list-revert-hook
+    #'sx-question-list--update-mode-line t))
 
 
 ;;; Keybinds
