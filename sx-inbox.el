@@ -28,7 +28,7 @@
 
 
 ;;; API
-(defvar sx-inbox-filter 
+(defvar sx-inbox-filter
   '((inbox_item.answer_id
      inbox_item.body
      inbox_item.comment_id
@@ -50,6 +50,11 @@
      site.styling))
   "Filter used when retrieving inbox items.")
 
+(defcustom sx-inbox-fill-column 40
+  "`fill-column' used in `sx-inbox-mode'."
+  :type 'integer
+  :group 'sx)
+
 (defun sx-inbox-get (&optional notifications page keywords)
   "Get an array of inbox items for the current user.
 If NOTIFICATIONS is non-nil, query from `notifications' method,
@@ -68,6 +73,10 @@ KEYWORDS are added to the method call along with PAGE.
 
 
 ;;; Major-mode
+(defvar sx-inbox--notification-p nil
+  "If non-nil, current buffer lists notifications, not inbox.")
+(make-variable-buffer-local 'sx-inbox--notification-p)
+
 (defvar sx-inbox--unread-inbox nil
   "List of inbox items still unread.")
 
@@ -101,9 +110,10 @@ These are identified by their links.")
   sx-question-list-mode "Question List"
   "Mode used to list inbox and notification items."
   (toggle-truncate-lines 1)
-  (setq fill-column 40)
+  (setq fill-column sx-inbox-fill-column)
   (setq sx-question-list--print-function #'sx-inbox--print-info)
-  (setq sx-question-list--dataset (sx-inbox-get))
+  (setq sx-question-list--next-page-function
+        (lambda (page) (sx-inbox-get sx-inbox--notification-p page)))
   (setq tabulated-list-format
         [("Type" 30 t nil t) ("Date" 10 t :right-align t) ("Title" 0)])
   (setq header-line-format sx-inbox--header-line)
@@ -115,8 +125,6 @@ These are identified by their links.")
   '(
     ("t" nil)
     ("a" nil)
-    ("u" nil)
-    ("d" nil)
     ("h" nil)
     ("m" sx-inbox-mark-read)
     ([?\r] sx-display)
@@ -140,7 +148,7 @@ is an alist containing the elements:
                (cond (.answer_id " on Answer at:")
                      (.question_id " on:")))
        'face 'font-lock-keyword-face)
-      (list 
+      (list
        (concat (sx-time-since .creation_date)
                sx-question-list-ago-string)
        'face 'sx-question-list-date)
