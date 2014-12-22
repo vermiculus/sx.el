@@ -127,7 +127,7 @@ elements:
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
-                                (assoc .site
+                                (assoc .site_par
                                        sx-favorites--user-favorite-list))
                         (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
       (list

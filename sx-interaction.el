@@ -142,10 +142,10 @@ Element can be a question, answer, or comment."
       (cl-case .type
         (answer
          (sx-display-question
-          (sx-question-get-from-answer .site .id) 'focus))
+          (sx-question-get-from-answer .site_par .id) 'focus))
         (question
          (sx-display-question
-          (sx-question-get-question .site .id) 'focus))))))
+          (sx-question-get-question .site_par .id) 'focus))))))
 
 
 ;;; Displaying
@@ -206,7 +206,7 @@ changes."
              :auth 'warn
              :url-method "POST"
              :filter sx-browse-filter
-             :site .site))))
+             :site .site_par))))
     ;; The api returns the new DATA.
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)
@@ -247,14 +247,14 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :auth 'warn
              :url-method "POST"
              :filter sx-browse-filter
-             :site .site
+             :site .site_par
              :keywords `((body . ,text)))))
       ;; The api returns the new DATA.
       (when (> (length result) 0)
         (sx--add-comment-to-object
          (elt result 0)
          (if .post_id
-             (sx--get-post .post_type .site .post_id)
+             (sx--get-post .post_type .site_par .post_id)
            data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
@@ -287,7 +287,7 @@ ID is an integer."
     (car (cl-member-if
           (lambda (x) (sx-assoc-let x
                    (and (equal (or .answer_id .question_id) id)
-                        (equal .site site))))
+                        (equal .site_par site))))
           db))))
 
 (defun sx--add-comment-to-object (comment object)
@@ -320,7 +320,7 @@ from context at point."
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
-        .site data
+        .site_par data
         ;; Before send hook
         (when .comment_id (list #'sx--comment-valid-p))
         ;; After send functions
@@ -338,7 +338,7 @@ from context at point."
 (defun sx--interactive-site-prompt ()
   "Query the user for a site."
   (let ((default (or sx-question-list--site
-                     (sx-assoc-let sx-question-mode--data .site)
+                     (sx-assoc-let sx-question-mode--data .site_par)
                      sx-default-site)))
     (funcall (if ido-mode #'ido-completing-read #'completing-read)
       (format "Site (%s): " default)
@@ -372,7 +372,7 @@ context at point. "
     (sx-assoc-let data
       (pop-to-buffer
        (sx-compose-create
-        .site .question_id nil
+        .site_par .question_id nil
         ;; After send functions
         (list (lambda (_ res)
                 (sx--add-answer-to-question-object
