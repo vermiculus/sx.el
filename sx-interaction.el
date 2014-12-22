@@ -149,9 +149,27 @@ Element can be a question, answer, or comment."
 
 
 ;;; Displaying
+(defun sx-display (&optional data)
+  "Display object given by DATA.
+Interactively, display object under point. Object can be a
+question, an answer, or an inbox_item.
+
+This is meant for interactive use. In lisp code, use
+object-specific functions such as `sx-display-question' and the
+likes."
+  (interactive (list (sx--data-here) t))
+  (sx-assoc-let data
+    (cond
+     (.item_type (sx-open-link .link))
+     (.answer_id
+      (sx-display-question
+       (sx-question-get-from-answer .site_par .id) 'focus))
+     (.title
+      (sx-display-question data 'focus)))))
+
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
-When DATA is nil, display question under point. When FOCUS is
+Interactively, display question under point. When FOCUS is
 non-nil (the default when called interactively), also focus the
 relevant window.
 

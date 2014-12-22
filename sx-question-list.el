@@ -322,7 +322,7 @@ into consideration.
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)
+   ([?\r] sx-display)
    ))
 
 (defun sx-question-list-hide (data)
