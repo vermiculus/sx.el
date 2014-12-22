@@ -116,8 +116,7 @@ These are identified by their links.")
         (lambda (page) (sx-inbox-get sx-inbox--notification-p page)))
   (setq tabulated-list-format
         [("Type" 30 t nil t) ("Date" 10 t :right-align t) ("Title" 0)])
-  (setq header-line-format sx-inbox--header-line)
-  (tabulated-list-revert))
+  (setq header-line-format sx-inbox--header-line))
 
 
 ;;; Keybinds
@@ -144,7 +143,9 @@ is an alist containing the elements:
    (sx-assoc-let data
      (vector
       (list
-       (concat (capitalize (replace-regexp-in-string "_" " " .item_type))
+       (concat (capitalize
+                (replace-regexp-in-string
+                 "_" " " (or .item_type .notification_type)))
                (cond (.answer_id " on Answer at:")
                      (.question_id " on:")))
        'face 'font-lock-keyword-face)
@@ -164,6 +165,35 @@ is an alist containing the elements:
                     (propertize (buffer-string)
                                 'face 'font-lock-function-name-face))))
         'face 'default))))))
+
+
+;;; Entry commands
+(defvar sx-inbox--buffer nil
+  "Buffer being used to display inbox.")
+
+(defun sx-inbox (&optional notifications)
+  "Display a buffer listing inbox items.
+With prefix NOTIFICATIONS, list notifications instead of inbox."
+  (interactive "P")
+  (setq sx-inbox--buffer (get-buffer-create "*sx-inbox*"))
+  (let ((inhibit-read-only t))
+    (with-current-buffer sx-inbox--buffer
+      (erase-buffer)
+      (sx-inbox-mode)
+      (setq sx-inbox--notification-p notifications)
+      (tabulated-list-revert)))
+  (let ((w (get-buffer-window sx-inbox--buffer)))
+    (if (window-live-p w)
+        (select-window w)
+      (pop-to-buffer sx-inbox--buffer)
+      (enlarge-window
+       (- (+ fill-column 4) (window-width))
+       'horizontal))))
+
+(defun sx-inbox-notifications ()
+  "Display a buffer listing notification items."
+  (interactive)
+  (sx-inbox t))
 
 (provide 'sx-inbox)
 ;;; sx-inbox.el ends here
