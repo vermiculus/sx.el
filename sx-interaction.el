@@ -157,7 +157,7 @@ relevant window.
 
 If WINDOW nil, the window is decided by
 `sx-question-mode-display-buffer-function'."
-  (interactive (list (sx--data-here) t))
+  (interactive (list (sx--data-here 'question) t))
   (when (sx-question--mark-read data)
     (sx--maybe-update-display))
   ;; Display the question.
