@@ -189,5 +189,20 @@ If SITE is nil, use `sx-default-site'."
      (file-name-directory load-file-name)))
   nil t)
 
+
+;;; Inter-modes navigation
+(defun sx-tab-meta-or-main ()
+  "Switch to the meta version of a main site, or vice-versa.
+Inside a question, go to the frontpage of the site this question
+belongs to."
+  (interactive)
+  (if (and (derived-mode-p 'sx-question-list-mode)
+           sx-question-list--site)
+      (sx-question-list-switch-site
+       (if (string-match "\\`meta\\." sx-question-list--site)
+           (replace-match "" :fixedcase nil sx-question-list--site)
+         (concat "meta." sx-question-list--site)))
+    (sx-tab-frontpage nil (sx--site (sx--data-here 'question)))))
+
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
