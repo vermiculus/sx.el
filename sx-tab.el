@@ -190,6 +190,48 @@ If SITE is nil, use `sx-default-site'."
   nil t)
 
 
+;;; Unanswered
+(sx-tab--define "Unanswered"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'unanswered)))
+;;;###autoload
+(autoload 'sx-tab-unanswered
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Unanswered My-tags
+(sx-tab--define "Unanswered-my-tags"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'unanswered/my-tags)))
+;;;###autoload
+(autoload 'sx-tab-unanswered
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Featured
+(sx-tab--define "Featured"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'featured)))
+;;;###autoload
+(autoload 'sx-tab-featured
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
 ;;; Inter-modes navigation
 (defun sx-tab-meta-or-main ()
   "Switch to the meta version of a main site, or vice-versa.
