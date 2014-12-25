@@ -51,6 +51,40 @@
   (browse-url "https://github.com/vermiculus/sx.el/issues/new"))
 
 
+;;; Site
+(defun sx--site (data)
+  "Get the site in which DATA belongs.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property).
+DATA can also be the link itself."
+  (let ((link (if (stringp data) data
+                (cdr (assoc 'link data)))))
+    (when (stringp link)
+      (replace-regexp-in-string
+       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+       "\\1\\2" link))))
+
+(defun sx--ensure-site (data)
+  "Add a `site' property to DATA if it doesn't have one. Return DATA.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property)."
+  (when data
+    (unless (assq 'site data)
+      (setcdr data (cons (cons 'site (sx--site data))
+                         (cdr data))))
+    data))
+
+(defmacro sx-assoc-let (alist &rest body)
+  "Identical to `let-alist', except `.site' has a special meaning.
+If ALIST doesn't have a `site' property, one is created using the
+`link' property."
+  (declare (indent 1) (debug t))
+  `(progn
+     (require 'let-alist)
+     (sx--ensure-site ,alist)
+     (let-alist ,alist ,@body)))
+
+
 ;;; Browsing filter
 (defvar sx-browse-filter
   '((question.body_markdown
@@ -283,59 +317,6 @@ removed from the display name before it is returned."
          (replace-regexp-in-string
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
-
-
-;;; Site
-(defun sx--site (data)
-  "Get the site in which DATA belongs.
-DATA can be a question, answer, comment, or user (or any object
-with a `link' property).
-DATA can also be the link itself."
-  (let ((link (if (stringp data) data
-                (cdr (assoc 'link data)))))
-    (when (stringp link)
-      (replace-regexp-in-string
-       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
-       "\\1\\2" link))))
-
-(defun sx--ensure-site (data)
-  "Add a `site' property to DATA if it doesn't have one. Return DATA.
-DATA can be a question, answer, comment, or user (or any object
-with a `link' property)."
-  (when data
-    (let-alist data
-      (unless .site_par
-        (setcdr data (cons (cons 'site_par
-                                 (or .site.api_site_parameter
-                                     (sx--site data)))
-                           (cdr data)))))
-    data))
-
-(defmacro sx-assoc-let (alist &rest body)
-  "Identical to `let-alist', except `.site' has a special meaning.
-If ALIST doesn't have a `site' property, one is created using the
-`link' property."
-  (declare (indent 1) (debug t))
-  `(progn
-     (require 'let-alist)
-     (sx--ensure-site ,alist)
-     (let-alist ,alist ,@body)))
-
-(defun sx--link-to-data (link)
-  "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site_par (sx--site link)))))
-    (when (or
-           ;; Answer
-           (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/[0-9]+/[^/]+/\\([0-9]\\)/?\\(#.*\\|\\)\\'" link))
-                (push (cons 'type 'answer) result))
-           ;; Question
-           (and (or (string-match "/q/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/\\([0-9]+\\)/" link))
-                (push (cons 'type 'question) result)))
-      (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
-            result))
-    result))
 
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.
