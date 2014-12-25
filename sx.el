@@ -69,9 +69,12 @@ DATA can also be the link itself."
 DATA can be a question, answer, comment, or user (or any object
 with a `link' property)."
   (when data
-    (unless (assq 'site data)
-      (setcdr data (cons (cons 'site (sx--site data))
-                         (cdr data))))
+    (let-alist data
+      (unless .site_par
+        (setcdr data (cons (cons 'site_par
+                                 (or .site.api_site_parameter
+                                     (sx--site data)))
+                           (cdr data)))))
     data))
 
 (defmacro sx-assoc-let (alist &rest body)
