@@ -328,19 +328,24 @@ If ALIST doesn't have a `site' property, one is created using the
 (defun sx--link-to-data (link)
   "Convert string LINK into data that can be displayed."
   (let ((result (list (cons 'site (sx--site link)))))
+    ;; Try to strip a question or answer ID
     (when (or
            ;; Answer
            (and (or (string-match
+                     ;; From 'Share' button
                      (rx "/a/"
-                         ;; Answer ID
+                         ;; Question ID
                          (group (1+ digit))
-                         "/"
-                         (1+ digit)
+                         ;; User ID
+                         "/" (1+ digit)
+                         ;; Answer ID
                          (group (or (sequence "#" (0+ any)) ""))
                          string-end) link)
                     (string-match
+                     ;; From URL
                      (rx "/questions/" (1+ digit) "/"
                          (1+ (not (any "/"))) "/"
+                         ;; User ID
                          (group digit)
                          (optional "/")
                          (group (or (sequence "#" (0+ any)) ""))
@@ -348,13 +353,19 @@ If ALIST doesn't have a `site' property, one is created using the
                 (push '(type . answer) result))
            ;; Question
            (and (or (string-match
+                     ;; From 'Share' button
                      (rx "/q/"
-                         (group (1+ digit)) "/"
-                         (1+ digit)
+                         ;; Question ID
+                         (group (1+ digit))
+                         ;; User ID
+                         "/" (1+ digit)
+                         ;; Answer or Comment ID
                          (group (or (sequence "#" (0+ any)) ""))
                          string-end) link)
                     (string-match
+                     ;; From URL
                      (rx "/questions/"
+                         ;; Question ID
                          (group (1+ digit))
                          "/") link))
                 (push '(type . question) result)))
