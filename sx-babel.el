@@ -57,7 +57,7 @@ on a match.")
       (setq indent (sx-babel--unindent-buffer))
       (goto-char (point-min))
       (setq mode (sx-babel--determine-major-mode))
-      (setq copy (string-trim-right (buffer-string)))
+      (setq copy (replace-regexp-in-string "[[:space:]]+\\'" "" (buffer-string)))
       (when mode
         (delay-mode-hooks (funcall mode)))
       (font-lock-fontify-region (point-min) (point-max))
