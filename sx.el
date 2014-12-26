@@ -346,7 +346,7 @@ If ALIST doesn't have a `site' property, one is created using the
                      (rx "/questions/" (1+ digit) "/"
                          (1+ (not (any "/"))) "/"
                          ;; User ID
-                         (optional (group digit))
+                         (optional (group (+ digit)))
                          (optional "/")
                          (group (or (sequence "#" (0+ any)) ""))
                          string-end) link))
