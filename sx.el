@@ -323,7 +323,10 @@ If ALIST doesn't have a `site' property, one is created using the
     (when (or
            ;; Answer
            (and (or (string-match
-                     (rx "/a/" (group (1+ digit)) "/"
+                     (rx "/a/"
+                         ;; Answer ID
+                         (group (1+ digit))
+                         "/"
                          (1+ digit)
                          (group (or (sequence "#" (0+ any)) ""))
                          string-end) link)
@@ -344,7 +347,8 @@ If ALIST doesn't have a `site' property, one is created using the
                          string-end) link)
                     (string-match
                      (rx "/questions/"
-                         (group (1+ digit)) "/") link))
+                         (group (1+ digit))
+                         "/") link))
                 (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
             result))
