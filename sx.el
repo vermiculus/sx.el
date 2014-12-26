@@ -294,7 +294,15 @@ DATA can also be the link itself."
                 (cdr (assoc 'link data)))))
     (when (stringp link)
       (replace-regexp-in-string
-       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+       (rx line-start "http" (optional "s") "://"
+           (or
+            (sequence
+             (group-n 1 (+ (not (any "/"))))
+             ".stackexchange")
+            (group-n 2 (+ (not (any "/")))))
+           "." (+ (not (any ".")))
+           "/" (* any)
+           line-end)
        "\\1\\2" link))))
 
 (defun sx--ensure-site (data)
