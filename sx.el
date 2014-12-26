@@ -322,12 +322,29 @@ If ALIST doesn't have a `site' property, one is created using the
   (let ((result (list (cons 'site (sx--site link)))))
     (when (or
            ;; Answer
-           (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/[0-9]+/[^/]+/\\([0-9]\\)/?\\(#.*\\|\\)\\'" link))
+           (and (or (string-match
+                     (rx "/a/" (group (1+ digit)) "/"
+                         (1+ digit)
+                         (group (or (sequence "#" (0+ any)) ""))
+                         string-end) link)
+                    (string-match
+                     (rx "/questions/" (1+ digit) "/"
+                         (1+ (not (any "/"))) "/"
+                         (group digit)
+                         (optional "/")
+                         (group (or (sequence "#" (0+ any)) ""))
+                         string-end) link))
                 (push '(type . answer) result))
            ;; Question
-           (and (or (string-match "/q/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/\\([0-9]+\\)/" link))
+           (and (or (string-match
+                     (rx "/q/"
+                         (group (1+ digit)) "/"
+                         (1+ digit)
+                         (group (or (sequence "#" (0+ any)) ""))
+                         string-end) link)
+                    (string-match
+                     (rx "/questions/"
+                         (group (1+ digit)) "/") link))
                 (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
             result))
