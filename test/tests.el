@@ -123,20 +123,14 @@
   (should
    (equal '(progn (require 'let-alist)
                   (sx--ensure-site data)
-                  (let ((.test (cdr (assq 'test data))))
-                    .test))
-          (macroexpand-all
-           '(sx-assoc-let data
-              .test))))
+                  (let-alist data .test))
+          (macroexpand '(sx-assoc-let data .test))))
   (should
    (equal '(progn (require 'let-alist)
                   (sx--ensure-site data)
-                  (let ((.test-one (cdr (assq 'test-one data)))
-                        (.test-two (cdr (assq 'test-two data))))
-                    (cons .test-one .test-two)))
-          (macroexpand-all
-           '(sx-assoc-let data
-              (cons .test-one .test-two))))))
+                  (let-alist data (cons .test-one .test-two)))
+          (macroexpand
+           '(sx-assoc-let data (cons .test-one .test-two))))))
 
 (ert-deftest sx--user-@name ()
   "Tests macro expansion for `sx-assoc-let'"
