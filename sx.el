@@ -335,20 +335,20 @@ If ALIST doesn't have a `site' property, one is created using the
                      ;; From 'Share' button
                      (rx "/a/"
                          ;; Question ID
-                         (group (1+ digit))
+                         (group (+ digit))
                          ;; User ID
-                         "/" (1+ digit)
+                         "/" (+ digit)
                          ;; Answer ID
-                         (group (or (sequence "#" (0+ any)) ""))
+                         (group (or (sequence "#" (* any)) ""))
                          string-end) link)
                     (string-match
                      ;; From URL
-                     (rx "/questions/" (1+ digit) "/"
-                         (1+ (not (any "/"))) "/"
+                     (rx "/questions/" (+ digit) "/"
+                         (+ (not (any "/"))) "/"
                          ;; User ID
                          (optional (group (+ digit)))
                          (optional "/")
-                         (group (or (sequence "#" (0+ any)) ""))
+                         (group (or (sequence "#" (* any)) ""))
                          string-end) link))
                 (push '(type . answer) result))
            ;; Question
@@ -356,17 +356,17 @@ If ALIST doesn't have a `site' property, one is created using the
                      ;; From 'Share' button
                      (rx "/q/"
                          ;; Question ID
-                         (group (1+ digit))
+                         (group (+ digit))
                          ;; User ID
-                         (optional "/" (1+ digit))
+                         (optional "/" (+ digit))
                          ;; Answer or Comment ID
-                         (group (or (sequence "#" (0+ any)) ""))
+                         (group (or (sequence "#" (* any)) ""))
                          string-end) link)
                     (string-match
                      ;; From URL
                      (rx "/questions/"
                          ;; Question ID
-                         (group (1+ digit))
+                         (group (+ digit))
                          "/") link))
                 (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
