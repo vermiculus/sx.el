@@ -324,11 +324,11 @@ If ALIST doesn't have a `site' property, one is created using the
            ;; Answer
            (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
                     (string-match "/questions/[0-9]+/[^/]+/\\([0-9]\\)/?\\(#.*\\|\\)\\'" link))
-                (push (cons 'type 'answer) result))
+                (push '(type . answer) result))
            ;; Question
            (and (or (string-match "/q/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
                     (string-match "/questions/\\([0-9]+\\)/" link))
-                (push (cons 'type 'question) result)))
+                (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
             result))
     result))
