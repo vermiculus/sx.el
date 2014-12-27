@@ -61,7 +61,16 @@ DATA can also be the link itself."
                 (cdr (assoc 'link data)))))
     (when (stringp link)
       (replace-regexp-in-string
-       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
+       (rx string-start
+           "http" (optional "s") "://"
+           (or
+            (sequence
+             (group-n 1 (+ (not (any "/"))))
+             ".stackexchange")
+            (group-n 2 (+ (not (any "/")))))
+           "." (+ (not (any ".")))
+           "/" (* any)
+           string-end)
        "\\1\\2" link))))
 
 (defun sx--ensure-site (data)
@@ -73,6 +82,54 @@ with a `link' property)."
       (setcdr data (cons (cons 'site (sx--site data))
                          (cdr data))))
     data))
+
+(defun sx--link-to-data (link)
+  "Convert string LINK into data that can be displayed."
+  (let ((result (list (cons 'site (sx--site link)))))
+    ;; Try to strip a question or answer ID
+    (when (or
+           ;; Answer
+           (and (or (string-match
+                     ;; From 'Share' button
+                     (rx "/a/"
+                         ;; Question ID
+                         (group (+ digit))
+                         ;; User ID
+                         "/" (+ digit)
+                         ;; Answer ID
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link)
+                    (string-match
+                     ;; From URL
+                     (rx "/questions/" (+ digit) "/"
+                         (+ (not (any "/"))) "/"
+                         ;; User ID
+                         (optional (group (+ digit)))
+                         (optional "/")
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link))
+                (push '(type . answer) result))
+           ;; Question
+           (and (or (string-match
+                     ;; From 'Share' button
+                     (rx "/q/"
+                         ;; Question ID
+                         (group (+ digit))
+                         ;; User ID
+                         (optional "/" (+ digit))
+                         ;; Answer or Comment ID
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link)
+                    (string-match
+                     ;; From URL
+                     (rx "/questions/"
+                         ;; Question ID
+                         (group (+ digit))
+                         "/") link))
+                (push '(type . question) result)))
+      (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
+            result))
+    result))
 
 (defmacro sx-assoc-let (alist &rest body)
   "Identical to `let-alist', except `.site' has a special meaning.
@@ -318,6 +375,7 @@ removed from the display name before it is returned."
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
 
+
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.
 Run after `sx-init--internal-hook'."

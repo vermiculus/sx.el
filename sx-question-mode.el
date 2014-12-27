@@ -224,7 +224,7 @@ Letters do not insert themselves; instead, they are commands.
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("c" sx-comment)
-   ("v" sx-visit)
+   ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
    ("q" quit-window)

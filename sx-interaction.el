@@ -107,7 +107,7 @@ Only fields contained in TO are copied."
 
 
 ;;; Visiting
-(defun sx-visit (data &optional copy-as-kill)
+(defun sx-visit-externally (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
 derived from point position.
@@ -129,13 +129,31 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+(defun sx-open-link (link)
+  "Visit element given by LINK inside Emacs.
+Element can be a question, answer, or comment."
+  (interactive
+   (let ((def (with-temp-buffer
+                (save-excursion (yank))
+                (thing-at-point 'url))))
+     (list (read-string (concat "Link (" def "): ") nil nil def))))
+  (let ((data (sx--link-to-data link)))
+    (sx-assoc-let data
+      (cl-case .type
+        (answer
+         (sx-display-question
+          (sx-question-get-from-answer .site .id) 'focus))
+        (question
+         (sx-display-question
+          (sx-question-get-question .site .id) 'focus))))))
+
 
 ;;; Displaying
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
 When DATA is nil, display question under point. When FOCUS is
 non-nil (the default when called interactively), also focus the
-relevant window. 
+relevant window.
 
 If WINDOW nil, the window is decided by
 `sx-question-mode-display-buffer-function'."
@@ -255,13 +273,13 @@ If SILENT is nil, message the user about this limit."
 
 (defun sx--get-post (type site id)
   "Find in the database a post identified by TYPE, SITE and ID.
-TYPE is `question' or `answer'. 
+TYPE is `question' or `answer'.
 SITE is a string.
 ID is an integer."
   (let ((db (cons sx-question-mode--data
                   sx-question-list--dataset)))
     (setq db
-          (cond 
+          (cond
            ((string= type "question") db)
            ((string= type "answer")
             (apply #'cl-map 'list #'identity
