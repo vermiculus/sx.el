@@ -327,6 +327,7 @@ from context at point."
       (sx-site-get-api-tokens) nil t nil nil
       default)))
 
+;;;###autoload
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
