@@ -61,7 +61,8 @@ DATA can also be the link itself."
                 (cdr (assoc 'link data)))))
     (when (stringp link)
       (replace-regexp-in-string
-       (rx line-start "http" (optional "s") "://"
+       (rx string-start
+           "http" (optional "s") "://"
            (or
             (sequence
              (group-n 1 (+ (not (any "/"))))
@@ -69,7 +70,7 @@ DATA can also be the link itself."
             (group-n 2 (+ (not (any "/")))))
            "." (+ (not (any ".")))
            "/" (* any)
-           line-end)
+           string-end)
        "\\1\\2" link))))
 
 (defun sx--ensure-site (data)
