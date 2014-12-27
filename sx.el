@@ -72,7 +72,7 @@ with a `link' property)."
     (let-alist data
       (unless .site_par
         (setcdr data (cons (cons 'site_par
-                                 (or .site.api_site_parameter
+                                 (or (cdr (assq 'api_site_parameter .site))
                                      (sx--site data)))
                            (cdr data)))))
     data))
