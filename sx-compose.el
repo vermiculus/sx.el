@@ -149,7 +149,8 @@ respectively added locally to `sx-compose-before-send-hook' and
       (error "Invalid PARENT"))
   (let ((is-question
          (and (listp parent)
-              (cdr (assoc 'title parent)))))
+              (or (null parent)
+                  (cdr (assoc 'title parent))))))
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
       (setq sx-compose--send-function
