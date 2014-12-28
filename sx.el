@@ -189,6 +189,25 @@ All ARGS are passed to `completing-read' or `ido-completing-read'."
   (apply (if ido-mode #'ido-completing-read #'completing-read)
     args))
 
+(defun sx--multiple-read (prompt hist-var)
+  "Interactively query gthe user for a list of strings.
+Call `read-string' multiple times, until the input is empty.
+
+PROMPT is a string displayed to the user. and should not
+end with a space nor a colon.
+HIST-VAR is a quoted symbol, indicating a list in which to store
+input history."
+  (let (list input)
+    (while (not (string=
+                 ""
+                 (setq input (read-string
+                              (concat prompt " ["
+                                      (mapconcat #'identity list ",")
+                                      "]: ")
+                              "" hist-var))))
+      (push input list))
+    list))
+
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
 This is designed for the (site id id ...) lists.  So the first car
