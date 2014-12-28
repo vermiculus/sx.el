@@ -183,6 +183,11 @@ See `sx-question-get-questions' and `sx-question-get-question'.")
 
 
 ;;; Utility Functions
+(defun sx-completing-read (&rest args)
+  "Like `completing-read', but possibly use ido.
+All ARGS are passed to `completing-read' or `ido-completing-read'."
+  (apply (if ido-mode #'ido-completing-read #'completing-read)
+    args))
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
