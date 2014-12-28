@@ -148,6 +148,7 @@ If ALIST doesn't have a `site' property, one is created using the
      question.comments
      question.answers
      question.last_editor
+     question.last_activity_date
      question.accepted_answer_id
      question.link
      question.upvoted
@@ -168,6 +169,7 @@ If ALIST doesn't have a `site' property, one is created using the
      comment.comment_id
      answer.answer_id
      answer.last_editor
+     answer.last_activity_date
      answer.link
      answer.share_link
      answer.owner
