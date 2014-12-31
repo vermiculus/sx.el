@@ -136,10 +136,11 @@ with a `link' property)."
 If ALIST doesn't have a `site' property, one is created using the
 `link' property."
   (declare (indent 1) (debug t))
+  (require 'let-alist)
   `(progn
-     (require 'let-alist)
      (sx--ensure-site ,alist)
-     (let-alist ,alist ,@body)))
+     ,(macroexpand
+       `(let-alist ,alist ,@body))))
 
 
 ;;; Browsing filter
