@@ -27,6 +27,18 @@ after being run through `sx-question--tag-format'."
 
 
 ;;; Tests
+(ert-deftest time-since ()
+  (cl-letf (((symbol-function #'float-time)
+           (lambda () 1420148997.)))
+    (should
+     (string=
+      "67m"
+      (sx-time-since 1420145000.)))
+    (should
+     (string=
+      "12h"
+      (sx-time-since 1420105000.)))))
+
 (ert-deftest question-list-tag ()
   "Test `sx-question--tag-format'."
   (should
