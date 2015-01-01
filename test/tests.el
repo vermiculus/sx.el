@@ -51,5 +51,11 @@
            sx-test-base-dir
            (symbol-name test))))
 
+(setq sx-test-enable-messages nil)
+
+(defun sx-test-message (message &rest args)
+  (when sx-test-enable-messages
+    (apply #'message (cons message args))))
+
 (mapc #'sx-load-test
       '(api macros printing util))

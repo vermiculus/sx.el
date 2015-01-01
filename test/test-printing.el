@@ -7,7 +7,7 @@
   `(let ((line (buffer-substring-no-properties
                 (line-beginning-position)
                 (line-end-position))))
-     (message "Line here is: %S" line)
+     (sx-test-message "Line here is: %S" line)
      (should (string-match ,regexp line))))
 
 (defmacro question-list-regex (title votes answers &rest tags)
@@ -27,6 +27,13 @@ after being run through `sx-question--tag-format'."
 
 
 ;;; Tests
+(ert-deftest question-list-tag ()
+  "Test `sx-question--tag-format'."
+  (should
+   (string=
+    (sx-question--tag-format "tag")
+    "[tag]")))
+
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
              (lambda (&rest _) sx-test-data-questions)))
