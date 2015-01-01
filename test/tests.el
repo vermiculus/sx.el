@@ -55,7 +55,7 @@
 
 (defun sx-test-message (message &rest args)
   (when sx-test-enable-messages
-    (apply #'message (cons message args))))
+    (apply #'message message args)))
 
 (mapc #'sx-load-test
       '(api macros printing util))
