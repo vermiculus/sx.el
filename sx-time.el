@@ -25,20 +25,32 @@
 
 (require 'time-date)
 
-(defvar sx-time-seconds-to-string
+(defcustom sx-time-indicators
+  '((second . "s")
+    (minute . "m")
+    (hour   . "h")
+    (day    . "D")
+    (month  . "M")
+    (year   . "Y"))
+  "Alist for time period indicator used in `sx-time-seconds-to-string'."
+  :type '(alist :key-type symbol :value-type string)
+  :group 'sx
+  :options '(second minute hour day month year))
+
+(defun sx-time-seconds-to-string ()
+  "Auxiliary value used by `sx-time-since'."
   ;; (LIMIT NAME VALUE)
   ;; We use an entry if the number of seconds in question is less than
   ;; LIMIT, but more than the previous entry's LIMIT.
   ;; For instance, if time is less than 100 sec, we write it in seconds;
   ;; if it is between 100 and 6000 sec, we use minutes.
   ;; VALUE is the actual number of seconds which NAME represents.
-  '((100      "s"  1)
-    (6000     "m"  60.0)
-    (108000   "h"  3600.0)
-    (3456000  "d"  86400.0)
-    (31622400 "mo" 2628000.0)
-    (nil      "y"  31557600.0))
-  "Auxiliary variable used by `sx-time-since'.")
+  `((100      ,(cdr (assoc 'second sx-time-indicators)) 1)
+    (6000     ,(cdr (assoc 'minute sx-time-indicators)) 60.0)
+    (108000   ,(cdr (assoc 'hour   sx-time-indicators)) 3600.0)
+    (3456000  ,(cdr (assoc 'day    sx-time-indicators)) 86400.0)
+    (31622400 ,(cdr (assoc 'month  sx-time-indicators)) 2628000.0)
+    (nil      ,(cdr (assoc 'year   sx-time-indicators)) 31557600.0)))
 
 (defun sx-time-since (time)
   "Convert the time interval since TIME (in seconds) to a short string."
@@ -47,7 +59,7 @@
      (if (> 0 delay) "-" "")
      (if (= 0 delay) "0s"
        (setq delay (abs delay))
-       (let ((sts sx-time-seconds-to-string) here)
+       (let ((sts (sx-time-seconds-to-string)) here)
          (while (and (car (setq here (pop sts)))
                      (<= (car here) delay)))
          (concat (format "%.0f" (/ delay (car (cddr here))))
