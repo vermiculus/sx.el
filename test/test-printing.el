@@ -10,6 +10,18 @@
      (message "Line here is: %S" line)
      (should (string-match ,regexp line))))
 
+(defmacro question-list-regex (title votes answers &rest tags)
+  `(rx line-start
+       (+ whitespace) ,(number-to-string votes)
+       (+ whitespace) ,(number-to-string answers)
+       (+ whitespace)
+       ,title
+       (+ (any whitespace digit))
+       (or "y" "d" "h" "m" "mo" "s") " ago"
+       (+ whitespace)
+       (eval (mapconcat #'sx-question--tag-format
+                        (list ,@tags) " "))))
+
 
 ;;; Tests
 (ert-deftest question-list-display ()
@@ -20,17 +32,23 @@
     (goto-char (point-min))
     (should (equal (buffer-name) "*question-list*"))
     (line-should-match
-     "^\\s-+1\\s-+0\\s-+Focus-hook: attenuate colours when losing focus [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[frames\\] \\[hooks\\] \\[focus\\]")
+     (question-list-regex
+      "Focus-hook: attenuate colours when losing focus"
+      1 0 "frames" "hooks" "focus"))
     (sx-question-list-next 5)
     (line-should-match
-     "^\\s-+0\\s-+1\\s-+Babel doesn&#39;t wrap results in verbatim [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[org-mode\\]")
+     (question-list-regex
+      "Babel doesn&#39;t wrap results in verbatim"
+      0 1 "org-mode" "org-export" "org-babel"))
     ;; ;; Use this when we have a real sx-question buffer.
     ;; (call-interactively 'sx-question-list-display-question)
     ;; (should (equal (buffer-name) "*sx-question*"))
     (switch-to-buffer "*question-list*")
     (sx-question-list-previous 4)
     (line-should-match
-     "^\\s-+2\\s-+1\\s-+&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable [ 0-9]+\\(y\\|d\\|h\\|mo?\\|s\\) ago\\s-+\\[autocomplete\\]")))
+     (question-list-regex
+      "&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable"
+      2 1 "autocomplete" "performance" "ctags"))))
 
 (ert-deftest sx--user-@name ()
   "Tests macro expansion for `sx-assoc-let'"
