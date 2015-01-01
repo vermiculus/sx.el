@@ -3,7 +3,7 @@
 (require 'cl-lib)
 
 (defmacro line-should-match (regexp)
-  ""
+  "Test if the line at point matches REGEXP"
   `(let ((line (buffer-substring-no-properties
                 (line-beginning-position)
                 (line-end-position))))
@@ -11,6 +11,9 @@
      (should (string-match ,regexp line))))
 
 (defmacro question-list-regex (title votes answers &rest tags)
+  "Construct a matching regexp for TITLE, VOTES, and ANSWERS.
+Each element of TAGS is appended at the end of the expression
+after being run through `sx-question--tag-format'."
   `(rx line-start
        (+ whitespace) ,(number-to-string votes)
        (+ whitespace) ,(number-to-string answers)
@@ -51,7 +54,7 @@
       2 1 "autocomplete" "performance" "ctags"))))
 
 (ert-deftest sx--user-@name ()
-  "Tests macro expansion for `sx-assoc-let'"
+  "Test macro expansion for `sx-assoc-let'"
   (should
    (string=
     (sx--user-@name '((display_name . "ĥÞßđłřğĝýÿñńśşšŝżźžçćčĉùúûüŭůòóôõöøőðìíîïıèéêëęàåáâäãåąĵ★")))

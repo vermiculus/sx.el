@@ -1,5 +1,5 @@
 (ert-deftest test-tree-filter ()
-  "`sx-core-filter-data'"
+  "Test `sx-core-filter-data'"
   ;; flat
   (should
    (equal
@@ -34,7 +34,7 @@
                      '(1 2 3)))))
 
 (ert-deftest thing-as-string ()
-  "Tests `sx--thing-as-string'"
+  "Test `sx--thing-as-string'"
   (should
    (string= (sx--thing-as-string
              '(hello world (this is a test))
