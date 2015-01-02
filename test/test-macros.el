@@ -9,11 +9,11 @@
   "Test `sx-assoc-let'"
   (sx-test-with-json-data data
     (should
-     (null (let-alist data .site))))
+     (null (let-alist data .site_par))))
 
   (sx-test-with-json-data data
     (should
-     (equal (sx-assoc-let data .site)
+     (equal (sx-assoc-let data .site_par)
             "meta.emacs")))
 
   (sx-test-with-json-data data
