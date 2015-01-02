@@ -196,6 +196,21 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
+(defvar sx-question-list--header-line
+  '("    "
+    (:propertize "n p j k" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "RET" face mode-line-buffer-id)
+    ": View question"
+    "    "
+    (:propertize "v" face mode-line-buffer-id)
+    ": Visit externally"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used on the question list.")
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
@@ -266,7 +281,7 @@ into consideration.
     #'sx-question-list-refresh nil t)
   (add-hook 'tabulated-list-revert-hook
     #'sx-question-list--update-mode-line nil t)
-  (tabulated-list-init-header))
+  (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
   "Parameter which controls date sorting."
@@ -286,7 +301,11 @@ into consideration.
 (mapc
  (lambda (x) (define-key sx-question-list-mode-map
           (car x) (cadr x)))
- '(("n" sx-question-list-next)
+ '(
+   ;; S-down and S-up would collide with `windmove'.
+   ([down] sx-question-list-next)
+   ([up] sx-question-list-previous)
+   ("n" sx-question-list-next)
    ("p" sx-question-list-previous)
    ("j" sx-question-list-view-next)
    ("k" sx-question-list-view-previous)
@@ -296,14 +315,15 @@ into consideration.
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
    (":" sx-question-list-switch-site)
-   ("t" sx-question-list-switch-tab)
+   ("t" sx-tab-switch)
    ("a" sx-ask)
-   ("v" sx-visit)
+   ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)))
+   ([?\r] sx-display-question)
+   ))
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
@@ -311,8 +331,13 @@ Non-interactively, DATA is a question alist."
   (interactive
    (list (if (derived-mode-p 'sx-question-list-mode)
              (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
+           (sx-user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-hidden data)
+  ;; The current entry will not be present after the list is
+  ;; redisplayed. To avoid `tabulated-list-mode' getting lost (and
+  ;; sending us to the top) we move to the next entry before
+  ;; redisplaying.
+  (forward-line 1)
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
@@ -322,7 +347,7 @@ Non-interactively, DATA is a question alist."
   (interactive
    (list (if (derived-mode-p 'sx-question-list-mode)
              (tabulated-list-get-id)
-           (user-error "Not in `sx-question-list-mode'"))))
+           (sx-user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-read data)
   (sx-question-list-next 1)
   (when (called-interactively-p 'any)
@@ -427,9 +452,8 @@ Displayed in `sx-question-mode--window', replacing any question
 that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
-  (sx-display-question
-   (tabulated-list-get-id)
-   nil 
+  (sx-question-mode--display
+   (tabulated-list-get-id) 
    (sx-question-list--create-question-window)))
 
 (defun sx-question-list--create-question-window ()
@@ -535,12 +559,11 @@ This does not update `sx-question-mode--window'."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Use `ido-completing-read' if variable `ido-mode' is active.  
 Retrieve completions from `sx-site-get-api-tokens'.
 Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
+   (list (sx-completing-read
            "Switch to site: " (sx-site-get-api-tokens)
            (lambda (site) (not (equal site sx-question-list--site)))
            t)))

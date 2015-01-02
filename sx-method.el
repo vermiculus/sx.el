@@ -1,4 +1,4 @@
-;;; sx-method.el --- method calls
+;;; sx-method.el --- Main interface for API method calls. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -90,8 +90,8 @@ Return the entire response as a complex alist."
       (cond
        ;; 1. Need auth and warn user (interactive use)
        ((and method-auth (equal 'warn auth))
-        (user-error
-         "This request requires authentication.  Please run `M-x sx-auth-authenticate' and try again."))
+        (sx-user-error
+         "This request requires authentication.  Please run `M-x sx-authenticate' and try again."))
        ;; 2. Need auth to populate UI, cannot provide subset
        ((and method-auth auth)
         (setq call 'sx-request-fallback))

@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Creating the buffer that displays questions
+;;; sx-question-mode.el --- Major-mode for displaying a question. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -30,11 +30,13 @@
 
 
 ;;; Displaying a question
-(defcustom sx-question-mode-display-buffer-function #'switch-to-buffer
+(defcustom sx-question-mode-display-buffer-function #'pop-to-buffer
   "Function used to display the question buffer.
 Called, for instance, when hitting \\<sx-question-list-mode-map>`\\[sx-question-list-display-question]' on an entry in the
 question list.
-This is not used when navigating the question list with `\\[sx-question-list-view-next]."
+This is not used when navigating the question list with `\\[sx-question-list-view-next].
+
+Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
   :type 'function
   :group 'sx-question-mode)
 
@@ -62,7 +64,9 @@ Returns the question buffer."
     (sx-question-mode--erase-and-print-question data)))
 
 (defun sx-question-mode--erase-and-print-question (data)
-  "Erase contents of buffer and print question given by DATA."
+  "Erase contents of buffer and print question given by DATA.
+Also marks the question as read with `sx-question--mark-read'."
+  (sx-question--mark-read data)
   (let ((inhibit-read-only t))
     (erase-buffer)
     (sx-question-mode)
@@ -118,10 +122,8 @@ Prefix argument N moves N sections down or up."
         ;; If all we did was move out the current one, then move again
         ;; and we're guaranteed to reach the next section.
         (sx-question-mode--goto-property-change 'section n))
-      (let ((ov (car-safe (sx-question-mode--section-overlays-at (point)))))
-        (unless (and (overlayp ov)
-                     (overlay-get ov 'invisible))
-          (cl-decf count)))))
+      (unless (get-char-property (point) 'invisible)
+        (cl-decf count))))
   (when (equal (selected-window) (get-buffer-window))
     (when sx-question-mode-recenter-line
       (let ((ov (sx-question-mode--section-overlays-at (line-end-position))))
@@ -173,12 +175,34 @@ property."
 
 
 ;;; Major-mode
+(defvar sx-question-mode--header-line
+  '("    "
+    (:propertize "n p TAB" face mode-line-buffer-id)
+    ": Navigate"
+    "    "
+    (:propertize "u d" face mode-line-buffer-id)
+    ": Up/Down Vote"
+    "    "
+    (:propertize "c" face mode-line-buffer-id)
+    ": Comment"
+    "    "
+    (:propertize "a" face mode-line-buffer-id)
+    ": Answer"
+    "    "
+    (:propertize "e" face mode-line-buffer-id)
+    ": Edit"
+    "    "
+    (:propertize "q" face mode-line-buffer-id)
+    ": Quit")
+  "Header-line used on the question list.")
+
 (define-derived-mode sx-question-mode special-mode "Question"
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
 \\<sx-question-mode>
 \\{sx-question-mode}"
+  (setq header-line-format sx-question-mode--header-line)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
@@ -193,11 +217,14 @@ Letters do not insert themselves; instead, they are commands.
 (mapc
  (lambda (x) (define-key sx-question-mode-map
           (car x) (cadr x)))
- `(("n" sx-question-mode-next-section)
+ `(
+   ([down] sx-question-mode-next-section)
+   ([up] sx-question-mode-previous-section)
+   ("n" sx-question-mode-next-section)
    ("p" sx-question-mode-previous-section)
    ("g" sx-question-mode-refresh)
    ("c" sx-comment)
-   ("v" sx-visit)
+   ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
    ("q" quit-window)
@@ -241,7 +268,3 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
-
-;; Local Variables:
-;; lexical-binding: t
-;; End:

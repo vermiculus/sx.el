@@ -4,9 +4,11 @@
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
-SX will be a full featured Stack Exchange mode for GNU Emacs 24+.  Using the
-official API, we aim to create a more versatile experience for the Stack
-Exchange network within Emacs itself.
+SX is a full featured Stack Exchange mode for GNU Emacs 24+.  Using the official
+API, it provides a versatile experience for the Stack Exchange network within
+Emacs itself.
+
+[[file:list-and-question.png]]
 
 * Features
 ** Viewing Questions
@@ -36,8 +38,7 @@ As always, =C-h m= is the definitive resource for the functions of this mode.
 To install the development version, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
-- Issue ~(require 'sx)~
-- Issue ~(require 'sx-tab)~
+- Issue ~(require 'sx-load)~
 This should give you access to the ~sx-tab-~ functions (the main entry points at
 this time).
 

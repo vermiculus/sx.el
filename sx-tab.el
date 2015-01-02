@@ -26,11 +26,7 @@
 
 (require 'sx)
 (require 'sx-question-list)
-
-(defcustom sx-tab-default-site "emacs"
-  "Name of the site to use by default when listing questions."
-  :type 'string
-  :group 'sx)
+(require 'sx-interaction)
 
 (defvar sx-tab--list nil
   "List of the names of all defined tabs.")
@@ -38,22 +34,11 @@
 (defun sx-tab-switch (tab)
   "Switch to another question-list tab."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
-           "Switch to tab: " sx-tab--list
-           (lambda (tab) (not (equal tab sx-question-list--current-tab)))
-           t)))
+   (list (sx-completing-read
+          "Switch to tab: " sx-tab--list
+          (lambda (tab) (not (equal tab sx-question-list--current-tab)))
+          t)))
   (funcall (intern (format "sx-tab-%s" (downcase tab)))))
-
-(defun sx-tab--interactive-site-prompt ()
-  "Query the user for a site."
-  (let ((default (or sx-question-list--site
-                     (sx-assoc-let sx-question-mode--data
-                       .site)
-                     sx-tab-default-site)))
-    (funcall (if ido-mode #'ido-completing-read #'completing-read)
-      (format "Site (%s): " default)
-      (sx-site-get-api-tokens) nil t nil nil
-      default)))
 
 
 ;;; The main macro
@@ -87,13 +72,13 @@ variables, but before refreshing the display."
          ,(format "Display a list of %s questions for SITE.
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
-If SITE is nil, use `sx-tab-default-site'."
+If SITE is nil, use `sx-default-site'."
             tab)
          (interactive
           (list current-prefix-arg
-                (sx-tab--interactive-site-prompt)))
+                (sx--interactive-site-prompt)))
          (sx-initialize)
-         (unless site (setq site sx-tab-default-site))
+         (unless site (setq site sx-default-site))
          ;; Create the buffer
          (unless (buffer-live-p ,buffer-variable)
            (setq ,buffer-variable

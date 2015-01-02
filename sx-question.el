@@ -1,4 +1,4 @@
-;;; sx-question.el --- question logic
+;;; sx-question.el --- Base question logic. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -53,6 +53,20 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
         (elt res 0)
       (error "Couldn't find question %S in %S"
              question-id site))))
+
+(defun sx-question-get-from-answer (site answer-id)
+  "Get question from SITE to which ANSWER-ID belongs.
+If ANSWER-ID doesn't exist on SITE, raise an error."
+  (let ((res (sx-method-call 'answers
+               :id answer-id
+               :site site
+               :submethod 'questions
+               :auth t
+               :filter sx-browse-filter)))
+    (if (vectorp res)
+        (elt res 0)
+      (error "Couldn't find answer %S in %S"
+             answer-id site))))
 
 
 ;;; Question Properties
@@ -142,18 +156,16 @@ If no cache exists for it, initialize one with SITE."
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
   (sx-assoc-let question
-    (let ((site-cell (assoc .site sx-question--user-hidden-list))
-          cell)
+    (let ((site-cell (assoc .site sx-question--user-hidden-list)))
       ;; If question already hidden, do nothing.
       (unless (memq .question_id site-cell)
-        ;; First question from this site.
-        (push (list .site .question_id) sx-question--user-hidden-list)
-        ;; Question wasn't present.
-        ;; Add it in, but make sure it's sorted (just in case we need
-        ;; it later).
-        (sx-sorted-insert-skip-first .question_id site-cell >)
-        ;; This causes a small lag on `j' and `k' as the list gets large.
-        ;; Should we do this on a timer?
+        (if (null site-cell)
+            ;; First question from this site.
+            (push (list .site .question_id) sx-question--user-hidden-list)
+          ;; Not first question and question wasn't present.
+          ;; Add it in, but make sure it's sorted (just in case we
+          ;; decide to rely on it later).
+          (sx-sorted-insert-skip-first .question_id site-cell >))
         ;; Save the results.
         (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
 
@@ -175,5 +187,4 @@ If no cache exists for it, initialize one with SITE."
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
-;; lexical-binding: t
 ;; End:

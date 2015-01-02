@@ -51,7 +51,8 @@
   '((((type x w32 ns) (class color))	; Like default mode line
      :box (:line-width 2 :style released-button)
      :background "lightgrey" :foreground "black"))
-  "Face used on buttons such as \"Write an Answer\".")
+  "Face used on buttons such as \"Write an Answer\"."
+  :group 'sx)
 
 
 ;;; Command definitions
@@ -76,27 +77,30 @@ This is usually a link's URL, or the content of a code block."
                        (point) 'sx-button-copy-type)
                       content)))))
 
-(defun sx-button-edit-this (text-or-marker)
-  "Open a temp buffer populated with the string TEXT-OR-MARKER.
+(defun sx-button-edit-this (text-or-marker &optional major-mode)
+  "Open a temp buffer populated with the string TEXT-OR-MARKER using MAJOR-MODE.
 When given a marker (or interactively), use the 'sx-button-copy
-text-property under the marker. This is usually the content of a
-code-block."
+and the 'sx-mode text-properties under the marker. These are
+usually part of a code-block."
   (interactive (list (point-marker)))
   ;; Buttons receive markers.
   (when (markerp text-or-marker)
+    (setq major-mode (get-text-property text-or-marker 'sx-mode))
     (unless (setq text-or-marker 
                   (get-text-property text-or-marker 'sx-button-copy))
       (sx-message "Nothing of interest here.")))
   (with-current-buffer (pop-to-buffer (generate-new-buffer
                                        "*sx temp buffer*"))
-    (insert text-or-marker)))
+    (insert text-or-marker)
+    (when major-mode
+      (funcall major-mode))))
 
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
   (browse-url
    (or (get-text-property (or pos (point)) 'sx-button-url)
-       (user-error "No url under point: %s" (or pos (point))))))
+       (sx-user-error "No url under point: %s" (or pos (point))))))
 
 
 ;;; Help-echo definitions

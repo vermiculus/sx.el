@@ -1,4 +1,4 @@
-;;; sx-question-print.el --- Populating the question-mode buffer with content.
+;;; sx-question-print.el --- Populating the question-mode buffer with content. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -23,11 +23,9 @@
 ;;; Code:
 (require 'markdown-mode)
 (require 'sx-button)
-(eval-when-compile
-  (require 'rx))
-
 (require 'sx)
 (require 'sx-question)
+(require 'sx-babel)
 
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
@@ -184,9 +182,6 @@ QUESTION must be a data structure returned by `json-read'."
     (mapc #'sx-question-mode--print-section .answers))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
-  ;; Display weird chars correctly
-  (set-buffer-multibyte nil)
-  (set-buffer-multibyte t)
   ;; Go up
   (goto-char (point-min))
   (sx-question-mode-next-section))
@@ -240,8 +235,7 @@ DATA can represent a question or an answer."
         ;; Body
         (insert "\n"
                 (propertize sx-question-mode-separator
-                            'face 'sx-question-mode-header
-                            'sx-question-mode--section 4))
+                            'face 'sx-question-mode-header))
         (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
           (insert "\n"
@@ -292,18 +286,22 @@ The comment is indented, filled, and then printed according to
   (sx--wrap-in-overlay
       (list 'sx--data-here comment-data)
     (sx-assoc-let comment-data
+      (when (and (numberp .score) (> .score 0))
+        (insert (number-to-string .score)
+                (if (eq .upvoted t) "^" "")
+                " "))
       (insert
        (format
-        sx-question-mode-comments-format
-        (sx-question-mode--propertize-display-name .owner)
-        (substring
-         ;; We fill with three spaces at the start, so the comment is
-         ;; slightly indented.
-         (sx-question-mode--fill-and-fontify
-          (concat "   " .body_markdown))
-         ;; Then we remove the spaces from the first line, since we'll
-         ;; add the username there anyway.
-         3))))))
+           sx-question-mode-comments-format
+         (sx-question-mode--propertize-display-name .owner)
+         (substring
+          ;; We fill with three spaces at the start, so the comment is
+          ;; slightly indented.
+          (sx-question-mode--fill-and-fontify
+           (concat "   " .body_markdown))
+          ;; Then we remove the spaces from the first line, since we'll
+          ;; add the username there anyway.
+          3))))))
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert propertized ARGS.
@@ -342,7 +340,7 @@ E.g.:
   "Return TEXT filled according to `markdown-mode'."
   (with-temp-buffer
     (insert text)
-    (markdown-mode)
+    (delay-mode-hooks (markdown-mode))
     (font-lock-mode -1)
     (when sx-question-mode-bullet-appearance
       (font-lock-add-keywords ;; Bullet items.
@@ -352,7 +350,7 @@ E.g.:
     (font-lock-add-keywords ;; Highlight usernames.
      nil
      `((,(rx (or blank line-start)
-             (group-n 1 (and "@" (1+ (or (syntax word) (syntax symbol)))))
+             (group-n 1 (and "@" (1+ (not space))))
              symbol-end)
         1 font-lock-builtin-face)))
     ;; Everything.
@@ -364,26 +362,14 @@ E.g.:
     (while (null (eobp))
       ;; Don't fill pre blocks.
       (unless (sx-question-mode--dont-fill-here)
-        (skip-chars-forward "\r\n[:blank:]")
-        (fill-paragraph)
-        (forward-paragraph)))
-    (buffer-string)))
+        (let ((beg (point)))
+          (skip-chars-forward "\r\n[:blank:]")
+          (forward-paragraph)
+          (fill-region beg (point)))))
+    (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
-(defun sx-question-mode--dont-fill-here ()
-  "If text shouldn't be filled here, return t and skip over it."
-  (or (sx-question-mode--skip-and-fontify-pre)
-      ;; Skip headers and references
-      (let ((pos (point)))
-        (skip-chars-forward "\r\n[:blank:]")
-        (goto-char (line-beginning-position))
-        (if (or (looking-at-p (format sx-question-mode--reference-regexp ".+"))
-                (looking-at-p "^#"))
-            ;; Returns non-nil
-            (forward-paragraph)
-          ;; Go back and return nil
-          (goto-char pos)
-          nil))))
-
+
+;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
   "Turn all markdown links in this buffer into compact format."
   (save-excursion
@@ -395,10 +381,11 @@ E.g.:
                        (match-string-no-properties 3)
                        text)))
              (full-text (match-string-no-properties 0)))
-        (replace-match "")
-        (sx-question-mode--insert-link
-         (if sx-question-mode-pretty-links text full-text)
-         url)))))
+        (when (stringp url)
+          (replace-match "")
+          (sx-question-mode--insert-link
+           (if sx-question-mode-pretty-links text full-text)
+           url))))))
 
 (defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of string TEXT.
@@ -427,33 +414,57 @@ If ID is nil, use FALLBACK-ID instead."
              nil t)
         (match-string-no-properties 1)))))
 
+
+;;; Things we don't fill
+(defun sx-question-mode--dont-fill-here ()
+  "If text shouldn't be filled here, return t and skip over it."
+  (catch 'sx-question-mode-done
+    (let ((before (point)))
+      (skip-chars-forward "\r\n[:blank:]")
+      (let ((first-non-blank (point)))
+        (dolist (it '(sx-question-mode--skip-and-fontify-pre
+                      sx-question-mode--skip-headline
+                      sx-question-mode--skip-references
+                      sx-question-mode--skip-comments))
+          ;; If something worked, keep point where it is and return t.
+          (if (funcall it) (throw 'sx-question-mode-done t)
+            ;; Before calling each new function. Go back to the first
+            ;; non-blank char.
+            (goto-char first-non-blank)))
+        ;; If nothing matched, go back to the very beginning.
+        (goto-char before)
+        ;; And return nil
+        nil))))
+
 (defun sx-question-mode--skip-and-fontify-pre ()
   "If there's a pre block ahead, handle it, skip it and return t.
 Handling means to turn it into a button and remove erroneous
 font-locking."
-  (let (beg end text)
-    (when (markdown-match-pre-blocks
-           (save-excursion
-             (skip-chars-forward "\r\n[:blank:]")
-             (setq beg (point))))
-      (setq end (point))
-      (setq text
-            (sx--unindent-text
-             (buffer-substring
-              (save-excursion
-                (goto-char beg)
-                (line-beginning-position))
-              end)))
-      (put-text-property beg end 'display nil)
-      (make-text-button
-       beg             end
-       'face           'markdown-pre-face
-       'sx-button-copy text
-       :type 'sx-question-mode-code-block))))
+  (let ((beg (line-beginning-position)))
+    ;; To identify code-blocks we need to be at start of line.
+    (goto-char beg)
+    (when (markdown-match-pre-blocks (line-end-position))
+      (sx-babel--make-pre-button beg (point))
+      t)))
+
+(defun sx-question-mode--skip-comments ()
+  "If there's an html comment ahead, skip it and return t."
+  ;; @TODO: Handle the comment.
+  ;; "Handling means to store any relevant metadata it might be holding."
+  (markdown-match-comments (line-end-position)))
+
+(defun sx-question-mode--skip-headline ()
+  "If there's a headline ahead, skip it and return non-nil."
+  (when (or (looking-at-p "^#+ ")
+            (progn (forward-line 1) (looking-at-p "===\\|---")))
+    ;; Returns non-nil.
+    (forward-line 1)))
+
+(defun sx-question-mode--skip-references ()
+  "If there's a reference ahead, skip it and return non-nil."
+  (while (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+    ;; Returns non-nil
+    (forward-line 1)))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
-
-;; Local Variables:
-;; lexical-binding: t
-;; End:

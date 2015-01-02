@@ -44,7 +44,6 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
-(require 'sx-tab)
 
 
 ;;; Using data in buffer
@@ -61,7 +60,7 @@ If no object of the requested type could be returned, an error is
 thrown unless NOERROR is non-nil."
   (or (let ((data (get-char-property (point) 'sx--data-here)))
         (if (null type) data
-          (sx-assoc-let type
+          (sx-assoc-let data
             ;; Is data of the right type?
             (cl-case type
               (question (when .title data))
@@ -86,7 +85,7 @@ If it's not a question, or if it is read, return DATA."
   ;; If we found a question, we may need to check if it's read.
   (if (and (assoc 'title data)
            (null (sx-question--read-p data)))
-      (user-error "Question not yet read. View it before acting on it")
+      (sx-user-error "Question not yet read. View it before acting on it")
     data))
 
 (defun sx--maybe-update-display (&optional buffer)
@@ -94,10 +93,11 @@ If it's not a question, or if it is read, return DATA."
 If BUFFER is not live, nothing is done."
   (setq buffer (or buffer (current-buffer)))
   (when (buffer-live-p buffer)
-    (cond ((derived-mode-p 'sx-question-list-mode)
-           (sx-question-list-refresh 'redisplay 'no-update))
-          ((derived-mode-p 'sx-question-mode)
-           (sx-question-mode-refresh 'no-update)))))
+    (with-current-buffer buffer
+      (cond ((derived-mode-p 'sx-question-list-mode)
+             (sx-question-list-refresh 'redisplay 'no-update))
+            ((derived-mode-p 'sx-question-mode)
+             (sx-question-mode-refresh 'no-update))))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
@@ -107,7 +107,7 @@ Only fields contained in TO are copied."
 
 
 ;;; Visiting
-(defun sx-visit (data &optional copy-as-kill)
+(defun sx-visit-externally (data &optional copy-as-kill)
   "Visit DATA in a web browser.
 DATA can be a question, answer, or comment. Interactively, it is
 derived from point position.
@@ -129,13 +129,31 @@ If DATA is a question, also mark it as read."
       (sx-question--mark-read data)
       (sx--maybe-update-display))))
 
+(defun sx-open-link (link)
+  "Visit element given by LINK inside Emacs.
+Element can be a question, answer, or comment."
+  (interactive
+   (let ((def (with-temp-buffer
+                (save-excursion (yank))
+                (thing-at-point 'url))))
+     (list (read-string (concat "Link (" def "): ") nil nil def))))
+  (let ((data (sx--link-to-data link)))
+    (sx-assoc-let data
+      (cl-case .type
+        (answer
+         (sx-display-question
+          (sx-question-get-from-answer .site .id) 'focus))
+        (question
+         (sx-display-question
+          (sx-question-get-question .site .id) 'focus))))))
+
 
 ;;; Displaying
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
 When DATA is nil, display question under point. When FOCUS is
 non-nil (the default when called interactively), also focus the
-relevant window. 
+relevant window.
 
 If WINDOW nil, the window is decided by
 `sx-question-mode-display-buffer-function'."
@@ -216,8 +234,8 @@ TEXT is a string. Interactively, it is read from the minibufer."
                   "Comment text: "
                   (when .comment_id
                     (concat (sx--user-@name .owner) " "))))
-      (while (< (string-width text) 15)
-        (setq text (read-string "Comment text (at least 15 characters): " text))))
+      (while (not (sx--comment-valid-p text 'silent))
+        (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
     (unless (stringp text)
       (error "Comment body must be a string"))
@@ -241,15 +259,27 @@ TEXT is a string. Interactively, it is read from the minibufer."
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
 
+(defun sx--comment-valid-p (&optional text silent)
+  "Non-nil if TEXT fits stack exchange comment length limits.
+If TEXT is nil, use `buffer-string'. Must have more than 15 and
+less than 601 characters.
+If SILENT is nil, message the user about this limit."
+  (let ((w (string-width (or text (buffer-string)))))
+    (if (and (< 15 w) (< w 601))
+        t
+      (unless silent
+        (message "Comments must be within 16 and 600 characters."))
+      nil)))
+
 (defun sx--get-post (type site id)
   "Find in the database a post identified by TYPE, SITE and ID.
-TYPE is `question' or `answer'. 
+TYPE is `question' or `answer'.
 SITE is a string.
 ID is an integer."
   (let ((db (cons sx-question-mode--data
                   sx-question-list--dataset)))
     (setq db
-          (cond 
+          (cond
            ((string= type "question") db)
            ((string= type "answer")
             (apply #'cl-map 'list #'identity
@@ -287,11 +317,12 @@ from context at point."
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
-    (when .comment_id (user-error "Editing comments is not supported yet"))
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
-        .site data nil
+        .site data
+        ;; Before send hook
+        (when .comment_id (list #'sx--comment-valid-p))
         ;; After send functions
         (list (lambda (_ res)
                 (sx--copy-data (elt res 0) data)
@@ -299,16 +330,32 @@ from context at point."
 
 
 ;;; Asking
+(defcustom sx-default-site "emacs"
+  "Name of the site to use by default when listing questions."
+  :type 'string
+  :group 'sx)
+
+(defun sx--interactive-site-prompt ()
+  "Query the user for a site."
+  (let ((default (or sx-question-list--site
+                     (sx-assoc-let sx-question-mode--data .site)
+                     sx-default-site)))
+    (sx-completing-read
+     (format "Site (%s): " default)
+     (sx-site-get-api-tokens) nil t nil nil
+     default)))
+
+;;;###autoload
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
-  (interactive (list (sx-tab--interactive-site-prompt)))
+  (interactive (list (sx--interactive-site-prompt)))
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
       site nil nil
       ;; After send functions
-      (list (lambda (_ res) (sx--maybe-update-display buffer)))))))
+      (list (lambda (_b _res) (sx--maybe-update-display buffer)))))))
 
 
 ;;; Answering
