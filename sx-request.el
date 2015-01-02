@@ -95,10 +95,12 @@ number of requests left every time it finishes a call."
 
 ;;; Making Requests
 (defun sx-request-all-items (method &optional args request-method
-                                    stop-when process-function)
+                                    process-function stop-when delay)
   "Call METHOD with ARGS until there are no more items.
 STOP-WHEN is a function that takes the entire response and
-returns non-nil if the process should stop.
+returns non-nil if the process should stop.  DELAY is the number
+of seconds (possibly a float value) to wait after each request is
+made (to avoid throttling).  The default value is 0.25.
 
 All other arguments are identical to `sx-request-make', but
 PROCESS-FUNCTION is given the default value of `identity' (rather
@@ -118,6 +120,7 @@ access the response wrapper."
             return-value
             (vconcat return-value
                      (cdr (assoc 'items response))))
+      (sleep-for (or delay 0.25))
       (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
                              request-method process-function)))
