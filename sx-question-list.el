@@ -127,7 +127,7 @@ elements:
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
-                                (assoc .site
+                                (assoc .site_par
                                        sx-favorites--user-favorite-list))
                         (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
       (list
@@ -317,12 +317,13 @@ into consideration.
    (":" sx-question-list-switch-site)
    ("t" sx-tab-switch)
    ("a" sx-ask)
+   ("s" sx-search)
    ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)
+   ([?\r] sx-display)
    ))
 
 (defun sx-question-list-hide (data)
@@ -559,12 +560,11 @@ This does not update `sx-question-mode--window'."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Use `ido-completing-read' if variable `ido-mode' is active.  
 Retrieve completions from `sx-site-get-api-tokens'.
 Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
+   (list (sx-completing-read
            "Switch to site: " (sx-site-get-api-tokens)
            (lambda (site) (not (equal site sx-question-list--site)))
            t)))

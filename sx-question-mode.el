@@ -231,6 +231,7 @@ Letters do not insert themselves; instead, they are commands.
    (" " scroll-up-command)
    ("a" sx-answer)
    ("e" sx-edit)
+   ("s" sx-search)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)
@@ -254,7 +255,7 @@ query the api."
      (if no-update
          sx-question-mode--data
        (sx-assoc-let sx-question-mode--data
-         (sx-question-get-question .site .question_id))))
+         (sx-question-get-question .site_par .question_id))))
     (goto-char point)
     (when (equal (selected-window)
                  (get-buffer-window (current-buffer)))
