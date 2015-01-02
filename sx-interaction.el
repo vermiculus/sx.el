@@ -347,9 +347,9 @@ from context at point."
 
 (defun sx--maybe-site-prompt (arg)
   "Get a site token conditionally in an interactive context.
-If PREFIX-ARG is non-nil, use `sx--interactive-site-prompt'.
-Otherwise, use `sx-question-list--site' if non-nil.  If nil,
-use `sx--interactive-site-prompt' anyway."
+If ARG is non-nil, use `sx--interactive-site-prompt'.
+Otherwise, use `sx-question-list--site' if non-nil.
+If nil, use `sx--interactive-site-prompt' anyway."
   ;; This could eventually be generalized into (sx--maybe-prompt
   ;; prefix-arg value-if-non-nil #'prompt-function).
   (if arg
