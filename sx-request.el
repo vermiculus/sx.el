@@ -94,6 +94,35 @@ number of requests left every time it finishes a call."
 
 
 ;;; Making Requests
+(defun sx-request-all-items (method &optional args request-method
+                                    stop-when process-function)
+  "Call METHOD with ARGS until there are no more items.
+STOP-WHEN is a function that takes the entire response and
+returns non-nil if the process should stop.
+
+All other arguments are identical to `sx-request-make', but
+PROCESS-FUNCTION is given the default value of `identity' (rather
+than `sx-request-response-get-items') to allow STOP-WHEN to
+access the response wrapper."
+  ;; @TODO: Refactor.  This is the product of a late-night jam
+  ;; session...  it is not intended to be model code.
+  (let* ((return-value [])
+         (current-page 1)
+         (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
+         (process-function (or process-function #'identity))
+         (response
+          (sx-request-make method `((page . ,current-page) ,@args)
+                           request-method process-function)))
+    (while (not (funcall stop-when response))
+      (setq return-value
+            (vconcat return-value
+                     (cdr (assoc 'items response))))
+      (setq current-page (1+ current-page)
+            response
+            (sx-request-make method `((page . ,current-page) ,@args)
+                             request-method process-function)))
+    (vconcat return-value
+             (cdr (assoc 'items response)))))
 
 (defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
@@ -213,6 +242,9 @@ false, use the symbol `false'.  Each element is processed with
   (sx-assoc-let response
     (sx-encoding-clean-content-deep .items)))
 
+(defun sx-request-all-stop-when-no-more (response)
+  (or (not response)
+      (equal :json-false (cdr (assoc 'has_more response)))))
 
 (provide 'sx-request)
 ;;; sx-request.el ends here

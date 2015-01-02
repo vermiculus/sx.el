@@ -11,3 +11,8 @@
   (should-error
    (sx-request-make "questions" '(()))))
 
+(ert-deftest test-request-all ()
+  "Test request all items"
+  (should
+   (< 250
+      (length (sx-request-all-items "sites")))))
