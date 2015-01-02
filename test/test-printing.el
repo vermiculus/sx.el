@@ -61,7 +61,7 @@ after being run through `sx-question--tag-format'."
       2 1 "autocomplete" "performance" "ctags"))))
 
 (ert-deftest sx--user-@name ()
-  "Test macro expansion for `sx-assoc-let'"
+  "Test `sx--user-@name' character substitution"
   (should
    (string=
     (sx--user-@name '((display_name . "ĥÞßđłřğĝýÿñńśşšŝżźžçćčĉùúûüŭůòóôõöøőðìíîïıèéêëęàåáâäãåąĵ★")))
