@@ -6,7 +6,7 @@
 ;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
-;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.1"))
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -78,9 +78,14 @@ DATA can also be the link itself."
 DATA can be a question, answer, comment, or user (or any object
 with a `link' property)."
   (when data
-    (unless (assq 'site data)
-      (setcdr data (cons (cons 'site (sx--site data))
-                         (cdr data))))
+    (let-alist data
+      (unless .site_par
+        ;; @TODO: Change this to .site.api_site_parameter sometime
+        ;; after February.
+        (setcdr data (cons (cons 'site_par
+                                 (or (cdr (assq 'api_site_parameter .site))
+                                     (sx--site data)))
+                           (cdr data)))))
     data))
 
 (defun sx--link-to-data (link)

@@ -255,7 +255,7 @@ query the api."
      (if no-update
          sx-question-mode--data
        (sx-assoc-let sx-question-mode--data
-         (sx-question-get-question .site .question_id))))
+         (sx-question-get-question .site_par .question_id))))
     (goto-char point)
     (when (equal (selected-window)
                  (get-buffer-window (current-buffer)))

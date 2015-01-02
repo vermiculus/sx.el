@@ -31,9 +31,11 @@
         sx-encoding
         sx-favorites
         sx-filter
+        sx-inbox
         sx-interaction
         sx-method
         sx-networks
+        sx-notify
         sx-question
         sx-question-list
         sx-question-mode
