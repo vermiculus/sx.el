@@ -74,7 +74,7 @@ of which is allowed to match.
 Interactively, the user is asked for SITE and QUERY.  With a
 prefix argument, the user is asked for everything."
   (interactive
-   (let ((site (sx--interactive-site-prompt))
+   (let ((site (sx--maybe-site-prompt current-prefix-arg))
          (query (read-string
                  (format "Query (%s): "
                    (if current-prefix-arg "optional" "mandatory"))
