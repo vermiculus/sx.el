@@ -95,13 +95,13 @@ number of requests left every time it finishes a call."
 
 ;;; Making Requests
 
-(defun sx-request-make (method &optional args request-method)
+(defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
 this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
 
-Returns cleaned response content.
-See (`sx-encoding-clean-content-deep').
+Returns the entire response as processed by PROCESS-FUNCTION.
+This defaults to `sx-request-response-get-items'.
 
 The full set of arguments is built with
 `sx-request--build-keyword-arguments', prepending
@@ -164,7 +164,8 @@ the main content of the response is returned."
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
-            (sx-encoding-clean-content-deep .items)))))))
+            (funcall (or process-function #'sx-request-response-get-items)
+                       response)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method)
   "Fallback method when authentication is not available.
@@ -204,6 +205,13 @@ false, use the symbol `false'.  Each element is processed with
                   (when (cdr pair) pair))
                 alist))
      "&")))
+
+
+;;; Response Processors
+(defun sx-request-response-get-items (response)
+  "Returns the items from RESPONSE."
+  (sx-assoc-let response
+    (sx-encoding-clean-content-deep .items)))
 
 
 (provide 'sx-request)
