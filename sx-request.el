@@ -92,15 +92,18 @@ number of requests left every time it finishes a call."
   :group 'sx
   :type 'integer)
 
+(defvar sx-request-all-items-delay
+  1
+  "Delay in seconds with each `sx-request-all-items' iteration.
+It is good to use a reasonable delay to avoid rate-limiting.")
+
 
 ;;; Making Requests
 (defun sx-request-all-items (method &optional args request-method
-                                    process-function stop-when delay)
+                                    process-function stop-when)
   "Call METHOD with ARGS until there are no more items.
 STOP-WHEN is a function that takes the entire response and
-returns non-nil if the process should stop.  DELAY is the number
-of seconds (possibly a float value) to wait after each request is
-made (to avoid throttling).  The default value is 0.25.
+returns non-nil if the process should stop.
 
 All other arguments are identical to `sx-request-make', but
 PROCESS-FUNCTION is given the default value of `identity' (rather
@@ -121,7 +124,7 @@ access the response wrapper."
             return-value
             (vconcat return-value
                      (cdr (assoc 'items response))))
-      (sleep-for (or delay 0.25))
+      (sleep-for sx-request-all-items-delay)
       (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
                              request-method process-function)))
