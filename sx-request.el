@@ -114,11 +114,11 @@ access the response wrapper."
           (sx-request-make method `((page . ,current-page) ,@args)
                            request-method process-function)))
     (while (not (funcall stop-when response))
-      (setq return-value
+      (setq current-page (1+ current-page)
+            return-value
             (vconcat return-value
                      (cdr (assoc 'items response))))
-      (setq current-page (1+ current-page)
-            response
+      (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
                              request-method process-function)))
     (vconcat return-value
