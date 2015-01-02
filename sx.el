@@ -80,6 +80,8 @@ with a `link' property)."
   (when data
     (let-alist data
       (unless .site_par
+        ;; @TODO: Change this to .site.api_site_parameter sometime
+        ;; after February.
         (setcdr data (cons (cons 'site_par
                                  (or (cdr (assq 'api_site_parameter .site))
                                      (sx--site data)))
