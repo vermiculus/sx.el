@@ -108,6 +108,7 @@ than `sx-request-response-get-items') to allow STOP-WHEN to
 access the response wrapper."
   ;; @TODO: Refactor.  This is the product of a late-night jam
   ;; session...  it is not intended to be model code.
+  (declare (indent 1))
   (let* ((return-value [])
          (current-page 1)
          (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
@@ -149,6 +150,7 @@ then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
+  (declare (indent 1))
   (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args nil))
