@@ -136,10 +136,11 @@ with a `link' property)."
 If ALIST doesn't have a `site' property, one is created using the
 `link' property."
   (declare (indent 1) (debug t))
+  (require 'let-alist)
   `(progn
-     (require 'let-alist)
      (sx--ensure-site ,alist)
-     (let-alist ,alist ,@body)))
+     ,(macroexpand
+       `(let-alist ,alist ,@body))))
 
 
 ;;; Browsing filter
@@ -263,50 +264,6 @@ and sequences of strings."
                  thing (if sequence-sep
                            (funcall first-f sequence-sep)
                          ";"))))))
-
-(defun sx--filter-data (data desired-tree)
-  "Filter DATA and return the DESIRED-TREE.
-
-For example:
-
-  (sx--filter-data
-    '((prop1 . value1)
-      (prop2 . value2)
-      (prop3
-       (test1 . 1)
-       (test2 . 2))
-      (prop4 . t))
-    '(prop1 (prop3 test2)))
-
-would yield
-
-  ((prop1 . value1)
-   (prop3
-    (test2 . 2)))"
-  (if (vectorp data)
-      (apply #'vector
-             (mapcar (lambda (entry)
-                       (sx--filter-data
-                        entry desired-tree))
-                     data))
-    (delq
-     nil
-     (mapcar (lambda (cons-cell)
-               ;; @TODO the resolution of `f' is O(2n) in the worst
-               ;; case.  It may be faster to implement the same
-               ;; functionality as a `while' loop to stop looking the
-               ;; list once it has found a match.  Do speed tests.
-               ;; See edfab4443ec3d376c31a38bef12d305838d3fa2e.
-               (let ((f (or (memq (car cons-cell) desired-tree)
-                            (assoc (car cons-cell) desired-tree))))
-                 (when f
-                   (if (and (sequencep (cdr cons-cell))
-                            (sequencep (elt (cdr cons-cell) 0)))
-                       (cons (car cons-cell)
-                             (sx--filter-data
-                              (cdr cons-cell) (cdr f)))
-                     cons-cell))))
-             data))))
 
 (defun sx--shorten-url (url)
   "Shorten URL hiding anything other than the domain.

@@ -162,7 +162,7 @@ the main content of the response is returned."
                      .method .error_id .error_name .error_message))
             (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                      sx-request-remaining-api-requests-message-threshold)
-              (sx-message "%d API requests reamining"
+              (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
             (sx-encoding-clean-content-deep .items)))))))
 
