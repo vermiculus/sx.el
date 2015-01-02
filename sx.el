@@ -74,7 +74,7 @@ DATA can also be the link itself."
        "\\1\\2" link))))
 
 (defun sx--ensure-site (data)
-  "Add a `site' property to DATA if it doesn't have one. Return DATA.
+  "Add a `site' property to DATA if it doesn't have one.  Return DATA.
 DATA can be a question, answer, comment, or user (or any object
 with a `link' property)."
   (when data
@@ -132,8 +132,9 @@ with a `link' property)."
     result))
 
 (defmacro sx-assoc-let (alist &rest body)
-  "Identical to `let-alist', except `.site' has a special meaning.
-If ALIST doesn't have a `site' property, one is created using the
+  "Use ALIST with `let-alist' to execute BODY.
+`.site' has a special meaning, thanks to `sx--ensure-site'.  If
+ALIST doesn't have a `site' property, one is created using the
 `link' property."
   (declare (indent 1) (debug t))
   (require 'let-alist)
@@ -191,13 +192,12 @@ All ARGS are passed to `completing-read' or `ido-completing-read'."
     args))
 
 (defun sx--multiple-read (prompt hist-var)
-  "Interactively query gthe user for a list of strings.
+  "Interactively query the user for a list of strings.
 Call `read-string' multiple times, until the input is empty.
 
-PROMPT is a string displayed to the user. and should not
-end with a space nor a colon.
-HIST-VAR is a quoted symbol, indicating a list in which to store
-input history."
+PROMPT is a string displayed to the user and should not end with
+a space nor a colon.  HIST-VAR is a quoted symbol, indicating a
+list in which to store input history."
   (let (list input)
     (while (not (string=
                  ""
@@ -336,7 +336,7 @@ Return the result of BODY."
     ("ĥ" . "h")
     ("ĵ" . "j")
     ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters
+  "List of replacements to use for non-ascii characters.
 Used to convert user names into @mentions.")
 
 (defun sx--user-@name (user)
