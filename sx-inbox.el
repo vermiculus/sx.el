@@ -170,14 +170,13 @@ is an alist containing the elements:
       (list
        (propertize
         " " 'display
-        (concat "\n  " .title "\n"
+        (concat "\n  " (propertize .title 'face 'sx-question-list-date) "\n"
                 (let ((col fill-column))
                   (with-temp-buffer
                     (setq fill-column col)
                     (insert "  " .body)
                     (fill-region (point-min) (point-max))
-                    (propertize (buffer-string)
-                                'face 'font-lock-function-name-face))))
+                    (buffer-string))))
         'face 'default))))))
 
 

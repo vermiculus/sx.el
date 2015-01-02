@@ -359,11 +359,24 @@ from context at point."
   (let ((default (or sx-question-list--site
                      (sx-assoc-let sx-question-mode--data .site_par)
                      sx-default-site)))
-    (funcall (if ido-mode #'ido-completing-read #'completing-read)
-      (format "Site (%s): " default)
-      (sx-site-get-api-tokens) nil t nil nil
-      default)))
+    (sx-completing-read
+     (format "Site (%s): " default)
+     (sx-site-get-api-tokens) nil t nil nil
+     default)))
 
+(defun sx--maybe-site-prompt (arg)
+  "Get a site token conditionally in an interactive context.
+If ARG is non-nil, use `sx--interactive-site-prompt'.
+Otherwise, use `sx-question-list--site' if non-nil.
+If nil, use `sx--interactive-site-prompt' anyway."
+  ;; This could eventually be generalized into (sx--maybe-prompt
+  ;; prefix-arg value-if-non-nil #'prompt-function).
+  (if arg
+      (sx--interactive-site-prompt)
+    (or sx-question-list--site
+        (sx--interactive-site-prompt))))
+
+;;;###autoload
 (defun sx-ask (site)
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."

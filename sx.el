@@ -6,7 +6,7 @@
 ;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
-;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.1"))
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -51,12 +51,111 @@
   (browse-url "https://github.com/vermiculus/sx.el/issues/new"))
 
 
+;;; Site
+(defun sx--site (data)
+  "Get the site in which DATA belongs.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property).
+DATA can also be the link itself."
+  (let ((link (if (stringp data) data
+                (cdr (assoc 'link data)))))
+    (when (stringp link)
+      (replace-regexp-in-string
+       (rx string-start
+           "http" (optional "s") "://"
+           (or
+            (sequence
+             (group-n 1 (+ (not (any "/"))))
+             ".stackexchange")
+            (group-n 2 (+ (not (any "/")))))
+           "." (+ (not (any ".")))
+           "/" (* any)
+           string-end)
+       "\\1\\2" link))))
+
+(defun sx--ensure-site (data)
+  "Add a `site' property to DATA if it doesn't have one.  Return DATA.
+DATA can be a question, answer, comment, or user (or any object
+with a `link' property)."
+  (when data
+    (let-alist data
+      (unless .site_par
+        ;; @TODO: Change this to .site.api_site_parameter sometime
+        ;; after February.
+        (setcdr data (cons (cons 'site_par
+                                 (or (cdr (assq 'api_site_parameter .site))
+                                     (sx--site data)))
+                           (cdr data)))))
+    data))
+
+(defun sx--link-to-data (link)
+  "Convert string LINK into data that can be displayed."
+  (let ((result (list (cons 'site (sx--site link)))))
+    ;; Try to strip a question or answer ID
+    (when (or
+           ;; Answer
+           (and (or (string-match
+                     ;; From 'Share' button
+                     (rx "/a/"
+                         ;; Question ID
+                         (group (+ digit))
+                         ;; User ID
+                         "/" (+ digit)
+                         ;; Answer ID
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link)
+                    (string-match
+                     ;; From URL
+                     (rx "/questions/" (+ digit) "/"
+                         (+ (not (any "/"))) "/"
+                         ;; User ID
+                         (optional (group (+ digit)))
+                         (optional "/")
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link))
+                (push '(type . answer) result))
+           ;; Question
+           (and (or (string-match
+                     ;; From 'Share' button
+                     (rx "/q/"
+                         ;; Question ID
+                         (group (+ digit))
+                         ;; User ID
+                         (optional "/" (+ digit))
+                         ;; Answer or Comment ID
+                         (group (or (sequence "#" (* any)) ""))
+                         string-end) link)
+                    (string-match
+                     ;; From URL
+                     (rx "/questions/"
+                         ;; Question ID
+                         (group (+ digit))
+                         "/") link))
+                (push '(type . question) result)))
+      (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
+            result))
+    result))
+
+(defmacro sx-assoc-let (alist &rest body)
+  "Use ALIST with `let-alist' to execute BODY.
+`.site_par' has a special meaning, thanks to `sx--ensure-site'.
+If ALIST doesn't have a `site' property, one is created using the
+`link' property."
+  (declare (indent 1) (debug t))
+  (require 'let-alist)
+  `(progn
+     (sx--ensure-site ,alist)
+     ,(macroexpand
+       `(let-alist ,alist ,@body))))
+
+
 ;;; Browsing filter
 (defvar sx-browse-filter
   '((question.body_markdown
      question.comments
      question.answers
      question.last_editor
+     question.last_activity_date
      question.accepted_answer_id
      question.link
      question.upvoted
@@ -77,6 +176,7 @@
      comment.comment_id
      answer.answer_id
      answer.last_editor
+     answer.last_activity_date
      answer.link
      answer.share_link
      answer.owner
@@ -90,6 +190,29 @@ See `sx-question-get-questions' and `sx-question-get-question'.")
 
 
 ;;; Utility Functions
+(defun sx-completing-read (&rest args)
+  "Like `completing-read', but possibly use ido.
+All ARGS are passed to `completing-read' or `ido-completing-read'."
+  (apply (if ido-mode #'ido-completing-read #'completing-read)
+    args))
+
+(defun sx--multiple-read (prompt hist-var)
+  "Interactively query the user for a list of strings.
+Call `read-string' multiple times, until the input is empty.
+
+PROMPT is a string displayed to the user and should not end with
+a space nor a colon.  HIST-VAR is a quoted symbol, indicating a
+list in which to store input history."
+  (let (list input)
+    (while (not (string=
+                 ""
+                 (setq input (read-string
+                              (concat prompt " ["
+                                      (mapconcat #'identity list ",")
+                                      "]: ")
+                              "" hist-var))))
+      (push input list))
+    list))
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
@@ -146,50 +269,6 @@ and sequences of strings."
                  thing (if sequence-sep
                            (funcall first-f sequence-sep)
                          ";"))))))
-
-(defun sx--filter-data (data desired-tree)
-  "Filter DATA and return the DESIRED-TREE.
-
-For example:
-
-  (sx--filter-data
-    '((prop1 . value1)
-      (prop2 . value2)
-      (prop3
-       (test1 . 1)
-       (test2 . 2))
-      (prop4 . t))
-    '(prop1 (prop3 test2)))
-
-would yield
-
-  ((prop1 . value1)
-   (prop3
-    (test2 . 2)))"
-  (if (vectorp data)
-      (apply #'vector
-             (mapcar (lambda (entry)
-                       (sx--filter-data
-                        entry desired-tree))
-                     data))
-    (delq
-     nil
-     (mapcar (lambda (cons-cell)
-               ;; @TODO the resolution of `f' is O(2n) in the worst
-               ;; case.  It may be faster to implement the same
-               ;; functionality as a `while' loop to stop looking the
-               ;; list once it has found a match.  Do speed tests.
-               ;; See edfab4443ec3d376c31a38bef12d305838d3fa2e.
-               (let ((f (or (memq (car cons-cell) desired-tree)
-                            (assoc (car cons-cell) desired-tree))))
-                 (when f
-                   (if (and (sequencep (cdr cons-cell))
-                            (sequencep (elt (cdr cons-cell) 0)))
-                       (cons (car cons-cell)
-                             (sx--filter-data
-                              (cdr cons-cell) (cdr f)))
-                     cons-cell))))
-             data))))
 
 (defun sx--shorten-url (url)
   "Shorten URL hiding anything other than the domain.
@@ -262,7 +341,7 @@ Return the result of BODY."
     ("ĥ" . "h")
     ("ĵ" . "j")
     ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters
+  "List of replacements to use for non-ascii characters.
 Used to convert user names into @mentions.")
 
 (defun sx--user-@name (user)
@@ -285,58 +364,6 @@ removed from the display name before it is returned."
     string))
 
 
-;;; Site
-(defun sx--site (data)
-  "Get the site in which DATA belongs.
-DATA can be a question, answer, comment, or user (or any object
-with a `link' property).
-DATA can also be the link itself."
-  (let ((link (if (stringp data) data
-                (cdr (assoc 'link data)))))
-    (when (stringp link)
-      (replace-regexp-in-string
-       "^https?://\\(?:\\(?1:[^/]+\\)\\.stackexchange\\|\\(?2:[^/]+\\)\\)\\.[^.]+/.*$"
-       "\\1\\2" link))))
-
-(defun sx--ensure-site (data)
-  "Add a `site' property to DATA if it doesn't have one. Return DATA.
-DATA can be a question, answer, comment, or user (or any object
-with a `link' property)."
-  (when data
-    (let-alist data
-      (unless .site_par
-        (setcdr data (cons (cons 'site_par
-                                 (or .site.api_site_parameter
-                                     (sx--site data)))
-                           (cdr data)))))
-    data))
-
-(defmacro sx-assoc-let (alist &rest body)
-  "Identical to `let-alist', except `.site' has a special meaning.
-If ALIST doesn't have a `site' property, one is created using the
-`link' property."
-  (declare (indent 1) (debug t))
-  `(progn
-     (require 'let-alist)
-     (sx--ensure-site ,alist)
-     (let-alist ,alist ,@body)))
-
-(defun sx--link-to-data (link)
-  "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site_par (sx--site link)))))
-    (when (or
-           ;; Answer
-           (and (or (string-match "/a/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/[0-9]+/[^/]+/\\([0-9]\\)/?\\(#.*\\|\\)\\'" link))
-                (push (cons 'type 'answer) result))
-           ;; Question
-           (and (or (string-match "/q/\\([0-9]+\\)/[0-9]+\\(#.*\\|\\)\\'" link)
-                    (string-match "/questions/\\([0-9]+\\)/" link))
-                (push (cons 'type 'question) result)))
-      (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
-            result))
-    result))
-
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.
 Run after `sx-init--internal-hook'."

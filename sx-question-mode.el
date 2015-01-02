@@ -231,6 +231,7 @@ Letters do not insert themselves; instead, they are commands.
    (" " scroll-up-command)
    ("a" sx-answer)
    ("e" sx-edit)
+   ("s" sx-search)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)

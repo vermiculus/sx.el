@@ -34,10 +34,10 @@
 (defun sx-tab-switch (tab)
   "Switch to another question-list tab."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
-           "Switch to tab: " sx-tab--list
-           (lambda (tab) (not (equal tab sx-question-list--current-tab)))
-           t)))
+   (list (sx-completing-read
+          "Switch to tab: " sx-tab--list
+          (lambda (tab) (not (equal tab sx-question-list--current-tab)))
+          t)))
   (funcall (intern (format "sx-tab-%s" (downcase tab)))))
 
 
