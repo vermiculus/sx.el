@@ -26,7 +26,7 @@
 
 
 ;;; Getting the list from a site
-(defvar sx-tag-filter '((tag.name)) 
+(defvar sx-tag-filter '((tag.name))
   "Filter used when querying tags.")
 
 (defun sx-tag--get-some-tags-containing (site string)
@@ -52,7 +52,7 @@ TAGS can be a string (the tag name) or a list of strings.
 Fails if TAGS is a list with more than 100 items.
 Return the list of invalid tags in TAGS."
   (and (listp tags) (> (length tags) 100)
-       (error "Invalid argument. TAG has more than 100 items")) 
+       (error "Invalid argument. TAG has more than 100 items"))
   (let ((result
          (mapcar
           (lambda (x) (cdr (assoc 'name x)))
