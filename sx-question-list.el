@@ -333,6 +333,11 @@ Non-interactively, DATA is a question alist."
              (tabulated-list-get-id)
            (sx-user-error "Not in `sx-question-list-mode'"))))
   (sx-question--mark-hidden data)
+  ;; The current entry will not be present after the list is
+  ;; redisplayed. To avoid `tabulated-list-mode' getting lost (and
+  ;; sending us to the top) we move to the next entry before
+  ;; redisplaying.
+  (forward-line 1)
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
@@ -554,12 +559,11 @@ This does not update `sx-question-mode--window'."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Use `ido-completing-read' if variable `ido-mode' is active.  
 Retrieve completions from `sx-site-get-api-tokens'.
 Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
+   (list (sx-completing-read
            "Switch to site: " (sx-site-get-api-tokens)
            (lambda (site) (not (equal site sx-question-list--site)))
            t)))

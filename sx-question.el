@@ -159,14 +159,13 @@ If no cache exists for it, initialize one with SITE."
     (let ((site-cell (assoc .site_par sx-question--user-hidden-list)))
       ;; If question already hidden, do nothing.
       (unless (memq .question_id site-cell)
-        ;; First question from this site.
-        (push (list .site_par .question_id) sx-question--user-hidden-list)
-        ;; Question wasn't present.
-        ;; Add it in, but make sure it's sorted (just in case we need
-        ;; it later).
-        (sx-sorted-insert-skip-first .question_id site-cell >)
-        ;; This causes a small lag on `j' and `k' as the list gets large.
-        ;; Should we do this on a timer?
+        (if (null site-cell)
+            ;; First question from this site.
+            (push (list .site_par .question_id) sx-question--user-hidden-list)
+          ;; Not first question and question wasn't present.
+          ;; Add it in, but make sure it's sorted (just in case we
+          ;; decide to rely on it later).
+          (sx-sorted-insert-skip-first .question_id site-cell >))
         ;; Save the results.
         (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
 
