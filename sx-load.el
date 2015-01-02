@@ -41,6 +41,7 @@
         sx-question-mode
         sx-question-print
         sx-request
+        sx-search
         sx-site
         sx-tab
         ))

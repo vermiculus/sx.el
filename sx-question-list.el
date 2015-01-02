@@ -317,6 +317,7 @@ into consideration.
    (":" sx-question-list-switch-site)
    ("t" sx-tab-switch)
    ("a" sx-ask)
+   ("s" sx-search)
    ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
