@@ -340,10 +340,10 @@ from context at point."
   (let ((default (or sx-question-list--site
                      (sx-assoc-let sx-question-mode--data .site)
                      sx-default-site)))
-    (funcall (if ido-mode #'ido-completing-read #'completing-read)
-      (format "Site (%s): " default)
-      (sx-site-get-api-tokens) nil t nil nil
-      default)))
+    (sx-completing-read
+     (format "Site (%s): " default)
+     (sx-site-get-api-tokens) nil t nil nil
+     default)))
 
 ;;;###autoload
 (defun sx-ask (site)
