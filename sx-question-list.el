@@ -127,7 +127,7 @@ elements:
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
-                                (assoc .site
+                                (assoc .site_par
                                        sx-favorites--user-favorite-list))
                         (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
       (list
@@ -322,7 +322,7 @@ into consideration.
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)
+   ([?\r] sx-display)
    ))
 
 (defun sx-question-list-hide (data)
