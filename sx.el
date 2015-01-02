@@ -138,8 +138,8 @@ with a `link' property)."
 
 (defmacro sx-assoc-let (alist &rest body)
   "Use ALIST with `let-alist' to execute BODY.
-`.site' has a special meaning, thanks to `sx--ensure-site'.  If
-ALIST doesn't have a `site' property, one is created using the
+`.site_par' has a special meaning, thanks to `sx--ensure-site'.
+If ALIST doesn't have a `site' property, one is created using the
 `link' property."
   (declare (indent 1) (debug t))
   (require 'let-alist)
