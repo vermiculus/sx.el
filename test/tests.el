@@ -11,6 +11,7 @@
  sx-initialized t
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
+ url-show-status nil
  user-emacs-directory "."
  sx-test-base-dir (file-name-directory (or load-file-name "./")))
 
