@@ -41,7 +41,40 @@ Structure:
      ...)")
 
 
-;;; Compilation
+;;; Creation
+
+(defmacro sx-filter-from-nil (included)
+  "Creates a filter data structure with INCLUDED fields.
+All wrapper fields are included by default."
+  ;; @OTODO: it would be neat to have syntax like
+  ;; 
+  ;; (field-a
+  ;;  field-b
+  ;;  (object-a subfield)
+  ;;  field-c
+  ;;  (object-b subfield-a subfield-b))
+  ;;
+  ;; expand into
+  ;;
+  ;; (field-a
+  ;;  field-b
+  ;;  object-a.subfield
+  ;;  field-c
+  ;;  object-b.subfield-a object-b.subfield-b)
+  `(quote ((,@included
+            .backoff
+            .error_id
+            .error_message
+            .error_name
+            .has_more
+            .items
+            .page
+            .page_size
+            .quota_max
+            .quota_remaining
+            .total
+            .type)
+           nil none)))
 
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)

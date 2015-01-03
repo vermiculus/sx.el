@@ -26,7 +26,9 @@
 
 
 ;;; Getting the list from a site
-(defvar sx-tag-filter '((tag.name))
+(defvar sx-tag-filter
+  (sx-filter-from-nil
+   (tag.name))
   "Filter used when querying tags.")
 
 (defun sx-tag--get-some-tags-containing (site string)
