@@ -47,10 +47,20 @@ File is savedd in `sx-bot-out-dir'."
 (defun sx-bot-fetch-and-write-tags ()
   "Get a list of all tags of all sites and save to disk."
   (make-directory sx-bot-out-dir t)
-  (mapc #'sx-bot-write-to-file
-        (mapcar
-         (lambda (site) (cons site (sx-tag--get-all site)))
-         (sx-site-get-api-tokens))))
+  (let* ((url-show-status nil)
+         (site-tokens (sx-site-get-api-tokens))
+         (number-of-sites (length site-tokens))
+         (current-site-number 0))
+    (mapcar
+     (lambda (site)
+       (message "[%d/%d] Working on %S"
+                (cl-incf current-site-number)
+                number-of-sites
+                site)
+       (sx-bot-write-to-file
+        (cons (concat site ".el")
+              (sx-tag--get-all site))))
+     site-tokens)))
 
 
 ;;; Newest
