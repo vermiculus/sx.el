@@ -45,7 +45,9 @@ File is savedd in `sx-bot-out-dir'."
   (let ((file-name (expand-file-name (car data) sx-bot-out-dir)))
     (with-temp-file file-name
       (let* (print-length
-             (repr (prin1-to-string (cdr data))))
+             (repr (prin1-to-string
+                    (sort (cdr data)
+                          #'string-lessp))))
         (insert repr)
         (insert "\n")
         (goto-char (point-min))
