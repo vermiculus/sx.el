@@ -36,7 +36,8 @@
   (sx-method-call 'tags
     :get-all t
     :filter sx-tag-filter
-    :site site))
+    :site site
+    :keywords '((pagesize . 100))))
 
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
