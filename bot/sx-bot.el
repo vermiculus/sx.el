@@ -61,7 +61,8 @@ File is savedd in `sx-bot-out-dir'."
   (let* ((url-show-status nil)
          (site-tokens (sx-site-get-api-tokens))
          (number-of-sites (length site-tokens))
-         (current-site-number 0))
+         (current-site-number 0)
+         (sx-request-all-items-delay 0.25))
     (mapcar
      (lambda (site)
        (message "[%d/%d] Working on %S"
