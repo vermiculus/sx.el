@@ -100,7 +100,7 @@ It is good to use a reasonable delay to avoid rate-limiting.")
 
 ;;; Making Requests
 (defun sx-request-all-items (method &optional args request-method
-                                    process-function stop-when)
+                                    stop-when)
   "Call METHOD with ARGS until there are no more items.
 STOP-WHEN is a function that takes the entire response and
 returns non-nil if the process should stop.
@@ -115,7 +115,7 @@ access the response wrapper."
   (let* ((return-value [])
          (current-page 1)
          (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
-         (process-function (or process-function #'identity))
+         (process-function #'identity)
          (response
           (sx-request-make method `((page . ,current-page) ,@args)
                            request-method process-function)))
