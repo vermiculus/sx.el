@@ -44,9 +44,15 @@
 File is savedd in `sx-bot-out-dir'."
   (let ((file-name (expand-file-name (car data) sx-bot-out-dir)))
     (with-temp-file file-name
-      (let (print-length)
-        (prin1 (cdr data) (current-buffer))))
-    (message "Wrote %S" file-name)))
+      (let* (print-length
+             (repr (prin1-to-string (cdr data))))
+        (insert repr)
+        (insert "\n")
+        (goto-char (point-min))
+        (while (search-forward "\" \"" nil t)
+          (replace-match "\"\n \"" nil t))))
+    (message "Wrote %S" file-name)
+    file-name))
 
 
 (defun sx-bot-fetch-and-write-tags ()
