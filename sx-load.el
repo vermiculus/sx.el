@@ -41,6 +41,7 @@
         sx-request
         sx-site
         sx-tab
+        sx-tag
         ))
 
 (provide 'sx-load)
