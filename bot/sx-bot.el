@@ -27,6 +27,11 @@
 (require 'sx-site)
 (require 'sx-tag)
 
+(setq sx-request-remaining-api-requests-message-threshold 50000)
+
+(require 'package)
+(package-initialize)
+
 (defcustom sx-bot-out-dir "./data/tags/"
   "Directory where output tag files are saved."
   :type 'directory
