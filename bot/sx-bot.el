@@ -43,10 +43,10 @@
   "Write (cdr DATA) to file named (car DATA).
 File is savedd in `sx-bot-out-dir'."
   (let ((file-name (expand-file-name (car data) sx-bot-out-dir)))
-    (message "Writing %S" file-name)
     (with-temp-file file-name
       (let (print-length)
-        (prin1 (cdr data) (current-buffer))))))
+        (prin1 (cdr data) (current-buffer))))
+    (message "Wrote %S" file-name)))
 
 
 (defun sx-bot-fetch-and-write-tags ()
