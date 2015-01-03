@@ -33,11 +33,14 @@
 
 (defun sx-tag--get-all (site)
   "Retrieve all tags for SITE."
-  (sx-method-call 'tags
-    :get-all t
-    :filter sx-tag-filter
-    :site site
-    :keywords '((pagesize . 100))))
+  (mapcar
+   (lambda (tag)
+     (cdr (assoc 'name tag)))
+   (sx-method-call 'tags
+     :get-all t
+     :filter sx-tag-filter
+     :site site
+     :keywords '((pagesize . 100)))))
 
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
