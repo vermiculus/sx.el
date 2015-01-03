@@ -46,8 +46,10 @@ File is savedd in `sx-bot-out-dir'."
   "Get a list of all tags of all sites and save to disk."
   (make-directory sx-bot-out-dir t)
   (mapc #'sx-bot-write-to-file
-        ;; @TODO: Not yet implemented!
-        (mapcar #'sx-tag--get-all (sx-site-get-api-tokens))))
+        (mapcar
+         (lambda (site) (cons site (sx-tag--get-all site)))
+         (sx-site-get-api-tokens))))
+
 
 ;;; Newest
 (provide 'sx-bot)
