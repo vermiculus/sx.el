@@ -82,6 +82,10 @@ Is invoked between `sx-compose-before-send-hook' and
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
+(defvar sx-compose--site nil
+  "Site which the curent compose buffer belongs to.")
+(make-variable-buffer-local 'sx-compose--site)
+
 
 ;;; Major-mode
 (define-derived-mode sx-compose-mode markdown-mode "Compose"
@@ -116,6 +120,8 @@ contents to the API, then calls `sx-compose-after-send-functions'."
           (run-hook-with-args 'sx-compose-after-send-functions
                               (current-buffer) result)))))
 
+
+;;; Functions for use in hooks
 (defun sx-compose-quit (buffer _)
   "Close BUFFER's window and kill it."
   (interactive (list (current-buffer) nil))
@@ -130,6 +136,26 @@ contents to the API, then calls `sx-compose-after-send-functions'."
   (when (buffer-live-p buffer)
     (with-current-buffer buffer
       (kill-new (buffer-string)))))
+
+(defun sx-compose--check-tags ()
+  "Check if tags in current compose buffer are valid."
+  (save-excursion
+    (goto-char (point-min))
+    (unless (search-forward-regexp
+             "^Tags : *\\([^[:space:]].*\\) *$"
+             (next-single-property-change (point-min) 'sx-compose-separator)
+             'noerror)
+      (error "No Tags header found"))
+    (let ((invalid-tags
+           (sx-tag--invalid-name-p
+            (split-string (match-string 1) "[[:space:],;]"
+                          'omit-nulls "[[:space:]]")
+            sx-compose--site)))
+      (if invalid-tags
+          ;; If the user doesn't want to create the tags, we return
+          ;; nil and sending is aborted.
+          (y-or-n-p "Following tags don't exist. Create them? %s " invalid-tags)
+        t))))
 
 
 ;;; Functions to help preparing buffers
@@ -153,6 +179,7 @@ respectively added locally to `sx-compose-before-send-hook' and
                   (cdr (assoc 'title parent))))))
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
+      (setq sx-compose--site site)
       (setq sx-compose--send-function
             (if (consp parent)
                 (sx-assoc-let parent
@@ -180,6 +207,8 @@ respectively added locally to `sx-compose-before-send-hook' and
         (add-hook 'sx-compose-before-send-hook it nil t))
       (dolist (it (reverse after-functions))
         (add-hook 'sx-compose-after-send-functions it nil t))
+      (when is-question
+        (add-hook 'sx-compose-before-send-hook #'sx-compose--check-tags nil t))
       ;; If the buffer is empty, the draft didn't exist. So prepare the
       ;; question.
       (when (or (string= (buffer-string) "")
