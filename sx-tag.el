@@ -31,6 +31,13 @@
    (tag.name))
   "Filter used when querying tags.")
 
+(defun sx-tag--get-all (site)
+  "Retrieve all tags for SITE."
+  (sx-method-call 'tags
+    :get-all t
+    :filter sx-tag-filter
+    :site "emacs"))
+
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
 Returns an array."
