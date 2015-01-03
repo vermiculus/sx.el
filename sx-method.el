@@ -38,6 +38,9 @@
                                       (filter '(()))
                                       auth
                                       (url-method "GET")
+                                      get-all
+                                      (process-function
+                                       #'sx-request-response-get-items)
                                       site)
   "Call METHOD with additional keys.
 
@@ -50,6 +53,8 @@ user.
 authentication.
 :URL-METHOD is either \"POST\" or \"GET\"
 :SITE is the api parameter specifying the site.
+:GET-ALL is nil or non-nil
+:PROCESS-FUNCTION is a response-processing function
 
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
@@ -65,6 +70,18 @@ When AUTH is 'warn, methods will signal a `user-error'.  This is meant
 for interactive commands that absolutely require authentication
 \(submitting questions/answers, reading inbox, etc).  Filters will
 treat 'warn as equivalent to t.
+
+If GET-ALL is nil, this method will only return the first (or
+specified) page available from this method call.  If t, all pages
+will be retrieved (`sx-request-all-stop-when-no-more') .
+Otherwise, it is a function STOP-WHEN for `sx-request-all-items'.
+
+If PROCESS-FUNCTION is nil, only the items of the response will
+be returned (`sx-request-response-get-items').  Otherwise, it is
+a function that processes the entire response (as returned by
+`json-read').
+
+See `sx-request-make' and `sx-request-all-items'.
 
 Return the entire response as a complex alist."
   (declare (indent 1))
@@ -82,7 +99,12 @@ Return the entire response as a complex alist."
                                (prog1
                                    (format "?site=%s" site)
                                  (setq site nil)))))
-        (call #'sx-request-make)
+        (call (if get-all #'sx-request-all-items #'sx-request-make))
+        (get-all-stop-when
+         (cond
+          ((eq get-all t) #'sx-request-all-stop-when-no-more)
+          (get-all get-all)
+          (t nil)))
         parameters)
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
@@ -106,11 +128,15 @@ Return the entire response as a complex alist."
           (cons (cons 'filter (sx-filter-get-var filter))
                 keywords))
     (when site
+      ;; @TODO: Maybe use `push' instead?
       (setq parameters (cons (cons 'site site) parameters)))
     (funcall call
              full-method
              parameters
-             url-method)))
+             url-method
+             (if get-all
+                 get-all-stop-when
+               process-function))))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
