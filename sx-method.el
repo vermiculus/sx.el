@@ -104,8 +104,7 @@ Return the entire response as a complex alist."
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
           (get-all get-all)
-          (t nil)))
-        parameters)
+          (t nil))))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
@@ -124,15 +123,15 @@ Return the entire response as a complex alist."
        ((and (or filter-auth method-auth) (not auth))
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
-    (setq parameters
+    (setq keywords
           (cons (cons 'filter (sx-filter-get-var filter))
                 keywords))
     (when site
       ;; @TODO: Maybe use `push' instead?
-      (setq parameters (cons (cons 'site site) parameters)))
+      (setq keywords (cons (cons 'site site) keywords)))
     (funcall call
              full-method
-             parameters
+             keywords
              url-method
              (if get-all
                  get-all-stop-when
