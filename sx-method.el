@@ -100,7 +100,7 @@ Return the entire response as a complex alist."
                                    (format "?site=%s" site)
                                  (setq site nil)))))
         (call (if get-all #'sx-request-all-items #'sx-request-make))
-        (get-all-stop-when
+        (get-all
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
           (t get-all))))
@@ -129,9 +129,7 @@ Return the entire response as a complex alist."
              full-method
              keywords
              url-method
-             (if get-all
-                 get-all-stop-when
-               process-function))))
+             (or get-all process-function))))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
