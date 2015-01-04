@@ -72,7 +72,6 @@ All wrapper fields are included by default."
             .page_size
             .quota_max
             .quota_remaining
-            .total
             .type)
            nil none)))
 
