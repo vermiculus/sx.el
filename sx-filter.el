@@ -41,7 +41,27 @@ Structure:
      ...)")
 
 
-;;; Compilation
+;;; Creation
+(defmacro sx-filter-from-nil (included)
+  "Creates a filter data structure with INCLUDED fields.
+All wrapper fields are included by default."
+  `(quote
+    ((,@(sx--tree-expand
+         (lambda (path)
+           (intern (mapconcat #'symbol-name path ".")))
+         included)
+      .backoff
+      .error_id
+      .error_message
+      .error_name
+      .has_more
+      .items
+      .page
+      .page_size
+      .quota_max
+      .quota_remaining
+      .total)
+     nil none)))
 
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
@@ -80,6 +100,50 @@ return the compiled filter."
           (push (cons (list include exclude base) filter) sx--filter-alist)
           (sx-cache-set 'filter sx--filter-alist)
           filter))))
+
+
+;;; Browsing filter
+(defvar sx-browse-filter
+  (sx-filter-from-nil
+   ((question body_markdown
+              bounty_amount
+              comments
+              answers
+              last_editor
+              last_activity_date
+              accepted_answer_id
+              link
+              upvoted
+              downvoted
+              question_id
+              share_link)
+    (user display_name
+          reputation)
+    (shallow_user display_name
+                  reputation)
+    (comment owner
+             body_markdown
+             body
+             link
+             edited
+             creation_date
+             upvoted
+             score
+             post_type
+             post_id
+             comment_id)
+    (answer answer_id
+            last_editor
+            last_activity_date
+            link
+            share_link
+            owner
+            body_markdown
+            upvoted
+            downvoted
+            comments)))
+  "The filter applied when retrieving question data.
+See `sx-question-get-questions' and `sx-question-get-question'.")
 
 (provide 'sx-filter)
 ;;; sx-filter.el ends here

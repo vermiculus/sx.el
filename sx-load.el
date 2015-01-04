@@ -1,4 +1,4 @@
-;;; sx-load.el --- Load all files of the sx package.
+;;; sx-load.el --- Load all files of the sx package. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -31,16 +31,21 @@
         sx-encoding
         sx-favorites
         sx-filter
+        sx-inbox
         sx-interaction
         sx-method
         sx-networks
+        sx-notify
         sx-question
         sx-question-list
         sx-question-mode
         sx-question-print
         sx-request
+        sx-search
         sx-site
+        sx-switchto
         sx-tab
+        sx-tag
         ))
 
 (provide 'sx-load)

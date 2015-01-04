@@ -23,25 +23,16 @@
 
 (require 'sx-method)
 (require 'sx-cache)
+(require 'sx-filter)
 
 (defvar sx-site-browse-filter
-  '((.backoff
-     .error_id
-     .error_message
-     .error_name
-     .has_more
-     .items
-     .quota_max
-     .quota_remaining
-     site.site_type
-     site.name
-     site.site_url
-     site.api_site_parameter
-     site.related_sites
-     related_site.api_site_parameter
-     related_site.relation)
-    nil
-    none)
+  (sx-filter-from-nil
+   ((site site_type
+          name
+          api_site_parameter
+          related_sites)
+    (related_site api_site_parameter
+                  relation)))
   "Filter for browsing sites.")
 
 (defun sx-site--get-site-list ()
@@ -49,7 +40,7 @@
   (sx-cache-get
    'site-list
    '(sx-method-call 'sites
-      :keywords '((pagesize . 999))
+      :pagesize 999
       :filter sx-site-browse-filter)))
 
 (defcustom sx-site-favorites

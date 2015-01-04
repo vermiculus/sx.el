@@ -104,6 +104,21 @@
   ""
   :group 'sx-question-list-faces)
 
+(defface sx-question-list-bounty
+  '((t :inherit font-lock-warning-face))
+  ""
+  :group 'sx-question-list-faces)
+
+(defface sx-question-list-reputation
+  '((t :inherit sx-question-list-date))
+  ""
+  :group 'sx-question-list-faces)
+
+(defface sx-question-list-user
+  '((t :inherit font-lock-builtin-face))
+  ""
+  :group 'sx-question-list-faces)
+
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -127,7 +142,7 @@ elements:
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
     (let ((favorite (if (member .question_id
-                                (assoc .site
+                                (assoc .site_par
                                        sx-favorites--user-favorite-list))
                         (if (char-displayable-p ?\x2b26) "\x2b26" "*") " ")))
       (list
@@ -141,20 +156,35 @@ Also see `sx-question-list-refresh'."
                         'sx-question-list-answers-accepted
                       'sx-question-list-answers))
         (concat
+         ;; First line
          (propertize
           .title
           'face (if (sx-question--read-p question-data)
                     'sx-question-list-read-question
                   'sx-question-list-unread-question))
          (propertize " " 'display "\n   ")
+         ;; Second line
          (propertize favorite 'face 'sx-question-list-favorite)
-         "     "
-         (propertize (concat (sx-time-since .last_activity_date)
-                             sx-question-list-ago-string)
+         (if (and (numberp .bounty_amount) (> .bounty_amount 0))
+             (propertize (format "%4d" .bounty_amount)
+                         'face 'sx-question-list-bounty)
+           "    ")
+         " "
+         (propertize (format "%3s%s"
+                       (sx-time-since .last_activity_date)
+                       sx-question-list-ago-string)
                      'face 'sx-question-list-date)
          " "
-         (propertize (mapconcat #'sx-question--tag-format .tags " ")
+         ;; @TODO: Make this width customizable. (Or maybe just make
+         ;; the whole thing customizable)
+         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
+         " "
+         (let-alist .owner
+           (format "%15s %5s"
+             (propertize .display_name 'face 'sx-question-list-user)
+             (propertize (number-to-string .reputation)
+                         'face 'sx-question-list-reputation)))
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0
@@ -314,15 +344,17 @@ into consideration.
    ("J" sx-question-list-next-far)
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
-   (":" sx-question-list-switch-site)
    ("t" sx-tab-switch)
    ("a" sx-ask)
+   ("S" sx-search)
+   ("s" sx-switchto-map)
    ("v" sx-visit-externally)
-   ("u" sx-toggle-upvote)
-   ("d" sx-toggle-downvote)
+   ("u" sx-upvote)
+   ("d" sx-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
-   ([?\r] sx-display-question)
+   ("*" sx-favorite)
+   ([?\r] sx-display)
    ))
 
 (defun sx-question-list-hide (data)
@@ -398,6 +430,7 @@ Non-interactively, DATA is a question alist."
 
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--site)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
@@ -559,12 +592,11 @@ This does not update `sx-question-mode--window'."
 
 (defun sx-question-list-switch-site (site)
   "Switch the current site to SITE and display its questions.
-Use `ido-completing-read' if variable `ido-mode' is active.  
 Retrieve completions from `sx-site-get-api-tokens'.
 Sets `sx-question-list--site' and then call
 `sx-question-list-refresh' with `redisplay'."
   (interactive
-   (list (funcall (if ido-mode #'ido-completing-read #'completing-read)
+   (list (sx-completing-read
            "Switch to site: " (sx-site-get-api-tokens)
            (lambda (site) (not (equal site sx-question-list--site)))
            t)))

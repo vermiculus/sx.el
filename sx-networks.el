@@ -24,31 +24,23 @@
 (require 'sx-method)
 (require 'sx-cache)
 (require 'sx-site)
+(require 'sx-filter)
 
 (defvar sx-network--user-filter
-  '((.backoff
-     .error_id
-     .error_message
-     .error_name
-     .has_more
-     .items
-     .quota_max
-     .quota_remaining
-     badge_count.bronze
-     badge_count.silver
-     badge_count.gold
-     network_user.account_id
-     network_user.answer_count
-     network_user.badge_counts
-     network_user.creation_date
-     network_user.last_access_date
-     network_user.reputation
-     network_user.site_name
-     network_user.site_url
-     network_user.user_id
-     network_user.user_type)
-    nil
-    none))
+  (sx-filter-from-nil
+   ((badge_count bronze
+                 silver
+                 gold)
+    (network_user account_id
+                  answer_count
+                  badge_counts
+                  creation_date
+                  last_access_date
+                  reputation
+                  site_name
+                  site_url
+                  user_id
+                  user_type))))
 
 (defun sx-network--get-associated ()
   "Retrieve cached information for network user.

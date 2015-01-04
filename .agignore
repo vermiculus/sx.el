@@ -1,3 +1,5 @@
+# -*- gitignore -*-
+
 # Backup files
 *~
 \#*\#
@@ -18,3 +20,6 @@ test/data-samples
 
 # Info files
 *.info
+
+# Data directory
+data/

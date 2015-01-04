@@ -25,15 +25,11 @@
 (require 'sx-cache)
 (require 'sx-site)
 (require 'sx-networks)
+(require 'sx-filter)
 
 (defvar sx-favorite-list-filter
-  '((.backoff
-     .items
-     .quota_max
-     .quota_remaining
-     question.question_id)
-    nil
-    none))
+  (sx-filter-from-nil
+   (question.question_id)))
 
 (defvar sx-favorites--user-favorite-list nil
   "Alist of questions favorited by the user.

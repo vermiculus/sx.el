@@ -92,16 +92,52 @@ number of requests left every time it finishes a call."
   :group 'sx
   :type 'integer)
 
+(defvar sx-request-all-items-delay
+  1
+  "Delay in seconds with each `sx-request-all-items' iteration.
+It is good to use a reasonable delay to avoid rate-limiting.")
+
 
 ;;; Making Requests
+(defun sx-request-all-items (method &optional args request-method
+                                    stop-when)
+  "Call METHOD with ARGS until there are no more items.
+STOP-WHEN is a function that takes the entire response and
+returns non-nil if the process should stop.
 
-(defun sx-request-make (method &optional args request-method)
+All other arguments are identical to `sx-request-make', but
+PROCESS-FUNCTION is given the default value of `identity' (rather
+than `sx-request-response-get-items') to allow STOP-WHEN to
+access the response wrapper."
+  ;; @TODO: Refactor.  This is the product of a late-night jam
+  ;; session...  it is not intended to be model code.
+  (declare (indent 1))
+  (let* ((return-value [])
+         (current-page 1)
+         (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
+         (process-function #'identity)
+         (response
+          (sx-request-make method `((page . ,current-page) ,@args)
+                           request-method process-function)))
+    (while (not (funcall stop-when response))
+      (setq current-page (1+ current-page)
+            return-value
+            (vconcat return-value
+                     (cdr (assoc 'items response))))
+      (sleep-for sx-request-all-items-delay)
+      (setq response
+            (sx-request-make method `((page . ,current-page) ,@args)
+                             request-method process-function)))
+    (vconcat return-value
+             (cdr (assoc 'items response)))))
+
+(defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
-this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
+this function. REQUEST-METHOD is one of `get' (default) or `post'.
 
-Returns cleaned response content.
-See (`sx-encoding-clean-content-deep').
+Returns the entire response as processed by PROCESS-FUNCTION.
+This defaults to `sx-request-response-get-items'.
 
 The full set of arguments is built with
 `sx-request--build-keyword-arguments', prepending
@@ -117,11 +153,12 @@ then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
+  (declare (indent 1))
   (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args nil))
          (request-url (concat sx-request-api-root method))
-         (url-request-method request-method)
+         (url-request-method (and request-method (symbol-name request-method)))
          (url-request-extra-headers
           '(("Content-Type" . "application/x-www-form-urlencoded")))
          (response-buffer (url-retrieve-synchronously request-url)))
@@ -164,7 +201,8 @@ the main content of the response is returned."
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
-            (sx-encoding-clean-content-deep .items)))))))
+            (funcall (or process-function #'sx-request-response-get-items)
+                     response)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method)
   "Fallback method when authentication is not available.
@@ -205,6 +243,16 @@ false, use the symbol `false'.  Each element is processed with
                 alist))
      "&")))
 
+
+;;; Response Processors
+(defun sx-request-response-get-items (response)
+  "Returns the items from RESPONSE."
+  (sx-assoc-let response
+    (sx-encoding-clean-content-deep .items)))
+
+(defun sx-request-all-stop-when-no-more (response)
+  (or (not response)
+      (equal :json-false (cdr (assoc 'has_more response)))))
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
