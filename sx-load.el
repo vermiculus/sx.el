@@ -43,6 +43,7 @@
         sx-request
         sx-search
         sx-site
+        sx-switchto
         sx-tab
         ))
 
