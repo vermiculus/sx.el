@@ -1,4 +1,4 @@
-;;; sx-bot.el --- Functions for viewing different tabs.       -*- lexical-binding: t; -*-
+;;; sx-bot.el --- Functions for automated maintanence  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -19,7 +19,10 @@
 
 ;;; Commentary:
 
-;;
+;; This file defines the behavior of a bot.  To allow completion for
+;; tags, this bot runs through all sites in the network and retrieves
+;; all of their tags.  This data is then written to a directory which
+;; is tracked by the git repository.
 
 
 ;;; Code:
