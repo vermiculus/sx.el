@@ -27,12 +27,12 @@
 
 (defvar sx-site-browse-filter
   (sx-filter-from-nil
-   (site.site_type
-    site.name
-    site.api_site_parameter
-    site.related_sites
-    related_site.api_site_parameter
-    related_site.relation))
+   ((site site_type
+          name
+          api_site_parameter
+          related_sites)
+    (related_site api_site_parameter
+                  relation)))
   "Filter for browsing sites.")
 
 (defun sx-site--get-site-list ()

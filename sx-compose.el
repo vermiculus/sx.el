@@ -188,7 +188,7 @@ respectively added locally to `sx-compose-before-send-hook' and
                                          (.comment_id 'comments)
                                          (t 'answers))
                           :auth 'warn
-                          :url-method "POST"
+                          :url-method 'post
                           :filter sx-browse-filter
                           :site site
                           :keywords (sx-compose--generate-keywords is-question)
@@ -196,7 +196,7 @@ respectively added locally to `sx-compose-before-send-hook' and
                           :submethod 'edit)))
               (lambda () (sx-method-call 'questions
                       :auth 'warn
-                      :url-method "POST"
+                      :url-method 'post
                       :filter sx-browse-filter
                       :site site
                       :keywords (sx-compose--generate-keywords is-question)

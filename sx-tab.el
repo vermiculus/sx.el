@@ -189,5 +189,80 @@ If SITE is nil, use `sx-default-site'."
      (file-name-directory load-file-name)))
   nil t)
 
+
+;;; Unanswered
+(sx-tab--define "Unanswered"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'unanswered)))
+;;;###autoload
+(autoload 'sx-tab-unanswered
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Unanswered My-tags
+(sx-tab--define "Unanswered-my-tags"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'unanswered/my-tags)))
+;;;###autoload
+(autoload 'sx-tab-unanswered
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Featured
+(sx-tab--define "Featured"
+  (lambda (page)
+    (sx-question-get-questions
+     sx-question-list--site page nil 'featured)))
+;;;###autoload
+(autoload 'sx-tab-featured
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Starred
+(sx-tab--define "Starred"
+  (lambda (page)
+    (sx-method-call 'me
+      :page page
+      :site sx-question-list--site
+      :auth t
+      :submethod 'favorites
+      :filter sx-browse-filter)))
+;;;###autoload
+(autoload 'sx-tab-featured
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
+;;; Inter-modes navigation
+(defun sx-tab-meta-or-main ()
+  "Switch to the meta version of a main site, or vice-versa.
+Inside a question, go to the frontpage of the site this question
+belongs to."
+  (interactive)
+  (if (and (derived-mode-p 'sx-question-list-mode)
+           sx-question-list--site)
+      (sx-question-list-switch-site
+       (if (string-match "\\`meta\\." sx-question-list--site)
+           (replace-match "" :fixedcase nil sx-question-list--site)
+         (concat "meta." sx-question-list--site)))
+    (sx-tab-frontpage nil (sx--site (sx--data-here 'question)))))
+
 (provide 'sx-tab)
 ;;; sx-tab.el ends here

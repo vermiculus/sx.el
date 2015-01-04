@@ -189,22 +189,42 @@ If WINDOW nil, the window is decided by
       (switch-to-buffer sx-question-mode--buffer))))
 
 
-;;; Voting
-(defun sx-toggle-upvote (data)
-  "Apply or remove upvote from DATA.
-DATA can be a question, answer, or comment. Interactively, it is
-guessed from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
+;;; Favoriting
+(defun sx-favorite (data &optional undo)
+  "Favorite question given by DATA.
+Interactively, it is guessed from context at point.
+With the UNDO prefix argument, unfavorite the question instead."
+  (interactive (list (sx--error-if-unread (sx--data-here 'question))
+                     current-prefix-arg))
   (sx-assoc-let data
-    (sx-set-vote data "upvote" (null (eq .upvoted t)))))
+    (sx-method-call 'questions
+      :id .question_id
+      :submethod (if undo 'favorite/undo 'favorite)
+      :auth 'warn
+      :site .site_par
+      :url-method 'post
+      :filter sx-browse-filter)))
+(defalias 'sx-star #'sx-favorite)
 
-(defun sx-toggle-downvote (data)
-  "Apply or remove downvote from DATA.
+
+;;; Voting
+(defun sx-upvote (data &optional undo)
+  "Upvote an object given by DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point.
+With UNDO prefix argument, remove upvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "upvote" (not undo)))
+
+(defun sx-downvote (data &optional undo)
+  "Downvote an object given by DATA.
 DATA can be a question or an answer. Interactively, it is guessed
-from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
-  (sx-assoc-let data
-    (sx-set-vote data "downvote" (null (eq .downvoted t)))))
+from context at point.
+With UNDO prefix argument, remove downvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "downvote" (not undo)))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
@@ -223,7 +243,7 @@ changes."
              :id (or .comment_id .answer_id .question_id)
              :submethod (concat type (unless status "/undo"))
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
              :site .site_par))))
     ;; The api returns the new DATA.
@@ -264,7 +284,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :id (or .post_id .answer_id .question_id)
              :submethod "comments/add"
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
              :site .site_par
              :keywords `((body . ,text)))))

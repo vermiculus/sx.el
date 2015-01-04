@@ -39,7 +39,7 @@
                                       (pagesize 100)
                                       (filter '(()))
                                       auth
-                                      (url-method "GET")
+                                      (url-method 'get)
                                       get-all
                                       (process-function
                                        #'sx-request-response-get-items)
@@ -53,7 +53,7 @@ user.
 :FILTER is the set of filters to control the returned information
 :AUTH defines how to act if the method or filters require
 authentication.
-:URL-METHOD is either \"POST\" or \"GET\"
+:URL-METHOD is either `post' or `get'
 :SITE is the api parameter specifying the site.
 :GET-ALL is nil or non-nil
 :PROCESS-FUNCTION is a response-processing function
@@ -102,7 +102,7 @@ Return the entire response as a complex alist."
                                (format "/%s" submethod))
                              ;; On GET methods site is buggy, so we
                              ;; need to provide it as a url argument.
-                             (when (and site (string= url-method "GET"))
+                             (when (and site (eq url-method 'get))
                                (prog1
                                    (format "?site=%s" site)
                                  (setq site nil)))))

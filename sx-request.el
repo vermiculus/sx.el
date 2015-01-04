@@ -134,7 +134,7 @@ access the response wrapper."
 (defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
-this function. REQUEST-METHOD is one of `GET' (default) or `POST'.
+this function. REQUEST-METHOD is one of `get' (default) or `post'.
 
 Returns the entire response as processed by PROCESS-FUNCTION.
 This defaults to `sx-request-response-get-items'.
@@ -158,7 +158,7 @@ the main content of the response is returned."
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args nil))
          (request-url (concat sx-request-api-root method))
-         (url-request-method request-method)
+         (url-request-method (and request-method (symbol-name request-method)))
          (url-request-extra-headers
           '(("Content-Type" . "application/x-www-form-urlencoded")))
          (response-buffer (url-retrieve-synchronously request-url)))
