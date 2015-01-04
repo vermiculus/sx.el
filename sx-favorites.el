@@ -30,7 +30,7 @@
 (require 'sx-networks)
 (require 'sx-filter)
 
-(defvar sx-favorite-list-filter
+(defconst sx-favorite-list-filter
   (sx-filter-from-nil
    (question.question_id)))
 

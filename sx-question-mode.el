@@ -178,7 +178,7 @@ property."
 
 
 ;;; Major-mode
-(defvar sx-question-mode--header-line
+(defconst sx-question-mode--header-line
   '("    "
     (:propertize "n p TAB" face mode-line-buffer-id)
     ": Navigate"

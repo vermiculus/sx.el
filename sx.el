@@ -300,7 +300,7 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defvar sx--ascii-replacement-list
+(defconst sx--ascii-replacement-list
   '(("[:space:]" . "")
     ("àåáâäãåą" .  "a")
     ("èéêëę" .  "e")

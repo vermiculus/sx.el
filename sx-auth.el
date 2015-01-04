@@ -47,32 +47,33 @@ what you are doing!
 
 This variable is set with `sx-auth-authenticate'.")
 
-(defvar sx-auth-method-auth '((me . t)
-                              (inbox . t)
-                              (notifications . t)
-                              (events . t)
-                              (posts (comments add))
-                              (comments delete
-                                        edit
-                                        flags
-                                        upvote)
-                              (answers accept
-                                       delete
-                                       downvote
-                                       edit
-                                       flags
-                                       upvote)
-                              (questions answers
-                                         add
-                                         close
-                                         delete
-                                         downvote
-                                         edit
-                                         favorite
-                                         flags
-                                         render
-                                         upvote
-                                         (unanswered my-tags)))
+(defconst sx-auth-method-auth
+  '((me . t)
+    (inbox . t)
+    (notifications . t)
+    (events . t)
+    (posts (comments add))
+    (comments delete
+              edit
+              flags
+              upvote)
+    (answers accept
+             delete
+             downvote
+             edit
+             flags
+             upvote)
+    (questions answers
+               add
+               close
+               delete
+               downvote
+               edit
+               favorite
+               flags
+               render
+               upvote
+               (unanswered my-tags)))
   "List of methods that require auth.
 Methods are of the form \(METHOD . SUBMETHODS) where SUBMETHODS
   is \(METHOD METHOD METHOD ...).
@@ -80,11 +81,12 @@ Methods are of the form \(METHOD . SUBMETHODS) where SUBMETHODS
 If all SUBMETHODS require auth or there are no submethods, form
 will be \(METHOD . t)")
 
-(defvar sx-auth-filter-auth '(question.upvoted
-                              question.downvoted
-                              answer.upvoted
-                              answer.downvoted
-                              comment.upvoted)
+(defconst sx-auth-filter-auth
+  '(question.upvoted
+    question.downvoted
+    answer.upvoted
+    answer.downvoted
+    comment.upvoted)
   "List of filter types that require auth.
 Keywords are of the form \(OBJECT TYPES) where TYPES is \(FILTER
 FILTER FILTER).")

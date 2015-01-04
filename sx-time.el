@@ -26,7 +26,7 @@
 
 (require 'time-date)
 
-(defvar sx-time-seconds-to-string
+(defconst sx-time-seconds-to-string
   ;; (LIMIT NAME VALUE)
   ;; We use an entry if the number of seconds in question is less than
   ;; LIMIT, but more than the previous entry's LIMIT.

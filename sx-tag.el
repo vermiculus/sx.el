@@ -26,7 +26,7 @@
 
 
 ;;; Getting the list from a site
-(defvar sx-tag-filter
+(defconst sx-tag-filter
   (sx-filter-from-nil
    (tag.name
     tag.synonyms))

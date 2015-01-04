@@ -107,7 +107,7 @@ return the compiled filter."
 
 
 ;;; Browsing filter
-(defvar sx-browse-filter
+(defconst sx-browse-filter
   (sx-filter-from-nil
    ((question body_markdown
               bounty_amount

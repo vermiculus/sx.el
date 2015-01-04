@@ -28,7 +28,7 @@
 (require 'sx-cache)
 (require 'sx-filter)
 
-(defvar sx-site-browse-filter
+(defconst sx-site-browse-filter
   (sx-filter-from-nil
    ((site site_type
           name
