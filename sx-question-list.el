@@ -399,6 +399,7 @@ Non-interactively, DATA is a question alist."
 
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--site)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
