@@ -29,7 +29,7 @@
 (require 'sx-site)
 (require 'sx-filter)
 
-(defvar sx-network--user-filter
+(defconst sx-network--user-filter
   (sx-filter-from-nil
    ((badge_count bronze
                  silver

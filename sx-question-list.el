@@ -228,7 +228,7 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
-(defvar sx-question-list--header-line
+(defconst sx-question-list--header-line
   '("    "
     (:propertize "n p j k" face mode-line-buffer-id)
     ": Navigate"

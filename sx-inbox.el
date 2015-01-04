@@ -28,7 +28,7 @@
 
 
 ;;; API
-(defvar sx-inbox-filter
+(defconst sx-inbox-filter
   '((inbox_item.answer_id
      inbox_item.body
      inbox_item.comment_id
@@ -91,7 +91,7 @@ These are identified by their links.")
   "List of notification items which are read.
 These are identified by their links.")
 
-(defvar sx-inbox--header-line
+(defconst sx-inbox--header-line
   '("    "
     (:propertize "n p j k" face mode-line-buffer-id)
     ": Navigate"
@@ -106,7 +106,7 @@ These are identified by their links.")
     ": Quit")
   "Header-line used on the inbox list.")
 
-(defvar sx-inbox--mode-line
+(defconst sx-inbox--mode-line
   '("    "
     (:propertize
      (sx-inbox--notification-p
