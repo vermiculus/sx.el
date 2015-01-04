@@ -60,6 +60,9 @@ authentication.
 :PAGE is the page number which will be requested
 :PAGESIZE is the number of items to retrieve per request, default 100
 
+Any conflicting information in :KEYWORDS overrides the :PAGE
+and :PAGESIZE settings.
+
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
 to ensure awareness of where auth is needed.
@@ -127,8 +130,10 @@ Return the entire response as a complex alist."
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
     (push `(filter . ,(sx-filter-get-var filter)) keywords)
-    (push `(page . ,page) keywords)
-    (push `(pagesize . ,pagesize) keywords)
+    (unless (assq 'page keywords)
+      (push `(page . ,page) keywords))
+    (unless (assq 'pagesize keywords)
+      (push `(pagesize . ,pagesize) keywords))
     (when site
       (push `(site . ,site) keywords))
     (funcall call
