@@ -145,6 +145,7 @@ If ALIST doesn't have a `site' property, one is created using the
 
 ;;; Browsing filter
 (defvar sx-browse-filter
+  ;; @TODO: Use `sx-filter-from-nil'
   '((question.body_markdown
      question.comments
      question.answers
