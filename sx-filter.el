@@ -106,6 +106,7 @@ return the compiled filter."
 (defvar sx-browse-filter
   (sx-filter-from-nil
    ((question body_markdown
+              bounty_amount
               comments
               answers
               last_editor

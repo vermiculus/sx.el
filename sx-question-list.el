@@ -104,6 +104,11 @@
   ""
   :group 'sx-question-list-faces)
 
+(defface sx-question-list-bounty
+  '((t :inherit font-lock-warning-face))
+  ""
+  :group 'sx-question-list-faces)
+
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -150,9 +155,11 @@ Also see `sx-question-list-refresh'."
          (propertize " " 'display "\n   ")
          ;; Second line
          (propertize favorite 'face 'sx-question-list-favorite)
-         "     "
-         (propertize (concat (sx-time-since .last_activity_date)
-                             sx-question-list-ago-string)
+         (if (and (numberp .bounty_amount) (> .bounty_amount 0))
+             (propertize (format "%4d" .bounty_amount)
+                         'face 'sx-question-list-bounty)
+           "    ")
+         " "
                      'face 'sx-question-list-date)
          " "
          (propertize (mapconcat #'sx-question--tag-format .tags " ")
