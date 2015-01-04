@@ -117,7 +117,10 @@ return the compiled filter."
               downvoted
               question_id
               share_link)
-    (user display_name)
+    (user display_name
+          reputation)
+    (shallow_user display_name
+                  reputation)
     (comment owner
              body_markdown
              body

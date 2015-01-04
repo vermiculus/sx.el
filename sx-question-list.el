@@ -109,6 +109,16 @@
   ""
   :group 'sx-question-list-faces)
 
+(defface sx-question-list-reputation
+  '((t :inherit sx-question-list-date))
+  ""
+  :group 'sx-question-list-faces)
+
+(defface sx-question-list-user
+  '((t :inherit font-lock-builtin-face))
+  ""
+  :group 'sx-question-list-faces)
+
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -169,6 +179,12 @@ Also see `sx-question-list-refresh'."
          ;; the whole thing customizable)
          (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
+         " "
+         (let-alist .owner
+           (format "%15s %5s"
+             (propertize .display_name 'face 'sx-question-list-user)
+             (propertize (number-to-string .reputation)
+                         'face 'sx-question-list-reputation)))
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0
