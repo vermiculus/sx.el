@@ -35,6 +35,8 @@
 (cl-defun sx-method-call (method &key id
                                       submethod
                                       keywords
+                                      page
+                                      (pagesize 100)
                                       (filter '(()))
                                       auth
                                       (url-method "GET")
@@ -55,6 +57,11 @@ authentication.
 :SITE is the api parameter specifying the site.
 :GET-ALL is nil or non-nil
 :PROCESS-FUNCTION is a response-processing function
+:PAGE is the page number which will be requested
+:PAGESIZE is the number of items to retrieve per request, default 100
+
+Any conflicting information in :KEYWORDS overrides the :PAGE
+and :PAGESIZE settings.
 
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
@@ -100,12 +107,10 @@ Return the entire response as a complex alist."
                                    (format "?site=%s" site)
                                  (setq site nil)))))
         (call (if get-all #'sx-request-all-items #'sx-request-make))
-        (get-all-stop-when
+        (get-all
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
-          (get-all get-all)
-          (t nil)))
-        parameters)
+          (t get-all))))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
@@ -124,19 +129,18 @@ Return the entire response as a complex alist."
        ((and (or filter-auth method-auth) (not auth))
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
-    (setq parameters
-          (cons (cons 'filter (sx-filter-get-var filter))
-                keywords))
+    (push `(filter . ,(sx-filter-get-var filter)) keywords)
+    (unless (assq 'page keywords)
+      (push `(page . ,page) keywords))
+    (unless (assq 'pagesize keywords)
+      (push `(pagesize . ,pagesize) keywords))
     (when site
-      ;; @TODO: Maybe use `push' instead?
-      (setq parameters (cons (cons 'site site) parameters)))
+      (push `(site . ,site) keywords))
     (funcall call
              full-method
-             parameters
+             keywords
              url-method
-             (if get-all
-                 get-all-stop-when
-               process-function))))
+             (or get-all process-function))))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here

@@ -26,8 +26,26 @@
 
 
 ;;; Getting the list from a site
-(defvar sx-tag-filter '((tag.name)) 
+(defvar sx-tag-filter
+  (sx-filter-from-nil
+   (tag.name
+    tag.synonyms))
   "Filter used when querying tags.")
+
+(defun sx-tag--get-all (site &optional no-synonyms)
+  "Retrieve all tags for SITE.
+If NO-SYNONYMS is non-nil, don't return synonyms."
+  (cl-reduce
+   (lambda (so-far tag)
+     (let-alist tag
+       (cons .name
+             (if no-synonyms so-far
+               (append .synonyms so-far)))))
+   (sx-method-call 'tags
+     :get-all t
+     :filter sx-tag-filter
+     :site site)
+   :initial-value nil))
 
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
@@ -36,7 +54,7 @@ Returns an array."
     :auth nil
     :filter sx-tag-filter
     :site site
-    :keywords `((page . 1) (pagesize . 100) (inname . ,string))))
+    :keywords `((inname . ,string))))
 
 (defun sx-tag--get-some-tag-names-containing (site string)
   "Return at most 100 tag names for SITE containing STRING.
@@ -52,7 +70,7 @@ TAGS can be a string (the tag name) or a list of strings.
 Fails if TAGS is a list with more than 100 items.
 Return the list of invalid tags in TAGS."
   (and (listp tags) (> (length tags) 100)
-       (error "Invalid argument. TAG has more than 100 items")) 
+       (error "Invalid argument. TAG has more than 100 items"))
   (let ((result
          (mapcar
           (lambda (x) (cdr (assoc 'name x)))
@@ -61,8 +79,7 @@ Return the list of invalid tags in TAGS."
             :submethod 'info
             :auth nil
             :filter sx-tag-filter
-            :site site
-            :keywords '((page . 1) (pagesize . 100))))))
+            :site site))))
     (cl-remove-if (lambda (x) (member x result)) tags)))
 
 (provide 'sx-tag)
