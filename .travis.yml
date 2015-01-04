@@ -1,6 +1,10 @@
 # Stolen from capitaomorte/yasnippet
 language: emacs-lisp
 
+branches:
+  except:
+    - data
+
 env:
   - EVM_EMACS=emacs-24.1-bin
   - EVM_EMACS=emacs-24.2-bin
