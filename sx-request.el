@@ -202,7 +202,7 @@ the main content of the response is returned."
               (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
             (funcall (or process-function #'sx-request-response-get-items)
-                       response)))))))
+                     response)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method)
   "Fallback method when authentication is not available.
