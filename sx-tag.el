@@ -39,8 +39,7 @@
    (sx-method-call 'tags
      :get-all t
      :filter sx-tag-filter
-     :site site
-     :keywords '((pagesize . 100)))))
+     :site site)))
 
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
@@ -49,7 +48,7 @@ Returns an array."
     :auth nil
     :filter sx-tag-filter
     :site site
-    :keywords `((page . 1) (pagesize . 100) (inname . ,string))))
+    :keywords `((inname . ,string))))
 
 (defun sx-tag--get-some-tag-names-containing (site string)
   "Return at most 100 tag names for SITE containing STRING.
@@ -74,8 +73,7 @@ Return the list of invalid tags in TAGS."
             :submethod 'info
             :auth nil
             :filter sx-tag-filter
-            :site site
-            :keywords '((page . 1) (pagesize . 100))))))
+            :site site))))
     (cl-remove-if (lambda (x) (member x result)) tags)))
 
 (provide 'sx-tag)

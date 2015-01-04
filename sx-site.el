@@ -49,7 +49,7 @@
   (sx-cache-get
    'site-list
    '(sx-method-call 'sites
-      :keywords '((pagesize . 999))
+      :pagesize 999
       :filter sx-site-browse-filter)))
 
 (defcustom sx-site-favorites
