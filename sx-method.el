@@ -122,12 +122,9 @@ Return the entire response as a complex alist."
        ((and (or filter-auth method-auth) (not auth))
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
-    (setq keywords
-          (cons (cons 'filter (sx-filter-get-var filter))
-                keywords))
+    (push `(filter . ,(sx-filter-get-var filter)) keywords)
     (when site
-      ;; @TODO: Maybe use `push' instead?
-      (setq keywords (cons (cons 'site site) keywords)))
+      (push `(site . ,site) keywords))
     (funcall call
              full-method
              keywords
