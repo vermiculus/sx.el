@@ -24,6 +24,8 @@
 
 ;;; Code:
 
+(defvar sx--stat-tags-directory "tags")
+
 (defun sx--stat-avg (numbers)
   (/ (float (apply #'+ numbers)) (length numbers)))
 
@@ -37,9 +39,9 @@ Makes no account for tag popularity."
                       (read
                        (with-temp-buffer
                          (insert-file-contents
-                          (format "tags/%s" file))
+                          (format "%s/%s" sx--stat-tags-directory file))
                          (buffer-string))))))
-           (cddr (sort (directory-files "tags")
+           (cddr (sort (directory-files sx--stat-tags-directory)
                        #'string-lessp)))))
 
 (provide 'sx-stats)
