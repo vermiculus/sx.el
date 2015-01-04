@@ -104,6 +104,21 @@
   ""
   :group 'sx-question-list-faces)
 
+(defface sx-question-list-bounty
+  '((t :inherit font-lock-warning-face))
+  ""
+  :group 'sx-question-list-faces)
+
+(defface sx-question-list-reputation
+  '((t :inherit sx-question-list-date))
+  ""
+  :group 'sx-question-list-faces)
+
+(defface sx-question-list-user
+  '((t :inherit font-lock-builtin-face))
+  ""
+  :group 'sx-question-list-faces)
+
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -141,20 +156,35 @@ Also see `sx-question-list-refresh'."
                         'sx-question-list-answers-accepted
                       'sx-question-list-answers))
         (concat
+         ;; First line
          (propertize
           .title
           'face (if (sx-question--read-p question-data)
                     'sx-question-list-read-question
                   'sx-question-list-unread-question))
          (propertize " " 'display "\n   ")
+         ;; Second line
          (propertize favorite 'face 'sx-question-list-favorite)
-         "     "
-         (propertize (concat (sx-time-since .last_activity_date)
-                             sx-question-list-ago-string)
+         (if (and (numberp .bounty_amount) (> .bounty_amount 0))
+             (propertize (format "%4d" .bounty_amount)
+                         'face 'sx-question-list-bounty)
+           "    ")
+         " "
+         (propertize (format "%3s%s"
+                       (sx-time-since .last_activity_date)
+                       sx-question-list-ago-string)
                      'face 'sx-question-list-date)
          " "
-         (propertize (mapconcat #'sx-question--tag-format .tags " ")
+         ;; @TODO: Make this width customizable. (Or maybe just make
+         ;; the whole thing customizable)
+         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
+         " "
+         (let-alist .owner
+           (format "%15s %5s"
+             (propertize .display_name 'face 'sx-question-list-user)
+             (propertize (number-to-string .reputation)
+                         'face 'sx-question-list-reputation)))
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0

@@ -106,6 +106,7 @@ return the compiled filter."
 (defvar sx-browse-filter
   (sx-filter-from-nil
    ((question body_markdown
+              bounty_amount
               comments
               answers
               last_editor
@@ -116,7 +117,10 @@ return the compiled filter."
               downvoted
               question_id
               share_link)
-    (user display_name)
+    (user display_name
+          reputation)
+    (shallow_user display_name
+                  reputation)
     (comment owner
              body_markdown
              body
