@@ -59,4 +59,4 @@
     (apply #'message message args)))
 
 (mapc #'sx-load-test
-      '(api macros printing util))
+      '(api macros printing util search))
