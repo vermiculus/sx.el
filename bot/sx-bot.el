@@ -27,13 +27,12 @@
 
 ;;; Code:
 
-(require 'sx-site)
-(require 'sx-tag)
-
-(setq sx-request-remaining-api-requests-message-threshold 50000)
-
 (require 'package)
 (package-initialize)
+
+(require 'sx-load)
+
+(setq sx-request-remaining-api-requests-message-threshold 50000)
 
 (defcustom sx-bot-out-dir "./data/tags/"
   "Directory where output tag files are saved."
@@ -51,14 +50,12 @@ File is savedd in `sx-bot-out-dir'."
              (repr (prin1-to-string
                     (sort (cdr data)
                           #'string-lessp))))
-        (insert repr)
-        (insert "\n")
+        (insert repr "\n")
         (goto-char (point-min))
         (while (search-forward "\" \"" nil t)
           (replace-match "\"\n \"" nil t))))
     (message "Wrote %S" file-name)
     file-name))
-
 
 (defun sx-bot-fetch-and-write-tags ()
   "Get a list of all tags of all sites and save to disk."
