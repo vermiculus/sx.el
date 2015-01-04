@@ -11,12 +11,6 @@
   (should-error
    (sx-request-make "questions" '(()))))
 
-(ert-deftest test-request-all ()
-  "Test request all items"
-  (should
-   (< 250
-      (length (sx-request-all-items "sites")))))
-
 (ert-deftest test-method-get-all ()
   "Tests sx-method interface to `sx-request-all-items'"
   (should (< 250 (length (sx-method-call 'sites :get-all t)))))
