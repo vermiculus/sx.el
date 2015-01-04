@@ -29,8 +29,8 @@
 (ert-deftest test-search-full-page ()
   "Test retrieval of the full search page"
   (should
-   (= 30 (length (sx-search-get-questions
-                  "stackoverflow" 1 "jquery")))))
+   (= 100 (length (sx-search-get-questions
+                   "stackoverflow" 1 "jquery")))))
 
 (ert-deftest test-search-exclude-tags ()
   "Test excluding tags from a search"
