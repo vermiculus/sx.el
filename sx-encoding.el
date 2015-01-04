@@ -1,4 +1,4 @@
-;;; sx-encoding.el --- encoding
+;;; sx-encoding.el --- encoding -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
