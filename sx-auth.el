@@ -74,11 +74,11 @@ This variable is set with `sx-auth-authenticate'.")
                                          upvote
                                          (unanswered my-tags)))
   "List of methods that require auth.
-Methods are of form (METHOD . SUBMETHODS) where SUBMETHODS
-  is (METHOD METHOD METHOD ...).
+Methods are of the form \(METHOD . SUBMETHODS) where SUBMETHODS
+  is \(METHOD METHOD METHOD ...).
 
 If all SUBMETHODS require auth or there are no submethods, form
-will be (METHOD  . t)")
+will be \(METHOD . t)")
 
 (defvar sx-auth-filter-auth '(question.upvoted
                               question.downvoted
@@ -86,8 +86,8 @@ will be (METHOD  . t)")
                               answer.downvoted
                               comment.upvoted)
   "List of filter types that require auth.
-Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
-FILTER).")
+Keywords are of the form \(OBJECT TYPES) where TYPES is \(FILTER
+FILTER FILTER).")
 
 ;;;###autoload
 (defun sx-authenticate ()
