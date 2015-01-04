@@ -194,7 +194,7 @@ If WINDOW nil, the window is decided by
   "Favorite question given by DATA.
 Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unfavorite the question instead."
-  (interactive (list (sx--error-if-unread (sx--data-here))
+  (interactive (list (sx--error-if-unread (sx--data-here 'question))
                      current-prefix-arg))
   (sx-assoc-let data
     (sx-method-call 'questions
