@@ -118,7 +118,8 @@ See `sx-question--user-read-list'."
            ;; Question already present.
            ((setq cell (assoc .question_id site-cell))
             ;; Current version is newer than cached version.
-            (when (> .last_activity_date (cdr cell))
+            (when (or (not (numberp (cdr cell)))
+                      (> .last_activity_date (cdr cell)))
               (setcdr cell .last_activity_date)))
            ;; Question wasn't present.
            (t
