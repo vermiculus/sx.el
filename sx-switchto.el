@@ -1,4 +1,4 @@
-;;; sx-goto.el --- Keymap for navigating between pages. -*- lexical-binding: t; -*-
+;;; sx-switchto.el --- Keymap for navigating between pages. -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -29,9 +29,9 @@
 
 ;;; Keybinds
 ;;;###autoload
-(define-prefix-command 'sx-goto-map)
+(define-prefix-command 'sx-switchto-map)
 
-(mapc (lambda (x) (define-key sx-goto-map (car x) (cadr x)))
+(mapc (lambda (x) (define-key sx-switchto-map (car x) (cadr x)))
   '(
     ;; These immitate the site's G hotkey.
     ("m" sx-tab-meta-or-main)
@@ -48,8 +48,8 @@
     ("v" sx-tab-topvoted)
     ))
 
-(provide 'sx-goto)
-;;; sx-goto.el ends here
+(provide 'sx-switchto)
+;;; sx-switchto.el ends here
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
