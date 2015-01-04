@@ -136,6 +136,26 @@ with a `link' property)."
             result))
     result))
 
+(defun sx--tree-paths (tree)
+  "Return a list of all paths in TREE.
+Adapted from http://stackoverflow.com/q/3019250."
+  (if (atom tree)
+      (list (list tree))
+    (apply #'append
+           (mapcar (lambda (node)
+                     (mapcar (lambda (path)
+                               (cons (car tree) path))
+                             (sx--tree-paths node)))
+                   (cdr tree)))))
+
+(defun sx--tree-expand (path-func tree)
+  "Apply PATH-FUNC to every path in TREE.
+Return the result.  See `sx--tree-paths'."
+  (mapcar path-func
+          (apply #'append
+                 (mapcar #'sx--tree-paths
+                         tree))))
+
 (defmacro sx-assoc-let (alist &rest body)
   "Use ALIST with `let-alist' to execute BODY.
 `.site_par' has a special meaning, thanks to `sx--ensure-site'.
@@ -147,47 +167,6 @@ If ALIST doesn't have a `site' property, one is created using the
      (sx--ensure-site ,alist)
      ,(macroexpand
        `(let-alist ,alist ,@body))))
-
-
-;;; Browsing filter
-(defvar sx-browse-filter
-  ;; @TODO: Use `sx-filter-from-nil'
-  '((question.body_markdown
-     question.comments
-     question.answers
-     question.last_editor
-     question.last_activity_date
-     question.accepted_answer_id
-     question.link
-     question.upvoted
-     question.downvoted
-     question.question_id
-     question.share_link
-     user.display_name
-     comment.owner
-     comment.body_markdown
-     comment.body
-     comment.link
-     comment.edited
-     comment.creation_date
-     comment.upvoted
-     comment.score
-     comment.post_type
-     comment.post_id
-     comment.comment_id
-     answer.answer_id
-     answer.last_editor
-     answer.last_activity_date
-     answer.link
-     answer.share_link
-     answer.owner
-     answer.body_markdown
-     answer.upvoted
-     answer.downvoted
-     answer.comments)
-    (user.profile_image shallow_user.profile_image))
-  "The filter applied when retrieving question data.
-See `sx-question-get-questions' and `sx-question-get-question'.")
 
 
 ;;; Utility Functions
