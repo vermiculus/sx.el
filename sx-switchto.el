@@ -43,6 +43,7 @@
     ("f" sx-tab-featured)
     ("i" sx-inbox)
     ("n" sx-tab-newest)
+    ("t" sx-tab-switch)
     ("U" sx-tab-unanswered-my-tags)
     ("v" sx-tab-topvoted)
     ("w" sx-tab-week)
