@@ -202,7 +202,7 @@ With the UNDO prefix argument, unfavorite the question instead."
       :submethod (if undo 'favorite/undo 'favorite)
       :auth 'warn
       :site .site_par
-      :url-method "POST"
+      :url-method 'post
       :filter sx-browse-filter)))
 (defalias 'sx-star #'sx-favorite)
 
@@ -241,7 +241,7 @@ changes."
              :id (or .comment_id .answer_id .question_id)
              :submethod (concat type (unless status "/undo"))
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
              :site .site_par))))
     ;; The api returns the new DATA.
@@ -282,7 +282,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :id (or .post_id .answer_id .question_id)
              :submethod "comments/add"
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
              :site .site_par
              :keywords `((body . ,text)))))
