@@ -160,6 +160,9 @@ Also see `sx-question-list-refresh'."
                          'face 'sx-question-list-bounty)
            "    ")
          " "
+         (propertize (format "%3s%s"
+                       (sx-time-since .last_activity_date)
+                       sx-question-list-ago-string)
                      'face 'sx-question-list-date)
          " "
          (propertize (mapconcat #'sx-question--tag-format .tags " ")
