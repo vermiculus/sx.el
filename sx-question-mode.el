@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- major-mode for displaying a question  -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- major-mode for displaying questions  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

@@ -1,4 +1,4 @@
-;;; sx-method.el --- main interface for API method calls  -*- lexical-binding: t; -*-
+;;; sx-method.el --- method calls                    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 

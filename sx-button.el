@@ -1,4 +1,4 @@
-;;; sx-button.el --- defining buttons -*- lexical-binding: t; -*-
+;;; sx-button.el --- defining buttons                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

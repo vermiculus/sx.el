@@ -1,4 +1,4 @@
-;;; sx-networks.el --- user network information  -*- lexical-binding: t; -*-
+;;; sx-networks.el --- user network information      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 

@@ -1,4 +1,4 @@
-;;; sx-compose.el --- major-mode for coposing questions and answers -*- lexical-binding: t; -*-
+;;; sx-compose.el --- major-mode for composing questions and answers  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

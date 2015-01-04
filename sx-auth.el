@@ -1,4 +1,4 @@
-;;; sx-auth.el --- user authentication  -*- lexical-binding: t; -*-
+;;; sx-auth.el --- user authentication               -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
