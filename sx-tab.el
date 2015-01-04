@@ -232,6 +232,24 @@ If SITE is nil, use `sx-default-site'."
   nil t)
 
 
+;;; Starred
+(sx-tab--define "Starred"
+  (lambda (page)
+    (sx-method-call 'me
+      :page page
+      :site sx-question-list--site
+      :auth t
+      :submethod 'favorites
+      :filter sx-browse-filter)))
+;;;###autoload
+(autoload 'sx-tab-featured
+  (expand-file-name
+   "sx-tab"
+   (when load-file-name
+     (file-name-directory load-file-name)))
+  nil t)
+
+
 ;;; Inter-modes navigation
 (defun sx-tab-meta-or-main ()
   "Switch to the meta version of a main site, or vice-versa.
