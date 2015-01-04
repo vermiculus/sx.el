@@ -141,12 +141,14 @@ Also see `sx-question-list-refresh'."
                         'sx-question-list-answers-accepted
                       'sx-question-list-answers))
         (concat
+         ;; First line
          (propertize
           .title
           'face (if (sx-question--read-p question-data)
                     'sx-question-list-read-question
                   'sx-question-list-unread-question))
          (propertize " " 'display "\n   ")
+         ;; Second line
          (propertize favorite 'face 'sx-question-list-favorite)
          "     "
          (propertize (concat (sx-time-since .last_activity_date)
