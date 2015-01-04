@@ -103,8 +103,7 @@ Return the entire response as a complex alist."
         (get-all-stop-when
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
-          (get-all get-all)
-          (t nil))))
+          (t get-all))))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
