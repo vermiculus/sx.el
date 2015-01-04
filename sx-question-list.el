@@ -165,7 +165,9 @@ Also see `sx-question-list-refresh'."
                        sx-question-list-ago-string)
                      'face 'sx-question-list-date)
          " "
-         (propertize (mapconcat #'sx-question--tag-format .tags " ")
+         ;; @TODO: Make this width customizable. (Or maybe just make
+         ;; the whole thing customizable)
+         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
          (propertize " " 'display "\n")))))))
 
