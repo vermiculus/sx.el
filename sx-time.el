@@ -1,4 +1,4 @@
-;;; sx-time.el --- time
+;;; sx-time.el --- time -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
