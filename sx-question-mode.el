@@ -225,12 +225,15 @@ Letters do not insert themselves; instead, they are commands.
    ("g" sx-question-mode-refresh)
    ("c" sx-comment)
    ("v" sx-visit-externally)
-   ("u" sx-toggle-upvote)
-   ("d" sx-toggle-downvote)
+   ("u" sx-upvote)
+   ("d" sx-downvote)
    ("q" quit-window)
    (" " scroll-up-command)
    ("a" sx-answer)
    ("e" sx-edit)
+   ("S" sx-search)
+   ("s" sx-switchto-map)
+   ("*" sx-favorite)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)
@@ -254,7 +257,7 @@ query the api."
      (if no-update
          sx-question-mode--data
        (sx-assoc-let sx-question-mode--data
-         (sx-question-get-question .site .question_id))))
+         (sx-question-get-question .site_par .question_id))))
     (goto-char point)
     (when (equal (selected-window)
                  (get-buffer-window (current-buffer)))

@@ -11,6 +11,7 @@
  sx-initialized t
  sx-request-remaining-api-requests-message-threshold 50000
  debug-on-error t
+ url-show-status nil
  user-emacs-directory "."
  sx-test-base-dir (file-name-directory (or load-file-name "./")))
 
@@ -55,10 +56,10 @@
 
 (defun sx-test-message (message &rest args)
   (when sx-test-enable-messages
-    (apply #'message (cons message args))))
+    (apply #'message message args)))
 
 (mapc #'sx-load-test
-      '(api macros printing util))
+      '(api macros printing util search))
 
 (ert-deftest user-entry-functions ()
   "Ensures all entry functions are autoloaded."

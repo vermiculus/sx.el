@@ -119,15 +119,14 @@ Interactively, this is specified with a prefix argument.
 If DATA is a question, also mark it as read."
   (interactive (list (sx--data-here) current-prefix-arg))
   (sx-assoc-let data
-    (let ((link
-           (when (stringp .link)
-             (funcall (if copy-as-kill #'kill-new #'browse-url)
-               .link))))
+    (if (not (stringp .link))
+        (sx-message "Nothing to visit here.")
+      (funcall (if copy-as-kill #'kill-new #'browse-url) .link)
       (when (and (called-interactively-p 'any) copy-as-kill)
-        (message "Copied: %S" link)))
-    (when (and .title (not copy-as-kill))
-      (sx-question--mark-read data)
-      (sx--maybe-update-display))))
+        (message "Copied: %S" .link))
+      (when (and .title (not copy-as-kill))
+        (sx-question--mark-read data)
+        (sx--maybe-update-display)))))
 
 (defun sx-open-link (link)
   "Visit element given by LINK inside Emacs.
@@ -142,22 +141,42 @@ Element can be a question, answer, or comment."
       (cl-case .type
         (answer
          (sx-display-question
-          (sx-question-get-from-answer .site .id) 'focus))
+          (sx-question-get-from-answer .site_par .id) 'focus))
         (question
          (sx-display-question
-          (sx-question-get-question .site .id) 'focus))))))
+          (sx-question-get-question .site_par .id) 'focus))))))
 
 
 ;;; Displaying
+(defun sx-display (&optional data)
+  "Display object given by DATA.
+Interactively, display object under point. Object can be a
+question, an answer, or an inbox_item.
+
+This is meant for interactive use. In lisp code, use
+object-specific functions such as `sx-display-question' and the
+likes."
+  (interactive (list (sx--data-here)))
+  (sx-assoc-let data
+    (cond
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
+     (.item_type (sx-open-link .link))
+     (.answer_id
+      (sx-display-question
+       (sx-question-get-from-answer .site_par .id) 'focus))
+     (.title
+      (sx-display-question data 'focus)))))
+
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
-When DATA is nil, display question under point. When FOCUS is
+Interactively, display question under point. When FOCUS is
 non-nil (the default when called interactively), also focus the
 relevant window.
 
 If WINDOW nil, the window is decided by
 `sx-question-mode-display-buffer-function'."
-  (interactive (list (sx--data-here) t))
+  (interactive (list (sx--data-here 'question) t))
   (when (sx-question--mark-read data)
     (sx--maybe-update-display))
   ;; Display the question.
@@ -170,22 +189,42 @@ If WINDOW nil, the window is decided by
       (switch-to-buffer sx-question-mode--buffer))))
 
 
-;;; Voting
-(defun sx-toggle-upvote (data)
-  "Apply or remove upvote from DATA.
-DATA can be a question, answer, or comment. Interactively, it is
-guessed from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
+;;; Favoriting
+(defun sx-favorite (data &optional undo)
+  "Favorite question given by DATA.
+Interactively, it is guessed from context at point.
+With the UNDO prefix argument, unfavorite the question instead."
+  (interactive (list (sx--error-if-unread (sx--data-here 'question))
+                     current-prefix-arg))
   (sx-assoc-let data
-    (sx-set-vote data "upvote" (null (eq .upvoted t)))))
+    (sx-method-call 'questions
+      :id .question_id
+      :submethod (if undo 'favorite/undo 'favorite)
+      :auth 'warn
+      :site .site_par
+      :url-method 'post
+      :filter sx-browse-filter)))
+(defalias 'sx-star #'sx-favorite)
 
-(defun sx-toggle-downvote (data)
-  "Apply or remove downvote from DATA.
+
+;;; Voting
+(defun sx-upvote (data &optional undo)
+  "Upvote an object given by DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point.
+With UNDO prefix argument, remove upvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "upvote" (not undo)))
+
+(defun sx-downvote (data &optional undo)
+  "Downvote an object given by DATA.
 DATA can be a question or an answer. Interactively, it is guessed
-from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
-  (sx-assoc-let data
-    (sx-set-vote data "downvote" (null (eq .downvoted t)))))
+from context at point.
+With UNDO prefix argument, remove downvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "downvote" (not undo)))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
@@ -204,9 +243,9 @@ changes."
              :id (or .comment_id .answer_id .question_id)
              :submethod (concat type (unless status "/undo"))
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
-             :site .site))))
+             :site .site_par))))
     ;; The api returns the new DATA.
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)
@@ -245,16 +284,16 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :id (or .post_id .answer_id .question_id)
              :submethod "comments/add"
              :auth 'warn
-             :url-method "POST"
+             :url-method 'post
              :filter sx-browse-filter
-             :site .site
+             :site .site_par
              :keywords `((body . ,text)))))
       ;; The api returns the new DATA.
       (when (> (length result) 0)
         (sx--add-comment-to-object
          (elt result 0)
          (if .post_id
-             (sx--get-post .post_type .site .post_id)
+             (sx--get-post .post_type .site_par .post_id)
            data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
@@ -287,7 +326,7 @@ ID is an integer."
     (car (cl-member-if
           (lambda (x) (sx-assoc-let x
                    (and (equal (or .answer_id .question_id) id)
-                        (equal .site site))))
+                        (equal .site_par site))))
           db))))
 
 (defun sx--add-comment-to-object (comment object)
@@ -320,7 +359,7 @@ from context at point."
     (let ((buffer (current-buffer)))
       (pop-to-buffer
        (sx-compose-create
-        .site data
+        .site_par data
         ;; Before send hook
         (when .comment_id (list #'sx--comment-valid-p))
         ;; After send functions
@@ -338,12 +377,24 @@ from context at point."
 (defun sx--interactive-site-prompt ()
   "Query the user for a site."
   (let ((default (or sx-question-list--site
-                     (sx-assoc-let sx-question-mode--data .site)
+                     (sx-assoc-let sx-question-mode--data .site_par)
                      sx-default-site)))
-    (funcall (if ido-mode #'ido-completing-read #'completing-read)
-      (format "Site (%s): " default)
-      (sx-site-get-api-tokens) nil t nil nil
-      default)))
+    (sx-completing-read
+     (format "Site (%s): " default)
+     (sx-site-get-api-tokens) nil t nil nil
+     default)))
+
+(defun sx--maybe-site-prompt (arg)
+  "Get a site token conditionally in an interactive context.
+If ARG is non-nil, use `sx--interactive-site-prompt'.
+Otherwise, use `sx-question-list--site' if non-nil.
+If nil, use `sx--interactive-site-prompt' anyway."
+  ;; This could eventually be generalized into (sx--maybe-prompt
+  ;; prefix-arg value-if-non-nil #'prompt-function).
+  (if arg
+      (sx--interactive-site-prompt)
+    (or sx-question-list--site
+        (sx--interactive-site-prompt))))
 
 ;;;###autoload
 (defun sx-ask (site)
@@ -373,7 +424,7 @@ context at point. "
     (sx-assoc-let data
       (pop-to-buffer
        (sx-compose-create
-        .site .question_id nil
+        .site_par .question_id nil
         ;; After send functions
         (list (lambda (_ res)
                 (sx--add-answer-to-question-object

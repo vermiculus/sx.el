@@ -26,7 +26,7 @@
 (require 'sx-filter)
 (require 'sx-method)
 
-(defun sx-question-get-questions (site &optional page keywords)
+(defun sx-question-get-questions (site &optional page keywords submethod)
   "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
@@ -39,6 +39,7 @@ KEYWORDS are added to the method call along with PAGE.
     :keywords `((page . ,page) ,@keywords)
     :site site
     :auth t
+    :submethod submethod
     :filter sx-browse-filter))
 
 (defun sx-question-get-question (site question-id)
@@ -94,8 +95,8 @@ If no cache exists for it, initialize one with SITE."
   "Non-nil if QUESTION has been read since last updated.
 See `sx-question--user-read-list'."
   (sx-assoc-let question
-    (sx-question--ensure-read-list .site)
-    (let ((ql (cdr (assoc .site sx-question--user-read-list))))
+    (sx-question--ensure-read-list .site_par)
+    (let ((ql (cdr (assoc .site_par sx-question--user-read-list))))
       (and ql
            (>= (or (cdr (assoc .question_id ql)) 0)
                .last_activity_date)))))
@@ -107,18 +108,19 @@ read, i.e., if it was `sx-question--read-p'.
 See `sx-question--user-read-list'."
   (prog1
       (sx-assoc-let question
-        (sx-question--ensure-read-list .site)
-        (let ((site-cell (assoc .site sx-question--user-read-list))
+        (sx-question--ensure-read-list .site_par)
+        (let ((site-cell (assoc .site_par sx-question--user-read-list))
               (q-cell (cons .question_id .last_activity_date))
               cell)
           (cond
            ;; First question from this site.
            ((null site-cell)
-            (push (list .site q-cell) sx-question--user-read-list))
+            (push (list .site_par q-cell) sx-question--user-read-list))
            ;; Question already present.
            ((setq cell (assoc .question_id site-cell))
             ;; Current version is newer than cached version.
-            (when (> .last_activity_date (cdr cell))
+            (when (or (not (numberp (cdr cell)))
+                      (> .last_activity_date (cdr cell)))
               (setcdr cell .last_activity_date)))
            ;; Question wasn't present.
            (t
@@ -149,19 +151,19 @@ If no cache exists for it, initialize one with SITE."
 (defun sx-question--hidden-p (question)
   "Non-nil if QUESTION has been hidden."
   (sx-assoc-let question
-    (sx-question--ensure-hidden-list .site)
-    (let ((ql (cdr (assoc .site sx-question--user-hidden-list))))
+    (sx-question--ensure-hidden-list .site_par)
+    (let ((ql (cdr (assoc .site_par sx-question--user-hidden-list))))
       (and ql (memq .question_id ql)))))
 
 (defun sx-question--mark-hidden (question)
   "Mark QUESTION as being hidden."
   (sx-assoc-let question
-    (let ((site-cell (assoc .site sx-question--user-hidden-list)))
+    (let ((site-cell (assoc .site_par sx-question--user-hidden-list)))
       ;; If question already hidden, do nothing.
       (unless (memq .question_id site-cell)
         (if (null site-cell)
             ;; First question from this site.
-            (push (list .site .question_id) sx-question--user-hidden-list)
+            (push (list .site_par .question_id) sx-question--user-hidden-list)
           ;; Not first question and question wasn't present.
           ;; Add it in, but make sure it's sorted (just in case we
           ;; decide to rely on it later).

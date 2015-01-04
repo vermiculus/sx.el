@@ -6,7 +6,7 @@
 ;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
-;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.1"))
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -74,13 +74,18 @@ DATA can also be the link itself."
        "\\1\\2" link))))
 
 (defun sx--ensure-site (data)
-  "Add a `site' property to DATA if it doesn't have one. Return DATA.
+  "Add a `site' property to DATA if it doesn't have one.  Return DATA.
 DATA can be a question, answer, comment, or user (or any object
 with a `link' property)."
   (when data
-    (unless (assq 'site data)
-      (setcdr data (cons (cons 'site (sx--site data))
-                         (cdr data))))
+    (let-alist data
+      (unless .site_par
+        ;; @TODO: Change this to .site.api_site_parameter sometime
+        ;; after February.
+        (setcdr data (cons (cons 'site_par
+                                 (or (cdr (assq 'api_site_parameter .site))
+                                     (sx--site data)))
+                           (cdr data)))))
     data))
 
 (defun sx--link-to-data (link)
@@ -131,8 +136,29 @@ with a `link' property)."
             result))
     result))
 
+(defun sx--tree-paths (tree)
+  "Return a list of all paths in TREE.
+Adapted from http://stackoverflow.com/q/3019250."
+  (if (atom tree)
+      (list (list tree))
+    (apply #'append
+           (mapcar (lambda (node)
+                     (mapcar (lambda (path)
+                               (cons (car tree) path))
+                             (sx--tree-paths node)))
+                   (cdr tree)))))
+
+(defun sx--tree-expand (path-func tree)
+  "Apply PATH-FUNC to every path in TREE.
+Return the result.  See `sx--tree-paths'."
+  (mapcar path-func
+          (apply #'append
+                 (mapcar #'sx--tree-paths
+                         tree))))
+
 (defmacro sx-assoc-let (alist &rest body)
-  "Identical to `let-alist', except `.site' has a special meaning.
+  "Use ALIST with `let-alist' to execute BODY.
+`.site_par' has a special meaning, thanks to `sx--ensure-site'.
 If ALIST doesn't have a `site' property, one is created using the
 `link' property."
   (declare (indent 1) (debug t))
@@ -143,45 +169,30 @@ If ALIST doesn't have a `site' property, one is created using the
        `(let-alist ,alist ,@body))))
 
 
-;;; Browsing filter
-(defvar sx-browse-filter
-  '((question.body_markdown
-     question.comments
-     question.answers
-     question.last_editor
-     question.accepted_answer_id
-     question.link
-     question.upvoted
-     question.downvoted
-     question.question_id
-     question.share_link
-     user.display_name
-     comment.owner
-     comment.body_markdown
-     comment.body
-     comment.link
-     comment.edited
-     comment.creation_date
-     comment.upvoted
-     comment.score
-     comment.post_type
-     comment.post_id
-     comment.comment_id
-     answer.answer_id
-     answer.last_editor
-     answer.link
-     answer.share_link
-     answer.owner
-     answer.body_markdown
-     answer.upvoted
-     answer.downvoted
-     answer.comments)
-    (user.profile_image shallow_user.profile_image))
-  "The filter applied when retrieving question data.
-See `sx-question-get-questions' and `sx-question-get-question'.")
-
-
 ;;; Utility Functions
+(defun sx-completing-read (&rest args)
+  "Like `completing-read', but possibly use ido.
+All ARGS are passed to `completing-read' or `ido-completing-read'."
+  (apply (if ido-mode #'ido-completing-read #'completing-read)
+    args))
+
+(defun sx--multiple-read (prompt hist-var)
+  "Interactively query the user for a list of strings.
+Call `read-string' multiple times, until the input is empty.
+
+PROMPT is a string displayed to the user and should not end with
+a space nor a colon.  HIST-VAR is a quoted symbol, indicating a
+list in which to store input history."
+  (let (list input)
+    (while (not (string=
+                 ""
+                 (setq input (read-string
+                              (concat prompt " ["
+                                      (mapconcat #'identity list ",")
+                                      "]: ")
+                              "" hist-var))))
+      (push input list))
+    list))
 
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
@@ -310,7 +321,7 @@ Return the result of BODY."
     ("ĥ" . "h")
     ("ĵ" . "j")
     ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters
+  "List of replacements to use for non-ascii characters.
 Used to convert user names into @mentions.")
 
 (defun sx--user-@name (user)

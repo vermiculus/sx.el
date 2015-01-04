@@ -1,4 +1,4 @@
-;;; sx-cache.el --- caching
+;;; sx-cache.el --- caching -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
