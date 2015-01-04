@@ -34,18 +34,18 @@
 (mapc (lambda (x) (define-key sx-switchto-map (car x) (cadr x)))
   '(
     ;; These immitate the site's G hotkey.
-    ("m" sx-tab-meta-or-main)
     ("a" sx-ask)
     ("h" sx-tab-frontpage)
+    ("m" sx-tab-meta-or-main)
     ;; This is `n' on the site.
     ("u" sx-tab-unanswered)
     ;; These are extra things we can do, because we're awesome.
-    ("i" sx-inbox)
     ("f" sx-tab-featured)
-    ("U" sx-tab-unanswered-my-tags)
+    ("i" sx-inbox)
     ("n" sx-tab-newest)
-    ("w" sx-tab-week)
+    ("U" sx-tab-unanswered-my-tags)
     ("v" sx-tab-topvoted)
+    ("w" sx-tab-week)
     ))
 
 (provide 'sx-switchto)
