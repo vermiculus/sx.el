@@ -28,18 +28,24 @@
 ;;; Getting the list from a site
 (defvar sx-tag-filter
   (sx-filter-from-nil
-   (tag.name))
+   (tag.name
+    tag.synonyms))
   "Filter used when querying tags.")
 
-(defun sx-tag--get-all (site)
-  "Retrieve all tags for SITE."
-  (mapcar
-   (lambda (tag)
-     (cdr (assoc 'name tag)))
+(defun sx-tag--get-all (site &optional no-synonyms)
+  "Retrieve all tags for SITE.
+If NO-SYNONYMS is non-nil, don't return synonyms."
+  (cl-reduce
+   (lambda (so-far tag)
+     (let-alist tag
+       (cons .name
+             (if no-synonyms so-far
+               (append .synonyms so-far)))))
    (sx-method-call 'tags
      :get-all t
      :filter sx-tag-filter
-     :site site)))
+     :site site)
+   :initial-value nil))
 
 (defun sx-tag--get-some-tags-containing (site string)
   "Return at most 100 tags for SITE containing STRING.
