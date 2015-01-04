@@ -35,6 +35,8 @@
 ;; - Featured           :: Featured questions
 ;; - Starred            :: Favorite questions
 
+;;; Code:
+
 (require 'sx)
 (require 'sx-question-list)
 (require 'sx-interaction)
