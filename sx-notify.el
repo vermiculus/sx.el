@@ -1,4 +1,4 @@
-;;; sx-notify.el --- Mode-line notifications. -*- lexical-binding: t; -*-
+;;; sx-notify.el --- mode-line notifications         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

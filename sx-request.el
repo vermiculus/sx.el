@@ -1,4 +1,4 @@
-;;; sx-request.el --- Requests and url manipulation.  -*- lexical-binding: t; -*-
+;;; sx-request.el --- requests and url manipulation  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -256,3 +256,7 @@ false, use the symbol `false'.  Each element is processed with
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

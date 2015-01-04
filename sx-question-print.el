@@ -1,4 +1,4 @@
-;;; sx-question-print.el --- Populating the question-mode buffer with content. -*- lexical-binding: t; -*-
+;;; sx-question-print.el --- populating the question-mode buffer with content  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -468,3 +468,7 @@ font-locking."
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

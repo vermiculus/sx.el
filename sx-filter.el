@@ -1,4 +1,4 @@
-;;; sx-filter.el --- Handles retrieval of filters.                         -*- lexical-binding: t; -*-
+;;; sx-filter.el --- handles retrieval of filters    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,10 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file manages filters and provides an API to compile filters
+;; and retrieve them from the cache.  See `sx-filter-compile' and
+;; `sx-filter-get-var', respectively.
 
 ;;; Code:
 

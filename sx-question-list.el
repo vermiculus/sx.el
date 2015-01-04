@@ -1,4 +1,4 @@
-;;; sx-question-list.el --- Major-mode for navigating questions list.  -*- lexical-binding: t; -*-
+;;; sx-question-list.el --- major-mode for navigating questions list  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -18,6 +18,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; Provides question list logic (as used in e.g. `sx-tab-frontpage').
 
 ;;; Code:
 (require 'tabulated-list)
@@ -606,3 +608,7 @@ Sets `sx-question-list--site' and then call
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

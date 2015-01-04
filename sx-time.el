@@ -1,4 +1,4 @@
-;;; sx-time.el --- time -*- lexical-binding: t; -*-
+;;; sx-time.el --- time                              -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,7 +19,8 @@
 
 ;;; Commentary:
 
-;;
+;; This file provides functions for manipulating and displaying
+;; timestamps.
 
 ;;; Code:
 
@@ -77,3 +78,7 @@ See also `sx-time-date-format-year'."
 
 (provide 'sx-time)
 ;;; sx-time.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

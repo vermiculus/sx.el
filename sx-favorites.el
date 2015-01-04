@@ -1,4 +1,4 @@
-;;; sx-favorites.el --- Starred questions          -*- lexical-binding: t; -*-
+;;; sx-favorites.el --- starred questions            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides logic for retrieving and managing a user's
+;; starred questions.
 
 ;;; Code:
 

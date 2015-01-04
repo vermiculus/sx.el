@@ -1,4 +1,4 @@
-;;; sx-networks.el --- user network information  -*- lexical-binding: t; -*-
+;;; sx-networks.el --- user network information      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides logic for retrieving information about the user
+;; across the entire network, e.g. their registered sites.
 
 ;;; Code:
 

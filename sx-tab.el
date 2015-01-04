@@ -1,4 +1,4 @@
-;;; sx-tab.el --- Functions for viewing different tabs.       -*- lexical-binding: t; -*-
+;;; sx-tab.el --- functions for viewing different tabs  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -19,9 +19,22 @@
 
 ;;; Commentary:
 
-;;
+;; This file provides a single macro to define 'tabs' to view lists of
+;; questions.
 
-
+;;; Tabs:
+
+;; - FrontPage          :: The standard front page
+;; - Newest             :: Newest questions
+;; - TopVoted           :: Top-voted questions
+;; - Hot                :: Hot questions recently
+;; - Week               :: Hot questions for the week
+;; - Month              :: Hot questions for the month
+;; - Unanswered         :: Unanswered questions
+;; - Unanswered My-tags :: Unanswered questions (subscribed tags)
+;; - Featured           :: Featured questions
+;; - Starred            :: Favorite questions
+
 ;;; Code:
 
 (require 'sx)
@@ -266,3 +279,7 @@ belongs to."
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

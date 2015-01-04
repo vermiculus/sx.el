@@ -1,4 +1,4 @@
-;;; sx-question.el --- Base question logic. -*- lexical-binding: t; -*-
+;;; sx-question.el --- question logic                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; Thie file provides an API for retrieving questions and defines
+;; additional logic for marking questions as read or hidden.
 
 
 ;;; Code:

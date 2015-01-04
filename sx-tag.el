@@ -1,4 +1,4 @@
-;;; sx-tag.el --- Retrieving list of tags and handling tags.  -*- lexical-binding: t; -*-
+;;; sx-tag.el --- retrieving list of tags and handling tags  -*- lexical-binding: t; -*-
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -84,3 +84,7 @@ Return the list of invalid tags in TAGS."
 
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
