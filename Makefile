@@ -20,13 +20,16 @@ VERSIONS = 1 2 3 4
 
 all :: $(VERSIONS)
 
-$(VERSIONS) ::
+$(VERSIONS) :: clean
 	evm install emacs-24.$@-bin --skip || true
 	evm use emacs-24.$@-bin
 	emacs --version
 	cask install
-	rm -rf .sx/
 	emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
+
+clean:
+	rm -rf .sx/
+	cask clean-elc
 
 install_cask:
 	curl -fsSkL https://raw.github.com/cask/cask/master/go | python
