@@ -208,21 +208,23 @@ With the UNDO prefix argument, unfavorite the question instead."
 
 
 ;;; Voting
-(defun sx-toggle-upvote (data)
-  "Apply or remove upvote from DATA.
+(defun sx-upvote (data &optional undo)
+  "Upvote an object given by DATA.
 DATA can be a question, answer, or comment. Interactively, it is
-guessed from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
-  (sx-assoc-let data
-    (sx-set-vote data "upvote" (null (eq .upvoted t)))))
+guessed from context at point.
+With UNDO prefix argument, remove upvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "upvote" (not undo)))
 
-(defun sx-toggle-downvote (data)
-  "Apply or remove downvote from DATA.
+(defun sx-downvote (data &optional undo)
+  "Downvote an object given by DATA.
 DATA can be a question or an answer. Interactively, it is guessed
-from context at point."
-  (interactive (list (sx--error-if-unread (sx--data-here))))
-  (sx-assoc-let data
-    (sx-set-vote data "downvote" (null (eq .downvoted t)))))
+from context at point.
+With UNDO prefix argument, remove downvote instead of applying it."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-set-vote data "downvote" (not undo)))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
