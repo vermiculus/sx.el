@@ -189,6 +189,24 @@ If WINDOW nil, the window is decided by
       (switch-to-buffer sx-question-mode--buffer))))
 
 
+;;; Favoriting
+(defun sx-favorite (data &optional undo)
+  "Favorite question given by DATA.
+Interactively, it is guessed from context at point.
+With the UNDO prefix argument, unfavorite the question instead."
+  (interactive (list (sx--error-if-unread (sx--data-here 'question))
+                     current-prefix-arg))
+  (sx-assoc-let data
+    (sx-method-call 'questions
+      :id .question_id
+      :submethod (if undo 'favorite/undo 'favorite)
+      :auth 'warn
+      :site .site_par
+      :url-method "POST"
+      :filter sx-browse-filter)))
+(defalias 'sx-star #'sx-favorite)
+
+
 ;;; Voting
 (defun sx-toggle-upvote (data)
   "Apply or remove upvote from DATA.

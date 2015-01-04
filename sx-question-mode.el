@@ -233,6 +233,7 @@ Letters do not insert themselves; instead, they are commands.
    ("e" sx-edit)
    ("S" sx-search)
    ("s" sx-switchto-map)
+   ("*" sx-favorite)
    (,(kbd "S-SPC") scroll-down-command)
    ([backspace] scroll-down-command)
    ([tab] forward-button)

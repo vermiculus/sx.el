@@ -47,6 +47,7 @@
     ("U" sx-tab-unanswered-my-tags)
     ("v" sx-tab-topvoted)
     ("w" sx-tab-week)
+    ("*" sx-tab-starred)
     ))
 
 

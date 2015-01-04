@@ -323,6 +323,7 @@ into consideration.
    ("d" sx-toggle-downvote)
    ("h" sx-question-list-hide)
    ("m" sx-question-list-mark-read)
+   ("*" sx-favorite)
    ([?\r] sx-display)
    ))
 
