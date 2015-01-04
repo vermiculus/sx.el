@@ -26,7 +26,7 @@
 (require 'sx-filter)
 (require 'sx-method)
 
-(defun sx-question-get-questions (site &optional page keywords)
+(defun sx-question-get-questions (site &optional page keywords submethod)
   "Get SITE questions.  Return page PAGE (the first if nil).
 Return a list of question.  Each question is an alist of
 properties returned by the API with an added (site SITE)
@@ -39,6 +39,7 @@ KEYWORDS are added to the method call along with PAGE.
     :keywords `((page . ,page) ,@keywords)
     :site site
     :auth t
+    :submethod submethod
     :filter sx-browse-filter))
 
 (defun sx-question-get-question (site question-id)
@@ -118,7 +119,8 @@ See `sx-question--user-read-list'."
            ;; Question already present.
            ((setq cell (assoc .question_id site-cell))
             ;; Current version is newer than cached version.
-            (when (> .last_activity_date (cdr cell))
+            (when (or (not (numberp (cdr cell)))
+                      (> .last_activity_date (cdr cell)))
               (setcdr cell .last_activity_date)))
            ;; Question wasn't present.
            (t

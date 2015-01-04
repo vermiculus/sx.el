@@ -314,10 +314,10 @@ into consideration.
    ("J" sx-question-list-next-far)
    ("K" sx-question-list-previous-far)
    ("g" sx-question-list-refresh)
-   (":" sx-question-list-switch-site)
    ("t" sx-tab-switch)
    ("a" sx-ask)
-   ("s" sx-search)
+   ("S" sx-search)
+   ("s" sx-switchto-map)
    ("v" sx-visit-externally)
    ("u" sx-toggle-upvote)
    ("d" sx-toggle-downvote)
@@ -399,6 +399,7 @@ Non-interactively, DATA is a question alist."
 
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--site)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
