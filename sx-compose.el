@@ -137,20 +137,25 @@ contents to the API, then calls `sx-compose-after-send-functions'."
     (with-current-buffer buffer
       (kill-new (buffer-string)))))
 
+(defun sx-compose--goto-tag-header ()
+  "Move to the \"Tags:\" header.
+Match data is set so group 1 encompasses any already inserted
+tags.  Return a list of already inserted tags."
+  (goto-char (point-min))
+  (unless (search-forward-regexp
+           "^Tags : *\\([^[:space:]].*\\) *$"
+           (next-single-property-change (point-min) 'sx-compose-separator)
+           'noerror)
+    (error "No Tags header found"))
+  (split-string (match-string 1) "[[:space:],;]"
+                'omit-nulls "[[:space:]]"))
+
 (defun sx-compose--check-tags ()
   "Check if tags in current compose buffer are valid."
   (save-excursion
-    (goto-char (point-min))
-    (unless (search-forward-regexp
-             "^Tags : *\\([^[:space:]].*\\) *$"
-             (next-single-property-change (point-min) 'sx-compose-separator)
-             'noerror)
-      (error "No Tags header found"))
     (let ((invalid-tags
            (sx-tag--invalid-name-p
-            (split-string (match-string 1) "[[:space:],;]"
-                          'omit-nulls "[[:space:]]")
-            sx-compose--site)))
+            sx-compose--site (sx-compose--goto-tag-header))))
       (if invalid-tags
           ;; If the user doesn't want to create the tags, we return
           ;; nil and sending is aborted.
