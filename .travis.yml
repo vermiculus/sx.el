@@ -17,7 +17,7 @@ before_install:
   - sudo mkdir /usr/local/evm
   - sudo chown travis:travis /usr/local/evm
   - make install_evm
-  - evm install $EMACS_24_X --skip --use
+  - evm install emacs-24.$EMACS_24_X-bin --skip --use
   - make install_cask
   - cask info
   - cask install
