@@ -247,6 +247,18 @@ Anything before the (sub)domain is removed."
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
 
+(defmacro sx--define-conditional-key (keymap key def &rest body)
+  "In KEYMAP, define key sequence KEY as DEF conditionally.
+This is like `define-key', except the definition \"disapears\"
+whenever BODY evaluates to nil."
+  (declare (indent 3)
+           (debug (form form form &rest sexp)))
+  `(define-key ,keymap ,key
+     '(menu-item
+       ,(format "maybe-%s" (or (car (cdr-safe def)) def)) ignore
+       :filter (lambda (&optional _)
+                 (when (progn ,@body) ,def)))))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
