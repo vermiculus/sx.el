@@ -1,4 +1,4 @@
-;;; sx-switchto.el --- Keymap for navigating between pages. -*- lexical-binding: t; -*-
+;;; sx-switchto.el --- keymap for navigating between pages  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 

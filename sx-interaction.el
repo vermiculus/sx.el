@@ -1,4 +1,4 @@
-;;; sx-interaction.el --- Voting, commenting, and otherwise interacting with questions.  -*- lexical-binding: t; -*-
+;;; sx-interaction.el --- voting, commenting, and other interaction  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -443,3 +443,7 @@ context at point. "
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

@@ -1,12 +1,18 @@
-# Emacs backup files
+# Personal Development
+.dir-locals.el
+
+# Backup Files
 *~
 \#*\#
 
 # Compiled Elisp
 *.elc
+
+# Package Artifacts
 /.cask/
-.dir-locals.el
-/.stackmode/
 /url/
+/.sx/
+
+# Generated Files
 /sx.info
 /sx.texi

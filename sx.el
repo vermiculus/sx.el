@@ -1,4 +1,4 @@
-;;; sx.el --- StackExchange client. Ask and answer questions on Stack Overflow, Super User, and the likes. -*- lexical-binding: t; -*-
+;;; sx.el --- StackExchange client. Ask and answer questions on Stack Overflow, Super User, and the likes  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -300,7 +300,7 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defvar sx--ascii-replacement-list
+(defconst sx--ascii-replacement-list
   '(("[:space:]" . "")
     ("àåáâäãåą" .  "a")
     ("èéêëę" .  "e")

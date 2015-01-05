@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Major-mode for displaying a question. -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- major-mode for displaying questions  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides a means to print questions with their answers
+;; and all comments.  See the customizable group `sx-question-mode'.
 
 
 ;;; Code:
@@ -175,7 +178,7 @@ property."
 
 
 ;;; Major-mode
-(defvar sx-question-mode--header-line
+(defconst sx-question-mode--header-line
   '("    "
     (:propertize "n p TAB" face mode-line-buffer-id)
     ": Navigate"
@@ -271,3 +274,7 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

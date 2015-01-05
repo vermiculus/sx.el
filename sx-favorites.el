@@ -1,4 +1,4 @@
-;;; sx-favorites.el --- Starred questions          -*- lexical-binding: t; -*-
+;;; sx-favorites.el --- starred questions            -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides logic for retrieving and managing a user's
+;; starred questions.
+
 ;;; Code:
 
 (require 'sx-method)
@@ -27,7 +30,7 @@
 (require 'sx-networks)
 (require 'sx-filter)
 
-(defvar sx-favorite-list-filter
+(defconst sx-favorite-list-filter
   (sx-filter-from-nil
    (question.question_id)))
 

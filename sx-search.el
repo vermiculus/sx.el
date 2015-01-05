@@ -1,4 +1,4 @@
-;;; sx-search.el --- Searching for questions.       -*- lexical-binding: t; -*-
+;;; sx-search.el --- searching for questions         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -110,3 +110,7 @@ prefix argument, the user is asked for everything."
 
 (provide 'sx-search)
 ;;; sx-search.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

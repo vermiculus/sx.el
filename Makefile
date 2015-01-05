@@ -47,7 +47,3 @@ ifdef EVM_LOCATION
 else
 	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
 endif
-
-# Local Variables:
-# indent-tabs-mode: t
-# End:

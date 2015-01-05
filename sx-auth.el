@@ -1,4 +1,4 @@
-;;; sx-auth.el --- user authentication  -*- lexical-binding: t; -*-
+;;; sx-auth.el --- user authentication               -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,6 +19,13 @@
 
 ;;; Commentary:
 
+;; This file handles logic related to authentication.  This includes
+;; determining if a certain filter requires authentication (via the
+;; variable `sx-auth-filter-auth' and function `sx-auth--filter-p'),
+;; determining if a method requires authentication (via the variable
+;; `sx-auth-method-auth' and function `sx-auth--method-p'), and
+;; actually authenticating the user (with `sx-auth-authenticate').
+
 ;;; Code:
 
 (require 'sx)
@@ -36,49 +43,53 @@
   "Your access token.
 This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
-what you are doing!")
+what you are doing!
 
-(defvar sx-auth-method-auth '((me . t)
-                              (inbox . t)
-                              (notifications . t)
-                              (events . t)
-                              (posts (comments add))
-                              (comments delete
-                                        edit
-                                        flags
-                                        upvote)
-                              (answers accept
-                                       delete
-                                       downvote
-                                       edit
-                                       flags
-                                       upvote)
-                              (questions answers
-                                         add
-                                         close
-                                         delete
-                                         downvote
-                                         edit
-                                         favorite
-                                         flags
-                                         render
-                                         upvote
-                                         (unanswered my-tags)))
+This variable is set with `sx-auth-authenticate'.")
+
+(defconst sx-auth-method-auth
+  '((me . t)
+    (inbox . t)
+    (notifications . t)
+    (events . t)
+    (posts (comments add))
+    (comments delete
+              edit
+              flags
+              upvote)
+    (answers accept
+             delete
+             downvote
+             edit
+             flags
+             upvote)
+    (questions answers
+               add
+               close
+               delete
+               downvote
+               edit
+               favorite
+               flags
+               render
+               upvote
+               (unanswered my-tags)))
   "List of methods that require auth.
-Methods are of form (METHOD SUBMETHODS) where SUBMETHODS
-  is (METHOD METHOD METHOD ...).
+Methods are of the form \(METHOD . SUBMETHODS) where SUBMETHODS
+  is \(METHOD METHOD METHOD ...).
 
 If all SUBMETHODS require auth or there are no submethods, form
-will be (METHOD  . t)")
+will be \(METHOD . t)")
 
-(defvar sx-auth-filter-auth '(question.upvoted
-                              question.downvoted
-                              answer.upvoted
-                              answer.downvoted
-                              comment.upvoted)
+(defconst sx-auth-filter-auth
+  '(question.upvoted
+    question.downvoted
+    answer.upvoted
+    answer.downvoted
+    comment.upvoted)
   "List of filter types that require auth.
-Keywords are of form (OBJECT TYPES) where TYPES is (FILTER FILTER
-FILTER).")
+Keywords are of the form \(OBJECT TYPES) where TYPES is \(FILTER
+FILTER FILTER).")
 
 ;;;###autoload
 (defun sx-authenticate ()
