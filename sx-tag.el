@@ -99,6 +99,39 @@ Return the list of invalid tags in TAGS."
             :site site))))
     (cl-remove-if (lambda (x) (member x result)) tags)))
 
+
+;;; Prompt the user for tags.
+(defvar sx-tag-history nil
+  "Tags history for interactive prompts.")
+
+;;; @TODO: Make it so that hitting BACKSPACE with an empty input
+;;; deletes a previously submitted tag.
+(defun sx-tag-multiple-read (site prompt &optional initial-value)
+  "Interactively read a list of tags for SITE.
+Call `sx-completing-read' multiple times, until input is empty.
+Return a list of tags given by the user.
+
+PROMPT is a string displayed to the user and should not end with
+a space nor a colon.  INITIAL-VALUE is a list of already-selected
+tags."
+  (let ((completion-list (sx-tag-list--get site))
+        (list initial-value)
+        input)
+    (while (not (string=
+                 ""
+                 (setq input (sx-completing-read
+                              (concat prompt " ["
+                                      (mapconcat #'identity list ",")
+                                      "]: ")
+                              completion-list
+                              (lambda (x) (not (member x list)))
+                              nil
+                              'require-match
+                              nil
+                              'sx-tag-history))))
+      (push input list))
+    list))
+
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
 
