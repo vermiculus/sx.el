@@ -82,6 +82,19 @@ Is invoked between `sx-compose-before-send-hook' and
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
+(defconst sx-compose--header-line
+  '("    "
+    (:propertize "C-c C-c" face mode-line-buffer-id)
+    ": Finish and Send"
+    (sx-compose--is-question-p
+     ("    "
+      (:propertize "C-c C-q" face mode-line-buffer-id)
+      ": Insert tags"))
+    "    "
+    (:propertize "C-c C-k" face mode-line-buffer-id)
+    ": Discard Draft")
+  "Header-line used on `sx-compose-mode' drafts.")
+
 (defvar sx-compose--is-question-p nil
   "Non-nil if this `sx-compose-mode' buffer is a question.")
 (make-variable-buffer-local 'sx-compose--is-question-p)
@@ -107,6 +120,7 @@ variable should also be set to enable more functionality.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
+  (setq header-line-format sx-compose--header-line)
   (add-hook 'sx-compose-after-send-functions
     #'sx-compose-quit nil t)
   (add-hook 'sx-compose-after-send-functions
