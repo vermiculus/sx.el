@@ -18,6 +18,9 @@
 
 VERSIONS = 1 2 3 4
 
+EVM_LOCATION := $(shell which evm)
+CASK_LOCATION := $(shell which cask)
+
 all :: $(VERSIONS)
 
 $(VERSIONS) :: clean
@@ -32,10 +35,18 @@ clean:
 	cask clean-elc
 
 install_cask:
+ifdef CASK_LOCATION
+	$(info cask is already installed!)
+else
 	curl -fsSkL https://raw.github.com/cask/cask/master/go | python
+endif
 
 install_evm:
+ifdef EVM_LOCATION
+	$(info evm is already installed!)
+else
 	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
+endif
 
 # Local Variables:
 # indent-tabs-mode: t
