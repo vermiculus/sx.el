@@ -63,6 +63,23 @@ Returns a list."
           (sx-tag--get-some-tags-containing site string)))
 
 
+;;; Getting tags from our data branch. Without the API.
+;;;; @TODO: Once the cache is finished, this can probably be made into
+;;;; a cache variasble with 1 day expiration time.
+(defvar sx-tag-list-alist nil
+  "Alist where the tag list for each site is stored.
+Elements are of the type (SITE . TAG-LIST).")
+
+(defun sx-tag-list--get (site)
+  "Retrieve all tags from SITE in a single request.
+This does not access the API.  Instead, it uses
+`sx-request-get-data', which accesses SX's tag cache."
+  (or (cdr (assoc site sx-tag-list-alist))
+      (let ((list (sx-request-get-data (concat "tags/" site))))
+        (push (cons site list) sx-tag-list-alist)
+        list)))
+
+
 ;;; Check tag validity
 (defun sx-tag--invalid-name-p (site tags)
   "Nil if TAGS exist in SITE.
