@@ -12,8 +12,8 @@ env:
   - EMACS_24_X=4
 
 before_install:
-  - export PATH="/home/travis/.evm/bin:$PATH"
-  - export PATH="/home/travis/.cask/bin:$PATH"
+  - export PATH="$HOME/.evm/bin:$PATH"
+  - export PATH="$HOME/.cask/bin:$PATH"
   - sudo mkdir /usr/local/evm
   - sudo chown travis:travis /usr/local/evm
   - make install_evm
