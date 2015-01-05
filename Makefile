@@ -23,7 +23,7 @@ CASK_LOCATION := $(shell which cask)
 
 all :: $(VERSIONS)
 
-$(VERSIONS) :: clean
+$(VERSIONS) :: install_cask install_evm clean
 	evm install emacs-24.$@-bin --skip || true
 	evm use emacs-24.$@-bin
 	emacs --version
