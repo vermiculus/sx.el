@@ -82,6 +82,10 @@ Is invoked between `sx-compose-before-send-hook' and
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
+(defvar sx-compose--is-question-p nil
+  "Non-nil if this `sx-compose-mode' buffer is a question.")
+(make-variable-buffer-local 'sx-compose--is-question-p)
+
 (defvar sx-compose--site nil
   "Site which the curent compose buffer belongs to.")
 (make-variable-buffer-local 'sx-compose--site)
@@ -95,8 +99,11 @@ just implements some extra features related to posting to the
 API.
 
 This mode won't function if `sx-compose--send-function' isn't
-set. To make sure you set it correctly, you can create the buffer
-with the `sx-compose-create' function.
+set.  To make sure you set it correctly, you can create the
+buffer with the `sx-compose-create' function.
+
+If creating a question draft, the `sx-compose--is-question-p'
+variable should also be set to enable more functionality.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
@@ -109,7 +116,7 @@ with the `sx-compose-create' function.
 (define-key sx-compose-mode-map "\C-c\C-k" #'sx-compose-quit)
 (sx--define-conditional-key
     sx-compose-mode-map "\C-c\C-q" #'sx-compose-insert-tags
-  (ignore-errors (string= "Title: " (substring (buffer-string) 0 7))))
+  sx-compose--is-question-p)
 
 (defun sx-compose-send ()
   "Finish composing current buffer and send it.
@@ -204,6 +211,7 @@ respectively added locally to `sx-compose-before-send-hook' and
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
       (setq sx-compose--site site)
+      (setq sx-compose--is-question-p is-question)
       (setq sx-compose--send-function
             (if (consp parent)
                 (sx-assoc-let parent
