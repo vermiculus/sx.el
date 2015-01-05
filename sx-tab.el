@@ -223,7 +223,7 @@ If SITE is nil, use `sx-default-site'."
     (sx-question-get-questions
      sx-question-list--site page nil 'unanswered/my-tags)))
 ;;;###autoload
-(autoload 'sx-tab-unanswered
+(autoload 'sx-tab-unanswered-my-tags
   (expand-file-name
    "sx-tab"
    (when load-file-name
