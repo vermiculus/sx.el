@@ -128,7 +128,7 @@ contents to the API, then calls `sx-compose-after-send-functions'."
   (when (buffer-live-p buffer)
     (let ((w (get-buffer-window buffer)))
       (when (window-live-p w)
-        (delete-window w)))
+        (ignore-errors (delete-window w))))
     (kill-buffer buffer)))
 
 (defun sx-compose--copy-as-kill (buffer _)
