@@ -67,7 +67,7 @@ succeeds.")
 Is invoked between `sx-compose-before-send-hook' and
 `sx-compose-after-send-functions'.")
 
-(defvar sx-compose--question-headers
+(defconst sx-compose--question-headers
   (concat
    #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
    "%s"
