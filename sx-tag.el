@@ -108,29 +108,30 @@ Return the list of invalid tags in TAGS."
 ;;; deletes a previously submitted tag.
 (defun sx-tag-multiple-read (site prompt &optional initial-value)
   "Interactively read a list of tags for SITE.
-Call `sx-completing-read' multiple times, until input is empty.
+Call `sx-completing-read' multiple times, until input is empty,
+with completion options given by the tag list of SITE.
 Return a list of tags given by the user.
 
 PROMPT is a string displayed to the user and should not end with
 a space nor a colon.  INITIAL-VALUE is a list of already-selected
 tags."
   (let ((completion-list (sx-tag-list--get site))
-        (list initial-value)
+        (list (reverse initial-value))
+        (empty-string 
+         (propertize "--\x000-some-string-representing-empty-\x000--"
+                     'display "DONE"))
         input)
     (while (not (string=
-                 ""
+                 empty-string
                  (setq input (sx-completing-read
                               (concat prompt " ["
-                                      (mapconcat #'identity list ",")
+                                      (mapconcat #'identity (reverse list) ",")
                                       "]: ")
                               completion-list
-                              (lambda (x) (not (member x list)))
-                              nil
-                              'require-match
-                              nil
-                              'sx-tag-history))))
+                              nil 'require-match nil 'sx-tag-history
+                              empty-string))))
       (push input list))
-    list))
+    (reverse list)))
 
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
