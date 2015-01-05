@@ -120,6 +120,21 @@ contents to the API, then calls `sx-compose-after-send-functions'."
           (run-hook-with-args 'sx-compose-after-send-functions
                               (current-buffer) result)))))
 
+(defun sx-compose-insert-tags ()
+  "Prompt for a tag list for this draft and insert them."
+  (interactive)
+  (save-excursion
+    (let* ((old (sx-compose--goto-tag-header))
+           (new
+            (save-match-data
+              (mapconcat
+               #'identity
+               (sx-tag-multiple-read sx-compose--site "Tags" old)
+               " "))))
+      (if (match-string 1)
+          (replace-match new :fixedcase nil nil 1)
+        (insert new)))))
+
 
 ;;; Functions for use in hooks
 (defun sx-compose-quit (buffer _)
@@ -143,12 +158,13 @@ Match data is set so group 1 encompasses any already inserted
 tags.  Return a list of already inserted tags."
   (goto-char (point-min))
   (unless (search-forward-regexp
-           "^Tags : *\\([^[:space:]].*\\) *$"
+           (rx bol "Tags : " (group-n 1 (* not-newline)) eol)
            (next-single-property-change (point-min) 'sx-compose-separator)
            'noerror)
     (error "No Tags header found"))
-  (split-string (match-string 1) "[[:space:],;]"
-                'omit-nulls "[[:space:]]"))
+  (save-match-data
+    (split-string (match-string 1) (rx (any space ",;"))
+                  'omit-nulls (rx space))))
 
 (defun sx-compose--check-tags ()
   "Check if tags in current compose buffer are valid."
