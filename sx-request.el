@@ -131,6 +131,8 @@ access the response wrapper."
     (vconcat return-value
              (cdr (assoc 'items response)))))
 
+;;; NOTE: Whenever this is arglist changes, `sx-request-fallback' must
+;;; also change.
 (defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
@@ -204,7 +206,7 @@ the main content of the response is returned."
             (funcall (or process-function #'sx-request-response-get-items)
                      response)))))))
 
-(defun sx-request-fallback (_method &optional _args _request-method)
+(defun sx-request-fallback (_method &optional _args _request-method _process-function)
   "Fallback method when authentication is not available.
 This is for UI generation when the associated API call would
 require authentication.
