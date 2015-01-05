@@ -16,6 +16,8 @@
 #     make all
 #
 
+PATH := "$(HOME)/.cask/bin:$(HOME)/.evm/bin:$(PATH)"
+
 VERSIONS = 1 2 3 4
 
 EVM_LOCATION := $(shell which evm)
