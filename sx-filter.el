@@ -113,6 +113,11 @@ return the compiled filter."
               bounty_amount
               comments
               answers
+              answer_count
+              score
+              title
+              owner
+              tags
               last_editor
               last_activity_date
               accepted_answer_id
@@ -141,6 +146,7 @@ return the compiled filter."
             last_activity_date
             link
             share_link
+            score
             owner
             body_markdown
             upvoted
