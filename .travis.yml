@@ -12,10 +12,10 @@ env:
   - EMACS_24_X=4
 
 before_install:
-  - make travis-prepare
+  - sudo make travis-prepare
   - emacs --version
   - cask --version
-  - make travis-install
+  - sudo make travis-install
 
 script:
   - make $EMACS_24_X
