@@ -25,7 +25,7 @@ CASK_LOCATION := $(shell which cask)
 
 all :: $(VERSIONS)
 
-$(VERSIONS) :: install_cask install_evm clean
+$(VERSIONS) :: clean
 	evm install emacs-24.$@-bin --skip || true
 	evm use emacs-24.$@-bin
 	emacs --version
@@ -47,5 +47,19 @@ install_evm:
 ifdef EVM_LOCATION
 	$(info evm is already installed!)
 else
+	mkdir /usr/local/evm
+	chown $(USER) /usr/local/evm
 	curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
 endif
+
+travis-prepare:
+	$(MAKE) install_evm
+	evm install emacs-24.$(EMACS_24_X)-bin --skip --use
+	$(MAKE) install_cask
+	cask info
+
+travis-install:
+	cask install
+
+travis-test:
+	$(MAKE) 

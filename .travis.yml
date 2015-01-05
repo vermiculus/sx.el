@@ -12,17 +12,10 @@ env:
   - EMACS_24_X=4
 
 before_install:
-  - export PATH="$HOME/.evm/bin:$PATH"
-  - export PATH="$HOME/.cask/bin:$PATH"
-  - sudo mkdir /usr/local/evm
-  - sudo chown travis:travis /usr/local/evm
-  - make install_evm
-  - evm install emacs-24.$EMACS_24_X-bin --skip --use
-  - make install_cask
-  - cask info
-  - cask install
+  - make travis-prepare
   - emacs --version
   - cask --version
+  - make travis-install
 
 script:
   - make $EMACS_24_X
