@@ -107,6 +107,9 @@ with the `sx-compose-create' function.
 
 (define-key sx-compose-mode-map "\C-c\C-c" #'sx-compose-send)
 (define-key sx-compose-mode-map "\C-c\C-k" #'sx-compose-quit)
+(sx--define-conditional-key
+    sx-compose-mode-map "\C-c\C-q" #'sx-compose-insert-tags
+  (ignore-errors (string= "Title: " (substring (buffer-string) 0 7))))
 
 (defun sx-compose-send ()
   "Finish composing current buffer and send it.
