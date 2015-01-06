@@ -249,7 +249,7 @@ Anything before the (sub)domain is removed."
 
 (defmacro sx--define-conditional-key (keymap key def &rest body)
   "In KEYMAP, define key sequence KEY as DEF conditionally.
-This is like `define-key', except the definition \"disapears\"
+This is like `define-key', except the definition \"disappears\"
 whenever BODY evaluates to nil."
   (declare (indent 3)
            (debug (form form form &rest sexp)))
