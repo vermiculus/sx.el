@@ -83,7 +83,7 @@ prefix argument, the user is asked for everything."
        (setq query nil))
      (when current-prefix-arg
        (setq tags (sx-tag-multiple-read
-                   site (format "Tags%s" (if query " (optional)" ""))))
+                   site (concat "Tags" (when query " (optional)"))))
        (when (and (not query) (string= "" tags))
          (sx-user-error "Must supply either QUERY or TAGS"))
        (setq excluded-tags
