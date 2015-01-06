@@ -184,8 +184,8 @@ Also see `sx-question-list-refresh'."
          " "
          (let-alist .owner
            (format "%15s %5s"
-             (propertize .display_name 'face 'sx-question-list-user)
-             (propertize (number-to-string .reputation)
+             (propertize (or .display_name "") 'face 'sx-question-list-user)
+             (propertize (number-to-string (or .reputation 0))
                          'face 'sx-question-list-reputation)))
          (propertize " " 'display "\n")))))))
 
