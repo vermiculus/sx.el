@@ -112,6 +112,7 @@ return the compiled filter."
    ((question body_markdown
               bounty_amount
               comments
+              creation_date
               answers
               answer_count
               score
@@ -142,6 +143,7 @@ return the compiled filter."
              post_id
              comment_id)
     (answer answer_id
+            creation_date
             last_editor
             last_activity_date
             link
