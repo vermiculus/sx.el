@@ -191,6 +191,7 @@ the main content of the response is returned."
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
                            (json-read-from-string data))))
+          (kill-buffer response-buffer)
           (when (and (not response) (string-equal data "{}"))
             (sx-message "Unable to parse response: %S" response)
             (error "Response could not be read by `json-read-from-string'"))
