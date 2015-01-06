@@ -104,23 +104,29 @@ usually part of a code-block."
 
 
 ;;; Help-echo definitions
-(defvar sx-button--help-echo
+(defconst sx-button--help-echo
   (concat "mouse-1, RET" 
           (propertize ": %s -- " 'face 'minibuffer-prompt)
           "w" 
           (propertize ": copy %s" 'face 'minibuffer-prompt))
   "Base help-echo on which others can be written.")
 
-(defvar sx-button--question-title-help-echo
+(defconst sx-button--user-help-echo
   (format sx-button--help-echo
-    (propertize "hide content" 'face 'minibuffer-prompt)
-    (propertize "link" 'face 'minibuffer-prompt))
+    "visit user page"
+    "link")
+  "Help echoed in the minibuffer when point is on a user.")
+
+(defconst sx-button--question-title-help-echo
+  (format sx-button--help-echo
+    "hide content"
+    "link")
   "Help echoed in the minibuffer when point is on a section.")
 
-(defvar sx-button--link-help-echo
+(defconst sx-button--link-help-echo
   (format sx-button--help-echo
-    (propertize "visit %s" 'face 'minibuffer-prompt)
-    (propertize "URL" 'face 'minibuffer-prompt))
+    "visit %s"
+    "URL")
   "Help echoed in the minibuffer when point is on a section.")
 
 
