@@ -151,6 +151,13 @@ usually part of a code-block."
   'action    #'sx-button-follow-link
   :supertype 'sx-button)
 
+(define-button-type 'sx-button-user
+  'action    #'sx-button-follow-link
+  'help-echo sx-button--user-help-echo
+  ;; We use different faces on diferent parts of the user button.
+  'face      nil
+  :supertype 'sx-button)
+
 (define-button-type 'sx-button-comment
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write a comment"
