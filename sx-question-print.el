@@ -41,10 +41,16 @@
 
 
 ;;; Faces and Variables
-(defcustom sx-question-mode-deleted-user
-  '((display_name . "(deleted user)"))
+(defconst sx-question-mode-fallback-user
+  '((display_name . "(unknown user)")
+    (link . "")
+    (reputation . -1)
+    (accept_rate . -1))
   "The structure used to represent a deleted account."
-  :type '(alist :options ((display_name string)))
+  :type '(alist :options ((display_name string)
+                          (link         string)
+                          (reputation   integer)
+                          (accept_rate  integer)))
   :group 'sx-question-mode)
 
 (defface sx-question-mode-header
@@ -217,7 +223,7 @@ DATA can represent a question or an answer."
             (format sx-question-mode-last-edit-format
               (sx-time-since .last_edit_date)
               (sx-question-mode--propertize-display-name
-               (or .last_editor sx-question-mode-deleted-user)))))
+               (or .last_editor sx-question-mode-fallback-user)))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
