@@ -291,10 +291,8 @@ TEXT is a string. Interactively, it is read from the minibufer."
       ;; The api returns the new DATA.
       (when (> (length result) 0)
         (sx--add-comment-to-object
-         (elt result 0)
-         (if .post_id
-             (sx--get-post .post_type .site_par .post_id)
-           data))
+         (sx--add-owner-to-object (list (cons 'display_name "(You)")) (elt result 0))
+         (if .post_id (sx--get-post .post_type .site_par .post_id) data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
 
@@ -344,7 +342,15 @@ OBJECT can be a question or an answer."
               (list comment)))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
-      (setcar object `(comments . [,comment])))))
+      (setcar object `(comments . [,comment]))))
+  object)
+
+(defun sx--add-owner-to-object (owner object)
+  "Add `owner' property with value OWNER to OBJECT."
+  (unless (cdr-safe (assq 'owner object))
+    (setcdr object (cons (car object) (cdr object)))
+    (setcar object `(owner . ,owner)))
+  object)
 
 
 ;;; Editing
