@@ -73,11 +73,6 @@
   :type 'string
   :group 'sx-question-mode)
 
-(defface sx-question-mode-author
-  '((t :inherit font-lock-string-face))
-  "Face used on the question author in the question buffer."
-  :group 'sx-question-mode-faces)
-
 (defcustom sx-question-mode-header-author "\nAuthor:   "
   "String used before the question author at the header."
   :type 'string
