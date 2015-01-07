@@ -174,20 +174,17 @@ the `sx-button-user' category."
   "List of replacements to use for non-ascii characters.
 Used to convert user names into @mentions.")
 
-(defun sx-user--@name (user)
-  "Get the `display_name' of USER prepended with @.
+(defun sx-user--@name (display-name)
+  "Convert DISPLAY-NAME into an @mention.
 In order to correctly @mention the user, all whitespace is
-removed from the display name and a series of unicode conversions
-are performed before it is returned
+removed from DISPLAY-NAME and a series of unicode conversions are
+performed before it is returned.
 See `sx-user--ascii-replacement-list'.
 
 If all you need is the @name, this is very slightly faster than
-using `sx-user--format'."
-  (sx-assoc-let user
-    (if (stringp .display_name)
-        (concat "@" (sx--recursive-replace
-                     sx-user--ascii-replacement-list .display_name))
-      "")))
+using `sx-user--format', but it doesn't do any sanity checking."
+  (concat "@" (sx--recursive-replace
+               sx-user--ascii-replacement-list display-name)))
 
 (provide 'sx-user)
 ;;; sx-user.el ends here
