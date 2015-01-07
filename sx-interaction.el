@@ -272,7 +272,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
       (setq text (read-string
                   "Comment text: "
                   (when .comment_id
-                    (concat (sx-user--format "%@" .owner) " "))))
+                    (substring-no-properties (sx-user--format "%@ " .owner)))))
       (while (not (sx--comment-valid-p text 'silent))
         (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
