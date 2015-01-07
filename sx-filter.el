@@ -128,8 +128,12 @@ return the compiled filter."
               question_id
               share_link)
     (user display_name
+          link
+          accept_rate
           reputation)
     (shallow_user display_name
+                  link
+                  accept_rate
                   reputation)
     (comment owner
              body_markdown
