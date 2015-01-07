@@ -125,6 +125,7 @@ The value is a copy of FORMAT-STRING, but with certain constructs
 replaced by text that describes the specified USER:
 
 %d is the display name.
+%@ is the display name in a format suitable for @mentions.
 %l is the link to the profile.
 %r is the reputation.
 %a is the accept rate.
@@ -138,7 +139,10 @@ the `sx-button-user' category."
                     (?n . ,\.display_name)
                     (?l . ,\.link)
                     (?r . ,\.reputation)
-                    (?a . ,\.accept_rate))
+                    (?a . ,\.accept_rate)
+                    (?@ . ,(when (string-match "%@" format-string)
+                             (sx-user--@name .display_name)))
+                    )
                   sx-user--format-property-alist)))
       (if (> 0 (string-width .link))
           (insert-text-button text
