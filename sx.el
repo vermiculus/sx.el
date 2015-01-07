@@ -369,7 +369,8 @@ if ALIST contains a different string at the ?% entry."
              (format (concat "%" flag "s") val)
              (cdr-safe (assq char property-alist))))
           ;; Delete the specifier body.
-          (replace-match "")
+          (delete-region (match-beginning 0)
+                         (match-end 0))
           ;; Delete `char-after'.
           (delete-char 1)))
       (buffer-string))))
