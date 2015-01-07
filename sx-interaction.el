@@ -445,7 +445,8 @@ context at point. "
                        (append (cdr cell) (list answer))))
       ;; No previous comments, add it manually.
       (setcdr question (cons (car question) (cdr question)))
-      (setcar question `(answers . [,answer])))))
+      (setcar question `(answers . [,answer])))
+    question))
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
