@@ -155,7 +155,7 @@ usually part of a code-block."
   'action    #'sx-button-follow-link
   'help-echo sx-button--user-help-echo
   ;; We use different faces on diferent parts of the user button.
-  'face      nil
+  'face      'sx-user-name
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-comment

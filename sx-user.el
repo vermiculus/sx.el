@@ -95,6 +95,8 @@ errors if you remove them."
                           (website_url string)))
   :group 'sx-user)
 
+
+;;; Text properties
 (defface sx-user-name
   '((t :inherit font-lock-builtin-face))
   "Face used for user names."
@@ -111,7 +113,9 @@ errors if you remove them."
   :group 'sx-user)
 
 (defvar sx-user--format-property-alist
-  '((?d face sx-user-name)
+  `((?d button ,(list t) category ,(button-category-symbol 'sx-button-user))
+    (?n button ,(list t) category ,(button-category-symbol 'sx-button-user))
+    (?@ button ,(list t) category ,(button-category-symbol 'sx-button-user))
     (?r face sx-user-reputation)
     (?a face sx-user-accept-rate))
   "Alist relating % constructs with text properties.
@@ -130,8 +134,10 @@ replaced by text that describes the specified USER:
 %r is the reputation.
 %a is the accept rate.
 
-The returned string is additionally propertized as a button with
-the `sx-button-user' category."
+The string replaced in each of these construct is also given the
+text-properties specified in `sx-user--format-property-alist'.
+Specially, %d and %@ are turned into buttons with the
+`sx-button-user' category."
   (sx-assoc-let (append user sx-question-mode-fallback-user)
     (let* ((text (sx-format-replacements
                   format-string
@@ -144,12 +150,11 @@ the `sx-button-user' category."
                              (sx-user--@name .display_name)))
                     )
                   sx-user--format-property-alist)))
-      (if (> 0 (string-width .link))
-          (insert-text-button text
-                              ;; For visiting and stuff.
-                              'sx-button-url  .link
-                              'sx-button-copy .link
-                              :type 'sx-button-user)
+      (if (< 0 (string-width .link))
+          (propertize text
+                      ;; For visiting and stuff.
+                      'sx-button-url  .link
+                      'sx-button-copy .link)
         text))))
 
 
