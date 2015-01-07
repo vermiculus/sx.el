@@ -128,8 +128,9 @@ change `tabulated-list-format' accordingly.")
 This is the default printer used by `sx-question-list'. It
 assumes QUESTION-DATA is an alist containing (at least) the
 elements:
- `site', `score', `upvoted', `answer_count', `title',
- `last_activity_date', `tags', `uestion_id'.
+ `question_id', `site_par', `score', `upvoted', `answer_count',
+ `title', `bounty_amount', `bounty_amount', `bounty_amount',
+ `last_activity_date', `tags', `owner'.
 
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
