@@ -90,7 +90,7 @@ with a `link' property)."
 
 (defun sx--link-to-data (link)
   "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site (sx--site link)))))
+  (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
     (when (or
            ;; Answer
