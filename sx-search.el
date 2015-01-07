@@ -19,7 +19,7 @@
 
 ;;; Commentary:
 
-;; Implements sarch functionality.  The basic function is
+;; Implements search functionality.  The basic function is
 ;; `sx-search-get-questions', which returns an array of questions
 ;; according to a search term.
 ;;

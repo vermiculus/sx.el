@@ -97,7 +97,7 @@ Scrolling past the bottom of the list fetches more questions.
 - ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
 - ~sx-compose-before-send-hook~ :: Run before POSTing to the API from
      a buffer in ~sx-compose-mode~.  If any of the functions in this
-     hook, return nil, the transaction is cancelled.
+     hook, return nil, the transaction is canceled.
 - ~sx-compose-after-send-functions~ :: Run after POSTing to the API
      from a buffer in ~sx-compose-mode~, if the transaction was
      successful.

@@ -23,7 +23,7 @@
 ;; buttons, see:
 ;;   http://www.gnu.org/software/emacs/manual/html_node/elisp/Buttons.html
 ;;
-;; Most interactible parts of the SX buffers are buttons. Wherever you
+;; Most interactive parts of the SX buffers are buttons. Wherever you
 ;; are, you can always cycle through all buttons by hitting `TAB',
 ;; that should help identify what's a button in each buffer.
 ;;
@@ -34,7 +34,7 @@
 ;;
 ;; Buttons can then be inserted in their respective files using
 ;; `insert-text-button'. Give it the string, the `:type' you defined,
-;; and any aditional properties that can only be determined at
+;; and any additional properties that can only be determined at
 ;; creation. Existing text can be transformed into a button with
 ;; `make-text-button' instead.
 
@@ -154,7 +154,7 @@ usually part of a code-block."
 (define-button-type 'sx-button-user
   'action    #'sx-button-follow-link
   'help-echo sx-button--user-help-echo
-  ;; We use different faces on diferent parts of the user button.
+  ;; We use different faces on different parts of the user button.
   'face      'sx-user-name
   :supertype 'sx-button)
 
