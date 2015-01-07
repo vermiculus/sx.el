@@ -96,12 +96,12 @@ errors if you remove them."
   :group 'sx-user)
 
 (defface sx-user-name
-  '((t :inherit font-lock-function-name-face))
+  '((t :inherit font-lock-builtin-face))
   "Face used for user names."
   :group 'sx-user)
 
 (defface sx-user-reputation
-  '((t :inherit font-lock-string-face))
+  '((t :inherit font-lock-comment-face))
   "Face used for user reputations."
   :group 'sx-user)
 
