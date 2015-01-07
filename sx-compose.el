@@ -67,7 +67,7 @@ succeeds.")
 Is invoked between `sx-compose-before-send-hook' and
 `sx-compose-after-send-functions'.")
 
-(defvar sx-compose--question-headers
+(defconst sx-compose--question-headers
   (concat
    #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
    "%s"
@@ -82,6 +82,23 @@ Is invoked between `sx-compose-before-send-hook' and
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
+(defconst sx-compose--header-line
+  '("    "
+    (:propertize "C-c C-c" face mode-line-buffer-id)
+    ": Finish and Send"
+    (sx-compose--is-question-p
+     ("    "
+      (:propertize "C-c C-q" face mode-line-buffer-id)
+      ": Insert tags"))
+    "    "
+    (:propertize "C-c C-k" face mode-line-buffer-id)
+    ": Discard Draft")
+  "Header-line used on `sx-compose-mode' drafts.")
+
+(defvar sx-compose--is-question-p nil
+  "Non-nil if this `sx-compose-mode' buffer is a question.")
+(make-variable-buffer-local 'sx-compose--is-question-p)
+
 (defvar sx-compose--site nil
   "Site which the curent compose buffer belongs to.")
 (make-variable-buffer-local 'sx-compose--site)
@@ -95,11 +112,15 @@ just implements some extra features related to posting to the
 API.
 
 This mode won't function if `sx-compose--send-function' isn't
-set. To make sure you set it correctly, you can create the buffer
-with the `sx-compose-create' function.
+set.  To make sure you set it correctly, you can create the
+buffer with the `sx-compose-create' function.
+
+If creating a question draft, the `sx-compose--is-question-p'
+variable should also be set to enable more functionality.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
+  (setq header-line-format sx-compose--header-line)
   (add-hook 'sx-compose-after-send-functions
     #'sx-compose-quit nil t)
   (add-hook 'sx-compose-after-send-functions
@@ -107,6 +128,9 @@ with the `sx-compose-create' function.
 
 (define-key sx-compose-mode-map "\C-c\C-c" #'sx-compose-send)
 (define-key sx-compose-mode-map "\C-c\C-k" #'sx-compose-quit)
+(sx--define-conditional-key
+    sx-compose-mode-map "\C-c\C-q" #'sx-compose-insert-tags
+  sx-compose--is-question-p)
 
 (defun sx-compose-send ()
   "Finish composing current buffer and send it.
@@ -119,6 +143,21 @@ contents to the API, then calls `sx-compose-after-send-functions'."
       (with-demoted-errors
           (run-hook-with-args 'sx-compose-after-send-functions
                               (current-buffer) result)))))
+
+(defun sx-compose-insert-tags ()
+  "Prompt for a tag list for this draft and insert them."
+  (interactive)
+  (save-excursion
+    (let* ((old (sx-compose--goto-tag-header))
+           (new
+            (save-match-data
+              (mapconcat
+               #'identity
+               (sx-tag-multiple-read sx-compose--site "Tags" old)
+               " "))))
+      (if (match-string 1)
+          (replace-match new :fixedcase nil nil 1)
+        (insert new)))))
 
 
 ;;; Functions for use in hooks
@@ -137,20 +176,26 @@ contents to the API, then calls `sx-compose-after-send-functions'."
     (with-current-buffer buffer
       (kill-new (buffer-string)))))
 
+(defun sx-compose--goto-tag-header ()
+  "Move to the \"Tags:\" header.
+Match data is set so group 1 encompasses any already inserted
+tags.  Return a list of already inserted tags."
+  (goto-char (point-min))
+  (unless (search-forward-regexp
+           (rx bol "Tags : " (group-n 1 (* not-newline)) eol)
+           (next-single-property-change (point-min) 'sx-compose-separator)
+           'noerror)
+    (error "No Tags header found"))
+  (save-match-data
+    (split-string (match-string 1) (rx (any space ",;"))
+                  'omit-nulls (rx space))))
+
 (defun sx-compose--check-tags ()
   "Check if tags in current compose buffer are valid."
   (save-excursion
-    (goto-char (point-min))
-    (unless (search-forward-regexp
-             "^Tags : *\\([^[:space:]].*\\) *$"
-             (next-single-property-change (point-min) 'sx-compose-separator)
-             'noerror)
-      (error "No Tags header found"))
     (let ((invalid-tags
            (sx-tag--invalid-name-p
-            (split-string (match-string 1) "[[:space:],;]"
-                          'omit-nulls "[[:space:]]")
-            sx-compose--site)))
+            sx-compose--site (sx-compose--goto-tag-header))))
       (if invalid-tags
           ;; If the user doesn't want to create the tags, we return
           ;; nil and sending is aborted.
@@ -180,6 +225,7 @@ respectively added locally to `sx-compose-before-send-hook' and
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
       (setq sx-compose--site site)
+      (setq sx-compose--is-question-p is-question)
       (setq sx-compose--send-function
             (if (consp parent)
                 (sx-assoc-let parent
