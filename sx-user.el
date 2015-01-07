@@ -110,16 +110,16 @@ errors if you remove them."
   "Face used for user accept-rates."
   :group 'sx-user)
 
-(defvar sx--user-format-property-alist
+(defvar sx-user--format-property-alist
   '((?d face sx-user-name)
     (?r face sx-user-reputation)
     (?a face sx-user-accept-rate))
   "Alist relating % constructs with text properties.
-See `sx--user-format'.")
+See `sx-user--format'.")
 
 
 ;;; Formatting function
-(defun sx--user-format (format-string user)
+(defun sx-user--format (format-string user)
   "Use FORMAT-STRING to format the user object USER.
 The value is a copy of FORMAT-STRING, but with certain constructs
 replaced by text that describes the specified USER:
@@ -139,7 +139,7 @@ the `sx-button-user' category."
                     (?l . ,\.link)
                     (?r . ,\.reputation)
                     (?a . ,\.accept_rate))
-                  sx--user-format-property-alist)))
+                  sx-user--format-property-alist)))
       (if (> 0 (string-width .link))
           (insert-text-button text
                               ;; For visiting and stuff.
