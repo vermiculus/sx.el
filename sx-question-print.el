@@ -208,7 +208,7 @@ DATA can represent a question or an answer."
         (sx-question-mode--insert-header
          ;; Author
          sx-question-mode-header-author
-         (sx-question-mode--propertize-display-name .owner)
+         (sx--format-user .owner)
          'sx-question-mode-author
          ;; Date
          sx-question-mode-header-date
@@ -217,8 +217,7 @@ DATA can represent a question or an answer."
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
               (sx-time-since .last_edit_date)
-              (sx-question-mode--propertize-display-name
-               (or .last_editor sx-question-mode-fallback-user)))))
+              (sx--format-user "%n" .last_editor))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
@@ -274,12 +273,6 @@ DATA can represent a question or an answer."
                             :type 'sx-button-comment)
         (insert "\n")))))
 
-(defun sx-question-mode--propertize-display-name (author)
-  "Return display_name of AUTHOR with `sx-question-mode-author' face."
-  (sx-assoc-let author
-    (propertize (or .display_name "??")
-                'face 'sx-question-mode-author)))
-
 (defun sx-question-mode--print-comment (comment-data)
   "Print the comment described by alist COMMENT-DATA.
 The comment is indented, filled, and then printed according to
@@ -292,9 +285,8 @@ The comment is indented, filled, and then printed according to
                 (if (eq .upvoted t) "^" "")
                 " "))
       (insert
-       (format
-           sx-question-mode-comments-format
-         (sx-question-mode--propertize-display-name .owner)
+       (format sx-question-mode-comments-format
+         (sx--format-user "%n" .owner)
          (substring
           ;; We fill with three spaces at the start, so the comment is
           ;; slightly indented.
