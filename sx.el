@@ -337,6 +337,30 @@ removed from the display name before it is returned."
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
 
+(defun sx-format-replacements (format alist)
+  "Use FORMAT-STRING to format the values in ALIST.
+ALIST is a list with elements of the form (CHAR . STRING).
+The value is a copy of FORMAT-STRING, but with certain constructs
+replaced by text as given by ALIST.  
+
+The construct is a `%' character followed by any other character.
+The replacement is the STRING corresponding to CHAR in ALIST.
+
+The %% construct is special, it is replaced with a single %, even
+if ALIST contains a different string at the ?% entry."
+  (let ((alist (cons '(?% . "%") alist)))
+    (with-temp-buffer
+      (insert format)
+      (goto-char (point-min))
+      (while (search-forward "%" nil 'noerror)
+        (delete-char -1)
+        (unless (eobp)
+          (insert
+           (or (cdr (assq (char-after) alist))
+               (error "ALIST has no value for `%c'" (char-after))))
+          (delete-char 1)))
+      (buffer-string))))
+
 
 (defcustom sx-init-hook nil
   "Hook run when SX initializes.
