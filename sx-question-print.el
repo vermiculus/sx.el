@@ -420,14 +420,14 @@ replaced by text that describes the specified USER:
 
 The returned string is additionally propertized as a button with
 the `sx-button-user' category."
-  (let-alist user
-    (let* ((link (or .link ""))
-           (text (sx-format-replacements
+  (sx-assoc-let (append user sx-question-mode-fallback-user)
+    (let* ((text (sx-format-replacements
                   format-string
-                  `((?d . ,(or .display_name "Unknown user"))
-                    (?l . ,link)
-                    (?r . ,(number-to-string (or .reputation 0)))
-                    (?a . ,(number-to-string (or .accept_rate 0)))))))
+                  `((?d . ,.display_name)
+                    (?l . ,.link)
+                    (?r . ,.reputation)
+                    (?a . ,.accept_rate))
+                  sx-user-property-alist)))
       (if link
           (insert-text-button text
                               ;; For visiting and stuff.
