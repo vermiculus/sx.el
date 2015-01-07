@@ -364,10 +364,10 @@ if ALIST contains a different string at the ?% entry."
           (unless val
             (error "Invalid format character: `%%%c'" char))
           ;; Insert first, to preserve text properties.
-          (insert-and-inherit
-           (apply #'propertize
-             (format (concat "%" flag "s") val)
-             (cdr-safe (assq char property-alist))))
+          (insert-and-inherit (format (concat "%" flag "s") val))
+          (when property-alist
+            (add-text-properties (match-end 0) (point)
+                                 (cdr-safe (assq char property-alist))))
           ;; Delete the specifier body.
           (delete-region (match-beginning 0)
                          (match-end 0))
