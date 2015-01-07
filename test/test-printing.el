@@ -94,3 +94,42 @@ after being run through `sx-question--tag-format'."
    (string=
     (sx-user--format "%@" '((display_name . "ĤÞßĐŁŘĞĜÝŸÑŃŚŞŠŜŻŹŽÇĆČĈÙÚÛÜŬŮÒÓÔÕÖØŐÐÌÍÎÏıÈÉÊËĘÀÅÁÂÄÃÅĄĴ")))
     "@HTHssDLRGGYYNNSSSSZZZCCCCUUUUUUOOOOOOOOIIIIiEEEEEAAAAAAAAJ")))
+
+(ert-deftest sx-object-modification ()
+  "Test adding things to objects"
+  (let ((object (list (cons 'owner "me"))))
+    (should
+     (equal (sx--ensure-owner-in-object 1 object)
+            '((owner . "me"))))
+    (should
+     (equal object '((owner . "me")))))
+  (let ((object (list (cons 'not-owner "me"))))
+    (should
+     (equal (sx--ensure-owner-in-object 1 object)
+            '((owner . 1) (not-owner . "me"))))
+    (should
+     (equal object '((owner . 1) (not-owner . "me")))))
+  (let ((object (list (cons 'comments [something]))))
+    (should
+     (equal (sx--add-comment-to-object "comment" object)
+            '((comments . [something "comment"]))))
+    (should
+     (equal object '((comments . [something "comment"])))))
+  (let ((object (list (cons 'not-comments [something]))))
+    (should
+     (equal (sx--add-comment-to-object "comment" object)
+            '((comments . ["comment"]) (not-comments . [something]))))
+    (should
+     (equal object '((comments . ["comment"]) (not-comments . [something])))))
+  (let ((object (list (cons 'not-answers [something]))))
+    (should
+     (equal (sx--add-answer-to-question-object "answer" object)
+            '((answers . ["answer"]) (not-answers . [something]))))
+    (should
+     (equal object '((answers . ["answer"]) (not-answers . [something])))))
+  (let ((object (list (cons 'answers [something]))))
+    (should
+     (equal (sx--add-answer-to-question-object "answer" object)
+            '((answers . [something "answer"]))))
+    (should
+     (equal object '((answers . [something "answer"]))))))
