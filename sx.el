@@ -337,14 +337,17 @@ removed from the display name before it is returned."
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
 
-(defun sx-format-replacements (format alist)
+(defun sx-format-replacements (format alist &optional property-alist)
   "Use FORMAT-STRING to format the values in ALIST.
 ALIST is a list with elements of the form (CHAR . STRING).
 The value is a copy of FORMAT-STRING, but with certain constructs
 replaced by text as given by ALIST.  
 
 The construct is a `%' character followed by any other character.
-The replacement is the STRING corresponding to CHAR in ALIST.
+The replacement is the STRING corresponding to CHAR in ALIST.  In
+addition, if CHAR is also the car of an element in
+PROPERTY-ALIST, the cdr of that element should be a list of text
+properties which will be applied on the replacement.
 
 The %% construct is special, it is replaced with a single %, even
 if ALIST contains a different string at the ?% entry."
@@ -352,12 +355,22 @@ if ALIST contains a different string at the ?% entry."
     (with-temp-buffer
       (insert format)
       (goto-char (point-min))
-      (while (search-forward "%" nil 'noerror)
-        (delete-char -1)
-        (unless (eobp)
-          (insert
-           (or (cdr (assq (char-after) alist))
-               (error "ALIST has no value for `%c'" (char-after))))
+      (while (search-forward-regexp
+              (rx "%" (group-n 1 (* (any "-+ #0-9.")))) nil 'noerror)
+        (let* ((char (char-after))
+               ;; Understand flags
+               (flag (match-string 1))
+               (val (cdr-safe (assq char alist))))
+          (unless val
+            (error "Invalid format character: `%%%c'" char))
+          ;; Insert first, to preserve text properties.
+          (insert-and-inherit
+           (apply #'propertize
+             (format (concat "%" flag "s") val)
+             (cdr-safe (assq char property-alist))))
+          ;; Delete the specifier body.
+          (replace-match "")
+          ;; Delete `char-after'.
           (delete-char 1)))
       (buffer-string))))
 
