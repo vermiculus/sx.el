@@ -187,8 +187,7 @@ using `sx-user--format'."
     (if (stringp .display_name)
         (concat "@" (sx--recursive-replace
                      sx-user--ascii-replacement-list .display_name))
-      ;; ""
-      )))
+      "")))
 
 (provide 'sx-user)
 ;;; sx-user.el ends here
