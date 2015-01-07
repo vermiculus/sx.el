@@ -25,9 +25,9 @@
 (require 'sx-button)
 
 (defgroup sx-user nil
-  "Customization group for sx-question-mode."
+  "How users are displayed by SX."
   :prefix "sx-user-"
-  :tag "SX Question Mode"
+  :tag "SX User"
   :group 'sx)
 
 (defcustom sx-question-mode-fallback-user
@@ -111,12 +111,14 @@ errors if you remove them."
   :group 'sx-user)
 
 (defvar sx--user-format-property-alist
-  '((?d face sx-question-mode-author)
-    (?r face sx-question-mode-reputation)
-    (?a face sx-question-mode-accept-rate))
+  '((?d face sx-user-name)
+    (?r face sx-user-reputation)
+    (?a face sx-user-accept-rate))
   "Alist relating % constructs with text properties.
 See `sx--user-format'.")
 
+
+;;; Formatting function
 (defun sx--user-format (format-string user)
   "Use FORMAT-STRING to format the user object USER.
 The value is a copy of FORMAT-STRING, but with certain constructs
@@ -132,16 +134,17 @@ the `sx-button-user' category."
   (sx-assoc-let (append user sx-question-mode-fallback-user)
     (let* ((text (sx-format-replacements
                   format-string
-                  `((?d . ,.display_name)
-                    (?l . ,.link)
-                    (?r . ,.reputation)
-                    (?a . ,.accept_rate))
-                  sx--format-user-property-alist)))
-      (if link
+                  `((?d . ,\.display_name)
+                    (?n . ,\.display_name)
+                    (?l . ,\.link)
+                    (?r . ,\.reputation)
+                    (?a . ,\.accept_rate))
+                  sx--user-format-property-alist)))
+      (if (> 0 (string-width .link))
           (insert-text-button text
                               ;; For visiting and stuff.
-                              'sx-button-url  link
-                              'sx-button-copy link
+                              'sx-button-url  .link
+                              'sx-button-copy .link
                               :type 'sx-button-user)
         text))))
 
