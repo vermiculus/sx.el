@@ -42,18 +42,6 @@
 
 
 ;;; Faces and Variables
-(defconst sx-question-mode-fallback-user
-  '((display_name . "(unknown user)")
-    (link . "")
-    (reputation . -1)
-    (accept_rate . -1))
-  "The structure used to represent a deleted account."
-  :type '(alist :options ((display_name string)
-                          (link         string)
-                          (reputation   integer)
-                          (accept_rate  integer)))
-  :group 'sx-question-mode)
-
 (defface sx-question-mode-header
   '((t :inherit font-lock-variable-name-face))
   "Face used on the question headers in the question buffer."

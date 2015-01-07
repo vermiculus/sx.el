@@ -30,6 +30,86 @@
   :tag "SX Question Mode"
   :group 'sx)
 
+(defcustom sx-question-mode-fallback-user
+  '(
+    (about_me                  . "")
+    (accept_rate               . -1)
+    (account_id                . -1)
+    (age                       . -1)
+    (answer_count              . -1)
+    (badge_counts              . ((bronze . -1) (silver . -1) (gold . -1)))
+    (creation_date             . -1)
+    (display_name              . "(unknown user)")
+    (down_vote_count           . -1)
+    (is_employee               . :json-false)
+    (last_access_date          . -1)
+    (last_modified_date        . -1)
+    (link                      . "")
+    (location                  . "")
+    (profile_image             . ":(")
+    (question_count            . -1)
+    (reputation                . -1)
+    (reputation_change_day     . -1)
+    (reputation_change_month   . -1)
+    (reputation_change_quarter . -1)
+    (reputation_change_week    . -1)
+    (reputation_change_year    . -1)
+    (timed_penalty_date        . -1)
+    (up_vote_count             . -1)
+    (user_id                   . -1)
+    (user_type                 . does_not_exist)
+    (view_count                . -1)
+    (website_url               . "")
+    )
+  "The structure used to represent missing user information.
+NOOTE: SX relies on this variable containing all necessary user
+information.  You may edit any of its fields, but you'll run into
+errors if you remove them."
+  :type '(alist :options ((about_me string)
+                          (accept_rate integer)
+                          (account_id integer)
+                          (age integer)
+                          (answer_count integer)
+                          (badge_counts alist)
+                          (creation_date integer)
+                          (display_name string)
+                          (down_vote_count integer)
+                          (is_employee boolean)
+                          (last_access_date integer)
+                          (last_modified_date integer)
+                          (link string)
+                          (location string)
+                          (profile_image string)
+                          (question_count integer)
+                          (reputation integer)
+                          (reputation_change_day integer)
+                          (reputation_change_month integer)
+                          (reputation_change_quarter integer)
+                          (reputation_change_week integer)
+                          (reputation_change_year integer)
+                          (timed_penalty_date integer)
+                          (up_vote_count integer)
+                          (user_id integer)
+                          (user_type symbol)
+                          (view_count integer)
+                          (website_url string)))
+  :group 'sx-user)
+
+(defface sx-user-name
+  '((t :inherit font-lock-variable-name-face))
+  "Face used for user names."
+  :group 'sx-user)
+
+(defface sx-user-reputation
+  '((t :inherit font-lock-function-name-face))
+  "Face used for user reputations."
+  :group 'sx-user)
+
+(defface sx-user-accept-rate
+  '((t))
+  "Face used for user accept-rates."
+  :group 'sx-user)
+
 (defvar sx--user-format-property-alist
   '((?d face sx-question-mode-author)
     (?r face sx-question-mode-reputation)
