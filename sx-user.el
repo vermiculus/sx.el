@@ -148,6 +148,48 @@ the `sx-button-user' category."
                               :type 'sx-button-user)
         text))))
 
+
+;;; @name conversion
+(defconst sx-user--ascii-replacement-list
+  '(("[:space:]" . "")
+    ("àåáâäãåą" .  "a")
+    ("èéêëę" .  "e")
+    ("ìíîïı" .  "i")
+    ("òóôõöøőð" .  "o")
+    ("ùúûüŭů" .  "u")
+    ("çćčĉ" .  "c")
+    ("żźž" .  "z")
+    ("śşšŝ" .  "s")
+    ("ñń" .  "n")
+    ("ýÿ" .  "y")
+    ("ğĝ" .  "g")
+    ("ř" . "r")
+    ("ł" . "l")
+    ("đ" . "d")
+    ("ß" . "ss")
+    ("Þ" . "th")
+    ("ĥ" . "h")
+    ("ĵ" . "j")
+    ("^[:ascii:]" . ""))
+  "List of replacements to use for non-ascii characters.
+Used to convert user names into @mentions.")
+
+(defun sx-user--@name (user)
+  "Get the `display_name' of USER prepended with @.
+In order to correctly @mention the user, all whitespace is
+removed from the display name and a series of unicode conversions
+are performed before it is returned
+See `sx-user--ascii-replacement-list'.
+
+If all you need is the @name, this is very slightly faster than
+using `sx-user--format'."
+  (sx-assoc-let user
+    (if (stringp .display_name)
+        (concat "@" (sx--recursive-replace
+                     sx-user--ascii-replacement-list .display_name))
+      ;; ""
+      )))
+
 (provide 'sx-user)
 ;;; sx-user.el ends here
 

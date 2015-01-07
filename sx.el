@@ -294,39 +294,6 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defconst sx--ascii-replacement-list
-  '(("[:space:]" . "")
-    ("àåáâäãåą" .  "a")
-    ("èéêëę" .  "e")
-    ("ìíîïı" .  "i")
-    ("òóôõöøőð" .  "o")
-    ("ùúûüŭů" .  "u")
-    ("çćčĉ" .  "c")
-    ("żźž" .  "z")
-    ("śşšŝ" .  "s")
-    ("ñń" .  "n")
-    ("ýÿ" .  "y")
-    ("ğĝ" .  "g")
-    ("ř" . "r")
-    ("ł" . "l")
-    ("đ" . "d")
-    ("ß" . "ss")
-    ("Þ" . "th")
-    ("ĥ" . "h")
-    ("ĵ" . "j")
-    ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters.
-Used to convert user names into @mentions.")
-
-(defun sx--user-@name (user)
-  "Get the `display_name' of USER prepended with @.
-In order to correctly @mention the user, all whitespace is
-removed from the display name before it is returned."
-  (sx-assoc-let user
-    (when (stringp .display_name)
-      (concat "@" (sx--recursive-replace
-                   sx--ascii-replacement-list .display_name)))))
-
 (defun sx--recursive-replace (alist string)
   "Replace each car of ALIST with its cdr in STRING."
   (if alist
