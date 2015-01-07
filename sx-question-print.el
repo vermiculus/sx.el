@@ -26,6 +26,7 @@
 (require 'sx)
 (require 'sx-question)
 (require 'sx-babel)
+(require 'sx-user)
 
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
@@ -91,11 +92,6 @@
 (defface sx-question-mode-tags
   '((t :underline nil :inherit font-lock-function-name-face))
   "Face used on the question tags in the question buffer."
-  :group 'sx-question-mode-faces)
-
-(defface sx-question-mode-author
-  '((t :inherit font-lock-variable-name-face))
-  "Face used for author names in the question buffer."
   :group 'sx-question-mode-faces)
 
 (defface sx-question-mode-score
@@ -394,34 +390,6 @@ URL is used as 'help-echo and 'url properties."
    'sx-button-url url
    'sx-button-copy url
    :type 'sx-button-link))
-
-(defun sx--format-user (format-string user)
-  "Use FORMAT-STRING to format the user object USER.
-The value is a copy of FORMAT-STRING, but with certain constructs
-replaced by text that describes the specified USER:
-
-%d is the display name.
-%l is the link to the profile.
-%r is the reputation.
-%a is the accept rate.
-
-The returned string is additionally propertized as a button with
-the `sx-button-user' category."
-  (sx-assoc-let (append user sx-question-mode-fallback-user)
-    (let* ((text (sx-format-replacements
-                  format-string
-                  `((?d . ,.display_name)
-                    (?l . ,.link)
-                    (?r . ,.reputation)
-                    (?a . ,.accept_rate))
-                  sx-user-property-alist)))
-      (if link
-          (insert-text-button text
-                              ;; For visiting and stuff.
-                              'sx-button-url  link
-                              'sx-button-copy link
-                              :type 'sx-button-user)
-        text))))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
