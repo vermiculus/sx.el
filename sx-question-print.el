@@ -65,7 +65,7 @@ Some faces of this mode might be defined in the `sx-user' group."
 
 (defcustom sx-question-mode-header-author-format "\nAuthor:   %d %r"
   "String used to display the question author at the header.
-% constructs have special meaning here.  See `sx--user-format'."
+% constructs have special meaning here.  See `sx-user--format'."
   :type 'string
   :group 'sx-question-mode)
 
@@ -193,7 +193,7 @@ DATA can represent a question or an answer."
           '(sx-question-mode--section-content t)
         ;; Author
         (insert
-         (sx--user-format
+         (sx-user--format
           (propertize sx-question-mode-header-author-format
                       'face 'sx-question-mode-header)
           .owner))
@@ -205,7 +205,7 @@ DATA can represent a question or an answer."
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
               (sx-time-since .last_edit_date)
-              (sx--user-format "%d" .last_editor))))
+              (sx-user--format "%d" .last_editor))))
          'sx-question-mode-date)
         (sx-question-mode--insert-header
          sx-question-mode-header-score
@@ -274,7 +274,7 @@ The comment is indented, filled, and then printed according to
                 " "))
       (insert
        (format sx-question-mode-comments-format
-         (sx--user-format "%d" .owner)
+         (sx-user--format "%d" .owner)
          (substring
           ;; We fill with three spaces at the start, so the comment is
           ;; slightly indented.
