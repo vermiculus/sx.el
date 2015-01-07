@@ -74,8 +74,9 @@
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-author "\nAuthor:   "
-  "String used before the question author at the header."
+(defcustom sx-question-mode-header-author-format "\nAuthor:   %n %r"
+  "String used to display the question author at the header.
+% constructs have special meaning here.  See `sx--user-format'."
   :type 'string
   :group 'sx-question-mode)
 
@@ -201,11 +202,12 @@ DATA can represent a question or an answer."
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
+        ;; Author
+        (sx--format-user
+         (propertize sx-question-mode-header-author-format
+                     'face 'sx-question-mode-header)
+         .owner)
         (sx-question-mode--insert-header
-         ;; Author
-         sx-question-mode-header-author
-         (sx--format-user .owner)
-         'sx-question-mode-author
          ;; Date
          sx-question-mode-header-date
          (concat
