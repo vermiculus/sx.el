@@ -402,6 +402,34 @@ URL is used as 'help-echo and 'url properties."
    'sx-button-copy url
    :type 'sx-button-link))
 
+(defun sx--format-user (format-string user)
+  "Use FORMAT-STRING to format the user object USER.
+The value is a copy of FORMAT-STRING, but with certain constructs
+replaced by text that describes the specified USER:
+
+%d is the display name.
+%l is the link to the profile.
+%r is the reputation.
+%a is the accept rate.
+
+The returned string is additionally propertized as a button with
+the `sx-button-user' category."
+  (let-alist user
+    (let* ((link (or .link ""))
+           (text (sx-format-replacements
+                  format-string
+                  `((?d . ,(or .display_name "Unknown user"))
+                    (?l . ,link)
+                    (?r . ,(number-to-string (or .reputation 0)))
+                    (?a . ,(number-to-string (or .accept_rate 0)))))))
+      (if link
+          (insert-text-button text
+                              ;; For visiting and stuff.
+                              'sx-button-url  link
+                              'sx-button-copy link
+                              :type 'sx-button-user)
+        text))))
+
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
 If ID is nil, use FALLBACK-ID instead."
