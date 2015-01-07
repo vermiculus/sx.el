@@ -71,3 +71,59 @@ after being run through `sx-question--tag-format'."
     (sx--user-@name '((display_name . "ĤÞßĐŁŘĞĜÝŸÑŃŚŞŠŜŻŹŽÇĆČĈÙÚÛÜŬŮÒÓÔÕÖØŐÐÌÍÎÏıÈÉÊËĘÀÅÁÂÄÃÅĄĴ")))
     "@HTHssDLRGGYYNNSSSSZZZCCCCUUUUUUOOOOOOOOIIIIiEEEEEAAAAAAAAJ")))
 
+(ert-deftest sx-question-mode--fill-and-fontify ()
+  "Check complicated questions are filled correctly."
+  (should
+   (equal
+    (sx-question-mode--fill-and-fontify
+     "Creating an account on a new site requires you to log into that site using *the same credentials you used on existing sites.* For instance, if you used the Stack Exchange login method, you'd...
+
+1. Click the \"Log in using Stack Exchange\" button:
+
+  ![][1]
+
+2. Enter your username and password (yes, even if you *just did this* to log into, say, Stack Overflow) and press the \"Log In\" button:
+
+  ![][2]
+
+3. Confirm the creation of the new account:
+
+  ![][3]
+
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+
+  [1]: http://i.stack.imgur.com/ktFTs.png
+  [2]: http://i.stack.imgur.com/5l2AY.png
+  [3]: http://i.stack.imgur.com/22myl.png")
+    "Creating an account on a new site requires you to log into that site
+using *the same credentials you used on existing sites.* For instance,
+if you used the Stack Exchange login method, you'd...
+
+1. Click the \"Log in using Stack Exchange\" button:
+
+  ![][1]
+
+2. Enter your username and password (yes, even if you *just did this*
+   to log into, say, Stack Overflow) and press the \"Log In\" button:
+
+  ![][2]
+
+3. Confirm the creation of the new account:
+
+  ![][3]
+
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+        
+  [1]: http://i.stack.imgur.com/ktFTs.png
+  [2]: http://i.stack.imgur.com/5l2AY.png
+  [3]: http://i.stack.imgur.com/22myl.png")))
