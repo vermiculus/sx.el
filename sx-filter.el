@@ -65,7 +65,7 @@ All wrapper fields are included by default."
       .quota_max
       .quota_remaining
       )
-     nil none)))
+     nil nil)))
 
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
