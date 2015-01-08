@@ -322,14 +322,14 @@ where `value' is given `face' as its face.
               'face 'markdown-list-face)
   "String to be displayed as the bullet of markdown list items.")
 
-(defvar sx-question-mode--reference-regexp
+(defconst sx-question-mode--reference-regexp
   (rx line-start (0+ blank) "[%s]:" (0+ blank)
       (group-n 1 (1+ (not blank))))
   "Regexp used to find the url of labeled links.
 E.g.:
    [1]: https://...")
 
-(defvar sx-question-mode--link-regexp
+(defconst sx-question-mode--link-regexp
   ;; Done at compile time.
   (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
       (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
