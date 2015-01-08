@@ -47,7 +47,7 @@ Structure:
 
 ;;; Creation
 (defmacro sx-filter-from-nil (included)
-  "Creates a filter data structure with INCLUDED fields.
+  "Create a filter data structure with INCLUDED fields.
 All wrapper fields are included by default."
   `(quote
     ((,@(sx--tree-expand
@@ -70,7 +70,7 @@ All wrapper fields are included by default."
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
   "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
-INCLUDE and EXCLUDE must both be lists; BASE should be a string.
+INCLUDE and EXCLUDE must both be lists; BASE should be a symbol.
 
 Returns the compiled filter as a string."
   (let ((keyword-arguments
@@ -93,7 +93,7 @@ Returns the compiled filter as a string."
 (defun sx-filter-get (&optional include exclude base)
   "Return the string representation of the given filter.
 
-If the filter data exist in `sx--filter-alist', that value will
+If the filter data exists in `sx--filter-alist', that value will
 be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
 a filter with `sx-filter-compile' and push the association onto
 `sx--filter-alist'.  Re-cache the alist with `sx-cache-set' and
