@@ -64,7 +64,7 @@ All wrapper fields are included by default."
       .page_size
       .quota_max
       .quota_remaining
-      .total)
+      )
      nil none)))
 
 ;;; @TODO allow BASE to be a precompiled filter name
