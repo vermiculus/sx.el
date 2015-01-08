@@ -63,6 +63,23 @@ Returns a list."
           (sx-tag--get-some-tags-containing site string)))
 
 
+;;; Getting tags from our data branch. Without the API.
+;;;; @TODO: Once the cache is finished, this can probably be made into
+;;;; a cache variasble with 1 day expiration time.
+(defvar sx-tag-list-alist nil
+  "Alist where the tag list for each site is stored.
+Elements are of the type (SITE . TAG-LIST).")
+
+(defun sx-tag-list--get (site)
+  "Retrieve all tags from SITE in a single request.
+This does not access the API.  Instead, it uses
+`sx-request-get-data', which accesses SX's tag cache."
+  (or (cdr (assoc site sx-tag-list-alist))
+      (let ((list (sx-request-get-data (concat "tags/" site))))
+        (push (cons site list) sx-tag-list-alist)
+        list)))
+
+
 ;;; Check tag validity
 (defun sx-tag--invalid-name-p (site tags)
   "Nil if TAGS exist in SITE.
@@ -81,6 +98,40 @@ Return the list of invalid tags in TAGS."
             :filter sx-tag-filter
             :site site))))
     (cl-remove-if (lambda (x) (member x result)) tags)))
+
+
+;;; Prompt the user for tags.
+(defvar sx-tag-history nil
+  "Tags history for interactive prompts.")
+
+;;; @TODO: Make it so that hitting BACKSPACE with an empty input
+;;; deletes a previously submitted tag.
+(defun sx-tag-multiple-read (site prompt &optional initial-value)
+  "Interactively read a list of tags for SITE.
+Call `sx-completing-read' multiple times, until input is empty,
+with completion options given by the tag list of SITE.
+Return a list of tags given by the user.
+
+PROMPT is a string displayed to the user and should not end with
+a space nor a colon.  INITIAL-VALUE is a list of already-selected
+tags."
+  (let ((completion-list (sx-tag-list--get site))
+        (list (reverse initial-value))
+        (empty-string 
+         (propertize "--\x000-some-string-representing-empty-\x000--"
+                     'display "DONE"))
+        input)
+    (while (not (string=
+                 empty-string
+                 (setq input (sx-completing-read
+                              (concat prompt " ["
+                                      (mapconcat #'identity (reverse list) ",")
+                                      "]: ")
+                              completion-list
+                              nil 'require-match nil 'sx-tag-history
+                              empty-string))))
+      (push input list))
+    (reverse list)))
 
 (provide 'sx-tag)
 ;;; sx-tag.el ends here

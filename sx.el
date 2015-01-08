@@ -90,7 +90,7 @@ with a `link' property)."
 
 (defun sx--link-to-data (link)
   "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site (sx--site link)))))
+  (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
     (when (or
            ;; Answer
@@ -176,24 +176,6 @@ All ARGS are passed to `completing-read' or `ido-completing-read'."
   (apply (if ido-mode #'ido-completing-read #'completing-read)
     args))
 
-(defun sx--multiple-read (prompt hist-var)
-  "Interactively query the user for a list of strings.
-Call `read-string' multiple times, until the input is empty.
-
-PROMPT is a string displayed to the user and should not end with
-a space nor a colon.  HIST-VAR is a quoted symbol, indicating a
-list in which to store input history."
-  (let (list input)
-    (while (not (string=
-                 ""
-                 (setq input (read-string
-                              (concat prompt " ["
-                                      (mapconcat #'identity list ",")
-                                      "]: ")
-                              "" hist-var))))
-      (push input list))
-    list))
-
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
 This is designed for the (site id id ...) lists.  So the first car
@@ -264,6 +246,18 @@ Anything before the (sub)domain is removed."
    (replace-regexp-in-string
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
+
+(defmacro sx--define-conditional-key (keymap key def &rest body)
+  "In KEYMAP, define key sequence KEY as DEF conditionally.
+This is like `define-key', except the definition \"disappears\"
+whenever BODY evaluates to nil."
+  (declare (indent 3)
+           (debug (form form form &rest sexp)))
+  `(define-key ,keymap ,key
+     '(menu-item
+       ,(format "maybe-%s" (or (car (cdr-safe def)) def)) ignore
+       :filter (lambda (&optional _)
+                 (when (progn ,@body) ,def)))))
 
 
 ;;; Printing request data

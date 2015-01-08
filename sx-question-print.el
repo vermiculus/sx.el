@@ -276,7 +276,7 @@ DATA can represent a question or an answer."
 (defun sx-question-mode--propertize-display-name (author)
   "Return display_name of AUTHOR with `sx-question-mode-author' face."
   (sx-assoc-let author
-    (propertize .display_name
+    (propertize (or .display_name "??")
                 'face 'sx-question-mode-author)))
 
 (defun sx-question-mode--print-comment (comment-data)

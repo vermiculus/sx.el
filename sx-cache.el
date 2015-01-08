@@ -34,8 +34,7 @@
 
 ;;; Code:
 
-(defcustom sx-cache-directory
-  (expand-file-name ".sx" user-emacs-directory)
+(defcustom sx-cache-directory (locate-user-emacs-file ".sx")
   "Directory containing cached data."
   :type 'directory
   :group 'sx)
