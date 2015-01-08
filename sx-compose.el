@@ -34,6 +34,7 @@
 (require 'markdown-mode)
 
 (require 'sx)
+(require 'sx-tag)
 
 (defgroup sx-compose-mode nil
   "Customization group for sx-compose-mode."
