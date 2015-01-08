@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-DESTINATION_BRANCH=gh-pages
+DESTINATION_BRANCH=data
 
 function notify-done {
     local title

@@ -303,18 +303,22 @@ where `value' is given `face' as its face.
               'face 'markdown-list-face)
   "String to be displayed as the bullet of markdown list items.")
 
-(defvar sx-question-mode--reference-regexp
+(defconst sx-question-mode--reference-regexp
   (rx line-start (0+ blank) "[%s]:" (0+ blank)
       (group-n 1 (1+ (not blank))))
   "Regexp used to find the url of labeled links.
 E.g.:
    [1]: https://...")
 
-(defvar sx-question-mode--link-regexp
+(defconst sx-question-mode--link-regexp
   ;; Done at compile time.
-  (rx "[" (group-n 1 (1+ (not (any "]")))) "]"
-      (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
-          (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
+  (rx (or (and "[" (group-n 1 (1+ (not (any "]")))) "]"
+               (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
+                   (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
+          (group-n 4 (and (or (and "http" (opt "s") "://") "")
+                          (+ (any alnum "_%"))
+                          "."
+                          (+ (any alnum "/._%&#?=;"))))))
   "Regexp matching markdown links.")
 
 (defun sx-question-mode--fill-and-fontify (text)
@@ -358,6 +362,7 @@ E.g.:
     (while (search-forward-regexp sx-question-mode--link-regexp nil t)
       (let* ((text (match-string-no-properties 1))
              (url (or (match-string-no-properties 2)
+                      (match-string-no-properties 4)
                       (sx-question-mode-find-reference
                        (match-string-no-properties 3)
                        text)))
@@ -365,7 +370,7 @@ E.g.:
         (when (stringp url)
           (replace-match "")
           (sx-question-mode--insert-link
-           (if sx-question-mode-pretty-links text full-text)
+           (or (if sx-question-mode-pretty-links text full-text) url)
            url))))))
 
 (defun sx-question-mode--insert-link (text url)
@@ -443,9 +448,11 @@ font-locking."
 
 (defun sx-question-mode--skip-references ()
   "If there's a reference ahead, skip it and return non-nil."
-  (while (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+  (forward-line 0)
+  (when (looking-at-p (format sx-question-mode--reference-regexp ".+"))
     ;; Returns non-nil
-    (forward-line 1)))
+    (forward-paragraph 1)
+    t))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here

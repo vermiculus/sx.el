@@ -34,6 +34,12 @@
     ;; @TODO: Make shell-mode work here. Currently errors because it
     ;; needs a process. `sh-mode' isn't as nice.
     (,(rx (or "$ " "# ")) sh-mode)
+    ;; Not sure if leaving out "[{" might lead to false positives.
+    (,(rx "\\" (+ alnum) (any "[{")) latex-mode)
+    ;; Right now, this will match a lot of stuff. Once we are capable
+    ;; of determining major-mode from tags, site, and comments, this
+    ;; will work as a last case fallback.
+    (,(rx (or (and "int" (+ space) "main" (* space) "("))) c-mode)
     )
   "List of cons cells determining which major-mode to use when.
 Each car is a rule and each cdr is a major-mode.  The first rule
