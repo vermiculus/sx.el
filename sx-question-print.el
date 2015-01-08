@@ -462,9 +462,11 @@ font-locking."
 
 (defun sx-question-mode--skip-references ()
   "If there's a reference ahead, skip it and return non-nil."
-  (while (looking-at-p (format sx-question-mode--reference-regexp ".+"))
+  (forward-line 0)
+  (when (looking-at-p (format sx-question-mode--reference-regexp ".+"))
     ;; Returns non-nil
-    (forward-line 1)))
+    (forward-paragraph 1)
+    t))
 
 (provide 'sx-question-print)
 ;;; sx-question-print.el ends here
