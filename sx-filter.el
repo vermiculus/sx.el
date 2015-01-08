@@ -77,10 +77,8 @@ Returns the compiled filter as a string."
          `((include . ,(if include (sx--thing-as-string include)))
            (exclude . ,(if exclude (sx--thing-as-string exclude)))
            (base    . ,(if base base)))))
-    (let ((response (elt (sx-request-make
-                          "filter/create"
-                          keyword-arguments) 0)))
-      (sx-assoc-let response
+    (let ((result (elt (sx-request-make "filter/create" keyword-arguments) 0)))
+      (sx-assoc-let result
         .filter))))
 
 
