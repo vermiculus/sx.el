@@ -217,8 +217,8 @@ Currently returns nil."
 
 
 ;;; Our own generated data
-(defvar sx-request--data-url-format
-  "https://raw.githubusercontent.com/vermiculus/sx.el/data/data/%s.el"
+(defconst sx-request--data-url-format
+  "http://raw.githubusercontent.com/vermiculus/sx.el/data/data/%s.el"
   "Url of the \"data\" directory inside the SX `data' branch.")
 
 (defun sx-request-get-data (file)
