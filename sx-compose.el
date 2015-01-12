@@ -200,7 +200,7 @@ tags.  Return a list of already inserted tags."
       (if invalid-tags
           ;; If the user doesn't want to create the tags, we return
           ;; nil and sending is aborted.
-          (y-or-n-p "Following tags don't exist. Create them? %s " invalid-tags)
+          (y-or-n-p (format "Following tags don't exist. Create them? %s " invalid-tags))
         t))))
 
 
