@@ -45,8 +45,10 @@ Added as hook to initialization."
   (or   (setq sx-favorites--user-favorite-list
               (sx-cache-get 'question-favorites))
         (sx-favorites-update)))
-;; Append to ensure `sx-network--initialize is run before it.
-(add-hook 'sx-init--internal-hook #'sx-favorites--initialize 'append)
+;; ;; Append to ensure `sx-network--initialize' is run before it.
+;; This is removed for now because it performs a lot of API calls and
+;; was never used.
+;; (add-hook 'sx-init--internal-hook #'sx-favorites--initialize 'append)
 
 (defun sx-favorites--retrieve-favorites (site)
   "Obtain list of starred QUESTION_IDs for SITE."
