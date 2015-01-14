@@ -23,7 +23,7 @@
 ;; buttons, see:
 ;;   http://www.gnu.org/software/emacs/manual/html_node/elisp/Buttons.html
 ;;
-;; Most interactible parts of the SX buffers are buttons. Wherever you
+;; Most interactive parts of the SX buffers are buttons. Wherever you
 ;; are, you can always cycle through all buttons by hitting `TAB',
 ;; that should help identify what's a button in each buffer.
 ;;
@@ -34,7 +34,7 @@
 ;;
 ;; Buttons can then be inserted in their respective files using
 ;; `insert-text-button'. Give it the string, the `:type' you defined,
-;; and any aditional properties that can only be determined at
+;; and any additional properties that can only be determined at
 ;; creation. Existing text can be transformed into a button with
 ;; `make-text-button' instead.
 
@@ -104,23 +104,29 @@ usually part of a code-block."
 
 
 ;;; Help-echo definitions
-(defvar sx-button--help-echo
+(defconst sx-button--help-echo
   (concat "mouse-1, RET" 
           (propertize ": %s -- " 'face 'minibuffer-prompt)
           "w" 
           (propertize ": copy %s" 'face 'minibuffer-prompt))
   "Base help-echo on which others can be written.")
 
-(defvar sx-button--question-title-help-echo
+(defconst sx-button--user-help-echo
   (format sx-button--help-echo
-    (propertize "hide content" 'face 'minibuffer-prompt)
-    (propertize "link" 'face 'minibuffer-prompt))
+    "visit user page"
+    "link")
+  "Help echoed in the minibuffer when point is on a user.")
+
+(defconst sx-button--question-title-help-echo
+  (format sx-button--help-echo
+    "hide content"
+    "link")
   "Help echoed in the minibuffer when point is on a section.")
 
-(defvar sx-button--link-help-echo
+(defconst sx-button--link-help-echo
   (format sx-button--help-echo
-    (propertize "visit %s" 'face 'minibuffer-prompt)
-    (propertize "URL" 'face 'minibuffer-prompt))
+    "visit %s"
+    "URL")
   "Help echoed in the minibuffer when point is on a section.")
 
 
@@ -143,6 +149,13 @@ usually part of a code-block."
 
 (define-button-type 'sx-button-link
   'action    #'sx-button-follow-link
+  :supertype 'sx-button)
+
+(define-button-type 'sx-button-user
+  'action    #'sx-button-follow-link
+  'help-echo sx-button--user-help-echo
+  ;; We use different faces on different parts of the user button.
+  'face      'sx-user-name
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-comment

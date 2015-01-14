@@ -294,39 +294,6 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defconst sx--ascii-replacement-list
-  '(("[:space:]" . "")
-    ("àåáâäãåą" .  "a")
-    ("èéêëę" .  "e")
-    ("ìíîïı" .  "i")
-    ("òóôõöøőð" .  "o")
-    ("ùúûüŭů" .  "u")
-    ("çćčĉ" .  "c")
-    ("żźž" .  "z")
-    ("śşšŝ" .  "s")
-    ("ñń" .  "n")
-    ("ýÿ" .  "y")
-    ("ğĝ" .  "g")
-    ("ř" . "r")
-    ("ł" . "l")
-    ("đ" . "d")
-    ("ß" . "ss")
-    ("Þ" . "th")
-    ("ĥ" . "h")
-    ("ĵ" . "j")
-    ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters.
-Used to convert user names into @mentions.")
-
-(defun sx--user-@name (user)
-  "Get the `display_name' of USER prepended with @.
-In order to correctly @mention the user, all whitespace is
-removed from the display name before it is returned."
-  (sx-assoc-let user
-    (when (stringp .display_name)
-      (concat "@" (sx--recursive-replace
-                   sx--ascii-replacement-list .display_name)))))
-
 (defun sx--recursive-replace (alist string)
   "Replace each car of ALIST with its cdr in STRING."
   (if alist
@@ -336,6 +303,44 @@ removed from the display name before it is returned."
          (replace-regexp-in-string
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
+
+(defun sx-format-replacements (format alist &optional property-alist)
+  "Use FORMAT-STRING to format the values in ALIST.
+ALIST is a list with elements of the form (CHAR . STRING).
+The value is a copy of FORMAT-STRING, but with certain constructs
+replaced by text as given by ALIST.  
+
+The construct is a `%' character followed by any other character.
+The replacement is the STRING corresponding to CHAR in ALIST.  In
+addition, if CHAR is also the car of an element in
+PROPERTY-ALIST, the cdr of that element should be a list of text
+properties which will be applied on the replacement.
+
+The %% construct is special, it is replaced with a single %, even
+if ALIST contains a different string at the ?% entry."
+  (let ((alist (cons '(?% . "%") alist)))
+    (with-temp-buffer
+      (insert format)
+      (goto-char (point-min))
+      (while (search-forward-regexp
+              (rx "%" (group-n 1 (* (any "-+ #0-9.")))) nil 'noerror)
+        (let* ((char (char-after))
+               ;; Understand flags
+               (flag (match-string 1))
+               (val (cdr-safe (assq char alist))))
+          (unless val
+            (error "Invalid format character: `%%%c'" char))
+          ;; Insert first, to preserve text properties.
+          (insert-and-inherit (format (concat "%" flag "s") val))
+          (when property-alist
+            (add-text-properties (match-end 0) (point)
+                                 (cdr-safe (assq char property-alist))))
+          ;; Delete the specifier body.
+          (delete-region (match-beginning 0)
+                         (match-end 0))
+          ;; Delete `char-after'.
+          (delete-char 1)))
+      (buffer-string))))
 
 
 (defcustom sx-init-hook nil

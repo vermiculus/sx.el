@@ -33,7 +33,7 @@
 
 (mapc (lambda (x) (define-key sx-switchto-map (car x) (cadr x)))
   '(
-    ;; These immitate the site's G hotkey.
+    ;; These imitate the site's G hotkey.
     ("a" sx-ask)
     ("h" sx-tab-frontpage)
     ("m" sx-tab-meta-or-main)

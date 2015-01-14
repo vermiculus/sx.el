@@ -111,16 +111,6 @@
   ""
   :group 'sx-question-list-faces)
 
-(defface sx-question-list-reputation
-  '((t :inherit sx-question-list-date))
-  ""
-  :group 'sx-question-list-faces)
-
-(defface sx-question-list-user
-  '((t :inherit font-lock-builtin-face))
-  ""
-  :group 'sx-question-list-faces)
-
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -138,8 +128,9 @@ change `tabulated-list-format' accordingly.")
 This is the default printer used by `sx-question-list'. It
 assumes QUESTION-DATA is an alist containing (at least) the
 elements:
- `site', `score', `upvoted', `answer_count', `title',
- `last_activity_date', `tags', `uestion_id'.
+ `question_id', `site_par', `score', `upvoted', `answer_count',
+ `title', `bounty_amount', `bounty_amount', `bounty_amount',
+ `last_activity_date', `tags', `owner'.
 
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
@@ -182,11 +173,7 @@ Also see `sx-question-list-refresh'."
          (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
          " "
-         (let-alist .owner
-           (format "%15s %5s"
-             (propertize (or .display_name "") 'face 'sx-question-list-user)
-             (propertize (number-to-string (or .reputation 0))
-                         'face 'sx-question-list-reputation)))
+         (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0

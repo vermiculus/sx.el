@@ -22,7 +22,7 @@
 ;; This file contains functions and a variable for font-locking the
 ;; content of markdown pre blocks according to their language. The
 ;; main configuration point, for both the user and the developer is
-;; the varuable `sx-babel-major-mode-alist', which see.
+;; the variable `sx-babel-major-mode-alist', which see.
 
 
 ;;; Code:
