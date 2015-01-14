@@ -166,7 +166,12 @@ QUESTION must be a data structure returned by `json-read'."
   ;; Print everything
   (sx-question-mode--print-section question)
   (sx-assoc-let question
-    (mapc #'sx-question-mode--print-section .answers))
+    (mapc #'sx-question-mode--print-section
+          (cl-sort .answers
+                   ;; Highest-voted first. @TODO: custom sorting
+                   (lambda (a b)
+                     (> (cdr (assoc 'score a))
+                        (cdr (assoc 'score b)))))))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
@@ -315,10 +320,10 @@ E.g.:
   (rx (or (and "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
-          (group-n 4 (and (or (and "http" (opt "s") "://") "")
-                          (+ (any alnum "_%"))
+          (group-n 4 (and (and "http" (opt "s") "://") ""
+                          (>= 2 (any lower numeric "_%"))
                           "."
-                          (+ (any alnum "/._%&#?=;"))))))
+                          (>= 2 (any lower numeric "/._%&#?=;"))))))
   "Regexp matching markdown links.")
 
 (defun sx-question-mode--fill-and-fontify (text)

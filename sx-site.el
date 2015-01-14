@@ -33,6 +33,7 @@
    ((site site_type
           name
           api_site_parameter
+          site_url
           related_sites)
     (related_site api_site_parameter
                   relation)))
