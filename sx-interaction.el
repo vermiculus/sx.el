@@ -176,7 +176,7 @@ likes."
      ;; object itself, so there's no need to fetch anything.  This
      ;; happens inside the question-list, but it can be easily
      ;; confused with the inbox (whose items have a title, a body, and
-     ;; a question_id.
+     ;; a question_id).
      ((and .title .question_id .score
            (not .item_type) (not .notification_type))
       (sx-display-question data 'focus))
