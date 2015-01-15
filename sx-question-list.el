@@ -322,11 +322,11 @@ into consideration.
   ;; Add a setter to protect the value.
   :group 'sx-question-list)
 
-(defun sx-question-list--date-more-recent-p (x y)
-  "Non-nil if tabulated-entry X is newer than Y."
-  (sx--<
-   sx-question-list-date-sort-method
-   (car x) (car y) #'>))
+(sx--create-comparator sx-question-list--date-more-recent-p
+  "Non-nil if tabulated-entry A is newer than B."
+  > (lambda (x)
+      (cdr (assoc sx-question-list-date-sort-method
+                  (car x)))))
 
 
 ;;; Keybinds
