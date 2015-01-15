@@ -259,6 +259,21 @@ whenever BODY evaluates to nil."
        :filter (lambda (&optional _)
                  (when (progn ,@body) ,def)))))
 
+(defun sx--goto-property-change (prop &optional direction)
+  "Move forward to the next change of text-property PROP.
+Return the new value of PROP at point.
+
+If DIRECTION is negative, move backwards instead."
+  (let ((func (if (and (numberp direction)
+                       (< direction 0))
+                  #'previous-single-property-change
+                #'next-single-property-change))
+        (limit (if (and (numberp direction)
+                        (< direction 0))
+                   (point-min) (point-max))))
+    (goto-char (funcall func (point) prop nil limit))
+    (get-text-property (point) prop)))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
