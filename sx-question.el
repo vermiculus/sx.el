@@ -194,6 +194,14 @@ If no cache exists for it, initialize one with SITE."
   "Return t if answer A has a higher score than answer B."
   #'> (lambda (x) (cdr (assoc 'score x))))
 
+(sx--create-comparator sx-answer-older-p
+  "Return t if answer A was posted later than answer B."
+  #'< (lambda (x) (cdr (assoc 'creation_date x))))
+
+(sx--create-comparator sx-answer-more-active-p
+  "Return t if answer A was updated after answer B."
+  #'> (lambda (x) (cdr (assoc 'last_activity_date x))))
+
 (provide 'sx-question)
 ;;; sx-question.el ends here
 
