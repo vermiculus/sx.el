@@ -164,13 +164,17 @@ likes."
   (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
-     ;; If we have a `title', then we have the question object itself,
-     ;; and there's no need to fetch anything.
-     (.title
+     ;; This is an attempt to identify when we have the question
+     ;; object itself, so there's no need to fetch anything.  This
+     ;; happens inside the question-list, but it can be easily
+     ;; confused with the inbox (whose items have a title, a body, and
+     ;; a question_id.
+     ((and .title .question_id .score
+           (not .item_type) (not .notification_type))
       (sx-display-question data 'focus))
      (.answer_id
       (sx-display-question
-       (sx-question-get-from-answer .site_par .id)
+       (sx-question-get-from-answer .site_par .answer_id)
        'focus)
       (sx--find-in-buffer 'answer .answer_id))
      (.question_id
