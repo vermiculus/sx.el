@@ -158,6 +158,13 @@ usually part of a code-block."
   'face      'sx-user-name
   :supertype 'sx-button)
 
+(declare-function sx-search-tag-at-point "sx-tag")
+(define-button-type 'sx-button-tag
+  'action    #'sx-search-tag-at-point
+  'help-echo sx-button--tag-help-echo
+  'face      'sx-tag
+  :supertype 'sx-button)
+
 (define-button-type 'sx-button-comment
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write a comment"
