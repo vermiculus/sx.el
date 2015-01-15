@@ -92,57 +92,65 @@ with a `link' property)."
   "Convert string LINK into data that can be displayed."
   (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
-    (when (or
-           ;; Comment
-           (and (string-match
-                 ;; From inbox items
-                 (rx "/posts/comments/"
-                     ;; Comment ID
-                     (group-n 1 (+ digit))
-                     ;; Stuff at the end
-                     (or (sequence (any "?#") (* any)) "")
-                     string-end)
-                 link)
-                (push '(type . comment) result))
+    (when (cond ;; Comment
+           ((string-match ;; From inbox items
+             (rx "/posts/comments/"
+                 ;; Comment ID
+                 (group-n 1 (+ digit))
+                 ;; Optional stuff at the end
+                 (or (and (any "?#") (* any)) "")
+                 string-end)
+             link)
+            (push '(type . comment) result))
            ;; Answer
-           (and (or (string-match
-                     ;; From 'Share' button
-                     (rx "/a/"
-                         ;; Question ID
-                         (group (+ digit))
-                         ;; User ID
-                         "/" (+ digit)
-                         ;; Answer ID
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link)
-                    (string-match
-                     ;; From URL
-                     (rx "/questions/" (+ digit) "/"
-                         (+ (not (any "/"))) "/"
-                         ;; User ID
-                         (optional (group (+ digit)))
-                         (optional "/")
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link))
-                (push '(type . answer) result))
+           ((or ;; If there's a #NUMBER at the end, we know it's an
+             ;; answer with that ID.
+             (string-match (rx "#" (group-n 1 (+ digit)) string-end) link)
+             ;; From 'Share' button
+             (string-match (rx "/a/"
+                               ;; Answer ID
+                               (group-n 1 (+ digit)) "/"
+                               ;; User ID
+                               (+ digit)
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link)
+             ;; From URL
+             (string-match (rx "/questions/" (+ digit) "/"
+                               ;; Question title
+                               (+ (not (any "/"))) "/"
+                               ;; Answer ID. If this is absent, we match on
+                               ;; Question clause below.
+                               (group-n 1 (+ digit))
+                               (opt "/")
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link))
+            (push '(type . answer) result))
            ;; Question
-           (and (or (string-match
-                     ;; From 'Share' button
-                     (rx "/q/"
-                         ;; Question ID
-                         (group (+ digit))
-                         ;; User ID
-                         (optional "/" (+ digit))
-                         ;; Answer or Comment ID
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link)
-                    (string-match
-                     ;; From URL
-                     (rx "/questions/"
-                         ;; Question ID
-                         (group (+ digit))
-                         "/") link))
-                (push '(type . question) result)))
+           ((or ;; From 'Share' button
+             (string-match (rx "/q/"
+                               ;; Question ID
+                               (group-n 1 (+ digit))
+                               ;; User ID
+                               (optional "/" (+ digit))
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link)
+             ;; From URL
+             (string-match (rx "/questions/"
+                               ;; Question ID
+                               (group-n 1 (+ digit)) "/"
+                               ;; Optional question title
+                               (optional (+ (not (any "/"))) "/")
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link))
+            (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
             result))
     result))
