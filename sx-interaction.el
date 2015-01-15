@@ -141,7 +141,8 @@ Element can be a question, answer, or comment."
       (cl-case .type
         (answer
          (sx-display-question
-          (sx-question-get-from-answer .site_par .id) 'focus))
+          (sx-question-get-from-answer .site_par .id) 'focus)
+         (sx--find-in-buffer 'answer .id))
         (question
          (sx-display-question
           (sx-question-get-question .site_par .id) 'focus))
@@ -170,7 +171,8 @@ likes."
      (.answer_id
       (sx-display-question
        (sx-question-get-from-answer .site_par .id)
-       'focus))
+       'focus)
+      (sx--find-in-buffer 'answer .answer_id))
      (.question_id
       (sx-display-question
        (sx-question-get-question .site_par .id) 'focus))
