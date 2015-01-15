@@ -282,17 +282,22 @@ ID.
 
 TYPE is either question, answer, or comment.
 ID is an integer."
-  (goto-char (point-min))
-  (let (done)
-    (while (not done)
-      (let-alist (sx--goto-property-change 'sx--data-here 1)
-        (setq done (or (eobp)
-                       (= id (cl-case type
-                               (answer .answer_id)
-                               (comment .comment_id)
-                               (question .question_id)))))))
-    (unless done
-      (sx-message "Can't find the specified %s" type))))
+  (let* ((id-symbol (cl-case type
+                      (answer 'answer_id)
+                      (comment 'comment_id)
+                      (question 'question_id)))
+         (pos
+          (save-excursion
+            (goto-char (point-min))
+            (while (not (or (eobp)
+                            (let ((data (sx--data-here type t)))
+                              (and data
+                                   (= id (or (cdr (assq id-symbol data))))))))
+              (forward-char 1))
+            (point))))
+    (if (equal pos (point-max))
+        (sx-message "Can't find the specified %s" type)
+      (goto-char pos))))
 
 
 ;;; Printing request data
