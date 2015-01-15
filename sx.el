@@ -93,6 +93,17 @@ with a `link' property)."
   (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
     (when (or
+           ;; Comment
+           (and (string-match
+                 ;; From inbox items
+                 (rx "/posts/comments/"
+                     ;; Comment ID
+                     (group-n 1 (+ digit))
+                     ;; Stuff at the end
+                     (or (sequence (any "?#") (* any)) "")
+                     string-end)
+                 link)
+                (push '(type . comment) result))
            ;; Answer
            (and (or (string-match
                      ;; From 'Share' button
