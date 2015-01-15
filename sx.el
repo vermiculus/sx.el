@@ -93,14 +93,19 @@ with a `link' property)."
   (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
     (when (cond ;; Comment
-           ((string-match ;; From inbox items
-             (rx "/posts/comments/"
-                 ;; Comment ID
-                 (group-n 1 (+ digit))
-                 ;; Optional stuff at the end
-                 (or (and (any "?#") (* any)) "")
-                 string-end)
-             link)
+           ((or ;; If there's a #commentNUMBER_NUMBER at the end, we
+             ;; know it's a comment with that ID.
+             (string-match (rx "#comment" (group-n 1 (+ digit))
+                               "_" (+ digit) string-end)
+                           link)
+             ;; From inbox items
+             (string-match (rx "/posts/comments/"
+                               ;; Comment ID
+                               (group-n 1 (+ digit))
+                               ;; Optional stuff at the end
+                               (or (and (any "?#") (* any)) "")
+                               string-end)
+                           link))
             (push '(type . comment) result))
            ;; Answer
            ((or ;; If there's a #NUMBER at the end, we know it's an
