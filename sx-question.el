@@ -187,6 +187,13 @@ If no cache exists for it, initialize one with SITE."
   "Formats TAG for display."
   (concat "[" tag "]"))
 
+
+;;; Question Mode Answer-Sorting Functions
+
+(sx--create-comparator sx-answer-higher-score-p
+  "Return t if answer A has a higher score than answer B."
+  #'> (lambda (x) (cdr (assoc 'score x))))
+
 (provide 'sx-question)
 ;;; sx-question.el ends here
 

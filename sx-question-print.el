@@ -180,11 +180,7 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-question-mode--print-section question)
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section
-          (cl-sort .answers
-                   ;; Highest-voted first. @TODO: custom sorting
-                   (lambda (a b)
-                     (> (cdr (assoc 'score a))
-                        (cdr (assoc 'score b)))))))
+          (cl-sort .answers #'sx-answer-higher-score-p)))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
