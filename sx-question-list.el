@@ -324,9 +324,9 @@ into consideration.
 
 (sx--create-comparator sx-question-list--date-more-recent-p
   "Non-nil if tabulated-entry A is newer than B."
-  > (lambda (x)
-      (cdr (assoc sx-question-list-date-sort-method
-                  (car x)))))
+  #'> (lambda (x)
+        (cdr (assoc sx-question-list-date-sort-method
+                    (car x)))))
 
 
 ;;; Keybinds
