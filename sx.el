@@ -264,17 +264,17 @@ whenever BODY evaluates to nil."
 COMPARE-FUNC is a function that takes the return value of
 GET-FUNC and performs the actual comparison."
   (declare (indent 1) (doc-string 2))
-  (let ((gpf (intern (format " %S--get-prop-function" name)))
-        (cf  (intern (format " %S--compare-function"  name))))
+  (let ((gf (intern (format " %S--get-prop-function" name)))
+        (cf (intern (format " %S--compare-function"  name))))
     ;; Leading space to hide from completion systems
     `(progn
        ;; In using `defalias', the macro supports both function
        ;; symbols and lambda expressions.
-       (defalias ',gpf ,get-func)
-       (defalias ',cf  ,compare-func)
+       (defalias ',gf ,get-func)
+       (defalias ',cf ,compare-func)
        (defun ,name (a b)
          ,doc
-         (,cf (,gpf a) (,gpf b))))))
+         (,cf (,gf a) (,gf b))))))
 
 
 ;;; Printing request data
