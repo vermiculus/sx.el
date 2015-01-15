@@ -143,6 +143,10 @@ Element can be a question, answer, or comment."
     (let ((data (sx--link-to-data link)))
       (sx-assoc-let data
         (cl-case .type
+          (comment
+           (sx-display-question
+            (sx-question-get-from-comment .site_par .id) 'focus)
+           (sx--find-in-buffer 'comment .id))
           (answer
            (sx-display-question
             (sx-question-get-from-answer .site_par .id) 'focus)
