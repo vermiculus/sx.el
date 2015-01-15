@@ -274,6 +274,26 @@ If DIRECTION is negative, move backwards instead."
     (goto-char (funcall func (point) prop nil limit))
     (get-text-property (point) prop)))
 
+(defun sx--find-in-buffer (type id)
+  "Move point to an object of TYPE and ID.
+That is, move forward from beginning of buffer until
+`sx--data-here' is an object of type TYPE with the respective id
+ID.
+
+TYPE is either question, answer, or comment.
+ID is an integer."
+  (goto-char (point-min))
+  (let (done)
+    (while (not done)
+      (let-alist (sx--goto-property-change 'sx--data-here 1)
+        (setq done (or (eobp)
+                       (= id (cl-case type
+                               (answer .answer_id)
+                               (comment .comment_id)
+                               (question .question_id)))))))
+    (unless done
+      (sx-message "Can't find the specified %s" type))))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
