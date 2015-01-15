@@ -196,7 +196,7 @@ likes."
      ;; test it last.
      (.comment_id
       (sx-display-question
-       (sx-question-get-from-comment .site_par .id) 'focus)
+       (sx-question-get-from-comment .site_par .comment_id) 'focus)
       (sx--find-in-buffer 'comment .comment_id))
      (.notification_type
       (sx-message "Viewing notifications is not yet implemented"))
