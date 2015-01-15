@@ -278,7 +278,7 @@ If DIRECTION is negative, move backwards instead."
   "Move point to an object of TYPE and ID.
 That is, move forward from beginning of buffer until
 `sx--data-here' is an object of type TYPE with the respective id
-ID.
+ID.  If point is left at the of a line, move over the line break.
 
 TYPE is either question, answer, or comment.
 ID is an integer."
@@ -297,7 +297,9 @@ ID is an integer."
             (point))))
     (if (equal pos (point-max))
         (sx-message "Can't find the specified %s" type)
-      (goto-char pos))))
+      (goto-char pos)
+      (when (looking-at-p "$")
+        (forward-char 1)))))
 
 
 ;;; Printing request data
