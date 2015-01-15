@@ -133,6 +133,12 @@ tags."
       (push input list))
     (reverse list)))
 
+
+;;; Printing
+(defun sx-tag--format (tag)
+  "Formats TAG for display."
+  (concat "[" tag "]"))
+
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
 

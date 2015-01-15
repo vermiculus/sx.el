@@ -170,7 +170,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
+         (propertize (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
                      'face 'sx-question-list-tags)
          " "
          (sx-user--format "%15d %4r" .owner)

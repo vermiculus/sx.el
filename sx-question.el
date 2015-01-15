@@ -183,10 +183,6 @@ If no cache exists for it, initialize one with SITE."
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
 
-(defun sx-question--tag-format (tag)
-  "Formats TAG for display."
-  (concat "[" tag "]"))
-
 (provide 'sx-question)
 ;;; sx-question.el ends here
 
