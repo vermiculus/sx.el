@@ -136,20 +136,24 @@ Element can be a question, answer, or comment."
                 (save-excursion (yank))
                 (thing-at-point 'url))))
      (list (read-string (concat "Link (" def "): ") nil nil def))))
-  (let ((data (sx--link-to-data link)))
-    (sx-assoc-let data
-      (cl-case .type
-        (answer
-         (sx-display-question
-          (sx-question-get-from-answer .site_par .id) 'focus)
-         (sx--find-in-buffer 'answer .id))
-        (question
-         (sx-display-question
-          (sx-question-get-question .site_par .id) 'focus))
-        (t (sx-message
-            "Don't know how to open this link, please file a bug report: %s"
-            link)
-           nil)))))
+  ;; For now, we have no chance of handling chat links, let's just
+  ;; send them to the browser.
+  (if (string-match (rx string-start "http" (opt "s") "://chat."))
+      (sx-visit-externally link)
+    (let ((data (sx--link-to-data link)))
+      (sx-assoc-let data
+        (cl-case .type
+          (answer
+           (sx-display-question
+            (sx-question-get-from-answer .site_par .id) 'focus)
+           (sx--find-in-buffer 'answer .id))
+          (question
+           (sx-display-question
+            (sx-question-get-question .site_par .id) 'focus))
+          (t (sx-message
+              "Don't know how to open this link, please file a bug report: %s"
+              link)
+             nil))))))
 
 
 ;;; Displaying
