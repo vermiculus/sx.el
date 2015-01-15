@@ -163,14 +163,20 @@ likes."
   (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
-     (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
-     (.item_type (sx-open-link .link))
+     ;; If we have a `title', then we have the question object itself,
+     ;; and there's no need to fetch anything.
+     (.title
+      (sx-display-question data 'focus))
      (.answer_id
       (sx-display-question
-       (sx-question-get-from-answer .site_par .id) 'focus))
-     (.title
-      (sx-display-question data 'focus)))))
+       (sx-question-get-from-answer .site_par .id)
+       'focus))
+     (.question_id
+      (sx-display-question
+       (sx-question-get-question .site_par .id) 'focus))
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
+     (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
