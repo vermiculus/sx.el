@@ -184,10 +184,20 @@ likes."
       (sx-display-question
        (sx-question-get-from-answer .site_par .answer_id)
        'focus)
-      (sx--find-in-buffer 'answer .answer_id))
+      (if .comment_id
+          (sx--find-in-buffer 'comment .comment_id)
+        (sx--find-in-buffer 'answer .answer_id)))
      (.question_id
       (sx-display-question
-       (sx-question-get-question .site_par .id) 'focus))
+       (sx-question-get-question .site_par .question_id) 'focus)
+      (when .comment_id
+        (sx--find-in-buffer 'comment .comment_id)))
+     ;; `sx-question-get-from-comment' takes 2 api requests, so we
+     ;; test it last.
+     (.comment_id
+      (sx-display-question
+       (sx-question-get-from-comment .site_par .id) 'focus)
+      (sx--find-in-buffer 'comment .comment_id))
      (.notification_type
       (sx-message "Viewing notifications is not yet implemented"))
      (.item_type (sx-open-link .link)))))
