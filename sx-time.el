@@ -1,4 +1,4 @@
-;;; sx-time.el --- time -*- lexical-binding: t; -*-
+;;; sx-time.el --- time                              -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,13 +19,14 @@
 
 ;;; Commentary:
 
-;;
+;; This file provides functions for manipulating and displaying
+;; timestamps.
 
 ;;; Code:
 
 (require 'time-date)
 
-(defvar sx-time-seconds-to-string
+(defconst sx-time-seconds-to-string
   ;; (LIMIT NAME VALUE)
   ;; We use an entry if the number of seconds in question is less than
   ;; LIMIT, but more than the previous entry's LIMIT.
@@ -77,3 +78,7 @@ See also `sx-time-date-format-year'."
 
 (provide 'sx-time)
 ;;; sx-time.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

@@ -1,4 +1,4 @@
-;;; sx-search.el --- Searching for questions.       -*- lexical-binding: t; -*-
+;;; sx-search.el --- searching for questions         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -19,7 +19,7 @@
 
 ;;; Commentary:
 
-;; Implements sarch functionality.  The basic function is
+;; Implements search functionality.  The basic function is
 ;; `sx-search-get-questions', which returns an array of questions
 ;; according to a search term.
 ;;
@@ -32,12 +32,10 @@
 
 (require 'sx)
 (require 'sx-question-list)
+(require 'sx-tag)
 
 (defvar sx-search--query-history nil
   "Query history for interactive prompts.")
-
-(defvar sx-search--tag-history nil
-  "Tags history for interactive prompts.")
 
 
 ;;; Basic function
@@ -84,15 +82,12 @@ prefix argument, the user is asked for everything."
      (when (string= query "")
        (setq query nil))
      (when current-prefix-arg
-       (setq tags (sx--multiple-read
-                   (format "Tags (%s)"
-                     (if query "optional" "mandatory"))
-                   'sx-search--tag-history))
+       (setq tags (sx-tag-multiple-read
+                   site (concat "Tags" (when query " (optional)"))))
        (when (and (not query) (string= "" tags))
          (sx-user-error "Must supply either QUERY or TAGS"))
        (setq excluded-tags
-             (sx--multiple-read
-              "Excluded tags (optional)" 'sx-search--tag-history)))
+             (sx-tag-multiple-read site "Excluded tags (optional)")))
      (list site query tags excluded-tags)))
   
   ;; Here starts the actual function
@@ -110,3 +105,7 @@ prefix argument, the user is asked for everything."
 
 (provide 'sx-search)
 ;;; sx-search.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

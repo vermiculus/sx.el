@@ -1,4 +1,4 @@
-;;; sx.el --- StackExchange client. Ask and answer questions on Stack Overflow, Super User, and the likes. -*- lexical-binding: t; -*-
+;;; sx.el --- StackExchange client. Ask and answer questions on Stack Overflow, Super User, and the likes  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -90,7 +90,7 @@ with a `link' property)."
 
 (defun sx--link-to-data (link)
   "Convert string LINK into data that can be displayed."
-  (let ((result (list (cons 'site (sx--site link)))))
+  (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
     (when (or
            ;; Answer
@@ -176,24 +176,6 @@ All ARGS are passed to `completing-read' or `ido-completing-read'."
   (apply (if ido-mode #'ido-completing-read #'completing-read)
     args))
 
-(defun sx--multiple-read (prompt hist-var)
-  "Interactively query the user for a list of strings.
-Call `read-string' multiple times, until the input is empty.
-
-PROMPT is a string displayed to the user and should not end with
-a space nor a colon.  HIST-VAR is a quoted symbol, indicating a
-list in which to store input history."
-  (let (list input)
-    (while (not (string=
-                 ""
-                 (setq input (read-string
-                              (concat prompt " ["
-                                      (mapconcat #'identity list ",")
-                                      "]: ")
-                              "" hist-var))))
-      (push input list))
-    list))
-
 (defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
   "Inserted NEWELT into LIST sorted by PREDICATE.
 This is designed for the (site id id ...) lists.  So the first car
@@ -265,6 +247,32 @@ Anything before the (sub)domain is removed."
     (rx string-start (or (and (0+ word) (optional ":") "//")))
     "" url)))
 
+(defmacro sx--define-conditional-key (keymap key def &rest body)
+  "In KEYMAP, define key sequence KEY as DEF conditionally.
+This is like `define-key', except the definition \"disappears\"
+whenever BODY evaluates to nil."
+  (declare (indent 3)
+           (debug (form form form &rest sexp)))
+  `(define-key ,keymap ,key
+     '(menu-item
+       ,(format "maybe-%s" (or (car (cdr-safe def)) def)) ignore
+       :filter (lambda (&optional _)
+                 (when (progn ,@body) ,def)))))
+
+(defmacro sx--create-comparator (name doc compare-func get-func)
+  "Define a new comparator called NAME with documentation DOC.
+COMPARE-FUNC is a function that takes the return value of
+GET-FUNC and performs the actual comparison."
+  (declare (indent 1) (doc-string 2))
+  `(progn
+     ;; In using `defalias', the macro supports both function
+     ;; symbols and lambda expressions.
+     (defun ,name (a b)
+       ,doc
+       (funcall ,compare-func
+                (funcall ,get-func a)
+                (funcall ,get-func b)))))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
@@ -300,39 +308,6 @@ Return the result of BODY."
        (push ov sx--overlays))
      result))
 
-(defvar sx--ascii-replacement-list
-  '(("[:space:]" . "")
-    ("àåáâäãåą" .  "a")
-    ("èéêëę" .  "e")
-    ("ìíîïı" .  "i")
-    ("òóôõöøőð" .  "o")
-    ("ùúûüŭů" .  "u")
-    ("çćčĉ" .  "c")
-    ("żźž" .  "z")
-    ("śşšŝ" .  "s")
-    ("ñń" .  "n")
-    ("ýÿ" .  "y")
-    ("ğĝ" .  "g")
-    ("ř" . "r")
-    ("ł" . "l")
-    ("đ" . "d")
-    ("ß" . "ss")
-    ("Þ" . "th")
-    ("ĥ" . "h")
-    ("ĵ" . "j")
-    ("^[:ascii:]" . ""))
-  "List of replacements to use for non-ascii characters.
-Used to convert user names into @mentions.")
-
-(defun sx--user-@name (user)
-  "Get the `display_name' of USER prepended with @.
-In order to correctly @mention the user, all whitespace is
-removed from the display name before it is returned."
-  (sx-assoc-let user
-    (when (stringp .display_name)
-      (concat "@" (sx--recursive-replace
-                   sx--ascii-replacement-list .display_name)))))
-
 (defun sx--recursive-replace (alist string)
   "Replace each car of ALIST with its cdr in STRING."
   (if alist
@@ -342,6 +317,44 @@ removed from the display name before it is returned."
          (replace-regexp-in-string
           (format "[%s]" (car kar)) (cdr kar) string)))
     string))
+
+(defun sx-format-replacements (format alist &optional property-alist)
+  "Use FORMAT-STRING to format the values in ALIST.
+ALIST is a list with elements of the form (CHAR . STRING).
+The value is a copy of FORMAT-STRING, but with certain constructs
+replaced by text as given by ALIST.  
+
+The construct is a `%' character followed by any other character.
+The replacement is the STRING corresponding to CHAR in ALIST.  In
+addition, if CHAR is also the car of an element in
+PROPERTY-ALIST, the cdr of that element should be a list of text
+properties which will be applied on the replacement.
+
+The %% construct is special, it is replaced with a single %, even
+if ALIST contains a different string at the ?% entry."
+  (let ((alist (cons '(?% . "%") alist)))
+    (with-temp-buffer
+      (insert format)
+      (goto-char (point-min))
+      (while (search-forward-regexp
+              (rx "%" (group-n 1 (* (any "-+ #0-9.")))) nil 'noerror)
+        (let* ((char (char-after))
+               ;; Understand flags
+               (flag (match-string 1))
+               (val (cdr-safe (assq char alist))))
+          (unless val
+            (error "Invalid format character: `%%%c'" char))
+          ;; Insert first, to preserve text properties.
+          (insert-and-inherit (format (concat "%" flag "s") val))
+          (when property-alist
+            (add-text-properties (match-end 0) (point)
+                                 (cdr-safe (assq char property-alist))))
+          ;; Delete the specifier body.
+          (delete-region (match-beginning 0)
+                         (match-end 0))
+          ;; Delete `char-after'.
+          (delete-char 1)))
+      (buffer-string))))
 
 
 (defcustom sx-init-hook nil
@@ -354,13 +367,6 @@ Run after `sx-init--internal-hook'."
   "Hook run when SX initializes.
 This is used internally to set initial values for variables such
 as filters.")
-
-(defun sx--< (property x y &optional predicate)
-  "Non-nil if PROPERTY attribute of alist X is less than that of Y.
-With optional argument PREDICATE, use it instead of `<'."
-  (funcall (or predicate #'<)
-           (cdr (assoc property x))
-           (cdr (assoc property y))))
 
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.

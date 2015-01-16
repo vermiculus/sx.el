@@ -1,4 +1,4 @@
-;;; sx-question.el --- Base question logic. -*- lexical-binding: t; -*-
+;;; sx-question.el --- question logic                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides an API for retrieving questions and defines
+;; additional logic for marking questions as read or hidden.
 
 
 ;;; Code:
@@ -183,6 +186,21 @@ If no cache exists for it, initialize one with SITE."
 (defun sx-question--tag-format (tag)
   "Formats TAG for display."
   (concat "[" tag "]"))
+
+
+;;; Question Mode Answer-Sorting Functions
+
+(sx--create-comparator sx-answer-higher-score-p
+  "Return t if answer A has a higher score than answer B."
+  #'> (lambda (x) (cdr (assq 'score x))))
+
+(sx--create-comparator sx-answer-newer-p
+  "Return t if answer A was posted later than answer B."
+  #'> (lambda (x) (cdr (assq 'creation_date x))))
+
+(sx--create-comparator sx-answer-more-active-p
+  "Return t if answer A was updated after answer B."
+  #'> (lambda (x) (cdr (assq 'last_activity_date x))))
 
 (provide 'sx-question)
 ;;; sx-question.el ends here

@@ -1,4 +1,4 @@
-;;; sx-networks.el --- user network information  -*- lexical-binding: t; -*-
+;;; sx-networks.el --- user network information      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,6 +19,9 @@
 
 ;;; Commentary:
 
+;; This file provides logic for retrieving information about the user
+;; across the entire network, e.g. their registered sites.
+
 ;;; Code:
 
 (require 'sx-method)
@@ -26,7 +29,7 @@
 (require 'sx-site)
 (require 'sx-filter)
 
-(defvar sx-network--user-filter
+(defconst sx-network--user-filter
   (sx-filter-from-nil
    ((badge_count bronze
                  silver

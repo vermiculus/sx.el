@@ -1,4 +1,4 @@
-;;; sx-question-list.el --- Major-mode for navigating questions list.  -*- lexical-binding: t; -*-
+;;; sx-question-list.el --- major-mode for navigating questions list  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -18,6 +18,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; Provides question list logic (as used in e.g. `sx-tab-frontpage').
 
 ;;; Code:
 (require 'tabulated-list)
@@ -109,16 +111,6 @@
   ""
   :group 'sx-question-list-faces)
 
-(defface sx-question-list-reputation
-  '((t :inherit sx-question-list-date))
-  ""
-  :group 'sx-question-list-faces)
-
-(defface sx-question-list-user
-  '((t :inherit font-lock-builtin-face))
-  ""
-  :group 'sx-question-list-faces)
-
 
 ;;; Backend variables
 (defvar sx-question-list--print-function #'sx-question-list--print-info
@@ -136,8 +128,9 @@ change `tabulated-list-format' accordingly.")
 This is the default printer used by `sx-question-list'. It
 assumes QUESTION-DATA is an alist containing (at least) the
 elements:
- `site', `score', `upvoted', `answer_count', `title',
- `last_activity_date', `tags', `uestion_id'.
+ `question_id', `site_par', `score', `upvoted', `answer_count',
+ `title', `bounty_amount', `bounty_amount', `bounty_amount',
+ `last_activity_date', `tags', `owner'.
 
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
@@ -180,11 +173,7 @@ Also see `sx-question-list-refresh'."
          (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
                      'face 'sx-question-list-tags)
          " "
-         (let-alist .owner
-           (format "%15s %5s"
-             (propertize .display_name 'face 'sx-question-list-user)
-             (propertize (number-to-string .reputation)
-                         'face 'sx-question-list-reputation)))
+         (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0
@@ -226,7 +215,7 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
-(defvar sx-question-list--header-line
+(defconst sx-question-list--header-line
   '("    "
     (:propertize "n p j k" face mode-line-buffer-id)
     ": Navigate"
@@ -320,11 +309,10 @@ into consideration.
   ;; Add a setter to protect the value.
   :group 'sx-question-list)
 
-(defun sx-question-list--date-more-recent-p (x y)
-  "Non-nil if tabulated-entry X is newer than Y."
-  (sx--<
-   sx-question-list-date-sort-method
-   (car x) (car y) #'>))
+(sx--create-comparator sx-question-list--date-more-recent-p
+  "Non-nil if tabulated-entry A is newer than B."
+  #'> (lambda (x)
+        (cdr (assq sx-question-list-date-sort-method (car x)))))
 
 
 ;;; Keybinds
@@ -606,3 +594,7 @@ Sets `sx-question-list--site' and then call
 
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
