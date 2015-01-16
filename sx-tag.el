@@ -142,13 +142,17 @@ tags."
 
 ;;; Printing
 (defun sx-tag--format (tag)
-  "Formats TAG for display."
+  "Format and return TAG for display."
   (with-temp-buffer
-    (insert-text-button (concat "[" tag "]")
-                        'sx-button-copy tag
-                        'sx-tag tag
-                        :type 'sx-button-tag)
+    (sx-tag--insert tag)
     (buffer-string)))
+
+(defun sx-tag--insert (tag)
+  "Insert TAG button."
+  (insert-text-button (concat "[" tag "]")
+                      'sx-button-copy tag
+                      'sx-tag tag
+                      :type 'sx-button-tag))
 
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
