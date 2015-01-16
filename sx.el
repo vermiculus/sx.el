@@ -325,6 +325,20 @@ ID is an integer."
       (when (looking-at-p "$")
         (forward-char 1)))))
 
+(defmacro sx--create-comparator (name doc compare-func get-func)
+  "Define a new comparator called NAME with documentation DOC.
+COMPARE-FUNC is a function that takes the return value of
+GET-FUNC and performs the actual comparison."
+  (declare (indent 1) (doc-string 2))
+  `(progn
+     ;; In using `defalias', the macro supports both function
+     ;; symbols and lambda expressions.
+     (defun ,name (a b)
+       ,doc
+       (funcall ,compare-func
+                (funcall ,get-func a)
+                (funcall ,get-func b)))))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
@@ -419,13 +433,6 @@ Run after `sx-init--internal-hook'."
   "Hook run when SX initializes.
 This is used internally to set initial values for variables such
 as filters.")
-
-(defun sx--< (property x y &optional predicate)
-  "Non-nil if PROPERTY attribute of alist X is less than that of Y.
-With optional argument PREDICATE, use it instead of `<'."
-  (funcall (or predicate #'<)
-           (cdr (assoc property x))
-           (cdr (assoc property y))))
 
 (defmacro sx-init-variable (variable value &optional setter)
   "Set VARIABLE to VALUE using SETTER.
