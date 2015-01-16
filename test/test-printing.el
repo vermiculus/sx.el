@@ -146,6 +146,14 @@ after being run through `sx-question--tag-format'."
     (should
      (equal object '((answers . [something "answer"]))))))
 
+
+;;; question-mode
+(ert-deftest sx-display-question ()
+  (should
+   (sx-display-question sx-test-data-questions))
+  (should-error
+   (sx-display-question sx-test-data-questions nil 1)))
+
 (ert-deftest sx-question-mode--fill-and-fontify ()
   "Check complicated questions are filled correctly."
   (should
@@ -202,3 +210,4 @@ if you used the Stack Exchange login method, you'd...
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
   [3]: http://i.stack.imgur.com/22myl.png")))
+
