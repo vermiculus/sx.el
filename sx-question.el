@@ -194,9 +194,9 @@ If no cache exists for it, initialize one with SITE."
   "Return t if answer A has a higher score than answer B."
   #'> (lambda (x) (cdr (assq 'score x))))
 
-(sx--create-comparator sx-answer-older-p
+(sx--create-comparator sx-answer-newer-p
   "Return t if answer A was posted later than answer B."
-  #'< (lambda (x) (cdr (assq 'creation_date x))))
+  #'> (lambda (x) (cdr (assq 'creation_date x))))
 
 (sx--create-comparator sx-answer-more-active-p
   "Return t if answer A was updated after answer B."

@@ -171,7 +171,7 @@ replaced with the comment."
   "Function used to sort answers in the question buffer."
   :type '(choice
           (const :tag "Higher-scoring first" sx-answer-higher-score-p)
-          (const :tag "Older first"          sx-answer-older-p)
+          (const :tag "Newer first"          sx-answer-newer-p)
           (const :tag "More active first"    sx-answer-more-active-p))
   :group 'sx-question-mode)
 
