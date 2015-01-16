@@ -24,6 +24,12 @@
 (require 'sx)
 (require 'sx-method)
 
+(defface sx-tag
+  '((t :underline nil :inherit font-lock-function-name-face))
+  "Face used on the question tags in the question buffer."
+  :group 'sx-question-mode-faces
+  :group 'sx-question-list-faces)
+
 
 ;;; Getting the list from a site
 (defconst sx-tag-filter

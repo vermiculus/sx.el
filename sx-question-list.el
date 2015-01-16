@@ -81,11 +81,6 @@
   ""
   :group 'sx-question-list-faces)
 
-(defface sx-question-list-tags
-  '((t :inherit sx-question-mode-tags))
-  ""
-  :group 'sx-question-list-faces)
-
 (defface sx-question-list-date
   '((t :inherit font-lock-comment-face))
   ""
@@ -170,8 +165,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (propertize (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
-                     'face 'sx-question-list-tags)
+         (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
          " "
          (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))

@@ -79,11 +79,6 @@ Some faces of this mode might be defined in the `sx-user' group."
   :type 'string
   :group 'sx-question-mode)
 
-(defface sx-question-mode-tags
-  '((t :underline nil :inherit font-lock-function-name-face))
-  "Face used on the question tags in the question buffer."
-  :group 'sx-question-mode-faces)
-
 (defface sx-question-mode-score
   '((t))
   "Face used for the score in the question buffer."
@@ -224,7 +219,7 @@ DATA can represent a question or an answer."
           (sx-question-mode--insert-header
            sx-question-mode-header-tags
            (mapconcat #'sx-tag--format .tags " ")
-           'sx-question-mode-tags))
+           nil))
         ;; Body
         (insert "\n"
                 (propertize sx-question-mode-separator
