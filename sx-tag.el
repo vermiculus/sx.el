@@ -23,6 +23,7 @@
 
 (require 'sx)
 (require 'sx-method)
+(require 'sx-button)
 
 (defface sx-tag
   '((t :underline nil :inherit font-lock-function-name-face))
