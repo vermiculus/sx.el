@@ -28,11 +28,18 @@ after being run through `sx-question--tag-format'."
 
 ;;; Tests
 (ert-deftest question-list-tag ()
-  "Test `sx-question--tag-format'."
+  "Test `sx-tag--format'."
   (should
-   (string=
-    (sx-question--tag-format "tag")
-    "[tag]")))
+   (string= (sx-tag--format "tag") "[tag]"))
+  (with-temp-buffer
+    (insert (sx-tag--format "tag"))
+    (should (get-char-property (point-min) 'button))
+    (should
+     (eq (get-char-property (point-min) 'face) 'sx-tag))
+    (should
+     (string= (get-char-property (point-min) 'sx-tag) "tag"))
+    (should
+     (string= (get-char-property (point-min) 'sx-button-copy) "tag"))))
 
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
