@@ -117,6 +117,12 @@ usually part of a code-block."
     "link")
   "Help echoed in the minibuffer when point is on a user.")
 
+(defconst sx-button--tag-help-echo
+  (format sx-button--help-echo
+    "Tag search"
+    "tag")
+  "Help echoed in the minibuffer when point is on a tag.")
+
 (defconst sx-button--question-title-help-echo
   (format sx-button--help-echo
     "hide content"
