@@ -59,7 +59,7 @@
     (apply #'message message args)))
 
 (mapc #'sx-load-test
-      '(api macros printing util search))
+  '(api macros printing util search state))
 
 (ert-deftest user-entry-functions ()
   "Ensures all entry functions are autoloaded."
