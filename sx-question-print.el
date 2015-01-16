@@ -176,7 +176,7 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-question-mode--print-section question)
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section
-          (cl-sort .answers sx-question-list--sort-answer-function)))
+          (cl-sort .answers sx-question-mode-answer-sort-function)))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
