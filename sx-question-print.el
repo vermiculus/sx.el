@@ -153,6 +153,15 @@ replaced with the comment."
   :type 'boolean
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-answer-sort-function
+  #'sx-answer-higher-score-p
+  "Function used to sort answers in the question buffer."
+  :type '(choice
+          (const :tag "Higher-scoring first" sx-answer-higher-score-p)
+          (const :tag "Newer first"          sx-answer-newer-p)
+          (const :tag "More active first"    sx-answer-more-active-p))
+  :group 'sx-question-mode)
+
 
 ;;; Functions
 ;;;; Printing the general structure
@@ -167,11 +176,7 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-question-mode--print-section question)
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section
-          (cl-sort .answers
-                   ;; Highest-voted first. @TODO: custom sorting
-                   (lambda (a b)
-                     (> (cdr (assoc 'score a))
-                        (cdr (assoc 'score b)))))))
+          (cl-sort .answers sx-question-list--sort-answer-function)))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
