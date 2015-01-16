@@ -299,7 +299,10 @@ where `value' is given `face' as its face.
   (while args
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)
-     (propertize (pop args) 'face (pop args)))))
+     (let ((header (pop args))
+           (face (pop args)))
+       (if face (propertize header 'face face)
+         header)))))
 
 
 ;;;; Printing and Font-locking the content (body)
