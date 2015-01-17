@@ -1,4 +1,4 @@
-;;; sx-request.el --- Requests and url manipulation.  -*- lexical-binding: t; -*-
+;;; sx-request.el --- requests and url manipulation  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -131,6 +131,8 @@ access the response wrapper."
     (vconcat return-value
              (cdr (assoc 'items response)))))
 
+;;; NOTE: Whenever this is arglist changes, `sx-request-fallback' must
+;;; also change.
 (defun sx-request-make (method &optional args request-method process-function)
   "Make a request to the API, executing METHOD with ARGS.
 You should almost certainly be using `sx-method-call' instead of
@@ -189,6 +191,7 @@ the main content of the response is returned."
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
                            (json-read-from-string data))))
+          (kill-buffer response-buffer)
           (when (and (not response) (string-equal data "{}"))
             (sx-message "Unable to parse response: %S" response)
             (error "Response could not be read by `json-read-from-string'"))
@@ -204,13 +207,42 @@ the main content of the response is returned."
             (funcall (or process-function #'sx-request-response-get-items)
                      response)))))))
 
-(defun sx-request-fallback (_method &optional _args _request-method)
+(defun sx-request-fallback (_method &optional _args _request-method _process-function)
   "Fallback method when authentication is not available.
 This is for UI generation when the associated API call would
 require authentication.
 
 Currently returns nil."
   '(()))
+
+
+;;; Our own generated data
+(defconst sx-request--data-url-format
+  "https://raw.githubusercontent.com/vermiculus/sx.el/data/data/%s.el"
+  "Url of the \"data\" directory inside the SX `data' branch.")
+
+(defun sx-request-get-data (file)
+  "Fetch and return data stored online by SX.
+FILE is a string or symbol, the name of the file which holds the
+desired data, relative to `sx-request--data-url-format'.  For
+instance, `tags/emacs' returns the list of tags on Emacs.SE."
+  (let* ((url-automatic-caching t)
+         (url-inhibit-uncompression t)
+         (request-url (format sx-request--data-url-format file))
+         (url-request-method "GET")
+         (url-request-extra-headers
+          '(("Content-Type" . "application/x-www-form-urlencoded")))
+         (response-buffer (url-retrieve-synchronously request-url)))
+    (if (not response-buffer)
+        (error "Something went wrong in `url-retrieve-synchronously'")
+      (with-current-buffer response-buffer
+        (progn
+          (goto-char (point-min))
+          (if (not (search-forward "\n\n" nil t))
+              (error "Headers missing; response corrupt")
+            (when (looking-at-p "Not Found") (error "Page not found."))
+            (prog1 (read (current-buffer))
+              (kill-buffer (current-buffer)))))))))
 
 
 ;;; Support Functions
@@ -256,3 +288,7 @@ false, use the symbol `false'.  Each element is processed with
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

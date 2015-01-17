@@ -1,4 +1,4 @@
-;;; sx-filter.el --- Handles retrieval of filters.                         -*- lexical-binding: t; -*-
+;;; sx-filter.el --- handles retrieval of filters    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,10 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file manages filters and provides an API to compile filters
+;; and retrieve them from the cache.  See `sx-filter-compile' and
+;; `sx-filter-get-var', respectively.
 
 ;;; Code:
 
@@ -43,7 +47,7 @@ Structure:
 
 ;;; Creation
 (defmacro sx-filter-from-nil (included)
-  "Creates a filter data structure with INCLUDED fields.
+  "Create a filter data structure with INCLUDED fields.
 All wrapper fields are included by default."
   `(quote
     ((,@(sx--tree-expand
@@ -60,23 +64,21 @@ All wrapper fields are included by default."
       .page_size
       .quota_max
       .quota_remaining
-      .total)
-     nil none)))
+      )
+     nil nil)))
 
 ;;; @TODO allow BASE to be a precompiled filter name
 (defun sx-filter-compile (&optional include exclude base)
   "Compile INCLUDE and EXCLUDE into a filter derived from BASE.
-INCLUDE and EXCLUDE must both be lists; BASE should be a string.
+INCLUDE and EXCLUDE must both be lists; BASE should be a symbol.
 
 Returns the compiled filter as a string."
   (let ((keyword-arguments
          `((include . ,(if include (sx--thing-as-string include)))
            (exclude . ,(if exclude (sx--thing-as-string exclude)))
            (base    . ,(if base base)))))
-    (let ((response (elt (sx-request-make
-                          "filter/create"
-                          keyword-arguments) 0)))
-      (sx-assoc-let response
+    (let ((result (elt (sx-request-make "filter/create" keyword-arguments) 0)))
+      (sx-assoc-let result
         .filter))))
 
 
@@ -89,7 +91,7 @@ Returns the compiled filter as a string."
 (defun sx-filter-get (&optional include exclude base)
   "Return the string representation of the given filter.
 
-If the filter data exist in `sx--filter-alist', that value will
+If the filter data exists in `sx--filter-alist', that value will
 be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
 a filter with `sx-filter-compile' and push the association onto
 `sx--filter-alist'.  Re-cache the alist with `sx-cache-set' and
@@ -103,12 +105,18 @@ return the compiled filter."
 
 
 ;;; Browsing filter
-(defvar sx-browse-filter
+(defconst sx-browse-filter
   (sx-filter-from-nil
    ((question body_markdown
               bounty_amount
               comments
+              creation_date
               answers
+              answer_count
+              score
+              title
+              owner
+              tags
               last_editor
               last_activity_date
               accepted_answer_id
@@ -118,8 +126,12 @@ return the compiled filter."
               question_id
               share_link)
     (user display_name
+          link
+          accept_rate
           reputation)
     (shallow_user display_name
+                  link
+                  accept_rate
                   reputation)
     (comment owner
              body_markdown
@@ -133,10 +145,12 @@ return the compiled filter."
              post_id
              comment_id)
     (answer answer_id
+            creation_date
             last_editor
             last_activity_date
             link
             share_link
+            score
             owner
             body_markdown
             upvoted

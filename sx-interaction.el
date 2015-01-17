@@ -1,4 +1,4 @@
-;;; sx-interaction.el --- Voting, commenting, and otherwise interacting with questions.  -*- lexical-binding: t; -*-
+;;; sx-interaction.el --- voting, commenting, and other interaction  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -136,15 +136,28 @@ Element can be a question, answer, or comment."
                 (save-excursion (yank))
                 (thing-at-point 'url))))
      (list (read-string (concat "Link (" def "): ") nil nil def))))
-  (let ((data (sx--link-to-data link)))
-    (sx-assoc-let data
-      (cl-case .type
-        (answer
-         (sx-display-question
-          (sx-question-get-from-answer .site_par .id) 'focus))
-        (question
-         (sx-display-question
-          (sx-question-get-question .site_par .id) 'focus))))))
+  ;; For now, we have no chance of handling chat links, let's just
+  ;; send them to the browser.
+  (if (string-match (rx string-start "http" (opt "s") "://chat."))
+      (sx-visit-externally link)
+    (let ((data (sx--link-to-data link)))
+      (sx-assoc-let data
+        (cl-case .type
+          (comment
+           (sx-display-question
+            (sx-question-get-from-comment .site_par .id) 'focus)
+           (sx--find-in-buffer 'comment .id))
+          (answer
+           (sx-display-question
+            (sx-question-get-from-answer .site_par .id) 'focus)
+           (sx--find-in-buffer 'answer .id))
+          (question
+           (sx-display-question
+            (sx-question-get-question .site_par .id) 'focus))
+          (t (sx-message
+              "Don't know how to open this link, please file a bug report: %s"
+              link)
+             nil))))))
 
 
 ;;; Displaying
@@ -159,14 +172,35 @@ likes."
   (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
-     (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
-     (.item_type (sx-open-link .link))
+     ;; This is an attempt to identify when we have the question
+     ;; object itself, so there's no need to fetch anything.  This
+     ;; happens inside the question-list, but it can be easily
+     ;; confused with the inbox (whose items have a title, a body, and
+     ;; a question_id).
+     ((and .title .question_id .score
+           (not .item_type) (not .notification_type))
+      (sx-display-question data 'focus))
      (.answer_id
       (sx-display-question
-       (sx-question-get-from-answer .site_par .id) 'focus))
-     (.title
-      (sx-display-question data 'focus)))))
+       (sx-question-get-from-answer .site_par .answer_id)
+       'focus)
+      (if .comment_id
+          (sx--find-in-buffer 'comment .comment_id)
+        (sx--find-in-buffer 'answer .answer_id)))
+     (.question_id
+      (sx-display-question
+       (sx-question-get-question .site_par .question_id) 'focus)
+      (when .comment_id
+        (sx--find-in-buffer 'comment .comment_id)))
+     ;; `sx-question-get-from-comment' takes 2 api requests, so we
+     ;; test it last.
+     (.comment_id
+      (sx-display-question
+       (sx-question-get-from-comment .site_par .comment_id) 'focus)
+      (sx--find-in-buffer 'comment .comment_id))
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
+     (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
@@ -272,7 +306,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
       (setq text (read-string
                   "Comment text: "
                   (when .comment_id
-                    (concat (sx--user-@name .owner) " "))))
+                    (substring-no-properties (sx-user--format "%@ " .owner)))))
       (while (not (sx--comment-valid-p text 'silent))
         (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
@@ -291,10 +325,8 @@ TEXT is a string. Interactively, it is read from the minibufer."
       ;; The api returns the new DATA.
       (when (> (length result) 0)
         (sx--add-comment-to-object
-         (elt result 0)
-         (if .post_id
-             (sx--get-post .post_type .site_par .post_id)
-           data))
+         (sx--ensure-owner-in-object (list (cons 'display_name "(You)")) (elt result 0))
+         (if .post_id (sx--get-post .post_type .site_par .post_id) data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
 
@@ -344,7 +376,15 @@ OBJECT can be a question or an answer."
               (list comment)))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
-      (setcar object `(comments . [,comment])))))
+      (setcar object `(comments . [,comment]))))
+  object)
+
+(defun sx--ensure-owner-in-object (owner object)
+  "Add `owner' property with value OWNER to OBJECT."
+  (unless (cdr-safe (assq 'owner object))
+    (setcdr object (cons (car object) (cdr object)))
+    (setcar object `(owner . ,owner)))
+  object)
 
 
 ;;; Editing
@@ -439,7 +479,12 @@ context at point. "
                        (append (cdr cell) (list answer))))
       ;; No previous comments, add it manually.
       (setcdr question (cons (car question) (cdr question)))
-      (setcar question `(answers . [,answer])))))
+      (setcar question `(answers . [,answer])))
+    question))
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

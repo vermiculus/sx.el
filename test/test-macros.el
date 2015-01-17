@@ -39,6 +39,5 @@
            .page
            .page_size
            .quota_max
-           .quota_remaining
-           .total)
-      nil none))))
+           .quota_remaining)
+      nil nil))))

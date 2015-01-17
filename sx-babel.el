@@ -1,4 +1,4 @@
-;;; sx-babel.el --- Font-locking pre blocks according to language. -*- lexical-binding: t; -*-
+;;; sx-babel.el --- font-locking pre blocks according to language  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -22,7 +22,7 @@
 ;; This file contains functions and a variable for font-locking the
 ;; content of markdown pre blocks according to their language. The
 ;; main configuration point, for both the user and the developer is
-;; the varuable `sx-babel-major-mode-alist', which see.
+;; the variable `sx-babel-major-mode-alist', which see.
 
 
 ;;; Code:
@@ -34,6 +34,12 @@
     ;; @TODO: Make shell-mode work here. Currently errors because it
     ;; needs a process. `sh-mode' isn't as nice.
     (,(rx (or "$ " "# ")) sh-mode)
+    ;; Not sure if leaving out "[{" might lead to false positives.
+    (,(rx "\\" (+ alnum) (any "[{")) latex-mode)
+    ;; Right now, this will match a lot of stuff. Once we are capable
+    ;; of determining major-mode from tags, site, and comments, this
+    ;; will work as a last case fallback.
+    (,(rx (or (and "int" (+ space) "main" (* space) "("))) c-mode)
     )
   "List of cons cells determining which major-mode to use when.
 Each car is a rule and each cdr is a major-mode.  The first rule
@@ -122,3 +128,6 @@ Returns the amount of indentation removed."
 (provide 'sx-babel)
 ;;; sx-babel.el ends here
 
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

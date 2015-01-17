@@ -1,4 +1,4 @@
-;;; sx-question-mode.el --- Major-mode for displaying a question. -*- lexical-binding: t; -*-
+;;; sx-question-mode.el --- major-mode for displaying questions  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides a means to print questions with their answers
+;; and all comments.  See the customizable group `sx-question-mode'.
 
 
 ;;; Code:
@@ -118,10 +121,10 @@ Prefix argument N moves N sections down or up."
     (while (> count 0)
       ;; This will either move us to the next section, or move out of
       ;; the current one.
-      (unless (sx-question-mode--goto-property-change 'section n)
+      (unless (sx--goto-property-change 'sx-question-mode--section n)
         ;; If all we did was move out the current one, then move again
         ;; and we're guaranteed to reach the next section.
-        (sx-question-mode--goto-property-change 'section n))
+        (sx--goto-property-change 'sx-question-mode--section n))
       (unless (get-char-property (point) 'invisible)
         (cl-decf count))))
   (when (equal (selected-window) (get-buffer-window))
@@ -136,22 +139,6 @@ Prefix argument N moves N sections down or up."
 Prefix argument moves N sections up or down."
   (interactive "p")
   (sx-question-mode-next-section (- (or n 1))))
-
-(defun sx-question-mode--goto-property-change (prop &optional direction)
-  "Move forward to the next change of text-property sx-question-mode--PROP.
-Return the new value of PROP at point.
-
-If DIRECTION is negative, move backwards instead."
-  (let ((prop (intern (format "sx-question-mode--%s" prop)))
-        (func (if (and (numberp direction)
-                       (< direction 0))
-                  #'previous-single-property-change
-                #'next-single-property-change))
-        (limit (if (and (numberp direction)
-                        (< direction 0))
-                   (point-min) (point-max))))
-    (goto-char (funcall func (point) prop nil limit))
-    (get-text-property (point) prop)))
 
 (defun sx-question-mode-hide-show-section (&optional _)
   "Hide or show section under point.
@@ -175,7 +162,7 @@ property."
 
 
 ;;; Major-mode
-(defvar sx-question-mode--header-line
+(defconst sx-question-mode--header-line
   '("    "
     (:propertize "n p TAB" face mode-line-buffer-id)
     ": Navigate"
@@ -271,3 +258,7 @@ query the api."
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

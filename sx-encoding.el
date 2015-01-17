@@ -1,4 +1,4 @@
-;;; sx-encoding.el --- encoding -*- lexical-binding: t; -*-
+;;; sx-encoding.el --- encoding                      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,9 +19,17 @@
 
 ;;; Commentary:
 
+;; This file handles decoding the responses we get from the API.  They
+;; are received either as plain-text or as a `gzip' compressed archive.
+;; For this, `sx-encoding-gzipped-p' is used to determine if content
+;; has been compressed under `gzip'.
+
 ;;; Code:
 
 (require 'cl-lib)
+
+
+;;;; HTML Encoding
 
 (defcustom sx-encoding-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
@@ -86,6 +94,9 @@ Return the decoded string."
                     (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
 
+
+;;;; Convenience Functions
+
 (defun sx-encoding-normalize-line-endings (string)
   "Normalize the line endings for STRING.
 The API returns strings that use Windows-style line endings.
@@ -130,6 +141,9 @@ some cases."
      ((vectorp data)
       (cl-map #'vector #'sx-encoding-clean-content-deep data))
      (t data))))
+
+
+;;;; GZIP
 
 (defun sx-encoding-gzipped-p (data)
   "Check for magic bytes in DATA.

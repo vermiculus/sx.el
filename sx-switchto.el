@@ -1,4 +1,4 @@
-;;; sx-switchto.el --- Keymap for navigating between pages. -*- lexical-binding: t; -*-
+;;; sx-switchto.el --- keymap for navigating between pages  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -33,7 +33,7 @@
 
 (mapc (lambda (x) (define-key sx-switchto-map (car x) (cadr x)))
   '(
-    ;; These immitate the site's G hotkey.
+    ;; These imitate the site's G hotkey.
     ("a" sx-ask)
     ("h" sx-tab-frontpage)
     ("m" sx-tab-meta-or-main)
@@ -54,18 +54,6 @@
 ;;; These are keys which depend on context.
 ;;;; For instance, it makes no sense to have `switch-site' bound to a
 ;;;; key on a buffer with no `sx-question-list--site' variable.
-(defmacro sx--define-conditional-key (keymap key def &rest body)
-  "In KEYMAP, define key sequence KEY as DEF conditionally.
-This is like `define-key', except the definition \"disapears\"
-whenever BODY evaluates to nil."
-  (declare (indent 3)
-           (debug (form form form &rest sexp)))
-  `(define-key ,keymap ,key
-     '(menu-item
-       ,(format "maybe-%s" (or (car (cdr-safe def)) def)) ignore
-       :filter (lambda (&optional _)
-                 (when (progn ,@body) ,def)))))
-
 (sx--define-conditional-key sx-switchto-map "s" #'sx-question-list-switch-site
   (and (boundp 'sx-question-list--site) sx-question-list--site))
 

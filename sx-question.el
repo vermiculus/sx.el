@@ -1,4 +1,4 @@
-;;; sx-question.el --- Base question logic. -*- lexical-binding: t; -*-
+;;; sx-question.el --- question logic                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -18,6 +18,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
+
+;; This file provides an API for retrieving questions and defines
+;; additional logic for marking questions as read or hidden.
 
 
 ;;; Code:
@@ -68,6 +71,26 @@ If ANSWER-ID doesn't exist on SITE, raise an error."
         (elt res 0)
       (error "Couldn't find answer %S in %S"
              answer-id site))))
+
+(defun sx-question-get-from-comment (site comment-id)
+  "Get question from SITE to which COMMENT-ID belongs.
+If COMMENT-ID doesn't exist on SITE, raise an error.
+
+Note this requires two API requests.  One for the comment and one
+for the post."
+  (let ((res (sx-method-call 'comments
+               :id comment-id
+               :site site
+               :auth t
+               :filter sx-browse-filter)))
+    (unless (vectorp res)
+      (error "Couldn't find comment %S in %S" comment-id site))
+    (sx-assoc-let (elt res 0)
+      (funcall (if (string= .post_type "answer")
+                   #'sx-question-get-from-answer
+                 #'sx-question-get-question)
+        .site_par
+        .post_id))))
 
 
 ;;; Question Properties
@@ -183,6 +206,21 @@ If no cache exists for it, initialize one with SITE."
 (defun sx-question--tag-format (tag)
   "Formats TAG for display."
   (concat "[" tag "]"))
+
+
+;;; Question Mode Answer-Sorting Functions
+
+(sx--create-comparator sx-answer-higher-score-p
+  "Return t if answer A has a higher score than answer B."
+  #'> (lambda (x) (cdr (assq 'score x))))
+
+(sx--create-comparator sx-answer-newer-p
+  "Return t if answer A was posted later than answer B."
+  #'> (lambda (x) (cdr (assq 'creation_date x))))
+
+(sx--create-comparator sx-answer-more-active-p
+  "Return t if answer A was updated after answer B."
+  #'> (lambda (x) (cdr (assq 'last_activity_date x))))
 
 (provide 'sx-question)
 ;;; sx-question.el ends here
