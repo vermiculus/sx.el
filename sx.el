@@ -330,14 +330,11 @@ ID is an integer."
 COMPARE-FUNC is a function that takes the return value of
 GET-FUNC and performs the actual comparison."
   (declare (indent 1) (doc-string 2))
-  `(progn
-     ;; In using `defalias', the macro supports both function
-     ;; symbols and lambda expressions.
-     (defun ,name (a b)
-       ,doc
-       (funcall ,compare-func
-                (funcall ,get-func a)
-                (funcall ,get-func b)))))
+  `(defun ,name (a b)
+     ,doc
+     (funcall ,compare-func
+              (funcall ,get-func a)
+              (funcall ,get-func b))))
 
 
 ;;; Printing request data
