@@ -249,7 +249,7 @@ guessed from context at point.
 With UNDO prefix argument, remove upvote instead of applying it."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
-  (sx-set-vote data "upvote" (not undo)))
+  (sx-set-vote data 'upvote (not undo)))
 
 (defun sx-downvote (data &optional undo)
   "Downvote an object given by DATA.
@@ -258,12 +258,12 @@ from context at point.
 With UNDO prefix argument, remove downvote instead of applying it."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
-  (sx-set-vote data "downvote" (not undo)))
+  (sx-set-vote data 'downvote (not undo)))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
 DATA can be a question, answer, or comment. TYPE can be
-\"upvote\" or \"downvote\". STATUS is a boolean.
+`upvote' or `downvote'. STATUS is a boolean.
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
@@ -275,7 +275,7 @@ changes."
                 (.answer_id "answers")
                 (.question_id "questions"))
              :id (or .comment_id .answer_id .question_id)
-             :submethod (concat type (unless status "/undo"))
+             :submethod (concat (symbol-name type) (unless status "/undo"))
              :auth 'warn
              :url-method 'post
              :filter sx-browse-filter
