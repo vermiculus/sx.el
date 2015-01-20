@@ -55,7 +55,6 @@ Added as hook to initialization."
   (sx-method-call 'me
     :submethod 'favorites
     :site site
-    :filter sx-favorite-list-filter
     :auth t))
 
 (defun sx-favorites--update-site-favorites (site)

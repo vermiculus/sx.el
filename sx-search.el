@@ -58,8 +58,7 @@ KEYWORDS is passed to `sx-method-call'."
                 (nottagged . ,excluded-tags)
                 ,@keywords)
     :site site
-    :auth t
-    :filter sx-browse-filter))
+    :auth t))
 
 
 ;;; User command

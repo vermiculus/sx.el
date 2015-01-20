@@ -69,8 +69,7 @@ KEYWORDS are added to the method call along with PAGE.
 `sx-method-call' is used with `sx-inbox-filter'."
   (sx-method-call (if notifications 'notifications 'inbox)
     :keywords keywords
-    :page page
-    :filter sx-inbox-filter))
+    :page page))
 
 
 ;;; Major-mode

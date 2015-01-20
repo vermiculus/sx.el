@@ -44,8 +44,7 @@
   (sx-cache-get
    'site-list
    '(sx-method-call 'sites
-      :pagesize 999
-      :filter sx-site-browse-filter)))
+      :pagesize 999)))
 
 (defcustom sx-site-favorites
   nil
