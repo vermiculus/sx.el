@@ -30,14 +30,16 @@
 (require 'sx)
 (require 'sx-auth)
 (require 'sx-request)
-(require 'sx-filter)
+
+
+(defconst sx-method--filter "!2-Xey(0UguE8yuN*Y5ubM" 
+  "Filter used on authenticated calls to `sx-method-call'.")
 
 (cl-defun sx-method-call (method &key id
                                       submethod
                                       keywords
                                       page
                                       (pagesize 100)
-                                      (filter '(()))
                                       auth
                                       (url-method 'get)
                                       get-all
@@ -50,7 +52,6 @@
 user.
 :SUBMETHOD is the additional segments of the method.
 :KEYWORDS are the api parameters.
-:FILTER is the set of filters to control the returned information
 :AUTH defines how to act if the method or filters require
 authentication.
 :URL-METHOD is either `post' or `get'
@@ -63,9 +64,9 @@ authentication.
 Any conflicting information in :KEYWORDS overrides the :PAGE
 and :PAGESIZE settings.
 
-When AUTH is nil, it is assumed that no auth-requiring filters or
-methods will be used.  If they are an error will be signaled.  This is
-to ensure awareness of where auth is needed.
+When AUTH is nil, it is assumed that no auth-requiring methods
+will be used.  If they are an error will be signaled.  This is to
+ensure awareness of where auth is needed.
 
 When AUTH Is t, filters will automatically use a non-auth subset if
 no `access_token' is available.  Methods requiring auth will instead
@@ -94,7 +95,11 @@ Return the entire response as a complex alist."
   (declare (indent 1))
   (let ((access-token (sx-cache-get 'auth))
         (method-auth (sx-auth--method-p method submethod))
-        (filter-auth (sx-auth--filter-p filter))
+        ;; @TODO: Include more fields in the fallback filter.
+        (filter-fallback "default")
+        ;; This is a filter which includes EVERYTING but the
+        ;; `.total' field.
+        (filter sx-method--filter)
         (full-method (concat (format "%s" method)
                              (when id
                                (format "/%s" id))
@@ -112,7 +117,7 @@ Return the entire response as a complex alist."
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
           (t get-all))))
     (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
-           access-token method-auth full-method filter-auth)
+           access-token method-auth full-method filter-fallback)
     (unless access-token
       (cond
        ;; 1. Need auth and warn user (interactive use)
@@ -122,14 +127,11 @@ Return the entire response as a complex alist."
        ;; 2. Need auth to populate UI, cannot provide subset
        ((and method-auth auth)
         (setq call 'sx-request-fallback))
-       ;; 3. Need auth for type.  Use auth-less filter.
-       ((and filter-auth auth)
-        (setq filter filter-auth))
-       ;; 4. Requires auth but no value set for auth
-       ((and (or filter-auth method-auth) (not auth))
+       ;; 3. Requires auth but no value set for auth
+       ((and method-auth (not auth))
         (error "This request requires authentication."))))
     ;; Concatenate all parameters now that filter is ensured.
-    (push `(filter . ,(sx-filter-get-var filter)) keywords)
+    (push `(filter . ,(if access-token filter filter-fallback)) keywords)
     (unless (assq 'page keywords)
       (push `(page . ,page) keywords))
     (unless (assq 'pagesize keywords)
