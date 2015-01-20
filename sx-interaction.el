@@ -267,8 +267,8 @@ DATA can be a question, answer, or comment. TYPE can be
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
-  (let ((result
-         (sx-assoc-let data
+  (sx-assoc-let data
+    (let ((result
            (sx-method-call
                (cond
                 (.comment_id "comments")
@@ -279,12 +279,34 @@ changes."
              :auth 'warn
              :url-method 'post
              :filter sx-browse-filter
-             :site .site_par))))
-    ;; The api returns the new DATA.
-    (when (> (length result) 0)
-      (sx--copy-data (elt result 0) data)
-      ;; Display the changes in `data'.
-      (sx--maybe-update-display))))
+             :site .site_par)))
+      ;; The api returns the new DATA.
+      (when (> (length result) 0)
+        (setcdr (assq 'score data)
+                (+ .score
+                   (cl-case type
+                     (upvote
+                      (if (eq .upvoted :json-true)
+                          ;; Had already upvoted.
+                          (if status 0 -1)
+                        ;; Had not upvoted.
+                        (if (eq .downvoted :json-true)
+                            ;; Had downvoted.
+                            (if status 2 0)
+                          ;; No votes.
+                          (if status 1 0))))
+                     (downvote
+                      (if (eq .upvoted :json-true)
+                          ;; Had already upvoted.
+                          (if status -2 0)
+                        ;; Had not upvoted.
+                        (if (eq .downvoted :json-true)
+                            ;; Had downvoted.
+                            (if status 0 1)
+                          ;; No votes.
+                          (if status -1 0)))))))
+        ;; Display the changes in `data'.
+        (sx--maybe-update-display)))))
 
 
 ;;; Commenting
