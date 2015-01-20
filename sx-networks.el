@@ -61,7 +61,6 @@ the variables."
                 (sx-method-call 'me
                   :submethod 'associated
                   :keywords '((types . (main_site meta_site)))
-                  :filter sx-network--user-filter
                   :auth t))
   (sx-network--get-associated))
 

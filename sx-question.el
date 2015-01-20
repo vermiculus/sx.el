@@ -42,8 +42,7 @@ KEYWORDS are added to the method call along with PAGE.
     :keywords `((page . ,page) ,@keywords)
     :site site
     :auth t
-    :submethod submethod
-    :filter sx-browse-filter))
+    :submethod submethod))
 
 (defun sx-question-get-question (site question-id)
   "Query SITE for a QUESTION-ID and return it.
@@ -51,12 +50,11 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
   (let ((res (sx-method-call 'questions
                :id question-id
                :site site
-               :auth t
-               :filter sx-browse-filter)))
+               :auth t)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find question %S in %S"
-             question-id site))))
+        question-id site))))
 
 (defun sx-question-get-from-answer (site answer-id)
   "Get question from SITE to which ANSWER-ID belongs.
@@ -65,12 +63,11 @@ If ANSWER-ID doesn't exist on SITE, raise an error."
                :id answer-id
                :site site
                :submethod 'questions
-               :auth t
-               :filter sx-browse-filter)))
+               :auth t)))
     (if (vectorp res)
         (elt res 0)
       (error "Couldn't find answer %S in %S"
-             answer-id site))))
+        answer-id site))))
 
 (defun sx-question-get-from-comment (site comment-id)
   "Get question from SITE to which COMMENT-ID belongs.
@@ -81,8 +78,7 @@ for the post."
   (let ((res (sx-method-call 'comments
                :id comment-id
                :site site
-               :auth t
-               :filter sx-browse-filter)))
+               :auth t)))
     (unless (vectorp res)
       (error "Couldn't find comment %S in %S" comment-id site))
     (sx-assoc-let (elt res 0)

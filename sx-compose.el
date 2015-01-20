@@ -241,7 +241,6 @@ respectively added locally to `sx-compose-before-send-hook' and
                                          (t 'answers))
                           :auth 'warn
                           :url-method 'post
-                          :filter sx-browse-filter
                           :site site
                           :keywords (sx-compose--generate-keywords is-question)
                           :id (or .comment_id .answer_id .question_id)
@@ -249,7 +248,6 @@ respectively added locally to `sx-compose-before-send-hook' and
               (lambda () (sx-method-call 'questions
                       :auth 'warn
                       :url-method 'post
-                      :filter sx-browse-filter
                       :site site
                       :keywords (sx-compose--generate-keywords is-question)
                       :id parent

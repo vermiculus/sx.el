@@ -252,8 +252,7 @@ If SITE is nil, use `sx-default-site'."
       :page page
       :site sx-question-list--site
       :auth t
-      :submethod 'favorites
-      :filter sx-browse-filter)))
+      :submethod 'favorites)))
 ;;;###autoload
 (autoload 'sx-tab-featured
   (expand-file-name

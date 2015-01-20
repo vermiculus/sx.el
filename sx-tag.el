@@ -43,7 +43,6 @@ If NO-SYNONYMS is non-nil, don't return synonyms."
                (append .synonyms so-far)))))
    (sx-method-call 'tags
      :get-all t
-     :filter sx-tag-filter
      :site site)
    :initial-value nil))
 
@@ -52,7 +51,6 @@ If NO-SYNONYMS is non-nil, don't return synonyms."
 Returns an array."
   (sx-method-call 'tags
     :auth nil
-    :filter sx-tag-filter
     :site site
     :keywords `((inname . ,string))))
 
@@ -95,7 +93,6 @@ Return the list of invalid tags in TAGS."
             :id (sx--thing-as-string tags)
             :submethod 'info
             :auth nil
-            :filter sx-tag-filter
             :site site))))
     (cl-remove-if (lambda (x) (member x result)) tags)))
 
