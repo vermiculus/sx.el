@@ -249,7 +249,7 @@ guessed from context at point.
 With UNDO prefix argument, remove upvote instead of applying it."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
-  (sx-set-vote data "upvote" (not undo)))
+  (sx-set-vote data 'upvote (not undo)))
 
 (defun sx-downvote (data &optional undo)
   "Downvote an object given by DATA.
@@ -258,33 +258,62 @@ from context at point.
 With UNDO prefix argument, remove downvote instead of applying it."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
-  (sx-set-vote data "downvote" (not undo)))
+  (sx-set-vote data 'downvote (not undo)))
 
 (defun sx-set-vote (data type status)
   "Set the DATA's vote TYPE to STATUS.
 DATA can be a question, answer, or comment. TYPE can be
-\"upvote\" or \"downvote\". STATUS is a boolean.
+`upvote' or `downvote'. STATUS is a boolean.
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
-  (let ((result
-         (sx-assoc-let data
+  (sx-assoc-let data
+    (let ((result
            (sx-method-call
                (cond
                 (.comment_id "comments")
                 (.answer_id "answers")
                 (.question_id "questions"))
              :id (or .comment_id .answer_id .question_id)
-             :submethod (concat type (unless status "/undo"))
+             :submethod (concat (symbol-name type) (unless status "/undo"))
              :auth 'warn
              :url-method 'post
              :filter sx-browse-filter
-             :site .site_par))))
-    ;; The api returns the new DATA.
-    (when (> (length result) 0)
-      (sx--copy-data (elt result 0) data)
-      ;; Display the changes in `data'.
-      (sx--maybe-update-display))))
+             :site .site_par)))
+      ;; The api returns the new DATA.
+      (when (> (length result) 0)
+        (cl-case type
+          (upvote
+           (setcdr (assq 'upvoted data)
+                   (if status :json-true :json-false)))
+          (downvote
+           (setcdr (assq 'downvoted data)
+                   (if status :json-true :json-false))))
+        (setcdr (assq 'score data)
+                (+ .score
+                   (cl-case type
+                     (upvote
+                      (if (eq .upvoted :json-true)
+                          ;; Had already upvoted.
+                          (if status 0 -1)
+                        ;; Had not upvoted.
+                        (if (eq .downvoted :json-true)
+                            ;; Had downvoted.
+                            (if status 2 0)
+                          ;; No votes.
+                          (if status 1 0))))
+                     (downvote
+                      (if (eq .upvoted :json-true)
+                          ;; Had already upvoted.
+                          (if status -2 0)
+                        ;; Had not upvoted.
+                        (if (eq .downvoted :json-true)
+                            ;; Had downvoted.
+                            (if status 0 1)
+                          ;; No votes.
+                          (if status -1 0)))))))
+        ;; Display the changes in `data'.
+        (sx--maybe-update-display)))))
 
 
 ;;; Commenting
