@@ -282,6 +282,13 @@ changes."
              :site .site_par)))
       ;; The api returns the new DATA.
       (when (> (length result) 0)
+        (cl-case type
+          (upvote
+           (setcdr (assq 'upvoted data)
+                   (if status :json-true :json-false)))
+          (downvote
+           (setcdr (assq 'downvoted data)
+                   (if status :json-true :json-false))))
         (setcdr (assq 'score data)
                 (+ .score
                    (cl-case type
