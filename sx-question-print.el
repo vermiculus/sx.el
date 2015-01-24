@@ -414,6 +414,8 @@ END should be a marker."
               ;; Handle stuff between the two tags.
               (save-match-data (sx-question-mode--process-html-tags l r))
               (cond
+               ((string= tag "kbd")
+                (add-text-properties l r '(face markdown-inline-code-face)))
                ((string= tag "sub")
                 (add-text-properties
                  l r '(face sx-question-mode-sub-sup display (raise -0.3))))
