@@ -409,6 +409,14 @@ Image links are downloaded and displayed, if
 (defun sx-question-mode--insert-link (text-or-image url)
   "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
+  ;; For now, the only way to handle nested links is to remove them.
+  (when (eq (char-before) ?\[)
+    (insert "a")
+    (forward-char -2)
+    (if (looking-at sx-question-mode--link-regexp)
+        (replace-match "")
+      (forward-char 1)
+      (delete-char 1)))
   (let ((imagep (not (stringp text-or-image))))
     ;; Images need to be at the start of a line.
     (when (and imagep (not (looking-at-p "^")))
