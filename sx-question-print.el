@@ -162,7 +162,7 @@ replaced with the comment."
   :type 'boolean
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-image-max-width 500
+(defcustom sx-question-mode-image-max-width 550
   "Maximum width, in pixels, of images in the question buffer."
   :type 'integer
   :group 'sx-question-mode)
