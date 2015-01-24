@@ -95,6 +95,11 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-sub-sup
+  '((t :height 0.7))
+  "Face used on <sub> and <sup> tags."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-header-tags "\nTags:     "
   "String used before the question tags at the header."
   :type 'string
@@ -407,7 +412,14 @@ END should be a marker."
                        (save-excursion (goto-char l) (insert "`")))
               (replace-match "")
               ;; Handle stuff between the two tags.
-              (save-match-data (sx-question-mode--process-html-tags l r)))))))))
+              (save-match-data (sx-question-mode--process-html-tags l r))
+              (cond
+               ((string= tag "sub")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise -0.3))))
+               ((string= tag "sup")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise +0.3))))))))))))
 
 
 ;;; Handling links
