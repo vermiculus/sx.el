@@ -370,10 +370,44 @@ E.g.:
           (forward-paragraph)
           (let ((end (point-marker)))
             ;; Compact links.
+            (sx-question-mode--process-html-tags beg end)
+            ;; Compact links.
             (sx-question-mode--process-links beg end)
             (goto-char end))
           (fill-region beg (point)))))
     (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
+
+
+;;; HTML tags
+(defconst sx-question-mode--html-tag-regexp
+  (rx "<" (group-n 1 "%s") (* (not (any ">"))) ">"))
+
+(defun sx-question-mode--process-html-tags (beg end)
+  "Hide all html tags between BEG and END and possibly interpret them.
+END should be a marker."
+  ;; This code understands nested html, but not if the same tag is
+  ;; nested in itself (e.g., <kbd><kbd></kbd></kbd>).
+  (goto-char beg)
+  (while (search-forward-regexp
+          (format sx-question-mode--html-tag-regexp "[[:alpha:]]+")
+          end 'noerror)
+    (unless (save-match-data (markdown-code-at-point-p))
+      (let ((tag (match-string 1))
+            (l   (match-beginning 0)))
+        (replace-match "")
+        (when (search-forward-regexp
+               (format sx-question-mode--html-tag-regexp (concat "/" tag))
+               ;; Searching for a match has no bounds.
+               nil 'noerror)
+          (let ((r (copy-marker (match-beginning 0))))
+            ;; The code tag is special, because it quotes everything in
+            ;; the middle.
+            (if (string= tag "quote")
+                (progn (replace-match "`")
+                       (save-excursion (goto-char l) (insert "`")))
+              (replace-match "")
+              ;; Handle stuff between the two tags.
+              (save-match-data (sx-question-mode--process-html-tags l r)))))))))
 
 
 ;;; Handling links
