@@ -234,9 +234,10 @@ Currently returns nil."
       (with-current-buffer response-buffer
         (progn
           (goto-char (point-min))
+          (unless (string-match "200" (thing-at-point 'line))
+            (error "Page not found."))
           (if (not (search-forward "\n\n" nil t))
               (error "Headers missing; response corrupt")
-            (when (looking-at-p "Not Found") (error "Page not found."))
             (prog1 (buffer-substring (point) (point-max))
               (kill-buffer (current-buffer)))))))))
 
