@@ -140,10 +140,15 @@ contents to the API, then calls `sx-compose-after-send-functions'."
   (interactive)
   (when (run-hook-with-args-until-failure
          'sx-compose-before-send-hook)
-    (let ((result (funcall sx-compose--send-function)))
-      (with-demoted-errors
-          (run-hook-with-args 'sx-compose-after-send-functions
-                              (current-buffer) result)))))
+    (let ((result (funcall sx-compose--send-function))
+          (buf (current-buffer)))
+      (run-hook-wrapped
+       'sx-compose-after-send-functions
+       (lambda (func)
+         (with-demoted-errors
+             "[sx] Error encountered AFTER sending post, but the post was sent successfully: %s"
+           (funcall func buf result))
+         nil)))))
 
 (defun sx-compose-insert-tags ()
   "Prompt for a tag list for this draft and insert them."

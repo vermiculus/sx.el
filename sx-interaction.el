@@ -136,15 +136,28 @@ Element can be a question, answer, or comment."
                 (save-excursion (yank))
                 (thing-at-point 'url))))
      (list (read-string (concat "Link (" def "): ") nil nil def))))
-  (let ((data (sx--link-to-data link)))
-    (sx-assoc-let data
-      (cl-case .type
-        (answer
-         (sx-display-question
-          (sx-question-get-from-answer .site_par .id) 'focus))
-        (question
-         (sx-display-question
-          (sx-question-get-question .site_par .id) 'focus))))))
+  ;; For now, we have no chance of handling chat links, let's just
+  ;; send them to the browser.
+  (if (string-match (rx string-start "http" (opt "s") "://chat."))
+      (sx-visit-externally link)
+    (let ((data (sx--link-to-data link)))
+      (sx-assoc-let data
+        (cl-case .type
+          (comment
+           (sx-display-question
+            (sx-question-get-from-comment .site_par .id) 'focus)
+           (sx--find-in-buffer 'comment .id))
+          (answer
+           (sx-display-question
+            (sx-question-get-from-answer .site_par .id) 'focus)
+           (sx--find-in-buffer 'answer .id))
+          (question
+           (sx-display-question
+            (sx-question-get-question .site_par .id) 'focus))
+          (t (sx-message
+              "Don't know how to open this link, please file a bug report: %s"
+              link)
+             nil))))))
 
 
 ;;; Displaying
@@ -159,14 +172,35 @@ likes."
   (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
-     (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
-     (.item_type (sx-open-link .link))
+     ;; This is an attempt to identify when we have the question
+     ;; object itself, so there's no need to fetch anything.  This
+     ;; happens inside the question-list, but it can be easily
+     ;; confused with the inbox (whose items have a title, a body, and
+     ;; a question_id).
+     ((and .title .question_id .score
+           (not .item_type) (not .notification_type))
+      (sx-display-question data 'focus))
      (.answer_id
       (sx-display-question
-       (sx-question-get-from-answer .site_par .id) 'focus))
-     (.title
-      (sx-display-question data 'focus)))))
+       (sx-question-get-from-answer .site_par .answer_id)
+       'focus)
+      (if .comment_id
+          (sx--find-in-buffer 'comment .comment_id)
+        (sx--find-in-buffer 'answer .answer_id)))
+     (.question_id
+      (sx-display-question
+       (sx-question-get-question .site_par .question_id) 'focus)
+      (when .comment_id
+        (sx--find-in-buffer 'comment .comment_id)))
+     ;; `sx-question-get-from-comment' takes 2 api requests, so we
+     ;; test it last.
+     (.comment_id
+      (sx-display-question
+       (sx-question-get-from-comment .site_par .comment_id) 'focus)
+      (sx--find-in-buffer 'comment .comment_id))
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
+     (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
