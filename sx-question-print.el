@@ -399,12 +399,22 @@ Image links are downloaded and displayed, if
               (sx-question-mode--insert-link
                (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
                    ;; Is it an image?
-                   (create-image (sx-request-get-url url) 'imagemagick t
-                                 :width (min sx-question-mode-image-max-width
-                                             (window-body-width nil 'pixel)))
+                   (sx-question-mode--create-image url)
                  ;; Or a regular link
                  (or (if sx-question-mode-pretty-links text full-text) url))
                url))))))))
+
+(defun sx-question-mode--create-image (url)
+  "Get and create an image from URL.
+Its size is bound by `sx-question-mode-image-max-width' and
+`window-body-width'."
+  (let* ((image
+          (create-image (sx-request-get-url url) 'imagemagick t))
+         (image-width (car (image-size image 'pixels))))
+    (append image
+            (list :width (min sx-question-mode-image-max-width
+                              (window-body-width nil 'pixel)
+                              image-width)))))
 
 (defun sx-question-mode--insert-link (text-or-image url)
   "Return a link propertized version of TEXT-OR-IMAGE.
