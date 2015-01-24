@@ -388,20 +388,24 @@ E.g.:
                (or (if sx-question-mode-pretty-links text full-text) url)
                url))))))))
 
-(defun sx-question-mode--insert-link (text url)
-  "Return a link propertized version of string TEXT.
+(defun sx-question-mode--insert-link (text-or-image url)
+  "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
-  (insert-text-button
-   text
-   ;; Mouse-over
-   'help-echo
-   (format sx-button--link-help-echo
-     (propertize (sx--shorten-url url)
-                 'face 'font-lock-function-name-face))
-   ;; For visiting and stuff.
-   'sx-button-url url
-   'sx-button-copy url
-   :type 'sx-button-link))
+  (let ((imagep (not (stringp text-or-image))))
+    (apply #'insert-text-button
+      (if imagep " " text-or-image)
+      ;; Mouse-over
+      'help-echo
+      (format sx-button--link-help-echo
+        (propertize (sx--shorten-url url)
+                    'face 'font-lock-function-name-face))
+      ;; For visiting and stuff.
+      'sx-button-url url
+      'sx-button-copy url
+      :type 'sx-button-link
+      ;; The last argument of `apply' is a list.
+      (when imagep
+        `(face default display ,text-or-image)))))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
