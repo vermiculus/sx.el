@@ -410,6 +410,9 @@ Image links are downloaded and displayed, if
   "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
   (let ((imagep (not (stringp text-or-image))))
+    ;; Images need to be at the start of a line.
+    (when (and imagep (not (looking-at-p "^")))
+      (insert "\n"))
     (apply #'insert-text-button
       (if imagep " " text-or-image)
       ;; Mouse-over
@@ -423,7 +426,9 @@ URL is used as 'help-echo and 'url properties."
       :type 'sx-button-link
       ;; The last argument of `apply' is a list.
       (when imagep
-        `(face default display ,text-or-image)))))
+        `(face default display ,text-or-image)))
+    ;; Images need to be at the end of a line too.
+    (insert "\n")))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
