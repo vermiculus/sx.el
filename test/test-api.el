@@ -21,4 +21,10 @@
   (should-error (sx-request-get-data "tags/emacs-does-not-exist"))
   (let ((emacs-tags (length (sx-request-get-data 'tags/emacs))))
     (should (> emacs-tags 450))
-    (should (not (cl-remove-if #'stringp emacs-tags)))))
+    (should (not (cl-remove-if #'stringp emacs-tags))))
+  (should
+   ;; If image is not recognized, this returns nil.
+   (create-image (sx-request-get-url "https://raw.githubusercontent.com/vermiculus/sx.el/master/list-and-question.png")
+                 'imagemagick t
+                 :width (min sx-question-mode-image-max-width
+                             (window-body-width nil 'pixel)))))
