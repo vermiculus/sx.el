@@ -148,12 +148,7 @@ with a `link' property)."
              ;; From URL
              (string-match (rx "/questions/"
                                ;; Question ID
-                               (group-n 1 (+ digit)) "/"
-                               ;; Optional question title
-                               (optional (+ (not (any "/"))) "/")
-                               ;; Garbage at the end
-                               (optional (and (any "?#") (* any)))
-                               string-end)
+                               (group-n 1 (+ digit)) "/")
                            link))
             (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
