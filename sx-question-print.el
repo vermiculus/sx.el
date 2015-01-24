@@ -357,52 +357,55 @@ E.g.:
              (group-n 1 (and "@" (1+ (not space))))
              symbol-end)
         1 font-lock-builtin-face)))
-    ;; Everything.
+    ;; Fontify.
     (font-lock-fontify-region (point-min) (point-max))
-    ;; Compact links.
-    (sx-question-mode--process-links-in-buffer)
-    ;; And now the filling
+    ;; And now the content handling:
     (goto-char (point-min))
+    ;; Handle one paragraph at a time.
     (while (null (eobp))
-      ;; Don't fill pre blocks.
+      ;; Some things are not paragraphs, and shouldn't be filled.
       (unless (sx-question-mode--dont-fill-here)
         (let ((beg (point)))
           (skip-chars-forward "\r\n[:blank:]")
           (forward-paragraph)
+          (let ((end (point-marker)))
+            ;; Compact links.
+            (sx-question-mode--process-links beg end)
+            (goto-char end))
           (fill-region beg (point)))))
     (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
 
 ;;; Handling links
-(defun sx-question-mode--process-links-in-buffer ()
-  "Turn all markdown links in this buffer into compact format.
+(defun sx-question-mode--process-links (beg end)
+  "Turn all markdown links between BEG and ENG into compact format.
+END must be a marker.
 Image links are downloaded and displayed, if
 `sx-question-mode-use-images' is non-nil."
-  (save-excursion
-    (goto-char (point-min))
-    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
-      ;; Tags are tag-buttons.
-      (let ((tag (match-string-no-properties 5)))
-        (if (and tag (> (length tag) 0))
-            (progn (replace-match "")
-                   (sx-tag--insert tag))
-          ;; Other links are link-buttons.
-          (let* ((text (match-string-no-properties 1))
-                 (url (or (match-string-no-properties 2)
-                          (match-string-no-properties 4)
-                          (sx-question-mode-find-reference
-                           (match-string-no-properties 3)
-                           text)))
-                 (full-text (match-string-no-properties 0)))
-            (when (stringp url)
-              (replace-match "")
-              (sx-question-mode--insert-link
-               (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
-                   ;; Is it an image?
-                   (sx-question-mode--create-image url)
-                 ;; Or a regular link
-                 (or (if sx-question-mode-pretty-links text full-text) url))
-               url))))))))
+  (goto-char beg)
+  (while (search-forward-regexp sx-question-mode--link-regexp end t)
+    ;; Tags are tag-buttons.
+    (let ((tag (match-string-no-properties 5)))
+      (if (and tag (> (length tag) 0))
+          (progn (replace-match "")
+                 (sx-tag--insert tag))
+        ;; Other links are link-buttons.
+        (let* ((text (match-string-no-properties 1))
+               (url (or (match-string-no-properties 2)
+                        (match-string-no-properties 4)
+                        (sx-question-mode-find-reference
+                         (match-string-no-properties 3)
+                         text)))
+               (full-text (match-string-no-properties 0)))
+          (when (stringp url)
+            (replace-match "")
+            (sx-question-mode--insert-link
+             (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
+                 ;; Is it an image?
+                 (sx-question-mode--create-image url)
+               ;; Or a regular link
+               (or (if sx-question-mode-pretty-links text full-text) url))
+             url)))))))
 
 (defun sx-question-mode--create-image (url)
   "Get and create an image from URL.
