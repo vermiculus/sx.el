@@ -138,7 +138,7 @@ Element can be a question, answer, or comment."
      (list (read-string (concat "Link (" def "): ") nil nil def))))
   ;; For now, we have no chance of handling chat links, let's just
   ;; send them to the browser.
-  (if (string-match (rx string-start "http" (opt "s") "://chat."))
+  (if (string-match (rx string-start "http" (opt "s") "://chat.") link)
       (sx-visit-externally link)
     (let ((data (sx--link-to-data link)))
       (sx-assoc-let data
