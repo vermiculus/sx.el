@@ -331,7 +331,7 @@ E.g.:
 (defconst sx-question-mode--link-regexp
   ;; Done at compile time.
   (rx (or (and "[tag:" (group-n 5 (+ (not (any " ]")))) "]")
-          (and (opt "!") "[" (group-n 1 (1+ (not (any "]")))) "]"
+          (and (opt "!") "[" (group-n 1 (1+ (not (any "[]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
           (group-n 4 (and (and "http" (opt "s") "://") ""
