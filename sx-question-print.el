@@ -157,6 +157,16 @@ replaced with the comment."
           (const :tag "More active first"    sx-answer-more-active-p))
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-use-images t
+  "Non-nil if SX should download and display images."
+  :type 'boolean
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-image-max-width 500
+  "Maximum width, in pixels, of images in the question buffer."
+  :type 'integer
+  :group 'sx-question-mode)
+
 
 ;;; Functions
 ;;;; Printing the general structure
@@ -321,7 +331,7 @@ E.g.:
 (defconst sx-question-mode--link-regexp
   ;; Done at compile time.
   (rx (or (and "[tag:" (group-n 5 (+ (not (any " ]")))) "]")
-          (and "[" (group-n 1 (1+ (not (any "]")))) "]"
+          (and (opt "!") "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
           (group-n 4 (and (and "http" (opt "s") "://") ""
@@ -365,7 +375,9 @@ E.g.:
 
 ;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
-  "Turn all markdown links in this buffer into compact format."
+  "Turn all markdown links in this buffer into compact format.
+Image links are downloaded and displayed, if
+`sx-question-mode-use-images' is non-nil."
   (save-excursion
     (goto-char (point-min))
     (while (search-forward-regexp sx-question-mode--link-regexp nil t)
@@ -385,7 +397,13 @@ E.g.:
             (when (stringp url)
               (replace-match "")
               (sx-question-mode--insert-link
-               (or (if sx-question-mode-pretty-links text full-text) url)
+               (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
+                   ;; Is it an image?
+                   (create-image (sx-request-get-url url) 'imagemagick t
+                                 :width (min sx-question-mode-image-max-width
+                                             (window-body-width nil 'pixel)))
+                 ;; Or a regular link
+                 (or (if sx-question-mode-pretty-links text full-text) url))
                url))))))))
 
 (defun sx-question-mode--insert-link (text-or-image url)
