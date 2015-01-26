@@ -13,7 +13,7 @@
 (defmacro question-list-regex (title votes answers &rest tags)
   "Construct a matching regexp for TITLE, VOTES, and ANSWERS.
 Each element of TAGS is appended at the end of the expression
-after being run through `sx-question--tag-format'."
+after being run through `sx-tag--format'."
   `(rx line-start
        (+ whitespace) ,(number-to-string votes)
        (+ whitespace) ,(number-to-string answers)
@@ -22,8 +22,7 @@ after being run through `sx-question--tag-format'."
        (+ (any whitespace digit))
        (or "y" "d" "h" "m" "mo" "s") " ago"
        (+ whitespace)
-       (eval (mapconcat #'sx-question--tag-format
-                        (list ,@tags) " "))))
+       (eval (mapconcat #'sx-tag--format (list ,@tags) " "))))
 
 
 ;;; Tests
