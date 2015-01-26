@@ -157,8 +157,13 @@ replaced with the comment."
           (const :tag "More active first"    sx-answer-more-active-p))
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-use-images t
-  "Non-nil if SX should download and display images."
+(defcustom sx-question-mode-use-images
+  (eval-when-compile
+    (image-type-available-p 'imagemagick))
+  "Non-nil if SX should download and display images.
+By default, this is `t' if the `imagemagick' image type is
+available (checked with `image-type-available-p').  If this image
+type is not available, images won't work."
   :type 'boolean
   :group 'sx-question-mode)
 
