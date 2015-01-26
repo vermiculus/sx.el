@@ -22,7 +22,7 @@ after being run through `sx-question--tag-format'."
        (+ (any whitespace digit))
        (or "y" "d" "h" "m" "mo" "s") " ago"
        (+ whitespace)
-       (eval (mapconcat #'sx-question--tag-format
+       (eval (mapconcat #'sx-tag--format
                         (list ,@tags) " "))))
 
 
