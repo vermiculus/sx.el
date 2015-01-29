@@ -114,8 +114,9 @@ DATA will be written as returned by `prin1'.
 
 CACHE is resolved to a file name by `sx-cache-get-file-name'."
   (sx-cache--ensure-sx-cache-directory-exists)
-  (write-region (prin1-to-string data) nil
-                (sx-cache-get-file-name cache))
+  (let (print-length print-level)
+    (write-region (prin1-to-string data) nil
+                  (sx-cache-get-file-name cache)))
   data)
 
 (defun sx-cache--invalidate (cache &optional vars init-method)
