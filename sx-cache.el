@@ -26,129 +26,60 @@
 ;;   `(sx-cache-get 'pkg)'
 ;;
 ;; This symbol is then converted into a filename within
-;; `sx-cache-directory' using `sx-cache-get-file-name'.
-;;
-;; Currently, the cache is written at every `sx-cache-set', but this
-;; write will eventually be done by some write-all function which will
-;; be set on an idle timer.
+;; `sx-cache-directory'.
 
 ;;; Code:
+
+(require 'stash)
 
 (defcustom sx-cache-directory (locate-user-emacs-file ".sx")
   "Directory containing cached data."
   :type 'directory
   :group 'sx)
 
-(defvar sx-cache--cache-volatility-alist
-  nil
-  "Known caches and their states.
-The list consists of cons cells (CACHE . STATE).  STATE is a
-vector [VARIABLE VOLATILE READ]:
+(defcustom sx-cache-write-delay 5
+  "Idle delay in seconds to write cache data."
+  :type 'integer
+  :group 'sx)
 
-  VARIABLE  symbol for variable
-  VOLATILE  t if volatile
-  READ      t if variable's value has been read from disk")
+(defvar sx-cache--list nil
+  "List of cache variables.")
 
-(defun sx-cache-register (cache variable isvolatile)
-  "Register CACHE with VARIABLE and mark with ISVOLATILE.
-See `sx-cache--cache-volatility-alist'."
-  (add-to-list 'sx-cache--cache-volatility-alist
-               (cons cache (vector variable isvolatile nil))))
+(defmacro sx-cache-new (variable &optional default)
+  `(progn
+     (stash-new ',variable
+                ,(expand-file-name
+                  (concat (symbol-name variable) ".el")
+                  sx-cache-directory)
+                ,default
+                ,sx-cache-write-delay)
+     (add-to-list 'sx-cache--list ,variable)))
 
-(defun sx-cache--variable-value (cache)
-  "Returns the value of the variable bound to CACHE.
-See `sx-cache--variable-name'."
-  (symbol-value (sx-cache--variable-name cache)))
+(defun sx-cache-read (cache)
+  "Return the data within CACHE."
+  (stash-load cache))
 
-(defun sx-cache--variable-name (cache)
-  "Return the variable name CACHE is bound to."
-  (elt (sx-cache--state cache) 0))
- 
-(defun sx-cache--volatile-p (cache)
-  "Return t when CACHE is volatile."
-  (elt (sx-cache--state cache) 1))
+(defun sx-cache-set (cache data &optional immediate)
+  "Set the content of CACHE to DATA.
+If IMMEDIATE is non-nil, immediately write to disk."
+  (stash-set cache data immediate))
 
-(defun sx-cache--read-p (cache)
-  "Return t when CACHE has been read from disk."
-  (elt (sx-cache--state cache) 2))
+(defun sx-cache--invalidate (cache)
+  "Invalidate CACHE."
+  (stash-reset cache))
 
-(defun sx-cache--state (cache)
-  "Ensure CACHE is registered and return its state.
-See `sx-cache--cache-volatility-alist'.
-
-If CACHE is not registered, `unknown-cache' is signaled."
-  (or (cdr (assoc cache sx-cache--cache-volatility-alist))
-      (signal 'unknown-cache cache)))
-
-(defun sx-cache--ensure-sx-cache-directory-exists ()
-  "Ensure `sx-cache-directory' exists."
-  (unless (file-exists-p sx-cache-directory)
-    (mkdir sx-cache-directory)))
-
-(defun sx-cache-get-file-name (filename)
-  "Expand FILENAME in the context of `sx-cache-directory'."
-  (expand-file-name
-   (concat (symbol-name filename) ".el")
-   sx-cache-directory))
-
-(defun sx-cache-get (cache &optional form)
-  "Return the data within CACHE.
-If CACHE does not exist, use `sx-cache-set' to set CACHE to the
-result of evaluating FORM.
-
-CACHE is resolved to a file name by `sx-cache-get-file-name'."
-  (sx-cache--ensure-sx-cache-directory-exists)
-  (let ((file (sx-cache-get-file-name cache)))
-    ;; If the file exists, return the data it contains
-    (if (file-exists-p file)
-        (with-temp-buffer
-          (insert-file-contents (sx-cache-get-file-name cache))
-          (read (buffer-string)))
-      ;; Otherwise, set CACHE to the evaluation of FORM.
-      ;; `sx-cache-set' returns the data that CACHE was set to.
-      (sx-cache-set cache (eval form)))))
-
-(defun sx-cache-set (cache data)
-  "Set the content of CACHE to DATA and save.
-DATA will be written as returned by `prin1'.
-
-CACHE is resolved to a file name by `sx-cache-get-file-name'."
-  (sx-cache--ensure-sx-cache-directory-exists)
-  (let (print-length print-level)
-    (write-region (prin1-to-string data) nil
-                  (sx-cache-get-file-name cache)))
-  data)
-
-(defun sx-cache--invalidate (cache &optional vars init-method)
-  "Set cache CACHE to nil.
-
-VARS is a list of variables to unbind to ensure cache is cleared.
-If INIT-METHOD is defined, call it after all invalidation to
-re-initialize the cache."
-  (let ((file (sx-cache-get-file-name cache)))
-    (delete-file file))
-  (mapc #'makunbound vars)
-  (when init-method
-    (funcall init-method)))
-
-(defun sx-cache-invalidate-all (&optional save-auth)
+(defun sx-cache-invalidate-all (&rest except)
   "Invalidate all caches using `sx-cache--invalidate'.
-Afterwards reinitialize caches using `sx-initialize'. If
-SAVE-AUTH is non-nil, do not clear AUTH cache.
-
-Interactively only clear AUTH cache if prefix arg was given.
+Afterwards reinitialize caches using `sx-initialize'.  All those
+cache symbols in EXCEPT are spared.  Interactively, this includes
+only `auth'.
 
 Note:  This will also remove read/unread status of questions as well
 as delete the list of hidden questions."
-  (interactive (list (not current-prefix-arg)))
-  (let* ((default-directory sx-cache-directory)
-         (caches (file-expand-wildcards "*.el")))
-    (when save-auth
-      (setq caches (cl-remove-if (lambda (x)
-                                   (string= x "auth.el")) caches)))
-    (lwarn 'sx :debug "Invalidating: %S" caches)
-    (mapc #'delete-file caches)
-    (sx-initialize 'force)))
+  (interactive (list (unless current-prefix-arg '(auth))))
+  (mapc #'sx-cache--invalidate
+        (cl-set-difference sx-cache--list except))
+  (sx-initialize 'force))
 
 (provide 'sx-cache)
 ;;; sx-cache.el ends here
