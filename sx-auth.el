@@ -31,6 +31,7 @@
 (require 'sx)
 (require 'sx-request)
 (require 'sx-cache)
+(require 'stash)
 
 (defconst sx-auth-root
   "https://stackexchange.com/oauth/dialog")
@@ -38,14 +39,16 @@
   "http://vermiculus.github.io/sx.el/auth/auth.htm")
 (defconst sx-auth-client-id
   "3291")
-(defvar sx-auth-access-token
-  nil
+
+(defstash sx-auth-access-token
+    "auth.el" sx nil
   "Your access token.
 This is needed to use your account to write questions, make
 comments, and read your inbox.  Do not alter this unless you know
 what you are doing!
 
 This variable is set with `sx-auth-authenticate'.")
+(sx-init-variable sx-auth-access-token)
 
 (defconst sx-auth-method-auth
   '((me . t)
@@ -74,12 +77,10 @@ This variable is set with `sx-auth-authenticate'.")
                render
                upvote
                (unanswered my-tags)))
-  "List of methods that require auth.
-Methods are of the form \(METHOD . SUBMETHODS) where SUBMETHODS
-  is \(METHOD METHOD METHOD ...).
-
-If all SUBMETHODS require auth or there are no submethods, form
-will be \(METHOD . t)")
+  "List of methods that require authentication.
+Methods are of the form \(METHOD SUBMETHOD...).  If all
+SUBMETHODS require authentication or there are no submethods,
+form will be \(METHOD . t)")
 
 (defconst sx-auth-filter-auth
   '(question.upvoted
@@ -133,10 +134,9 @@ parsed and displayed prominently on the page)."
                 ","))))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
-  (if (string-equal "" sx-auth-access-token)
-      (progn (setq sx-auth-access-token nil)
-             (error "You must enter this code to use this client fully"))
-    (sx-cache-set 'auth `((access_token . ,sx-auth-access-token)))))
+  (when (string-equal "" sx-auth-access-token)
+    (progn (setq sx-auth-access-token nil)
+           (error "You must enter this code to use this client fully"))))
 
 (defun sx-auth--method-p (method &optional submethod)
   "Check if METHOD is one that may require authentication.

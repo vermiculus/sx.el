@@ -92,8 +92,7 @@ See `sx-request-make' and `sx-request-all-items'.
 
 Return the entire response as a complex alist."
   (declare (indent 1))
-  (let ((access-token (sx-cache-get 'auth))
-        (method-auth (sx-auth--method-p method submethod))
+  (let ((method-auth (sx-auth--method-p method submethod))
         (filter-auth (sx-auth--filter-p filter))
         (full-method (concat (format "%s" method)
                              (when id
@@ -111,14 +110,17 @@ Return the entire response as a complex alist."
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
           (t get-all))))
-    (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
-           access-token method-auth full-method filter-auth)
-    (unless access-token
+    (lwarn "sx-call-method"
+           :debug "A: %S T: %S. M: %S,%s. F: %S"
+           (eq 'warn auth) sx-auth-access-token
+           method-auth full-method filter-auth)
+    (unless sx-auth-access-token
       (cond
        ;; 1. Need auth and warn user (interactive use)
        ((and method-auth (equal 'warn auth))
         (sx-user-error
-         "This request requires authentication.  Please run `M-x sx-authenticate' and try again."))
+         "This request requires authentication.  \
+Please run `M-x sx-authenticate' and try again."))
        ;; 2. Need auth to populate UI, cannot provide subset
        ((and method-auth auth)
         (setq call 'sx-request-fallback))

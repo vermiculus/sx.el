@@ -25,8 +25,13 @@
 ;;; Code:
 
 (require 'sx-method)
-(require 'sx-cache)
 (require 'sx-filter)
+(require 'stash)
+
+(defstash sx-site-list
+    "sites.el" sx nil
+  "List of sites.")
+(sx-init-variable sx-site-list)
 
 (defconst sx-site-browse-filter
   (sx-filter-from-nil
@@ -41,11 +46,11 @@
 
 (defun sx-site--get-site-list ()
   "Return all sites with `sx-site-browse-filter'."
-  (sx-cache-get
-   'site-list
-   '(sx-method-call 'sites
-      :pagesize 999
-      :filter sx-site-browse-filter)))
+  (unless sx-site-list
+    (setq sx-site-list
+          (sx-method-call 'sites
+            :pagesize 999
+            :filter sx-site-browse-filter))))
 
 (defcustom sx-site-favorites
   nil

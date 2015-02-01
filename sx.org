@@ -163,8 +163,6 @@ structure. This list is very loosely ordered form low to high-level.
 - ~sx-time.el~ :: Similar to ~sx.el~, but only contains a few
                   time-related functions.
 - ~sx-filter.el~ :: Handles retrieval of filters.
-- ~sx-cache.el~ :: Saves and restores persistent data between
-                   sessions.
 - ~sx-button.el~ :: Defines all button types used throughout the
                     package. Currently used only by
                     ~sx-question-print.el~.

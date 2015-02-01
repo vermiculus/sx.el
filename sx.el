@@ -6,7 +6,7 @@
 ;; URL: https://github.com/vermiculus/sx.el/
 ;; Version: 0.1
 ;; Keywords: help, hypermedia, tools
-;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3") (stash "0.2"))
+;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3") (stash "0.3"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 
 ;;; Code:
 (require 'tabulated-list)
+(require 'stash)
 
 (defconst sx-version "0.1" "Version of the `sx' package.")
 
@@ -35,6 +36,8 @@
   :prefix "sx-"
   :tag "SX"
   :group 'applications)
+
+(defapp sx 60)
 
 
 ;;; User commands
@@ -426,19 +429,13 @@ Run after `sx-init--internal-hook'."
 This is used internally to set initial values for variables such
 as filters.")
 
-(defmacro sx-init-variable (variable value &optional setter)
-  "Set VARIABLE to VALUE using SETTER.
-SETTER should be a function of two arguments.  If SETTER is nil,
-`set' is used."
-  (eval
-   `(add-hook
-     'sx-init--internal-hook
-     (lambda ()
-       (,(or setter #'setq) ,variable ,value))))
-  nil)
+(defmacro sx-init-variable (variable)
+  "Set up VARIABLE to be loaded from disk on init."
+  `(add-hook 'sx-init--internal-hook
+             (lambda () (stash-load ,variable))))
 
 (defvar sx-initialized nil
-  "Nil if sx hasn't been initialized yet.
+  "Nil if SX hasn't been initialized yet.
 If it has, holds the time at which initialization happened.")
 
 (defun sx-initialize (&optional force)

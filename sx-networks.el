@@ -25,9 +25,9 @@
 ;;; Code:
 
 (require 'sx-method)
-(require 'sx-cache)
 (require 'sx-site)
 (require 'sx-filter)
+(require 'stash)
 
 (defconst sx-network--user-filter
   (sx-filter-from-nil
@@ -48,8 +48,8 @@
 (defun sx-network--get-associated ()
   "Retrieve cached information for network user.
 If cache is not available, retrieve current data."
-  (or (and (setq sx-network--user-information (sx-cache-get 'network-user)
-                 sx-network--user-sites
+  (or (and sx-network--user-information
+           (setq sx-network--user-sites
                  (sx-network--map-site-url-to-site-api)))
       (sx-network--update)))
 
@@ -57,12 +57,12 @@ If cache is not available, retrieve current data."
   "Update user information.
 Sets cache and then uses `sx-network--get-associated' to update
 the variables."
-  (sx-cache-set 'network-user
-                (sx-method-call 'me
-                  :submethod 'associated
-                  :keywords '((types . (main_site meta_site)))
-                  :filter sx-network--user-filter
-                  :auth t))
+  (setq network-user
+        (sx-method-call 'me
+          :submethod 'associated
+          :keywords '((types . (main_site meta_site)))
+          :filter sx-network--user-filter
+          :auth t))
   (sx-network--get-associated))
 
 (defun sx-network--initialize ()
@@ -88,7 +88,7 @@ list of sites the user is active on."
                   (cdr (assoc u-site sites-info)))))
             sx-network--user-information)))
 
-(defvar sx-network--user-information nil
+(defstash sx-network--user-information "network-user.el" sx nil
   "User information for the various sites.")
 
 (defvar sx-network--user-sites nil

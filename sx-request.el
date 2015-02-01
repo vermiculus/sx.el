@@ -258,22 +258,20 @@ false, use the symbol `false'.  Each element is processed with
 `sx--thing-as-string'."
   ;; Add API key to list of arguments, this allows for increased quota
   ;; automatically.
-  (let ((api-key (cons "key" sx-request-api-key))
-        (auth (car (sx-cache-get 'auth))))
-    (push api-key alist)
-    (when auth
-      (push auth alist))
-    (mapconcat
-     (lambda (pair)
-       (concat
-        (sx--thing-as-string (car pair))
-        "="
-        (sx--thing-as-string (cdr pair) kv-sep t)))
-     (delq nil (mapcar
-                (lambda (pair)
-                  (when (cdr pair) pair))
-                alist))
-     "&")))
+  (push (cons "key" sx-request-api-key) alist)
+  (when (bound-and-true-p sx-auth-access-token)
+    (push (cons 'access_token sx-auth-access-token) alist))
+  (mapconcat
+   (lambda (pair)
+     (concat
+      (sx--thing-as-string (car pair))
+      "="
+      (sx--thing-as-string (cdr pair) kv-sep t)))
+   (delq nil (mapcar
+              (lambda (pair)
+                (when (cdr pair) pair))
+              alist))
+   "&"))
 
 
 ;;; Response Processors
