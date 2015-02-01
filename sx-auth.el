@@ -30,7 +30,6 @@
 
 (require 'sx)
 (require 'sx-request)
-(require 'sx-cache)
 (require 'stash)
 
 (defconst sx-auth-root
