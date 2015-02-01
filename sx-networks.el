@@ -57,7 +57,7 @@ If cache is not available, retrieve current data."
   "Update user information.
 Sets cache and then uses `sx-network--get-associated' to update
 the variables."
-  (setq network-user
+  (setq sx-network--user-information
         (sx-method-call 'me
           :submethod 'associated
           :keywords '((types . (main_site meta_site)))
