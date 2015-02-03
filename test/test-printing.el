@@ -149,8 +149,9 @@ after being run through `sx-question--tag-format'."
 
 ;;; question-mode
 (ert-deftest sx-display-question ()
-  (should
-   (sx-display-question (elt sx-test-data-questions 0)))
+  ;; Check it doesn't error.
+  (sx-display-question (elt sx-test-data-questions 0))
+  ;; Check it does error.
   (should-error
    (sx-display-question sx-test-data-questions))
   (should-error
