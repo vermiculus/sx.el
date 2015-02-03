@@ -150,6 +150,8 @@ after being run through `sx-question--tag-format'."
 ;;; question-mode
 (ert-deftest sx-display-question ()
   (should
+   (sx-display-question (elt sx-test-data-questions 0)))
+  (should-error
    (sx-display-question sx-test-data-questions))
   (should-error
    (sx-display-question sx-test-data-questions nil 1)))
