@@ -286,10 +286,10 @@ The comment is indented, filled, and then printed according to
        (format sx-question-mode-comments-format
          (sx-user--format "%d" .owner)
          (substring
-          ;; We fill with three spaces at the start, so the comment is
-          ;; slightly indented.
           (sx-question-mode--fill-and-fontify
-           (concat "   " .body_markdown))
+           ;; We fill with three spaces at the start, so the comment is
+           ;; slightly indented.
+           (concat "   " (sx--squash-whitespace .body_markdown)))
           ;; Then we remove the spaces from the first line, since we'll
           ;; add the username there anyway.
           3))))))
