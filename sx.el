@@ -92,46 +92,65 @@ with a `link' property)."
   "Convert string LINK into data that can be displayed."
   (let ((result (list (cons 'site_par (sx--site link)))))
     ;; Try to strip a question or answer ID
-    (when (or
+    (when (cond ;; Comment
+           ((or ;; If there's a #commentNUMBER_NUMBER at the end, we
+             ;; know it's a comment with that ID.
+             (string-match (rx "#comment" (group-n 1 (+ digit))
+                               "_" (+ digit) string-end)
+                           link)
+             ;; From inbox items
+             (string-match (rx "/posts/comments/"
+                               ;; Comment ID
+                               (group-n 1 (+ digit))
+                               ;; Optional stuff at the end
+                               (or (and (any "?#") (* any)) "")
+                               string-end)
+                           link))
+            (push '(type . comment) result))
            ;; Answer
-           (and (or (string-match
-                     ;; From 'Share' button
-                     (rx "/a/"
-                         ;; Question ID
-                         (group (+ digit))
-                         ;; User ID
-                         "/" (+ digit)
-                         ;; Answer ID
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link)
-                    (string-match
-                     ;; From URL
-                     (rx "/questions/" (+ digit) "/"
-                         (+ (not (any "/"))) "/"
-                         ;; User ID
-                         (optional (group (+ digit)))
-                         (optional "/")
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link))
-                (push '(type . answer) result))
+           ((or ;; If there's a #NUMBER at the end, we know it's an
+             ;; answer with that ID.
+             (string-match (rx "#" (group-n 1 (+ digit)) string-end) link)
+             ;; From 'Share' button
+             (string-match (rx "/a/"
+                               ;; Answer ID
+                               (group-n 1 (+ digit)) "/"
+                               ;; User ID
+                               (+ digit)
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link)
+             ;; From URL
+             (string-match (rx "/questions/" (+ digit) "/"
+                               ;; Question title
+                               (+ (not (any "/"))) "/"
+                               ;; Answer ID. If this is absent, we match on
+                               ;; Question clause below.
+                               (group-n 1 (+ digit))
+                               (opt "/")
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link))
+            (push '(type . answer) result))
            ;; Question
-           (and (or (string-match
-                     ;; From 'Share' button
-                     (rx "/q/"
-                         ;; Question ID
-                         (group (+ digit))
-                         ;; User ID
-                         (optional "/" (+ digit))
-                         ;; Answer or Comment ID
-                         (group (or (sequence "#" (* any)) ""))
-                         string-end) link)
-                    (string-match
-                     ;; From URL
-                     (rx "/questions/"
-                         ;; Question ID
-                         (group (+ digit))
-                         "/") link))
-                (push '(type . question) result)))
+           ((or ;; From 'Share' button
+             (string-match (rx "/q/"
+                               ;; Question ID
+                               (group-n 1 (+ digit))
+                               ;; User ID
+                               (optional "/" (+ digit))
+                               ;; Garbage at the end
+                               (optional (and (any "?#") (* any)))
+                               string-end)
+                           link)
+             ;; From URL
+             (string-match (rx "/questions/"
+                               ;; Question ID
+                               (group-n 1 (+ digit)) "/")
+                           link))
+            (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
             result))
     result))
@@ -259,19 +278,58 @@ whenever BODY evaluates to nil."
        :filter (lambda (&optional _)
                  (when (progn ,@body) ,def)))))
 
+(defun sx--goto-property-change (prop &optional direction)
+  "Move forward to the next change of text-property PROP.
+Return the new value of PROP at point.
+
+If DIRECTION is negative, move backwards instead."
+  (let ((func (if (and (numberp direction)
+                       (< direction 0))
+                  #'previous-single-property-change
+                #'next-single-property-change))
+        (limit (if (and (numberp direction)
+                        (< direction 0))
+                   (point-min) (point-max))))
+    (goto-char (funcall func (point) prop nil limit))
+    (get-text-property (point) prop)))
+
+(defun sx--find-in-buffer (type id)
+  "Move point to an object of TYPE and ID.
+That is, move forward from beginning of buffer until
+`sx--data-here' is an object of type TYPE with the respective id
+ID.  If point is left at the of a line, move over the line break.
+
+TYPE is either question, answer, or comment.
+ID is an integer."
+  (let* ((id-symbol (cl-case type
+                      (answer 'answer_id)
+                      (comment 'comment_id)
+                      (question 'question_id)))
+         (pos
+          (save-excursion
+            (goto-char (point-min))
+            (while (not (or (eobp)
+                            (let ((data (sx--data-here type t)))
+                              (and data
+                                   (= id (or (cdr (assq id-symbol data))))))))
+              (forward-char 1))
+            (point))))
+    (if (equal pos (point-max))
+        (sx-message "Can't find the specified %s" type)
+      (goto-char pos)
+      (when (looking-at-p "$")
+        (forward-char 1)))))
+
 (defmacro sx--create-comparator (name doc compare-func get-func)
   "Define a new comparator called NAME with documentation DOC.
 COMPARE-FUNC is a function that takes the return value of
 GET-FUNC and performs the actual comparison."
   (declare (indent 1) (doc-string 2))
-  `(progn
-     ;; In using `defalias', the macro supports both function
-     ;; symbols and lambda expressions.
-     (defun ,name (a b)
-       ,doc
-       (funcall ,compare-func
-                (funcall ,get-func a)
-                (funcall ,get-func b)))))
+  `(defun ,name (a b)
+     ,doc
+     (funcall ,compare-func
+              (funcall ,get-func a)
+              (funcall ,get-func b))))
 
 
 ;;; Printing request data
