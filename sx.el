@@ -331,6 +331,10 @@ GET-FUNC and performs the actual comparison."
               (funcall ,get-func a)
               (funcall ,get-func b))))
 
+(defun sx--squash-whitespace (string)
+  "Return STRING with consecutive whitespace squashed together."
+  (replace-regexp-in-string "[ 	\r\n]+" " " string))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
