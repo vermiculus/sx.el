@@ -35,6 +35,9 @@ section.  Add comments with =c=.
 As always, =C-h m= is the definitive resource for the functions of this mode.
 
 * Installation
+SX is now available on MELPA!  Install it via the usual method or run =M-x
+package-install RET sx RET=.
+
 To install the development version, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
