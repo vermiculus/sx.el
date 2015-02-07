@@ -1,6 +1,8 @@
 #+Title: SX -- Stack Exchange for Emacs
 
 [[https://travis-ci.org/vermiculus/sx.el][https://travis-ci.org/vermiculus/sx.el.svg?branch=master]]
+[[http://melpa.org/#/sx][file:http://melpa.org/packages/sx-badge.svg]]
+[[http://stable.melpa.org/#/sx][file:http://stable.melpa.org/packages/sx-badge.svg]]
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
