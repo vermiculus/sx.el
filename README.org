@@ -49,8 +49,6 @@ If you are going to be doing any asking / answering / commenting / upvoting /
 downvoting / /etc./, you must use ~sx-authenticate~ to provide SX with an
 authentication token to act on your behalf.
 
-Eventually, this package will be available on MELPA.
-
 * Contributing
 Please help contribute!  Doing any of the following will help us immensely:
  - [[https://github.com/vermiculus/sx.el/issues/new][Open an issue]]
