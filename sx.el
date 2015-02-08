@@ -4,7 +4,7 @@
 
 ;; Author: Sean Allred <code@seanallred.com>
 ;; URL: https://github.com/vermiculus/sx.el/
-;; Version: 0.1
+;; Version: 0.2
 ;; Keywords: help, hypermedia, tools
 ;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3"))
 
@@ -28,7 +28,7 @@
 ;;; Code:
 (require 'tabulated-list)
 
-(defconst sx-version "0.1" "Version of the `sx' package.")
+(defconst sx-version "0.2" "Version of the `sx' package.")
 
 (defgroup sx nil
   "Customization group for the `sx' package."
