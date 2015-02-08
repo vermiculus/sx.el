@@ -84,7 +84,7 @@ prefix argument, the user is asked for everything."
      (when current-prefix-arg
        (setq tags (sx-tag-multiple-read
                    site (concat "Tags" (when query " (optional)"))))
-       (when (and (not query) (string= "" tags))
+       (unless (or query tags)
          (sx-user-error "Must supply either QUERY or TAGS"))
        (setq excluded-tags
              (sx-tag-multiple-read site "Excluded tags (optional)")))
