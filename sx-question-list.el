@@ -234,8 +234,10 @@ This is ignored if `sx-question-list--refresh-function' is set.")
   '(("Recent Activity" . activity)
     ("Creation Date"   . creation)
     ("Most Voted"      . votes)
+    ("Score"           . votes)
     ("Hot"             . hot))
   "Alist of possible values to be passed to the `sort' keyword.")
+(make-variable-buffer-local 'sx-question-list--order-methods)
 
 (defun sx-question-list--interactive-order-prompt (&optional prompt)
   "Interactively prompt for a sorting order.
