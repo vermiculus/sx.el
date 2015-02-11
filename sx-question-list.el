@@ -230,6 +230,22 @@ This is ignored if `sx-question-list--refresh-function' is set.")
     ": Quit")
   "Header-line used on the question list.")
 
+(defconst sx-question-list--order-methods
+  '(("Recent Activity" . activity)
+    ("Creation Date"   . creation)
+    ("Most Voted"      . votes)
+    ("Hot"             . hot))
+  "Alist of possible values to be passed to the `sort' keyword.")
+
+(defun sx-question-list--interactive-order-prompt (&optional prompt)
+  "Interactively prompt for a sorting order.
+PROMPT is displayed to the user.  If it is omitted, a default one
+is used."
+  (let ((order (sx-completing-read
+                (or prompt "Order questions by: ")
+                (mapcar #'car sx-question-list--order-methods))))
+    (cdr-safe (assoc-string order sx-question-list--order-methods))))
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
