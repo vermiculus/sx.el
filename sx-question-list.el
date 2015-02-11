@@ -420,6 +420,10 @@ Non-interactively, DATA is a question alist."
   "Site being displayed in the *question-list* buffer.")
 (make-variable-buffer-local 'sx-question-list--site)
 
+(defvar sx-question-list--order nil
+  "Order being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--order)
+
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
