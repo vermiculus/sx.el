@@ -52,7 +52,6 @@ fail.  EXCLUDED-TAGS is only is used if TAGS is also provided.
 KEYWORDS is passed to `sx-method-call'."
   (sx-method-call 'search
     :keywords `((page . ,page)
-                (sort . activity)
                 (intitle . ,query)
                 (tagged . ,tags)
                 (nottagged . ,excluded-tags)
@@ -60,6 +59,16 @@ KEYWORDS is passed to `sx-method-call'."
     :site site
     :auth t
     :filter sx-browse-filter))
+
+(defconst sx-search--order-methods
+  (cons '("Relevance" . relevance)
+        (cl-remove-if (lambda (x) (eq (cdr x) 'hot))
+                      (default-value 'sx-question-list--order-methods)))
+  "Alist of possible values to be passed to the `sort' keyword.")
+
+(defvar sx-search-default-order 'activity 
+  "Default ordering method used on new searches.
+Possible values are the cdrs of `sx-search--order-methods'.")
 
 
 ;;;###autoload
@@ -98,8 +107,11 @@ prefix argument, the user is asked for everything."
           (lambda (page)
             (sx-search-get-questions
              sx-question-list--site page
-             query tags excluded-tags)))
+             query tags excluded-tags
+             `((sort . ,sx-question-list--order)))))
     (setq sx-question-list--site site)
+    (setq sx-question-list--order sx-search-default-order)
+    (setq sx-question-list--order-methods sx-search--order-methods)
     (sx-question-list-refresh 'redisplay)
     (switch-to-buffer (current-buffer))))
 
