@@ -259,6 +259,10 @@ The full list of variables which can be set is:
  5. `sx-question-list--dataset'
       This is only used if both 3 and 4 are nil. It can be used to
       display a static list.
+ 6. `sx-question-list--order'
+      Set this to the `sort' method that should be used when
+      requesting the list, if that makes sense. If it doesn't
+      leave it as nil.
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
@@ -282,7 +286,7 @@ Adding further questions to the bottom of the list is done by:
    display; otherwise, decrement `sx-question-list--pages-so-far'.
 
 If `sx-question-list--site' is given, items 3 and 4 should take it
-into consideration.
+into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
