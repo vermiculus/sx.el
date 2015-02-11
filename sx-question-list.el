@@ -616,6 +616,19 @@ Sets `sx-question-list--site' and then call
     (setq sx-question-list--site site)
     (sx-question-list-refresh 'redisplay)))
 
+(defun sx-question-list-order-by (sort)
+  "Order questions in the current list by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (when sx-question-list--order
+           (sx-question-list--interactive-order-prompt))))
+  (unless sx-question-list--order
+    (sx-user-error "This list can't be reordered"))
+  (when (and sort (symbolp sort))
+    (setq sx-question-list--order sort)
+    (sx-question-list-refresh 'redisplay)))
+
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
 
