@@ -39,7 +39,9 @@
 
 
 ;;; Basic function
-(defun sx-search-get-questions (site page query &optional tags excluded-tags keywords)
+(defun sx-search-get-questions (site page query
+                                     &optional tags excluded-tags
+                                     &rest keywords)
   "Like `sx-question-get-questions', but restrict results by a search.
 
 Perform search on SITE.  PAGE is an integer indicating which page
@@ -108,7 +110,7 @@ prefix argument, the user is asked for everything."
             (sx-search-get-questions
              sx-question-list--site page
              query tags excluded-tags
-             `((sort . ,sx-question-list--order)))))
+             (cons 'sort sx-question-list--order))))
     (setq sx-question-list--site site)
     (setq sx-question-list--order sx-search-default-order)
     (setq sx-question-list--order-methods sx-search--order-methods)
