@@ -62,7 +62,7 @@ KEYWORDS is passed to `sx-method-call'."
     :filter sx-browse-filter))
 
 
-;;; User command
+;;;###autoload
 (defun sx-search (site query &optional tags excluded-tags)
   "Display search on SITE for question titles containing QUERY.
 When TAGS is given, it is a lists of tags, one of which must
