@@ -300,7 +300,7 @@ The comment is indented, filled, and then printed according to
           (with-temp-buffer
             ;; We fill with three spaces at the start, so the comment is
             ;; slightly indented.
-            (sx-question-mode--insert-markdown (concat "   " .body_markdown))
+            (sx-question-mode--insert-markdown (concat "   " (sx--squash-whitespace .body_markdown)))
             (buffer-string))
           ;; Then we remove the spaces from the first line, since we'll
           ;; add the username there anyway.

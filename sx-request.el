@@ -160,7 +160,7 @@ the main content of the response is returned."
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args nil))
          (request-url (concat sx-request-api-root method))
-         (url-request-method (and request-method (symbol-name request-method)))
+         (url-request-method (and request-method (upcase (symbol-name request-method))))
          (url-request-extra-headers
           '(("Content-Type" . "application/x-www-form-urlencoded")))
          (response-buffer (url-retrieve-synchronously request-url)))
