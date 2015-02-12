@@ -427,7 +427,7 @@ Image links are downloaded and displayed, if
                      url))
                url)
               (when image-p
-                (sx-question-mode--create-image url (1- (point)))))))))))
+                (sx-question-mode--create-image url (- (point) 2))))))))))
 
 (defun sx-question-mode--create-image (url point)
   "Get and create an image from URL and insert it at POINT.
@@ -445,7 +445,8 @@ Its size is bound by `sx-question-mode-image-max-width' and
                        (list :width (min sx-question-mode-image-max-width
                                          (window-body-width nil 'pixel)
                                          image-width))))))))
-    (sx-request-get-url url callback)))
+    (sx-request-get-url url callback)
+    (overlay-put ov 'face 'default)))
 
 (defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of TEXT-OR-IMAGE.
@@ -459,7 +460,7 @@ URL is used as 'help-echo and 'url properties."
       (forward-char 1)
       (delete-char 1)))
   ;; Images need to be at the start of a line.
-  (when (and imagep (not (looking-at-p "^")))
+  (unless (or text (looking-at-p "^"))
     (insert "\n"))
   (insert-text-button (or text " ")
                       ;; Mouse-over
@@ -472,7 +473,7 @@ URL is used as 'help-echo and 'url properties."
                       'sx-button-copy url
                       :type 'sx-button-link)
   ;; Images need to be at the end of a line too.
-  (insert "\n"))
+  (unless text (insert "\n")))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
