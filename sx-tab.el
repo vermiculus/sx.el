@@ -67,7 +67,8 @@ Possible values are the cdrs of `sx-tab--order-methods'."
               (mapcar (lambda (c) `(const :tag ,(car c) ,(cdr c)))
                 (cl-remove-duplicates
                  sx-tab--order-methods
-                 :key #'cdr))))
+                 :key #'cdr)))
+  :group 'sx-question-list)
 
 (defconst sx-tab--docstring-format
   "Display a list of %s questions for SITE.

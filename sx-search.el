@@ -74,7 +74,8 @@ Possible values are the cdrs of `sx-search--order-methods'."
               (mapcar (lambda (c) `(const :tag ,(car c) ,(cdr c)))
                 (cl-remove-duplicates
                  sx-search--order-methods
-                 :key #'cdr))))
+                 :key #'cdr)))
+  :group 'sx-question-list)
 
 
 ;;;###autoload
