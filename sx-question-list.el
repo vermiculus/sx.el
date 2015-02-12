@@ -27,6 +27,7 @@
 
 (require 'sx)
 (require 'sx-time)
+(require 'sx-tag)
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
