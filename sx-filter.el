@@ -29,20 +29,17 @@
 ;;; Dependencies
 
 (require 'sx)
-(require 'sx-cache)
 (require 'sx-request)
+(require 'stash)
+
+(defstash sx--filter-alist "filter.el" sx nil
+    "An alist of known filters.  See `sx-filter-compile'.
+Structure:
+
+  (((INCLUDE EXCLUDE BASE) . \"compiled filter\")...)")
 
 
 ;;; Customizations
-
-(defvar sx--filter-alist
-  (sx-cache-get 'filter)
-  "An alist of known filters.  See `sx-filter-compile'.
-Structure:
-
-    (((INCLUDE  EXCLUDE  BASE ) . \"compiled filter \")
-     ((INCLUDE2 EXCLUDE2 BASE2) . \"compiled filter2\")
-     ...)")
 
 
 ;;; Creation
@@ -94,13 +91,12 @@ Returns the compiled filter as a string."
 If the filter data exists in `sx--filter-alist', that value will
 be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
 a filter with `sx-filter-compile' and push the association onto
-`sx--filter-alist'.  Re-cache the alist with `sx-cache-set' and
-return the compiled filter."
+`sx--filter-alist'.  Return the compiled filter."
   (or (cdr (assoc (list include exclude base) sx--filter-alist))
       (let ((filter (sx-filter-compile include exclude base)))
         (when filter
-          (push (cons (list include exclude base) filter) sx--filter-alist)
-          (sx-cache-set 'filter sx--filter-alist)
+          (push (cons (list include exclude base) filter)
+                sx--filter-alist)
           filter))))
 
 

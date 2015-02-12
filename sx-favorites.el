@@ -25,16 +25,16 @@
 ;;; Code:
 
 (require 'sx-method)
-(require 'sx-cache)
 (require 'sx-site)
 (require 'sx-networks)
 (require 'sx-filter)
+(require 'stash)
 
 (defconst sx-favorite-list-filter
   (sx-filter-from-nil
    (question.question_id)))
 
-(defvar sx-favorites--user-favorite-list nil
+(defstash sx-favorites--user-favorite-list "favorites.el" sx nil
   "Alist of questions favorited by the user.
 Each element has the form (SITE FAVORITE-LIST).  And each element
 in FAVORITE-LIST is the numerical QUESTION_ID.")
@@ -42,9 +42,8 @@ in FAVORITE-LIST is the numerical QUESTION_ID.")
 (defun sx-favorites--initialize ()
   "Ensure question-favorites cache is available.
 Added as hook to initialization."
-  (or   (setq sx-favorites--user-favorite-list
-              (sx-cache-get 'question-favorites))
-        (sx-favorites-update)))
+  (or (stash-load 'sx-favorites--user-favorite-list)
+      (sx-favorites-update)))
 ;; ;; Append to ensure `sx-network--initialize' is run before it.
 ;; This is removed for now because it performs a lot of API calls and
 ;; was never used.
@@ -62,13 +61,12 @@ Added as hook to initialization."
   "Update list of starred QUESTION_IDs for SITE.
 Writes list to cache QUESTION-FAVORITES."
   (let* ((favs (sx-favorites--retrieve-favorites site))
-         (site-cell (assoc site
-                           sx-favorites--user-favorite-list))
+         (site-cell (assoc site sx-favorites--user-favorite-list))
          (fav-cell (mapcar #'cdar favs)))
     (if site-cell
         (setcdr site-cell fav-cell)
-      (push (cons site fav-cell) sx-favorites--user-favorite-list))
-  (sx-cache-set 'question-favorites sx-favorites--user-favorite-list)))
+      (push (cons site fav-cell)
+            sx-favorites--user-favorite-list))))
 
 (defun sx-favorites-update ()
   "Update all sites retrieved from `sx-network--user-sites'."

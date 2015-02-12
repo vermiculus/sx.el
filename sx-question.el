@@ -28,6 +28,7 @@
 (require 'sx)
 (require 'sx-filter)
 (require 'sx-method)
+(require 'stash)
 
 (defun sx-question-get-questions (site &optional page keywords submethod)
   "Get SITE questions.  Return page PAGE (the first if nil).
@@ -96,7 +97,8 @@ for the post."
 ;;; Question Properties
 
 ;;;; Read/unread
-(defvar sx-question--user-read-list nil
+(defstash sx-question--user-read-list
+    "read-questions.el" sx nil
   "Alist of questions read by the user.
 
 Each element has the form
@@ -106,13 +108,14 @@ Each element has the form
 where each element in QUESTION-LIST has the form
 
     (QUESTION_ID . LAST-VIEWED-DATE).")
+(sx-init-variable sx-question--user-read-list)
 
 (defun sx-question--ensure-read-list (site)
   "Ensure `sx-question--user-read-list' has been read from cache.
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-read-list
     (setq sx-question--user-read-list
-          (sx-cache-get 'read-questions `'((,site))))))
+          (list (list site)))))
 
 (defun sx-question--read-p (question)
   "Non-nil if QUESTION has been read since last updated.
@@ -129,39 +132,36 @@ See `sx-question--user-read-list'."
 Returns nil if question (in its current state) was already marked
 read, i.e., if it was `sx-question--read-p'.
 See `sx-question--user-read-list'."
-  (prog1
-      (sx-assoc-let question
-        (sx-question--ensure-read-list .site_par)
-        (let ((site-cell (assoc .site_par sx-question--user-read-list))
-              (q-cell (cons .question_id .last_activity_date))
-              cell)
-          (cond
-           ;; First question from this site.
-           ((null site-cell)
-            (push (list .site_par q-cell) sx-question--user-read-list))
-           ;; Question already present.
-           ((setq cell (assoc .question_id site-cell))
-            ;; Current version is newer than cached version.
-            (when (or (not (numberp (cdr cell)))
-                      (> .last_activity_date (cdr cell)))
-              (setcdr cell .last_activity_date)))
-           ;; Question wasn't present.
-           (t
-            (sx-sorted-insert-skip-first
-             q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
-    ;; Save the results.
-    ;; @TODO This causes a small lag on `j' and `k' as the list gets
-    ;; large.  Should we do this on a timer?
-    (sx-cache-set 'read-questions sx-question--user-read-list)))
+  (sx-assoc-let question
+    (sx-question--ensure-read-list .site_par)
+    (let ((site-cell (assoc .site_par sx-question--user-read-list))
+          (q-cell (cons .question_id .last_activity_date))
+          cell)
+      (cond
+       ;; First question from this site.
+       ((null site-cell)
+        (push (list .site_par q-cell) sx-question--user-read-list))
+       ;; Question already present.
+       ((setq cell (assoc .question_id site-cell))
+        ;; Current version is newer than cached version.
+        (when (or (not (numberp (cdr cell)))
+                  (> .last_activity_date (cdr cell)))
+          (setcdr cell .last_activity_date)))
+       ;; Question wasn't present.
+       (t
+        (sx-sorted-insert-skip-first
+         q-cell site-cell (lambda (x y) (> (car x) (car y)))))))))
 
 
 ;;;; Hidden
-(defvar sx-question--user-hidden-list nil
+(defstash sx-question--user-hidden-list
+    "hidden-questions.el" sx nil
   "Alist of questions hidden by the user.
 
 Each element has the form
 
   (SITE QUESTION_ID QUESTION_ID ...)")
+(sx-init-variable sx-question--user-hidden-list)
 
 (defun sx-question--ensure-hidden-list (site)
   "Ensure the `sx-question--user-hidden-list' has been read from cache.
@@ -169,7 +169,7 @@ Each element has the form
 If no cache exists for it, initialize one with SITE."
   (unless sx-question--user-hidden-list
     (setq sx-question--user-hidden-list
-          (sx-cache-get 'hidden-questions `'((,site))))))
+          (list (list site)))))
 
 (defun sx-question--hidden-p (question)
   "Non-nil if QUESTION has been hidden."
@@ -190,9 +190,7 @@ If no cache exists for it, initialize one with SITE."
           ;; Not first question and question wasn't present.
           ;; Add it in, but make sure it's sorted (just in case we
           ;; decide to rely on it later).
-          (sx-sorted-insert-skip-first .question_id site-cell >))
-        ;; Save the results.
-        (sx-cache-set 'hidden-questions sx-question--user-hidden-list)))))
+          (sx-sorted-insert-skip-first .question_id site-cell >))))))
 
 
 ;;;; Other data
