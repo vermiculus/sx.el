@@ -144,151 +144,48 @@ to use instead."
          (add-to-list 'sx-tab--list ,tab)))))
 
 
-;;; FrontPage
-(sx-tab--define "FrontPage"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . activity)))))
+;;; Entry commands
+(sx-tab--define "All-Questions"
+  (sx-question-list--make-pager 'questions)
+  nil nil nil
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
 ;;;###autoload
-(autoload 'sx-tab-frontpage
+(autoload 'sx-tab-all-questions
   (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
 
-
-;;; Newest
-(sx-tab--define "Newest"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . creation)))))
-;;;###autoload
-(autoload 'sx-tab-newest
-  (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
-  nil t)
-
-
-
-;;; TopVoted
-(sx-tab--define "TopVoted"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . votes)))))
-;;;###autoload
-(autoload 'sx-tab-topvoted
-  (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
-  nil t)
-
-
-
-;;; Hot
-(sx-tab--define "Hot"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . hot)))))
-;;;###autoload
-(autoload 'sx-tab-hot
-  (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
-  nil t)
-
-
-
-;;; Week
-(sx-tab--define "Week"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . week)))))
-;;;###autoload
-(autoload 'sx-tab-week
-  (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
-  nil t)
-
-
-
-;;; Month
-(sx-tab--define "Month"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page '((sort . month)))))
-;;;###autoload
-(autoload 'sx-tab-month
-  (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
-  nil t)
-
-
-;;; Unanswered
 (sx-tab--define "Unanswered"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page nil 'unanswered)))
+  (sx-question-list--make-pager 'questions 'unanswered))
 ;;;###autoload
 (autoload 'sx-tab-unanswered
   (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
 
-
-;;; Unanswered My-tags
-(sx-tab--define "Unanswered-my-tags"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page nil 'unanswered/my-tags)))
+(sx-tab--define "Unanswered-My-Tags"
+  (sx-question-list--make-pager 'questions 'unanswered/my-tags))
 ;;;###autoload
 (autoload 'sx-tab-unanswered-my-tags
   (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
 
-
-;;; Featured
 (sx-tab--define "Featured"
-  (lambda (page)
-    (sx-question-get-questions
-     sx-question-list--site page nil 'featured)))
+  (sx-question-list--make-pager 'questions 'featured))
 ;;;###autoload
 (autoload 'sx-tab-featured
   (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
 
-
-;;; Starred
 (sx-tab--define "Starred"
-  (lambda (page)
-    (sx-method-call 'me
-      :page page
-      :site sx-question-list--site
-      :auth t
-      :submethod 'favorites
-      :filter sx-browse-filter)))
+  (sx-question-list--make-pager 'me 'favorites))
 ;;;###autoload
 (autoload 'sx-tab-featured
   (expand-file-name
-   "sx-tab"
-   (when load-file-name
-     (file-name-directory load-file-name)))
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
 
 
@@ -304,7 +201,84 @@ belongs to."
        (if (string-match "\\`meta\\." sx-question-list--site)
            (replace-match "" :fixedcase nil sx-question-list--site)
          (concat "meta." sx-question-list--site)))
-    (sx-tab-frontpage nil (sx--site (sx--data-here 'question)))))
+    (sx-tab-all-questions nil (sx--site (sx--data-here 'question)))))
+
+
+;;; Obsolete tabs
+(defconst sx-tab--basic-question-pager
+  (sx-question-list--make-pager 'questions))
+
+(sx-tab--define "FrontPage"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'activity)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-frontpage
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
+
+(sx-tab--define "Newest"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'creation)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-newest
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
+
+(sx-tab--define "TopVoted"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'votes)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-topvoted
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
+
+(sx-tab--define "Hot"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'hot)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-hot
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
+
+(sx-tab--define "Week"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'week)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-week
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
+
+(sx-tab--define "Month"
+  sx-tab--basic-question-pager
+  nil nil "All-Questions"
+  (setq sx-question-list--order 'month)
+  (setq sx-question-list--order-methods
+        sx-tab--order-methods))
+;;;###autoload
+(autoload 'sx-tab-month
+  (expand-file-name
+   "sx-tab" (when load-file-name (file-name-directory load-file-name)))
+  nil t)
 
 (provide 'sx-tab)
 ;;; sx-tab.el ends here
