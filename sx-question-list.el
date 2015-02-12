@@ -367,6 +367,9 @@ into consideration.  The same holds for `sx-question-list--order'.
    ([?\r] sx-display)
    ))
 
+(sx--define-conditional-key sx-question-list-mode-map "O" #'sx-question-list-order-by
+  (and (boundp 'sx-question-list--order) sx-question-list--order))
+
 (defun sx-question-list-hide (data)
   "Hide question under point.
 Non-interactively, DATA is a question alist."
