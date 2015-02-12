@@ -230,6 +230,24 @@ This is ignored if `sx-question-list--refresh-function' is set.")
     ": Quit")
   "Header-line used on the question list.")
 
+(defconst sx-question-list--order-methods
+  '(("Recent Activity" . activity)
+    ("Creation Date"   . creation)
+    ("Most Voted"      . votes)
+    ("Score"           . votes)
+    ("Hot"             . hot))
+  "Alist of possible values to be passed to the `sort' keyword.")
+(make-variable-buffer-local 'sx-question-list--order-methods)
+
+(defun sx-question-list--interactive-order-prompt (&optional prompt)
+  "Interactively prompt for a sorting order.
+PROMPT is displayed to the user.  If it is omitted, a default one
+is used."
+  (let ((order (sx-completing-read
+                (or prompt "Order questions by: ")
+                (mapcar #'car sx-question-list--order-methods))))
+    (cdr-safe (assoc-string order sx-question-list--order-methods))))
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
@@ -259,6 +277,10 @@ The full list of variables which can be set is:
  5. `sx-question-list--dataset'
       This is only used if both 3 and 4 are nil. It can be used to
       display a static list.
+ 6. `sx-question-list--order'
+      Set this to the `sort' method that should be used when
+      requesting the list, if that makes sense. If it doesn't
+      leave it as nil.
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
@@ -282,7 +304,7 @@ Adding further questions to the bottom of the list is done by:
    display; otherwise, decrement `sx-question-list--pages-so-far'.
 
 If `sx-question-list--site' is given, items 3 and 4 should take it
-into consideration.
+into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
@@ -419,6 +441,10 @@ Non-interactively, DATA is a question alist."
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
 (make-variable-buffer-local 'sx-question-list--site)
+
+(defvar sx-question-list--order nil
+  "Order being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--order)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
@@ -590,6 +616,19 @@ Sets `sx-question-list--site' and then call
            t)))
   (when (and (stringp site) (> (length site) 0))
     (setq sx-question-list--site site)
+    (sx-question-list-refresh 'redisplay)))
+
+(defun sx-question-list-order-by (sort)
+  "Order questions in the current list by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (when sx-question-list--order
+           (sx-question-list--interactive-order-prompt))))
+  (unless sx-question-list--order
+    (sx-user-error "This list can't be reordered"))
+  (when (and sort (symbolp sort))
+    (setq sx-question-list--order sort)
     (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)
