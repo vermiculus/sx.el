@@ -416,30 +416,38 @@ Image links are downloaded and displayed, if
                           (sx-question-mode-find-reference
                            (match-string-no-properties 3)
                            text)))
-                 (full-text (match-string-no-properties 0)))
+                 (full-text (match-string-no-properties 0))
+                 (image-p (and sx-question-mode-use-images
+                               (eq ?! (elt full-text 0)))))
             (when (stringp url)
               (replace-match "")
               (sx-question-mode--insert-link
-               (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
-                   ;; Is it an image?
-                   (sx-question-mode--create-image url)
-                 ;; Or a regular link
-                 (or (if sx-question-mode-pretty-links text full-text) url))
-               url))))))))
+               (unless image-p
+                 (or (if sx-question-mode-pretty-links text full-text)
+                     url))
+               url)
+              (when image-p
+                (sx-question-mode--create-image url (1- (point)))))))))))
 
-(defun sx-question-mode--create-image (url)
-  "Get and create an image from URL.
+(defun sx-question-mode--create-image (url point)
+  "Get and create an image from URL and insert it at POINT.
+The image will take the place of the character at POINT.
 Its size is bound by `sx-question-mode-image-max-width' and
 `window-body-width'."
-  (let* ((image
-          (create-image (sx-request-get-url url) 'imagemagick t))
-         (image-width (car (image-size image 'pixels))))
-    (append image
-            (list :width (min sx-question-mode-image-max-width
-                              (window-body-width nil 'pixel)
-                              image-width)))))
+  (let* ((ov (make-overlay point (1+ point) (current-buffer) t nil))
+         (callback
+          (lambda (data)
+            (let* ((image (create-image data 'imagemagick t))
+                   (image-width (car (image-size image 'pixels))))
+              (overlay-put
+               ov 'display
+               (append image
+                       (list :width (min sx-question-mode-image-max-width
+                                         (window-body-width nil 'pixel)
+                                         image-width))))))))
+    (sx-request-get-url url callback)))
 
-(defun sx-question-mode--insert-link (text-or-image url)
+(defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
   ;; For now, the only way to handle nested links is to remove them.
@@ -450,26 +458,21 @@ URL is used as 'help-echo and 'url properties."
         (replace-match "")
       (forward-char 1)
       (delete-char 1)))
-  (let ((imagep (not (stringp text-or-image))))
-    ;; Images need to be at the start of a line.
-    (when (and imagep (not (looking-at-p "^")))
-      (insert "\n"))
-    (apply #'insert-text-button
-      (if imagep " " text-or-image)
-      ;; Mouse-over
-      'help-echo
-      (format sx-button--link-help-echo
-        (propertize (sx--shorten-url url)
-                    'face 'font-lock-function-name-face))
-      ;; For visiting and stuff.
-      'sx-button-url url
-      'sx-button-copy url
-      :type 'sx-button-link
-      ;; The last argument of `apply' is a list.
-      (when imagep
-        `(face default display ,text-or-image)))
-    ;; Images need to be at the end of a line too.
-    (insert "\n")))
+  ;; Images need to be at the start of a line.
+  (when (and imagep (not (looking-at-p "^")))
+    (insert "\n"))
+  (insert-text-button (or text " ")
+                      ;; Mouse-over
+                      'help-echo
+                      (format sx-button--link-help-echo
+                        (propertize (sx--shorten-url url)
+                                    'face 'font-lock-function-name-face))
+                      ;; For visiting and stuff.
+                      'sx-button-url url
+                      'sx-button-copy url
+                      :type 'sx-button-link)
+  ;; Images need to be at the end of a line too.
+  (insert "\n"))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
