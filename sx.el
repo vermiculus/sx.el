@@ -335,6 +335,12 @@ GET-FUNC and performs the actual comparison."
   "Return STRING with consecutive whitespace squashed together."
   (replace-regexp-in-string "[ 	\r\n]+" " " string))
 
+(defun sx--invert-predicate (predicate)
+  "Return PREDICATE function with arguments inverted.
+For instance (sx--invert-predicate #'<) is the same as #'>.
+Note this is not the same as negating PREDICATE."
+  (lambda (&rest args) (apply predicate (reverse args))))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
