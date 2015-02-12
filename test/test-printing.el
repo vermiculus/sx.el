@@ -37,10 +37,11 @@ after being run through `sx-question--tag-format'."
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
              (lambda (&rest _) sx-test-data-questions)))
-    (sx-tab-frontpage nil "emacs")
-    (switch-to-buffer "*question-list*")
+    (sx-tab-all-questions nil "emacs")
+    (switch-to-buffer sx-tab--all-questions-buffer)
     (goto-char (point-min))
-    (should (equal (buffer-name) "*question-list*"))
+    (should (equal (buffer-name)
+                   (format "*question-list: %s *" sx-question-list--current-tab)))
     (line-should-match
      (question-list-regex
       "Focus-hook: attenuate colours when losing focus"
@@ -51,9 +52,9 @@ after being run through `sx-question--tag-format'."
       "Babel doesn&#39;t wrap results in verbatim"
       0 1 "org-mode" "org-export" "org-babel"))
     ;; ;; Use this when we have a real sx-question buffer.
-    ;; (call-interactively 'sx-question-list-display-question)
-    ;; (should (equal (buffer-name) "*sx-question*"))
-    (switch-to-buffer "*question-list*")
+    ;; (save-excursion
+    ;;   (call-interactively 'sx-question-list-display-question)
+    ;;   (should (equal (buffer-name) "*sx-question*")))
     (sx-question-list-previous 4)
     (line-should-match
      (question-list-regex
