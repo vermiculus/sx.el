@@ -247,6 +247,20 @@ is used."
                 (mapcar #'car sx-question-list--order-methods))))
     (cdr-safe (assoc-string order sx-question-list--order-methods))))
 
+(defun sx-question-list--make-pager (method &optional submethod)
+  "Return a function suitable for use as a question list pager.
+Meant to be used as `sx-question-list--next-page-function'."
+  (lambda (page)
+    (sx-method-call method
+      :keywords `((page . ,page)
+                  ,@(when sx-question-list--order
+                      `((order . ,(if sx-question-list--descending 'desc 'asc))
+                        (sort . ,sx-question-list--order))))
+      :site sx-question-list--site
+      :auth t
+      :submethod submethod
+      :filter sx-browse-filter)))
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
