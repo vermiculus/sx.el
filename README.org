@@ -1,6 +1,8 @@
 #+Title: SX -- Stack Exchange for Emacs
 
 [[https://travis-ci.org/vermiculus/sx.el][https://travis-ci.org/vermiculus/sx.el.svg?branch=master]]
+[[http://melpa.org/#/sx][file:http://melpa.org/packages/sx-badge.svg]]
+[[http://stable.melpa.org/#/sx][file:http://stable.melpa.org/packages/sx-badge.svg]]
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
@@ -35,6 +37,9 @@ section.  Add comments with =c=.
 As always, =C-h m= is the definitive resource for the functions of this mode.
 
 * Installation
+SX is now available on MELPA!  Install it via the usual method or run =M-x
+package-install RET sx RET=.
+
 To install the development version, follow the usual steps:
 - Clone this repository
 - Add this directory to your ~load-path~
@@ -45,8 +50,6 @@ this time).
 If you are going to be doing any asking / answering / commenting / upvoting /
 downvoting / /etc./, you must use ~sx-authenticate~ to provide SX with an
 authentication token to act on your behalf.
-
-Eventually, this package will be available on MELPA.
 
 * Contributing
 Please help contribute!  Doing any of the following will help us immensely:
