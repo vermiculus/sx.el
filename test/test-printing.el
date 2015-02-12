@@ -27,6 +27,18 @@ after being run through `sx-question--tag-format'."
 
 
 ;;; Tests
+(ert-deftest time-since ()
+  (cl-letf (((symbol-function #'float-time)
+           (lambda () 1420148997.)))
+    (should
+     (string=
+      "67m"
+      (sx-time-since 1420145000.)))
+    (should
+     (string=
+      "12h"
+      (sx-time-since 1420105000.)))))
+
 (ert-deftest question-list-tag ()
   "Test `sx-question--tag-format'."
   (should
@@ -134,6 +146,17 @@ after being run through `sx-question--tag-format'."
     (should
      (equal object '((answers . [something "answer"]))))))
 
+
+;;; question-mode
+(ert-deftest sx-display-question ()
+  ;; Check it doesn't error.
+  (sx-display-question (elt sx-test-data-questions 0))
+  ;; Check it does error.
+  (should-error
+   (sx-display-question sx-test-data-questions))
+  (should-error
+   (sx-display-question sx-test-data-questions nil 1)))
+
 (ert-deftest sx-question-mode--fill-and-fontify ()
   "Check complicated questions are filled correctly."
   (should
@@ -190,3 +213,4 @@ if you used the Stack Exchange login method, you'd...
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
   [3]: http://i.stack.imgur.com/22myl.png")))
+
