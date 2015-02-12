@@ -79,7 +79,7 @@ If SITE is nil, use `sx-default-site'.")
 
 
 ;;; The main macro
-(defmacro sx-tab--define (tab pager &optional printer refresher
+(defmacro sx-tab--define (tab pager &optional printer refresher obsolete
                               &rest body)
   "Define a StackExchange tab called TAB.
 TAB is a capitalized string.
@@ -94,23 +94,26 @@ respectively used to set the value of the variables
 `sx-question-list--next-page-function'.
 
 BODY is evaluated after activating the mode and setting these
-variables, but before refreshing the display."
+variables, but before refreshing the display.
+
+If OBSOLETE is non-nil, it should be a string indicating the tab
+to use instead."
   (declare (indent 1) (debug t))
   (let* ((name (downcase tab))
          (buffer-variable
-          (intern (concat "sx-tab--" name "-buffer"))))
+          (intern (format "sx-tab--%s-buffer"
+                    (if obsolete (downcase obsolete)
+                      name))))
+         (function-name
+          (intern (concat "sx-tab-" name)))
+         (use-instead
+          (when obsolete (intern (concat "sx-tab-" (downcase obsolete))))))
     `(progn
-       (defvar ,buffer-variable nil
-         ,(format "Buffer where the %s questions are displayed."
-            tab))
-       (defun
-           ,(intern (concat "sx-tab-" name))
-           (&optional no-update site)
-         ,(format "Display a list of %s questions for SITE.
-
-NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
-If SITE is nil, use `sx-default-site'."
-            tab)
+       ,(unless obsolete
+          `(defvar ,buffer-variable nil
+             ,(format "Buffer where the %s questions are displayed." tab)))
+       (defun ,function-name (&optional no-update site)
+         ,(format sx-tab--docstring-format tab)
          (interactive
           (list current-prefix-arg
                 (sx--interactive-site-prompt)))
@@ -119,24 +122,26 @@ If SITE is nil, use `sx-default-site'."
          ;; Create the buffer
          (unless (buffer-live-p ,buffer-variable)
            (setq ,buffer-variable
-                 (generate-new-buffer "*question-list*")))
+                 (generate-new-buffer
+                  ,(format "*question-list: %s *" (or obsolete tab)))))
          ;; Fill the buffer with content.
          (with-current-buffer ,buffer-variable
            (sx-question-list-mode)
-           ,(when printer
-              `(setq sx-question-list--print-function ,printer))
-           ,(when refresher
-              `(setq sx-question-list--refresh-function ,refresher))
-           ,(when pager
-              `(setq sx-question-list--next-page-function ,pager))
+           (when ,printer (setq sx-question-list--print-function ,printer))
+           (when ,refresher (setq sx-question-list--refresh-function ,refresher))
+           (setq sx-question-list--next-page-function ,pager)
            (setq sx-question-list--site site)
-           (setq sx-question-list--current-tab ,tab)
+           (setq sx-question-list--order 'activity)
+           (setq sx-question-list--current-tab ,(or obsolete tab))
            ,@body
            (sx-question-list-refresh 'redisplay no-update))
          (switch-to-buffer ,buffer-variable))
+       ,(when obsolete
+          `(make-obsolete ',function-name ',use-instead nil))
        ;; Add this tab to the list of existing tabs. So we can prompt
        ;; the user with completion and stuff.
-       (add-to-list 'sx-tab--list ,tab))))
+       (unless ,obsolete
+         (add-to-list 'sx-tab--list ,tab)))))
 
 
 ;;; FrontPage
