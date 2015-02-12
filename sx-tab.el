@@ -53,6 +53,30 @@
           t)))
   (funcall (intern (format "sx-tab-%s" (downcase tab)))))
 
+(defconst sx-tab--order-methods
+  `(,@(default-value 'sx-question-list--order-methods)
+    ("Hottest Now"     . hot)
+    ("Weekly Hottest"  . week)
+    ("Monthly Hottest" . month))
+  "Alist of possible values to be passed to the `sort' keyword.")
+
+(defcustom sx-tab-default-order 'activity
+  "Default ordering method used on `sx-tab-questions' and the likes.
+Possible values are the cdrs of `sx-tab--order-methods'."
+  :type (cons 'choice
+              (mapcar (lambda (c) `(const :tag ,(car c) ,(cdr c)))
+                (cl-remove-duplicates
+                 sx-tab--order-methods
+                 :key #'cdr))))
+
+(defconst sx-tab--docstring-format
+  "Display a list of %s questions for SITE.
+The variable `sx-tab-default-order' can be used to customize the
+sorting of the resulting list.
+
+NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
+If SITE is nil, use `sx-default-site'.")
+
 
 ;;; The main macro
 (defmacro sx-tab--define (tab pager &optional printer refresher
