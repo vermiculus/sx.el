@@ -446,7 +446,14 @@ Non-interactively, DATA is a question alist."
 (make-variable-buffer-local 'sx-question-list--site)
 
 (defvar sx-question-list--order nil
-  "Order being displayed in the *question-list* buffer.")
+  "Order being displayed in the *question-list* buffer.
+This is also affected by `sx-question-list--descending'.")
+(make-variable-buffer-local 'sx-question-list--order)
+
+(defvar sx-question-list--descending t
+  "In which direction should `sx-question-list--order' be sorted.
+If non-nil (default), descending.
+If nil, ascending.")
 (make-variable-buffer-local 'sx-question-list--order)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
@@ -621,17 +628,22 @@ Sets `sx-question-list--site' and then call
     (setq sx-question-list--site site)
     (sx-question-list-refresh 'redisplay)))
 
-(defun sx-question-list-order-by (sort)
+(defun sx-question-list-order-by (sort &optional ascend)
   "Order questions in the current list by the method SORT.
 Sets `sx-question-list--order' and then calls
-`sx-question-list-refresh' with `redisplay'."
+`sx-question-list-refresh' with `redisplay'.
+
+With a prefix argument or a non-nil ASCEND, invert the sorting
+order."
   (interactive
    (list (when sx-question-list--order
-           (sx-question-list--interactive-order-prompt))))
+           (sx-question-list--interactive-order-prompt))
+         current-prefix-arg))
   (unless sx-question-list--order
     (sx-user-error "This list can't be reordered"))
   (when (and sort (symbolp sort))
     (setq sx-question-list--order sort)
+    (setq sx-question-list--descending (not ascend))
     (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)

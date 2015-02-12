@@ -115,6 +115,7 @@ prefix argument, the user is asked for everything."
             (sx-search-get-questions
              sx-question-list--site page
              query tags excluded-tags
+             (cons 'order (if sx-question-list--descending 'desc 'asc))
              (cons 'sort sx-question-list--order))))
     (setq sx-question-list--site site)
     (setq sx-question-list--order sx-search-default-order)
