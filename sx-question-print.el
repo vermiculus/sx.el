@@ -246,10 +246,9 @@ DATA can represent a question or an answer."
                             'face 'sx-question-mode-header))
         (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
+          (insert "\n")
+          (sx-question-mode--insert-markdown .body_markdown)
           (insert "\n"
-                  (sx-question-mode--fill-and-fontify
-                   .body_markdown)
-                  "\n"
                   (propertize sx-question-mode-separator
                               'face 'sx-question-mode-header)))
         ;; Comments have their own `sx--data-here' property (so they can
@@ -296,10 +295,13 @@ The comment is indented, filled, and then printed according to
        (format sx-question-mode-comments-format
          (sx-user--format "%d" .owner)
          (substring
-          ;; We fill with three spaces at the start, so the comment is
-          ;; slightly indented.
-          (sx-question-mode--fill-and-fontify
-           (concat "   " .body_markdown))
+          ;; We use temp buffer, so that image overlays don't get
+          ;; inserted with the comment.
+          (with-temp-buffer
+            ;; We fill with three spaces at the start, so the comment is
+            ;; slightly indented.
+            (sx-question-mode--insert-markdown (concat "   " .body_markdown))
+            (buffer-string))
           ;; Then we remove the spaces from the first line, since we'll
           ;; add the username there anyway.
           3))))))
@@ -345,37 +347,53 @@ E.g.:
                           (>= 2 (any lower numeric "/._%&#?=;"))))))
   "Regexp matching markdown links.")
 
-(defun sx-question-mode--fill-and-fontify (text)
-  "Return TEXT filled according to `markdown-mode'."
-  (with-temp-buffer
-    (insert text)
-    (delay-mode-hooks (markdown-mode))
-    (font-lock-mode -1)
-    (when sx-question-mode-bullet-appearance
-      (font-lock-add-keywords ;; Bullet items.
-       nil
-       `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
-          1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
-    (font-lock-add-keywords ;; Highlight usernames.
-     nil
-     `((,(rx (or blank line-start)
-             (group-n 1 (and "@" (1+ (not space))))
-             symbol-end)
-        1 font-lock-builtin-face)))
-    ;; Everything.
-    (font-lock-fontify-region (point-min) (point-max))
-    ;; Compact links.
-    (sx-question-mode--process-links-in-buffer)
-    ;; And now the filling
-    (goto-char (point-min))
-    (while (null (eobp))
-      ;; Don't fill pre blocks.
-      (unless (sx-question-mode--dont-fill-here)
-        (let ((beg (point)))
-          (skip-chars-forward "\r\n[:blank:]")
-          (forward-paragraph)
-          (fill-region beg (point)))))
-    (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
+(defun sx-question-mode--process-markdown-in-region (beg end)
+  "Process Markdown text between BEG and END.
+This does not do Markdown font-locking.  Instead, it fills text,
+propertizes links, inserts images, cleans up html comments, and
+font-locks code-blocks according to mode."
+  (save-restriction
+    (save-excursion
+      (narrow-to-region beg end)
+      ;; Compact links.
+      (sx-question-mode--process-links-in-buffer)
+      ;; And now the filling and other handlings.
+      (goto-char (point-min))
+      (while (null (eobp))
+        ;; Don't fill pre blocks.
+        (unless (sx-question-mode--dont-fill-here)
+          (let ((beg (point)))
+            (skip-chars-forward "\r\n[:blank:]")
+            (forward-paragraph)
+            (fill-region beg (point))))))))
+
+(defun sx-question-mode--insert-markdown (text)
+  "Return TEXT fontified according to `markdown-mode'."
+  (let ((beg (point)))
+    (insert
+     ;; Font-locking needs to be done in a temp buffer, because it
+     ;; affects the entire buffer even if we narrow.
+     (with-temp-buffer
+       (insert text)
+       (delay-mode-hooks (markdown-mode))
+       (font-lock-mode -1)
+       (when sx-question-mode-bullet-appearance
+         (font-lock-add-keywords ;; Bullet items.
+          nil
+          `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
+             1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
+       (font-lock-add-keywords ;; Highlight usernames.
+        nil
+        `((,(rx (or blank line-start)
+                (group-n 1 (and "@" (1+ (not space))))
+                symbol-end)
+           1 font-lock-builtin-face)))
+       ;; Everything.
+       (font-lock-fontify-region (point-min) (point-max))
+       (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
+    ;; This part can and should be done in place, this way it can
+    ;; create overlays.
+    (sx-question-mode--process-markdown-in-region beg (point))))
 
 
 ;;; Handling links

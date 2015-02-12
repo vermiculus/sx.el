@@ -195,7 +195,7 @@ Letters do not insert themselves; instead, they are commands.
     (set-window-parameter
      nil 'quit-restore
      `(other window nil ,(current-buffer))))
-  ;; We call font-lock-region manually. See `sx-question-mode--fill-and-fontify'
+  ;; We call font-lock-region manually. See `sx-question-mode--insert-markdown'.
   (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
