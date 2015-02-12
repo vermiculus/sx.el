@@ -77,23 +77,23 @@ This is usually a link's URL, or the content of a code block."
                        (point) 'sx-button-copy-type)
                       content)))))
 
-(defun sx-button-edit-this (text-or-marker &optional major-mode)
-  "Open a temp buffer populated with the string TEXT-OR-MARKER using MAJOR-MODE.
+(defun sx-button-edit-this (text-or-marker &optional majormode)
+  "Open a temp buffer populated with the string TEXT-OR-MARKER using MAJORMODE.
 When given a marker (or interactively), use the 'sx-button-copy
 and the 'sx-mode text-properties under the marker. These are
 usually part of a code-block."
   (interactive (list (point-marker)))
   ;; Buttons receive markers.
   (when (markerp text-or-marker)
-    (setq major-mode (get-text-property text-or-marker 'sx-mode))
+    (setq majormode (get-text-property text-or-marker 'sx-mode))
     (unless (setq text-or-marker 
                   (get-text-property text-or-marker 'sx-button-copy))
       (sx-message "Nothing of interest here.")))
   (with-current-buffer (pop-to-buffer (generate-new-buffer
                                        "*sx temp buffer*"))
     (insert text-or-marker)
-    (when major-mode
-      (funcall major-mode))))
+    (when majormode
+      (funcall majormode))))
 
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
