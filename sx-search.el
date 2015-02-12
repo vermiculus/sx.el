@@ -64,8 +64,7 @@ KEYWORDS is passed to `sx-method-call'."
 
 (defconst sx-search--order-methods
   (cons '("Relevance" . relevance)
-        (cl-remove-if (lambda (x) (eq (cdr x) 'hot))
-                      (default-value 'sx-question-list--order-methods)))
+        (default-value 'sx-question-list--order-methods))
   "Alist of possible values to be passed to the `sort' keyword.")
 
 (defcustom sx-search-default-order 'activity
