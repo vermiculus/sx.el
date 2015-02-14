@@ -27,6 +27,7 @@
 
 (require 'sx)
 (require 'sx-time)
+(require 'sx-tag)
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
@@ -78,11 +79,6 @@
 (defface sx-question-list-score-upvoted
   '((t :weight bold
        :inherit sx-question-list-score))
-  ""
-  :group 'sx-question-list-faces)
-
-(defface sx-question-list-tags
-  '((t :inherit sx-question-mode-tags))
   ""
   :group 'sx-question-list-faces)
 
@@ -170,8 +166,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
-                     'face 'sx-question-list-tags)
+         (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
          " "
          (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))

@@ -79,11 +79,6 @@ Some faces of this mode might be defined in the `sx-user' group."
   :type 'string
   :group 'sx-question-mode)
 
-(defface sx-question-mode-tags
-  '((t :underline nil :inherit font-lock-function-name-face))
-  "Face used on the question tags in the question buffer."
-  :group 'sx-question-mode-faces)
-
 (defface sx-question-mode-score
   '((t))
   "Face used for the score in the question buffer."
@@ -228,8 +223,8 @@ DATA can represent a question or an answer."
           ;; Tags
           (sx-question-mode--insert-header
            sx-question-mode-header-tags
-           (mapconcat #'sx-question--tag-format .tags " ")
-           'sx-question-mode-tags))
+           (mapconcat #'sx-tag--format .tags " ")
+           nil))
         ;; Body
         (insert "\n"
                 (propertize sx-question-mode-separator
@@ -304,7 +299,10 @@ where `value' is given `face' as its face.
   (while args
     (insert
      (propertize (pop args) 'face 'sx-question-mode-header)
-     (propertize (pop args) 'face (pop args)))))
+     (let ((header (pop args))
+           (face (pop args)))
+       (if face (propertize header 'face face)
+         header)))))
 
 
 ;;;; Printing and Font-locking the content (body)
@@ -322,7 +320,8 @@ E.g.:
 
 (defconst sx-question-mode--link-regexp
   ;; Done at compile time.
-  (rx (or (and "[" (group-n 1 (1+ (not (any "]")))) "]"
+  (rx (or (and "[tag:" (group-n 5 (+ (not (any " ]")))) "]")
+          (and "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
           (group-n 4 (and (and "http" (opt "s") "://") ""
@@ -370,18 +369,24 @@ E.g.:
   (save-excursion
     (goto-char (point-min))
     (while (search-forward-regexp sx-question-mode--link-regexp nil t)
-      (let* ((text (match-string-no-properties 1))
-             (url (or (match-string-no-properties 2)
-                      (match-string-no-properties 4)
-                      (sx-question-mode-find-reference
-                       (match-string-no-properties 3)
-                       text)))
-             (full-text (match-string-no-properties 0)))
-        (when (stringp url)
-          (replace-match "")
-          (sx-question-mode--insert-link
-           (or (if sx-question-mode-pretty-links text full-text) url)
-           url))))))
+      ;; Tags are tag-buttons.
+      (let ((tag (match-string-no-properties 5)))
+        (if (and tag (> (length tag) 0))
+            (progn (replace-match "")
+                   (sx-tag--insert tag))
+          ;; Other links are link-buttons.
+          (let* ((text (match-string-no-properties 1))
+                 (url (or (match-string-no-properties 2)
+                          (match-string-no-properties 4)
+                          (sx-question-mode-find-reference
+                           (match-string-no-properties 3)
+                           text)))
+                 (full-text (match-string-no-properties 0)))
+            (when (stringp url)
+              (replace-match "")
+              (sx-question-mode--insert-link
+               (or (if sx-question-mode-pretty-links text full-text) url)
+               url))))))))
 
 (defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of string TEXT.

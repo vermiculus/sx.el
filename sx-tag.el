@@ -23,6 +23,13 @@
 
 (require 'sx)
 (require 'sx-method)
+(require 'sx-button)
+
+(defface sx-tag
+  '((t :underline nil :inherit font-lock-function-name-face))
+  "Face used on the question tags in the question buffer."
+  :group 'sx-question-mode-faces
+  :group 'sx-question-list-faces)
 
 
 ;;; Getting the list from a site
@@ -132,6 +139,21 @@ tags."
                               empty-string))))
       (push input list))
     (reverse list)))
+
+
+;;; Printing
+(defun sx-tag--format (tag)
+  "Format and return TAG for display."
+  (with-temp-buffer
+    (sx-tag--insert tag)
+    (buffer-string)))
+
+(defun sx-tag--insert (tag)
+  "Insert TAG button."
+  (insert-text-button (concat "[" tag "]")
+                      'sx-button-copy tag
+                      'sx-tag tag
+                      :type 'sx-button-tag))
 
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
