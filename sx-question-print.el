@@ -223,7 +223,7 @@ DATA can represent a question or an answer."
           ;; Tags
           (sx-question-mode--insert-header
            sx-question-mode-header-tags
-           (mapconcat #'sx-tag--format .tags " ")
+           (sx-tag--format-tags .tags .site_par)
            nil))
         ;; Body
         (insert "\n"
