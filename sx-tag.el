@@ -142,17 +142,20 @@ tags."
 
 
 ;;; Printing
-(defun sx-tag--format (tag)
-  "Format and return TAG for display."
+(defun sx-tag--format (tag &optional meta)
+  "Format and return TAG for display.
+If META is non-nil, the tag is for the meta site."
   (with-temp-buffer
-    (sx-tag--insert tag)
+    (sx-tag--insert tag meta)
     (buffer-string)))
 
-(defun sx-tag--insert (tag)
-  "Insert TAG button."
+(defun sx-tag--insert (tag &optional meta)
+  "Insert TAG button.
+If META is non-nil, the tag is for the meta site."
   (insert-text-button (concat "[" tag "]")
                       'sx-button-copy tag
                       'sx-tag tag
+                      'sx-tag-meta meta
                       :type 'sx-button-tag))
 
 (provide 'sx-tag)
