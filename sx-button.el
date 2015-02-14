@@ -98,9 +98,14 @@ usually part of a code-block."
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'sx-button-url)
-       (sx-user-error "No url under point: %s" (or pos (point))))))
+  (let ((url (or (get-text-property (or pos (point)) 'sx-button-url)
+                 (sx-user-error "No url under point: %s" (or pos (point))))))
+    ;; If we didn't recognize the link, this errors immediately.  If
+    ;; we mistakenly recognize it, it will error when we try to fetch
+    ;; whatever we thought it was.
+    (condition-case nil (sx-open-link url)
+      ;; When it errors, don't blame the user, just visit externally.
+      (error (sx-visit-externally url)))))
 
 
 ;;; Help-echo definitions
