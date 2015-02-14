@@ -158,6 +158,19 @@ If META is non-nil, the tag is for the meta site."
                       'sx-tag-meta meta
                       :type 'sx-button-tag))
 
+(defun sx-tag--format-tags (tags &optional site)
+  "Format and concatenate a sequence of TAGS.
+Returns a string of all tags in TAGS, separated by a space.
+
+SITE is the site to which the tags refer, it is only used to
+decide whether they are main or meta tags.  SITE can also be t or
+nil, which respectively indicate meta and main."
+  (let ((is-meta
+         (if (stringp site) (string-match (rx string-start "meta.") site)
+           site)))
+    (mapconcat (lambda (tag) (sx-tag--format tag is-meta))
+               tags " ")))
+
 (provide 'sx-tag)
 ;;; sx-tag.el ends here
 
