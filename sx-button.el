@@ -169,7 +169,7 @@ usually part of a code-block."
   'face      'sx-user-name
   :supertype 'sx-button)
 
-(declare-function sx-search-tag-at-point "sx-tag")
+(declare-function sx-search-tag-at-point "sx-search")
 (define-button-type 'sx-button-tag
   'action    #'sx-search-tag-at-point
   'help-echo sx-button--tag-help-echo

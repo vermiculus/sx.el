@@ -223,7 +223,7 @@ DATA can represent a question or an answer."
           ;; Tags
           (sx-question-mode--insert-header
            sx-question-mode-header-tags
-           (mapconcat #'sx-tag--format .tags " ")
+           (sx-tag--format-tags .tags .site_par)
            nil))
         ;; Body
         (insert "\n"
@@ -320,7 +320,8 @@ E.g.:
 
 (defconst sx-question-mode--link-regexp
   ;; Done at compile time.
-  (rx (or (and "[tag:" (group-n 5 (+ (not (any " ]")))) "]")
+  (rx (or (and "[" (optional (group-n 6 "meta-")) "tag:"
+               (group-n 5 (+ (not (any " ]")))) "]")
           (and "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
@@ -373,7 +374,8 @@ E.g.:
       (let ((tag (match-string-no-properties 5)))
         (if (and tag (> (length tag) 0))
             (progn (replace-match "")
-                   (sx-tag--insert tag))
+                   ;; `match-string' 6 is the "meta-" prefix.
+                   (sx-tag--insert tag (match-string 6)))
           ;; Other links are link-buttons.
           (let* ((text (match-string-no-properties 1))
                  (url (or (match-string-no-properties 2)
