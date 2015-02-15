@@ -352,20 +352,26 @@ E.g.:
 This does not do Markdown font-locking.  Instead, it fills text,
 propertizes links, inserts images, cleans up html comments, and
 font-locks code-blocks according to mode."
-  (save-restriction
-    (save-excursion
-      (narrow-to-region beg end)
-      ;; Compact links.
-      (sx-question-mode--process-links-in-buffer)
-      ;; And now the filling and other handlings.
-      (goto-char (point-min))
-      (while (null (eobp))
-        ;; Don't fill pre blocks.
-        (unless (sx-question-mode--dont-fill-here)
-          (let ((beg (point)))
-            (skip-chars-forward "\r\n[:blank:]")
-            (forward-paragraph)
-            (fill-region beg (point))))))))
+  ;; Paragraph filling
+  (let ((paragraph-start
+         "\f\\|[ \t]*$\\|[ \t]*[*+-] \\|[ \t]*[0-9]+\\.[ \t]\\|[ \t]*: ")
+        (paragraph-separate "\\(?:[ \t\f]*\\|.* \\)$")
+        (adaptive-fill-first-line-regexp "\\`[ \t]*>[ \t]*?\\'")
+        (adaptive-fill-function #'markdown-adaptive-fill-function)) 
+    (save-restriction
+      (save-excursion
+        (narrow-to-region beg end)
+        ;; Compact links.
+        (sx-question-mode--process-links-in-buffer)
+        ;; And now the filling and other handlings.
+        (goto-char (point-min))
+        (while (null (eobp))
+          ;; Don't fill pre blocks.
+          (unless (sx-question-mode--dont-fill-here)
+            (let ((beg (point)))
+              (skip-chars-forward "\r\n[:blank:]")
+              (forward-paragraph)
+              (fill-region beg (point)))))))))
 
 (defun sx-question-mode--insert-markdown (text)
   "Return TEXT fontified according to `markdown-mode'."
