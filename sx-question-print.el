@@ -219,11 +219,11 @@ DATA can represent a question or an answer."
         ;; Score and upvoted/downvoted status.
         (sx-question-mode--insert-header
          sx-question-mode-header-score
-         (format "%s" .score)
-         (cond
-          ((eq .upvoted t) 'sx-question-mode-score-upvoted)
-          ((eq .downvoted t) 'sx-question-mode-score-downvoted)
-          (t 'sx-question-mode-score)))
+         (format "%s%s" .score
+                 (cond ((eq .upvoted t) "↑") ((eq .downvoted t) "↓") (t "")))
+         (cond ((eq .upvoted t) 'sx-question-mode-score-upvoted)
+               ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+               (t 'sx-question-mode-score)))
 
         ;; Tags
         (when .title
