@@ -193,17 +193,20 @@ DATA can represent a question or an answer."
        'sx-question-mode--section (if .title 1 2)
        'sx-button-copy .share_link
        :type 'sx-question-mode-title)
+
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
+
         ;; Author
         (insert
          (sx-user--format
           (propertize sx-question-mode-header-author-format
                       'face 'sx-question-mode-header)
           .owner))
+
+        ;; Date
         (sx-question-mode--insert-header
-         ;; Date
          sx-question-mode-header-date
          (concat
           (sx-time-seconds-to-date .creation_date)
@@ -212,6 +215,8 @@ DATA can represent a question or an answer."
               (sx-time-since .last_edit_date)
               (sx-user--format "%d" .last_editor))))
          'sx-question-mode-date)
+
+        ;; Score and upvoted/downvoted status.
         (sx-question-mode--insert-header
          sx-question-mode-header-score
          (format "%s" .score)
@@ -219,6 +224,8 @@ DATA can represent a question or an answer."
           ((eq .upvoted t) 'sx-question-mode-score-upvoted)
           ((eq .downvoted t) 'sx-question-mode-score-downvoted)
           (t 'sx-question-mode-score)))
+
+        ;; Tags
         (when .title
           ;; Tags
           (sx-question-mode--insert-header
