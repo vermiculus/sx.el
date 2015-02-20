@@ -63,7 +63,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-author-format "\nAuthor:   %d %r"
+(defcustom sx-question-mode-header-author-format "\nAuthor:    %d %r"
   "String used to display the question author at the header.
 % constructs have special meaning here.  See `sx-user--format'."
   :type 'string
@@ -74,7 +74,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used on the question date in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-date "\nAsked on: "
+(defcustom sx-question-mode-header-date "\nPosted on: "
   "String used before the question date at the header."
   :type 'string
   :group 'sx-question-mode)
@@ -95,12 +95,12 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-tags "\nTags:     "
+(defcustom sx-question-mode-header-tags "\nTags:      "
   "String used before the question tags at the header."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-score "\nScore:    "
+(defcustom sx-question-mode-header-score "\nScore:     "
   "String used before the question score at the header."
   :type 'string
   :group 'sx-question-mode)
