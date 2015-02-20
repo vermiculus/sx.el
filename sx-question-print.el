@@ -131,6 +131,16 @@ the editor's name."
   :type 'string
   :group 'sx-question-mode)
 
+(defface sx-question-mode-accepted
+  '((t :foreground "ForestGreen" :inherit sx-question-mode-title))
+  "Face used for accepted answers in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-answer-accepted-title "Accepted Answer"
+  "Title used at the start of accepted \"Answer\" section."
+  :type 'string
+  :group 'sx-question-mode)
+
 (defcustom sx-question-mode-comments-title " Comments"
   "Title used at the start of \"Comments\" sections."
   :type 'string
@@ -188,10 +198,14 @@ DATA can represent a question or an answer."
       (insert sx-question-mode-header-title)
       (insert-text-button
        ;; Questions have title, Answers don't
-       (or .title sx-question-mode-answer-title)
+       (cond (.title)
+             ((eq .is_accepted t) sx-question-mode-answer-accepted-title)
+             (t sx-question-mode-answer-title))
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
        'sx-button-copy .share_link
+       'face (if (eq .is_accepted t) 'sx-question-mode-accepted
+               'sx-question-mode-title)
        :type 'sx-question-mode-title)
 
       ;; Sections can be hidden with overlays
