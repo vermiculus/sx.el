@@ -230,14 +230,7 @@ Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unfavorite the question instead."
   (interactive (list (sx--error-if-unread (sx--data-here 'question))
                      current-prefix-arg))
-  (sx-assoc-let data
-    (sx-method-call 'questions
-      :id .question_id
-      :submethod (if undo 'favorite/undo 'favorite)
-      :auth 'warn
-      :site .site_par
-      :url-method 'post
-      :filter sx-browse-filter)))
+  (sx-method-post-from-data data (if undo 'favorite/undo 'favorite)))
 (defalias 'sx-star #'sx-favorite)
 
 
@@ -268,18 +261,8 @@ DATA can be a question, answer, or comment. TYPE can be
 Besides posting to the api, DATA is also altered to reflect the
 changes."
   (let ((result
-         (sx-assoc-let data
-           (sx-method-call
-               (cond
-                (.comment_id "comments")
-                (.answer_id "answers")
-                (.question_id "questions"))
-             :id (or .comment_id .answer_id .question_id)
-             :submethod (concat type (unless status "/undo"))
-             :auth 'warn
-             :url-method 'post
-             :filter sx-browse-filter
-             :site .site_par))))
+         (sx-method-post-from-data
+          data (concat type (unless status "/undo")))))
     ;; The api returns the new DATA.
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)
