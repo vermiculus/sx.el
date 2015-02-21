@@ -98,9 +98,14 @@ usually part of a code-block."
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'sx-button-url)
-       (sx-user-error "No url under point: %s" (or pos (point))))))
+  (let ((url (or (get-text-property (or pos (point)) 'sx-button-url)
+                 (sx-user-error "No url under point: %s" (or pos (point))))))
+    ;; If we didn't recognize the link, this errors immediately.  If
+    ;; we mistakenly recognize it, it will error when we try to fetch
+    ;; whatever we thought it was.
+    (condition-case nil (sx-open-link url)
+      ;; When it errors, don't blame the user, just visit externally.
+      (error (sx-visit-externally url)))))
 
 
 ;;; Help-echo definitions
@@ -164,7 +169,7 @@ usually part of a code-block."
   'face      'sx-user-name
   :supertype 'sx-button)
 
-(declare-function sx-search-tag-at-point "sx-tag")
+(declare-function sx-search-tag-at-point "sx-search")
 (define-button-type 'sx-button-tag
   'action    #'sx-search-tag-at-point
   'help-echo sx-button--tag-help-echo
