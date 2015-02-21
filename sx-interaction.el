@@ -278,11 +278,16 @@ guessed from context at point.
 With UNDO prefix argument, undelete instead."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
-  (sx-method-post-from-data data (if undo 'delete/undo 'delete))
-  ;; Indicate to ourselves this has been deleted.
-  (setcdr data (cons (car data) (cdr data)))
-  (setcar data 'deleted)
-  (sx--maybe-update-display))
+  (when (y-or-n-p (format "DELETE this %s? "
+                    (let-alist data
+                      (cond (.comment_id "comment")
+                            (.answer_id "answer")
+                            (.question_id "question")))))
+    (sx-method-post-from-data data (if undo 'delete/undo 'delete))
+    ;; Indicate to ourselves this has been deleted.
+    (setcdr data (cons (car data) (cdr data)))
+    (setcar data 'deleted)
+    (sx--maybe-update-display)))
 
 
 ;;; Commenting
