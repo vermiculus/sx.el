@@ -191,7 +191,8 @@ property."
     ;; `sx-assoc-let' to improve performance (since the mode-line is
     ;; updated a lot).
     (:propertize
-     (:eval (let-alist sx-question-mode--data .site_par))
+     (:eval (sx--pretty-site-parameter
+             (let-alist sx-question-mode--data .site_par)))
      face mode-line-buffer-id)
     " " mode-name
     " ["
@@ -216,10 +217,14 @@ property."
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
+Don't activate this mode directly.  Instead, to print a question
+on the current buffer use
+`sx-question-mode--erase-and-print-question'.
+
 \\<sx-question-mode>
 \\{sx-question-mode}"
   (setq header-line-format sx-question-mode--header-line)
-  (setq header-line-format sx-question-mode--mode-line)
+  (setq mode-line-format sx-question-mode--mode-line)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
