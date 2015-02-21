@@ -163,6 +163,8 @@ replaced with the comment."
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
+  (when (sx--deleted-p question)
+    (sx-user-error "This is a deleted question"))
   (setq sx-question-mode--data question)
   ;; Clear the overlays
   (mapc #'delete-overlay sx--overlays)
@@ -171,7 +173,9 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-question-mode--print-section question)
   (sx-assoc-let question
     (mapc #'sx-question-mode--print-section
-          (cl-sort .answers sx-question-mode-answer-sort-function)))
+      (cl-remove-if
+       #'sx--deleted-p
+       (cl-sort .answers sx-question-mode-answer-sort-function))))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
@@ -182,9 +186,9 @@ QUESTION must be a data structure returned by `json-read'."
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
   ;; This makes `data' accessible through `sx--data-here'.
-  (sx-assoc-let data
-    (sx--wrap-in-overlay
-        (list 'sx--data-here data)
+  (sx--wrap-in-overlay
+      (list 'sx--data-here data)
+    (sx-assoc-let data
       (insert sx-question-mode-header-title)
       (insert-text-button
        ;; Questions have title, Answers don't
@@ -237,29 +241,32 @@ DATA can represent a question or an answer."
                   "\n"
                   (propertize sx-question-mode-separator
                               'face 'sx-question-mode-header)))
-        ;; Comments have their own `sx--data-here' property (so they can
-        ;; be upvoted too).
-        (when .comments
-          (insert "\n")
-          (insert-text-button
-           sx-question-mode-comments-title
-           'face 'sx-question-mode-title-comments
-           'sx-question-mode--section 3
-           'sx-button-copy .share_link
-           :type 'sx-question-mode-title)
-          (sx--wrap-in-overlay
-              '(sx-question-mode--section-content t)
+        ;; Clean up commments manually deleted.  The `append' call is
+        ;; to ensure `comments' is a list and not a vector.
+        (let ((comments (cl-remove-if #'sx--deleted-p (append .comments nil))))
+          (when comments
             (insert "\n")
+            (insert-text-button
+             sx-question-mode-comments-title
+             'face 'sx-question-mode-title-comments
+             'sx-question-mode--section 3
+             'sx-button-copy .share_link
+             :type 'sx-question-mode-title)
             (sx--wrap-in-overlay
-                '(face sx-question-mode-content-face)
-              (mapc #'sx-question-mode--print-comment .comments))
-            ;; If there are comments, we want part of this margin to go
-            ;; inside them, so the button get's placed beside the
-            ;; "Comments" header when you hide them.
+                '(sx-question-mode--section-content t)
+              (insert "\n")
+              (sx--wrap-in-overlay
+                  '(face sx-question-mode-content-face)
+                ;; Comments have their own `sx--data-here' property (so they can
+                ;; be upvoted too).
+                (mapc #'sx-question-mode--print-comment comments))
+              ;; If there are comments, we want part of this margin to go
+              ;; inside them, so the button get's placed beside the
+              ;; "Comments" header when you hide them.
+              (insert "         ")))
+          ;; If there are no comments, we have to add this margin here.
+          (unless comments
             (insert "         ")))
-        ;; If there are no comments, we have to add this margin here.
-        (unless .comments
-          (insert "         "))
         (insert "               ")
         ;; This is where the "add a comment" button is printed.
         (insert-text-button "Add a Comment"

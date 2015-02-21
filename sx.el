@@ -335,6 +335,10 @@ GET-FUNC and performs the actual comparison."
   "Return STRING with consecutive whitespace squashed together."
   (replace-regexp-in-string "[ 	\r\n]+" " " string))
 
+(defun sx--deleted-p (data)
+  "Return non-nil if DATA represents a deleted object."
+  (eq (car data) 'deleted))
+
 
 ;;; Printing request data
 (defvar sx--overlays nil
