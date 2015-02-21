@@ -48,6 +48,7 @@ Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
 
 (defvar sx-question-mode--data nil
   "The data of the question being displayed.")
+(make-variable-buffer-local 'sx-question-mode--data)
 
 (defun sx-question-mode--get-window ()
   "Return a window displaying a question, or nil."
