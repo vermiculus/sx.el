@@ -59,4 +59,24 @@
     (apply #'message message args)))
 
 (mapc #'sx-load-test
-      '(api macros printing util search))
+  '(api macros printing util search state))
+
+(ert-deftest user-entry-functions ()
+  "Ensures all entry functions are autoloaded."
+  (should
+   (cl-every
+    #'fboundp
+    '(sx-ask
+      sx-authenticate
+      sx-bug-report
+      sx-switchto-map
+      sx-tab-featured
+      sx-tab-frontpage
+      sx-tab-hot
+      sx-tab-month
+      sx-tab-newest
+      sx-tab-starred
+      sx-tab-topvoted
+      sx-tab-unanswered
+      sx-tab-week
+      sx-version))))

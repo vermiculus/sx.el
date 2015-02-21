@@ -13,7 +13,7 @@
 (defmacro question-list-regex (title votes answers &rest tags)
   "Construct a matching regexp for TITLE, VOTES, and ANSWERS.
 Each element of TAGS is appended at the end of the expression
-after being run through `sx-question--tag-format'."
+after being run through `sx-tag--format'."
   `(rx line-start
        (+ whitespace) ,(number-to-string votes)
        (+ whitespace) ,(number-to-string answers)
@@ -22,17 +22,35 @@ after being run through `sx-question--tag-format'."
        (+ (any whitespace digit))
        (or "y" "d" "h" "m" "mo" "s") " ago"
        (+ whitespace)
-       (eval (mapconcat #'sx-question--tag-format
-                        (list ,@tags) " "))))
+       (eval (mapconcat #'sx-tag--format (list ,@tags) " "))))
 
 
 ;;; Tests
+(ert-deftest time-since ()
+  (cl-letf (((symbol-function #'float-time)
+           (lambda () 1420148997.)))
+    (should
+     (string=
+      "67m"
+      (sx-time-since 1420145000.)))
+    (should
+     (string=
+      "12h"
+      (sx-time-since 1420105000.)))))
+
 (ert-deftest question-list-tag ()
-  "Test `sx-question--tag-format'."
+  "Test `sx-tag--format'."
   (should
-   (string=
-    (sx-question--tag-format "tag")
-    "[tag]")))
+   (string= (sx-tag--format "tag") "[tag]"))
+  (with-temp-buffer
+    (insert (sx-tag--format "tag"))
+    (should (get-char-property (point-min) 'button))
+    (should
+     (eq (get-char-property (point-min) 'face) 'sx-tag))
+    (should
+     (string= (get-char-property (point-min) 'sx-tag) "tag"))
+    (should
+     (string= (get-char-property (point-min) 'sx-button-copy) "tag"))))
 
 (ert-deftest question-list-display ()
   (cl-letf (((symbol-function #'sx-request-make)
@@ -134,6 +152,17 @@ after being run through `sx-question--tag-format'."
     (should
      (equal object '((answers . [something "answer"]))))))
 
+
+;;; question-mode
+(ert-deftest sx-display-question ()
+  ;; Check it doesn't error.
+  (sx-display-question (elt sx-test-data-questions 0))
+  ;; Check it does error.
+  (should-error
+   (sx-display-question sx-test-data-questions))
+  (should-error
+   (sx-display-question sx-test-data-questions nil 1)))
+
 (ert-deftest sx-question-mode--fill-and-fontify ()
   "Check complicated questions are filled correctly."
   (should
@@ -190,3 +219,4 @@ if you used the Stack Exchange login method, you'd...
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
   [3]: http://i.stack.imgur.com/22myl.png")))
+

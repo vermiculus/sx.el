@@ -148,7 +148,8 @@ See `sx-question--user-read-list'."
            ;; Question wasn't present.
            (t
             (sx-sorted-insert-skip-first
-             q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
+             q-cell site-cell
+             (lambda (x y) (> (or (car x) -1) (or (car y) -1))))))))
     ;; Save the results.
     ;; @TODO This causes a small lag on `j' and `k' as the list gets
     ;; large.  Should we do this on a timer?
@@ -196,20 +197,14 @@ If no cache exists for it, initialize one with SITE."
 
 
 ;;;; Other data
-
 (defun sx-question--accepted-answer-id (question)
   "Return accepted answer in QUESTION or nil if none exists."
   (sx-assoc-let question
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
 
-(defun sx-question--tag-format (tag)
-  "Formats TAG for display."
-  (concat "[" tag "]"))
-
 
 ;;; Question Mode Answer-Sorting Functions
-
 (sx--create-comparator sx-answer-higher-score-p
   "Return t if answer A has a higher score than answer B."
   #'> (lambda (x) (cdr (assq 'score x))))

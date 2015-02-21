@@ -98,9 +98,14 @@ usually part of a code-block."
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'sx-button-url)
-       (sx-user-error "No url under point: %s" (or pos (point))))))
+  (let ((url (or (get-text-property (or pos (point)) 'sx-button-url)
+                 (sx-user-error "No url under point: %s" (or pos (point))))))
+    ;; If we didn't recognize the link, this errors immediately.  If
+    ;; we mistakenly recognize it, it will error when we try to fetch
+    ;; whatever we thought it was.
+    (condition-case nil (sx-open-link url)
+      ;; When it errors, don't blame the user, just visit externally.
+      (error (sx-visit-externally url)))))
 
 
 ;;; Help-echo definitions
@@ -116,6 +121,12 @@ usually part of a code-block."
     "visit user page"
     "link")
   "Help echoed in the minibuffer when point is on a user.")
+
+(defconst sx-button--tag-help-echo
+  (format sx-button--help-echo
+    "Tag search"
+    "tag")
+  "Help echoed in the minibuffer when point is on a tag.")
 
 (defconst sx-button--question-title-help-echo
   (format sx-button--help-echo
@@ -156,6 +167,13 @@ usually part of a code-block."
   'help-echo sx-button--user-help-echo
   ;; We use different faces on different parts of the user button.
   'face      'sx-user-name
+  :supertype 'sx-button)
+
+(declare-function sx-search-tag-at-point "sx-search")
+(define-button-type 'sx-button-tag
+  'action    #'sx-search-tag-at-point
+  'help-echo sx-button--tag-help-echo
+  'face      'sx-tag
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-comment
