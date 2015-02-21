@@ -270,6 +270,17 @@ changes."
       (sx--maybe-update-display))))
 
 
+;;; Delete
+(defun sx-delete (data &optional undo)
+  "Delete an object given by DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point.
+With UNDO prefix argument, undelete instead."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-method-post-from-data data (if undo 'delete/undo 'delete)))
+
+
 ;;; Commenting
 (defun sx-comment (data &optional text)
   "Post a comment on DATA given by TEXT.
