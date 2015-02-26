@@ -209,7 +209,7 @@ is intentionally skipped."
      (while (and ;; We're not at the end.
              (cdr-safe tail)
              ;; We're not at the right place.
-             (,(or predicate #'<) x (cadr tail)))
+             (funcall (or ,predicate #'<) x (cadr tail)))
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
