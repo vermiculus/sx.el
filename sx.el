@@ -189,6 +189,11 @@ If ALIST doesn't have a `site' property, one is created using the
 
 
 ;;; Utility Functions
+(defun sx--split-string (string &optional separators)
+  "Split STRING into substrings bounded by matches for SEPARATORS."
+  (mapcar (lambda (s) (replace-regexp-in-string "\\` +\\| +\\'" "" s))
+    (split-string string separators 'omit-nulls)))
+
 (defun sx-completing-read (&rest args)
   "Like `completing-read', but possibly use ido.
 All ARGS are passed to `completing-read' or `ido-completing-read'."
