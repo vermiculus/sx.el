@@ -63,7 +63,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-author-format "\nAuthor:   %d %r"
+(defcustom sx-question-mode-header-author-format "\nAuthor:    %d %r"
   "String used to display the question author at the header.
 % constructs have special meaning here.  See `sx-user--format'."
   :type 'string
@@ -74,7 +74,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used on the question date in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-date "\nAsked on: "
+(defcustom sx-question-mode-header-date "\nPosted on: "
   "String used before the question date at the header."
   :type 'string
   :group 'sx-question-mode)
@@ -95,12 +95,12 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-tags "\nTags:     "
+(defcustom sx-question-mode-header-tags "\nTags:      "
   "String used before the question tags at the header."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-score "\nScore:    "
+(defcustom sx-question-mode-header-score "\nScore:     "
   "String used before the question score at the header."
   :type 'string
   :group 'sx-question-mode)
@@ -128,6 +128,16 @@ the editor's name."
 
 (defcustom sx-question-mode-answer-title "Answer"
   "Title used at the start of \"Answer\" sections."
+  :type 'string
+  :group 'sx-question-mode)
+
+(defface sx-question-mode-accepted
+  '((t :foreground "ForestGreen" :inherit sx-question-mode-title))
+  "Face used for accepted answers in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-answer-accepted-title "Accepted Answer"
+  "Title used at the start of accepted \"Answer\" section."
   :type 'string
   :group 'sx-question-mode)
 
@@ -214,22 +224,29 @@ DATA can represent a question or an answer."
       (insert sx-question-mode-header-title)
       (insert-text-button
        ;; Questions have title, Answers don't
-       (or .title sx-question-mode-answer-title)
+       (cond (.title)
+             ((eq .is_accepted t) sx-question-mode-answer-accepted-title)
+             (t sx-question-mode-answer-title))
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
        'sx-button-copy .share_link
+       'face (if (eq .is_accepted t) 'sx-question-mode-accepted
+               'sx-question-mode-title)
        :type 'sx-question-mode-title)
+
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
+
         ;; Author
         (insert
          (sx-user--format
           (propertize sx-question-mode-header-author-format
                       'face 'sx-question-mode-header)
           .owner))
+
+        ;; Date
         (sx-question-mode--insert-header
-         ;; Date
          sx-question-mode-header-date
          (concat
           (sx-time-seconds-to-date .creation_date)
@@ -238,13 +255,17 @@ DATA can represent a question or an answer."
               (sx-time-since .last_edit_date)
               (sx-user--format "%d" .last_editor))))
          'sx-question-mode-date)
+
+        ;; Score and upvoted/downvoted status.
         (sx-question-mode--insert-header
          sx-question-mode-header-score
-         (format "%s" .score)
-         (cond
-          ((eq .upvoted t) 'sx-question-mode-score-upvoted)
-          ((eq .downvoted t) 'sx-question-mode-score-downvoted)
-          (t 'sx-question-mode-score)))
+         (format "%s%s" .score
+                 (cond ((eq .upvoted t) "↑") ((eq .downvoted t) "↓") (t "")))
+         (cond ((eq .upvoted t) 'sx-question-mode-score-upvoted)
+               ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+               (t 'sx-question-mode-score)))
+
+        ;; Tags
         (when .title
           ;; Tags
           (sx-question-mode--insert-header
