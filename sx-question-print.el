@@ -148,13 +148,24 @@ replaced with the comment."
   :type 'boolean
   :group 'sx-question-mode)
 
+(defconst sx-question-mode--sort-methods
+  (let ((methods
+         '(("Higher-scoring" . sx-answer-higher-score-p)
+           ("Newer"          . sx-answer-newer-p)
+           ("More active"    . sx-answer-more-active-p))))
+    (append (mapcar (lambda (x) (cons (concat (car x) " first") (cdr x)))
+              methods)
+            (mapcar (lambda (x) (cons (concat (car x) " last")
+                                 (sx--invert-predicate (cdr x))))
+              methods))))
+
 (defcustom sx-question-mode-answer-sort-function
   #'sx-answer-higher-score-p
   "Function used to sort answers in the question buffer."
-  :type '(choice
-          (const :tag "Higher-scoring first" sx-answer-higher-score-p)
-          (const :tag "Newer first"          sx-answer-newer-p)
-          (const :tag "More active first"    sx-answer-more-active-p))
+  :type
+  (cons 'choice
+        (mapcar (lambda (x) `(const :tag ,(car x) ,(cdr x)))
+          sx-question-mode--sort-methods))
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-use-images
