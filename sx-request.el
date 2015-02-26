@@ -221,28 +221,33 @@ Currently returns nil."
   "https://raw.githubusercontent.com/vermiculus/sx.el/data/data/%s.el"
   "Url of the \"data\" directory inside the SX `data' branch.")
 
-(defun sx-request-get-data (file)
-  "Fetch and return data stored online by SX.
-FILE is a string or symbol, the name of the file which holds the
-desired data, relative to `sx-request--data-url-format'.  For
-instance, `tags/emacs' returns the list of tags on Emacs.SE."
+(defun sx-request-get-url (url)
+  "Fetch and return data stored online at URL."
   (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
-         (request-url (format sx-request--data-url-format file))
          (url-request-method "GET")
          (url-request-extra-headers
           '(("Content-Type" . "application/x-www-form-urlencoded")))
-         (response-buffer (url-retrieve-synchronously request-url)))
+         (response-buffer (url-retrieve-synchronously url)))
     (if (not response-buffer)
         (error "Something went wrong in `url-retrieve-synchronously'")
       (with-current-buffer response-buffer
         (progn
           (goto-char (point-min))
+          (unless (string-match "200" (thing-at-point 'line))
+            (error "Page not found."))
           (if (not (search-forward "\n\n" nil t))
               (error "Headers missing; response corrupt")
-            (when (looking-at-p "Not Found") (error "Page not found."))
-            (prog1 (read (current-buffer))
+            (prog1 (buffer-substring (point) (point-max))
               (kill-buffer (current-buffer)))))))))
+
+(defun sx-request-get-data (file)
+  "Fetch and return data stored online by SX.
+FILE is a string or symbol, the name of the file which holds the
+desired data, relative to `sx-request--data-url-format'.  For
+instance, `tags/emacs' returns the list of tags on Emacs.SE."
+  (read (sx-request-get-url
+         (format sx-request--data-url-format file))))
 
 
 ;;; Support Functions

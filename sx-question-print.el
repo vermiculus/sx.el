@@ -157,6 +157,21 @@ replaced with the comment."
           (const :tag "More active first"    sx-answer-more-active-p))
   :group 'sx-question-mode)
 
+(defcustom sx-question-mode-use-images
+  (eval-when-compile
+    (image-type-available-p 'imagemagick))
+  "Non-nil if SX should download and display images.
+By default, this is `t' if the `imagemagick' image type is
+available (checked with `image-type-available-p').  If this image
+type is not available, images won't work."
+  :type 'boolean
+  :group 'sx-question-mode)
+
+(defcustom sx-question-mode-image-max-width 550
+  "Maximum width, in pixels, of images in the question buffer."
+  :type 'integer
+  :group 'sx-question-mode)
+
 
 ;;; Functions
 ;;;; Printing the general structure
@@ -313,7 +328,7 @@ where `value' is given `face' as its face.
 
 (defconst sx-question-mode--reference-regexp
   (rx line-start (0+ blank) "[%s]:" (0+ blank)
-      (group-n 1 (1+ (not blank))))
+      (group-n 1 (1+ (not (any blank "\n\r")))))
   "Regexp used to find the url of labeled links.
 E.g.:
    [1]: https://...")
@@ -322,7 +337,7 @@ E.g.:
   ;; Done at compile time.
   (rx (or (and "[" (optional (group-n 6 "meta-")) "tag:"
                (group-n 5 (+ (not (any " ]")))) "]")
-          (and "[" (group-n 1 (1+ (not (any "]")))) "]"
+          (and (opt "!") "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
           (group-n 4 (and (and "http" (opt "s") "://") ""
@@ -366,7 +381,9 @@ E.g.:
 
 ;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
-  "Turn all markdown links in this buffer into compact format."
+  "Turn all markdown links in this buffer into compact format.
+Image links are downloaded and displayed, if
+`sx-question-mode-use-images' is non-nil."
   (save-excursion
     (goto-char (point-min))
     (while (search-forward-regexp sx-question-mode--link-regexp nil t)
@@ -387,23 +404,56 @@ E.g.:
             (when (stringp url)
               (replace-match "")
               (sx-question-mode--insert-link
-               (or (if sx-question-mode-pretty-links text full-text) url)
+               (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
+                   ;; Is it an image?
+                   (sx-question-mode--create-image url)
+                 ;; Or a regular link
+                 (or (if sx-question-mode-pretty-links text full-text) url))
                url))))))))
 
-(defun sx-question-mode--insert-link (text url)
-  "Return a link propertized version of string TEXT.
+(defun sx-question-mode--create-image (url)
+  "Get and create an image from URL.
+Its size is bound by `sx-question-mode-image-max-width' and
+`window-body-width'."
+  (let* ((image
+          (create-image (sx-request-get-url url) 'imagemagick t))
+         (image-width (car (image-size image 'pixels))))
+    (append image
+            (list :width (min sx-question-mode-image-max-width
+                              (window-body-width nil 'pixel)
+                              image-width)))))
+
+(defun sx-question-mode--insert-link (text-or-image url)
+  "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
-  (insert-text-button
-   text
-   ;; Mouse-over
-   'help-echo
-   (format sx-button--link-help-echo
-     (propertize (sx--shorten-url url)
-                 'face 'font-lock-function-name-face))
-   ;; For visiting and stuff.
-   'sx-button-url url
-   'sx-button-copy url
-   :type 'sx-button-link))
+  ;; For now, the only way to handle nested links is to remove them.
+  (when (eq (char-before) ?\[)
+    (insert "a")
+    (forward-char -2)
+    (if (looking-at sx-question-mode--link-regexp)
+        (replace-match "")
+      (forward-char 1)
+      (delete-char 1)))
+  (let ((imagep (not (stringp text-or-image))))
+    ;; Images need to be at the start of a line.
+    (when (and imagep (not (looking-at-p "^")))
+      (insert "\n"))
+    (apply #'insert-text-button
+      (if imagep " " text-or-image)
+      ;; Mouse-over
+      'help-echo
+      (format sx-button--link-help-echo
+        (propertize (sx--shorten-url url)
+                    'face 'font-lock-function-name-face))
+      ;; For visiting and stuff.
+      'sx-button-url url
+      'sx-button-copy url
+      :type 'sx-button-link
+      ;; The last argument of `apply' is a list.
+      (when imagep
+        `(face default display ,text-or-image)))
+    ;; Images need to be at the end of a line too.
+    (insert "\n")))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
