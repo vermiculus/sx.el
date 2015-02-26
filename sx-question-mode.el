@@ -48,6 +48,7 @@ Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
 
 (defvar sx-question-mode--data nil
   "The data of the question being displayed.")
+(make-variable-buffer-local 'sx-question-mode--data)
 
 (defun sx-question-mode--get-window ()
   "Return a window displaying a question, or nil."
@@ -69,6 +70,7 @@ Returns the question buffer."
 (defun sx-question-mode--erase-and-print-question (data)
   "Erase contents of buffer and print question given by DATA.
 Also marks the question as read with `sx-question--mark-read'."
+  (sx--ensure-site data)
   (sx-question--mark-read data)
   (let ((inhibit-read-only t))
     (erase-buffer)
@@ -183,13 +185,47 @@ property."
     ": Quit")
   "Header-line used on the question list.")
 
+(defconst sx-question-mode--mode-line
+  '("   "
+    ;; `sx-question-mode--data' is guaranteed to have through
+    ;; `sx--ensure-site' already, so we use `let-alist' instead of
+    ;; `sx-assoc-let' to improve performance (since the mode-line is
+    ;; updated a lot).
+    (:propertize
+     (:eval (sx--pretty-site-parameter
+             (let-alist sx-question-mode--data .site_par)))
+     face mode-line-buffer-id)
+    " " mode-name
+    " ["
+    "Answers: "
+    (:propertize
+     (:eval (number-to-string (let-alist sx-question-mode--data .answer_count)))
+     face mode-line-buffer-id)
+    ", "
+    "Stars: "
+    (:propertize
+     (:eval (number-to-string (or (let-alist sx-question-mode--data .favorite_count) 0)))
+     face mode-line-buffer-id)
+    ", "
+    "Views: "
+    (:propertize
+     (:eval (number-to-string (let-alist sx-question-mode--data .view_count)))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in `sx-question-mode' buffers.")
+
 (define-derived-mode sx-question-mode special-mode "Question"
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
+Don't activate this mode directly.  Instead, to print a question
+on the current buffer use
+`sx-question-mode--erase-and-print-question'.
+
 \\<sx-question-mode>
 \\{sx-question-mode}"
   (setq header-line-format sx-question-mode--header-line)
+  (setq mode-line-format sx-question-mode--mode-line)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
