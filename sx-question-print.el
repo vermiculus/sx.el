@@ -234,12 +234,12 @@ DATA can represent a question or an answer."
       (insert-text-button
        ;; Questions have title, Answers don't
        (cond (.title)
-             ((eq .is_accepted t) sx-question-mode-answer-accepted-title)
+             (.is_accepted sx-question-mode-answer-accepted-title)
              (t sx-question-mode-answer-title))
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
        'sx-button-copy .share_link
-       'face (if (eq .is_accepted t) 'sx-question-mode-accepted
+       'face (if .is_accepted 'sx-question-mode-accepted
                'sx-question-mode-title)
        :type 'sx-question-mode-title)
 
@@ -269,9 +269,9 @@ DATA can represent a question or an answer."
         (sx-question-mode--insert-header
          sx-question-mode-header-score
          (format "%s%s" .score
-                 (cond ((eq .upvoted t) "↑") ((eq .downvoted t) "↓") (t "")))
-         (cond ((eq .upvoted t) 'sx-question-mode-score-upvoted)
-               ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+                 (cond (.upvoted "↑") (.downvoted "↓") (t "")))
+         (cond (.upvoted 'sx-question-mode-score-upvoted)
+               (.downvoted 'sx-question-mode-score-downvoted)
                (t 'sx-question-mode-score)))
 
         ;; Tags
@@ -333,7 +333,7 @@ The comment is indented, filled, and then printed according to
     (sx-assoc-let comment-data
       (when (and (numberp .score) (> .score 0))
         (insert (number-to-string .score)
-                (if (eq .upvoted t) "^" "")
+                (if .upvoted "^" "")
                 " "))
       (insert
        (format sx-question-mode-comments-format
