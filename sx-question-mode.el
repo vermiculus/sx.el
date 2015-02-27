@@ -250,6 +250,7 @@ on the current buffer use
    ("v" sx-visit-externally)
    ("u" sx-upvote)
    ("d" sx-downvote)
+   ("O" sx-question-mode-order-by)
    ("q" quit-window)
    (" " scroll-up-command)
    ("a" sx-answer)
@@ -291,6 +292,18 @@ query the api."
   "Ensures we are in question mode, erroring otherwise."
   (unless (derived-mode-p 'sx-question-mode)
     (error "Not in `sx-question-mode'")))
+
+(defun sx-question-mode-order-by (sort)
+  "Order answers in the current buffer by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (let ((order (sx-completing-read "Order answers by: "
+                       (mapcar #'car sx-question-mode--sort-methods))))
+           (cdr-safe (assoc-string order sx-question-mode--sort-methods)))))
+  (when (and sort (functionp sort))
+    (setq sx-question-mode-answer-sort-function sort)
+    (sx-question-mode-refresh 'no-update)))
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here

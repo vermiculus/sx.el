@@ -195,6 +195,11 @@ If ALIST doesn't have a `site' property, one is created using the
 
 
 ;;; Utility Functions
+(defun sx--split-string (string &optional separators)
+  "Split STRING into substrings bounded by matches for SEPARATORS."
+  (mapcar (lambda (s) (replace-regexp-in-string "\\` +\\| +\\'" "" s))
+    (split-string string separators 'omit-nulls)))
+
 (defun sx-completing-read (&rest args)
   "Like `completing-read', but possibly use ido.
 All ARGS are passed to `completing-read' or `ido-completing-read'."
@@ -340,6 +345,12 @@ GET-FUNC and performs the actual comparison."
 (defun sx--squash-whitespace (string)
   "Return STRING with consecutive whitespace squashed together."
   (replace-regexp-in-string "[ 	\r\n]+" " " string))
+
+(defun sx--invert-predicate (predicate)
+  "Return PREDICATE function with arguments inverted.
+For instance (sx--invert-predicate #'<) is the same as #'>.
+Note this is not the same as negating PREDICATE."
+  (lambda (&rest args) (apply predicate (reverse args))))
 
 
 ;;; Printing request data
