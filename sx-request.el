@@ -190,7 +190,9 @@ the main content of the response is returned."
                ;; @TODO should use `condition-case' here -- set
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
-                           (json-read-from-string data))))
+                           (let ((json-false nil)
+                                 (json-null :null))
+                             (json-read-from-string data)))))
           (kill-buffer response-buffer)
           (when (and (not response) (string-equal data "{}"))
             (sx-message "Unable to parse response: %S" response)
@@ -199,13 +201,13 @@ the main content of the response is returned."
           (sx-assoc-let response
             (when .error_id
               (error "Request failed: (%s) [%i %s] %S"
-                     .method .error_id .error_name .error_message))
+                .method .error_id .error_name .error_message))
             (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
             (funcall (or process-function #'sx-request-response-get-items)
-                     response)))))))
+              response)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method _process-function)
   "Fallback method when authentication is not available.
@@ -308,7 +310,7 @@ false, use the symbol `false'.  Each element is processed with
 
 (defun sx-request-all-stop-when-no-more (response)
   (or (not response)
-      (equal :json-false (cdr (assoc 'has_more response)))))
+      (not (cdr (assoc 'has_more response)))))
 
 (provide 'sx-request)
 ;;; sx-request.el ends here
