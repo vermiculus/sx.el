@@ -463,9 +463,8 @@ END should be a marker."
                ;; Searching for a match has no bounds.
                nil 'noerror)
           (let ((r (copy-marker (match-beginning 0))))
-            ;; The code tag is special, because it quotes everything in
-            ;; the middle.
-            (if (string= tag "quote")
+            ;; The code tag is special, because it quotes everything inside.
+            (if (string= tag "code")
                 (progn (replace-match "`")
                        (save-excursion (goto-char l) (insert "`")))
               (replace-match "")
