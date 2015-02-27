@@ -95,6 +95,11 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-sub-sup
+  '((t :height 0.7))
+  "Face used on <sub> and <sup> tags."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-header-tags "\nTags:      "
   "String used before the question tags at the header."
   :type 'string
@@ -402,53 +407,97 @@ E.g.:
              (group-n 1 (and "@" (1+ (not space))))
              symbol-end)
         1 font-lock-builtin-face)))
-    ;; Everything.
+    ;; Fontify.
     (font-lock-fontify-region (point-min) (point-max))
-    ;; Compact links.
-    (sx-question-mode--process-links-in-buffer)
-    ;; And now the filling
+    ;; And now the content handling:
     (goto-char (point-min))
+    ;; Handle one paragraph at a time.
     (while (null (eobp))
-      ;; Don't fill pre blocks.
+      ;; Some things are not paragraphs, and shouldn't be filled.
       (unless (sx-question-mode--dont-fill-here)
         (let ((beg (point)))
           (skip-chars-forward "\r\n[:blank:]")
           (forward-paragraph)
+          (let ((end (point-marker)))
+            ;; Compact links.
+            (sx-question-mode--process-html-tags beg end)
+            ;; Compact links.
+            (sx-question-mode--process-links beg end)
+            (goto-char end))
           (fill-region beg (point)))))
     (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
 
 
+;;; HTML tags
+(defconst sx-question-mode--html-tag-regexp
+  (rx "<" (group-n 1 "%s") (* (not (any ">"))) ">"))
+
+(defun sx-question-mode--process-html-tags (beg end)
+  "Hide all html tags between BEG and END and possibly interpret them.
+END should be a marker."
+  ;; This code understands nested html, but not if the same tag is
+  ;; nested in itself (e.g., <kbd><kbd></kbd></kbd>).
+  (goto-char beg)
+  (while (search-forward-regexp
+          (format sx-question-mode--html-tag-regexp "[[:alpha:]]+")
+          end 'noerror)
+    (unless (save-match-data (markdown-code-at-point-p))
+      (let ((tag (match-string 1))
+            (l   (match-beginning 0)))
+        (replace-match "")
+        (when (search-forward-regexp
+               (format sx-question-mode--html-tag-regexp (concat "/" tag))
+               ;; Searching for a match has no bounds.
+               nil 'noerror)
+          (let ((r (copy-marker (match-beginning 0))))
+            ;; The code tag is special, because it quotes everything inside.
+            (if (string= tag "code")
+                (progn (replace-match "`")
+                       (save-excursion (goto-char l) (insert "`")))
+              (replace-match "")
+              ;; Handle stuff between the two tags.
+              (save-match-data (sx-question-mode--process-html-tags l r))
+              (cond
+               ((string= tag "kbd")
+                (add-text-properties l r '(face markdown-inline-code-face)))
+               ((string= tag "sub")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise -0.3))))
+               ((string= tag "sup")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise +0.3))))))))))))
+
+
 ;;; Handling links
-(defun sx-question-mode--process-links-in-buffer ()
-  "Turn all markdown links in this buffer into compact format.
+(defun sx-question-mode--process-links (beg end)
+  "Turn all markdown links between BEG and ENG into compact format.
+END must be a marker.
 Image links are downloaded and displayed, if
 `sx-question-mode-use-images' is non-nil."
-  (save-excursion
-    (goto-char (point-min))
-    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
-      ;; Tags are tag-buttons.
-      (let ((tag (match-string-no-properties 5)))
-        (if (and tag (> (length tag) 0))
-            (progn (replace-match "")
-                   ;; `match-string' 6 is the "meta-" prefix.
-                   (sx-tag--insert tag (match-string 6)))
-          ;; Other links are link-buttons.
-          (let* ((text (match-string-no-properties 1))
-                 (url (or (match-string-no-properties 2)
-                          (match-string-no-properties 4)
-                          (sx-question-mode-find-reference
-                           (match-string-no-properties 3)
-                           text)))
-                 (full-text (match-string-no-properties 0)))
-            (when (stringp url)
-              (replace-match "")
-              (sx-question-mode--insert-link
-               (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
-                   ;; Is it an image?
-                   (sx-question-mode--create-image url)
-                 ;; Or a regular link
-                 (or (if sx-question-mode-pretty-links text full-text) url))
-               url))))))))
+  (goto-char beg)
+  (while (search-forward-regexp sx-question-mode--link-regexp end t)
+    ;; Tags are tag-buttons.
+    (let ((tag (match-string-no-properties 5)))
+      (if (and tag (> (length tag) 0))
+          (progn (replace-match "")
+                 (sx-tag--insert tag))
+        ;; Other links are link-buttons.
+        (let* ((text (match-string-no-properties 1))
+               (url (or (match-string-no-properties 2)
+                        (match-string-no-properties 4)
+                        (sx-question-mode-find-reference
+                         (match-string-no-properties 3)
+                         text)))
+               (full-text (match-string-no-properties 0)))
+          (when (stringp url)
+            (replace-match "")
+            (sx-question-mode--insert-link
+             (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
+                 ;; Is it an image?
+                 (sx-question-mode--create-image url)
+               ;; Or a regular link
+               (or (if sx-question-mode-pretty-links text full-text) url))
+             url)))))))
 
 (defun sx-question-mode--create-image (url)
   "Get and create an image from URL.
