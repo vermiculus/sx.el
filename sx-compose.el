@@ -193,8 +193,7 @@ tags.  Return a list of already inserted tags."
            'noerror)
     (error "No Tags header found"))
   (save-match-data
-    (split-string (match-string 1) (rx (any space ",;"))
-                  'omit-nulls (rx space))))
+    (sx--split-string (match-string 1) (rx (any space ",;")))))
 
 (defun sx-compose--check-tags ()
   "Check if tags in current compose buffer are valid."
@@ -313,8 +312,7 @@ other keywords are read from the header "
           (unless (search-forward-regexp "^Tags : *\\([^[:space:]].*\\) *$"
                                          header-end 'noerror)
             (error "No Tags header found"))
-          (push (cons 'tags (split-string (match-string 1)
-                                          "[[:space:],;]" 'omit-nulls))
+          (push (cons 'tags (sx--split-string (match-string 1) "[[:space:],;]"))
                 keywords)
           ;; And erase the header so it doesn't get sent.
           (delete-region

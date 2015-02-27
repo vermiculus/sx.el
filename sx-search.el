@@ -126,9 +126,15 @@ prefix argument, the user is asked for everything."
   (let ((tag (save-excursion
                (when pos (goto-char pos))
                (or (get-text-property (point) 'sx-tag)
-                   (thing-at-point 'symbol)))))
-    (sx-search (or sx-question-list--site
-                   (sx-assoc-let sx-question-mode--data .site_par))
+                   (thing-at-point 'symbol))))
+        (meta (save-excursion
+                (when pos (goto-char pos))
+                (get-text-property (point) 'sx-tag-meta)))
+        (site (replace-regexp-in-string
+               (rx string-start "meta.") ""
+               (or sx-question-list--site
+                   (sx-assoc-let sx-question-mode--data .site_par)))))
+    (sx-search (concat (when meta "meta.") site)
                nil tag)))
 
 (provide 'sx-search)

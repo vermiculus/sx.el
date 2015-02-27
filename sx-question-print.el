@@ -63,7 +63,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-author-format "\nAuthor:   %d %r"
+(defcustom sx-question-mode-header-author-format "\nAuthor:    %d %r"
   "String used to display the question author at the header.
 % constructs have special meaning here.  See `sx-user--format'."
   :type 'string
@@ -74,7 +74,7 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used on the question date in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-date "\nAsked on: "
+(defcustom sx-question-mode-header-date "\nPosted on: "
   "String used before the question date at the header."
   :type 'string
   :group 'sx-question-mode)
@@ -95,12 +95,17 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defcustom sx-question-mode-header-tags "\nTags:     "
+(defface sx-question-mode-sub-sup
+  '((t :height 0.7))
+  "Face used on <sub> and <sup> tags."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-header-tags "\nTags:      "
   "String used before the question tags at the header."
   :type 'string
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-header-score "\nScore:    "
+(defcustom sx-question-mode-header-score "\nScore:     "
   "String used before the question score at the header."
   :type 'string
   :group 'sx-question-mode)
@@ -131,6 +136,16 @@ the editor's name."
   :type 'string
   :group 'sx-question-mode)
 
+(defface sx-question-mode-accepted
+  '((t :foreground "ForestGreen" :inherit sx-question-mode-title))
+  "Face used for accepted answers in the question buffer."
+  :group 'sx-question-mode-faces)
+
+(defcustom sx-question-mode-answer-accepted-title "Accepted Answer"
+  "Title used at the start of accepted \"Answer\" section."
+  :type 'string
+  :group 'sx-question-mode)
+
 (defcustom sx-question-mode-comments-title " Comments"
   "Title used at the start of \"Comments\" sections."
   :type 'string
@@ -148,13 +163,24 @@ replaced with the comment."
   :type 'boolean
   :group 'sx-question-mode)
 
+(defconst sx-question-mode--sort-methods
+  (let ((methods
+         '(("Higher-scoring" . sx-answer-higher-score-p)
+           ("Newer"          . sx-answer-newer-p)
+           ("More active"    . sx-answer-more-active-p))))
+    (append (mapcar (lambda (x) (cons (concat (car x) " first") (cdr x)))
+              methods)
+            (mapcar (lambda (x) (cons (concat (car x) " last")
+                                 (sx--invert-predicate (cdr x))))
+              methods))))
+
 (defcustom sx-question-mode-answer-sort-function
   #'sx-answer-higher-score-p
   "Function used to sort answers in the question buffer."
-  :type '(choice
-          (const :tag "Higher-scoring first" sx-answer-higher-score-p)
-          (const :tag "Newer first"          sx-answer-newer-p)
-          (const :tag "More active first"    sx-answer-more-active-p))
+  :type
+  (cons 'choice
+        (mapcar (lambda (x) `(const :tag ,(car x) ,(cdr x)))
+          sx-question-mode--sort-methods))
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-use-images
@@ -203,22 +229,29 @@ DATA can represent a question or an answer."
       (insert sx-question-mode-header-title)
       (insert-text-button
        ;; Questions have title, Answers don't
-       (or .title sx-question-mode-answer-title)
+       (cond (.title)
+             ((eq .is_accepted t) sx-question-mode-answer-accepted-title)
+             (t sx-question-mode-answer-title))
        ;; Section level
        'sx-question-mode--section (if .title 1 2)
        'sx-button-copy .share_link
+       'face (if (eq .is_accepted t) 'sx-question-mode-accepted
+               'sx-question-mode-title)
        :type 'sx-question-mode-title)
+
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay
           '(sx-question-mode--section-content t)
+
         ;; Author
         (insert
          (sx-user--format
           (propertize sx-question-mode-header-author-format
                       'face 'sx-question-mode-header)
           .owner))
+
+        ;; Date
         (sx-question-mode--insert-header
-         ;; Date
          sx-question-mode-header-date
          (concat
           (sx-time-seconds-to-date .creation_date)
@@ -227,18 +260,22 @@ DATA can represent a question or an answer."
               (sx-time-since .last_edit_date)
               (sx-user--format "%d" .last_editor))))
          'sx-question-mode-date)
+
+        ;; Score and upvoted/downvoted status.
         (sx-question-mode--insert-header
          sx-question-mode-header-score
-         (format "%s" .score)
-         (cond
-          ((eq .upvoted t) 'sx-question-mode-score-upvoted)
-          ((eq .downvoted t) 'sx-question-mode-score-downvoted)
-          (t 'sx-question-mode-score)))
+         (format "%s%s" .score
+                 (cond ((eq .upvoted t) "↑") ((eq .downvoted t) "↓") (t "")))
+         (cond ((eq .upvoted t) 'sx-question-mode-score-upvoted)
+               ((eq .downvoted t) 'sx-question-mode-score-downvoted)
+               (t 'sx-question-mode-score)))
+
+        ;; Tags
         (when .title
           ;; Tags
           (sx-question-mode--insert-header
            sx-question-mode-header-tags
-           (mapconcat #'sx-tag--format .tags " ")
+           (sx-tag--format-tags .tags .site_par)
            nil))
         ;; Body
         (insert "\n"
@@ -337,8 +374,9 @@ E.g.:
 
 (defconst sx-question-mode--link-regexp
   ;; Done at compile time.
-  (rx (or (and "[tag:" (group-n 5 (+ (not (any " ]")))) "]")
-          (and (opt "!") "[" (group-n 1 (1+ (not (any "[]")))) "]"
+  (rx (or (and "[" (optional (group-n 6 "meta-")) "tag:"
+               (group-n 5 (+ (not (any " ]")))) "]")
+          (and (opt "!") "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
           (group-n 4 (and (and "http" (opt "s") "://") ""
@@ -363,6 +401,7 @@ font-locks code-blocks according to mode."
         (narrow-to-region beg end)
         ;; Compact links.
         (sx-question-mode--process-links-in-buffer)
+        (sx-question-mode--process-html-tags (point-min) (point-max))
         ;; And now the filling and other handlings.
         (goto-char (point-min))
         (while (null (eobp))
@@ -402,9 +441,51 @@ font-locks code-blocks according to mode."
     (sx-question-mode--process-markdown-in-region beg (point))))
 
 
+;;; HTML tags
+(defconst sx-question-mode--html-tag-regexp
+  (rx "<" (group-n 1 "%s") (* (not (any ">"))) ">"))
+
+(defun sx-question-mode--process-html-tags (beg end)
+  "Hide all html tags between BEG and END and possibly interpret them.
+END should be a marker."
+  ;; This code understands nested html, but not if the same tag is
+  ;; nested in itself (e.g., <kbd><kbd></kbd></kbd>).
+  (goto-char beg)
+  (while (search-forward-regexp
+          (format sx-question-mode--html-tag-regexp "[[:alpha:]]+")
+          end 'noerror)
+    (unless (save-match-data (markdown-code-at-point-p))
+      (let ((tag (match-string 1))
+            (l   (match-beginning 0)))
+        (replace-match "")
+        (when (search-forward-regexp
+               (format sx-question-mode--html-tag-regexp (concat "/" tag))
+               ;; Searching for a match has no bounds.
+               nil 'noerror)
+          (let ((r (copy-marker (match-beginning 0))))
+            ;; The code tag is special, because it quotes everything in
+            ;; the middle.
+            (if (string= tag "quote")
+                (progn (replace-match "`")
+                       (save-excursion (goto-char l) (insert "`")))
+              (replace-match "")
+              ;; Handle stuff between the two tags.
+              (save-match-data (sx-question-mode--process-html-tags l r))
+              (cond
+               ((string= tag "kbd")
+                (add-text-properties l r '(face markdown-inline-code-face)))
+               ((string= tag "sub")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise -0.3))))
+               ((string= tag "sup")
+                (add-text-properties
+                 l r '(face sx-question-mode-sub-sup display (raise +0.3))))))))))))
+
+
 ;;; Handling links
 (defun sx-question-mode--process-links-in-buffer ()
-  "Turn all markdown links in this buffer into compact format.
+  "Turn all markdown links between BEG and ENG into compact format.
+END must be a marker.
 Image links are downloaded and displayed, if
 `sx-question-mode-use-images' is non-nil."
   (save-excursion

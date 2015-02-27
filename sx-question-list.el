@@ -166,7 +166,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
+         (format "%-40s" (sx-tag--format-tags .tags sx-question-list--site))
          " "
          (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
@@ -303,7 +303,8 @@ into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
-  (sx-question-list--update-mode-line)
+  (setq mode-line-format
+        sx-question-list--mode-line-format)
   (setq sx-question-list--pages-so-far 0)
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
@@ -315,8 +316,6 @@ into consideration.  The same holds for `sx-question-list--order'.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
     #'sx-question-list-refresh nil t)
-  (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list--update-mode-line nil t)
   (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
@@ -395,14 +394,12 @@ Non-interactively, DATA is a question alist."
   ;; "Unanswered", etc.
   "Variable describing current tab being viewed.")
 
-(defvar sx-question-list--total-count 0
-  "Holds the total number of questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--total-count)
-
 (defconst sx-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
+  '("   "
+    (:propertize
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
+     face mode-line-buffer-id)
+    " " mode-name ": "
     (:propertize sx-question-list--current-tab
                  face mode-line-buffer-id)
     " ["
@@ -413,7 +410,7 @@ Non-interactively, DATA is a question alist."
     ", "
     "Total: "
     (:propertize
-     (:eval (int-to-string sx-question-list--total-count))
+     (:eval (int-to-string (length tabulated-list-entries)))
      face mode-line-buffer-id)
     "] ")
   "Mode-line construct to use in question-list buffers.")
@@ -423,15 +420,6 @@ Non-interactively, DATA is a question alist."
   (int-to-string
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
-
-(defun sx-question-list--update-mode-line ()
-  "Fill the mode-line with useful information."
-  ;; All the data we need is right in the buffer.
-  (when (derived-mode-p 'sx-question-list-mode)
-    (setq mode-line-format
-          sx-question-list--mode-line-format)
-    (setq sx-question-list--total-count
-          (length tabulated-list-entries))))
 
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
