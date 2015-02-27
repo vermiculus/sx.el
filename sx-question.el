@@ -148,7 +148,8 @@ See `sx-question--user-read-list'."
            ;; Question wasn't present.
            (t
             (sx-sorted-insert-skip-first
-             q-cell site-cell (lambda (x y) (> (car x) (car y))))))))
+             q-cell site-cell
+             (lambda (x y) (> (or (car x) -1) (or (car y) -1))))))))
     ;; Save the results.
     ;; @TODO This causes a small lag on `j' and `k' as the list gets
     ;; large.  Should we do this on a timer?

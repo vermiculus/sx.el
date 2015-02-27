@@ -4,7 +4,7 @@
 
 ;; Author: Sean Allred <code@seanallred.com>
 ;; URL: https://github.com/vermiculus/sx.el/
-;; Version: 0.1
+;; Version: 0.2
 ;; Keywords: help, hypermedia, tools
 ;; Package-Requires: ((emacs "24.1") (cl-lib "0.5") (json "1.3") (markdown-mode "2.0") (let-alist "1.0.3"))
 
@@ -28,7 +28,7 @@
 ;;; Code:
 (require 'tabulated-list)
 
-(defconst sx-version "0.1" "Version of the `sx' package.")
+(defconst sx-version "0.2" "Version of the `sx' package.")
 
 (defgroup sx nil
   "Customization group for the `sx' package."
@@ -148,12 +148,7 @@ with a `link' property)."
              ;; From URL
              (string-match (rx "/questions/"
                                ;; Question ID
-                               (group-n 1 (+ digit)) "/"
-                               ;; Optional question title
-                               (optional (+ (not (any "/"))) "/")
-                               ;; Garbage at the end
-                               (optional (and (any "?#") (* any)))
-                               string-end)
+                               (group-n 1 (+ digit)) "/")
                            link))
             (push '(type . question) result)))
       (push (cons 'id (string-to-number (match-string-no-properties 1 link)))
@@ -192,8 +187,19 @@ If ALIST doesn't have a `site' property, one is created using the
      ,(macroexpand
        `(let-alist ,alist ,@body))))
 
+(defun sx--pretty-site-parameter (site)
+  "Returned a pretty and capitalized version of string SITE."
+  (mapconcat #'capitalize
+             (split-string site "\\.")
+             " "))
+
 
 ;;; Utility Functions
+(defun sx--split-string (string &optional separators)
+  "Split STRING into substrings bounded by matches for SEPARATORS."
+  (mapcar (lambda (s) (replace-regexp-in-string "\\` +\\| +\\'" "" s))
+    (split-string string separators 'omit-nulls)))
+
 (defun sx-completing-read (&rest args)
   "Like `completing-read', but possibly use ido.
 All ARGS are passed to `completing-read' or `ido-completing-read'."
@@ -209,7 +215,7 @@ is intentionally skipped."
      (while (and ;; We're not at the end.
              (cdr-safe tail)
              ;; We're not at the right place.
-             (,(or predicate #'<) x (cadr tail)))
+             (funcall (or ,predicate #'<) x (cadr tail)))
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
@@ -335,6 +341,16 @@ GET-FUNC and performs the actual comparison."
      (funcall ,compare-func
               (funcall ,get-func a)
               (funcall ,get-func b))))
+
+(defun sx--squash-whitespace (string)
+  "Return STRING with consecutive whitespace squashed together."
+  (replace-regexp-in-string "[ 	\r\n]+" " " string))
+
+(defun sx--invert-predicate (predicate)
+  "Return PREDICATE function with arguments inverted.
+For instance (sx--invert-predicate #'<) is the same as #'>.
+Note this is not the same as negating PREDICATE."
+  (lambda (&rest args) (apply predicate (reverse args))))
 
 
 ;;; Printing request data

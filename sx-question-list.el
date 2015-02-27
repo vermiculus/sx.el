@@ -27,6 +27,7 @@
 
 (require 'sx)
 (require 'sx-time)
+(require 'sx-tag)
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
@@ -165,7 +166,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (format "%-40s" (mapconcat #'sx-tag--format .tags " "))
+         (format "%-40s" (sx-tag--format-tags .tags sx-question-list--site))
          " "
          (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
@@ -224,6 +225,24 @@ This is ignored if `sx-question-list--refresh-function' is set.")
     ": Quit")
   "Header-line used on the question list.")
 
+(defconst sx-question-list--order-methods
+  '(("Recent Activity" . activity)
+    ("Creation Date"   . creation)
+    ("Most Voted"      . votes)
+    ("Score"           . votes)
+    ("Hot"             . hot))
+  "Alist of possible values to be passed to the `sort' keyword.")
+(make-variable-buffer-local 'sx-question-list--order-methods)
+
+(defun sx-question-list--interactive-order-prompt (&optional prompt)
+  "Interactively prompt for a sorting order.
+PROMPT is displayed to the user.  If it is omitted, a default one
+is used."
+  (let ((order (sx-completing-read
+                (or prompt "Order questions by: ")
+                (mapcar #'car sx-question-list--order-methods))))
+    (cdr-safe (assoc-string order sx-question-list--order-methods))))
+
 
 ;;; Mode Definition
 (define-derived-mode sx-question-list-mode
@@ -253,6 +272,10 @@ The full list of variables which can be set is:
  5. `sx-question-list--dataset'
       This is only used if both 3 and 4 are nil. It can be used to
       display a static list.
+ 6. `sx-question-list--order'
+      Set this to the `sort' method that should be used when
+      requesting the list, if that makes sense. If it doesn't
+      leave it as nil.
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
@@ -276,11 +299,12 @@ Adding further questions to the bottom of the list is done by:
    display; otherwise, decrement `sx-question-list--pages-so-far'.
 
 If `sx-question-list--site' is given, items 3 and 4 should take it
-into consideration.
+into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
-  (sx-question-list--update-mode-line)
+  (setq mode-line-format
+        sx-question-list--mode-line-format)
   (setq sx-question-list--pages-so-far 0)
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
@@ -292,8 +316,6 @@ into consideration.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
     #'sx-question-list-refresh nil t)
-  (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list--update-mode-line nil t)
   (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
@@ -372,14 +394,12 @@ Non-interactively, DATA is a question alist."
   ;; "Unanswered", etc.
   "Variable describing current tab being viewed.")
 
-(defvar sx-question-list--total-count 0
-  "Holds the total number of questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--total-count)
-
 (defconst sx-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
+  '("   "
+    (:propertize
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
+     face mode-line-buffer-id)
+    " " mode-name ": "
     (:propertize sx-question-list--current-tab
                  face mode-line-buffer-id)
     " ["
@@ -390,7 +410,7 @@ Non-interactively, DATA is a question alist."
     ", "
     "Total: "
     (:propertize
-     (:eval (int-to-string sx-question-list--total-count))
+     (:eval (int-to-string (length tabulated-list-entries)))
      face mode-line-buffer-id)
     "] ")
   "Mode-line construct to use in question-list buffers.")
@@ -401,18 +421,13 @@ Non-interactively, DATA is a question alist."
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
 
-(defun sx-question-list--update-mode-line ()
-  "Fill the mode-line with useful information."
-  ;; All the data we need is right in the buffer.
-  (when (derived-mode-p 'sx-question-list-mode)
-    (setq mode-line-format
-          sx-question-list--mode-line-format)
-    (setq sx-question-list--total-count
-          (length tabulated-list-entries))))
-
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")
 (make-variable-buffer-local 'sx-question-list--site)
+
+(defvar sx-question-list--order nil
+  "Order being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--order)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
@@ -584,6 +599,19 @@ Sets `sx-question-list--site' and then call
            t)))
   (when (and (stringp site) (> (length site) 0))
     (setq sx-question-list--site site)
+    (sx-question-list-refresh 'redisplay)))
+
+(defun sx-question-list-order-by (sort)
+  "Order questions in the current list by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (when sx-question-list--order
+           (sx-question-list--interactive-order-prompt))))
+  (unless sx-question-list--order
+    (sx-user-error "This list can't be reordered"))
+  (when (and sort (symbolp sort))
+    (setq sx-question-list--order sort)
     (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)

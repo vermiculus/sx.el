@@ -1,9 +1,24 @@
+** Found a Bug?
+Open an issue!  Please include:
+- a description of what you are trying to do
+- the behavior you actually see
+- steps we can take to reproduce the bug
+If the bug actually causes Emacs to issue an error, please
+additionally include the backtrace that led up to the error.  To do
+this, use ~M-x toggle-debug-on-error~ to make sure that the setting is
+/enabled/.  Now, when the error occurs, a =*Backtrace*= window will
+open with most of the information that we typically need.  Copy and
+paste this into your bug report.  (To get out of the =*Backtrace*=
+window and Emacs' subsequent 'debug mode', press =q=.)
+
+** Don't Know Your Way Around?
 If you need help, search the issue tracker to see if anyone has asked
 your question before.  If it hasn't, a good place to ask first is our
 chat room on [[https://gitter.im/vermiculus/sx.el][Gitter]].  Opening an issue is welcome of course, but chat
 will likely be faster for you.  If a code change needs to be made, an
 issue can be written up as necessary.
 
+** Want to Help?
 Have a great idea for SX?  Again, discuss it on [[https://gitter.im/vermiculus/sx.el][Gitter]] first!  Don't
 limit ideas to mimicking the official website, either -- this is
 Emacs; we should take advantage of its abilities.
