@@ -142,6 +142,34 @@ Return the entire response as a complex alist."
              url-method
              (or get-all process-function))))
 
+(defun sx-method-post-from-data (data &rest keys)
+  "Make a POST `sx-method-call', deriving parameters from DATA.
+KEYS are [KEYWORD VALUE] pairs passed to `sx-method-call', except
+the following which are decided by this function:
+
+    METHOD :site and :id are derived from DATA, where METHOD is
+           either \"answers\", \"comments\", or \"questions\".
+    :url-method is post.
+    :filter is `sx-browse-filter'.
+    :auth is warn.
+
+As a special exception, if KEYS is a single argument, it is
+assumed to be the :submethod argument."
+  (declare (indent 1))
+  (sx-assoc-let data
+    (apply #'sx-method-call
+      (cond (.comment_id "comments")
+            (.answer_id "answers")
+            (.question_id "questions"))
+      :id (or .comment_id .answer_id .question_id)
+      :auth 'warn
+      :url-method 'post
+      :filter sx-browse-filter
+      :site .site_par
+      (if (= 1 (length keys))
+          (cons :submethod keys)
+        keys))))
+
 (provide 'sx-method)
 ;;; sx-method.el ends here
 

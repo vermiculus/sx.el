@@ -163,28 +163,42 @@ property."
              pos 'sx-question-mode--section-content nil)))
 
 
-;;; Major-mode
+;;; Major-mode constants
+(defconst sx-question-mode--key-definitions
+  '(
+    ("<down>" sx-question-mode-next-section)
+    ("<up>" sx-question-mode-previous-section)
+    ("n" sx-question-mode-next-section "Navigate")
+    ("p" sx-question-mode-previous-section "Navigate")
+    ("g" sx-question-mode-refresh)
+    ("v" sx-visit-externally)
+    ("u" sx-upvote "upvote")
+    ("d" sx-downvote "downvote")
+    ("q" quit-window)
+    ("SPC" scroll-up-command)
+    ("e" sx-edit "edit")
+    ("S" sx-search)
+    ("*" sx-favorite "star")
+    ("K" sx-delete "Delete")
+    ("s" sx-switchto-map "switch-to")
+    ("O" sx-question-mode-order-by "Order")
+    ("c" sx-comment "comment")
+    ("a" sx-answer "answer")
+    ("TAB" forward-button "Navigate")
+    ("<S-iso-lefttab>" backward-button)
+    ("<S-tab>" backward-button)
+    ("<backtab>" backward-button))
+  "List of key definitions for `sx-question-mode'.
+This list must follow the form described in
+`sx--key-definitions-to-header-line'.")
+
 (defconst sx-question-mode--header-line
-  '("    "
-    (:propertize "n p TAB" face mode-line-buffer-id)
-    ": Navigate"
-    "    "
-    (:propertize "u d" face mode-line-buffer-id)
-    ": Up/Down Vote"
-    "    "
-    (:propertize "c" face mode-line-buffer-id)
-    ": Comment"
-    "    "
-    (:propertize "a" face mode-line-buffer-id)
-    ": Answer"
-    "    "
-    (:propertize "e" face mode-line-buffer-id)
-    ": Edit"
-    "    "
-    (:propertize "q" face mode-line-buffer-id)
-    ": Quit")
+  (sx--key-definitions-to-header-line
+   sx-question-mode--key-definitions)
   "Header-line used on the question list.")
 
+
+;;; Major-mode definition
 (defconst sx-question-mode--mode-line
   '("   "
     ;; `sx-question-mode--data' is guaranteed to have through
@@ -237,33 +251,10 @@ on the current buffer use
   (remove-hook 'window-configuration-change-hook
     'markdown-fontify-buffer-wiki-links t))
 
-(mapc
- (lambda (x) (define-key sx-question-mode-map
-          (car x) (cadr x)))
- `(
-   ([down] sx-question-mode-next-section)
-   ([up] sx-question-mode-previous-section)
-   ("n" sx-question-mode-next-section)
-   ("p" sx-question-mode-previous-section)
-   ("g" sx-question-mode-refresh)
-   ("c" sx-comment)
-   ("v" sx-visit-externally)
-   ("u" sx-upvote)
-   ("d" sx-downvote)
-   ("O" sx-question-mode-order-by)
-   ("q" quit-window)
-   (" " scroll-up-command)
-   ("a" sx-answer)
-   ("e" sx-edit)
-   ("S" sx-search)
-   ("s" sx-switchto-map)
-   ("*" sx-favorite)
-   (,(kbd "S-SPC") scroll-down-command)
-   ([backspace] scroll-down-command)
-   ([tab] forward-button)
-   (,(kbd "<S-iso-lefttab>") backward-button)
-   (,(kbd "<S-tab>") backward-button)
-   (,(kbd "<backtab>") backward-button)))
+;; We need this quote+eval combo because `kbd' was a macro in 24.2.
+(mapc (lambda (x) (eval `(define-key sx-question-mode-map
+                      (kbd ,(car x)) #',(cadr x))))
+  sx-question-mode--key-definitions)
 
 (defun sx-question-mode-refresh (&optional no-update)
   "Refresh currently displayed question.

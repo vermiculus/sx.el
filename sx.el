@@ -346,6 +346,10 @@ GET-FUNC and performs the actual comparison."
   "Return STRING with consecutive whitespace squashed together."
   (replace-regexp-in-string "[ 	\r\n]+" " " string))
 
+(defun sx--deleted-p (data)
+  "Return non-nil if DATA represents a deleted object."
+  (eq (car data) 'deleted))
+
 (defun sx--invert-predicate (predicate)
   "Return PREDICATE function with arguments inverted.
 For instance (sx--invert-predicate #'<) is the same as #'>.
@@ -434,6 +438,39 @@ if ALIST contains a different string at the ?% entry."
           ;; Delete `char-after'.
           (delete-char 1)))
       (buffer-string))))
+
+
+;;; Key definitions
+(defun sx--key-definitions-to-header-line (definitions)
+  "Return a `header-line-format' from DEFINITIONS.
+DEFINITIONS is a list where each element has one of the following two forms
+    (KEY COMMAND)
+    (KEY COMMAND DESCRIPTION)
+
+The latter are used to build the return value, the former are
+ignored."
+  (let ((ptize (lambda (x) `(:propertize ,x face mode-line-buffer-id)))
+        alist out)
+    (dolist (it definitions)
+      (when (> (length it) 2)
+        (let* ((key (car it))
+               (desc (elt it 2))
+               (cell (assoc desc alist)))
+          (if cell (push key (cdr cell))
+            (push (cons desc (list key)) alist)))))
+    (dolist (it alist out)
+      (let ((desc (car it))
+            (keys (cdr it)))
+        (push (list "   "
+                    (cons (funcall ptize (car keys))
+                          (mapcar (lambda (k) `("," ,(funcall ptize k))) (cdr keys)))
+                    (let ((match
+                           (and (= 1 (length keys))
+                                (string-match (regexp-quote (car keys)) desc))))
+                      (if (and (numberp match) (= 0 match))
+                          (substring desc (length (car keys)))
+                        (concat ":" desc))))
+              out)))))
 
 
 (defcustom sx-init-hook nil

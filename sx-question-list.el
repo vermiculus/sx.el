@@ -210,19 +210,39 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
+(defconst sx-question-list--key-definitions
+  '(
+    ;; S-down and S-up would collide with `windmove'.
+    ("<down>" sx-question-list-next)
+    ("<up>" sx-question-list-previous)
+    ("RET" sx-display "Display")
+    ("n" sx-question-list-next "Navigate")
+    ("p" sx-question-list-previous "Navigate")
+    ("j" sx-question-list-view-next "Navigate")
+    ("k" sx-question-list-view-previous "Navigate")
+    ("N" sx-question-list-next-far)
+    ("P" sx-question-list-previous-far)
+    ("J" sx-question-list-next-far)
+    ("K" sx-question-list-previous-far)
+    ("g" sx-question-list-refresh)
+    ("t" sx-tab-switch "tab")
+    ("a" sx-ask "ask")
+    ("S" sx-search "Search")
+    ("s" sx-switchto-map "switch-to")
+    ("v" sx-visit-externally "visit")
+    ("u" sx-upvote)
+    ("d" sx-downvote)
+    ("h" sx-question-list-hide "hide")
+    ("m" sx-question-list-mark-read "mark-read")
+    ("*" sx-favorite)
+    )
+  "List of key definitions for `sx-question-list-mode'.
+This list must follow the form described in
+`sx--key-definitions-to-header-line'.")
+
 (defconst sx-question-list--header-line
-  '("    "
-    (:propertize "n p j k" face mode-line-buffer-id)
-    ": Navigate"
-    "    "
-    (:propertize "RET" face mode-line-buffer-id)
-    ": View question"
-    "    "
-    (:propertize "v" face mode-line-buffer-id)
-    ": Visit externally"
-    "    "
-    (:propertize "q" face mode-line-buffer-id)
-    ": Quit")
+  (sx--key-definitions-to-header-line
+   sx-question-list--key-definitions)
   "Header-line used on the question list.")
 
 (defconst sx-question-list--order-methods
@@ -332,34 +352,10 @@ into consideration.  The same holds for `sx-question-list--order'.
 
 
 ;;; Keybinds
-(mapc
- (lambda (x) (define-key sx-question-list-mode-map
-          (car x) (cadr x)))
- '(
-   ;; S-down and S-up would collide with `windmove'.
-   ([down] sx-question-list-next)
-   ([up] sx-question-list-previous)
-   ("n" sx-question-list-next)
-   ("p" sx-question-list-previous)
-   ("j" sx-question-list-view-next)
-   ("k" sx-question-list-view-previous)
-   ("N" sx-question-list-next-far)
-   ("P" sx-question-list-previous-far)
-   ("J" sx-question-list-next-far)
-   ("K" sx-question-list-previous-far)
-   ("g" sx-question-list-refresh)
-   ("t" sx-tab-switch)
-   ("a" sx-ask)
-   ("S" sx-search)
-   ("s" sx-switchto-map)
-   ("v" sx-visit-externally)
-   ("u" sx-upvote)
-   ("d" sx-downvote)
-   ("h" sx-question-list-hide)
-   ("m" sx-question-list-mark-read)
-   ("*" sx-favorite)
-   ([?\r] sx-display)
-   ))
+;; We need this quote+eval combo because `kbd' was a macro in 24.2.
+(mapc (lambda (x) (eval `(define-key sx-question-list-mode-map
+                      (kbd ,(car x)) #',(cadr x))))
+  sx-question-list--key-definitions)
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
