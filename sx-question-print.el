@@ -201,6 +201,10 @@ type is not available, images won't work."
 
 ;;; Functions
 ;;;; Printing the general structure
+(defconst sx-question-mode--closed-mode-line-string
+  '(:propertize "  [CLOSED]  " face font-lock-warning-face)
+  "String indicating closed questions in the mode-line.")
+
 (defun sx-question-mode--print-question (question)
   "Print a buffer describing QUESTION.
 QUESTION must be a data structure returned by `json-read'."
@@ -213,6 +217,7 @@ QUESTION must be a data structure returned by `json-read'."
   ;; Print everything
   (sx-assoc-let question
     (when .closed_reason
+      (add-to-list 'mode-line-format sx-question-mode--closed-mode-line-string)
       (sx-question-mode--print-close-reason .closed_reason .closed_date))
     (sx-question-mode--print-section question)
     (mapc #'sx-question-mode--print-section
