@@ -174,13 +174,14 @@ property."
     ("d" sx-downvote "downvote")
     ("q" quit-window)
     ("SPC" scroll-up-command)
-    ("c" sx-comment "comment")
-    ("a" sx-answer "answer")
     ("e" sx-edit "edit")
     ("S" sx-search)
     ("*" sx-favorite "star")
     ("K" sx-delete "Delete")
     ("s" sx-switchto-map "switch-to")
+    ("O" sx-question-mode-order-by "Order")
+    ("c" sx-comment "comment")
+    ("a" sx-answer "answer")
     ("TAB" forward-button "Navigate")
     ("<S-iso-lefttab>" backward-button)
     ("<S-tab>" backward-button)
@@ -246,6 +247,18 @@ query the api."
   "Ensures we are in question mode, erroring otherwise."
   (unless (derived-mode-p 'sx-question-mode)
     (error "Not in `sx-question-mode'")))
+
+(defun sx-question-mode-order-by (sort)
+  "Order answers in the current buffer by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (let ((order (sx-completing-read "Order answers by: "
+                       (mapcar #'car sx-question-mode--sort-methods))))
+           (cdr-safe (assoc-string order sx-question-mode--sort-methods)))))
+  (when (and sort (functionp sort))
+    (setq sx-question-mode-answer-sort-function sort)
+    (sx-question-mode-refresh 'no-update)))
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here

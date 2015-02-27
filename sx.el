@@ -189,6 +189,11 @@ If ALIST doesn't have a `site' property, one is created using the
 
 
 ;;; Utility Functions
+(defun sx--split-string (string &optional separators)
+  "Split STRING into substrings bounded by matches for SEPARATORS."
+  (mapcar (lambda (s) (replace-regexp-in-string "\\` +\\| +\\'" "" s))
+    (split-string string separators 'omit-nulls)))
+
 (defun sx-completing-read (&rest args)
   "Like `completing-read', but possibly use ido.
 All ARGS are passed to `completing-read' or `ido-completing-read'."
@@ -204,7 +209,7 @@ is intentionally skipped."
      (while (and ;; We're not at the end.
              (cdr-safe tail)
              ;; We're not at the right place.
-             (,(or predicate #'<) x (cadr tail)))
+             (funcall (or ,predicate #'<) x (cadr tail)))
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
@@ -338,6 +343,12 @@ GET-FUNC and performs the actual comparison."
 (defun sx--deleted-p (data)
   "Return non-nil if DATA represents a deleted object."
   (eq (car data) 'deleted))
+
+(defun sx--invert-predicate (predicate)
+  "Return PREDICATE function with arguments inverted.
+For instance (sx--invert-predicate #'<) is the same as #'>.
+Note this is not the same as negating PREDICATE."
+  (lambda (&rest args) (apply predicate (reverse args))))
 
 
 ;;; Printing request data
