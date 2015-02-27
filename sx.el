@@ -187,6 +187,12 @@ If ALIST doesn't have a `site' property, one is created using the
      ,(macroexpand
        `(let-alist ,alist ,@body))))
 
+(defun sx--pretty-site-parameter (site)
+  "Returned a pretty and capitalized version of string SITE."
+  (mapconcat #'capitalize
+             (split-string site "\\.")
+             " "))
+
 
 ;;; Utility Functions
 (defun sx--split-string (string &optional separators)

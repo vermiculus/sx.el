@@ -393,9 +393,7 @@ Non-interactively, DATA is a question alist."
 (defconst sx-question-list--mode-line-format
   '("   "
     (:propertize
-     (:eval (mapconcat #'capitalize
-                       (split-string sx-question-list--site "\\.")
-                       " "))
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
      face mode-line-buffer-id)
     " " mode-name ": "
     (:propertize sx-question-list--current-tab
