@@ -209,7 +209,7 @@ is intentionally skipped."
      (while (and ;; We're not at the end.
              (cdr-safe tail)
              ;; We're not at the right place.
-             (,(or predicate #'<) x (cadr tail)))
+             (funcall (or ,predicate #'<) x (cadr tail)))
        (setq tail (cdr tail)))
      (setcdr tail (cons x (cdr tail)))))
 
@@ -339,6 +339,12 @@ GET-FUNC and performs the actual comparison."
 (defun sx--squash-whitespace (string)
   "Return STRING with consecutive whitespace squashed together."
   (replace-regexp-in-string "[ 	\r\n]+" " " string))
+
+(defun sx--invert-predicate (predicate)
+  "Return PREDICATE function with arguments inverted.
+For instance (sx--invert-predicate #'<) is the same as #'>.
+Note this is not the same as negating PREDICATE."
+  (lambda (&rest args) (apply predicate (reverse args))))
 
 
 ;;; Printing request data
