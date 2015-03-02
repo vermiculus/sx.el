@@ -146,6 +146,15 @@ the editor's name."
   "Face used for closed question header in the question buffer."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-closed-reason
+  `((t :box (:line-width 2 :color ,(face-attribute 'sx-question-mode-closed
+                                                   :foreground nil t))
+       :inherit sx-question-mode-title))
+  "Face used for closed question header in the question buffer.
+Aesthetically, it's important that the color of this face's :box
+attribute match the color of the face `sx-question-mode-closed'."
+  :group 'sx-question-mode-faces)
+
 (defcustom sx-question-mode-answer-accepted-title "Accepted Answer"
   "Title used at the start of accepted \"Answer\" section."
   :type 'string
@@ -223,7 +232,7 @@ QUESTION must be a data structure returned by `json-read'."
   (sx-assoc-let question
     (when .closed_reason
       (add-to-list 'mode-line-format sx-question-mode--closed-mode-line-string)
-      (sx-question-mode--print-close-reason .closed_reason .closed_date))
+      (sx-question-mode--print-close-reason .closed_reason .closed_date .closed_details))
     (sx-question-mode--print-section question)
     (mapc #'sx-question-mode--print-section
       (cl-remove-if
@@ -235,14 +244,31 @@ QUESTION must be a data structure returned by `json-read'."
   (goto-char (point-min))
   (sx-question-mode-next-section))
 
-(defun sx-question-mode--print-close-reason (reason date)
+(defun sx-question-mode--print-close-reason (reason date &optional details)
   "Print a header explaining REASON and DATE.
-DATE is an integer."
-  (insert "\n    "
-          (propertize
-           (format " Closed %s ago. Reason: %s " (sx-time-since date) reason)
-           'face 'sx-question-mode-closed)
-          "\n"))
+DATE is an integer.
+
+DETAILS, when given is an alist further describing the close."
+  (let ((l (point)))
+    (let-alist details
+      (insert "\n    "
+              (propertize (format " %s as %s, %s ago. "
+                            (if .on_hold "Put on hold" "Closed")
+                            reason
+                            (sx-time-since date))
+                          'face 'sx-question-mode-closed)
+              "\n")
+      (when .description
+        (insert (replace-regexp-in-string "<[^>]+>" "" .description)
+                "\n")))
+    (save-excursion
+      (goto-char l)
+      (search-forward " as " nil 'noerror)
+      (setq l (point))
+      (skip-chars-forward "^,")
+      (let ((ov (make-overlay l (point))))
+        (overlay-put ov 'face 'sx-question-mode-closed-reason)
+        (push ov sx--overlays)))))
 
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
