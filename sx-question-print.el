@@ -235,7 +235,7 @@ QUESTION must be a data structure returned by `json-read'."
 DATE is an integer."
   (insert "\n    "
           (propertize
-           (format "Closed %s ago because %s" reason (sx-time-since date))
+           (format "Closed %s ago because %s" (sx-time-since date) reason)
            'face 'sx-question-mode-closed)
           "\n\n"))
 
