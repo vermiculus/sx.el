@@ -167,8 +167,9 @@ after being run through `sx-tag--format'."
   "Check complicated questions are filled correctly."
   (should
    (equal
-    (sx-question-mode--fill-and-fontify
-     "Creating an account on a new site requires you to log into that site using *the same credentials you used on existing sites.* For instance, if you used the Stack Exchange login method, you'd...
+    (with-temp-buffer
+      (sx-question-mode--insert-markdown
+       "Creating an account on a new site requires you to log into that site using *the same credentials you used on existing sites.* For instance, if you used the Stack Exchange login method, you'd...
 
 1. Click the \"Log in using Stack Exchange\" button:
 
@@ -192,6 +193,7 @@ after being run through `sx-tag--format'."
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
   [3]: http://i.stack.imgur.com/22myl.png")
+      (buffer-string))
     "Creating an account on a new site requires you to log into that site
 using *the same credentials you used on existing sites.* For instance,
 if you used the Stack Exchange login method, you'd...

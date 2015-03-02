@@ -334,10 +334,9 @@ DATA can represent a question or an answer."
                             'face 'sx-question-mode-header))
         (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
+          (insert "\n")
+          (sx-question-mode--insert-markdown .body_markdown)
           (insert "\n"
-                  (sx-question-mode--fill-and-fontify
-                   .body_markdown)
-                  "\n"
                   (propertize sx-question-mode-separator
                               'face 'sx-question-mode-header)))
         ;; Clean up commments manually deleted.  The `append' call is
@@ -387,10 +386,13 @@ The comment is indented, filled, and then printed according to
        (format sx-question-mode-comments-format
          (sx-user--format "%d" .owner)
          (substring
-          (sx-question-mode--fill-and-fontify
-           ;; We fill with three spaces at the start, so the comment is
-           ;; slightly indented.
-           (concat "   " (sx--squash-whitespace .body_markdown)))
+          ;; We use temp buffer, so that image overlays don't get
+          ;; inserted with the comment.
+          (with-temp-buffer
+            ;; We fill with three spaces at the start, so the comment is
+            ;; slightly indented.
+            (sx-question-mode--insert-markdown (concat "   " (sx--squash-whitespace .body_markdown)))
+            (buffer-string))
           ;; Then we remove the spaces from the first line, since we'll
           ;; add the username there anyway.
           3))))))
@@ -437,42 +439,60 @@ E.g.:
                           (>= 2 (any lower numeric "/._%&#?=;"))))))
   "Regexp matching markdown links.")
 
-(defun sx-question-mode--fill-and-fontify (text)
-  "Return TEXT filled according to `markdown-mode'."
-  (with-temp-buffer
-    (insert text)
-    (delay-mode-hooks (markdown-mode))
-    (font-lock-mode -1)
-    (when sx-question-mode-bullet-appearance
-      (font-lock-add-keywords ;; Bullet items.
-       nil
-       `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
-          1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
-    (font-lock-add-keywords ;; Highlight usernames.
-     nil
-     `((,(rx (or blank line-start)
-             (group-n 1 (and "@" (1+ (not space))))
-             symbol-end)
-        1 font-lock-builtin-face)))
-    ;; Fontify.
-    (font-lock-fontify-region (point-min) (point-max))
-    ;; And now the content handling:
-    (goto-char (point-min))
-    ;; Handle one paragraph at a time.
-    (while (null (eobp))
-      ;; Some things are not paragraphs, and shouldn't be filled.
-      (unless (sx-question-mode--dont-fill-here)
-        (let ((beg (point)))
-          (skip-chars-forward "\r\n[:blank:]")
-          (forward-paragraph)
-          (let ((end (point-marker)))
-            ;; Compact links.
-            (sx-question-mode--process-html-tags beg end)
-            ;; Compact links.
-            (sx-question-mode--process-links beg end)
-            (goto-char end))
-          (fill-region beg (point)))))
-    (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
+(defun sx-question-mode--process-markdown-in-region (beg end)
+  "Process Markdown text between BEG and END.
+This does not do Markdown font-locking.  Instead, it fills text,
+propertizes links, inserts images, cleans up html comments, and
+font-locks code-blocks according to mode."
+  ;; Paragraph filling
+  (let ((paragraph-start
+         "\f\\|[ \t]*$\\|[ \t]*[*+-] \\|[ \t]*[0-9]+\\.[ \t]\\|[ \t]*: ")
+        (paragraph-separate "\\(?:[ \t\f]*\\|.* \\)$")
+        (adaptive-fill-first-line-regexp "\\`[ \t]*>[ \t]*?\\'")
+        (adaptive-fill-function #'markdown-adaptive-fill-function)) 
+    (save-restriction
+      (save-excursion
+        (narrow-to-region beg end)
+        ;; Compact links.
+        (sx-question-mode--process-links-in-buffer)
+        (sx-question-mode--process-html-tags (point-min) (point-max))
+        ;; And now the filling and other handlings.
+        (goto-char (point-min))
+        (while (null (eobp))
+          ;; Don't fill pre blocks.
+          (unless (sx-question-mode--dont-fill-here)
+            (let ((beg (point)))
+              (skip-chars-forward "\r\n[:blank:]")
+              (forward-paragraph)
+              (fill-region beg (point)))))))))
+
+(defun sx-question-mode--insert-markdown (text)
+  "Return TEXT fontified according to `markdown-mode'."
+  (let ((beg (point)))
+    (insert
+     ;; Font-locking needs to be done in a temp buffer, because it
+     ;; affects the entire buffer even if we narrow.
+     (with-temp-buffer
+       (insert text)
+       (delay-mode-hooks (markdown-mode))
+       (font-lock-mode -1)
+       (when sx-question-mode-bullet-appearance
+         (font-lock-add-keywords ;; Bullet items.
+          nil
+          `((,(rx line-start (0+ blank) (group-n 1 (any "*+-")) blank)
+             1 '(face nil display ,sx-question-mode-bullet-appearance) prepend))))
+       (font-lock-add-keywords ;; Highlight usernames.
+        nil
+        `((,(rx (or blank line-start)
+                (group-n 1 (and "@" (1+ (not space))))
+                symbol-end)
+           1 font-lock-builtin-face)))
+       ;; Everything.
+       (font-lock-fontify-region (point-min) (point-max))
+       (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
+    ;; This part can and should be done in place, this way it can
+    ;; create overlays.
+    (sx-question-mode--process-markdown-in-region beg (point))))
 
 
 ;;; HTML tags
@@ -516,49 +536,59 @@ END should be a marker."
 
 
 ;;; Handling links
-(defun sx-question-mode--process-links (beg end)
+(defun sx-question-mode--process-links-in-buffer ()
   "Turn all markdown links between BEG and ENG into compact format.
 END must be a marker.
 Image links are downloaded and displayed, if
 `sx-question-mode-use-images' is non-nil."
-  (goto-char beg)
-  (while (search-forward-regexp sx-question-mode--link-regexp end t)
-    ;; Tags are tag-buttons.
-    (let ((tag (match-string-no-properties 5)))
-      (if (and tag (> (length tag) 0))
-          (progn (replace-match "")
-                 (sx-tag--insert tag))
-        ;; Other links are link-buttons.
-        (let* ((text (match-string-no-properties 1))
-               (url (or (match-string-no-properties 2)
-                        (match-string-no-properties 4)
-                        (sx-question-mode-find-reference
-                         (match-string-no-properties 3)
-                         text)))
-               (full-text (match-string-no-properties 0)))
-          (when (stringp url)
-            (replace-match "")
-            (sx-question-mode--insert-link
-             (if (and sx-question-mode-use-images (eq ?! (elt full-text 0)))
-                 ;; Is it an image?
-                 (sx-question-mode--create-image url)
-               ;; Or a regular link
-               (or (if sx-question-mode-pretty-links text full-text) url))
-             url)))))))
+  (save-excursion
+    (goto-char (point-min))
+    (while (search-forward-regexp sx-question-mode--link-regexp nil t)
+      ;; Tags are tag-buttons.
+      (let ((tag (match-string-no-properties 5)))
+        (if (and tag (> (length tag) 0))
+            (progn (replace-match "")
+                   (sx-tag--insert tag))
+          ;; Other links are link-buttons.
+          (let* ((text (match-string-no-properties 1))
+                 (url (or (match-string-no-properties 2)
+                          (match-string-no-properties 4)
+                          (sx-question-mode-find-reference
+                           (match-string-no-properties 3)
+                           text)))
+                 (full-text (match-string-no-properties 0))
+                 (image-p (and sx-question-mode-use-images
+                               (eq ?! (elt full-text 0)))))
+            (when (stringp url)
+              (replace-match "")
+              (sx-question-mode--insert-link
+               (unless image-p
+                 (or (if sx-question-mode-pretty-links text full-text)
+                     url))
+               url)
+              (when image-p
+                (sx-question-mode--create-image url (- (point) 2))))))))))
 
-(defun sx-question-mode--create-image (url)
-  "Get and create an image from URL.
+(defun sx-question-mode--create-image (url point)
+  "Get and create an image from URL and insert it at POINT.
+The image will take the place of the character at POINT.
 Its size is bound by `sx-question-mode-image-max-width' and
 `window-body-width'."
-  (let* ((image
-          (create-image (sx-request-get-url url) 'imagemagick t))
-         (image-width (car (image-size image 'pixels))))
-    (append image
-            (list :width (min sx-question-mode-image-max-width
-                              (window-body-width nil 'pixel)
-                              image-width)))))
+  (let* ((ov (make-overlay point (1+ point) (current-buffer) t nil))
+         (callback
+          (lambda (data)
+            (let* ((image (create-image data 'imagemagick t))
+                   (image-width (car (image-size image 'pixels))))
+              (overlay-put
+               ov 'display
+               (append image
+                       (list :width (min sx-question-mode-image-max-width
+                                         (window-body-width nil 'pixel)
+                                         image-width))))))))
+    (sx-request-get-url url callback)
+    (overlay-put ov 'face 'default)))
 
-(defun sx-question-mode--insert-link (text-or-image url)
+(defun sx-question-mode--insert-link (text url)
   "Return a link propertized version of TEXT-OR-IMAGE.
 URL is used as 'help-echo and 'url properties."
   ;; For now, the only way to handle nested links is to remove them.
@@ -569,26 +599,21 @@ URL is used as 'help-echo and 'url properties."
         (replace-match "")
       (forward-char 1)
       (delete-char 1)))
-  (let ((imagep (not (stringp text-or-image))))
-    ;; Images need to be at the start of a line.
-    (when (and imagep (not (looking-at-p "^")))
-      (insert "\n"))
-    (apply #'insert-text-button
-      (if imagep " " text-or-image)
-      ;; Mouse-over
-      'help-echo
-      (format sx-button--link-help-echo
-        (propertize (sx--shorten-url url)
-                    'face 'font-lock-function-name-face))
-      ;; For visiting and stuff.
-      'sx-button-url url
-      'sx-button-copy url
-      :type 'sx-button-link
-      ;; The last argument of `apply' is a list.
-      (when imagep
-        `(face default display ,text-or-image)))
-    ;; Images need to be at the end of a line too.
-    (insert "\n")))
+  ;; Images need to be at the start of a line.
+  (unless (or text (looking-at-p "^"))
+    (insert "\n"))
+  (insert-text-button (or text " ")
+                      ;; Mouse-over
+                      'help-echo
+                      (format sx-button--link-help-echo
+                        (propertize (sx--shorten-url url)
+                                    'face 'font-lock-function-name-face))
+                      ;; For visiting and stuff.
+                      'sx-button-url url
+                      'sx-button-copy url
+                      :type 'sx-button-link)
+  ;; Images need to be at the end of a line too.
+  (unless text (insert "\n")))
 
 (defun sx-question-mode-find-reference (id &optional fallback-id)
   "Find url identified by reference ID in current buffer.
