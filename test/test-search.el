@@ -15,16 +15,14 @@
   "Test bogus search returns empty vector"
   (test-with-bogus-string query
     (should
-     (equal
-      []
-      (sx-search-get-questions "emacs" 1 query)))))
+     (not (sx-search-get-questions "emacs" 1 query)))))
 
 (ert-deftest test-search-invalid ()
   "Test invalid search"
   (should-error
    ;; @todo: test the interactive call
    (sx-search
-    "emacs" nil nil ["emacs"])))
+    "emacs" nil nil '("emacs"))))
 
 (ert-deftest test-search-full-page ()
   "Test retrieval of the full search page"
@@ -49,5 +47,5 @@
                  (member "org-agenda" .tags)))))
     (sx-search-get-questions
      "emacs" 1 nil "org-mode"
-     ["org-export" "org-agenda"]))))
+     '("org-export" "org-agenda")))))
 

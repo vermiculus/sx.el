@@ -127,30 +127,30 @@ after being run through `sx-tag--format'."
             '((owner . 1) (not-owner . "me"))))
     (should
      (equal object '((owner . 1) (not-owner . "me")))))
-  (let ((object (list (cons 'comments [something]))))
+  (let ((object '((comments . (something)))))
     (should
      (equal (sx--add-comment-to-object "comment" object)
-            '((comments . [something "comment"]))))
+            '((comments . (something "comment")))))
     (should
-     (equal object '((comments . [something "comment"])))))
-  (let ((object (list (cons 'not-comments [something]))))
+     (equal object '((comments . (something "comment"))))))
+  (let ((object '((not-comments . (something)))))
     (should
      (equal (sx--add-comment-to-object "comment" object)
-            '((comments . ["comment"]) (not-comments . [something]))))
+            '((comments . ("comment")) (not-comments . (something)))))
     (should
-     (equal object '((comments . ["comment"]) (not-comments . [something])))))
-  (let ((object (list (cons 'not-answers [something]))))
-    (should
-     (equal (sx--add-answer-to-question-object "answer" object)
-            '((answers . ["answer"]) (not-answers . [something]))))
-    (should
-     (equal object '((answers . ["answer"]) (not-answers . [something])))))
-  (let ((object (list (cons 'answers [something]))))
+     (equal object '((comments . ("comment")) (not-comments . (something))))))
+  (let ((object '((not-answers (something)))))
     (should
      (equal (sx--add-answer-to-question-object "answer" object)
-            '((answers . [something "answer"]))))
+            '((answers . ("answer")) (not-answers . (something)))))
     (should
-     (equal object '((answers . [something "answer"]))))))
+     (equal object '((answers . ("answer")) (not-answers . (something))))))
+  (let ((object '((answers (something)))))
+    (should
+     (equal (sx--add-answer-to-question-object "answer" object)
+            '((answers . (something "answer")))))
+    (should
+     (equal object '((answers . (something "answer")))))))
 
 
 ;;; question-mode
