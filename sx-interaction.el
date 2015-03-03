@@ -376,7 +376,7 @@ OBJECT can be a question or an answer."
                    (list comment))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
-      (setcar object `(comments . [,comment]))))
+      (setcar object `(comments . (,comment)))))
   object)
 
 (defun sx--ensure-owner-in-object (owner object)
@@ -478,7 +478,7 @@ context at point. "
         (setcdr cell (append (cdr cell) (list answer)))
       ;; No previous comments, add it manually.
       (setcdr question (cons (car question) (cdr question)))
-      (setcar question `(answers . [,answer])))
+      (setcar question `(answers . (,answer))))
     question))
 
 (provide 'sx-interaction)

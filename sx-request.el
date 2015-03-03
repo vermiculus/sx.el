@@ -112,7 +112,7 @@ access the response wrapper."
   ;; @TODO: Refactor.  This is the product of a late-night jam
   ;; session...  it is not intended to be model code.
   (declare (indent 1))
-  (let* ((return-value [])
+  (let* ((return-value nil)
          (current-page 1)
          (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
          (process-function #'identity)
@@ -122,14 +122,14 @@ access the response wrapper."
     (while (not (funcall stop-when response))
       (setq current-page (1+ current-page)
             return-value
-            (vconcat return-value
-                     (cdr (assoc 'items response))))
+            (nconc return-value
+                   (cdr (assoc 'items response))))
       (sleep-for sx-request-all-items-delay)
       (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
                              request-method process-function)))
-    (vconcat return-value
-             (cdr (assoc 'items response)))))
+    (nconc return-value
+           (cdr (assoc 'items response)))))
 
 ;;; NOTE: Whenever this is arglist changes, `sx-request-fallback' must
 ;;; also change.
