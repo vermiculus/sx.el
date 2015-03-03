@@ -115,13 +115,13 @@ after being run through `sx-tag--format'."
 
 (ert-deftest sx-object-modification ()
   "Test adding things to objects"
-  (let ((object (list (cons 'owner "me"))))
+  (let ((object '((owner . "me"))))
     (should
      (equal (sx--ensure-owner-in-object 1 object)
             '((owner . "me"))))
     (should
      (equal object '((owner . "me")))))
-  (let ((object (list (cons 'not-owner "me"))))
+  (let ((object '((not-owner . "me"))))
     (should
      (equal (sx--ensure-owner-in-object 1 object)
             '((owner . 1) (not-owner . "me"))))
@@ -139,13 +139,13 @@ after being run through `sx-tag--format'."
             '((comments . ("comment")) (not-comments . (something)))))
     (should
      (equal object '((comments . ("comment")) (not-comments . (something))))))
-  (let ((object '((not-answers (something)))))
+  (let ((object '((not-answers . (something)))))
     (should
      (equal (sx--add-answer-to-question-object "answer" object)
             '((answers . ("answer")) (not-answers . (something)))))
     (should
      (equal object '((answers . ("answer")) (not-answers . (something))))))
-  (let ((object '((answers (something)))))
+  (let ((object '((answers . (something)))))
     (should
      (equal (sx--add-answer-to-question-object "answer" object)
             '((answers . (something "answer")))))
