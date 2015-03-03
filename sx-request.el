@@ -195,9 +195,8 @@ the main content of the response is returned."
                                  (json-null :null))
                              (json-read-from-string data)))))
           (kill-buffer response-buffer)
-          (when (and (not response) (string-equal data "{}"))
-            (sx-message "Unable to parse response: %S" response)
-            (error "Response could not be read by `json-read-from-string'"))
+          (when (not response)
+            (error "Invalid response to the url request: %s" data))
           ;; If we get here, the response is a valid data structure
           (sx-assoc-let response
             (when .error_id
