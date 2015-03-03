@@ -264,7 +264,7 @@ changes."
          (sx-method-post-from-data
           data (concat type (unless status "/undo")))))
     ;; The api returns the new DATA.
-    (when (> (length result) 0)
+    (when result
       (sx--copy-data (elt result 0) data)
       ;; Display the changes in `data'.
       (sx--maybe-update-display))))
@@ -326,7 +326,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :site .site_par
              :keywords `((body . ,text)))))
       ;; The api returns the new DATA.
-      (when (> (length result) 0)
+      (when result
         (sx--add-comment-to-object
          (sx--ensure-owner-in-object (list (cons 'display_name "(You)")) (elt result 0))
          (if .post_id (sx--get-post .post_type .site_par .post_id) data))
@@ -372,11 +372,8 @@ OBJECT can be a question or an answer."
         (progn
           (setcdr
            com-cell
-           (apply #'vector
-             (append
-              (cl-map 'list #'identity
-                      (cdr com-cell))
-              (list comment)))))
+           (append (cdr com-cell)
+                   (list comment))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
       (setcar object `(comments . [,comment]))))
@@ -478,8 +475,7 @@ context at point. "
   "Add alist ANSWER to alist QUESTION in the right place."
   (let ((cell (assoc 'answers question)))
     (if cell
-        (setcdr cell (apply #'vector
-                       (append (cdr cell) (list answer))))
+        (setcdr cell (append (cdr cell) (list answer)))
       ;; No previous comments, add it manually.
       (setcdr question (cons (car question) (cdr question)))
       (setcar question `(answers . [,answer])))

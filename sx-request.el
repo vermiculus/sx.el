@@ -191,6 +191,7 @@ the main content of the response is returned."
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
                            (let ((json-false nil)
+                                 (json-array-type 'list)
                                  (json-null :null))
                              (json-read-from-string data)))))
           (kill-buffer response-buffer)

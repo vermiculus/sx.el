@@ -341,7 +341,7 @@ DATA can represent a question or an answer."
                               'face 'sx-question-mode-header)))
         ;; Clean up commments manually deleted.  The `append' call is
         ;; to ensure `comments' is a list and not a vector.
-        (let ((comments (cl-remove-if #'sx--deleted-p (append .comments nil))))
+        (let ((comments (cl-remove-if #'sx--deleted-p .comments)))
           (when comments
             (insert "\n")
             (insert-text-button

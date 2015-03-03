@@ -72,11 +72,11 @@
   (setq sx-inbox--unread-inbox
         (cl-remove-if
          (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-inbox))
-         (append (sx-inbox-get) nil)))
+         (sx-inbox-get)))
   (setq sx-inbox--unread-notifications
         (cl-remove-if
          (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-notifications))
-         (append (sx-inbox-get t) nil))))
+         (sx-inbox-get t))))
 
 (provide 'sx-notify)
 ;;; sx-notify.el ends here
