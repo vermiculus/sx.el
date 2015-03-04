@@ -447,7 +447,7 @@ font-locks code-blocks according to mode."
   ;; Paragraph filling
   (let ((paragraph-start
          "\f\\|[ \t]*$\\|[ \t]*[*+-] \\|[ \t]*[0-9]+\\.[ \t]\\|[ \t]*: ")
-        (paragraph-separate "\\(?:[ \t\f]*\\|.* \\)$")
+        (paragraph-separate "\\(?:[ \t\f]*\\|.*  \\)$")
         (adaptive-fill-first-line-regexp "\\`[ \t]*>[ \t]*?\\'")
         (adaptive-fill-function #'markdown-adaptive-fill-function)) 
     (save-restriction
