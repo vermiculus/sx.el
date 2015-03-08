@@ -312,6 +312,7 @@ If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
   (interactive (list (sx--error-if-unread (sx--data-here)) 'query))
+  (sx-ensure-authentication)
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
     (setq data (sx--data-here))
@@ -409,6 +410,7 @@ OBJECT can be a question or an answer."
 DATA is an answer or question alist. Interactively, it is guessed
 from context at point."
   (interactive (list (sx--data-here)))
+  (sx-ensure-authentication)
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
@@ -457,6 +459,7 @@ If nil, use `sx--interactive-site-prompt' anyway."
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
   (interactive (list (sx--interactive-site-prompt)))
+  (sx-ensure-authentication)
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
@@ -474,6 +477,7 @@ context at point. "
   ;; probaby hit the button by accident.
   (interactive
    (list (sx--error-if-unread (sx--data-here 'question))))
+  (sx-ensure-authentication)
   ;; When clicking the "Write an Answer" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (let ((buffer (current-buffer)))
