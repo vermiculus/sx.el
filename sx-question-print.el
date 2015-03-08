@@ -436,7 +436,7 @@ E.g.:
           (group-n 4 (and (and "http" (opt "s") "://") ""
                           (>= 2 (any lower numeric "_%"))
                           "."
-                          (>= 2 (any lower numeric "/._%&#?=;"))))))
+                          (>= 2 (any lower numeric "/-._%&#?=;"))))))
   "Regexp matching markdown links.")
 
 (defun sx-question-mode--process-markdown-in-region (beg end)
