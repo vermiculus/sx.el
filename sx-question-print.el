@@ -562,9 +562,10 @@ Image links are downloaded and displayed, if
             (when (stringp url)
               (replace-match "")
               (sx-question-mode--insert-link
-               (unless image-p
-                 (or (if sx-question-mode-pretty-links text full-text)
-                     url))
+               (cond (image-p nil)
+                     ((and sx-question-mode-pretty-links text))
+                     ((not text) (sx--shorten-url url))
+                     (t full-text))
                url)
               (when image-p
                 (sx-question-mode--create-image url (- (point) 2))))))))))
@@ -606,7 +607,9 @@ URL is used as 'help-echo and 'url properties."
                       ;; Mouse-over
                       'help-echo
                       (format sx-button--link-help-echo
-                        (propertize (sx--shorten-url url)
+                        ;; If TEXT is a shortened url, we don't shorten URL.
+                        (propertize (if (string-match "^https?:" (or text ""))
+                                        url (sx--shorten-url url))
                                     'face 'font-lock-function-name-face))
                       ;; For visiting and stuff.
                       'sx-button-url url
