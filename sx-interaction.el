@@ -44,6 +44,7 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
+(require 'sx-cache)
 
 
 ;;; Using data in buffer
@@ -104,6 +105,18 @@ If BUFFER is not live, nothing is done."
 Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
+
+(defun sx-ensure-authentication ()
+  "Signal user-error if the user refuses to authenticate.
+Note that `sx-method-call' already does authentication checking.
+This function is meant to be used by commands that don't
+immediately perform method calls, such as `sx-ask'.  This way,
+the unauthenticated user will be prompted before going through
+the trouble of composing an entire question."
+  (unless (sx-cache-get 'auth)
+    (if (y-or-n-p "This command requires authentication, would you like to authenticate? ")
+        (sx-authenticate)
+      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
 
 
 ;;; Visiting
