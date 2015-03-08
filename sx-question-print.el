@@ -451,20 +451,20 @@ font-locks code-blocks according to mode."
         (adaptive-fill-first-line-regexp "\\`[ \t]*>[ \t]*?\\'")
         (adaptive-fill-function #'markdown-adaptive-fill-function)) 
     (save-restriction
-      (save-excursion
-        (narrow-to-region beg end)
-        ;; Compact links.
-        (sx-question-mode--process-links-in-buffer)
-        (sx-question-mode--process-html-tags (point-min) (point-max))
-        ;; And now the filling and other handlings.
-        (goto-char (point-min))
-        (while (null (eobp))
-          ;; Don't fill pre blocks.
-          (unless (sx-question-mode--dont-fill-here)
-            (let ((beg (point)))
-              (skip-chars-forward "\r\n[:blank:]")
-              (forward-paragraph)
-              (fill-region beg (point)))))))))
+      (narrow-to-region beg end)
+      ;; Compact links.
+      (sx-question-mode--process-links-in-buffer)
+      (sx-question-mode--process-html-tags (point-min) (point-max))
+      ;; And now the filling and other handlings.
+      (goto-char (point-min))
+      (while (null (eobp))
+        ;; Don't fill pre blocks.
+        (unless (sx-question-mode--dont-fill-here)
+          (let ((beg (point)))
+            (skip-chars-forward "\r\n[:blank:]")
+            (forward-paragraph)
+            (fill-region beg (point)))))
+      (goto-char (point-max)))))
 
 (defun sx-question-mode--insert-markdown (text)
   "Return TEXT fontified according to `markdown-mode'."
