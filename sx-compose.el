@@ -294,15 +294,14 @@ Keywords meant to be used in `sx-method-call'.
 
 `body' is read as the `buffer-string'. If IS-QUESTION is non-nil,
 other keywords are read from the header "
+  (goto-char (point-min))
   `(,@(when is-question
         (let ((inhibit-point-motion-hooks t)
-              (inhibit-read-only t)
               (header-end
                (next-single-property-change
                 (point-min) 'sx-compose-separator))
               keywords)
           ;; Read the Title.
-          (goto-char (point-min))
           (unless (search-forward-regexp
                    "^Title: *\\(.*\\) *$" header-end 'noerror)
             (error "No Title header found"))
@@ -314,13 +313,11 @@ other keywords are read from the header "
             (error "No Tags header found"))
           (push (cons 'tags (sx--split-string (match-string 1) "[[:space:],;]"))
                 keywords)
-          ;; And erase the header so it doesn't get sent.
-          (delete-region
-           (point-min)
-           (next-single-property-change
-            header-end 'sx-compose-separator))
+          ;; And move past the header so it doesn't get sent.
+          (goto-char (next-single-property-change
+                      header-end 'sx-compose-separator))
           keywords))
-    (body . ,(buffer-string))))
+    (body . ,(buffer-substring-no-properties (point) (point-max)))))
 
 (defun sx-compose--get-buffer-create (site data)
   "Get or create a buffer for use with `sx-compose-mode'.

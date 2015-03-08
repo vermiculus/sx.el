@@ -44,6 +44,7 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
+(require 'sx-cache)
 
 
 ;;; Using data in buffer
@@ -104,6 +105,18 @@ If BUFFER is not live, nothing is done."
 Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
+
+(defun sx-ensure-authentication ()
+  "Signal user-error if the user refuses to authenticate.
+Note that `sx-method-call' already does authentication checking.
+This function is meant to be used by commands that don't
+immediately perform method calls, such as `sx-ask'.  This way,
+the unauthenticated user will be prompted before going through
+the trouble of composing an entire question."
+  (unless (sx-cache-get 'auth)
+    (if (y-or-n-p "This command requires authentication, would you like to authenticate? ")
+        (sx-authenticate)
+      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
 
 
 ;;; Visiting
@@ -299,6 +312,7 @@ If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
   (interactive (list (sx--error-if-unread (sx--data-here)) 'query))
+  (sx-ensure-authentication)
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
     (setq data (sx--data-here))
@@ -396,6 +410,7 @@ OBJECT can be a question or an answer."
 DATA is an answer or question alist. Interactively, it is guessed
 from context at point."
   (interactive (list (sx--data-here)))
+  (sx-ensure-authentication)
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
@@ -444,6 +459,7 @@ If nil, use `sx--interactive-site-prompt' anyway."
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
   (interactive (list (sx--interactive-site-prompt)))
+  (sx-ensure-authentication)
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
@@ -461,6 +477,7 @@ context at point. "
   ;; probaby hit the button by accident.
   (interactive
    (list (sx--error-if-unread (sx--data-here 'question))))
+  (sx-ensure-authentication)
   ;; When clicking the "Write an Answer" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (let ((buffer (current-buffer)))
