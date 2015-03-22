@@ -126,7 +126,7 @@ the editor's name."
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-separator
-  (concat (make-string 80 ?_) "\n")
+  (concat (make-string 69 ?_) "\n")
   "Separator used between header and body."
   :type 'string
   :group 'sx-question-mode)
