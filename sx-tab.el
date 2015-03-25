@@ -28,7 +28,7 @@
 ;; - `sx-tab-unanswered'         :: Unanswered questions.
 ;; - `sx-tab-unanswered-my-tags' :: Unanswered questions in your followed tags.
 ;; - `sx-tab-featured'           :: Featured questions.
-;; - `sx-tab-featured'           :: Starred questions.
+;; - `sx-tab-starred'            :: Starred questions.
 
 ;;; Code:
 
@@ -181,7 +181,7 @@ variables, but before refreshing the display."
 (sx-tab--define "Starred"
   (sx-question-list--make-pager 'me 'favorites))
 ;;;###autoload
-(autoload 'sx-tab-featured
+(autoload 'sx-tab-starred
   (expand-file-name
    "sx-tab" (when load-file-name (file-name-directory load-file-name)))
   nil t)
