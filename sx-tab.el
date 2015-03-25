@@ -40,7 +40,7 @@
   "List of the names of all defined tabs.")
 
 (defun sx-tab-switch (tab)
-  "Switch to another question-list tab."
+  "Switch to another question-list TAB."
   (interactive
    (list (sx-completing-read
           "Switch to tab: " sx-tab--list
@@ -91,11 +91,11 @@ respectively used to set the value of the variables
 `sx-question-list--refresh-function', and
 `sx-question-list--next-page-function'.
 
-BODY is evaluated after activating the mode and setting these
-variables, but before refreshing the display.
-
 If OBSOLETE is non-nil, it should be a string indicating the tab
-to use instead."
+to use instead of this one.
+
+BODY is evaluated after activating the mode and setting these
+variables, but before refreshing the display."
   (declare (indent 1) (debug t))
   (let* ((name (downcase tab))
          (buffer-variable
