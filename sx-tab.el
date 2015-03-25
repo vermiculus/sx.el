@@ -24,16 +24,11 @@
 
 ;;; Tabs:
 
-;; - FrontPage          :: The standard front page
-;; - Newest             :: Newest questions
-;; - TopVoted           :: Top-voted questions
-;; - Hot                :: Hot questions recently
-;; - Week               :: Hot questions for the week
-;; - Month              :: Hot questions for the month
-;; - Unanswered         :: Unanswered questions
-;; - Unanswered My-tags :: Unanswered questions (subscribed tags)
-;; - Featured           :: Featured questions
-;; - Starred            :: Favorite questions
+;; - `sx-tab-all-questions'      :: All questions.
+;; - `sx-tab-unanswered'         :: Unanswered questions.
+;; - `sx-tab-unanswered-my-tags' :: Unanswered questions in your followed tags.
+;; - `sx-tab-featured'           :: Featured questions.
+;; - `sx-tab-featured'           :: Starred questions.
 
 ;;; Code:
 
