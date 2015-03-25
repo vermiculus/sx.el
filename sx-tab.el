@@ -65,13 +65,15 @@ Possible values are the cdrs of `sx-tab--order-methods'."
                  :key #'cdr)))
   :group 'sx-question-list)
 
-(defconst sx-tab--docstring-format
-  "Display a list of %s questions for SITE.
+(eval-and-compile
+  (defconst sx-tab--docstring-format
+    "Display a list of %s questions for SITE.
 The variable `sx-tab-default-order' can be used to customize the
 sorting of the resulting list.
 
 NO-UPDATE (the prefix arg) is passed to `sx-question-list-refresh'.
-If SITE is nil, use `sx-default-site'.")
+If SITE is nil, use `sx-default-site'."
+    "Format used on the docstring of `sx-tab-*' commands."))
 
 
 ;;; The main macro
