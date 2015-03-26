@@ -32,6 +32,7 @@
 
 (require 'sx)
 (require 'sx-question-list)
+(require 'sx-question-mode)
 (require 'sx-tag)
 
 (defvar sx-search--query-history nil
@@ -122,6 +123,25 @@ prefix argument, the user is asked for everything."
     (setq sx-question-list--order-methods sx-search--order-methods)
     (sx-question-list-refresh 'redisplay)
     (switch-to-buffer (current-buffer))))
+
+
+;;; Tag
+(defun sx-search-tag-at-point (&optional pos)
+  "Follow tag under position POS or point."
+  (interactive)
+  (let ((tag (save-excursion
+               (when pos (goto-char pos))
+               (or (get-text-property (point) 'sx-tag)
+                   (thing-at-point 'symbol))))
+        (meta (save-excursion
+                (when pos (goto-char pos))
+                (get-text-property (point) 'sx-tag-meta)))
+        (site (replace-regexp-in-string
+               (rx string-start "meta.") ""
+               (or sx-question-list--site
+                   (sx-assoc-let sx-question-mode--data .site_par)))))
+    (sx-search (concat (when meta "meta.") site)
+               nil tag)))
 
 (provide 'sx-search)
 ;;; sx-search.el ends here

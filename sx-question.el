@@ -197,20 +197,14 @@ If no cache exists for it, initialize one with SITE."
 
 
 ;;;; Other data
-
 (defun sx-question--accepted-answer-id (question)
   "Return accepted answer in QUESTION or nil if none exists."
   (sx-assoc-let question
     (and (integerp .accepted_answer_id)
          .accepted_answer_id)))
 
-(defun sx-question--tag-format (tag)
-  "Formats TAG for display."
-  (concat "[" tag "]"))
-
 
 ;;; Question Mode Answer-Sorting Functions
-
 (sx--create-comparator sx-answer-higher-score-p
   "Return t if answer A has a higher score than answer B."
   #'> (lambda (x) (cdr (assq 'score x))))

@@ -221,28 +221,52 @@ Currently returns nil."
   "https://raw.githubusercontent.com/vermiculus/sx.el/data/data/%s.el"
   "Url of the \"data\" directory inside the SX `data' branch.")
 
+(defun sx-request--read-buffer-data ()
+  "Return the buffer contents after any url headers.
+Error if url headers are absent or if they indicate something
+went wrong."
+  (goto-char (point-min))
+  (unless (string-match "200" (thing-at-point 'line))
+    (error "Page not found."))
+  (if (not (search-forward "\n\n" nil t))
+      (error "Headers missing; response corrupt")
+    (prog1 (buffer-substring (point) (point-max))
+      (kill-buffer (current-buffer)))))
+
+(defun sx-request-get-url (url &optional callback)
+  "Fetch and return data stored online at URL.
+If CALLBACK is nil, fetching is done synchronously and the
+data (buffer contents sans headers) is returned as a string.
+
+Otherwise CALLBACK must be a function of a single argument.  Then
+`url-retrieve' is called asynchronously and CALLBACK is passed
+the retrieved data."
+  (let* ((url-automatic-caching t)
+         (url-inhibit-uncompression t)
+         (url-request-method "GET")
+         (url-request-extra-headers
+          '(("Content-Type" . "application/x-www-form-urlencoded")))
+         (callback-internal
+          (when callback
+            ;; @TODO: Error check in STATUS.
+            (lambda (_status)
+              (funcall callback (sx-request--read-buffer-data)))))
+         (response-buffer
+          (if callback (url-retrieve url callback-internal nil 'silent)
+            (url-retrieve-synchronously url))))
+    (unless callback
+      (if (not response-buffer)
+          (error "Something went wrong in `url-retrieve-synchronously'")
+        (with-current-buffer response-buffer
+          (sx-request--read-buffer-data))))))
+
 (defun sx-request-get-data (file)
   "Fetch and return data stored online by SX.
 FILE is a string or symbol, the name of the file which holds the
 desired data, relative to `sx-request--data-url-format'.  For
 instance, `tags/emacs' returns the list of tags on Emacs.SE."
-  (let* ((url-automatic-caching t)
-         (url-inhibit-uncompression t)
-         (request-url (format sx-request--data-url-format file))
-         (url-request-method "GET")
-         (url-request-extra-headers
-          '(("Content-Type" . "application/x-www-form-urlencoded")))
-         (response-buffer (url-retrieve-synchronously request-url)))
-    (if (not response-buffer)
-        (error "Something went wrong in `url-retrieve-synchronously'")
-      (with-current-buffer response-buffer
-        (progn
-          (goto-char (point-min))
-          (if (not (search-forward "\n\n" nil t))
-              (error "Headers missing; response corrupt")
-            (when (looking-at-p "Not Found") (error "Page not found."))
-            (prog1 (read (current-buffer))
-              (kill-buffer (current-buffer)))))))))
+  (read (sx-request-get-url
+         (format sx-request--data-url-format file))))
 
 
 ;;; Support Functions

@@ -111,6 +111,9 @@ return the compiled filter."
               bounty_amount
               comments
               creation_date
+              closed_reason
+              closed_date
+              closed_details
               answers
               answer_count
               score

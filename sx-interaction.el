@@ -44,6 +44,7 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
+(require 'sx-cache)
 
 
 ;;; Using data in buffer
@@ -105,6 +106,18 @@ Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
+(defun sx-ensure-authentication ()
+  "Signal user-error if the user refuses to authenticate.
+Note that `sx-method-call' already does authentication checking.
+This function is meant to be used by commands that don't
+immediately perform method calls, such as `sx-ask'.  This way,
+the unauthenticated user will be prompted before going through
+the trouble of composing an entire question."
+  (unless (sx-cache-get 'auth)
+    (if (y-or-n-p "This command requires authentication, would you like to authenticate? ")
+        (sx-authenticate)
+      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
+
 
 ;;; Visiting
 (defun sx-visit-externally (data &optional copy-as-kill)
@@ -154,9 +167,8 @@ Element can be a question, answer, or comment."
           (question
            (sx-display-question
             (sx-question-get-question .site_par .id) 'focus))
-          (t (sx-message
-              "Don't know how to open this link, please file a bug report: %s"
-              link)
+          (t (error "Don't know how to open this link, please file a bug report: %s"
+               link)
              nil))))))
 
 
@@ -230,14 +242,7 @@ Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unfavorite the question instead."
   (interactive (list (sx--error-if-unread (sx--data-here 'question))
                      current-prefix-arg))
-  (sx-assoc-let data
-    (sx-method-call 'questions
-      :id .question_id
-      :submethod (if undo 'favorite/undo 'favorite)
-      :auth 'warn
-      :site .site_par
-      :url-method 'post
-      :filter sx-browse-filter)))
+  (sx-method-post-from-data data (if undo 'favorite/undo 'favorite)))
 (defalias 'sx-star #'sx-favorite)
 
 
@@ -268,23 +273,33 @@ DATA can be a question, answer, or comment. TYPE can be
 Besides posting to the api, DATA is also altered to reflect the
 changes."
   (let ((result
-         (sx-assoc-let data
-           (sx-method-call
-               (cond
-                (.comment_id "comments")
-                (.answer_id "answers")
-                (.question_id "questions"))
-             :id (or .comment_id .answer_id .question_id)
-             :submethod (concat type (unless status "/undo"))
-             :auth 'warn
-             :url-method 'post
-             :filter sx-browse-filter
-             :site .site_par))))
+         (sx-method-post-from-data
+          data (concat type (unless status "/undo")))))
     ;; The api returns the new DATA.
     (when (> (length result) 0)
       (sx--copy-data (elt result 0) data)
       ;; Display the changes in `data'.
       (sx--maybe-update-display))))
+
+
+;;; Delete
+(defun sx-delete (data &optional undo)
+  "Delete an object given by DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point.
+With UNDO prefix argument, undelete instead."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (when (y-or-n-p (format "DELETE this %s? "
+                    (let-alist data
+                      (cond (.comment_id "comment")
+                            (.answer_id "answer")
+                            (.question_id "question")))))
+    (sx-method-post-from-data data (if undo 'delete/undo 'delete))
+    ;; Indicate to ourselves this has been deleted.
+    (setcdr data (cons (car data) (cdr data)))
+    (setcar data 'deleted)
+    (sx--maybe-update-display)))
 
 
 ;;; Commenting
@@ -296,6 +311,7 @@ If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
   (interactive (list (sx--error-if-unread (sx--data-here)) 'query))
+  (sx-ensure-authentication)
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
     (setq data (sx--data-here))
@@ -393,6 +409,7 @@ OBJECT can be a question or an answer."
 DATA is an answer or question alist. Interactively, it is guessed
 from context at point."
   (interactive (list (sx--data-here)))
+  (sx-ensure-authentication)
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
@@ -441,6 +458,7 @@ If nil, use `sx--interactive-site-prompt' anyway."
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
   (interactive (list (sx--interactive-site-prompt)))
+  (sx-ensure-authentication)
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
@@ -458,6 +476,7 @@ context at point. "
   ;; probaby hit the button by accident.
   (interactive
    (list (sx--error-if-unread (sx--data-here 'question))))
+  (sx-ensure-authentication)
   ;; When clicking the "Write an Answer" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (let ((buffer (current-buffer)))

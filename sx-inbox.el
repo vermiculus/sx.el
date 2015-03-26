@@ -127,11 +127,7 @@ These are identified by their links.")
   (setq tabulated-list-format
         [("Type" 30 t nil t) ("Date" 10 t :right-align t) ("Title" 0)])
   (setq mode-line-format sx-inbox--mode-line)
-  (setq header-line-format sx-inbox--header-line)
-  ;; @TODO: This will no longer be necessary once we properly
-  ;; refactor sx-question-list-mode.
-  (remove-hook 'tabulated-list-revert-hook
-    #'sx-question-list--update-mode-line t))
+  (setq header-line-format sx-inbox--header-line))
 
 
 ;;; Keybinds

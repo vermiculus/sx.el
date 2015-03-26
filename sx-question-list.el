@@ -27,6 +27,7 @@
 
 (require 'sx)
 (require 'sx-time)
+(require 'sx-tag)
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
@@ -78,11 +79,6 @@
 (defface sx-question-list-score-upvoted
   '((t :weight bold
        :inherit sx-question-list-score))
-  ""
-  :group 'sx-question-list-faces)
-
-(defface sx-question-list-tags
-  '((t :inherit sx-question-mode-tags))
   ""
   :group 'sx-question-list-faces)
 
@@ -170,8 +166,7 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
-                     'face 'sx-question-list-tags)
+         (format "%-40s" (sx-tag--format-tags .tags sx-question-list--site))
          " "
          (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
@@ -215,19 +210,39 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
+(defconst sx-question-list--key-definitions
+  '(
+    ;; S-down and S-up would collide with `windmove'.
+    ("<down>" sx-question-list-next)
+    ("<up>" sx-question-list-previous)
+    ("RET" sx-display "Display")
+    ("n" sx-question-list-next "Navigate")
+    ("p" sx-question-list-previous "Navigate")
+    ("j" sx-question-list-view-next "Navigate")
+    ("k" sx-question-list-view-previous "Navigate")
+    ("N" sx-question-list-next-far)
+    ("P" sx-question-list-previous-far)
+    ("J" sx-question-list-next-far)
+    ("K" sx-question-list-previous-far)
+    ("g" sx-question-list-refresh)
+    ("t" sx-tab-switch "tab")
+    ("a" sx-ask "ask")
+    ("S" sx-search "Search")
+    ("s" sx-switchto-map "switch-to")
+    ("v" sx-visit-externally "visit")
+    ("u" sx-upvote)
+    ("d" sx-downvote)
+    ("h" sx-question-list-hide "hide")
+    ("m" sx-question-list-mark-read "mark-read")
+    ("*" sx-favorite)
+    )
+  "List of key definitions for `sx-question-list-mode'.
+This list must follow the form described in
+`sx--key-definitions-to-header-line'.")
+
 (defconst sx-question-list--header-line
-  '("    "
-    (:propertize "n p j k" face mode-line-buffer-id)
-    ": Navigate"
-    "    "
-    (:propertize "RET" face mode-line-buffer-id)
-    ": View question"
-    "    "
-    (:propertize "v" face mode-line-buffer-id)
-    ": Visit externally"
-    "    "
-    (:propertize "q" face mode-line-buffer-id)
-    ": Quit")
+  (sx--key-definitions-to-header-line
+   sx-question-list--key-definitions)
   "Header-line used on the question list.")
 
 (defvar sx-question-list--order-methods
@@ -321,7 +336,8 @@ into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
-  (sx-question-list--update-mode-line)
+  (setq mode-line-format
+        sx-question-list--mode-line-format)
   (setq sx-question-list--pages-so-far 0)
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
@@ -333,8 +349,6 @@ into consideration.  The same holds for `sx-question-list--order'.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
     #'sx-question-list-refresh nil t)
-  (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list--update-mode-line nil t)
   (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
@@ -351,34 +365,10 @@ into consideration.  The same holds for `sx-question-list--order'.
 
 
 ;;; Keybinds
-(mapc
- (lambda (x) (define-key sx-question-list-mode-map
-          (car x) (cadr x)))
- '(
-   ;; S-down and S-up would collide with `windmove'.
-   ([down] sx-question-list-next)
-   ([up] sx-question-list-previous)
-   ("n" sx-question-list-next)
-   ("p" sx-question-list-previous)
-   ("j" sx-question-list-view-next)
-   ("k" sx-question-list-view-previous)
-   ("N" sx-question-list-next-far)
-   ("P" sx-question-list-previous-far)
-   ("J" sx-question-list-next-far)
-   ("K" sx-question-list-previous-far)
-   ("g" sx-question-list-refresh)
-   ("t" sx-tab-switch)
-   ("a" sx-ask)
-   ("S" sx-search)
-   ("s" sx-switchto-map)
-   ("v" sx-visit-externally)
-   ("u" sx-upvote)
-   ("d" sx-downvote)
-   ("h" sx-question-list-hide)
-   ("m" sx-question-list-mark-read)
-   ("*" sx-favorite)
-   ([?\r] sx-display)
-   ))
+;; We need this quote+eval combo because `kbd' was a macro in 24.2.
+(mapc (lambda (x) (eval `(define-key sx-question-list-mode-map
+                      (kbd ,(car x)) #',(cadr x))))
+  sx-question-list--key-definitions)
 
 (sx--define-conditional-key sx-question-list-mode-map "O" #'sx-question-list-order-by
   (and (boundp 'sx-question-list--order) sx-question-list--order))
@@ -416,14 +406,12 @@ Non-interactively, DATA is a question alist."
   ;; "Unanswered", etc.
   "Variable describing current tab being viewed.")
 
-(defvar sx-question-list--total-count 0
-  "Holds the total number of questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--total-count)
-
 (defconst sx-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
+  '("   "
+    (:propertize
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
+     face mode-line-buffer-id)
+    " " mode-name ": "
     (:propertize sx-question-list--current-tab
                  face mode-line-buffer-id)
     " ["
@@ -434,7 +422,7 @@ Non-interactively, DATA is a question alist."
     ", "
     "Total: "
     (:propertize
-     (:eval (int-to-string sx-question-list--total-count))
+     (:eval (int-to-string (length tabulated-list-entries)))
      face mode-line-buffer-id)
     "] ")
   "Mode-line construct to use in question-list buffers.")
@@ -444,15 +432,6 @@ Non-interactively, DATA is a question alist."
   (int-to-string
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
-
-(defun sx-question-list--update-mode-line ()
-  "Fill the mode-line with useful information."
-  ;; All the data we need is right in the buffer.
-  (when (derived-mode-p 'sx-question-list-mode)
-    (setq mode-line-format
-          sx-question-list--mode-line-format)
-    (setq sx-question-list--total-count
-          (length tabulated-list-entries))))
 
 (defvar sx-question-list--site nil
   "Site being displayed in the *question-list* buffer.")

@@ -48,6 +48,7 @@ Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
 
 (defvar sx-question-mode--data nil
   "The data of the question being displayed.")
+(make-variable-buffer-local 'sx-question-mode--data)
 
 (defun sx-question-mode--get-window ()
   "Return a window displaying a question, or nil."
@@ -69,6 +70,7 @@ Returns the question buffer."
 (defun sx-question-mode--erase-and-print-question (data)
   "Erase contents of buffer and print question given by DATA.
 Also marks the question as read with `sx-question--mark-read'."
+  (sx--ensure-site data)
   (sx-question--mark-read data)
   (let ((inhibit-read-only t))
     (erase-buffer)
@@ -161,72 +163,98 @@ property."
              pos 'sx-question-mode--section-content nil)))
 
 
-;;; Major-mode
+;;; Major-mode constants
+(defconst sx-question-mode--key-definitions
+  '(
+    ("<down>" sx-question-mode-next-section)
+    ("<up>" sx-question-mode-previous-section)
+    ("n" sx-question-mode-next-section "Navigate")
+    ("p" sx-question-mode-previous-section "Navigate")
+    ("g" sx-question-mode-refresh)
+    ("v" sx-visit-externally)
+    ("u" sx-upvote "upvote")
+    ("d" sx-downvote "downvote")
+    ("q" quit-window)
+    ("SPC" scroll-up-command)
+    ("e" sx-edit "edit")
+    ("S" sx-search)
+    ("*" sx-favorite "star")
+    ("K" sx-delete "Delete")
+    ("s" sx-switchto-map "switch-to")
+    ("O" sx-question-mode-order-by "Order")
+    ("c" sx-comment "comment")
+    ("a" sx-answer "answer")
+    ("TAB" forward-button "Navigate")
+    ("<S-iso-lefttab>" backward-button)
+    ("<S-tab>" backward-button)
+    ("<backtab>" backward-button))
+  "List of key definitions for `sx-question-mode'.
+This list must follow the form described in
+`sx--key-definitions-to-header-line'.")
+
 (defconst sx-question-mode--header-line
-  '("    "
-    (:propertize "n p TAB" face mode-line-buffer-id)
-    ": Navigate"
-    "    "
-    (:propertize "u d" face mode-line-buffer-id)
-    ": Up/Down Vote"
-    "    "
-    (:propertize "c" face mode-line-buffer-id)
-    ": Comment"
-    "    "
-    (:propertize "a" face mode-line-buffer-id)
-    ": Answer"
-    "    "
-    (:propertize "e" face mode-line-buffer-id)
-    ": Edit"
-    "    "
-    (:propertize "q" face mode-line-buffer-id)
-    ": Quit")
+  (sx--key-definitions-to-header-line
+   sx-question-mode--key-definitions)
   "Header-line used on the question list.")
+
+
+;;; Major-mode definition
+(defconst sx-question-mode--mode-line
+  '("   "
+    ;; `sx-question-mode--data' is guaranteed to have through
+    ;; `sx--ensure-site' already, so we use `let-alist' instead of
+    ;; `sx-assoc-let' to improve performance (since the mode-line is
+    ;; updated a lot).
+    (:propertize
+     (:eval (sx--pretty-site-parameter
+             (let-alist sx-question-mode--data .site_par)))
+     face mode-line-buffer-id)
+    " " mode-name
+    " ["
+    "Answers: "
+    (:propertize
+     (:eval (number-to-string (let-alist sx-question-mode--data .answer_count)))
+     face mode-line-buffer-id)
+    ", "
+    "Stars: "
+    (:propertize
+     (:eval (number-to-string (or (let-alist sx-question-mode--data .favorite_count) 0)))
+     face mode-line-buffer-id)
+    ", "
+    "Views: "
+    (:propertize
+     (:eval (number-to-string (let-alist sx-question-mode--data .view_count)))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in `sx-question-mode' buffers.")
 
 (define-derived-mode sx-question-mode special-mode "Question"
   "Major mode to display and navigate a question and its answers.
 Letters do not insert themselves; instead, they are commands.
 
+Don't activate this mode directly.  Instead, to print a question
+on the current buffer use
+`sx-question-mode--erase-and-print-question'.
+
 \\<sx-question-mode>
 \\{sx-question-mode}"
   (setq header-line-format sx-question-mode--header-line)
+  (setq mode-line-format sx-question-mode--mode-line)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
      nil 'quit-restore
      `(other window nil ,(current-buffer))))
-  ;; We call font-lock-region manually. See `sx-question-mode--fill-and-fontify'
+  ;; We call font-lock-region manually. See `sx-question-mode--insert-markdown'.
   (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
     'markdown-fontify-buffer-wiki-links t))
 
-(mapc
- (lambda (x) (define-key sx-question-mode-map
-          (car x) (cadr x)))
- `(
-   ([down] sx-question-mode-next-section)
-   ([up] sx-question-mode-previous-section)
-   ("n" sx-question-mode-next-section)
-   ("p" sx-question-mode-previous-section)
-   ("g" sx-question-mode-refresh)
-   ("c" sx-comment)
-   ("v" sx-visit-externally)
-   ("u" sx-upvote)
-   ("d" sx-downvote)
-   ("q" quit-window)
-   (" " scroll-up-command)
-   ("a" sx-answer)
-   ("e" sx-edit)
-   ("S" sx-search)
-   ("s" sx-switchto-map)
-   ("*" sx-favorite)
-   (,(kbd "S-SPC") scroll-down-command)
-   ([backspace] scroll-down-command)
-   ([tab] forward-button)
-   (,(kbd "<S-iso-lefttab>") backward-button)
-   (,(kbd "<S-tab>") backward-button)
-   (,(kbd "<backtab>") backward-button)))
+;; We need this quote+eval combo because `kbd' was a macro in 24.2.
+(mapc (lambda (x) (eval `(define-key sx-question-mode-map
+                      (kbd ,(car x)) #',(cadr x))))
+  sx-question-mode--key-definitions)
 
 (defun sx-question-mode-refresh (&optional no-update)
   "Refresh currently displayed question.
@@ -255,6 +283,18 @@ query the api."
   "Ensures we are in question mode, erroring otherwise."
   (unless (derived-mode-p 'sx-question-mode)
     (error "Not in `sx-question-mode'")))
+
+(defun sx-question-mode-order-by (sort)
+  "Order answers in the current buffer by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'."
+  (interactive
+   (list (let ((order (sx-completing-read "Order answers by: "
+                       (mapcar #'car sx-question-mode--sort-methods))))
+           (cdr-safe (assoc-string order sx-question-mode--sort-methods)))))
+  (when (and sort (functionp sort))
+    (setq sx-question-mode-answer-sort-function sort)
+    (sx-question-mode-refresh 'no-update)))
 
 (provide 'sx-question-mode)
 ;;; sx-question-mode.el ends here
