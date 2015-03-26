@@ -245,12 +245,11 @@ This list must follow the form described in
    sx-question-list--key-definitions)
   "Header-line used on the question list.")
 
-(defconst sx-question-list--order-methods
+(defvar sx-question-list--order-methods
   '(("Recent Activity" . activity)
     ("Creation Date"   . creation)
     ("Most Voted"      . votes)
-    ("Score"           . votes)
-    ("Hot"             . hot))
+    ("Score"           . votes))
   "Alist of possible values to be passed to the `sort' keyword.")
 (make-variable-buffer-local 'sx-question-list--order-methods)
 
@@ -262,6 +261,20 @@ is used."
                 (or prompt "Order questions by: ")
                 (mapcar #'car sx-question-list--order-methods))))
     (cdr-safe (assoc-string order sx-question-list--order-methods))))
+
+(defun sx-question-list--make-pager (method &optional submethod)
+  "Return a function suitable for use as a question list pager.
+Meant to be used as `sx-question-list--next-page-function'."
+  (lambda (page)
+    (sx-method-call method
+      :keywords `((page . ,page)
+                  ,@(when sx-question-list--order
+                      `((order . ,(if sx-question-list--descending 'desc 'asc))
+                        (sort . ,sx-question-list--order))))
+      :site sx-question-list--site
+      :auth t
+      :submethod submethod
+      :filter sx-browse-filter)))
 
 
 ;;; Mode Definition
@@ -357,6 +370,9 @@ into consideration.  The same holds for `sx-question-list--order'.
                       (kbd ,(car x)) #',(cadr x))))
   sx-question-list--key-definitions)
 
+(sx--define-conditional-key sx-question-list-mode-map "O" #'sx-question-list-order-by
+  (and (boundp 'sx-question-list--order) sx-question-list--order))
+
 (defun sx-question-list-hide (data)
   "Hide question under point.
 Non-interactively, DATA is a question alist."
@@ -422,7 +438,14 @@ Non-interactively, DATA is a question alist."
 (make-variable-buffer-local 'sx-question-list--site)
 
 (defvar sx-question-list--order nil
-  "Order being displayed in the *question-list* buffer.")
+  "Order being displayed in the *question-list* buffer.
+This is also affected by `sx-question-list--descending'.")
+(make-variable-buffer-local 'sx-question-list--order)
+
+(defvar sx-question-list--descending t
+  "In which direction should `sx-question-list--order' be sorted.
+If non-nil (default), descending.
+If nil, ascending.")
 (make-variable-buffer-local 'sx-question-list--order)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
@@ -597,17 +620,22 @@ Sets `sx-question-list--site' and then call
     (setq sx-question-list--site site)
     (sx-question-list-refresh 'redisplay)))
 
-(defun sx-question-list-order-by (sort)
+(defun sx-question-list-order-by (sort &optional ascend)
   "Order questions in the current list by the method SORT.
 Sets `sx-question-list--order' and then calls
-`sx-question-list-refresh' with `redisplay'."
+`sx-question-list-refresh' with `redisplay'.
+
+With a prefix argument or a non-nil ASCEND, invert the sorting
+order."
   (interactive
    (list (when sx-question-list--order
-           (sx-question-list--interactive-order-prompt))))
+           (sx-question-list--interactive-order-prompt))
+         current-prefix-arg))
   (unless sx-question-list--order
     (sx-user-error "This list can't be reordered"))
   (when (and sort (symbolp sort))
     (setq sx-question-list--order sort)
+    (setq sx-question-list--descending (not ascend))
     (sx-question-list-refresh 'redisplay)))
 
 (provide 'sx-question-list)
