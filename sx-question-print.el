@@ -433,10 +433,11 @@ E.g.:
           (and (opt "!") "[" (group-n 1 (1+ (not (any "]")))) "]"
                (or (and "(" (group-n 2 (1+ (not (any ")")))) ")")
                    (and "[" (group-n 3 (1+ (not (any "]")))) "]")))
-          (group-n 4 (and (and "http" (opt "s") "://") ""
+          (group-n 4 (and "http" (opt "s") "://"
                           (>= 2 (any lower numeric "_%"))
                           "."
-                          (>= 2 (any lower numeric "/-._%&#?=;"))))))
+                          (>= 2 (any lower numeric "_%"))
+                          (* (any lower numeric "-/._%&#?=;"))))))
   "Regexp matching markdown links.")
 
 (defun sx-question-mode--process-markdown-in-region (beg end)
