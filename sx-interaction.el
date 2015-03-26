@@ -167,9 +167,8 @@ Element can be a question, answer, or comment."
           (question
            (sx-display-question
             (sx-question-get-question .site_par .id) 'focus))
-          (t (sx-message
-              "Don't know how to open this link, please file a bug report: %s"
-              link)
+          (t (error "Don't know how to open this link, please file a bug report: %s"
+               link)
              nil))))))
 
 

@@ -105,7 +105,7 @@ usually part of a code-block."
     ;; whatever we thought it was.
     (condition-case nil (sx-open-link url)
       ;; When it errors, don't blame the user, just visit externally.
-      (error (sx-visit-externally url)))))
+      (error (browse-url url)))))
 
 
 ;;; Help-echo definitions
