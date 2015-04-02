@@ -126,7 +126,9 @@ the editor's name."
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-separator
-  (concat (make-string 69 ?_) "\n")
+  (concat (propertize (make-string 72 ?\s)
+                      'face '(underline sx-question-mode-header))
+          "\n")
   "Separator used between header and body."
   :type 'string
   :group 'sx-question-mode)
@@ -329,16 +331,12 @@ DATA can represent a question or an answer."
            (sx-tag--format-tags .tags .site_par)
            nil))
         ;; Body
-        (insert "\n"
-                (propertize sx-question-mode-separator
-                            'face 'sx-question-mode-header))
+        (insert "\n" sx-question-mode-separator)
         (sx--wrap-in-overlay
             '(face sx-question-mode-content-face)
           (insert "\n")
           (sx-question-mode--insert-markdown .body_markdown)
-          (insert "\n"
-                  (propertize sx-question-mode-separator
-                              'face 'sx-question-mode-header)))
+          (insert "\n" sx-question-mode-separator))
         ;; Clean up commments manually deleted.  The `append' call is
         ;; to ensure `comments' is a list and not a vector.
         (let ((comments (cl-remove-if #'sx--deleted-p (append .comments nil))))
