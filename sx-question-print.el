@@ -473,6 +473,15 @@ font-locks code-blocks according to mode."
      ;; affects the entire buffer even if we narrow.
      (with-temp-buffer
        (insert text)
+       ;; Trim whitespace
+       (goto-char (point-max))
+       (skip-chars-backward "\r\n[:blank:]")
+       (delete-region (point) (point-max))
+       (goto-char (point-min))
+       (skip-chars-forward "\r\n[:blank:]")
+       (forward-line 0)
+       (delete-region (point-min) (point))
+       ;; Font lock
        (delay-mode-hooks (markdown-mode))
        (font-lock-mode -1)
        (when sx-question-mode-bullet-appearance
