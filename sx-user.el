@@ -41,7 +41,7 @@
     (creation_date             . -1)
     (display_name              . "(unknown user)")
     (down_vote_count           . -1)
-    (is_employee               . :json-false)
+    (is_employee               . nil)
     (last_access_date          . -1)
     (last_modified_date        . -1)
     (link                      . "")

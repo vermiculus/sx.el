@@ -567,9 +567,8 @@ we're not. Do the same for 3 lines from the top."
   (when (functionp sx-question-list--next-page-function)
     ;; Try to get more questions
     (let ((list
-           (cl-map 'list #'identity
-                   (funcall sx-question-list--next-page-function
-                     (1+ sx-question-list--pages-so-far)))))
+           (funcall sx-question-list--next-page-function
+             (1+ sx-question-list--pages-so-far))))
       (if (null list)
           (message "No further questions.")
         ;; If it worked, increment the variable.

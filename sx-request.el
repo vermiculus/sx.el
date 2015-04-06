@@ -112,7 +112,7 @@ access the response wrapper."
   ;; @TODO: Refactor.  This is the product of a late-night jam
   ;; session...  it is not intended to be model code.
   (declare (indent 1))
-  (let* ((return-value [])
+  (let* ((return-value nil)
          (current-page 1)
          (stop-when (or stop-when #'sx-request-all-stop-when-no-more))
          (process-function #'identity)
@@ -122,14 +122,14 @@ access the response wrapper."
     (while (not (funcall stop-when response))
       (setq current-page (1+ current-page)
             return-value
-            (vconcat return-value
-                     (cdr (assoc 'items response))))
+            (nconc return-value
+                   (cdr (assoc 'items response))))
       (sleep-for sx-request-all-items-delay)
       (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
                              request-method process-function)))
-    (vconcat return-value
-             (cdr (assoc 'items response)))))
+    (nconc return-value
+           (cdr (assoc 'items response)))))
 
 ;;; NOTE: Whenever this is arglist changes, `sx-request-fallback' must
 ;;; also change.
@@ -190,22 +190,24 @@ the main content of the response is returned."
                ;; @TODO should use `condition-case' here -- set
                ;; RESPONSE to 'corrupt or something
                (response (with-demoted-errors "`json' error: %S"
-                           (json-read-from-string data))))
+                           (let ((json-false nil)
+                                 (json-array-type 'list)
+                                 (json-null :null))
+                             (json-read-from-string data)))))
           (kill-buffer response-buffer)
-          (when (and (not response) (string-equal data "{}"))
-            (sx-message "Unable to parse response: %S" response)
-            (error "Response could not be read by `json-read-from-string'"))
+          (when (not response)
+            (error "Invalid response to the url request: %s" data))
           ;; If we get here, the response is a valid data structure
           (sx-assoc-let response
             (when .error_id
               (error "Request failed: (%s) [%i %s] %S"
-                     .method .error_id .error_name .error_message))
+                .method .error_id .error_name .error_message))
             (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests remaining"
                           sx-request-remaining-api-requests))
             (funcall (or process-function #'sx-request-response-get-items)
-                     response)))))))
+              response)))))))
 
 (defun sx-request-fallback (_method &optional _args _request-method _process-function)
   "Fallback method when authentication is not available.
@@ -308,7 +310,7 @@ false, use the symbol `false'.  Each element is processed with
 
 (defun sx-request-all-stop-when-no-more (response)
   (or (not response)
-      (equal :json-false (cdr (assoc 'has_more response)))))
+      (not (cdr (assoc 'has_more response)))))
 
 (provide 'sx-request)
 ;;; sx-request.el ends here

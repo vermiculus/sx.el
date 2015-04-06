@@ -53,8 +53,7 @@ If QUESTION-ID doesn't exist on SITE, raise an error."
                :site site
                :auth t
                :filter sx-browse-filter)))
-    (if (vectorp res)
-        (elt res 0)
+    (if res (elt res 0)
       (error "Couldn't find question %S in %S"
              question-id site))))
 
@@ -67,8 +66,7 @@ If ANSWER-ID doesn't exist on SITE, raise an error."
                :submethod 'questions
                :auth t
                :filter sx-browse-filter)))
-    (if (vectorp res)
-        (elt res 0)
+    (if res (elt res 0)
       (error "Couldn't find answer %S in %S"
              answer-id site))))
 
@@ -83,7 +81,7 @@ for the post."
                :site site
                :auth t
                :filter sx-browse-filter)))
-    (unless (vectorp res)
+    (unless res
       (error "Couldn't find comment %S in %S" comment-id site))
     (sx-assoc-let (elt res 0)
       (funcall (if (string= .post_type "answer")

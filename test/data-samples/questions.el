@@ -1,4 +1,4 @@
-[((body . "<p>How can I use the focus hooks to attenuate all colours in visible buffers when the Emacs frame loses focus?</p>\n\n<p>I tried using the following code:</p>\n\n<pre><code>(set-frame-parameter (selected-frame) 'alpha '(100 80))\n</code></pre>\n\n<p>To make the frame become translucent, but it would flicker when I hit <kbd>Ctrl</kbd> (apparently that's because I let GNOME highlight the mouse cursor when I hit <kbd>Ctrl</kbd>).</p>\n\n<p>Making the frame transparent isn't what I want anyway.  Is it possible to desaturate all colours instead?</p>\n")
+(((body . "<p>How can I use the focus hooks to attenuate all colours in visible buffers when the Emacs frame loses focus?</p>\n\n<p>I tried using the following code:</p>\n\n<pre><code>(set-frame-parameter (selected-frame) 'alpha '(100 80))\n</code></pre>\n\n<p>To make the frame become translucent, but it would flicker when I hit <kbd>Ctrl</kbd> (apparently that's because I let GNOME highlight the mouse cursor when I hit <kbd>Ctrl</kbd>).</p>\n\n<p>Making the frame transparent isn't what I want anyway.  Is it possible to desaturate all colours instead?</p>\n")
   (title . "Focus-hook: attenuate colours when losing focus")
   (link . "http://emacs.stackexchange.com/questions/2922/focus-hook-attenuate-colours-when-losing-focus")
   (body_markdown . "How can I use the focus hooks to attenuate all colours in visible buffers when the Emacs frame loses focus?\n\nI tried using the following code:\n\n    (set-frame-parameter (selected-frame) &#39;alpha &#39;(100 80))\n\nTo make the frame become translucent, but it would flicker when I hit &lt;kbd&gt;Ctrl&lt;/kbd&gt; (apparently that&#39;s because I let GNOME highlight the mouse cursor when I hit &lt;kbd&gt;Ctrl&lt;/kbd&gt;).\n\nMaking the frame transparent isn&#39;t what I want anyway.  Is it possible to desaturate all colours instead?")
@@ -23,7 +23,7 @@
    (user_id . 2005)
    (reputation . 853))
   (comments .
-            [((body . "While this Emacs feature sounds undeniably cool, I think it would be better to leave such a thing to the compositor you&#39;re using, <code>compton</code> for instance can dim inactive windows.")
+            (((body . "While this Emacs feature sounds undeniably cool, I think it would be better to leave such a thing to the compositor you&#39;re using, <code>compton</code> for instance can dim inactive windows.")
               (link . "http://emacs.stackexchange.com/questions/2922/focus-hook-attenuate-colours-when-losing-focus#comment4000_2922")
               (body_markdown . "While this Emacs feature sounds undeniably cool, I think it would be better to leave such a thing to the compositor you&#39;re using, `compton` for instance can dim inactive windows.")
               (comment_id . 4000)
@@ -38,7 +38,7 @@
                (profile_image . "https://www.gravatar.com/avatar/1504319df63de7148c39290d4149f150?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 10)
-               (reputation . 860)))])
+               (reputation . 860)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2005/rekado")
    (display_name . "rekado")
@@ -47,7 +47,7 @@
    (user_id . 2005)
    (reputation . 853))
   (tags .
-        ["frames" "hooks" "focus"]))
+        ("frames" "hooks" "focus")))
  ((body . "<p><strong>TLDR: I've got a large tags file that loads multiple times per session, making it unusable.  Can't find the source of issue or how to disable it -- main goal is to jump to tags, but completion would be nice</strong></p>\n\n<p>I recently posted on the emacs subreddit and a user recommended that I join this group because it's also friendly towards newbies.</p>\n\n<p>I've been using emacs as a C++ IDE, and I'm slowly correcting things that are annoying.  I'm essentially using <a href=\"https://github.com/redguardtoo/emacs.d\" rel=\"nofollow\">redguardtoo's emacs.d file</a>.</p>\n\n<p>I have a tag file that is 225MB (1.6M Tags).  My intent for the tag is not necessarily completion (using <code>company</code>), but more for jumping around source code.  I'm working with an unfamiliar code base and often need to see macro or class definitions.</p>\n\n<p>When I start typing, at random times, I'll see a message in the minibuffer</p>\n\n<pre><code>Making tag completion table for [tag file]...0-100%\n</code></pre>\n\n<p>Then, a popup listbox shows up with autocompletion options.</p>\n\n<p>Because this tag file is so large, and it doesn't seem like the tag loading is asynchronous, it freezes emacs for around a minute.  This also happens multiple times per a session (with the same file, and with other files in the same directory that use the same tag file)!</p>\n\n<hr>\n\n<p><strong>Questions</strong></p>\n\n<ol>\n<li>Does anyone know what's initializing the loading of the tag table for completion and how to disable it?  I did a grep on my emacs.d directory for \"Making tag completion\" and found nothing (note, IIRC the loading tags was present regardless of using <code>company</code> or <code>auto-complete</code></li>\n<li>Completion would be nice, but I'd settle just for the ability to jump to the tag location.  Is there a way to get this? </li>\n<li>What is the mindset to take when approaching problems like this?  I'd like to be able to troubleshoot further on my own next time.</li>\n</ol>\n\n<hr>\n\n<p><strong>Additional info</strong></p>\n\n<p>Enabled minor modes (C-h m)</p>\n\n<pre><code>Enabled minor modes: Abbrev Auto-Composition Auto-Compression\nAuto-Encryption Blink-Cursor Column-Number Company Desktop-Save\nDisplay-Time Electric-Indent Electric-Pair Evil Evil-Local\nEvil-Matchit Evil-Surround Fic File-Name-Shadow Flyspell-Lazy\nFont-Lock Ggtags Global-Auto-Revert Global-Company Global-Eldoc\nGlobal-Evil-Matchit Global-Evil-Surround Global-Font-Lock Global-Linum\nGlobal-Page-Break-Lines Global-Pointback Global-Undo-Tree Helm\nHelm-Match-Plugin Helm-Occur-Match-Plugin Line-Number Linum Menu-Bar\nMouse-Wheel Override-Global Pointback Recentf Savehist Shell-Dirtrack\nSubword Tooltip Undo-Tree Which-Function Window-Numbering Winner Yas\nYas-Global\n</code></pre>\n")
   (title . "&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable")
   (link . "http://emacs.stackexchange.com/questions/2919/making-tag-completion-table-freezes-blocks-how-to-disable")
@@ -65,7 +65,7 @@
   (delete_vote_count . 0)
   (comment_count . 10)
   (comments .
-            [((body . "For jumping to definition/references, you can use GNU Global with ggtags/helm-gtags. Guarantee to work on large project like Linux kernel without any delay. You may want to look at my <a href=\"http://tuhdo.github.io/c-ide.html\" rel=\"nofollow\">C/C++ guide</a>. I covered code navigation (jump to definition/references), code completion, compiling and debugging support. I already created a demo configuration for playing with, so you only need to walk through the features without configuring anything.")
+            (((body . "For jumping to definition/references, you can use GNU Global with ggtags/helm-gtags. Guarantee to work on large project like Linux kernel without any delay. You may want to look at my <a href=\"http://tuhdo.github.io/c-ide.html\" rel=\"nofollow\">C/C++ guide</a>. I covered code navigation (jump to definition/references), code completion, compiling and debugging support. I already created a demo configuration for playing with, so you only need to walk through the features without configuring anything.")
               (link . "http://emacs.stackexchange.com/questions/2919/making-tag-completion-table-freezes-blocks-how-to-disable#comment3992_2919")
               (body_markdown . "For jumping to definition/references, you can use GNU Global with ggtags/helm-gtags. Guarantee to work on large project like Linux kernel without any delay. You may want to look at my [C/C++ guide](http://tuhdo.github.io/c-ide.html). I covered code navigation (jump to definition/references), code completion, compiling and debugging support. I already created a demo configuration for playing with, so you only need to walk through the features without configuring anything.")
               (comment_id . 3992)
@@ -269,7 +269,7 @@
                (profile_image . "https://www.gravatar.com/avatar/a2e453f8f1cfc1ff0d7428c3b66ddc9a?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 2265)
-               (reputation . 11)))])
+               (reputation . 11)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2265/cheezy")
    (display_name . "cheezy")
@@ -278,9 +278,9 @@
    (user_id . 2265)
    (reputation . 11))
   (tags .
-        ["autocomplete" "performance" "ctags"])
+        ("autocomplete" "performance" "ctags"))
   (answers .
-           [((body . "<p>For your use case, there's still hope though. Since you use <code>etags</code>, it can be used with <code>helm-etags-select</code>, the Helm built-in command. To use it, simply follow theses steps:</p>\n\n<ul>\n<li>First, run the command to generate TAGS file.</li>\n<li>Second, use <code>find-tag</code> to feed it to Emacs; if the TAGS file is too large and Emacs asks you to confirm, just accept it. Your whole TAGS file will be loaded in Emacs and there's no more reloading.</li>\n<li>Finally, just execute <code>helm-etags-select</code> on any symbol on your Emacs. If there exists only one definition in your project, jump instantly; otherwise, display a  Helm buffer for you to choose from.</li>\n</ul>\n")
+           (((body . "<p>For your use case, there's still hope though. Since you use <code>etags</code>, it can be used with <code>helm-etags-select</code>, the Helm built-in command. To use it, simply follow theses steps:</p>\n\n<ul>\n<li>First, run the command to generate TAGS file.</li>\n<li>Second, use <code>find-tag</code> to feed it to Emacs; if the TAGS file is too large and Emacs asks you to confirm, just accept it. Your whole TAGS file will be loaded in Emacs and there's no more reloading.</li>\n<li>Finally, just execute <code>helm-etags-select</code> on any symbol on your Emacs. If there exists only one definition in your project, jump instantly; otherwise, display a  Helm buffer for you to choose from.</li>\n</ul>\n")
              (title . "&quot;Making tag completion table&quot; Freezes/Blocks -- how to disable")
              (link . "http://emacs.stackexchange.com/questions/2919/making-tag-completion-table-freezes-blocks-how-to-disable/2936#2936")
              (body_markdown . "For your use case, there&#39;s still hope though. Since you use `etags`, it can be used with `helm-etags-select`, the Helm built-in command. To use it, simply follow theses steps:\n\n- First, run the command to generate TAGS file.\n- Second, use `find-tag` to feed it to Emacs; if the TAGS file is too large and Emacs asks you to confirm, just accept it. Your whole TAGS file will be loaded in Emacs and there&#39;s no more reloading.\n- Finally, just execute `helm-etags-select` on any symbol on your Emacs. If there exists only one definition in your project, jump instantly; otherwise, display a  Helm buffer for you to choose from.")
@@ -298,7 +298,7 @@
               (accept_rate . 75)
               (user_type . "registered")
               (user_id . 200)
-              (reputation . 652)))]))
+              (reputation . 652))))))
  ((body . "<p>I've accidentally run the following:</p>\n\n<pre><code>(unintern variable)\n</code></pre>\n\n<p>where <code>variable</code>'s value was <code>nil</code>.</p>\n\n<p>How do I get <code>nil</code> back without restarting Emacs?</p>\n")
   (title . "How can I bring back `nil`?")
   (link . "http://emacs.stackexchange.com/questions/2935/how-can-i-bring-back-nil")
@@ -323,7 +323,7 @@
    (user_id . 2264)
    (reputation . 512))
   (tags .
-        ["interactive-development"]))
+        ("interactive-development")))
  ((body . "<p>Is there a way to designate a specific frame in which files opened with <code>emacsclient</code> will appear?</p>\n\n<p>I have one monitor that is dedicated to a fullscreen Emacs frame.  I do most of my editing in that monitor, but from time to time I will open a second frame on another monitor temporarily.  I want to ensure that every time I open a file using <code>emacsclient</code>, it gets sent to my fullscreen frame and doesn't end up on any other frames that might be open.</p>\n\n<p><strong>Edit:</strong></p>\n\n<p>The ideal workflow would be that my <strong>initial</strong> emacs frame gets tagged as the recipient of all <code>emacsclient</code> requests, and the rest is automatic.  I always use the initial frame as my primary emacs frame, and other frames come and go as needed.</p>\n")
   (title . "Open edit-server files from emacsclient in a specific frame")
   (link . "http://emacs.stackexchange.com/questions/2417/open-edit-server-files-from-emacsclient-in-a-specific-frame")
@@ -350,7 +350,7 @@
    (user_id . 93)
    (reputation . 1709))
   (comments .
-            [((body . "Which operating system are you running?  Answers may vary if your window system is X, Windows, Mac OS.")
+            (((body . "Which operating system are you running?  Answers may vary if your window system is X, Windows, Mac OS.")
               (link . "http://emacs.stackexchange.com/questions/2417/open-edit-server-files-from-emacsclient-in-a-specific-frame#comment3171_2417")
               (body_markdown . "Which operating system are you running?  Answers may vary if your window system is X, Windows, Mac OS.")
               (comment_id . 3171)
@@ -405,7 +405,7 @@
                (profile_image . "https://www.gravatar.com/avatar/cb378ba79d85a04a9277ddc0e4259149?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 372)
-               (reputation . 472)))])
+               (reputation . 472)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/93/nispio")
    (display_name . "nispio")
@@ -415,9 +415,9 @@
    (user_id . 93)
    (reputation . 1709))
   (tags .
-        ["frames" "emacsclient"])
+        ("frames" "emacsclient"))
   (answers .
-           [((body . "<p>If your windowing system is X and your monitors are configured as separate screens, you can pass the appropriate <code>DISPLAY</code> value (e.g. <code>:0.0</code> or <code>:0.1</code>) to emacsclient with the <code>-d</code> option.  That's kind of a big \"if\".</p>\n")
+           (((body . "<p>If your windowing system is X and your monitors are configured as separate screens, you can pass the appropriate <code>DISPLAY</code> value (e.g. <code>:0.0</code> or <code>:0.1</code>) to emacsclient with the <code>-d</code> option.  That's kind of a big \"if\".</p>\n")
              (title . "Open edit-server files from emacsclient in a specific frame")
              (link . "http://emacs.stackexchange.com/questions/2417/open-edit-server-files-from-emacsclient-in-a-specific-frame/2425#2425")
              (body_markdown . "If your windowing system is X and your monitors are configured as separate screens, you can pass the appropriate `DISPLAY` value (e.g. `:0.0` or `:0.1`) to emacsclient with the `-d` option.  That&#39;s kind of a big &quot;if&quot;.")
@@ -429,7 +429,7 @@
              (is_accepted . :json-false)
              (comment_count . 3)
              (comments .
-                       [((body . "I am using X, and <code>-d :0.0</code> works fine, but for some reason <code>-d :0.1</code> gives an error: <code>Display :0.1 can&#39;t be opened</code>.")
+                       (((body . "I am using X, and <code>-d :0.0</code> works fine, but for some reason <code>-d :0.1</code> gives an error: <code>Display :0.1 can&#39;t be opened</code>.")
                          (link . "http://emacs.stackexchange.com/questions/2417/open-edit-server-files-from-emacsclient-in-a-specific-frame/2425#comment3199_2425")
                          (body_markdown . "I am using X, and `-d :0.0` works fine, but for some reason `-d :0.1` gives an error: `Display :0.1 can&#39;t be opened`.")
                          (comment_id . 3199)
@@ -486,7 +486,7 @@
                           (accept_rate . 55)
                           (user_type . "registered")
                           (user_id . 93)
-                          (reputation . 1709)))])
+                          (reputation . 1709)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/372/purple-arrows")
               (display_name . "purple_arrows")
@@ -511,7 +511,7 @@
               (profile_image . "https://www.gravatar.com/avatar/ef46008cedba3b32fae8586adb16cb8f?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2353)
-              (reputation . 1)))]))
+              (reputation . 1))))))
  ((body . "<p>I know that I can use the <a href=\"http://unix.stackexchange.com/a/63920\"><code>file</code></a> command to determine this, but I'd like a cross-platform solution using elisp only (or as few subprocesses as possible).  I have the compressed data in a variable called <code>response</code>; you can use the following shell command to get a sample of the data I'm trying to profile:</p>\n\n<pre><code>curl --silent \"http://api.stackexchange.com/2.2/filter/create?filter=default&amp;exclude=user.profile_image;shallow_user.profile_image\"\n</code></pre>\n\n<p>Piping the above through <code>gunzip</code> will give a readable result.  The problem is that my mechanism for retrieving the information has different behavior when it is run locally and when it is run on Travis.</p>\n\n<p>Unfortunately, the <code>Content-Encoding</code> header <em>lies</em>.</p>\n")
   (title . "How can I determine if a file is compressed from Elisp?")
   (link . "http://emacs.stackexchange.com/questions/2931/how-can-i-determine-if-a-file-is-compressed-from-elisp")
@@ -536,7 +536,7 @@
    (user_id . 2264)
    (reputation . 512))
   (tags .
-        ["compression" "url"]))
+        ("compression" "url")))
  ((body . "<p>Here's an example:</p>\n\n<pre><code>   #+NAME: sys5\n   #+HEADER: :exports both\n   #+BEGIN_SRC maxima :results raw\n     programmode: false;\n     solution: triangularize(coefmatrix(\n     [ -3*x - 11*y + 7*z = 0,\n        2*x +  6*y - 2*z = 0,\n          x +  2*y +   z = 0],\n          [x, y, z]));\n     print(solution);\n   #+END_SRC\n\n   # (1)\n   #+RESULTS: sys5\n   : [ - 3  - 11   7  ]\n   : [                ]\n   : [  0    4    - 8 ] \n   : [                ]\n   : [  0    0     0  ]\n   # (2)\n   #+BEGIN_EXAMPLE\n     [ - 3  - 11   7  ]\n     [                ]\n     [  0    4    - 8 ] \n     [                ]\n     [  0    0     0  ]\n   #+END_EXAMPLE\n\n   Triangulated matrix of the above solution doesn't have pivot in the third\n   column, thus it doesn't have a unique solution.\n</code></pre>\n\n<p>(1) is printed like so: <code>[-3 -11 7] [] [0 4 -8] [] [0 0 0]</code>, but (2) prints properly, i.e. every line on the separate line. Interestingly, if there's some text after the <code>#+RESULTS:</code>, then export doesn't add <code>=</code> around the result, otherwise, it does.</p>\n\n<p>Is there anything special about <code>[]</code> in results?</p>\n")
   (title . "Babel doesn&#39;t wrap results in verbatim")
   (link . "http://emacs.stackexchange.com/questions/2920/babel-doesnt-wrap-results-in-verbatim")
@@ -569,9 +569,9 @@
    (user_id . 563)
    (reputation . 255))
   (tags .
-        ["org-mode" "org-export" "org-babel"])
+        ("org-mode" "org-export" "org-babel"))
   (answers .
-           [((body . "<p>You clearly did not <a href=\"http://orgmode.org/manual/results.html#results\" rel=\"nofollow\">consult the manual</a> before posting this.  Upon reading the manual, you will not only know that you could have gotten what you desired result by using the header <code>#+BEGIN_SRC maxima :results value verbatim</code> or <code>#+BEGIN_SRC maxima :results value code</code> you will also know that <code>raw</code> means raw Org code.</p>\n")
+           (((body . "<p>You clearly did not <a href=\"http://orgmode.org/manual/results.html#results\" rel=\"nofollow\">consult the manual</a> before posting this.  Upon reading the manual, you will not only know that you could have gotten what you desired result by using the header <code>#+BEGIN_SRC maxima :results value verbatim</code> or <code>#+BEGIN_SRC maxima :results value code</code> you will also know that <code>raw</code> means raw Org code.</p>\n")
              (title . "Babel doesn&#39;t wrap results in verbatim")
              (link . "http://emacs.stackexchange.com/questions/2920/babel-doesnt-wrap-results-in-verbatim/2926#2926")
              (body_markdown . "You clearly did not [consult the manual][1] before posting this.  Upon reading the manual, you will not only know that you could have gotten what you desired result by using the header `#+BEGIN_SRC maxima :results value verbatim` or `#+BEGIN_SRC maxima :results value code` you will also know that `raw` means raw Org code.\n\n  [1]: http://orgmode.org/manual/results.html#results")
@@ -588,7 +588,7 @@
               (profile_image . "https://www.gravatar.com/avatar/bd580f3842d43ba9dd42aff4914a38d3?s=128&d=identicon&r=PG&f=1")
               (user_type . "registered")
               (user_id . 1974)
-              (reputation . 486)))]))
+              (reputation . 486))))))
  ((body . "<p><img src=\"http://i.stack.imgur.com/d7XGr.png\" alt=\"Inactive Minibuffer\"></p>\n\n<p>I tried it with the following settings:</p>\n\n<pre><code>(add-hook 'minibuffer-setup-hook\n      (lambda ()\n        (make-local-variable 'face-remapping-alist)\n        (add-to-list 'face-remapping-alist '(default (:background \"green\")))))\n\n(set-face-background 'minibuffer-prompt \"blue\")\n</code></pre>\n\n<p>but they only affected the active minibuffer:</p>\n\n<p><img src=\"http://i.stack.imgur.com/kXFi4.png\" alt=\"Active Minibuffer\"></p>\n")
   (title . "Can I change the background color of the inactive minibuffer?")
   (link . "http://emacs.stackexchange.com/questions/2323/can-i-change-the-background-color-of-the-inactive-minibuffer")
@@ -615,7 +615,7 @@
    (user_id . 50)
    (reputation . 3999))
   (comments .
-            [((body . "I believe that&#39;s also called the echo area.")
+            (((body . "I believe that&#39;s also called the echo area.")
               (link . "http://emacs.stackexchange.com/questions/2323/can-i-change-the-background-color-of-the-inactive-minibuffer#comment3024_2323")
               (body_markdown . "I believe that&#39;s also called the echo area.")
               (comment_id . 3024)
@@ -655,7 +655,7 @@
                (profile_image . "https://www.gravatar.com/avatar/32a8e553d85d193ee5ae1533ce6ec158?s=128&d=identicon&r=PG&f=1")
                (user_type . "registered")
                (user_id . 105)
-               (reputation . 3478)))])
+               (reputation . 3478)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/600/mcb")
    (display_name . "mcb")
@@ -664,9 +664,9 @@
    (user_id . 600)
    (reputation . 171))
   (tags .
-        ["customize" "faces" "minibuffer"])
+        ("customize" "faces" "minibuffer"))
   (answers .
-           [((body . "<p><code>minibuffer-setup-hook</code> is used only when the minibuffer is set up, i.e., activated, not when it is deactivated. </p>\n\n<p><code>minibuffer-exit-hook</code> takes effect when the minibuffer is exited. There is also <code>minibuffer-inactive-mode-hook</code>. </p>\n\n<p>But although those do initiate the color change (as shown by adding <code>(debug)</code> at the beginning of the hook function, and then stepping through the debugger with <code>d</code>), it seems that <code>kill-local-variables</code> removes the added color at some point. I don't have time now to check further, but perhaps you can, or perhaps someone else has a quick solution. Sorry for providing only incomplete info.</p>\n\n<p>Gotta go now - but quickly, I'm guessing that maybe you don't need to fiddle with hooks at all, and you can just do the face remapping for all buffers with names matching <code>\\` \\*Minibuf-[0-9]+\\*\\'</code>.</p>\n\n<hr>\n\n<p>FWIW, I use a <a href=\"http://www.emacswiki.org/emacs-en/download/oneonone.el\" rel=\"nofollow\">separate minibuffer frame</a>, and I put this on <code>minibuffer-exit-hook</code> to color the frame background:</p>\n\n<pre><code>(defun 1on1-color-minibuffer-frame-on-exit ()\n  \"Change background of minibuffer frame to reflect the minibuffer depth.\nUse this when reducing the minibuffer recursion depth.\"\n  (when 1on1-minibuffer-frame\n    (save-window-excursion\n      (select-frame 1on1-minibuffer-frame)\n      (cond ((= (minibuffer-depth) 2)\n             (set-background-color 1on1-active-minibuffer-frame-background))\n            ((&lt; (minibuffer-depth) 2)\n             (set-background-color 1on1-inactive-minibuffer-frame-background))\n            (t\n             (set-background-color (hexrgb-increment-hue ; Change bg hue slightly.\n                                    (frame-parameter nil 'background-color)\n                                    1on1-color-minibuffer-frame-on-exit-increment)))))))\n</code></pre>\n")
+           (((body . "<p><code>minibuffer-setup-hook</code> is used only when the minibuffer is set up, i.e., activated, not when it is deactivated. </p>\n\n<p><code>minibuffer-exit-hook</code> takes effect when the minibuffer is exited. There is also <code>minibuffer-inactive-mode-hook</code>. </p>\n\n<p>But although those do initiate the color change (as shown by adding <code>(debug)</code> at the beginning of the hook function, and then stepping through the debugger with <code>d</code>), it seems that <code>kill-local-variables</code> removes the added color at some point. I don't have time now to check further, but perhaps you can, or perhaps someone else has a quick solution. Sorry for providing only incomplete info.</p>\n\n<p>Gotta go now - but quickly, I'm guessing that maybe you don't need to fiddle with hooks at all, and you can just do the face remapping for all buffers with names matching <code>\\` \\*Minibuf-[0-9]+\\*\\'</code>.</p>\n\n<hr>\n\n<p>FWIW, I use a <a href=\"http://www.emacswiki.org/emacs-en/download/oneonone.el\" rel=\"nofollow\">separate minibuffer frame</a>, and I put this on <code>minibuffer-exit-hook</code> to color the frame background:</p>\n\n<pre><code>(defun 1on1-color-minibuffer-frame-on-exit ()\n  \"Change background of minibuffer frame to reflect the minibuffer depth.\nUse this when reducing the minibuffer recursion depth.\"\n  (when 1on1-minibuffer-frame\n    (save-window-excursion\n      (select-frame 1on1-minibuffer-frame)\n      (cond ((= (minibuffer-depth) 2)\n             (set-background-color 1on1-active-minibuffer-frame-background))\n            ((&lt; (minibuffer-depth) 2)\n             (set-background-color 1on1-inactive-minibuffer-frame-background))\n            (t\n             (set-background-color (hexrgb-increment-hue ; Change bg hue slightly.\n                                    (frame-parameter nil 'background-color)\n                                    1on1-color-minibuffer-frame-on-exit-increment)))))))\n</code></pre>\n")
              (title . "Can I change the background color of the inactive minibuffer?")
              (link . "http://emacs.stackexchange.com/questions/2323/can-i-change-the-background-color-of-the-inactive-minibuffer/2325#2325")
              (body_markdown . "`minibuffer-setup-hook` is used only when the minibuffer is set up, i.e., activated, not when it is deactivated. \n\n`minibuffer-exit-hook` takes effect when the minibuffer is exited. There is also `minibuffer-inactive-mode-hook`. \n\nBut although those do initiate the color change (as shown by adding `(debug)` at the beginning of the hook function, and then stepping through the debugger with `d`), it seems that `kill-local-variables` removes the added color at some point. I don&#39;t have time now to check further, but perhaps you can, or perhaps someone else has a quick solution. Sorry for providing only incomplete info.\n\nGotta go now - but quickly, I&#39;m guessing that maybe you don&#39;t need to fiddle with hooks at all, and you can just do the face remapping for all buffers with names matching ``\\` \\*Minibuf-[0-9]+\\*\\&#39;``.\n\n---\n\nFWIW, I use a [separate minibuffer frame](http://www.emacswiki.org/emacs-en/download/oneonone.el), and I put this on `minibuffer-exit-hook` to color the frame background:\n\n    (defun 1on1-color-minibuffer-frame-on-exit ()\n      &quot;Change background of minibuffer frame to reflect the minibuffer depth.\n    Use this when reducing the minibuffer recursion depth.&quot;\n      (when 1on1-minibuffer-frame\n        (save-window-excursion\n          (select-frame 1on1-minibuffer-frame)\n          (cond ((= (minibuffer-depth) 2)\n                 (set-background-color 1on1-active-minibuffer-frame-background))\n                ((&lt; (minibuffer-depth) 2)\n                 (set-background-color 1on1-inactive-minibuffer-frame-background))\n                (t\n                 (set-background-color (hexrgb-increment-hue ; Change bg hue slightly.\n                                        (frame-parameter nil &#39;background-color)\n                                        1on1-color-minibuffer-frame-on-exit-increment)))))))")
@@ -686,7 +686,7 @@
               (user_id . 105)
               (reputation . 3478))
              (comments .
-                       [((body . "Given your analysis, I guess making <code>face-remapping-alist</code> <a href=\"https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Buffer_002dLocal.html#index-permanent-local-variable-679\" rel=\"nofollow\">permanent</a> would work? For the backquotes in code markup, see <a href=\"http://meta.emacs.stackexchange.com/posts/31/revisions\">this answer</a>.")
+                       (((body . "Given your analysis, I guess making <code>face-remapping-alist</code> <a href=\"https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Buffer_002dLocal.html#index-permanent-local-variable-679\" rel=\"nofollow\">permanent</a> would work? For the backquotes in code markup, see <a href=\"http://meta.emacs.stackexchange.com/posts/31/revisions\">this answer</a>.")
                          (link . "http://emacs.stackexchange.com/questions/2323/can-i-change-the-background-color-of-the-inactive-minibuffer/2325#comment3040_2325")
                          (body_markdown . "Given your analysis, I guess making `face-remapping-alist` [permanent](https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Buffer_002dLocal.html#index-permanent-local-variable-679) would work? For the backquotes in code markup, see [this answer](http://meta.emacs.stackexchange.com/posts/31/revisions).")
                          (comment_id . 3040)
@@ -724,7 +724,7 @@
                           (profile_image . "https://www.gravatar.com/avatar/32a8e553d85d193ee5ae1533ce6ec158?s=128&d=identicon&r=PG&f=1")
                           (user_type . "registered")
                           (user_id . 105)
-                          (reputation . 3478)))])
+                          (reputation . 3478)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/105/drew")
               (display_name . "Drew")
@@ -749,7 +749,7 @@
               (profile_image . "https://www.gravatar.com/avatar/6d7d7689f9562293f6106353a6b1a905?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 1979)
-              (reputation . 631)))]))
+              (reputation . 631))))))
  ((body . "<p>At times I want to browse the code of projects to which I have read-only access.  This makes it impossible for me to drop a <code>.projectile</code> file at the root of the project.</p>\n\n<p>Is there a way to define projects for use with projectile when I do not have write access to the project directories?</p>\n")
   (title . "Projectile project in folder without write access?")
   (link . "http://emacs.stackexchange.com/questions/2891/projectile-project-in-folder-without-write-access")
@@ -775,9 +775,9 @@
    (user_id . 93)
    (reputation . 1709))
   (tags .
-        ["projectile"])
+        ("projectile"))
   (answers .
-           [((body . "<p>In that case, you can temporary disable <code>projectile-require-project-root</code>:</p>\n\n<pre><code>(setq projectile-require-project-root nil)\n</code></pre>\n\n<p>Then, you can activate Projectile everywhere.</p>\n")
+           (((body . "<p>In that case, you can temporary disable <code>projectile-require-project-root</code>:</p>\n\n<pre><code>(setq projectile-require-project-root nil)\n</code></pre>\n\n<p>Then, you can activate Projectile everywhere.</p>\n")
              (title . "Projectile project in folder without write access?")
              (link . "http://emacs.stackexchange.com/questions/2891/projectile-project-in-folder-without-write-access/2893#2893")
              (body_markdown . "In that case, you can temporary disable `projectile-require-project-root`:\n\n    (setq projectile-require-project-root nil)\n\nThen, you can activate Projectile everywhere.")
@@ -789,7 +789,7 @@
              (is_accepted . :json-false)
              (comment_count . 3)
              (comments .
-                       [((body . "I just tried this out, and it seems like it would only be useful in a flat directory structure.  As soon as I open a file in <code>src&#47;</code> the project root changes to <code>src&#47;</code> and I can no longer jump to the files in <code>inc&#47;</code>.")
+                       (((body . "I just tried this out, and it seems like it would only be useful in a flat directory structure.  As soon as I open a file in <code>src&#47;</code> the project root changes to <code>src&#47;</code> and I can no longer jump to the files in <code>inc&#47;</code>.")
                          (link . "http://emacs.stackexchange.com/questions/2891/projectile-project-in-folder-without-write-access/2893#comment3943_2893")
                          (body_markdown . "I just tried this out, and it seems like it would only be useful in a flat directory structure.  As soon as I open a file in `src/` the project root changes to `src/` and I can no longer jump to the files in `inc/`.")
                          (comment_id . 3943)
@@ -847,7 +847,7 @@
                           (accept_rate . 55)
                           (user_type . "registered")
                           (user_id . 93)
-                          (reputation . 1709)))])
+                          (reputation . 1709)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/200/tu-do")
               (display_name . "Tu Do")
@@ -874,7 +874,7 @@
               (accept_rate . 55)
               (user_type . "registered")
               (user_id . 93)
-              (reputation . 1709)))]))
+              (reputation . 1709))))))
  ((body . "<p>After a recent update <code>eldoc</code> is turned on by default, even for <code>emacs -Q</code>.\nI don't appreciate the noise it generates when I'm using <code>eval-expression</code>.\nHow do I turn it off?</p>\n")
   (title . "How to disable eldoc for `eval-expression`?")
   (link . "http://emacs.stackexchange.com/questions/2917/how-to-disable-eldoc-for-eval-expression")
@@ -908,9 +908,9 @@
    (user_id . 2094)
    (reputation . 420))
   (tags .
-        ["elisp" "emacs-25"])
+        ("elisp" "emacs-25"))
   (answers .
-           [((body . "<p>Disable it globally:</p>\n\n<pre><code>(global-eldoc-mode -1)\n</code></pre>\n\n<p>Disable it locally - make sure that <code>eldoc-mode</code> is <code>nil</code> in all your buffers.</p>\n\n<p>A less drastic solution would be to increase <code>eldoc-idle-delay</code>.</p>\n")
+           (((body . "<p>Disable it globally:</p>\n\n<pre><code>(global-eldoc-mode -1)\n</code></pre>\n\n<p>Disable it locally - make sure that <code>eldoc-mode</code> is <code>nil</code> in all your buffers.</p>\n\n<p>A less drastic solution would be to increase <code>eldoc-idle-delay</code>.</p>\n")
              (title . "How to disable eldoc for `eval-expression`?")
              (link . "http://emacs.stackexchange.com/questions/2917/how-to-disable-eldoc-for-eval-expression/2918#2918")
              (body_markdown . "Disable it globally:\n\n    (global-eldoc-mode -1)\n\nDisable it locally - make sure that `eldoc-mode` is `nil` in all your buffers.\n\nA less drastic solution would be to increase `eldoc-idle-delay`.\n")
@@ -930,7 +930,7 @@
               (user_id . 795)
               (reputation . 181))
              (comments .
-                       [((body . "Nope, doesn&#39;t work.")
+                       (((body . "Nope, doesn&#39;t work.")
                          (link . "http://emacs.stackexchange.com/questions/2917/how-to-disable-eldoc-for-eval-expression/2918#comment3983_2918")
                          (body_markdown . "Nope, doesn&#39;t work.")
                          (comment_id . 3983)
@@ -1140,14 +1140,14 @@
                           (profile_image . "https://www.gravatar.com/avatar/6d7d7689f9562293f6106353a6b1a905?s=128&d=identicon&r=PG")
                           (user_type . "registered")
                           (user_id . 1979)
-                          (reputation . 631)))])
+                          (reputation . 631)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/795/sds")
               (display_name . "sds")
               (profile_image . "https://www.gravatar.com/avatar/75a3213bbcaf279ab4ec2787060c37d4?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 795)
-              (reputation . 181)))]))
+              (reputation . 181))))))
  ((body . "<p>I have been using <code>csv-mode</code> to modify small to medium sized CSV files, but recently I have been working with large files containing more than 40,812 entries. <code>csv-mode</code> struggles to align and navigate the tables, and is too slow to be usable as is.  In comparison, LibreOffice Calc can zip through the file.</p>\n\n<p>Is there a simple way to make <code>csv-mode</code> handle large tables, or is there a better approach available?</p>\n\n<p>I am aware of <a href=\"http://stackoverflow.com/questions/10616525/is-there-a-good-emacs-mode-for-displaying-and-editing-huge-delimiter-separated-f\">a related Stack Overflow question</a>. Its solution was to only align the portion of buffer in the visible window, but this did not solve the sluggishness in my case.</p>\n\n<p><a href=\"https://www.dropbox.com/s/xmt4s5i5ikq0i0v/big.csv?dl=0\" rel=\"nofollow\">Here is an example file.</a>  I tried to make it large, but not so large it will freeze Emacs on older computers.</p>\n")
   (title . "How to view and edit large delimiter separated value files?")
   (link . "http://emacs.stackexchange.com/questions/972/how-to-view-and-edit-large-delimiter-separated-value-files")
@@ -1173,7 +1173,7 @@
    (user_id . 315)
    (reputation . 48))
   (comments .
-            [((body . "Table editing is not one of Emacs&#39;s current strengths. I wish it was. I&#39;d rather never have to use a dedicated spreadsheet.")
+            (((body . "Table editing is not one of Emacs&#39;s current strengths. I wish it was. I&#39;d rather never have to use a dedicated spreadsheet.")
               (link . "http://emacs.stackexchange.com/questions/972/how-to-view-and-edit-large-delimiter-separated-value-files#comment1383_972")
               (body_markdown . "Table editing is not one of Emacs&#39;s current strengths. I wish it was. I&#39;d rather never have to use a dedicated spreadsheet.")
               (comment_id . 1383)
@@ -1238,7 +1238,7 @@
                (profile_image . "https://www.gravatar.com/avatar/912d39713cb1441439c578a3c286eca7?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 315)
-               (reputation . 48)))])
+               (reputation . 48)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/315/holocronweaver")
    (display_name . "holocronweaver")
@@ -1247,9 +1247,9 @@
    (user_id . 315)
    (reputation . 48))
   (tags .
-        ["editing" "table" "large-files" "csv"])
+        ("editing" "table" "large-files" "csv"))
   (answers .
-           [((body . "<p>With <code>csv-mode</code> I can see some lags with your file, but only with syntax highlighting enabled. After disabling fontification with <code>M-x font-lock-mode</code> it works without problems.</p>\n\n<p>To disable it permanently for <code>csv-mode</code> add to your config:</p>\n\n<pre><code>(add-hook 'csv-mode-hook (lambda () (font-lock-mode -1))\n</code></pre>\n\n<p>Or if you are a <a href=\"https://github.com/jwiegley/use-package\" rel=\"nofollow\">use-package</a> user:</p>\n\n<pre><code>(use-package csv-mode\n  :mode (\"\\\\.csv\\\\'\" . csv-mode)\n  :init (add-hook 'csv-mode-hook (lambda () (font-lock-mode -1)))\n  :ensure t)\n</code></pre>\n")
+           (((body . "<p>With <code>csv-mode</code> I can see some lags with your file, but only with syntax highlighting enabled. After disabling fontification with <code>M-x font-lock-mode</code> it works without problems.</p>\n\n<p>To disable it permanently for <code>csv-mode</code> add to your config:</p>\n\n<pre><code>(add-hook 'csv-mode-hook (lambda () (font-lock-mode -1))\n</code></pre>\n\n<p>Or if you are a <a href=\"https://github.com/jwiegley/use-package\" rel=\"nofollow\">use-package</a> user:</p>\n\n<pre><code>(use-package csv-mode\n  :mode (\"\\\\.csv\\\\'\" . csv-mode)\n  :init (add-hook 'csv-mode-hook (lambda () (font-lock-mode -1)))\n  :ensure t)\n</code></pre>\n")
              (title . "How to view and edit large delimiter separated value files?")
              (link . "http://emacs.stackexchange.com/questions/972/how-to-view-and-edit-large-delimiter-separated-value-files/2923#2923")
              (body_markdown . "With `csv-mode` I can see some lags with your file, but only with syntax highlighting enabled. After disabling fontification with `M-x font-lock-mode` it works without problems.\n\nTo disable it permanently for `csv-mode` add to your config:\n\n    (add-hook &#39;csv-mode-hook (lambda () (font-lock-mode -1))\n\nOr if you are a [use-package][1] user:\n\n    (use-package csv-mode\n      :mode (&quot;\\\\.csv\\\\&#39;&quot; . csv-mode)\n      :init (add-hook &#39;csv-mode-hook (lambda () (font-lock-mode -1)))\n      :ensure t)\n\n\n  [1]: https://github.com/jwiegley/use-package")
@@ -1266,7 +1266,7 @@
               (profile_image . "https://www.gravatar.com/avatar/8dff5903c3d337d048b6b908e0be9e9b?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 220)
-              (reputation . 466)))]))
+              (reputation . 466))))))
  ((body . "<p>I'm doing quite a bit of manual xml editing (the source definition of some code generation I'm doing is a custom xml format) and of course prefer to use Emacs over any special purpose  (usually ugly) xml editors. nXml mode has stood me well in the past, but I cannot get my head around it's \"outline\" support. Various internet and SO posts effectively say nothing - I'm wondering if anyone has any practical experience with outlining/folding xml in emacs (any mode) whether or not that requires altering the xml structure itself.</p>\n")
   (title . "The old &quot;how to fold xml&quot; question")
   (link . "http://emacs.stackexchange.com/questions/2884/the-old-how-to-fold-xml-question")
@@ -1291,9 +1291,9 @@
    (user_id . 215)
    (reputation . 193))
   (tags .
-        ["xml" "nxml" "outline"])
+        ("xml" "nxml" "outline"))
   (answers .
-           [((body . "<p><a href=\"http://web-mode.org/\" rel=\"nofollow\">web-mode</a> has element folding built in and bound to <kbd>C-c</kbd> <kbd>C-f</kbd>. But you will lose some of the features of using nxml-mode obviously.</p>\n")
+           (((body . "<p><a href=\"http://web-mode.org/\" rel=\"nofollow\">web-mode</a> has element folding built in and bound to <kbd>C-c</kbd> <kbd>C-f</kbd>. But you will lose some of the features of using nxml-mode obviously.</p>\n")
              (title . "The old &quot;how to fold xml&quot; question")
              (link . "http://emacs.stackexchange.com/questions/2884/the-old-how-to-fold-xml-question/2921#2921")
              (body_markdown . "[web-mode][1] has element folding built in and bound to &lt;kbd&gt;C-c&lt;/kbd&gt; &lt;kbd&gt;C-f&lt;/kbd&gt;. But you will lose some of the features of using nxml-mode obviously.\n\n  [1]: http://web-mode.org/")
@@ -1310,7 +1310,7 @@
               (profile_image . "http://i.stack.imgur.com/y27jq.png?s=128&g=1")
               (user_type . "registered")
               (user_id . 160)
-              (reputation . 1487)))]))
+              (reputation . 1487))))))
  ((body . "<p>When playing around with data in <code>calc</code>, I often want to generate a vector from an interval.</p>\n\n<p>How can I easily create a vector from just a start point, end point &amp; step value.</p>\n\n<p>Something like <code>1 &lt;RET&gt; 10 &lt;RET&gt; 1 MAKE-VECTOR</code> to give me <code>[1,2,3,4,5,6,7,8,9,10]</code>?</p>\n")
   (title . "How can I turn [1..10] into [1,2,3,4,5,6,7,8,9,10] in calc?")
   (link . "http://emacs.stackexchange.com/questions/2914/how-can-i-turn-1-10-into-1-2-3-4-5-6-7-8-9-10-in-calc")
@@ -1336,9 +1336,9 @@
    (user_id . 503)
    (reputation . 113))
   (tags .
-        ["calc"])
+        ("calc"))
   (answers .
-           [((body . "<p><kbd>v x 10 RET</kbd> should do it. Uses <code>calc-index</code>.</p>\n")
+           (((body . "<p><kbd>v x 10 RET</kbd> should do it. Uses <code>calc-index</code>.</p>\n")
              (title . "How can I turn [1..10] into [1,2,3,4,5,6,7,8,9,10] in calc?")
              (link . "http://emacs.stackexchange.com/questions/2914/how-can-i-turn-1-10-into-1-2-3-4-5-6-7-8-9-10-in-calc/2916#2916")
              (body_markdown . "&lt;kbd&gt;v x 10 RET&lt;/kbd&gt; should do it. Uses `calc-index`.\n")
@@ -1355,7 +1355,7 @@
               (profile_image . "https://www.gravatar.com/avatar/6da30f549b191206a744fbab8003d0b5?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2094)
-              (reputation . 420)))]))
+              (reputation . 420))))))
  ((body . "<p>Since the update, a certain style of formatting code is highlighted with <code>font-lock-warning-face</code>:</p>\n\n<p>How do I turn off this behavior?</p>\n\n<p><img src=\"http://i.stack.imgur.com/ur3aG.png\" alt=\"enter image description here\"></p>\n")
   (title . "How to turn off &quot;error&quot; highlighting in emacs-lisp-mode for Emacs 25?")
   (link . "http://emacs.stackexchange.com/questions/2907/how-to-turn-off-error-highlighting-in-emacs-lisp-mode-for-emacs-25")
@@ -1383,7 +1383,7 @@
    (user_id . 50)
    (reputation . 3999))
   (comments .
-            [((body . "Could it be the theme? I was tweaking <a href=\"https://github.com/thierryvolpiatto/zop-to-char\" rel=\"nofollow\"><code>zop-to-char</code></a> yesterday and I don&#39;t see that <code>nil</code> highlighted in <code>font-lock-warning-face</code>: <a href=\"http://i.imgur.com/nI7ZwX7.png?1\" rel=\"nofollow\">My screenshot</a>. I am also on 24.4. The difference I guess is that I am using <code>zenburn</code> theme. And it does highlight <code>font-lock-warning-face</code> at places I expect.")
+            (((body . "Could it be the theme? I was tweaking <a href=\"https://github.com/thierryvolpiatto/zop-to-char\" rel=\"nofollow\"><code>zop-to-char</code></a> yesterday and I don&#39;t see that <code>nil</code> highlighted in <code>font-lock-warning-face</code>: <a href=\"http://i.imgur.com/nI7ZwX7.png?1\" rel=\"nofollow\">My screenshot</a>. I am also on 24.4. The difference I guess is that I am using <code>zenburn</code> theme. And it does highlight <code>font-lock-warning-face</code> at places I expect.")
               (link . "http://emacs.stackexchange.com/questions/2907/how-to-turn-off-error-highlighting-in-emacs-lisp-mode-for-emacs-25#comment3965_2907")
               (body_markdown . "Could it be the theme? I was tweaking [`zop-to-char`](https://github.com/thierryvolpiatto/zop-to-char) yesterday and I don&#39;t see that `nil` highlighted in `font-lock-warning-face`: [My screenshot](http://i.imgur.com/nI7ZwX7.png?1). I am also on 24.4. The difference I guess is that I am using `zenburn` theme. And it does highlight `font-lock-warning-face` at places I expect.")
               (comment_id . 3965)
@@ -1606,7 +1606,7 @@
                (accept_rate . 88)
                (user_type . "registered")
                (user_id . 115)
-               (reputation . 2563)))])
+               (reputation . 2563)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2094/abo-abo")
    (display_name . "abo-abo")
@@ -1615,9 +1615,9 @@
    (user_id . 2094)
    (reputation . 420))
   (tags .
-        ["elisp" "font-lock" "emacs-lisp-mode"])
+        ("elisp" "font-lock" "emacs-lisp-mode"))
   (answers .
-           [((body . "<h1>There are two ways</h1>\n\n<h2>Redefine <code>lisp--match-hidden-arg</code>:</h2>\n\n<pre><code>(defun lisp--match-hidden-arg (limit) nil)\n</code></pre>\n\n<h2>Remove <code>lisp--match-hidden-arg</code> from <code>lisp-cl-font-lock-keywords-2</code> and <code>lisp-el-font-lock-keywords-2</code></h2>\n\n<pre><code>(setq lisp-el-font-lock-keywords-2\n      (cl-delete 'lisp--match-hidden-arg lisp-el-font-lock-keywords-2\n                 :key #'car))\n</code></pre>\n\n<h1>Please Do <em>NOT</em> Do That!</h1>\n\n<p>The coding style detected by <code>lisp--match-hidden-arg</code> is not very readable.</p>\n\n<blockquote>\n  <p>\"... a computer language is not just a way of getting a computer to\n  perform operations, but rather ... it is a novel formal medium for\n  expressing ideas about methodology\" </p>\n  \n  <p>Abelson/Sussman \"Structure and\n  Interpretation of Computer Programs\".</p>\n</blockquote>\n\n<p>You write code so that people (and you yourself a year from today!) will read and <em>understand</em> it.\nCoding conventions serve a purpose.\nPlease think before rejecting them.</p>\n")
+           (((body . "<h1>There are two ways</h1>\n\n<h2>Redefine <code>lisp--match-hidden-arg</code>:</h2>\n\n<pre><code>(defun lisp--match-hidden-arg (limit) nil)\n</code></pre>\n\n<h2>Remove <code>lisp--match-hidden-arg</code> from <code>lisp-cl-font-lock-keywords-2</code> and <code>lisp-el-font-lock-keywords-2</code></h2>\n\n<pre><code>(setq lisp-el-font-lock-keywords-2\n      (cl-delete 'lisp--match-hidden-arg lisp-el-font-lock-keywords-2\n                 :key #'car))\n</code></pre>\n\n<h1>Please Do <em>NOT</em> Do That!</h1>\n\n<p>The coding style detected by <code>lisp--match-hidden-arg</code> is not very readable.</p>\n\n<blockquote>\n  <p>\"... a computer language is not just a way of getting a computer to\n  perform operations, but rather ... it is a novel formal medium for\n  expressing ideas about methodology\" </p>\n  \n  <p>Abelson/Sussman \"Structure and\n  Interpretation of Computer Programs\".</p>\n</blockquote>\n\n<p>You write code so that people (and you yourself a year from today!) will read and <em>understand</em> it.\nCoding conventions serve a purpose.\nPlease think before rejecting them.</p>\n")
              (title . "How to turn off &quot;error&quot; highlighting in emacs-lisp-mode for Emacs 25?")
              (link . "http://emacs.stackexchange.com/questions/2907/how-to-turn-off-error-highlighting-in-emacs-lisp-mode-for-emacs-25/2913#2913")
              (body_markdown . "There are two ways\n=\nRedefine `lisp--match-hidden-arg`:\n-\n    (defun lisp--match-hidden-arg (limit) nil)\n\nRemove `lisp--match-hidden-arg` from `lisp-cl-font-lock-keywords-2` and `lisp-el-font-lock-keywords-2`\n-\n    (setq lisp-el-font-lock-keywords-2\n          (cl-delete &#39;lisp--match-hidden-arg lisp-el-font-lock-keywords-2\n                     :key #&#39;car))\n\nPlease Do _NOT_ Do That!\n=\nThe coding style detected by `lisp--match-hidden-arg` is not very readable.\n\n&gt; &quot;... a computer language is not just a way of getting a computer to\n&gt; perform operations, but rather ... it is a novel formal medium for\n&gt; expressing ideas about methodology&quot; \n\n&gt; Abelson/Sussman &quot;Structure and\n&gt; Interpretation of Computer Programs&quot;.\n\nYou write code so that people (and you yourself a year from today!) will read and _understand_ it.\nCoding conventions serve a purpose.\nPlease think before rejecting them.")
@@ -1642,7 +1642,7 @@
               (profile_image . "https://www.gravatar.com/avatar/75a3213bbcaf279ab4ec2787060c37d4?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 795)
-              (reputation . 181)))]))
+              (reputation . 181))))))
  ((body . "<p>When I close a frame, I'd like for its buffer to be killed.</p>\n\n<p>If the buffer is displayed in other frames, the buffer should not be killed.</p>\n\n<p>Do nothing if more than one buffer is displayed in a frame.</p>\n\n<p>What's a good way to set this up?</p>\n")
   (title . "Kill buffer when frame is deleted")
   (link . "http://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted")
@@ -1668,9 +1668,9 @@
    (user_id . 163)
    (reputation . 216))
   (tags .
-        ["buffers" "frames"])
+        ("buffers" "frames"))
   (answers .
-           [((body . "<p>Here's a simple approach:</p>\n\n<pre><code>(defun close-frame-buffer (frame)\n  (kill-buffer\n   (window-buffer\n   (frame-root-window frame))))\n\n(add-hook 'delete-frame-functions 'close-frame-buffer)\n</code></pre>\n\n<p>It will kill a buffer even if it's open in another frame however.</p>\n")
+           (((body . "<p>Here's a simple approach:</p>\n\n<pre><code>(defun close-frame-buffer (frame)\n  (kill-buffer\n   (window-buffer\n   (frame-root-window frame))))\n\n(add-hook 'delete-frame-functions 'close-frame-buffer)\n</code></pre>\n\n<p>It will kill a buffer even if it's open in another frame however.</p>\n")
              (title . "Kill buffer when frame is deleted")
              (link . "http://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2889#2889")
              (body_markdown . "Here&#39;s a simple approach:\n\n    (defun close-frame-buffer (frame)\n      (kill-buffer\n       (window-buffer\n       (frame-root-window frame))))\n    \n    (add-hook &#39;delete-frame-functions &#39;close-frame-buffer)\n\nIt will kill a buffer even if it&#39;s open in another frame however.")
@@ -1700,7 +1700,7 @@
              (is_accepted . :json-false)
              (comment_count . 2)
              (comments .
-                       [((body . "Hi Dan. The idea is that if more than one buffer is shown in a frame, via multiple windows in that frame, then no buffer will be killed, but the frame will still be deleted.")
+                       (((body . "Hi Dan. The idea is that if more than one buffer is shown in a frame, via multiple windows in that frame, then no buffer will be killed, but the frame will still be deleted.")
                          (link . "http://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2909#comment4010_2909")
                          (body_markdown . "Hi Dan. The idea is that if more than one buffer is shown in a frame, via multiple windows in that frame, then no buffer will be killed, but the frame will still be deleted.")
                          (comment_id . 4010)
@@ -1731,7 +1731,7 @@
                           (profile_image . "https://www.gravatar.com/avatar/d602eadb9367e8c1a2e00c0bef73555c?s=128&d=identicon&r=PG")
                           (user_type . "registered")
                           (user_id . 163)
-                          (reputation . 216)))])
+                          (reputation . 216)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/253/dan")
               (display_name . "Dan")
@@ -1752,7 +1752,7 @@
              (is_accepted . t)
              (comment_count . 1)
              (comments .
-                       [((body . "Looks good. Thanks glucas!")
+                       (((body . "Looks good. Thanks glucas!")
                          (link . "http://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2915#comment4012_2915")
                          (body_markdown . "Looks good. Thanks glucas!")
                          (comment_id . 4012)
@@ -1767,14 +1767,14 @@
                           (profile_image . "https://www.gravatar.com/avatar/d602eadb9367e8c1a2e00c0bef73555c?s=128&d=identicon&r=PG")
                           (user_type . "registered")
                           (user_id . 163)
-                          (reputation . 216)))])
+                          (reputation . 216)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/780/glucas")
               (display_name . "glucas")
               (profile_image . "https://www.gravatar.com/avatar/e07f5643e4e9331ad5ca713c072b19f9?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 780)
-              (reputation . 474)))]))
+              (reputation . 474))))))
  ((body . "<p>I hate the way that elisp (not sure if LISP in general) handles multiline docstrings.</p>\n\n<pre><code>(defun foo ()\n  \"This is\na multi\nliner\ndocstring\"\n  (do-stuff))\n</code></pre>\n\n<p>I sure do wish that I could do something like</p>\n\n<pre><code>(defun foo ()\n  (eval-when-compile \n    (concat\n      \"This is\\n\"\n       \"a multi\\n\"\n       \"line\\n\"\n       \"docstring\"))\n  (do-stuff))\n</code></pre>\n\n<p>so that the indentation was consistent.</p>\n\n<p>Unfortunately, eval-when-compile does not do the job.</p>\n\n<p>Does anyone have any ideas?</p>\n")
   (title . "Is there a better way to handle multiline docstrings in elisp?")
   (link . "http://emacs.stackexchange.com/questions/2887/is-there-a-better-way-to-handle-multiline-docstrings-in-elisp")
@@ -1801,7 +1801,7 @@
    (user_id . 50)
    (reputation . 3999))
   (comments .
-            [((body . "It should be fairly easy to create a macro that will expand into a <code>defun</code>. The drawback to that approach – and it is a big one – is that will confuse any software (other than the elisp compiler/interpreter) that is parsing your code looking for <code>defun</code>s.")
+            (((body . "It should be fairly easy to create a macro that will expand into a <code>defun</code>. The drawback to that approach – and it is a big one – is that will confuse any software (other than the elisp compiler/interpreter) that is parsing your code looking for <code>defun</code>s.")
               (link . "http://emacs.stackexchange.com/questions/2887/is-there-a-better-way-to-handle-multiline-docstrings-in-elisp#comment3947_2887")
               (body_markdown . "It should be fairly easy to create a macro that will expand into a `defun`. The drawback to that approach – and it is a big one – is that will confuse any software (other than the elisp compiler/interpreter) that is parsing your code looking for `defun`s.")
               (comment_id . 3947)
@@ -1832,7 +1832,7 @@
                (profile_image . "https://www.gravatar.com/avatar/6d7d7689f9562293f6106353a6b1a905?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 1979)
-               (reputation . 631)))])
+               (reputation . 631)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2345/krazy-glew")
    (display_name . "Krazy Glew")
@@ -1841,9 +1841,9 @@
    (user_id . 2345)
    (reputation . 131))
   (tags .
-        ["elisp" "documentation"])
+        ("elisp" "documentation"))
   (answers .
-           [((body . "<p>You could use a macro like this:</p>\n\n<pre><code>(defmacro my-defun (name arglist &amp;rest forms)\n  \"Like `defun', but concatenates strings.\"\n  (declare (indent defun))\n  (let (doc-lines)\n    (while (and (stringp (car-safe forms))\n                (&gt; (length forms) 1))\n      (setq doc-lines\n            (append doc-lines (list (pop forms)))))\n    `(defun ,name ,arglist\n       ,(mapconcat #'identity doc-lines \"\\n\")\n       ,@forms)))\n</code></pre>\n\n<p>Then you can define your functions like this:</p>\n\n<pre><code>(my-defun test (a)\n  \"Description\"\n  \"asodksad\"\n  \"ok\"\n  (interactive)\n  (+ 1 a))\n</code></pre>\n\n<hr>\n\n<p>Still, I'd <strong>strongly</strong> recommend not going against the standards for\nsuch a marginal benefit. The “irregular indentation” that bothers you\nis just by 2 columns, not to mention it helps highlight the first line\nof documentation which is more important.</p>\n")
+           (((body . "<p>You could use a macro like this:</p>\n\n<pre><code>(defmacro my-defun (name arglist &amp;rest forms)\n  \"Like `defun', but concatenates strings.\"\n  (declare (indent defun))\n  (let (doc-lines)\n    (while (and (stringp (car-safe forms))\n                (&gt; (length forms) 1))\n      (setq doc-lines\n            (append doc-lines (list (pop forms)))))\n    `(defun ,name ,arglist\n       ,(mapconcat #'identity doc-lines \"\\n\")\n       ,@forms)))\n</code></pre>\n\n<p>Then you can define your functions like this:</p>\n\n<pre><code>(my-defun test (a)\n  \"Description\"\n  \"asodksad\"\n  \"ok\"\n  (interactive)\n  (+ 1 a))\n</code></pre>\n\n<hr>\n\n<p>Still, I'd <strong>strongly</strong> recommend not going against the standards for\nsuch a marginal benefit. The “irregular indentation” that bothers you\nis just by 2 columns, not to mention it helps highlight the first line\nof documentation which is more important.</p>\n")
              (title . "Is there a better way to handle multiline docstrings in elisp?")
              (link . "http://emacs.stackexchange.com/questions/2887/is-there-a-better-way-to-handle-multiline-docstrings-in-elisp/2896#2896")
              (body_markdown . "You could use a macro like this:\n\n    (defmacro my-defun (name arglist &amp;rest forms)\n      &quot;Like `defun&#39;, but concatenates strings.&quot;\n      (declare (indent defun))\n      (let (doc-lines)\n        (while (and (stringp (car-safe forms))\n                    (&gt; (length forms) 1))\n          (setq doc-lines\n                (append doc-lines (list (pop forms)))))\n        `(defun ,name ,arglist\n           ,(mapconcat #&#39;identity doc-lines &quot;\\n&quot;)\n           ,@forms)))\n    \nThen you can define your functions like this:\n\n    (my-defun test (a)\n      &quot;Description&quot;\n      &quot;asodksad&quot;\n      &quot;ok&quot;\n      (interactive)\n      (+ 1 a))\n\n----------\n\nStill, I&#39;d **strongly** recommend not going against the standards for\nsuch a marginal benefit. The “irregular indentation” that bothers you\nis just by 2 columns, not to mention it helps highlight the first line\nof documentation which is more important.\n")
@@ -1864,7 +1864,7 @@
               (user_id . 50)
               (reputation . 3999))
              (comments .
-                       [((body . "Actually, the body of a defun <i>is</i> evaluated (when the function is called) and it is macro-expanded when the function is defined.  So his trick should/could work.")
+                       (((body . "Actually, the body of a defun <i>is</i> evaluated (when the function is called) and it is macro-expanded when the function is defined.  So his trick should/could work.")
                          (link . "http://emacs.stackexchange.com/questions/2887/is-there-a-better-way-to-handle-multiline-docstrings-in-elisp/2896#comment3974_2896")
                          (body_markdown . "Actually, the body of a defun *is* evaluated (when the function is called) and it is macro-expanded when the function is defined.  So his trick should/could work.")
                          (comment_id . 3974)
@@ -1903,7 +1903,7 @@
                           (accept_rate . 89)
                           (user_type . "registered")
                           (user_id . 50)
-                          (reputation . 3999)))])
+                          (reputation . 3999)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/50/malabarba")
               (display_name . "Malabarba")
@@ -1950,7 +1950,7 @@
               (user_id . 1979)
               (reputation . 631))
              (comments .
-                       [((body . "I really like your second solution. But my irrational fear of advices makes me hinge at the first. :-)")
+                       (((body . "I really like your second solution. But my irrational fear of advices makes me hinge at the first. :-)")
                          (link . "http://emacs.stackexchange.com/questions/2887/is-there-a-better-way-to-handle-multiline-docstrings-in-elisp/2912#comment3982_2912")
                          (body_markdown . "I really like your second solution. But my irrational fear of advices makes me hinge at the first. :-)")
                          (comment_id . 3982)
@@ -1966,14 +1966,14 @@
                           (accept_rate . 89)
                           (user_type . "registered")
                           (user_id . 50)
-                          (reputation . 3999)))])
+                          (reputation . 3999)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/1979/stefan")
               (display_name . "Stefan")
               (profile_image . "https://www.gravatar.com/avatar/6d7d7689f9562293f6106353a6b1a905?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 1979)
-              (reputation . 631)))]))
+              (reputation . 631))))))
  ((body . "<p>I'm using the Dvorak keyboard layout and have swapped <code>C-x</code> and <code>C-t</code>, because I find it easier to type on Dvorak.</p>\n\n<pre><code>(define-key key-translation-map [?\\C-x] [?\\C-t])\n(define-key key-translation-map [?\\C-t] [?\\C-x])\n</code></pre>\n\n<p>I'm also using <code>god-mode</code>, though, so I'd like <code>x</code> to be swapped with <code>t</code> when in <code>god-local-mode</code>, such that typing <code>x</code> results in <code>C-t</code> and typing <code>t</code> results in <code>C-x</code>.  I have a very crude solution using <code>keyboard-translate</code>:</p>\n\n<pre><code>(defun my-god-swap-on ()\n  (interactive)\n  (keyboard-translate ?x ?t)\n  (keyboard-translate ?t ?x))\n\n(defun my-god-swap-off ()\n  (interactive)\n  (aset keyboard-translate-table ?t nil)\n  (aset keyboard-translate-table ?x nil))\n\n(add-hook 'god-mode-enabled-hook 'my-god-swap-on)\n(add-hook 'god-mode-disabled-hook 'my-god-swap-off)\n</code></pre>\n\n<p>Although this works it is extremely inelegant as it modifies global state.  If I switched to a buffer where god-mode is not enabled, the translation would still be active.  I could add yet another hook for buffer switching to make sure that the translation is disabled when <code>god-local-mode</code> is inactive in the current buffer, but this seems like a very ugly mitigation technique.</p>\n\n<p>Is it possible to restrict the effects to a keyboard translation to only a single minor mode?</p>\n\n<p>If this is not possible, is there another more elegant way I could swap keys in <code>god-mode</code>?  I see that <code>god-mode</code> rewires all keys bound to <code>self-insert-command</code> to <code>god-mode-self-insert</code>, but this uses <code>this-command-keys-vector</code> to determine with what key it was called and I cannot seem to shadow the definition of <code>this-command-keys-vector</code> with a let binding to swap <code>x</code> and <code>t</code> in a wrapper before passing control to <code>god-mode-self-insert</code>.</p>\n")
   (title . "god-mode: swap keys")
   (link . "http://emacs.stackexchange.com/questions/2903/god-mode-swap-keys")
@@ -1998,9 +1998,9 @@
    (user_id . 2005)
    (reputation . 853))
   (tags .
-        ["key-bindings" "keymap" "god-mode"])
+        ("key-bindings" "keymap" "god-mode"))
   (answers .
-           [((body . "<p>I now use this:</p>\n\n<pre><code>(defun original-god-mode-lookup-key-sequence (&amp;optional key key-string-so-far) ())\n(fset 'original-god-mode-lookup-key-sequence (symbol-function 'god-mode-lookup-key-sequence))\n\n(defun god-mode-lookup-key-sequence (&amp;optional key key-string-so-far)\n  \"Wrap original-god-mode-lookup-key-sequence.  Swap x and t.\"\n  (interactive)\n  (case key\n    (?x (original-god-mode-lookup-key-sequence ?t key-string-so-far))\n    (?t (original-god-mode-lookup-key-sequence ?x key-string-so-far))\n    (t (original-god-mode-lookup-key-sequence key key-string-so-far))))\n</code></pre>\n\n<p>It makes a copy of <code>god-mode-lookup-key-sequence</code> as <code>original-god-mode-lookup-key-sequence</code> and then overrides it with a wrapper that performs the swap for <code>x</code> and <code>t</code>.  It's not elegant, but at least it won't leak.</p>\n")
+           (((body . "<p>I now use this:</p>\n\n<pre><code>(defun original-god-mode-lookup-key-sequence (&amp;optional key key-string-so-far) ())\n(fset 'original-god-mode-lookup-key-sequence (symbol-function 'god-mode-lookup-key-sequence))\n\n(defun god-mode-lookup-key-sequence (&amp;optional key key-string-so-far)\n  \"Wrap original-god-mode-lookup-key-sequence.  Swap x and t.\"\n  (interactive)\n  (case key\n    (?x (original-god-mode-lookup-key-sequence ?t key-string-so-far))\n    (?t (original-god-mode-lookup-key-sequence ?x key-string-so-far))\n    (t (original-god-mode-lookup-key-sequence key key-string-so-far))))\n</code></pre>\n\n<p>It makes a copy of <code>god-mode-lookup-key-sequence</code> as <code>original-god-mode-lookup-key-sequence</code> and then overrides it with a wrapper that performs the swap for <code>x</code> and <code>t</code>.  It's not elegant, but at least it won't leak.</p>\n")
              (title . "god-mode: swap keys")
              (link . "http://emacs.stackexchange.com/questions/2903/god-mode-swap-keys/2910#2910")
              (body_markdown . "I now use this:\n\n    (defun original-god-mode-lookup-key-sequence (&amp;optional key key-string-so-far) ())\n    (fset &#39;original-god-mode-lookup-key-sequence (symbol-function &#39;god-mode-lookup-key-sequence))\n    \n    (defun god-mode-lookup-key-sequence (&amp;optional key key-string-so-far)\n      &quot;Wrap original-god-mode-lookup-key-sequence.  Swap x and t.&quot;\n      (interactive)\n      (case key\n        (?x (original-god-mode-lookup-key-sequence ?t key-string-so-far))\n        (?t (original-god-mode-lookup-key-sequence ?x key-string-so-far))\n        (t (original-god-mode-lookup-key-sequence key key-string-so-far))))\n\nIt makes a copy of `god-mode-lookup-key-sequence` as `original-god-mode-lookup-key-sequence` and then overrides it with a wrapper that performs the swap for `x` and `t`.  It&#39;s not elegant, but at least it won&#39;t leak.")
@@ -2017,7 +2017,7 @@
               (profile_image . "https://www.gravatar.com/avatar/1fd94c0bb560b4445acb97f05b0e9a81?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2005)
-              (reputation . 853)))]))
+              (reputation . 853))))))
  ((body . "<p>I used to have a configuration for <kbd>TAB</kbd> which was doing something like this :</p>\n\n<p>This is the code before hitting <kbd>TAB</kbd>.</p>\n\n<pre><code>template&lt;typename T&gt;\nclass A\n{\n\n    }; // This is where I hit TAB\n</code></pre>\n\n<p>The code auto-indented as below after hitting <kbd>TAB</kbd>:</p>\n\n<pre><code>template&lt;typename T&gt;\nclass A\n{\n\n};\n</code></pre>\n\n<p>The <kbd>TAB</kbd> key used to work as above but now it does only auto-complete.</p>\n\n<p>Can I fix this ? I can use <kbd>TAB</kbd> with <kbd>C-q</kbd><kbd>TAB</kbd> but it is hard to do always. </p>\n\n<p>Here is my .emacs file</p>\n\n<pre><code>(add-to-list 'load-path \"~/.emacs.d/jdee-2.4.1/lisp\")\n(load \"jde\")\n\n(add-to-list 'load-path \"~/.emacs.d\")\n(require 'linum)\n(global-linum-mode 1)\n\n(add-to-list 'load-path \"~/.emacs.d/elpa/yasnippet-0.8.0\")\n(require 'yasnippet)\n(yas-global-mode 1)\n; care about this place\n(define-key yas-minor-mode-map (kbd \"&lt;tab&gt;\") nil)\n(define-key yas-minor-mode-map (kbd \"TAB\") nil)\n(define-key yas-minor-mode-map (kbd \"&lt;backtab&gt;\") 'yas-expand)\n; care about this place\n(setq ac-source-yasnippet nil)\n\n\n(add-to-list 'load-path \"~/.emacs.d/auto-complete-1.3.1\")\n(require 'auto-complete-config)\n(ac-config-default)\n(add-to-list 'ac-dictionary-directories \"~/.emacs.d/ac-dict\")\n(global-auto-complete-mode t) ; section1\n(ac-set-trigger-key \"TAB\")\n(ac-set-trigger-key \"&lt;tab&gt;\")\n\n(defun my:ac-c-headers-init ()\n  (require 'auto-complete-c-headers)\n  (add-to-list 'ac-sources 'ac-source-c-headers))\n\n(add-hook 'c++-mode-hook 'my:ac-c-headers-init)\n(add-hook 'c-mode-hook 'my:ac-c-headers-init)\n\n(add-to-list 'load-path \"~/.emacs.d/iedit\")\n(require 'iedit)\n(define-key global-map (kbd \"C-c ;\") 'iedit-mode)\n\n(semantic-mode 1)\n(defun my:add-semantic-to-autocomplete() \n  (add-to-list 'ac-sources 'ac-source-semantic)\n)\n(add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)\n(custom-set-variables\n ;; custom-set-variables was added by Custom.\n ;; If you edit it by hand, you could mess it up, so be careful.\n ;; Your init file should contain only one such instance.\n ;; If there is more than one, they won't work right.\n '(ansi-color-names-vector [\"#242424\" \"#e5786d\" \"#95e454\" \"#cae682\" \"#8ac6f2\" \"#333366\" \"#ccaa8f\" \"#f6f3e8\"])\n '(cua-mode t nil (cua-base))\n '(custom-enabled-themes (quote (tango-dark)))\n '(font-use-system-font t)\n '(show-paren-mode t)\n '(uniquify-buffer-name-style (quote forward) nil (uniquify)))\n(custom-set-faces\n ;; custom-set-faces was added by Custom.\n ;; If you edit it by hand, you could mess it up, so be careful.\n ;; Your init file should contain only one such instance.\n ;; If there is more than one, they won't work right.\n '(default ((t (:family \"DejaVu Sans Mono\" :foundry \"unknown\" :slant normal :weight bold :height 113 :width normal)))))\n(setq-default indent-tabs-mode nil)\n(setq-default tab-width 2)\n(setq indent-line-function 'insert-tab)\n</code></pre>\n\n<p><strong>Edit</strong> When I add JDE it fixed but now I cannot use auto-complete ? It doesn't complete anything.</p>\n")
   (title . "TAB does not auto-indent lines anymore")
   (link . "http://emacs.stackexchange.com/questions/2904/tab-does-not-auto-indent-lines-anymore")
@@ -2044,7 +2044,7 @@
    (user_id . 115)
    (reputation . 2563))
   (comments .
-            [((body . "Are you talking about using TAB to move to next field when inserting a yasnippet template?")
+            (((body . "Are you talking about using TAB to move to next field when inserting a yasnippet template?")
               (link . "http://emacs.stackexchange.com/questions/2904/tab-does-not-auto-indent-lines-anymore#comment3958_2904")
               (body_markdown . "Are you talking about using TAB to move to next field when inserting a yasnippet template?")
               (comment_id . 3958)
@@ -2159,7 +2159,7 @@
                (accept_rate . 88)
                (user_type . "registered")
                (user_id . 115)
-               (reputation . 2563)))])
+               (reputation . 2563)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2305/vivian-maya")
    (display_name . "Vivian Maya")
@@ -2168,7 +2168,7 @@
    (user_id . 2305)
    (reputation . 81))
   (tags .
-        ["indentation"]))
+        ("indentation")))
  ((body . "<p>I log into numerous machines as part of my job (+- 20 per day). I only spend a few days/weeks with each machine. Many run ftp only.</p>\n\n<p>For seamless access Tramp is amazing, but it is the <em>managing</em> of these server's access by hand that has become tedious. </p>\n\n<p>I manage a .netrc and a .ssh/config by hand, along with any keys. Often a password/key will change during my time with the machine, and I will have to re-edit the files.</p>\n\n<p>Is there an effective solution for managing (machines/passwords/keys) from within emacs?</p>\n")
   (title . "Password/Key Management for multiple machines in emacs")
   (link . "http://emacs.stackexchange.com/questions/2902/password-key-management-for-multiple-machines-in-emacs")
@@ -2193,9 +2193,9 @@
    (user_id . 294)
    (reputation . 175))
   (tags .
-        ["tramp"])
+        ("tramp"))
   (answers .
-           [((body . "<p>I use a simple password manager called <a href=\"http://www.passwordstore.org/\" rel=\"nofollow\">pass</a>. It offers a simple command line interface with is ideal for integrating with Emacs. The backing store is a GPG encrypted GIT repo. It actually ships with an <a href=\"http://git.zx2c4.com/password-store/tree/contrib/emacs/password-store.el\" rel=\"nofollow\">Emacs package</a> although I don't use it. My interface is laughably simple:</p>\n\n<pre><code>(defun my-fixup-gpg-agent (frame)\n  \"Tweak DISPLAY and GPG_TTY environment variables as appropriate to `FRAME'.\"\n  (when (fboundp 'keychain-refresh-environment)\n    (keychain-refresh-environment))\n  (if (display-graphic-p frame)\n      (setenv \"DISPLAY\" (terminal-name frame))\n    (setenv \"GPG_TTY\" (terminal-name frame))\n    (setenv \"DISPLAY\" nil)))\n\n(add-hook 'after-make-frame-functions 'my-fixup-gpg-agent)\n\n;; Simple caching\n(defvar my-cached-passwords\n  nil\n  \"Cache of passwords. Stored in plain text so you only want to cache\n  them if of low value.\")\n\n(defun my-pass-password (pass-name &amp;optional cache)\n  \"Return the password for the `PASS-NAME'.\"\n  (let ((cached-pass (assoc-default pass-name my-cached-passwords)))\n    (if cached-pass\n        cached-pass\n      (when (selected-frame)\n        (my-fixup-gpg-agent (selected-frame))\n        (let ((new-pass (chomp\n                         (shell-command-to-string\n                          (format \"pass %s\" pass-name)))))\n          (when (and new-pass cache)\n            (add-to-list 'my-cached-passwords (cons pass-name new-pass)))\n          new-pass)))))\n</code></pre>\n")
+           (((body . "<p>I use a simple password manager called <a href=\"http://www.passwordstore.org/\" rel=\"nofollow\">pass</a>. It offers a simple command line interface with is ideal for integrating with Emacs. The backing store is a GPG encrypted GIT repo. It actually ships with an <a href=\"http://git.zx2c4.com/password-store/tree/contrib/emacs/password-store.el\" rel=\"nofollow\">Emacs package</a> although I don't use it. My interface is laughably simple:</p>\n\n<pre><code>(defun my-fixup-gpg-agent (frame)\n  \"Tweak DISPLAY and GPG_TTY environment variables as appropriate to `FRAME'.\"\n  (when (fboundp 'keychain-refresh-environment)\n    (keychain-refresh-environment))\n  (if (display-graphic-p frame)\n      (setenv \"DISPLAY\" (terminal-name frame))\n    (setenv \"GPG_TTY\" (terminal-name frame))\n    (setenv \"DISPLAY\" nil)))\n\n(add-hook 'after-make-frame-functions 'my-fixup-gpg-agent)\n\n;; Simple caching\n(defvar my-cached-passwords\n  nil\n  \"Cache of passwords. Stored in plain text so you only want to cache\n  them if of low value.\")\n\n(defun my-pass-password (pass-name &amp;optional cache)\n  \"Return the password for the `PASS-NAME'.\"\n  (let ((cached-pass (assoc-default pass-name my-cached-passwords)))\n    (if cached-pass\n        cached-pass\n      (when (selected-frame)\n        (my-fixup-gpg-agent (selected-frame))\n        (let ((new-pass (chomp\n                         (shell-command-to-string\n                          (format \"pass %s\" pass-name)))))\n          (when (and new-pass cache)\n            (add-to-list 'my-cached-passwords (cons pass-name new-pass)))\n          new-pass)))))\n</code></pre>\n")
              (title . "Password/Key Management for multiple machines in emacs")
              (link . "http://emacs.stackexchange.com/questions/2902/password-key-management-for-multiple-machines-in-emacs/2908#2908")
              (body_markdown . "I use a simple password manager called [pass](http://www.passwordstore.org/). It offers a simple command line interface with is ideal for integrating with Emacs. The backing store is a GPG encrypted GIT repo. It actually ships with an [Emacs package](http://git.zx2c4.com/password-store/tree/contrib/emacs/password-store.el) although I don&#39;t use it. My interface is laughably simple:\n\n    (defun my-fixup-gpg-agent (frame)\n      &quot;Tweak DISPLAY and GPG_TTY environment variables as appropriate to `FRAME&#39;.&quot;\n      (when (fboundp &#39;keychain-refresh-environment)\n        (keychain-refresh-environment))\n      (if (display-graphic-p frame)\n          (setenv &quot;DISPLAY&quot; (terminal-name frame))\n        (setenv &quot;GPG_TTY&quot; (terminal-name frame))\n        (setenv &quot;DISPLAY&quot; nil)))\n\n    (add-hook &#39;after-make-frame-functions &#39;my-fixup-gpg-agent)\n\n    ;; Simple caching\n    (defvar my-cached-passwords\n      nil\n      &quot;Cache of passwords. Stored in plain text so you only want to cache\n      them if of low value.&quot;)\n\n    (defun my-pass-password (pass-name &amp;optional cache)\n      &quot;Return the password for the `PASS-NAME&#39;.&quot;\n      (let ((cached-pass (assoc-default pass-name my-cached-passwords)))\n        (if cached-pass\n            cached-pass\n          (when (selected-frame)\n            (my-fixup-gpg-agent (selected-frame))\n            (let ((new-pass (chomp\n                             (shell-command-to-string\n                              (format &quot;pass %s&quot; pass-name)))))\n              (when (and new-pass cache)\n                (add-to-list &#39;my-cached-passwords (cons pass-name new-pass)))\n              new-pass)))))")
@@ -2213,7 +2213,7 @@
               (accept_rate . 75)
               (user_type . "registered")
               (user_id . 129)
-              (reputation . 428)))]))
+              (reputation . 428))))))
  ((body . "<p>I'm trying to install <a href=\"https://github.com/ejmr/php-mode\" rel=\"nofollow\">php-mode</a>, but I keep encountering this error when I run <code>M-x php-mode</code>:</p>\n\n<pre><code>Symbol's function definition is void: cl-macroexpand-all\n</code></pre>\n\n<p>The error persists whether I install php-mode via MELPA or manually.</p>\n\n<p>Environment: Emacs 24.3.94.1 (x86_64-apple-darwin13.4.0, NS apple-appkit-1265.21)\n of 2014-10-04 on builder10-9.porkrind.org</p>\n\n<p>Why won't php-mode run? Note: I'm relatively new to Emacs, and inexperienced.</p>\n")
   (title . "&quot;Symbol&#39;s function definition is void: cl-macroexpand-all&quot; when trying to install php-mode")
   (link . "http://emacs.stackexchange.com/questions/2864/symbols-function-definition-is-void-cl-macroexpand-all-when-trying-to-instal")
@@ -2248,9 +2248,9 @@
    (user_id . 2342)
    (reputation . 13))
   (tags .
-        ["package" "cl-lib" "php-mode"])
+        ("package" "cl-lib" "php-mode"))
   (answers .
-           [((body . "<p>The function <code>cl-macroexpand-all</code> has been obsoleted in Emacs 24.3; you are now supposed to use <code>macroexpand-all</code> instead, which is part of core Emacs, not the CL library.</p>\n\n<p>The CL library defines <code>cl-macroexpand-all</code> as an alias for <code>macroexpand-all</code>, so in principle you could do</p>\n\n<pre><code>(require 'cl)\n</code></pre>\n\n<p>in your init file to fix the problem.  However, the <code>cl</code> library itself is being deprecated, and using it is not recommended.</p>\n\n<p>I think you should contact the authors of <code>php-mode</code> and tell them to use <code>macroexpand-all</code>.</p>\n")
+           (((body . "<p>The function <code>cl-macroexpand-all</code> has been obsoleted in Emacs 24.3; you are now supposed to use <code>macroexpand-all</code> instead, which is part of core Emacs, not the CL library.</p>\n\n<p>The CL library defines <code>cl-macroexpand-all</code> as an alias for <code>macroexpand-all</code>, so in principle you could do</p>\n\n<pre><code>(require 'cl)\n</code></pre>\n\n<p>in your init file to fix the problem.  However, the <code>cl</code> library itself is being deprecated, and using it is not recommended.</p>\n\n<p>I think you should contact the authors of <code>php-mode</code> and tell them to use <code>macroexpand-all</code>.</p>\n")
              (title . "&quot;Symbol&#39;s function definition is void: cl-macroexpand-all&quot; when trying to install php-mode")
              (link . "http://emacs.stackexchange.com/questions/2864/symbols-function-definition-is-void-cl-macroexpand-all-when-trying-to-instal/2866#2866")
              (body_markdown . "The function `cl-macroexpand-all` has been obsoleted in Emacs 24.3; you are now supposed to use `macroexpand-all` instead, which is part of core Emacs, not the CL library.\n\nThe CL library defines `cl-macroexpand-all` as an alias for `macroexpand-all`, so in principle you could do\n\n    (require &#39;cl)\n\nin your init file to fix the problem.  However, the `cl` library itself is being deprecated, and using it is not recommended.\n\nI think you should contact the authors of `php-mode` and tell them to use `macroexpand-all`.")
@@ -2262,7 +2262,7 @@
              (is_accepted . t)
              (comment_count . 1)
              (comments .
-                       [((body . "The dev seems to be aware of the issue: <a href=\"https://github.com/ejmr/php-mode/issues/202\" rel=\"nofollow\">ejmr/php-mode#202</a>")
+                       (((body . "The dev seems to be aware of the issue: <a href=\"https://github.com/ejmr/php-mode/issues/202\" rel=\"nofollow\">ejmr/php-mode#202</a>")
                          (link . "http://emacs.stackexchange.com/questions/2864/symbols-function-definition-is-void-cl-macroexpand-all-when-trying-to-instal/2866#comment3991_2866")
                          (body_markdown . "The dev seems to be aware of the issue: [ejmr/php-mode#202](https://github.com/ejmr/php-mode/issues/202)")
                          (comment_id . 3991)
@@ -2277,7 +2277,7 @@
                           (profile_image . "https://www.gravatar.com/avatar/8910de37dfedaf187c4b39005b809bdf?s=128&d=identicon&r=PG")
                           (user_type . "registered")
                           (user_id . 2342)
-                          (reputation . 13)))])
+                          (reputation . 13)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/2223/jch")
               (display_name . "jch")
@@ -2302,7 +2302,7 @@
               (profile_image . "https://www.gravatar.com/avatar/6d7d7689f9562293f6106353a6b1a905?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 1979)
-              (reputation . 631)))]))
+              (reputation . 631))))))
  ((body . "<p>Although Emacs (24.3.93.1) runs fine if launched from the Finder, if the terminal version is launched:</p>\n\n<p><code>/Applications/Emacs.app/Contents/MacOS/Emacs -nw</code></p>\n\n<p>Emacs crashes with:</p>\n\n<p><code>Fatal error 11: Segmentation fault[1]    51512 abort      /Applications/Emacs.app/Contents/MacOS/Emacs -nw</code>.</p>\n\n<p>It seems the issue is caused by a single line in init.el,</p>\n\n<p><code>(set-face-attribute 'default nil :font  \"Menlo-16\")</code></p>\n\n<p>If that line is commented out, the terminal version of Emacs will start fine too.</p>\n\n<p>To pinpoint the cause of the crash took me several hours (diminishing my init.el half by half).</p>\n\n<p>I am aware that in any case Emacs will inherit whatever font and font size is specified in the terminal app (basically, that line is not meaningful in the cli.)</p>\n\n<ol>\n<li>Generally speaking, is there a better way to debug a crashing Emacs? Perhaps using some kind of cli debugger that would print a more descriptive message?</li>\n<li>Why is that line crashing Emacs via cli, but not if launched from the Finder?</li>\n</ol>\n")
   (title . "Better debugging of crashing Emacs?")
   (link . "http://emacs.stackexchange.com/questions/363/better-debugging-of-crashing-emacs")
@@ -2330,7 +2330,7 @@
    (user_id . 249)
    (reputation . 79))
   (comments .
-            [((body . "is it really launching from the cli? or launching the terminal version that is causing the problem?  Try putting some error catching around the set-face-attribute? (condition-case err (set-face-attribute...) (error (message &quot;Whoops!&quot;)))")
+            (((body . "is it really launching from the cli? or launching the terminal version that is causing the problem?  Try putting some error catching around the set-face-attribute? (condition-case err (set-face-attribute...) (error (message &quot;Whoops!&quot;)))")
               (link . "http://emacs.stackexchange.com/questions/363/better-debugging-of-crashing-emacs#comment496_363")
               (body_markdown . "is it really launching from the cli? or launching the terminal version that is causing the problem?\n\nTry putting some error catching around the set-face-attribute? (condition-case err (set-face-attribute...) (error (message &quot;Whoops!&quot;)))")
               (comment_id . 496)
@@ -2547,7 +2547,7 @@
                (profile_image . "https://www.gravatar.com/avatar/32a8e553d85d193ee5ae1533ce6ec158?s=128&d=identicon&r=PG&f=1")
                (user_type . "registered")
                (user_id . 105)
-               (reputation . 3478)))])
+               (reputation . 3478)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/249/gsl")
    (display_name . "gsl")
@@ -2557,9 +2557,9 @@
    (user_id . 249)
    (reputation . 79))
   (tags .
-        ["elisp" "fonts" "debugging" "crash"])
+        ("elisp" "fonts" "debugging" "crash"))
   (answers .
-           [((body . "<h2>To help you track it next time</h2>\n\n<p>This happened to me before. There was a situation where\n<code>string-to-int</code> crashed Emacs, and it took me hours to pinpoint as\nwell.<br>\nSorry I can't provide a nicer answer, but Emacs crashes happen\ndeep down in the C code, and there aren't any built-in tools available\nto track down such problems.</p>\n\n<p>I suppose debugging it with <code>gdb</code> is possible, but its\neffectiveness will depend on your proficiency with <code>gdb</code>.</p>\n\n<p>What you really need to do is</p>\n\n<h2>File a bug report</h2>\n\n<p>Pure elisp code (non-byte-compiled) is never supposed to crash Emacs.\nIt could cause a hang (due to some infinite loop) and it could cause\nEmacs to run out of memory. But, beyond that, <strong>any crash is a bug</strong>.</p>\n\n<pre><code>M-x report-emacs-bug\n</code></pre>\n\n<p>Simply providing this minimally working example you came up with,\nalong with a description of your build and system, should be enough\nhelp for the kind developers.</p>\n")
+           (((body . "<h2>To help you track it next time</h2>\n\n<p>This happened to me before. There was a situation where\n<code>string-to-int</code> crashed Emacs, and it took me hours to pinpoint as\nwell.<br>\nSorry I can't provide a nicer answer, but Emacs crashes happen\ndeep down in the C code, and there aren't any built-in tools available\nto track down such problems.</p>\n\n<p>I suppose debugging it with <code>gdb</code> is possible, but its\neffectiveness will depend on your proficiency with <code>gdb</code>.</p>\n\n<p>What you really need to do is</p>\n\n<h2>File a bug report</h2>\n\n<p>Pure elisp code (non-byte-compiled) is never supposed to crash Emacs.\nIt could cause a hang (due to some infinite loop) and it could cause\nEmacs to run out of memory. But, beyond that, <strong>any crash is a bug</strong>.</p>\n\n<pre><code>M-x report-emacs-bug\n</code></pre>\n\n<p>Simply providing this minimally working example you came up with,\nalong with a description of your build and system, should be enough\nhelp for the kind developers.</p>\n")
              (title . "Better debugging of crashing Emacs?")
              (link . "http://emacs.stackexchange.com/questions/363/better-debugging-of-crashing-emacs/373#373")
              (body_markdown . "## To help you track it next time ##\n\nThis happened to me before. There was a situation where\n`string-to-int` crashed Emacs, and it took me hours to pinpoint as\nwell.  \nSorry I can&#39;t provide a nicer answer, but Emacs crashes happen\ndeep down in the C code, and there aren&#39;t any built-in tools available\nto track down such problems.\n\nI suppose debugging it with `gdb` is possible, but its\neffectiveness will depend on your proficiency with `gdb`.\n\nWhat you really need to do is\n## File a bug report ##\n\nPure elisp code (non-byte-compiled) is never supposed to crash Emacs.\nIt could cause a hang (due to some infinite loop) and it could cause\nEmacs to run out of memory. But, beyond that, **any crash is a bug**.\n\n    M-x report-emacs-bug\n\nSimply providing this minimally working example you came up with,\nalong with a description of your build and system, should be enough\nhelp for the kind developers.\n\n")
@@ -2579,7 +2579,7 @@
               (user_id . 11)
               (reputation . 874))
              (comments .
-                       [((body . "Using gdb would be the only way. We could add stuff to Emacs to wrap every C call in something that would self catch but that would be overhead all the time. Emacs is not supposed to crash, if it does we should specifically handle that bug so that it doesn&#39;t anymore. So yeah, if it&#39;s broken, file a bug. Use gdb by all means to find out absolutely where the bug is.")
+                       (((body . "Using gdb would be the only way. We could add stuff to Emacs to wrap every C call in something that would self catch but that would be overhead all the time. Emacs is not supposed to crash, if it does we should specifically handle that bug so that it doesn&#39;t anymore. So yeah, if it&#39;s broken, file a bug. Use gdb by all means to find out absolutely where the bug is.")
                          (link . "http://emacs.stackexchange.com/questions/363/better-debugging-of-crashing-emacs/373#comment514_373")
                          (body_markdown . "Using gdb would be the only way. We could add stuff to Emacs to wrap every C call in something that would self catch but that would be overhead all the time. Emacs is not supposed to crash, if it does we should specifically handle that bug so that it doesn&#39;t anymore. So yeah, if it&#39;s broken, file a bug. Use gdb by all means to find out absolutely where the bug is.")
                          (comment_id . 514)
@@ -2594,7 +2594,7 @@
                           (profile_image . "https://www.gravatar.com/avatar/2ace292d4a9e6612e6cd761a1046f4f3?s=128&d=identicon&r=PG")
                           (user_type . "registered")
                           (user_id . 362)
-                          (reputation . 101)))])
+                          (reputation . 101)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/50/malabarba")
               (display_name . "Malabarba")
@@ -2621,7 +2621,7 @@
               (accept_rate . 75)
               (user_type . "registered")
               (user_id . 129)
-              (reputation . 428)))]))
+              (reputation . 428))))))
  ((body . "<p>I'm trying to set upt <code>org-mode</code> and <code>reftex-mode</code> but I'm getting some troubles. Here is my <code>init.el</code> file:  </p>\n\n<pre><code>;; ORG-MODE\n(add-to-list 'auto-mode-alist '(\"\\\\.org\\\\'\" . org-mode))\n(setq org-agenda-files '(\"~/.../\"))\n(global-set-key \"\\C-ca\" 'org-agenda)\n(add-hook 'org-mode-hook\n      (lambda ()\n        (reftex-mode)\n        (visual-line-mode)\n        (company-mode)))\n</code></pre>\n\n<p>I'm trying to load a <code>.bib</code> file with <code>(setq reftex-default-bibliography '(\"path/to/bibfile.bib\"))</code> and it seems to work fine, but as I type <code>C-c [</code> in order to add a new reference I got this error:  </p>\n\n<p><code>reftex-using-biblatex-p: Stack overflow in regexp matcher</code>  </p>\n\n<p>Any hint? Thanks in advance.  </p>\n\n<p><em>P.S. couldn't tag with</em> <code>reftex-mode</code> <em>nor</em> <code>bibtex</code> <em>as I have no enough reputation score. If anyone could, I think thah would be good!</em></p>\n")
   (title . "org-mode and reftex giving this error: reftex-using-biblatex-p: Stack overflow in regexp matcher")
   (link . "http://emacs.stackexchange.com/questions/2901/org-mode-and-reftex-giving-this-error-reftex-using-biblatex-p-stack-overflow-i")
@@ -2654,7 +2654,7 @@
    (user_id . 201)
    (reputation . 41))
   (tags .
-        ["org-mode" "reftex-mode" "bibtex"]))
+        ("org-mode" "reftex-mode" "bibtex")))
  ((body . "<p>I'm on OSX 10.9.4 and I was previously running emacs 24.3 installed via brew.</p>\n\n<p>This morning I got around to asking brew to upgrade me to 24.4. Everything seemed to go smoothly, except csharp-mode no longer functions correctly. On opening a .cs file I get this error:</p>\n\n<pre><code>File mode specification error: (error \"Recursive load\" \n    \"/Users/Andrew/.emacs.d/elpa/csharp-mode-20120204.1826/csharp-mode.elc\" \n    \"/Users/Andrew/.emacs.d/elpa/csharp-mode-20120204.1826/csharp-mode.elc\" \n    \"/Users/Andrew/.emacs.d/elpa/csharp-mode-20120204.1826/csharp-mode.elc\" \n    \"/Users/Andrew/.emacs.d/elpa/csharp-mode-20120204.1826/csharp-mode.elc\" \n    \"/Users/Andrew/.emacs.d/elpa/csharp-mode-20120204.1826/csharp-mode.elc\")\n</code></pre>\n\n<p>I still have 24.3 on my machine and I can open .cs files correctly in that. </p>\n\n<p>Unfortunately csharp mode <a href=\"http://www.emacswiki.org/CSharpMode\" rel=\"nofollow\">seems to be dead</a> - it's not been touched in a few years. Any help or pointers as to how I can hack this to work would be appreciated.</p>\n")
   (title . "Recursive load error in csharp mode on upgrading to 24.4")
   (link . "http://emacs.stackexchange.com/questions/2899/recursive-load-error-in-csharp-mode-on-upgrading-to-24-4")
@@ -2672,7 +2672,7 @@
   (delete_vote_count . 0)
   (comment_count . 5)
   (comments .
-            [((body . "Did you recompile csharp-mode.el after the update?")
+            (((body . "Did you recompile csharp-mode.el after the update?")
               (link . "http://emacs.stackexchange.com/questions/2899/recursive-load-error-in-csharp-mode-on-upgrading-to-24-4#comment3952_2899")
               (body_markdown . "Did you recompile csharp-mode.el after the update?")
               (comment_id . 3952)
@@ -2772,7 +2772,7 @@
                (profile_image . "https://www.gravatar.com/avatar/57577324241ffa414154a4eb7589c3b6?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 295)
-               (reputation . 145)))])
+               (reputation . 145)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/110/tenpn")
    (display_name . "tenpn")
@@ -2781,9 +2781,9 @@
    (user_id . 110)
    (reputation . 131))
   (tags .
-        ["emacs24.4"])
+        ("emacs24.4"))
   (answers .
-           [((body . "<p>My problem was that the byte-compiled version of csharp-mode wasn't compatible with the upgrade. It seems it's a good idea to recompile all files on upgrading emacs, see this question: <a href=\"http://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs\">http://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs</a></p>\n\n<p>tl;dr: <code>M-: (byte-recompile-directory package-user-dir nil 'force)</code> fixes all problems.</p>\n")
+           (((body . "<p>My problem was that the byte-compiled version of csharp-mode wasn't compatible with the upgrade. It seems it's a good idea to recompile all files on upgrading emacs, see this question: <a href=\"http://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs\">http://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs</a></p>\n\n<p>tl;dr: <code>M-: (byte-recompile-directory package-user-dir nil 'force)</code> fixes all problems.</p>\n")
              (title . "Recursive load error in csharp mode on upgrading to 24.4")
              (link . "http://emacs.stackexchange.com/questions/2899/recursive-load-error-in-csharp-mode-on-upgrading-to-24-4/2900#2900")
              (body_markdown . "My problem was that the byte-compiled version of csharp-mode wasn&#39;t compatible with the upgrade. It seems it&#39;s a good idea to recompile all files on upgrading emacs, see this question: http://stackoverflow.com/questions/24725778/how-to-rebuild-elpa-packages-after-upgrade-of-emacs\n\ntl;dr: `M-: (byte-recompile-directory package-user-dir nil &#39;force)` fixes all problems.")
@@ -2800,7 +2800,7 @@
               (profile_image . "https://www.gravatar.com/avatar/a31fbafa397845ab6ec33df5139ae589?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 110)
-              (reputation . 131)))]))
+              (reputation . 131))))))
  ((body . "<p>In a recent <a href=\"http://emacs.stackexchange.com/questions/145/what-are-some-built-in-packages-with-nice-source-code/151#151\">answer</a> by <a href=\"http://emacs.stackexchange.com/users/227/lunaryorn\">lunaryorn</a>, he stated: </p>\n\n<blockquote>\n  <p>However, I'd recommend against most other parts of Org, for reasons\n  already stated in comments: It's old, and full of legacy and harmful\n  practices (e.g. find-file-noselect to read files non-interactively).</p>\n</blockquote>\n\n<p>Can anyone explain why is <code>find-file-noselect</code> a bad idea to read files in Elisp programs? Is there a better way? I'm asking because I was thinking of using it in one of my projects.</p>\n")
   (title . "What&#39;s wrong with `find-file-noselect`?")
   (link . "http://emacs.stackexchange.com/questions/2868/whats-wrong-with-find-file-noselect")
@@ -2827,7 +2827,7 @@
    (user_id . 45)
    (reputation . 1217))
   (comments .
-            [((body . "Seemingly, there was no <code>good-practices</code> tag before; is it a good idea to use it?")
+            (((body . "Seemingly, there was no <code>good-practices</code> tag before; is it a good idea to use it?")
               (link . "http://emacs.stackexchange.com/questions/2868/whats-wrong-with-find-file-noselect#comment3920_2868")
               (body_markdown . "Seemingly, there was no `good-practices` tag before; is it a good idea to use it?")
               (comment_id . 3920)
@@ -2900,7 +2900,7 @@
                (profile_image . "https://www.gravatar.com/avatar/d246baeefae20788d6ea519b777a99c7?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 642)
-               (reputation . 240)))])
+               (reputation . 240)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/642/mbork")
    (display_name . "mbork")
@@ -2909,9 +2909,9 @@
    (user_id . 642)
    (reputation . 240))
   (tags .
-        ["files" "good-practices"])
+        ("files" "good-practices"))
   (answers .
-           [((body . "<p>From section 24.3 in the Elisp manual:</p>\n\n<blockquote>\n  <p>To copy the contents of a file into a buffer, use the function\n  <code>insert-file-contents</code>.  (Don't use the command <code>insert-file</code> in a\n  Lisp program, as that sets the mark.)</p>\n</blockquote>\n\n<p>Searching the Elisp documentation for <code>find-file-noselect</code> it is obvious that it does much more than just reading a file into a buffer. Perhaps people who think using this function is a bad idea are thinking about the, possibly unwanted, side-effects? I guess it depends on what you want to achieve. If you want to have as clean/untouched buffer content as possible, it might be a good idea to use the old and trusty <code>with-temp-buffer</code> + <code>insert-file-contents</code>combination. If you want the buffer contents to be as close to what <code>find-file</code> produce, perhaps you <em>do</em> want to use <code>find-file-noselect</code>? Or perhaps he was thinking about <code>find-file</code> ;)</p>\n")
+           (((body . "<p>From section 24.3 in the Elisp manual:</p>\n\n<blockquote>\n  <p>To copy the contents of a file into a buffer, use the function\n  <code>insert-file-contents</code>.  (Don't use the command <code>insert-file</code> in a\n  Lisp program, as that sets the mark.)</p>\n</blockquote>\n\n<p>Searching the Elisp documentation for <code>find-file-noselect</code> it is obvious that it does much more than just reading a file into a buffer. Perhaps people who think using this function is a bad idea are thinking about the, possibly unwanted, side-effects? I guess it depends on what you want to achieve. If you want to have as clean/untouched buffer content as possible, it might be a good idea to use the old and trusty <code>with-temp-buffer</code> + <code>insert-file-contents</code>combination. If you want the buffer contents to be as close to what <code>find-file</code> produce, perhaps you <em>do</em> want to use <code>find-file-noselect</code>? Or perhaps he was thinking about <code>find-file</code> ;)</p>\n")
              (title . "What&#39;s wrong with `find-file-noselect`?")
              (link . "http://emacs.stackexchange.com/questions/2868/whats-wrong-with-find-file-noselect/2878#2878")
              (body_markdown . "From section 24.3 in the Elisp manual:\n\n&gt; To copy the contents of a file into a buffer, use the function\n&gt; `insert-file-contents`.  (Don&#39;t use the command `insert-file` in a\n&gt; Lisp program, as that sets the mark.)\n\nSearching the Elisp documentation for `find-file-noselect` it is obvious that it does much more than just reading a file into a buffer. Perhaps people who think using this function is a bad idea are thinking about the, possibly unwanted, side-effects? I guess it depends on what you want to achieve. If you want to have as clean/untouched buffer content as possible, it might be a good idea to use the old and trusty `with-temp-buffer` + `insert-file-contents `combination. If you want the buffer contents to be as close to what `find-file` produce, perhaps you *do* want to use `find-file-noselect`? Or perhaps he was thinking about `find-file` ;)\n")
@@ -2923,7 +2923,7 @@
              (is_accepted . :json-false)
              (comment_count . 1)
              (comments .
-                       [((body . "If something is being done non-interactively I can&#39;t see any scenario in which you&#39;d want <i>&quot; the buffer contents to be close to what find-file would produce&quot;</i>. find-file is slow because it does a ton of unnecessary stuff, including all sorts of hooks. The only &quot;feature&quot; of find-file which you might want is the major-mode, but then you should just activate it yourself (you can&#39;t even guarantee find-file would turn on the mode that you want anyway).")
+                       (((body . "If something is being done non-interactively I can&#39;t see any scenario in which you&#39;d want <i>&quot; the buffer contents to be close to what find-file would produce&quot;</i>. find-file is slow because it does a ton of unnecessary stuff, including all sorts of hooks. The only &quot;feature&quot; of find-file which you might want is the major-mode, but then you should just activate it yourself (you can&#39;t even guarantee find-file would turn on the mode that you want anyway).")
                          (link . "http://emacs.stackexchange.com/questions/2868/whats-wrong-with-find-file-noselect/2878#comment3929_2878")
                          (body_markdown . "If something is being done non-interactively I can&#39;t see any scenario in which you&#39;d want *&quot; the buffer contents to be close to what&#160;find-file would produce&quot;*. find-file is slow because it does a ton of unnecessary stuff, including all sorts of hooks. The only &quot;feature&quot; of find-file which you might want is the major-mode, but then you should just activate it yourself (you can&#39;t even guarantee find-file would turn on the mode that you want anyway).")
                          (comment_id . 3929)
@@ -2939,7 +2939,7 @@
                           (accept_rate . 89)
                           (user_type . "registered")
                           (user_id . 50)
-                          (reputation . 3999)))])
+                          (reputation . 3999)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/320/mathias-dahl")
               (display_name . "Mathias Dahl")
@@ -2964,7 +2964,7 @@
               (profile_image . "http://i.stack.imgur.com/Ltiwu.png?s=128&g=1")
               (user_type . "registered")
               (user_id . 227)
-              (reputation . 1643)))]))
+              (reputation . 1643))))))
  ((body . "<p>This is admittedly a superficial question.</p>\n\n<p>Although <code>ansi-term</code> starts out behaving correctly when I first open it, it seems to degrade into an 'editable' mode after a few commands, e.g., when I do <code>C-a</code> (start of line) followed by <code>C-k</code> (kill line), it wipes out the whole prompt.</p>\n\n<p>For my aesthetic sanity, is there any way to make the prompts and previous output uneditable (for <code>shell</code> and <code>ansi-term</code>)?  </p>\n\n<p>I'm using zsh in Emacs 24.4; OS is LXDE (Ubuntu 14.04) via Virtual Box.</p>\n\n<p>(Ideally I'd still be able to move my cursor around...)</p>\n")
   (title . "Any way to make prompts and previous-output uneditable in shell/term-mode?")
   (link . "http://emacs.stackexchange.com/questions/2883/any-way-to-make-prompts-and-previous-output-uneditable-in-shell-term-mode")
@@ -2991,7 +2991,7 @@
    (user_id . 2084)
    (reputation . 156))
   (comments .
-            [((body . "Are you on an &quot;odd&quot; OS by any chance? Usually in shell-mode C-a jumps to the start of the commandline, <i>after</i> the prompt, and a second C-a is required to jump to the very start. On Windows and Solaris (in a former life) I usually found that C-a jumped to the very start, wheras on MacOS, Linux etc. it works as expected for me.")
+            (((body . "Are you on an &quot;odd&quot; OS by any chance? Usually in shell-mode C-a jumps to the start of the commandline, <i>after</i> the prompt, and a second C-a is required to jump to the very start. On Windows and Solaris (in a former life) I usually found that C-a jumped to the very start, wheras on MacOS, Linux etc. it works as expected for me.")
               (link . "http://emacs.stackexchange.com/questions/2883/any-way-to-make-prompts-and-previous-output-uneditable-in-shell-term-mode#comment3939_2883")
               (body_markdown . "Are you on an &quot;odd&quot; OS by any chance? Usually in shell-mode C-a jumps to the start of the commandline, *after* the prompt, and a second C-a is required to jump to the very start. On Windows and Solaris (in a former life) I usually found that C-a jumped to the very start, wheras on MacOS, Linux etc. it works as expected for me.")
               (comment_id . 3939)
@@ -3062,7 +3062,7 @@
                (profile_image . "https://www.gravatar.com/avatar/cb378ba79d85a04a9277ddc0e4259149?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 372)
-               (reputation . 472)))])
+               (reputation . 472)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2084/dipak-c")
    (display_name . "Dipak C")
@@ -3072,9 +3072,9 @@
    (user_id . 2084)
    (reputation . 156))
   (tags .
-        ["shell" "ansi-term"])
+        ("shell" "ansi-term"))
   (answers .
-           [((body . "<p><a href=\"http://www.emacswiki.org/emacs/ComintMode\" rel=\"nofollow\">comint</a>-derived modes (like <code>shell</code>, <code>ielm</code>, ...) support filter functions, the following snippet makes the output and prompt read-only:</p>\n\n<pre><code>(defun my-comint-preoutput-turn-buffer-read-only (text)\n  (propertize text 'read-only t))\n\n(add-hook 'comint-preoutput-filter-functions 'my-comint-preoutput-turn-buffer-read-only)\n</code></pre>\n\n<p>As for <code>ansi-term</code> (which is not derived from <a href=\"http://www.emacswiki.org/emacs/ComintMode\" rel=\"nofollow\">comint</a>), it features two modes of operation, <code>char mode</code> which stays as truthful to the bindings of the shell and the software running in it as possible and <code>line mode</code> which allows you to edit the buffer as you please. You should generally stay in <code>char mode</code> (bound to <code>C-c C-k</code>) and occasionally switch to <code>line mode</code> (bound to <code>C-c C-j</code>) for editing command output.</p>\n")
+           (((body . "<p><a href=\"http://www.emacswiki.org/emacs/ComintMode\" rel=\"nofollow\">comint</a>-derived modes (like <code>shell</code>, <code>ielm</code>, ...) support filter functions, the following snippet makes the output and prompt read-only:</p>\n\n<pre><code>(defun my-comint-preoutput-turn-buffer-read-only (text)\n  (propertize text 'read-only t))\n\n(add-hook 'comint-preoutput-filter-functions 'my-comint-preoutput-turn-buffer-read-only)\n</code></pre>\n\n<p>As for <code>ansi-term</code> (which is not derived from <a href=\"http://www.emacswiki.org/emacs/ComintMode\" rel=\"nofollow\">comint</a>), it features two modes of operation, <code>char mode</code> which stays as truthful to the bindings of the shell and the software running in it as possible and <code>line mode</code> which allows you to edit the buffer as you please. You should generally stay in <code>char mode</code> (bound to <code>C-c C-k</code>) and occasionally switch to <code>line mode</code> (bound to <code>C-c C-j</code>) for editing command output.</p>\n")
              (title . "Any way to make prompts and previous-output uneditable in shell/term-mode?")
              (link . "http://emacs.stackexchange.com/questions/2883/any-way-to-make-prompts-and-previous-output-uneditable-in-shell-term-mode/2897#2897")
              (body_markdown . "[comint](http://www.emacswiki.org/emacs/ComintMode)-derived modes (like `shell`, `ielm`, ...) support filter functions, the following snippet makes the output and prompt read-only:\n\n    (defun my-comint-preoutput-turn-buffer-read-only (text)\n      (propertize text &#39;read-only t))\n\n    (add-hook &#39;comint-preoutput-filter-functions &#39;my-comint-preoutput-turn-buffer-read-only)\n\nAs for `ansi-term` (which is not derived from [comint](http://www.emacswiki.org/emacs/ComintMode)), it features two modes of operation, `char mode` which stays as truthful to the bindings of the shell and the software running in it as possible and `line mode` which allows you to edit the buffer as you please. You should generally stay in `char mode` (bound to `C-c C-k`) and occasionally switch to `line mode` (bound to `C-c C-j`) for editing command output.")
@@ -3091,7 +3091,7 @@
               (profile_image . "https://www.gravatar.com/avatar/1504319df63de7148c39290d4149f150?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 10)
-              (reputation . 860)))]))
+              (reputation . 860))))))
  ((body . "<p>As an Emacs newbie, I found IDO and loved it since it made searching for files so much quicker. After spending some time on this site, I've read more and more about Helm and I'm planning on making the switch. Some of my questions are: </p>\n\n<ol>\n<li>What are the biggest differences? </li>\n<li>Specifically, how should my workflow change when finding files, switching buffers, or calling new commands?</li>\n</ol>\n\n<p>I used <a href=\"http://tuhdo.github.io/helm-intro.html\">this post</a> to set up Helm, but my file searches (<code>C-x C-f</code>) and buffer switches (<code>C-x b</code>) look pretty much the same as they did before.</p>\n\n<p>Here is my config:</p>\n\n<pre><code>(require 'helm)\n(require 'helm-config)\n\n;; The default \"C-x c\" is quite close to \"C-x C-c\", which quits Emacs.\n;; Changed to \"C-c h\". Note: We must set \"C-c h\" globally, because we\n;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.\n(global-set-key (kbd \"C-c h\") 'helm-command-prefix)\n(global-unset-key (kbd \"C-x c\"))\n\n(define-key helm-map (kbd \"&lt;tab&gt;\") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action\n(define-key helm-map (kbd \"C-i\") 'helm-execute-persistent-action) ; make TAB works in terminal\n(define-key helm-map (kbd \"C-z\")  'helm-select-action) ; list actions using C-z\n\n(when (executable-find \"curl\")\n  (setq helm-google-suggest-use-curl-p t))\n\n(setq helm-quick-update                     t ; do not display invisible candidates\n      helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window\n      helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil\n      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.\n      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.\n      helm-scroll-amount                    8 ; scroll 8 lines other window using M-&lt;next&gt;/M-&lt;prior&gt;\n      helm-ff-file-name-history-use-recentf t)\n\n(helm-mode 1)\n</code></pre>\n")
   (title . "How should I change my workflow when moving from IDO to Helm")
   (link . "http://emacs.stackexchange.com/questions/2867/how-should-i-change-my-workflow-when-moving-from-ido-to-helm")
@@ -3119,7 +3119,7 @@
    (user_id . 45)
    (reputation . 1217))
   (comments .
-            [((body . "As you already realized, you forgot to bind Helm specific commands to replace the stock Emacs commands. If you keep reading the guides for each specific Helm command, you will see that I put key bindings (if possible) and setup in each section. Nevertheless, enjoy Helm :)")
+            (((body . "As you already realized, you forgot to bind Helm specific commands to replace the stock Emacs commands. If you keep reading the guides for each specific Helm command, you will see that I put key bindings (if possible) and setup in each section. Nevertheless, enjoy Helm :)")
               (link . "http://emacs.stackexchange.com/questions/2867/how-should-i-change-my-workflow-when-moving-from-ido-to-helm#comment3950_2867")
               (body_markdown . "As you already realized, you forgot to bind Helm specific commands to replace the stock Emacs commands. If you keep reading the guides for each specific Helm command, you will see that I put key bindings (if possible) and setup in each section. Nevertheless, enjoy Helm :)")
               (comment_id . 3950)
@@ -3135,7 +3135,7 @@
                (accept_rate . 75)
                (user_type . "registered")
                (user_id . 200)
-               (reputation . 652)))])
+               (reputation . 652)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/35/ryan")
    (display_name . "Ryan")
@@ -3144,9 +3144,9 @@
    (user_id . 35)
    (reputation . 255))
   (tags .
-        ["helm" "ido"])
+        ("helm" "ido"))
   (answers .
-           [((body . "<p>I switched from IDO to Helm few years ago and I never looked back.</p>\n\n<ul>\n<li>I find the presentation cleaner than let's say ido-vertical-mode for example. </li>\n<li>Helm doesn't have flex matching though.</li>\n<li>You don't need smex, etc. Helm does it all.</li>\n<li>The Tu do article is good as it provides some nice animated screenshots of what Helm can do.</li>\n</ul>\n\n<p>I use Helm projectile, Helm swoop, Helm semantic, Helm ag and some of the Helm interactive commands. Checkout the <a href=\"http://melpa.org/#/\" rel=\"nofollow\">Melpa page</a> for Helm related packages that might interest you.</p>\n\n<p>Here's some of my Helm related setup :</p>\n\n<pre><code>(setq helm-ff-transformer-show-only-basename nil\n      helm-adaptive-history-file             ers-helm-adaptive-history-file\n      helm-boring-file-regexp-list           '(\"\\\\.git$\" \"\\\\.svn$\" \"\\\\.elc$\")\n      helm-yank-symbol-first                 t\n      helm-buffers-fuzzy-matching            t\n      helm-ff-auto-update-initial-value      t\n      helm-input-idle-delay                  0.1\n      helm-idle-delay                        0.1)\n\n(autoload 'helm-descbinds      \"helm-descbinds\" t)\n(autoload 'helm-eshell-history \"helm-eshell\"    t)\n(autoload 'helm-esh-pcomplete  \"helm-eshell\"    t)\n\n(global-set-key (kbd \"C-h a\")    #'helm-apropos)\n(global-set-key (kbd \"C-h i\")    #'helm-info-emacs)\n(global-set-key (kbd \"C-h b\")    #'helm-descbinds)\n\n(add-hook 'eshell-mode-hook\n          #'(lambda ()\n              (define-key eshell-mode-map (kbd \"TAB\")     #'helm-esh-pcomplete)\n              (define-key eshell-mode-map (kbd \"C-c C-l\") #'helm-eshell-history)))\n\n(global-set-key (kbd \"C-x b\")   #'helm-mini)\n(global-set-key (kbd \"C-x C-b\") #'helm-buffers-list)\n(global-set-key (kbd \"C-x C-m\") #'helm-M-x)\n(global-set-key (kbd \"C-x C-f\") #'helm-find-files)\n(global-set-key (kbd \"C-x C-r\") #'helm-recentf)\n(global-set-key (kbd \"C-x r l\") #'helm-filtered-bookmarks)\n(global-set-key (kbd \"M-y\")     #'helm-show-kill-ring)\n(global-set-key (kbd \"M-s o\")   #'helm-swoop)\n(global-set-key (kbd \"M-s /\")   #'helm-multi-swoop)\n\n(require 'helm-config)\n(helm-mode t)\n(helm-adaptative-mode t)\n\n(global-set-key (kbd \"C-x c!\")   #'helm-calcul-expression)\n(global-set-key (kbd \"C-x c:\")   #'helm-eval-expression-with-eldoc)\n(define-key helm-map (kbd \"M-o\") #'helm-previous-source)\n\n(global-set-key (kbd \"M-s s\")   #'helm-ag)\n\n(define-key projectile-mode-map (kbd \"C-c p g\") \n                #'(lambda ()                                                                     \n                      (interactive)                                                                \n                      (helm-ag (projectile-project-root))))  \n\n(define-key org-mode-map (kbd \"C-x c o h\") #'helm-org-headlines)     \n</code></pre>\n")
+           (((body . "<p>I switched from IDO to Helm few years ago and I never looked back.</p>\n\n<ul>\n<li>I find the presentation cleaner than let's say ido-vertical-mode for example. </li>\n<li>Helm doesn't have flex matching though.</li>\n<li>You don't need smex, etc. Helm does it all.</li>\n<li>The Tu do article is good as it provides some nice animated screenshots of what Helm can do.</li>\n</ul>\n\n<p>I use Helm projectile, Helm swoop, Helm semantic, Helm ag and some of the Helm interactive commands. Checkout the <a href=\"http://melpa.org/#/\" rel=\"nofollow\">Melpa page</a> for Helm related packages that might interest you.</p>\n\n<p>Here's some of my Helm related setup :</p>\n\n<pre><code>(setq helm-ff-transformer-show-only-basename nil\n      helm-adaptive-history-file             ers-helm-adaptive-history-file\n      helm-boring-file-regexp-list           '(\"\\\\.git$\" \"\\\\.svn$\" \"\\\\.elc$\")\n      helm-yank-symbol-first                 t\n      helm-buffers-fuzzy-matching            t\n      helm-ff-auto-update-initial-value      t\n      helm-input-idle-delay                  0.1\n      helm-idle-delay                        0.1)\n\n(autoload 'helm-descbinds      \"helm-descbinds\" t)\n(autoload 'helm-eshell-history \"helm-eshell\"    t)\n(autoload 'helm-esh-pcomplete  \"helm-eshell\"    t)\n\n(global-set-key (kbd \"C-h a\")    #'helm-apropos)\n(global-set-key (kbd \"C-h i\")    #'helm-info-emacs)\n(global-set-key (kbd \"C-h b\")    #'helm-descbinds)\n\n(add-hook 'eshell-mode-hook\n          #'(lambda ()\n              (define-key eshell-mode-map (kbd \"TAB\")     #'helm-esh-pcomplete)\n              (define-key eshell-mode-map (kbd \"C-c C-l\") #'helm-eshell-history)))\n\n(global-set-key (kbd \"C-x b\")   #'helm-mini)\n(global-set-key (kbd \"C-x C-b\") #'helm-buffers-list)\n(global-set-key (kbd \"C-x C-m\") #'helm-M-x)\n(global-set-key (kbd \"C-x C-f\") #'helm-find-files)\n(global-set-key (kbd \"C-x C-r\") #'helm-recentf)\n(global-set-key (kbd \"C-x r l\") #'helm-filtered-bookmarks)\n(global-set-key (kbd \"M-y\")     #'helm-show-kill-ring)\n(global-set-key (kbd \"M-s o\")   #'helm-swoop)\n(global-set-key (kbd \"M-s /\")   #'helm-multi-swoop)\n\n(require 'helm-config)\n(helm-mode t)\n(helm-adaptative-mode t)\n\n(global-set-key (kbd \"C-x c!\")   #'helm-calcul-expression)\n(global-set-key (kbd \"C-x c:\")   #'helm-eval-expression-with-eldoc)\n(define-key helm-map (kbd \"M-o\") #'helm-previous-source)\n\n(global-set-key (kbd \"M-s s\")   #'helm-ag)\n\n(define-key projectile-mode-map (kbd \"C-c p g\") \n                #'(lambda ()                                                                     \n                      (interactive)                                                                \n                      (helm-ag (projectile-project-root))))  \n\n(define-key org-mode-map (kbd \"C-x c o h\") #'helm-org-headlines)     \n</code></pre>\n")
              (title . "How should I change my workflow when moving from IDO to Helm")
              (link . "http://emacs.stackexchange.com/questions/2867/how-should-i-change-my-workflow-when-moving-from-ido-to-helm/2880#2880")
              (body_markdown . "I switched from IDO to Helm few years ago and I never looked back.\n\n- I find the presentation cleaner than let&#39;s say ido-vertical-mode for example. \n- Helm doesn&#39;t have flex matching though.\n- You don&#39;t need smex, etc. Helm does it all.\n- The Tu do article is good as it provides some nice animated screenshots of what Helm can do.\n\nI use Helm projectile, Helm swoop, Helm semantic, Helm ag and some of the Helm interactive commands. Checkout the [Melpa page][1] for Helm related packages that might interest you.\n\nHere&#39;s some of my Helm related setup :\n\n \n \n    (setq helm-ff-transformer-show-only-basename nil\n          helm-adaptive-history-file             ers-helm-adaptive-history-file\n          helm-boring-file-regexp-list           &#39;(&quot;\\\\.git$&quot; &quot;\\\\.svn$&quot; &quot;\\\\.elc$&quot;)\n          helm-yank-symbol-first                 t\n          helm-buffers-fuzzy-matching            t\n          helm-ff-auto-update-initial-value      t\n          helm-input-idle-delay                  0.1\n          helm-idle-delay                        0.1)\n\n    (autoload &#39;helm-descbinds      &quot;helm-descbinds&quot; t)\n    (autoload &#39;helm-eshell-history &quot;helm-eshell&quot;    t)\n    (autoload &#39;helm-esh-pcomplete  &quot;helm-eshell&quot;    t)\n\n    (global-set-key (kbd &quot;C-h a&quot;)    #&#39;helm-apropos)\n    (global-set-key (kbd &quot;C-h i&quot;)    #&#39;helm-info-emacs)\n    (global-set-key (kbd &quot;C-h b&quot;)    #&#39;helm-descbinds)\n\n    (add-hook &#39;eshell-mode-hook\n              #&#39;(lambda ()\n                  (define-key eshell-mode-map (kbd &quot;TAB&quot;)     #&#39;helm-esh-pcomplete)\n                  (define-key eshell-mode-map (kbd &quot;C-c C-l&quot;) #&#39;helm-eshell-history)))\n\n    (global-set-key (kbd &quot;C-x b&quot;)   #&#39;helm-mini)\n    (global-set-key (kbd &quot;C-x C-b&quot;) #&#39;helm-buffers-list)\n    (global-set-key (kbd &quot;C-x C-m&quot;) #&#39;helm-M-x)\n    (global-set-key (kbd &quot;C-x C-f&quot;) #&#39;helm-find-files)\n    (global-set-key (kbd &quot;C-x C-r&quot;) #&#39;helm-recentf)\n    (global-set-key (kbd &quot;C-x r l&quot;) #&#39;helm-filtered-bookmarks)\n    (global-set-key (kbd &quot;M-y&quot;)     #&#39;helm-show-kill-ring)\n    (global-set-key (kbd &quot;M-s o&quot;)   #&#39;helm-swoop)\n    (global-set-key (kbd &quot;M-s /&quot;)   #&#39;helm-multi-swoop)\n\n    (require &#39;helm-config)\n    (helm-mode t)\n    (helm-adaptative-mode t)\n\n    (global-set-key (kbd &quot;C-x c!&quot;)   #&#39;helm-calcul-expression)\n    (global-set-key (kbd &quot;C-x c:&quot;)   #&#39;helm-eval-expression-with-eldoc)\n    (define-key helm-map (kbd &quot;M-o&quot;) #&#39;helm-previous-source)\n\n    (global-set-key (kbd &quot;M-s s&quot;)   #&#39;helm-ag)\n\n    (define-key projectile-mode-map (kbd &quot;C-c p g&quot;) \n                    #&#39;(lambda ()                                                                     \n                          (interactive)                                                                \n                          (helm-ag (projectile-project-root))))  \n\n    (define-key org-mode-map (kbd &quot;C-x c o h&quot;) #&#39;helm-org-headlines)     \n\n\n  [1]: http://melpa.org/#/")
@@ -3166,7 +3166,7 @@
               (user_id . 943)
               (reputation . 181))
              (comments .
-                       [((body . "@Ryan Notice that the default <code>helm-boring-file-regexp-list</code> contains much more than presented here. If you use remiro&#39;s setup, notice this point. Probably this is his preference. <code>helm-input-idle-delay</code> and <code>helm-idle-delay default</code> were 0.01 months ago, to make the fastest possible response. Overall, the setup is fine.")
+                       (((body . "@Ryan Notice that the default <code>helm-boring-file-regexp-list</code> contains much more than presented here. If you use remiro&#39;s setup, notice this point. Probably this is his preference. <code>helm-input-idle-delay</code> and <code>helm-idle-delay default</code> were 0.01 months ago, to make the fastest possible response. Overall, the setup is fine.")
                          (link . "http://emacs.stackexchange.com/questions/2867/how-should-i-change-my-workflow-when-moving-from-ido-to-helm/2880#comment3951_2880")
                          (body_markdown . "@Ryan Notice that the default `helm-boring-file-regexp-list` contains much more than presented here. If you use remiro&#39;s setup, notice this point. Probably this is his preference. `helm-input-idle-delay` and `helm-idle-delay default` were 0.01 months ago, to make the fastest possible response. Overall, the setup is fine.")
                          (comment_id . 3951)
@@ -3182,14 +3182,14 @@
                           (accept_rate . 75)
                           (user_type . "registered")
                           (user_id . 200)
-                          (reputation . 652)))])
+                          (reputation . 652)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/943/rimero")
               (display_name . "rimero")
               (profile_image . "https://www.gravatar.com/avatar/0dcea030535e386eee5821f278d74e3e?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 943)
-              (reputation . 181)))]))
+              (reputation . 181))))))
  ((body . "<p>I got </p>\n\n<pre><code>(setq-default fill-column 80)\n(setq-default truncate-lines nil) ;; which is default\n</code></pre>\n\n<p>When using magit in Emacs, I know that I should avoid long commit messages, but sometimes they just cannot be avoid. </p>\n\n<p>The problem is: <code>(setq-default truncate-lines nil)</code> which is default setting does not work in <strong>magit: project</strong> buffer(there is a straight right arrow at the end of line) but work in <strong>COMMIT_EDITMSG</strong> buffer, the <code>(setq-default fill-column 80)</code> does not work in <strong>COMMIT_EDITMSG</strong> buffer, the <code>fill-column</code> value in it is 72 not 80.</p>\n\n<p>But what I really want is: make the <code>truncate-lines</code> to <code>nil</code> in <strong>magit: project</strong> buffer too so I can see long lines in one window but not break it into several lines, <strong>AND</strong> turn all auto-fill-mode in <strong>COMMIT_EDITMSG</strong> buffer, so long commit messages won't be broken into several lines when I'm typing.</p>\n\n<p>NOTE: DO NOT affect other buffers like <strong>magit-log</strong> buffer</p>\n")
   (title . "How to make `truncate-lines` nil and `auto-fill-mode` off in magit buffers")
   (link . "http://emacs.stackexchange.com/questions/2890/how-to-make-truncate-lines-nil-and-auto-fill-mode-off-in-magit-buffers")
@@ -3214,9 +3214,9 @@
    (user_id . 794)
    (reputation . 123))
   (tags .
-        ["magit"])
+        ("magit"))
   (answers .
-           [((body . "<p>You can add setting specific to <code>magit-status</code> to <code>magit-status-mode-hook</code>:</p>\n\n<pre><code>(defun turn-on-truncate-lines ()\n   (setq truncate-lines t))\n\n(add-hook 'magit-status-mode-hook 'turn-on-truncate-lines)\n</code></pre>\n\n<p>For <code>COMMIT_EDITMSG</code>, it depend on your version of magit. In version from magit's git next branch, you use text mode with the git-commit-minor-mode on, so you need to add your configuration to <code>git-commit-mode-hook</code></p>\n\n<pre><code>(add-hook 'git-commit-mode-hook 'turn-off-auto-fill)\n</code></pre>\n\n<p>With other version of magit, or with other configuration, you might be using another mode for editing COMMIT_EDITMSG. Use <code>C-h m</code> to find which, and add <code>-hook</code> to its name to find what you hook should be added to.</p>\n\n<p>(turn-off-auto-fill is already define, no need to define it).  </p>\n\n<p>Ps: you didn't want it, but I add it for completness: the magit-mode-hook exist for setting configuration available in most magit's mode (log, show commit, ....)</p>\n")
+           (((body . "<p>You can add setting specific to <code>magit-status</code> to <code>magit-status-mode-hook</code>:</p>\n\n<pre><code>(defun turn-on-truncate-lines ()\n   (setq truncate-lines t))\n\n(add-hook 'magit-status-mode-hook 'turn-on-truncate-lines)\n</code></pre>\n\n<p>For <code>COMMIT_EDITMSG</code>, it depend on your version of magit. In version from magit's git next branch, you use text mode with the git-commit-minor-mode on, so you need to add your configuration to <code>git-commit-mode-hook</code></p>\n\n<pre><code>(add-hook 'git-commit-mode-hook 'turn-off-auto-fill)\n</code></pre>\n\n<p>With other version of magit, or with other configuration, you might be using another mode for editing COMMIT_EDITMSG. Use <code>C-h m</code> to find which, and add <code>-hook</code> to its name to find what you hook should be added to.</p>\n\n<p>(turn-off-auto-fill is already define, no need to define it).  </p>\n\n<p>Ps: you didn't want it, but I add it for completness: the magit-mode-hook exist for setting configuration available in most magit's mode (log, show commit, ....)</p>\n")
              (title . "How to make `truncate-lines` nil and `auto-fill-mode` off in magit buffers")
              (link . "http://emacs.stackexchange.com/questions/2890/how-to-make-truncate-lines-nil-and-auto-fill-mode-off-in-magit-buffers/2895#2895")
              (body_markdown . "You can add setting specific to `magit-status` to `magit-status-mode-hook`:\n\n    (defun turn-on-truncate-lines ()\n       (setq truncate-lines t))\n    \n    (add-hook &#39;magit-status-mode-hook &#39;turn-on-truncate-lines)\n\nFor `COMMIT_EDITMSG`, it depend on your version of magit. In version from magit&#39;s git next branch, you use text mode with the git-commit-minor-mode on, so you need to add your configuration to `git-commit-mode-hook`\n\n    (add-hook &#39;git-commit-mode-hook &#39;turn-off-auto-fill)\n\nWith other version of magit, or with other configuration, you might be using another mode for editing COMMIT_EDITMSG. Use `C-h m` to find which, and add `-hook` to its name to find what you hook should be added to.\n\n(turn-off-auto-fill is already define, no need to define it).  \n\nPs: you didn&#39;t want it, but I add it for completness: the magit-mode-hook exist for setting configuration available in most magit&#39;s mode (log, show commit, ....)\n")
@@ -3233,7 +3233,7 @@
               (profile_image . "https://www.gravatar.com/avatar/2b6a8e936e696ab9da826075fc1a07de?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2237)
-              (reputation . 376)))]))
+              (reputation . 376))))))
  ((body . "<p>I am having difficulties composing a regexp that will highlight certain <em>folder</em> extensions -- <strong>including the preceding dot</strong> -- with colors that are different than the rest of the folder -- e.g., <code>.app</code> would be colored red; and <code>.git</code> would be colored blue.</p>\n\n<p>Examples:</p>\n\n<ul>\n<li><p>The folder <code>Emacs.app</code> would be colorized with <code>Emacs</code> being a gray color and <code>.app</code> would be a red color.</p></li>\n<li><p>The folder <code>.0.context-menu.git</code> would be colorized with <code>.0.context-menu</code> being a gray color and <code>.git</code> would be a blue color.</p></li>\n</ul>\n\n<p>I have a regexp that gets me from the left margin all the way to the beginning of the folder -- the variable for that regexp is named <code>folder-listing-before-filename-regexp</code>.</p>\n\n<p>The problem I am having is that the regex <code>.*</code> swallows up the folder extensions.  If I add <code>[^.]</code>, that prevents me from using the dot later on with extensions like <code>.app</code> and <code>.git</code> -- I want the extension to include the dot when colored.</p>\n\n<p>The regexp that leads up to the folder looks like this:</p>\n\n<pre><code>(defvar folder-listing-before-filename-regexp\n  (concat\n    \"\\\\(^ +d[slrwxt+-]+\\\\)\"    ;; 1  permissions\n    \"\\\\(\\s\\\\)\"                 ;; 2\n    \"\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)\" ;; 3  some small numbers\n    \"\\\\(\\s\\\\)\"                 ;; 4\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 5  group\n    \"\\\\(\\s\\\\)\"                 ;; 6\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 7  user\n    \"\\\\(\\s\\\\)\"                 ;; 8\n    \"\\\\([\\s0-9.kKMGT]+\\\\)\"     ;; 9  size\n    \"\\\\(\\s\\\\)\"                 ;; 10\n    \"\\\\([0-9-]+\\\\)\"            ;; 11 date\n    \"\\\\(\\s\\\\)\"                 ;; 12\n    \"\\\\([0-9:]+\\\\)\"            ;; 13 time\n    \"\\\\(\\s\\\\)\"))               ;; 14\n</code></pre>\n\n<p>Here is some test data:</p>\n\n<pre><code>  drwxr-xr-x  79 HOME staff 2.7K 10-30-2014 16:42:18 .\n  drwxr-xr-x  27 HOME staff  918 10-28-2014 13:08:59 ..\n  drwxr-xr-x 162 HOME staff 5.4K 10-11-2014 11:34:16 .0.apel_flim_simi\n  drwxr-xr-x 432 HOME staff  15K 10-29-2014 15:37:44 .0.backup\n  drwxr-xr-x   5 HOME staff  170 10-19-2014 09:34:37 .0.context-menu.git\n  drwxr-xr-x   5 HOME staff  170 10-19-2014 13:06:36 .0.dired-read-filename.git\n  drwx------   4 HOME staff  136 04-29-2014 17:40:13 .0.eshell\n  drwxr-xr-x   3 HOME staff  102 10-11-2014 10:29:03 .0.gh\n  drwxr-xr-x   5 HOME staff  170 10-09-2014 21:16:35 .0.lorg-calendar.git\n  drwxr-xr-x   5 HOME staff  170 10-09-2014 20:06:09 .0.lorg-search.git\n  drwxr-xr-x  10 HOME staff  340 01-31-2014 19:37:31 .0.mail\n  drwxr-xr-x  25 HOME staff  850 10-14-2014 13:23:31 .0.snippets\n  drwxr-xr-x  23 HOME staff  782 12-03-2013 17:15:50 .0.sound\n  drwxr-xr-x  27 HOME staff  918 10-18-2014 11:53:56 .0.sources\n  drwxr-xr-x  67 HOME staff 2.3K 05-05-2014 23:19:12 .0.w3m\n  drwxr-xr-x 146 HOME staff 4.9K 09-08-2014 10:54:40 .0.wl\n  drwxr-xr-x   3 HOME staff  102 06-03-2014 11:37:02 Emacs.app\n  drwxr-xr-x   3 HOME staff  102 06-01-2014 10:39:02 Emacs_06_01_2014.app\n  drwxr-xr-x   3 HOME staff  102 10-01-2014 07:31:45 Emacs_10_01_2014.app\n  drwxr-xr-x 195 HOME staff 6.5K 10-18-2014 12:06:25 bin\n  drwxr-xr-x   3 HOME staff  102 06-26-2013 07:59:44 etc\n  drwxr-xr-x  10 HOME staff  340 09-30-2014 18:07:42 include\n  drwxr-xr-x   9 HOME staff  306 06-05-2013 22:50:05 info\n  drwxr-xr-x  27 HOME staff  918 10-18-2014 12:06:42 lib\n  drwxr-xr-x  12 HOME staff  408 09-30-2014 18:10:42 libexec\n  drwxr-xr-x   4 root staff  136 09-30-2014 18:07:42 man\n  drwxr-xr-x   4 root staff  136 09-30-2014 18:10:42 sbin\n  drwxr-xr-x   9 HOME staff  306 09-30-2014 18:10:42 share\n</code></pre>\n\n<p><img src=\"http://www.lawlist.com/images/dired_font_lock.png\" alt=\"Example\"></p>\n")
   (title . "Composing a regexp to highlight folder extensions differently")
   (link . "http://emacs.stackexchange.com/questions/2881/composing-a-regexp-to-highlight-folder-extensions-differently")
@@ -3251,7 +3251,7 @@
   (delete_vote_count . 0)
   (comment_count . 9)
   (comments .
-            [((body . "Have you tried looking into other options? Such as <a href=\"http://www.emacswiki.org/DiredPlus\" rel=\"nofollow\">Dired+</a>?")
+            (((body . "Have you tried looking into other options? Such as <a href=\"http://www.emacswiki.org/DiredPlus\" rel=\"nofollow\">Dired+</a>?")
               (link . "http://emacs.stackexchange.com/questions/2881/composing-a-regexp-to-highlight-folder-extensions-differently#comment3933_2881")
               (body_markdown . "Have you tried looking into other options? Such as [Dired+](http://www.emacswiki.org/DiredPlus)?")
               (comment_id . 3933)
@@ -3438,7 +3438,7 @@
                (profile_image . "https://www.gravatar.com/avatar/5f4ed4b573c4e38444c6fc54b28076c0?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 2287)
-               (reputation . 144)))])
+               (reputation . 144)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2287/lawlist")
    (display_name . "lawlist")
@@ -3447,9 +3447,9 @@
    (user_id . 2287)
    (reputation . 144))
   (tags .
-        ["dired" "regular-expressions"])
+        ("dired" "regular-expressions"))
   (answers .
-           [((body . "<p>The following is just a tweak to Dired+ -- adopting the same manner to highlight folder extensions as is already done with file extensions; with the additional tweak to the beginning regexp to get me over to the files / folders.  My custom time-style of <code>ls</code> is not compatible with dired-mode or the corresponding regexp in files.el, so I composed my own regexp.  The section below relating to <code>diredp-font-lock-keywords-1</code> is just the relevant excerpt.</p>\n\n<p>Over the next few days, I'll continue to think about the regexp proposed by @Malabarba <code>.*\\\\(\\\\.[^.]*\\\\)$</code> to see if I can create a whopper regexp that covers the majority of situations.  I ended up with about 5 different regexp strings, which is not as clean as Dired+ presently offers.</p>\n\n  \n\n<pre><code>(defvar folder-listing-before-filename-regexp\n  (concat\n    \"\\\\(^ +d[slrwxt+-]+\\\\)\"    ;; 1  permissions\n    \"\\\\(\\s\\\\)\"                 ;; 2\n    \"\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)\" ;; 3  some small numbers\n    \"\\\\(\\s\\\\)\"                 ;; 4\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 5  user\n    \"\\\\(\\s\\\\)\"                 ;; 6\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 7  group\n    \"\\\\(\\s\\\\)\"                 ;; 8\n    \"\\\\([\\s0-9.kKMGT]+\\\\)\"     ;; 9  size\n    \"\\\\(\\s\\\\)\"                 ;; 10\n    \"\\\\([0-9-]+\\\\)\"            ;; 11 date\n    \"\\\\(\\s\\\\)\"                 ;; 12\n    \"\\\\([0-9:]+\\\\)\"            ;; 13 time\n    \"\\\\(\\s\\\\)\"))               ;; 14\n\n(defvar file-listing-before-filename-regexp\n  (concat\n    \"\\\\(^ +[^d][slrwxt+-]+\\\\)\" ;; 1  permissions\n    \"\\\\(\\s\\\\)\"                 ;; 2\n    \"\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)\" ;; 3  some small numbers\n    \"\\\\(\\s\\\\)\"                 ;; 4\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 5  user\n    \"\\\\(\\s\\\\)\"                 ;; 6\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 7  group\n    \"\\\\(\\s\\\\)\"                 ;; 8\n    \"\\\\([\\s0-9.kKMGT]+\\\\)\"     ;; 9  size\n    \"\\\\(\\s\\\\)\"                 ;; 10\n    \"\\\\([0-9-]+\\\\)\"            ;; 11 date\n    \"\\\\(\\s\\\\)\"                 ;; 12\n    \"\\\\([0-9:]+\\\\)\"            ;; 13 time\n    \"\\\\(\\s\\\\)\"))               ;; 14\n\n(defvar diredp-font-lock-keywords-1\n  (list\n    '(\"[^ .]\\\\.\\\\(git\\\\)$\" 1 'diredp-git-face t)\n    '(\"[^ .]\\\\.\\\\(app\\\\)$\" 1 'diredp-app-face t)\n\n  (list folder-listing-before-filename-regexp\n    (list \"\\\\(.+\\\\)$\" nil nil (list 0 diredp-dir-priv 'keep t))) ; folder-name\n\n  (list file-listing-before-filename-regexp\n    (list \"\\\\(.+\\\\)$\" nil nil (list 0 diredp-file-name 'keep t))) ; file-name\n  ))\n</code></pre>\n")
+           (((body . "<p>The following is just a tweak to Dired+ -- adopting the same manner to highlight folder extensions as is already done with file extensions; with the additional tweak to the beginning regexp to get me over to the files / folders.  My custom time-style of <code>ls</code> is not compatible with dired-mode or the corresponding regexp in files.el, so I composed my own regexp.  The section below relating to <code>diredp-font-lock-keywords-1</code> is just the relevant excerpt.</p>\n\n<p>Over the next few days, I'll continue to think about the regexp proposed by @Malabarba <code>.*\\\\(\\\\.[^.]*\\\\)$</code> to see if I can create a whopper regexp that covers the majority of situations.  I ended up with about 5 different regexp strings, which is not as clean as Dired+ presently offers.</p>\n\n  \n\n<pre><code>(defvar folder-listing-before-filename-regexp\n  (concat\n    \"\\\\(^ +d[slrwxt+-]+\\\\)\"    ;; 1  permissions\n    \"\\\\(\\s\\\\)\"                 ;; 2\n    \"\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)\" ;; 3  some small numbers\n    \"\\\\(\\s\\\\)\"                 ;; 4\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 5  user\n    \"\\\\(\\s\\\\)\"                 ;; 6\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 7  group\n    \"\\\\(\\s\\\\)\"                 ;; 8\n    \"\\\\([\\s0-9.kKMGT]+\\\\)\"     ;; 9  size\n    \"\\\\(\\s\\\\)\"                 ;; 10\n    \"\\\\([0-9-]+\\\\)\"            ;; 11 date\n    \"\\\\(\\s\\\\)\"                 ;; 12\n    \"\\\\([0-9:]+\\\\)\"            ;; 13 time\n    \"\\\\(\\s\\\\)\"))               ;; 14\n\n(defvar file-listing-before-filename-regexp\n  (concat\n    \"\\\\(^ +[^d][slrwxt+-]+\\\\)\" ;; 1  permissions\n    \"\\\\(\\s\\\\)\"                 ;; 2\n    \"\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)\" ;; 3  some small numbers\n    \"\\\\(\\s\\\\)\"                 ;; 4\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 5  user\n    \"\\\\(\\s\\\\)\"                 ;; 6\n    \"\\\\([a-zA-Z]+\\\\)\"          ;; 7  group\n    \"\\\\(\\s\\\\)\"                 ;; 8\n    \"\\\\([\\s0-9.kKMGT]+\\\\)\"     ;; 9  size\n    \"\\\\(\\s\\\\)\"                 ;; 10\n    \"\\\\([0-9-]+\\\\)\"            ;; 11 date\n    \"\\\\(\\s\\\\)\"                 ;; 12\n    \"\\\\([0-9:]+\\\\)\"            ;; 13 time\n    \"\\\\(\\s\\\\)\"))               ;; 14\n\n(defvar diredp-font-lock-keywords-1\n  (list\n    '(\"[^ .]\\\\.\\\\(git\\\\)$\" 1 'diredp-git-face t)\n    '(\"[^ .]\\\\.\\\\(app\\\\)$\" 1 'diredp-app-face t)\n\n  (list folder-listing-before-filename-regexp\n    (list \"\\\\(.+\\\\)$\" nil nil (list 0 diredp-dir-priv 'keep t))) ; folder-name\n\n  (list file-listing-before-filename-regexp\n    (list \"\\\\(.+\\\\)$\" nil nil (list 0 diredp-file-name 'keep t))) ; file-name\n  ))\n</code></pre>\n")
              (title . "Composing a regexp to highlight folder extensions differently")
              (link . "http://emacs.stackexchange.com/questions/2881/composing-a-regexp-to-highlight-folder-extensions-differently/2894#2894")
              (body_markdown . "The following is just a tweak to Dired+ -- adopting the same manner to highlight folder extensions as is already done with file extensions; with the additional tweak to the beginning regexp to get me over to the files / folders.  My custom time-style of `ls` is not compatible with dired-mode or the corresponding regexp in files.el, so I composed my own regexp.  The section below relating to `diredp-font-lock-keywords-1` is just the relevant excerpt.\n\nOver the next few days, I&#39;ll continue to think about the regexp proposed by @Malabarba `.*\\\\(\\\\.[^.]*\\\\)$` to see if I can create a whopper regexp that covers the majority of situations.  I ended up with about 5 different regexp strings, which is not as clean as Dired+ presently offers.\n\n\n  &lt;!-- language: lang-lisp --&gt;\n\n    (defvar folder-listing-before-filename-regexp\n      (concat\n        &quot;\\\\(^ +d[slrwxt+-]+\\\\)&quot;    ;; 1  permissions\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 2\n        &quot;\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)&quot; ;; 3  some small numbers\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 4\n        &quot;\\\\([a-zA-Z]+\\\\)&quot;          ;; 5  user\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 6\n        &quot;\\\\([a-zA-Z]+\\\\)&quot;          ;; 7  group\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 8\n        &quot;\\\\([\\s0-9.kKMGT]+\\\\)&quot;     ;; 9  size\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 10\n        &quot;\\\\([0-9-]+\\\\)&quot;            ;; 11 date\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 12\n        &quot;\\\\([0-9:]+\\\\)&quot;            ;; 13 time\n        &quot;\\\\(\\s\\\\)&quot;))               ;; 14\n    \n    (defvar file-listing-before-filename-regexp\n      (concat\n        &quot;\\\\(^ +[^d][slrwxt+-]+\\\\)&quot; ;; 1  permissions\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 2\n        &quot;\\\\([0-9]+\\\\|\\s+[0-9]+\\\\)&quot; ;; 3  some small numbers\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 4\n        &quot;\\\\([a-zA-Z]+\\\\)&quot;          ;; 5  user\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 6\n        &quot;\\\\([a-zA-Z]+\\\\)&quot;          ;; 7  group\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 8\n        &quot;\\\\([\\s0-9.kKMGT]+\\\\)&quot;     ;; 9  size\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 10\n        &quot;\\\\([0-9-]+\\\\)&quot;            ;; 11 date\n        &quot;\\\\(\\s\\\\)&quot;                 ;; 12\n        &quot;\\\\([0-9:]+\\\\)&quot;            ;; 13 time\n        &quot;\\\\(\\s\\\\)&quot;))               ;; 14\n    \n    (defvar diredp-font-lock-keywords-1\n      (list\n        &#39;(&quot;[^ .]\\\\.\\\\(git\\\\)$&quot; 1 &#39;diredp-git-face t)\n        &#39;(&quot;[^ .]\\\\.\\\\(app\\\\)$&quot; 1 &#39;diredp-app-face t)\n    \n      (list folder-listing-before-filename-regexp\n        (list &quot;\\\\(.+\\\\)$&quot; nil nil (list 0 diredp-dir-priv &#39;keep t))) ; folder-name\n    \n      (list file-listing-before-filename-regexp\n        (list &quot;\\\\(.+\\\\)$&quot; nil nil (list 0 diredp-file-name &#39;keep t))) ; file-name\n      ))")
@@ -3466,7 +3466,7 @@
               (profile_image . "https://www.gravatar.com/avatar/5f4ed4b573c4e38444c6fc54b28076c0?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2287)
-              (reputation . 144)))]))
+              (reputation . 144))))))
  ((body . "<p>TL;DR: How can I force evaluation of a <code>setq</code> statement at start-up so that <code>imenu</code> updates appropriately?  (You can skip down to the second code-block below, if you want.)</p>\n\n<p>I love the concept of <code>imenu</code> (esp. when integrated with <code>helm</code>) and I think it has great potential to improve my workflow...assuming I learn how to correctly set definitions for <code>imenu</code> categories.  </p>\n\n<p>As a simplified example, let's say that I'd like to add a few definitions to my <code>init</code> file's <code>imenu</code> which would be useful when making updates - namely, the list of imported packages.</p>\n\n<p>Let's consider the following three lines as the code we want to parse (purely illustrative; my <code>init</code> file doesn't actually have an explicit line for importing <code>dired</code> and <code>electric</code>):</p>\n\n<pre><code>(defconst dc/default-directory \"/path/to/directory\")\n(use-package dired)\n(use-package electric)\n</code></pre>\n\n<p>In order to extract the constants and package names in <code>imenu</code>, I've included the code below in my <code>init.el</code> file.  This code works BUT only after I manually <code>eval</code> the second line, (i.e., the second <code>setq</code> statement below).</p>\n\n<pre><code>(setq dc-additions '((\"Imported packages\" \".*(use-package \\\\(.*\\\\))*\" 1)\n                     (\"Defined constants\" \".*(defconst \\\\(.*\\\\))*\"    1)))\n(setq imenu-generic-expression (copy-sequence `(,@dc-additions ,@imenu-generic-expression)))\n(add-hook 'emacs-lisp-mode 'imenu-generic-expression)\n</code></pre>\n\n<p>If I don't manually evaluate the second step, the <code>imenu</code> list shows only the default definitions.  However, after I <code>eval</code> the second statement above, the <code>imenu</code> list correctly include includes items based on my definition.</p>\n\n<p>How can I force evaluation of the second statement?  In other words, what can I do to to ensure that <code>imenu</code> will automatically consider items based on my definition?</p>\n\n<hr>\n\n<p>Exhibit 1: <code>imenu</code> after start-up but before I manually <code>eval</code> the second <code>setq</code> statement:</p>\n\n<p><img src=\"http://i.stack.imgur.com/Kv78R.png\" alt=\"enter image description here\"></p>\n\n<p>Exhibit 2: <code>imenu</code> after I manually <code>eval</code> the statement:</p>\n\n<p><img src=\"http://i.stack.imgur.com/iKKqe.png\" alt=\"enter image description here\"></p>\n")
   (title . "How to force evaluation of a statement in my `init` file?")
   (link . "http://emacs.stackexchange.com/questions/2860/how-to-force-evaluation-of-a-statement-in-my-init-file")
@@ -3494,7 +3494,7 @@
    (user_id . 2084)
    (reputation . 156))
   (comments .
-            [((body . "Could you try <code>helm-imenu</code> alone? <code>helm-semantic-or-imenu</code>, as its name suggests, use either semantic <b>or</b> imenu. If the command has candidates from <code>helm-semantic</code>, it won&#39;t display imenu&#39;s candidates, unless the candidates from <code>helm-semantic</code> is <code>nil</code>. There&#39;s also a stand alone <code>helm-semantic</code>. The advantage of <code>helm-semantic</code> is that it provides more information, so you can look thing like function interface and preselect the candidate when run <code>helm-semantic</code>. But Imenu is easier to extend without touching Semantic parser.")
+            (((body . "Could you try <code>helm-imenu</code> alone? <code>helm-semantic-or-imenu</code>, as its name suggests, use either semantic <b>or</b> imenu. If the command has candidates from <code>helm-semantic</code>, it won&#39;t display imenu&#39;s candidates, unless the candidates from <code>helm-semantic</code> is <code>nil</code>. There&#39;s also a stand alone <code>helm-semantic</code>. The advantage of <code>helm-semantic</code> is that it provides more information, so you can look thing like function interface and preselect the candidate when run <code>helm-semantic</code>. But Imenu is easier to extend without touching Semantic parser.")
               (link . "http://emacs.stackexchange.com/questions/2860/how-to-force-evaluation-of-a-statement-in-my-init-file#comment3908_2860")
               (body_markdown . "Could you try `helm-imenu` alone? `helm-semantic-or-imenu`, as its name suggests, use either semantic **or** imenu. If the command has candidates from `helm-semantic`, it won&#39;t display imenu&#39;s candidates, unless the candidates from `helm-semantic` is `nil`. There&#39;s also a stand alone `helm-semantic`. The advantage of `helm-semantic` is that it provides more information, so you can look thing like function interface and preselect the candidate when run `helm-semantic`. But Imenu is easier to extend without touching Semantic parser.")
               (comment_id . 3908)
@@ -3619,7 +3619,7 @@
                (accept_rate . 100)
                (user_type . "registered")
                (user_id . 2084)
-               (reputation . 156)))])
+               (reputation . 156)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2084/dipak-c")
    (display_name . "Dipak C")
@@ -3629,9 +3629,9 @@
    (user_id . 2084)
    (reputation . 156))
   (tags .
-        ["elisp" "helm"])
+        ("elisp" "helm"))
   (answers .
-           [((body . "<p><code>imenu-generic-expression</code> is a buffer local variable. When opening a new buffer, imenu will set imenu-generic-expression local value to something interesting for the current buffer. So setting imenu-generic-expression in init won't be useful, as its default-value is never used.</p>\n\n<p>What you want to set is the variable that it used by imenu for setting imenu-generic-expression in <code>emacs-lisp-mode</code>. It seem that it is the value from <code>lisp-imenu-generic-expression</code>, that is define in <code>lisp-mode</code>. So you just have to:</p>\n\n<pre><code>(with-eval-after-load 'lisp-mode\n    (setq lisp-imenu-generic-expression (copy-sequence `(,@dc-additions ,@lisp-imenu-generic-expression))))\n</code></pre>\n\n<p>Note that you must eval the <code>setq lisp-imenu-generic-expression</code> in a <code>with-eval-after-load</code> because you depend on the default value of <code>lisp-imenu-generic-expression</code> that won't be known to Emacs before lisp-mode is loaded. </p>\n")
+           (((body . "<p><code>imenu-generic-expression</code> is a buffer local variable. When opening a new buffer, imenu will set imenu-generic-expression local value to something interesting for the current buffer. So setting imenu-generic-expression in init won't be useful, as its default-value is never used.</p>\n\n<p>What you want to set is the variable that it used by imenu for setting imenu-generic-expression in <code>emacs-lisp-mode</code>. It seem that it is the value from <code>lisp-imenu-generic-expression</code>, that is define in <code>lisp-mode</code>. So you just have to:</p>\n\n<pre><code>(with-eval-after-load 'lisp-mode\n    (setq lisp-imenu-generic-expression (copy-sequence `(,@dc-additions ,@lisp-imenu-generic-expression))))\n</code></pre>\n\n<p>Note that you must eval the <code>setq lisp-imenu-generic-expression</code> in a <code>with-eval-after-load</code> because you depend on the default value of <code>lisp-imenu-generic-expression</code> that won't be known to Emacs before lisp-mode is loaded. </p>\n")
              (title . "How to force evaluation of a statement in my `init` file?")
              (link . "http://emacs.stackexchange.com/questions/2860/how-to-force-evaluation-of-a-statement-in-my-init-file/2892#2892")
              (body_markdown . "`imenu-generic-expression` is a buffer local variable. When opening a new buffer, imenu will set imenu-generic-expression local value to something interesting for the current buffer. So setting imenu-generic-expression in init won&#39;t be useful, as its default-value is never used.\n\nWhat you want to set is the variable that it used by imenu for setting imenu-generic-expression in `emacs-lisp-mode`. It seem that it is the value from `lisp-imenu-generic-expression`, that is define in `lisp-mode`. So you just have to:\n\n    (with-eval-after-load &#39;lisp-mode\n        (setq lisp-imenu-generic-expression (copy-sequence `(,@dc-additions ,@lisp-imenu-generic-expression))))\n\nNote that you must eval the `setq lisp-imenu-generic-expression` in a `with-eval-after-load` because you depend on the default value of `lisp-imenu-generic-expression` that won&#39;t be known to Emacs before lisp-mode is loaded. \n")
@@ -3648,7 +3648,7 @@
               (profile_image . "https://www.gravatar.com/avatar/2b6a8e936e696ab9da826075fc1a07de?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2237)
-              (reputation . 376)))]))
+              (reputation . 376))))))
  ((body . "<p>How can I keep my .org files up to date across several computers, perhaps across multiple platforms(linux/windows)?</p>\n\n<p>I could keep all the .org files in git for example, but that would require me to remember to pull and push to keep the repo updated. Could work with a few scripts to automatically handle the files, as I don't have that many.</p>\n\n<p>I could try using dropbox for this as well. I'd assume dropbox syncs the files often enough to not cause problems.</p>\n\n<p>Does org-mode offer any functionality to help with synchronizing the files across multiple locations?</p>\n")
   (title . "Keeping my .org files in sync across multiple computers")
   (link . "http://emacs.stackexchange.com/questions/2871/keeping-my-org-files-in-sync-across-multiple-computers")
@@ -3666,7 +3666,7 @@
   (delete_vote_count . 0)
   (comment_count . 3)
   (comments .
-            [((body . "Does this help? <a href=\"http://orgmode.org/worg/org-tutorials/org-vcs.html\" rel=\"nofollow\">Putting your org...</a>")
+            (((body . "Does this help? <a href=\"http://orgmode.org/worg/org-tutorials/org-vcs.html\" rel=\"nofollow\">Putting your org...</a>")
               (link . "http://emacs.stackexchange.com/questions/2871/keeping-my-org-files-in-sync-across-multiple-computers#comment3923_2871")
               (body_markdown . "Does this help? [Putting your org...](http://orgmode.org/worg/org-tutorials/org-vcs.html)")
               (comment_id . 3923)
@@ -3714,7 +3714,7 @@
                (profile_image . "https://www.gravatar.com/avatar/b4968ea2e03e3781500351ae376316c4?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 2224)
-               (reputation . 101)))])
+               (reputation . 101)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/2042/zavior")
    (display_name . "Zavior")
@@ -3723,9 +3723,9 @@
    (user_id . 2042)
    (reputation . 136))
   (tags .
-        ["org-mode"])
+        ("org-mode"))
   (answers .
-           [((body . "<p>Org files are just plain text files, so any technique that is able to synchronise plain text files will work fine with org files.</p>\n\n<p>My favourite synchronisation tool is <a href=\"http://www.cis.upenn.edu/~bcpierce/unison/\" rel=\"nofollow\">Unison</a>.  With the right configuration file, I type</p>\n\n<pre><code>unison org\n</code></pre>\n\n<p>and Unison will compare files in my <code>~/org/</code> directories on both my machines, let me interactively review its actions, then copy the files that need to be copied and invoke an external merge tool for the files that need merging.</p>\n")
+           (((body . "<p>Org files are just plain text files, so any technique that is able to synchronise plain text files will work fine with org files.</p>\n\n<p>My favourite synchronisation tool is <a href=\"http://www.cis.upenn.edu/~bcpierce/unison/\" rel=\"nofollow\">Unison</a>.  With the right configuration file, I type</p>\n\n<pre><code>unison org\n</code></pre>\n\n<p>and Unison will compare files in my <code>~/org/</code> directories on both my machines, let me interactively review its actions, then copy the files that need to be copied and invoke an external merge tool for the files that need merging.</p>\n")
              (title . "Keeping my .org files in sync across multiple computers")
              (link . "http://emacs.stackexchange.com/questions/2871/keeping-my-org-files-in-sync-across-multiple-computers/2873#2873")
              (body_markdown . "Org files are just plain text files, so any technique that is able to synchronise plain text files will work fine with org files.\n\nMy favourite synchronisation tool is &lt;a href=&quot;http://www.cis.upenn.edu/~bcpierce/unison/&quot;&gt;Unison&lt;/a&gt;.  With the right configuration file, I type\n\n    unison org\n\nand Unison will compare files in my `~/org/` directories on both my machines, let me interactively review its actions, then copy the files that need to be copied and invoke an external merge tool for the files that need merging.")
@@ -3823,7 +3823,7 @@
               (profile_image . "https://www.gravatar.com/avatar/a17d0aed8c29ac52d5693ff864adba74?s=128&d=identicon&r=PG")
               (user_type . "registered")
               (user_id . 2344)
-              (reputation . 41)))]))
+              (reputation . 41))))))
  ((body . "<p>I'm writting a package which dowloads a list of healines, contents,\nand some other properties, which are to be displayed to the user. For\nthe moment, an <code>org-mode</code> buffer seems like a good way of displaying\nthese headlines.</p>\n\n<p>Below is an example of how this list might be structured. It is merely\nillustrative, I can easily convert it to any other structure as\nnecessary.</p>\n\n<pre><code>'((\"One headline\" \"Some much longer content.\"\n   (property1 . value)\n   (property2 . value))\n  (\"Second headline\" \"More much longer content.\"\n   (property1 . value)\n   (property2 . value)))\n</code></pre>\n\n<p><strong>Is there a function or package which prints such a list into an <code>org-mode</code> buffer?</strong></p>\n\n<p>Here's the desired output.</p>\n\n<pre><code>* One headline\n  :PROPERTIES:\n  :property1: value\n  :property2: value\n  :END:\nSome much longer content.\n\n* Second headline\n  :PROPERTIES:\n  :property1: value\n  :property2: value\n  :END:\nMore much longer content.\n</code></pre>\n\n<p>I could do this manually, I'm just wondering if there might be\nsomething out there.</p>\n")
   (title . "Turn a list or data structure into an org document")
   (link . "http://emacs.stackexchange.com/questions/2869/turn-a-list-or-data-structure-into-an-org-document")
@@ -3842,7 +3842,7 @@
   (delete_vote_count . 0)
   (comment_count . 1)
   (comments .
-            [((body . "Oh my, this would be very useful. +1.  I would note that even Org does so manually.  See <code>org-insert-drawer</code>.  (That is, I would imagine if such a converter existed, this function would call that one with <code>nil</code>.)")
+            (((body . "Oh my, this would be very useful. +1.  I would note that even Org does so manually.  See <code>org-insert-drawer</code>.  (That is, I would imagine if such a converter existed, this function would call that one with <code>nil</code>.)")
               (link . "http://emacs.stackexchange.com/questions/2869/turn-a-list-or-data-structure-into-an-org-document#comment3926_2869")
               (body_markdown . "Oh my, this would be very useful. +1.  I would note that even Org does so manually.  See `org-insert-drawer`.  (That is, I would imagine if such a converter existed, this function would call that one with `nil`.)")
               (comment_id . 3926)
@@ -3857,7 +3857,7 @@
                (profile_image . "https://www.gravatar.com/avatar/9261936847b5a31e15da6e86533d3de3?s=128&d=identicon&r=PG")
                (user_type . "registered")
                (user_id . 2264)
-               (reputation . 512)))])
+               (reputation . 512)))))
   (owner
    (link . "http://emacs.stackexchange.com/users/50/malabarba")
    (display_name . "Malabarba")
@@ -3867,9 +3867,9 @@
    (user_id . 50)
    (reputation . 3999))
   (tags .
-        ["org-mode"])
+        ("org-mode"))
   (answers .
-           [((body . "<p>I've sort of tangentially looked at this issue. Take a look at the <a href=\"http://orgmode.org/worg/org-contrib/org-protocol.html\" rel=\"nofollow\">org-protocol.el</a>. It's bundled with org-mode. Specifically, the org-protocol-do-capture function converts a list, \"parts\" (which you seem to already have), to org-mode properties using org-store-link-props function and then calls org-capture. This assumes that you have a capture template with placeholders such as %:link. You can define the properties to be whatever you like.</p>\n\n<p>I've done <a href=\"https://github.com/sk8ingdom/.emacs.d/blob/master/org-mode-config/org-protocol-templates.el\" rel=\"nofollow\">something similar</a> to scrape title, author, date, source, etc. from site APIs. If you end up looking at this code, be sure to also look at capture-templates.el.</p>\n\n<p>If you're working with JSON data, the json.el and / or request.el might be useful.</p>\n")
+           (((body . "<p>I've sort of tangentially looked at this issue. Take a look at the <a href=\"http://orgmode.org/worg/org-contrib/org-protocol.html\" rel=\"nofollow\">org-protocol.el</a>. It's bundled with org-mode. Specifically, the org-protocol-do-capture function converts a list, \"parts\" (which you seem to already have), to org-mode properties using org-store-link-props function and then calls org-capture. This assumes that you have a capture template with placeholders such as %:link. You can define the properties to be whatever you like.</p>\n\n<p>I've done <a href=\"https://github.com/sk8ingdom/.emacs.d/blob/master/org-mode-config/org-protocol-templates.el\" rel=\"nofollow\">something similar</a> to scrape title, author, date, source, etc. from site APIs. If you end up looking at this code, be sure to also look at capture-templates.el.</p>\n\n<p>If you're working with JSON data, the json.el and / or request.el might be useful.</p>\n")
              (title . "Turn a list or data structure into an org document")
              (link . "http://emacs.stackexchange.com/questions/2869/turn-a-list-or-data-structure-into-an-org-document/2877#2877")
              (body_markdown . "I&#39;ve sort of tangentially looked at this issue. Take a look at the [org-protocol.el][1]. It&#39;s bundled with org-mode. Specifically, the org-protocol-do-capture function converts a list, &quot;parts&quot; (which you seem to already have), to org-mode properties using org-store-link-props function and then calls org-capture. This assumes that you have a capture template with placeholders such as %:link. You can define the properties to be whatever you like.\n\nI&#39;ve done [something similar][2] to scrape title, author, date, source, etc. from site APIs. If you end up looking at this code, be sure to also look at capture-templates.el.\n\n  [1]: http://orgmode.org/worg/org-contrib/org-protocol.html\n  [2]: https://github.com/sk8ingdom/.emacs.d/blob/master/org-mode-config/org-protocol-templates.el\n\nIf you&#39;re working with JSON data, the json.el and / or request.el might be useful.")
@@ -3907,7 +3907,7 @@
               (user_id . 1974)
               (reputation . 486))
              (comments .
-                       [((body . "Perfect! Thanks a lot.")
+                       (((body . "Perfect! Thanks a lot.")
                          (link . "http://emacs.stackexchange.com/questions/2869/turn-a-list-or-data-structure-into-an-org-document/2885#comment4006_2885")
                          (body_markdown . "Perfect! Thanks a lot.")
                          (comment_id . 4006)
@@ -3923,11 +3923,11 @@
                           (accept_rate . 89)
                           (user_type . "registered")
                           (user_id . 50)
-                          (reputation . 3999)))])
+                          (reputation . 3999)))))
              (owner
               (link . "http://emacs.stackexchange.com/users/1974/rasmus")
               (display_name . "rasmus")
               (profile_image . "https://www.gravatar.com/avatar/bd580f3842d43ba9dd42aff4914a38d3?s=128&d=identicon&r=PG&f=1")
               (user_type . "registered")
               (user_id . 1974)
-              (reputation . 486)))]))]
+              (reputation . 486)))))))
