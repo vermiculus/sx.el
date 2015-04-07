@@ -166,23 +166,21 @@ after being run through `sx-tag--format'."
 
 (ert-deftest sx-question-mode--fill-and-fontify ()
   "Check complicated questions are filled correctly."
-  (should
-   (equal
-    (with-temp-buffer
-      (sx-question-mode--insert-markdown
-       "Creating an account on a new site requires you to log into that site using *the same credentials you used on existing sites.* For instance, if you used the Stack Exchange login method, you'd...
+  (with-temp-buffer
+    (sx-question-mode--insert-markdown
+     "Creating an account on a new site requires you to log into that site using *the same credentials you used on existing sites.* For instance, if you used the Stack Exchange login method, you'd...
 
 1. Click the \"Log in using Stack Exchange\" button:
 
-  ![][1]
+  ![image][1]
 
 2. Enter your username and password (yes, even if you *just did this* to log into, say, Stack Overflow) and press the \"Log In\" button:
 
-  ![][2]
+  [link][2]
 
 3. Confirm the creation of the new account:
 
-  ![][3]
+  [![image-in-link][3]](emacs.stackexchange.com)
 
         some code block
         some code block
@@ -194,23 +192,35 @@ after being run through `sx-tag--format'."
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
   [3]: http://i.stack.imgur.com/22myl.png")
-      (buffer-string))
-    "Creating an account on a new site requires you to log into that site
+    (when sx-question-mode-use-images
+      (should (overlays-in (point-min) (point-max)))
+      (should (= 2 (length (overlays-in (point-min) (point-max))))))
+    (if sx-question-mode-use-images
+        (should
+         (equal
+          (buffer-substring-no-properties (point-min) (point-max))
+          "Creating an account on a new site requires you to log into that site
 using *the same credentials you used on existing sites.* For instance,
 if you used the Stack Exchange login method, you'd...
 
 1. Click the \"Log in using Stack Exchange\" button:
 
-  ![][1]
+
+¶
+
+
 
 2. Enter your username and password (yes, even if you *just did this*
    to log into, say, Stack Overflow) and press the \"Log In\" button:
 
-  ![][2]
+link
 
 3. Confirm the creation of the new account:
 
-  ![][3]
+
+¶
+
+
 
         some code block
         some code block
@@ -221,5 +231,34 @@ if you used the Stack Exchange login method, you'd...
         
   [1]: http://i.stack.imgur.com/ktFTs.png
   [2]: http://i.stack.imgur.com/5l2AY.png
-  [3]: http://i.stack.imgur.com/22myl.png")))
+  [3]: http://i.stack.imgur.com/22myl.png"))
+      (should
+       (equal
+        (buffer-substring-no-properties (point-min) (point-max))
+        "Creating an account on a new site requires you to log into that site
+using *the same credentials you used on existing sites.* For instance,
+if you used the Stack Exchange login method, you'd...
 
+1. Click the \"Log in using Stack Exchange\" button:
+
+image
+
+2. Enter your username and password (yes, even if you *just did this*
+   to log into, say, Stack Overflow) and press the \"Log In\" button:
+
+link
+
+3. Confirm the creation of the new account:
+
+image-in-link
+
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+        some code block
+        
+  [1]: http://i.stack.imgur.com/ktFTs.png
+  [2]: http://i.stack.imgur.com/5l2AY.png
+  [3]: http://i.stack.imgur.com/22myl.png")))))
