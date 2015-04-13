@@ -89,16 +89,30 @@ If it's not a question, or if it is read, return DATA."
       (sx-user-error "Question not yet read. View it before acting on it")
     data))
 
-(defun sx--maybe-update-display (&optional buffer)
+(defun sx--maybe-update-display (&optional buffer site id)
   "Refresh whatever is displayed in BUFFER or the current buffer.
-If BUFFER is not live, nothing is done."
+If BUFFER is not live, nothing is done.
+
+If SITE is given but ID isn't, only update if BUFFER appears to
+be a question-list displaying SITE.
+If both SITE and ID are given, only update if BUFFER appears to
+be a question matching SITE and ID."
   (setq buffer (or buffer (current-buffer)))
   (when (buffer-live-p buffer)
     (with-current-buffer buffer
       (cond ((derived-mode-p 'sx-question-list-mode)
-             (sx-question-list-refresh 'redisplay 'no-update))
+             (when (or (not site)
+                       (and (not id)
+                            (string= site sx-question-list--site)))
+               (sx-question-list-refresh 'redisplay 'no-update)))
             ((derived-mode-p 'sx-question-mode)
-             (sx-question-mode-refresh 'no-update))))))
+             (when (or (not site)
+                       (and id
+                            (equal
+                             (let-alist (sx--data-here 'question)
+                               (cons .site_par .question_id))
+                             (cons site id))))
+               (sx-question-mode-refresh 'no-update)))))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
@@ -483,9 +497,8 @@ context at point. "
         .site_par .question_id nil
         ;; After send functions
         (list (lambda (_ res)
-                (sx--add-answer-to-question-object
-                 (elt res 0) sx-question-mode--data)
-                (sx--maybe-update-display buffer))))))))
+                (sx--add-answer-to-question-object (elt res 0) data)
+                (sx--maybe-update-display buffer .site_par .question_id))))))))
 
 (defun sx--add-answer-to-question-object (answer question)
   "Add alist ANSWER to alist QUESTION in the right place."
