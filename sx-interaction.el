@@ -249,7 +249,7 @@ If WINDOW nil, the window is decided by
       (switch-to-buffer sx-question-mode--buffer))))
 
 
-;;; Favoriting
+;;; Simple interactions
 (defun sx-favorite (data &optional undo)
   "Favorite question given by DATA.
 Interactively, it is guessed from context at point.
@@ -258,6 +258,15 @@ With the UNDO prefix argument, unfavorite the question instead."
                      current-prefix-arg))
   (sx-method-post-from-data data (if undo 'favorite/undo 'favorite)))
 (defalias 'sx-star #'sx-favorite)
+
+(defun sx-accept (data &optional undo)
+  "Accept answer given by DATA.
+Interactively, it is guessed from context at point.
+With the UNDO prefix argument, unaccept the question instead."
+  (interactive (list (sx--data-here 'answer)
+                     current-prefix-arg))
+  (sx-method-post-from-data data (if undo 'accept/undo 'accept))
+  (sx--maybe-update-display))
 
 
 ;;; Voting
