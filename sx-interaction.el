@@ -132,6 +132,32 @@ the trouble of composing an entire question."
         (sx-authenticate)
       (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
 
+(defmacro sx--make-update-callback (&rest body)
+  "Return a function that runs BODY and updates display.
+`sx--maybe-update-display' is only called if the buffer where the
+function was created still exists.  In that case, BODY is also
+run in this buffer."
+  (declare (debug t))
+  `(let ((buffer (current-buffer)))
+     (lambda (result)
+       ;; See http://emacs.stackexchange.com/a/10725/50
+       (ignore result)
+       (if (buffer-live-p buffer)
+           (with-current-buffer buffer
+             ,@body
+             (sx--maybe-update-display))
+         ,@body))))
+
+(defun sx--copy-update-callback (data)
+  "Return a function that overwrites DATA and updates display.
+First, DATA is destructively overwritten with the car of the
+argument passed to the function.  Then,
+`sx--maybe-update-display' is called in the original buffer."
+  (sx--make-update-callback
+   ;; The api returns the new DATA.
+   (when result
+     (sx--copy-data (elt result 0) data))))
+
 
 ;;; Visiting
 (defun sx-visit-externally (data &optional copy-as-kill)
@@ -256,7 +282,9 @@ Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unfavorite the question instead."
   (interactive (list (sx--error-if-unread (sx--data-here 'question))
                      current-prefix-arg))
-  (sx-method-post-from-data data (if undo 'favorite/undo 'favorite)))
+  (sx-method-post-from-data data
+    (if undo 'favorite/undo 'favorite)
+    :callback (sx--copy-update-callback data)))
 (defalias 'sx-star #'sx-favorite)
 
 (defun sx-accept (data &optional undo)
@@ -265,8 +293,9 @@ Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unaccept the question instead."
   (interactive (list (sx--data-here 'answer)
                      current-prefix-arg))
-  (sx-method-post-from-data data (if undo 'accept/undo 'accept))
-  (sx--maybe-update-display))
+  (sx-method-post-from-data data
+    (if undo 'accept/undo 'accept)
+    :callback (sx--copy-update-callback data)))
 
 
 ;;; Voting
@@ -295,14 +324,9 @@ DATA can be a question, answer, or comment. TYPE can be
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
-  (let ((result
-         (sx-method-post-from-data
-          data (concat type (unless status "/undo")))))
-    ;; The api returns the new DATA.
-    (when result
-      (sx--copy-data (elt result 0) data)
-      ;; Display the changes in `data'.
-      (sx--maybe-update-display))))
+  (sx-method-post-from-data data
+    (concat type (unless status "/undo"))
+    :callback (sx--copy-update-callback data)))
 
 
 ;;; Delete
@@ -318,11 +342,12 @@ With UNDO prefix argument, undelete instead."
                       (cond (.comment_id "comment")
                             (.answer_id "answer")
                             (.question_id "question")))))
-    (sx-method-post-from-data data (if undo 'delete/undo 'delete))
-    ;; Indicate to ourselves this has been deleted.
-    (setcdr data (cons (car data) (cdr data)))
-    (setcar data 'deleted)
-    (sx--maybe-update-display)))
+    (sx-method-post-from-data data
+      (if undo 'delete/undo 'delete)
+      :callback (sx--make-update-callback
+                 ;; Indicate to ourselves this has been deleted.
+                 (setcdr data (cons (car data) (cdr data)))
+                 (setcar data 'deleted)))))
 
 
 ;;; Commenting
