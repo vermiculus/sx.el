@@ -43,6 +43,7 @@
                                       get-all
                                       (process-function
                                        #'sx-request-response-get-items)
+                                      callback
                                       site)
   "Call METHOD with additional keys.
 
@@ -62,6 +63,8 @@ PROCESS-FUNCTION is a response-processing function
 PAGE is the page number which will be requested
 PAGESIZE is the number of items to retrieve per request, default
 100
+CALLBACK is a function to be called if the request succeeds.  It
+is given the returned result as an argument.
 
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
@@ -136,11 +139,14 @@ Return the entire response as a complex alist."
       (push `(pagesize . ,pagesize) keywords))
     (when site
       (push `(site . ,site) keywords))
-    (funcall call
-             full-method
-             keywords
-             url-method
-             (or get-all process-function))))
+    (let ((result (funcall call
+                    full-method
+                    keywords
+                    url-method
+                    (or get-all process-function))))
+      (when callback
+        (funcall callback result))
+      result)))
 
 (defun sx-method-post-from-data (data &rest keys)
   "Make a POST `sx-method-call', deriving parameters from DATA.
