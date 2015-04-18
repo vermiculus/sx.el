@@ -46,22 +46,22 @@
                                       site)
   "Call METHOD with additional keys.
 
-:ID is the id associated with a question, answer, comment, post or
+ID is the id associated with a question, answer, comment, post or
 user.
-:SUBMETHOD is the additional segments of the method.
-:KEYWORDS are the api parameters.
-:FILTER is the set of filters to control the returned information
-:AUTH defines how to act if the method or filters require
+SUBMETHOD is the additional segments of the method.
+KEYWORDS are the api parameters.  Some parameters have their own
+keywords too, for convenience.  The KEYWORDS argument overrides
+parameter specific keywords.
+FILTER is the set of filters to control the returned information
+AUTH defines how to act if the method or filters require
 authentication.
-:URL-METHOD is either `post' or `get'
-:SITE is the api parameter specifying the site.
-:GET-ALL is nil or non-nil
-:PROCESS-FUNCTION is a response-processing function
-:PAGE is the page number which will be requested
-:PAGESIZE is the number of items to retrieve per request, default 100
-
-Any conflicting information in :KEYWORDS overrides the :PAGE
-and :PAGESIZE settings.
+URL-METHOD is either `post' or `get'
+SITE is the api parameter specifying the site.
+GET-ALL is nil or non-nil
+PROCESS-FUNCTION is a response-processing function
+PAGE is the page number which will be requested
+PAGESIZE is the number of items to retrieve per request, default
+100
 
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
