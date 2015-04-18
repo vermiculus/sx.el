@@ -153,8 +153,8 @@ the following which are decided by this function:
     :filter is `sx-browse-filter'.
     :auth is warn.
 
-As a special exception, if KEYS is a single argument, it is
-assumed to be the :submethod argument."
+As a special exception, if the car of KEYS is not a keyword, it
+is assumed to be the :submethod argument."
   (declare (indent 1))
   (sx-assoc-let data
     (apply #'sx-method-call
@@ -166,9 +166,9 @@ assumed to be the :submethod argument."
       :url-method 'post
       :filter sx-browse-filter
       :site .site_par
-      (if (= 1 (length keys))
-          (cons :submethod keys)
-        keys))))
+      (if (keywordp (car keys))
+          keys
+        (cons :submethod keys)))))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
