@@ -126,6 +126,7 @@ prefix argument, the user is asked for everything."
 
 
 ;;; Tag
+;;;###autoload
 (defun sx-search-tag-at-point (&optional pos)
   "Follow tag under position POS or point."
   (interactive)
