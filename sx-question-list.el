@@ -52,6 +52,11 @@
   :type 'integer
   :group 'sx-question-list)
 
+(defcustom sx-question-list-excluded-tags nil
+  "List of tags (strings) to be excluded from the question list."
+  :type '(repeat string)
+  :group 'sx-question-list)
+
 (defface sx-question-list-parent
   '((t :inherit default))
   ""
@@ -457,6 +462,17 @@ Non-interactively, DATA is a question alist."
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
 
+(defun sx-question-list--remove-excluded-tags (question-list)
+  "Return QUESTION-LIST, with some questions removed.
+Removes all questions hidden by the user, as well as those
+containing a tag in `sx-question-list-excluded-tags'."
+  (cl-remove-if (lambda (q)
+                  (or (sx-question--hidden-p q)
+                      (cl-intersection (let-alist q .tags)
+                                       sx-question-list-excluded-tags
+                                       :test #'string=)))
+                question-list))
+
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
 If REDISPLAY is non-nil (or if interactive), also call `tabulated-list-print'.
@@ -469,9 +485,11 @@ a new list before redisplaying."
   (let* ((question-list
           (or (and no-update sx-question-list--dataset)
               (and (functionp sx-question-list--refresh-function)
-                   (funcall sx-question-list--refresh-function))
+                   (sx-question-list--remove-excluded-tags
+                    (funcall sx-question-list--refresh-function)))
               (and (functionp sx-question-list--next-page-function)
-                   (funcall sx-question-list--next-page-function 1))
+                   (sx-question-list--remove-excluded-tags
+                    (funcall sx-question-list--next-page-function 1)))
               sx-question-list--dataset))
          ;; Preserve window positioning.
          (window (get-buffer-window (current-buffer)))
@@ -480,7 +498,7 @@ a new list before redisplaying."
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
-                  (cl-remove-if #'sx-question--hidden-p question-list)))
+                  sx-question-list--dataset))
     (when redisplay
       (tabulated-list-print 'remember)
       ;; Display weird chars correctly
@@ -576,8 +594,9 @@ we're not. Do the same for 3 lines from the top."
   (when (functionp sx-question-list--next-page-function)
     ;; Try to get more questions
     (let ((list
-           (funcall sx-question-list--next-page-function
-             (1+ sx-question-list--pages-so-far))))
+           (sx-question-list--remove-excluded-tags
+            (funcall sx-question-list--next-page-function
+              (1+ sx-question-list--pages-so-far)))))
       (if (null list)
           (message "No further questions.")
         ;; If it worked, increment the variable.
@@ -585,8 +604,7 @@ we're not. Do the same for 3 lines from the top."
         ;; And update the dataset.
         ;; @TODO: Check for duplicates.
         (setq sx-question-list--dataset
-              (append sx-question-list--dataset
-                      list))
+              (append sx-question-list--dataset list))
         (sx-question-list-refresh 'redisplay 'no-update)
         (forward-line 1)))))
 
