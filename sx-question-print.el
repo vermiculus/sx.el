@@ -759,7 +759,15 @@ move point, don't create the code-block button."
   "If there's an html comment ahead, skip it and return t."
   ;; @TODO: Handle the comment.
   ;; "Handling means to store any relevant metadata it might be holding."
-  (markdown-match-comments (line-end-position)))
+  (let ((end (save-excursion
+               (when (markdown-match-comments (line-end-position))
+                 (point)))))
+    (when end
+      (delete-region (point) end)
+      (skip-chars-backward "[:blank:]")
+      (when (looking-at "^[:blank:]*\n")
+        (replace-match ""))
+      t)))
 
 (defun sx-question-mode--skip-headline ()
   "If there's a headline ahead, skip it and return non-nil."
