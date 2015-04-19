@@ -109,6 +109,22 @@
 
 
 ;;; Backend variables
+
+(defvar sx-question-list--site nil
+  "Site being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--site)
+
+(defvar sx-question-list--order nil
+  "Order being displayed in the *question-list* buffer.
+This is also affected by `sx-question-list--descending'.")
+(make-variable-buffer-local 'sx-question-list--order)
+
+(defvar sx-question-list--descending t
+  "In which direction should `sx-question-list--order' be sorted.
+If non-nil (default), descending.
+If nil, ascending.")
+(make-variable-buffer-local 'sx-question-list--order)
+
 (defvar sx-question-list--print-function #'sx-question-list--print-info
   "Function to convert a question alist into a tabulated-list entry.
 Used by `sx-question-list-mode', the default value is
@@ -117,6 +133,13 @@ Used by `sx-question-list-mode', the default value is
 If this is set to a different value, it may be necessary to
 change `tabulated-list-format' accordingly.")
 (make-variable-buffer-local 'sx-question-list--print-function)
+
+(defcustom sx-question-list-ago-string " ago"
+  "String appended to descriptions of the time since something happened.
+Used in the questions list to indicate a question was updated
+\"4d ago\"."
+  :type 'string
+  :group 'sx-question-list)
 
 (defun sx-question-list--print-info (question-data)
   "Convert `json-read' QUESTION-DATA into tabulated-list format.
@@ -278,6 +301,33 @@ Meant to be used as `sx-question-list--next-page-function'."
 
 
 ;;; Mode Definition
+
+(defvar sx-question-list--current-tab "Latest"
+  ;; @TODO Other values (once we implement them) are "Top Voted",
+  ;; "Unanswered", etc.
+  "Variable describing current tab being viewed.")
+
+(defconst sx-question-list--mode-line-format
+  '("   "
+    (:propertize
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
+     face mode-line-buffer-id)
+    " " mode-name ": "
+    (:propertize sx-question-list--current-tab
+                 face mode-line-buffer-id)
+    " ["
+    "Unread: "
+    (:propertize
+     (:eval (sx-question-list--unread-count))
+     face mode-line-buffer-id)
+    ", "
+    "Total: "
+    (:propertize
+     (:eval (int-to-string (length tabulated-list-entries)))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in question-list buffers.")
+
 (define-derived-mode sx-question-list-mode
   tabulated-list-mode "Question List"
   "Major mode for browsing a list of questions from StackExchange.
@@ -401,52 +451,11 @@ Non-interactively, DATA is a question alist."
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
-(defvar sx-question-list--current-tab "Latest"
-  ;; @TODO Other values (once we implement them) are "Top Voted",
-  ;; "Unanswered", etc.
-  "Variable describing current tab being viewed.")
-
-(defconst sx-question-list--mode-line-format
-  '("   "
-    (:propertize
-     (:eval (sx--pretty-site-parameter sx-question-list--site))
-     face mode-line-buffer-id)
-    " " mode-name ": "
-    (:propertize sx-question-list--current-tab
-                 face mode-line-buffer-id)
-    " ["
-    "Unread: "
-    (:propertize
-     (:eval (sx-question-list--unread-count))
-     face mode-line-buffer-id)
-    ", "
-    "Total: "
-    (:propertize
-     (:eval (int-to-string (length tabulated-list-entries)))
-     face mode-line-buffer-id)
-    "] ")
-  "Mode-line construct to use in question-list buffers.")
-
 (defun sx-question-list--unread-count ()
   "Number of unread questions in current dataset, as a string."
   (int-to-string
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
-
-(defvar sx-question-list--site nil
-  "Site being displayed in the *question-list* buffer.")
-(make-variable-buffer-local 'sx-question-list--site)
-
-(defvar sx-question-list--order nil
-  "Order being displayed in the *question-list* buffer.
-This is also affected by `sx-question-list--descending'.")
-(make-variable-buffer-local 'sx-question-list--order)
-
-(defvar sx-question-list--descending t
-  "In which direction should `sx-question-list--order' be sorted.
-If non-nil (default), descending.
-If nil, ascending.")
-(make-variable-buffer-local 'sx-question-list--order)
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
@@ -480,13 +489,6 @@ a new list before redisplaying."
     (when window
       (set-window-start window old-start)))
   (sx-message "Done."))
-
-(defcustom sx-question-list-ago-string " ago"
-  "String appended to descriptions of the time since something happened.
-Used in the questions list to indicate a question was updated
-\"4d ago\"."
-  :type 'string
-  :group 'sx-question-list)
 
 (defun sx-question-list-view-previous (n)
   "Move cursor up N questions up and display this question.
