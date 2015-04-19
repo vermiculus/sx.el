@@ -29,6 +29,12 @@
 (require 'sx-site)
 (require 'sx-filter)
 
+(defvar sx-network--user-information nil
+  "User information for the various sites.")
+
+(defvar sx-network--user-sites nil
+  "List of sites where user already has an account.")
+
 (defconst sx-network--user-filter
   (sx-filter-from-nil
    ((badge_count bronze
@@ -87,12 +93,6 @@ list of sites the user is active on."
                 (when (member u-site (mapcar #'car sites-info))
                   (cdr (assoc u-site sites-info)))))
             sx-network--user-information)))
-
-(defvar sx-network--user-information nil
-  "User information for the various sites.")
-
-(defvar sx-network--user-sites nil
-  "List of sites where user already has an account.")
 
 (provide 'sx-networks)
 ;;; sx-networks.el ends here
