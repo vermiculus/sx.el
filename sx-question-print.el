@@ -552,6 +552,18 @@ font-locks code-blocks according to mode."
   "Face used on <sub> and <sup> tags."
   :group 'sx-question-mode-faces)
 
+(defface sx-question-mode-kbd-tag
+  '((((background dark))
+     :height 0.9
+     :weight semibold
+     :box (:line-width 3 :style released-button :color "gray30"))
+    (((background light))
+     :height 0.9
+     :weight semibold
+     :box (:line-width 3 :style released-button :color "gray70")))
+  "Face used on <kbd> tags."
+  :group 'sx-question-mode-faces)
+
 (defun sx-question-mode--inside-code-p ()
   "Return non-nil if point is inside code.
 This can be inline Markdown code or a Markdown code-block."
@@ -588,7 +600,10 @@ END-MARKER should be a marker."
               (save-match-data (sx-question-mode--process-html-tags l r))
               (cond
                ((string= tag "kbd")
-                (add-text-properties l r '(face markdown-inline-code-face)))
+                (add-text-properties l r '(face sx-question-mode-kbd-tag))
+                (when (looking-at-p
+                       (format sx-question-mode--html-tag-regexp "kbd"))
+                  (insert " ")))
                ((string= tag "sub")
                 (add-text-properties
                  l r '(face sx-question-mode-sub-sup-tag display (raise -0.3))))
