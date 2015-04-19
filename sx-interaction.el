@@ -80,6 +80,13 @@ thrown unless NOERROR is non-nil."
       (and (null noerror)
            (error "No %s found here" (or type "data")))))
 
+(defun sx--marker-to-data (marker &rest rest)
+  "Get the data at MARKER.
+REST is passed to `sx--data-here'."
+  (save-excursion
+    (goto-char marker)
+    (apply #'sx--data-here rest)))
+
 (defun sx--error-if-unread (data)
   "Throw a user-error if DATA is an unread question.
 If it's not a question, or if it is read, return DATA."
@@ -293,6 +300,10 @@ Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unaccept the question instead."
   (interactive (list (sx--data-here 'answer)
                      current-prefix-arg))
+  (sx-ensure-authentication)
+  ;; When clicking the "Accept" button, first arg is a marker.
+  (when (markerp data)
+    (setq data (sx--marker-to-data data 'answer)))
   (sx-method-post-from-data data
     (if undo 'accept/undo 'accept)
     :callback (sx--copy-update-callback data)))
@@ -324,6 +335,7 @@ DATA can be a question, answer, or comment. TYPE can be
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
+  (sx-ensure-authentication)
   (sx-method-post-from-data data
     (concat type (unless status "/undo"))
     :callback (sx--copy-update-callback data)))
@@ -337,6 +349,7 @@ guessed from context at point.
 With UNDO prefix argument, undelete instead."
   (interactive (list (sx--error-if-unread (sx--data-here))
                      current-prefix-arg))
+  (sx-ensure-authentication)
   (when (y-or-n-p (format "DELETE this %s? "
                     (let-alist data
                       (cond (.comment_id "comment")
@@ -362,7 +375,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
   (sx-ensure-authentication)
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
-    (setq data (sx--data-here))
+    (setq data (sx--marker-to-data data))
     (setq text 'query))
   (sx-assoc-let data
     ;; Get the comment text

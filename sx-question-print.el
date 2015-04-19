@@ -28,6 +28,8 @@
 (require 'sx-babel)
 (require 'sx-user)
 
+(defvar sx-question-mode--data)
+
 (defgroup sx-question-mode nil
   "Customization group for sx-question-mode."
   :prefix "sx-question-mode-"
@@ -275,6 +277,14 @@ DETAILS, when given is an alist further describing the close."
         (overlay-put ov 'face 'sx-question-mode-closed-reason)
         (push ov sx--overlays)))))
 
+(defun sx-question-mode--maybe-print-accept-button ()
+  "Print accept button if you own this question."
+  (when (sx-assoc-let sx-question-mode--data
+          (= .owner.user_id
+             (cdr (assq 'user_id (sx-network-user .site_par)))))
+    (insert "     ")
+    (insert-text-button "Accept" :type 'sx-button-accept)))
+
 (defun sx-question-mode--print-section (data)
   "Print a section corresponding to DATA.
 DATA can represent a question or an answer."
@@ -294,6 +304,8 @@ DATA can represent a question or an answer."
        'face (if .is_accepted 'sx-question-mode-accepted
                'sx-question-mode-title)
        :type 'sx-question-mode-title)
+      (when (not (or .title .is_accepted))
+        (sx-question-mode--maybe-print-accept-button))
 
       ;; Sections can be hidden with overlays
       (sx--wrap-in-overlay

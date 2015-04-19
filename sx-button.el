@@ -185,6 +185,14 @@ usually part of a code-block."
   'action    #'sx-comment
   :supertype 'sx-button)
 
+(define-button-type 'sx-button-accept
+  'help-echo (concat "mouse-1, RET"
+                     (propertize ": accept answer"
+                                 'face 'minibuffer-prompt))
+  'face 'sx-custom-button
+  'action    #'sx-accept
+  :supertype 'sx-button)
+
 (define-button-type 'sx-button-answer
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write an answer"
