@@ -532,12 +532,19 @@ high (if possible)."
          `(window window ,(selected-window) ,sx-question-mode--buffer))
         window)))
 
+(defvar sx-question-list--last-refresh (current-time)
+  "Time of the latest refresh.")
+
 (defun sx-question-list-next (n)
   "Move cursor down N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (if (and (< n 0) (bobp))
-      (sx-question-list-refresh 'redisplay)
+      (when (> (time-to-seconds
+                (time-subtract (current-time) sx-question-list--last-refresh))
+               1)
+        (sx-question-list-refresh 'redisplay)
+        (setq sx-question-list--last-refresh (current-time)))
     (forward-line n)
     ;; If we were trying to move forward, but we hit the end.
     (when (eobp)
