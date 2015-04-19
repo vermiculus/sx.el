@@ -139,7 +139,10 @@ the editor's name."
   :group 'sx-question-mode)
 
 (defface sx-question-mode-accepted
-  '((t :foreground "ForestGreen" :inherit sx-question-mode-title))
+  '((((background dark)) :foreground "LimeGreen"
+     :height 1.3 :inherit sx-question-mode-title)
+    (((background light)) :foreground "ForestGreen"
+     :height 1.3 :inherit sx-question-mode-title))
   "Face used for accepted answers in the question buffer."
   :group 'sx-question-mode-faces)
 

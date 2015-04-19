@@ -49,7 +49,8 @@
 ;;; Face
 (defface sx-custom-button
   '((((type x w32 ns) (class color))	; Like default mode line
-     :box (:line-width 2 :style released-button)
+     :box (:line-width 3 :style released-button)
+     :height 0.9
      :background "lightgrey" :foreground "black"))
   "Face used on buttons such as \"Write an Answer\"."
   :group 'sx)
