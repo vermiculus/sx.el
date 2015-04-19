@@ -423,7 +423,7 @@ where `value' is given `face' as its face.
 
 ;;;; Printing and Font-locking the content (body)
 (defvar sx-question-mode-bullet-appearance
-  (propertize (if (char-displayable-p ?•) "  •" "  *")
+  (propertize (if (char-displayable-p ?•) "•" "*")
               'face 'markdown-list-face)
   "String to be displayed as the bullet of markdown list items.")
 
