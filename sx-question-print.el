@@ -97,11 +97,6 @@ Some faces of this mode might be defined in the `sx-user' group."
   "Face used for downvoted score in the question buffer."
   :group 'sx-question-mode-faces)
 
-(defface sx-question-mode-sub-sup
-  '((t :height 0.7))
-  "Face used on <sub> and <sup> tags."
-  :group 'sx-question-mode-faces)
-
 (defcustom sx-question-mode-header-tags "\nTags:      "
   "String used before the question tags at the header."
   :type 'string
@@ -552,6 +547,11 @@ font-locks code-blocks according to mode."
 (defconst sx-question-mode--html-tag-regexp
   (rx "<" (group-n 1 "%s") (* (not (any ">"))) ">"))
 
+(defface sx-question-mode-sub-sup-tag
+  '((t :height 0.7))
+  "Face used on <sub> and <sup> tags."
+  :group 'sx-question-mode-faces)
+
 (defun sx-question-mode--inside-code-p ()
   "Return non-nil if point is inside code.
 This can be inline Markdown code or a Markdown code-block."
@@ -591,10 +591,10 @@ END-MARKER should be a marker."
                 (add-text-properties l r '(face markdown-inline-code-face)))
                ((string= tag "sub")
                 (add-text-properties
-                 l r '(face sx-question-mode-sub-sup display (raise -0.3))))
+                 l r '(face sx-question-mode-sub-sup-tag display (raise -0.3))))
                ((string= tag "sup")
                 (add-text-properties
-                 l r '(face sx-question-mode-sub-sup display (raise +0.3))))))))))))
+                 l r '(face sx-question-mode-sub-sup-tag display (raise +0.3))))))))))))
 
 
 ;;; Handling links
