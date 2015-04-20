@@ -206,19 +206,6 @@ All ARGS are passed to `completing-read' or `ido-completing-read'."
   (apply (if ido-mode #'ido-completing-read #'completing-read)
     args))
 
-(defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
-  "Inserted NEWELT into LIST sorted by PREDICATE.
-This is designed for the (site id id ...) lists.  So the first car
-is intentionally skipped."
-  `(let ((tail ,list)
-         (x ,newelt))
-     (while (and ;; We're not at the end.
-             (cdr-safe tail)
-             ;; We're not at the right place.
-             (funcall (or ,predicate #'<) x (cadr tail)))
-       (setq tail (cdr tail)))
-     (setcdr tail (cons x (cdr tail)))))
-
 (defun sx-user-error (format-string &rest args)
   "Like `user-error', but prepend FORMAT-STRING with \"[sx]\".
 See `format'."

@@ -122,6 +122,19 @@ See `sx-question--user-read-list'."
            (>= (or (cdr (assoc .question_id ql)) 0)
                .last_activity_date)))))
 
+(defmacro sx-sorted-insert-skip-first (newelt list &optional predicate)
+  "Inserted NEWELT into LIST sorted by PREDICATE.
+This is designed for the (site id id ...) lists.  So the first car
+is intentionally skipped."
+  `(let ((tail ,list)
+         (x ,newelt))
+     (while (and ;; We're not at the end.
+             (cdr-safe tail)
+             ;; We're not at the right place.
+             (funcall (or #',predicate #'<) x (cadr tail)))
+       (setq tail (cdr tail)))
+     (setcdr tail (cons x (cdr tail)))))
+
 (defun sx-question--mark-read (question)
   "Mark QUESTION as being read until it is updated again.
 Returns nil if question (in its current state) was already marked
