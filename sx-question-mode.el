@@ -28,6 +28,7 @@
   (require 'rx))
 
 (require 'sx)
+(require 'sx-switchto)
 (require 'sx-question)
 (require 'sx-question-print)
 

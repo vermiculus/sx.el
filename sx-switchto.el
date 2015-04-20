@@ -22,9 +22,6 @@
 ;;; Code:
 
 (require 'sx)
-(require 'sx-filter)
-(require 'sx-method)
-(require 'sx-question-list)
 
 
 ;;; Keybinds
@@ -54,6 +51,7 @@
 ;;; These are keys which depend on context.
 ;;;; For instance, it makes no sense to have `switch-site' bound to a
 ;;;; key on a buffer with no `sx-question-list--site' variable.
+(defvar sx-question-list--site)
 (sx--define-conditional-key sx-switchto-map "s" #'sx-question-list-switch-site
   (and (boundp 'sx-question-list--site) sx-question-list--site))
 

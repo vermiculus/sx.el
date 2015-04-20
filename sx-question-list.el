@@ -26,6 +26,7 @@
 (require 'cl-lib)
 
 (require 'sx)
+(require 'sx-switchto)
 (require 'sx-time)
 (require 'sx-tag)
 (require 'sx-site)
