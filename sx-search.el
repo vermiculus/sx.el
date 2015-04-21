@@ -34,6 +34,7 @@
 (require 'sx-question-list)
 (require 'sx-question-mode)
 (require 'sx-tag)
+(require 'sx-interaction)
 
 (defvar sx-search--query-history nil
   "Query history for interactive prompts.")
