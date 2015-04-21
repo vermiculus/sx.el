@@ -150,6 +150,8 @@ Optional argument _ is for `push-button'."
   (let ((ov (or (sx-question-mode--section-overlays-at
                  (line-end-position))
                 (sx-question-mode--section-overlays-at (point)))))
+    (unless (overlayp ov)
+      (sx-user-error "Not inside a question or answer"))
     (goto-char (overlay-start ov))
     (forward-line 0)
     (overlay-put
