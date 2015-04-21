@@ -113,9 +113,9 @@ errors if you remove them."
   :group 'sx-user)
 
 (defvar sx-user--format-property-alist
-  `((?d button ,(list t) category ,(button-category-symbol 'sx-button-user))
-    (?n button ,(list t) category ,(button-category-symbol 'sx-button-user))
-    (?@ button ,(list t) category ,(button-category-symbol 'sx-button-user))
+  `((?d button ,(list t) category ,(button-category-symbol 'sx-button-user) face sx-user-name)
+    (?n button ,(list t) category ,(button-category-symbol 'sx-button-user) face sx-user-name)
+    (?@ button ,(list t) category ,(button-category-symbol 'sx-button-user) face sx-user-name)
     (?r face sx-user-reputation)
     (?a face sx-user-accept-rate))
   "Alist relating % constructs with text properties.
