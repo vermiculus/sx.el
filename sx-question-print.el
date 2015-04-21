@@ -555,11 +555,11 @@ font-locks code-blocks according to mode."
 (defface sx-question-mode-kbd-tag
   '((((background dark))
      :height 0.9
-     :weight semibold
+     :weight semi-bold
      :box (:line-width 3 :style released-button :color "gray30"))
     (((background light))
      :height 0.9
-     :weight semibold
+     :weight semi-bold
      :box (:line-width 3 :style released-button :color "gray70")))
   "Face used on <kbd> tags."
   :group 'sx-question-mode-faces)
