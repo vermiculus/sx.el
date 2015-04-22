@@ -50,7 +50,7 @@
            lang "〈" laquo "«" larr "←" lArr "⇐" lceil "⌈" ldquo "“" le "≤"
            lfloor "⌊" lowast "∗" loz "◊" lrm "" lsaquo "‹" lsquo "‘" lt "<"
            macr "¯" mdash "—" micro "µ" middot "·" minus "−" Mu "Μ" mu "μ"
-           nabla "∇" nbsp "" ndash "–" ne "≠" ni "∋" not "¬" notin "∉"
+           nabla "∇" nbsp " " ndash "–" ne "≠" ni "∋" not "¬" notin "∉"
            nsub "⊄" ntilde "ñ" Ntilde "Ñ" Nu "Ν" nu "ν" oacute "ó" Oacute "Ó"
            ocirc "ô" Ocirc "Ô" OElig "Œ" oelig "œ" ograve "ò" Ograve "Ò" oline "‾"
            omega "ω" Omega "Ω" Omicron "Ο" omicron "ο" oplus "⊕" or "∨" ordf "ª"
