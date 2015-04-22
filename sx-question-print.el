@@ -275,8 +275,9 @@ DETAILS, when given is an alist further describing the close."
 (defun sx-question-mode--maybe-print-accept-button ()
   "Print accept button if you own this question."
   (when (sx-assoc-let sx-question-mode--data
-          (= .owner.user_id
-             (cdr (assq 'user_id (sx-network-user .site_par)))))
+          (ignore-errors
+            (= .owner.user_id
+               (cdr (assq 'user_id (sx-network-user .site_par))))))
     (insert "     ")
     (insert-text-button "Accept" :type 'sx-button-accept)))
 
