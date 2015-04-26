@@ -1,4 +1,4 @@
-#+MACRO: version 0.2
+#+MACRO: version 0.3
 #+MACRO: versiondate 16 November 2014
 #+MACRO: updated last updated {{{versiondate}}}
 
