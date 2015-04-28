@@ -181,6 +181,7 @@ is an alist containing the elements:
 (defvar sx-inbox--buffer nil
   "Buffer being used to display inbox.")
 
+;;;###autoload
 (defun sx-inbox (&optional notifications)
   "Display a buffer listing inbox items.
 With prefix NOTIFICATIONS, list notifications instead of inbox."
@@ -200,6 +201,7 @@ With prefix NOTIFICATIONS, list notifications instead of inbox."
        (- (+ fill-column 4) (window-width))
        'horizontal))))
 
+;;;###autoload
 (defun sx-inbox-notifications ()
   "Display a buffer listing notification items."
   (interactive)
