@@ -243,6 +243,7 @@ on the current buffer use
 \\{sx-question-mode}"
   (setq header-line-format sx-question-mode--header-line)
   (setq mode-line-format sx-question-mode--mode-line)
+  (set (make-local-variable 'nobreak-char-display) nil)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
     (set-window-parameter
@@ -252,7 +253,7 @@ on the current buffer use
   (font-lock-mode -1)
   (remove-hook 'after-change-functions 'markdown-check-change-for-wiki-link t)
   (remove-hook 'window-configuration-change-hook
-    'markdown-fontify-buffer-wiki-links t))
+               'markdown-fontify-buffer-wiki-links t))
 
 ;; We need this quote+eval combo because `kbd' was a macro in 24.2.
 (mapc (lambda (x) (eval `(define-key sx-question-mode-map
