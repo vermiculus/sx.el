@@ -25,6 +25,7 @@
 (require 'sx-filter)
 (require 'sx-method)
 (require 'sx-question-list)
+(require 'sx-interaction)
 
 
 ;;; API
