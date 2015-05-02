@@ -486,20 +486,21 @@ a new list before redisplaying."
   (let* ((question-list
           (or (and no-update sx-question-list--dataset)
               (and (functionp sx-question-list--refresh-function)
-                   (sx-question-list--remove-excluded-tags
-                    (funcall sx-question-list--refresh-function)))
+                   (funcall sx-question-list--refresh-function))
               (and (functionp sx-question-list--next-page-function)
-                   (sx-question-list--remove-excluded-tags
-                    (funcall sx-question-list--next-page-function 1)))
+                   (funcall sx-question-list--next-page-function 1))
               sx-question-list--dataset))
          ;; Preserve window positioning.
          (window (get-buffer-window (current-buffer)))
          (old-start (when window (window-start window))))
+    ;; The dataset contains everything. Hiding and filtering is done
+    ;; on the `tabulated-list-entries' below.
     (setq sx-question-list--dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
-                  sx-question-list--dataset))
+                  (sx-question-list--remove-excluded-tags
+                   sx-question-list--dataset)))
     (when redisplay
       (tabulated-list-print 'remember)
       ;; Display weird chars correctly
@@ -595,9 +596,8 @@ we're not. Do the same for 3 lines from the top."
   (when (functionp sx-question-list--next-page-function)
     ;; Try to get more questions
     (let ((list
-           (sx-question-list--remove-excluded-tags
-            (funcall sx-question-list--next-page-function
-              (1+ sx-question-list--pages-so-far)))))
+           (funcall sx-question-list--next-page-function
+             (1+ sx-question-list--pages-so-far))))
       (if (null list)
           (message "No further questions.")
         ;; If it worked, increment the variable.
