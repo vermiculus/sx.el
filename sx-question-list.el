@@ -502,10 +502,7 @@ a new list before redisplaying."
                   (sx-question-list--remove-excluded-tags
                    sx-question-list--dataset)))
     (when redisplay
-      (tabulated-list-print 'remember)
-      ;; Display weird chars correctly
-      (set-buffer-multibyte nil)
-      (set-buffer-multibyte t))
+      (tabulated-list-print 'remember))
     (when window
       (set-window-start window old-start)))
   (sx-message "Done."))
