@@ -95,7 +95,9 @@ re-initialize the cache."
 Afterwards reinitialize caches using `sx-initialize'. If
 SAVE-AUTH is non-nil, do not clear AUTH cache.
 
-Interactively only clear AUTH cache if prefix arg was given.
+Interactively, SAVE-AUTH is the negation of the prefix argument.
+That is, by default the auth cache is PRESERVED interactively.
+If you provide a prefix argument, the auth cache is INVALIDATED.
 
 Note:  This will also remove read/unread status of questions as well
 as delete the list of hidden questions."
