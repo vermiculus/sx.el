@@ -404,7 +404,11 @@ into consideration.  The same holds for `sx-question-list--order'.
   ;; it's not terribly intuitive.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list-refresh nil t)
+            #'sx-question-list-refresh nil t)
+  ;; This is the default value, but we'll error out if the user has
+  ;; set it to nil.
+  (setq tabulated-list-use-header-line t)
+  (tabulated-list-init-header)
   (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
