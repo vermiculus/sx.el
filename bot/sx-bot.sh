@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 DESTINATION_BRANCH=gh-pages
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 function notify-done {
     local title
@@ -34,3 +35,5 @@ git pull &&
     git stage data/ &&
     git commit -m "Update tag data" &&
     echo 'Ready for "git push"'
+
+git checkout ${CURRENT_BRANCH}
