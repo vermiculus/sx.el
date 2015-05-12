@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 DESTINATION_BRANCH=gh-pages
 
@@ -23,13 +23,13 @@ function generate-tags {
     emacs -Q --batch \
           -L "./" -L "./bot/" -l sx-bot \
           -f sx-bot-fetch-and-write-tags
-    ret = $?
+    ret=$?
     notify-done
     return ${ret}
 }
 
-git branch ${DESTINATION_BRANCH} &&
-    git pull &&
+git branch ${DESTINATION_BRANCH} || git checkout ${DESTINATION_BRANCH}
+git pull &&
     generate-tags &&
     git stage data/ &&
     git commit -m "Update tag data" &&
