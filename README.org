@@ -6,36 +6,56 @@
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
-SX is a full featured Stack Exchange mode for GNU Emacs 24+.  Using the official
+SX is a full-featured Stack Exchange mode for GNU Emacs 24+.  Using the official
 API, it provides a versatile experience for the Stack Exchange network within
 Emacs itself.
 
 [[file:list-and-question.png]]
 
 * Features
+As always, =C-h m= is the definitive resource for functionality, but here are a
+few highlights:
 ** Viewing Questions
-View questions with one of the ~sx-tab-~ commands.  These translate to the
-different 'tabs' that you can view on the official site.  Implemented tabs
+*** Question Lists
+View questions with one of the ~sx-tab-~ commands.  These translate roughly to
+the different 'tabs' that you can view on the official site.  Implemented tabs
 include:
 
 - ~sx-tab-all-questions~      :: All questions.
-- ~sx-tab-unanswered~         :: Unanswered questions.
-- ~sx-tab-unanswered-my-tags~ :: Unanswered questions in your followed tags.
-- ~sx-tab-featured~           :: Featured questions.
-- ~sx-tab-starred~            :: Your starred questions.
+- ~sx-tab-unanswered~         :: u Unanswered questions.
+- ~sx-tab-unanswered-my-tags~ :: U Unanswered questions in your followed tags.
+- ~sx-tab-featured~           :: f Featured questions.
+- ~sx-tab-starred~            :: * Your starred questions.
+- ~sx-tab-frontpage~          :: h The frontpage of the site.
+- ~sx-tab-meta-or-main~       :: m Toggle between the meta and main sites.
+- ~sx-tab-newest~             :: n Newest questions first.
+- ~sx-tab-topvoted~           :: v Highest-scoring questions first.
+- ~sx-tab-week~               :: w Hot questions of the week.
 
-Each of these opens up a list of questions, and you can further customize the
+You can use ~sx-tab-switch~ (=s t=) to switch between some of these tabs.  Each
+of these opens up a list of questions, and you can further customize the
 ordering of the list with =O=.  Other keys include:
 
-- =s s= :: Switch site.
 - =n= and =p= :: Navigate the list.
 - =j= and =k= :: Navigate while viewing the question in a separate buffer.
-- =v= :: Visit the thing-at-point in your browser
-- =w= :: Copy the thing-at-point (usually a link).
-- =u= and =d= :: Upvote and downvote.
+- =s s= :: Switch site.
+- =v= :: Visit the ~thing-at-point~ in your browser.
+- =w= :: Copy the ~thing-at-point~ (usually a link).
+n- =u= and =d= :: Upvote and downvote.
 - =RET= :: Open the question buffer.
 
-As always, =C-h m= is the definitive resource for the functions of this mode.
+*** Questions and Answers
+- =u= and =d= :: Upvote and downvote the question, answer, or comment at point.
+- =a= :: Add an answer.
+- =e= :: Edit the question or answer (or comment if it's yours; the usual rules
+         apply)
+- =*= :: Star the question.
+- =K= :: Delete the question/answer/comment if you are able.
+- =w= :: Copy code at point.
+
+** Your Inbox
+- ~sx-inbox~ :: View your inbox
+- ~RET~ :: Visit inbox item
 
 * Installation
 SX is now available on MELPA!  Both the stable release and the development
@@ -44,9 +64,22 @@ version can be found there.  Install it via the Package Menu or just run
 M-x package-install RET sx RET=
 #+END_SRC
 
-If you are going to be doing any asking / answering / commenting / upvoting /
-downvoting / /etc./, you must use ~sx-authenticate~ to provide SX with an
-authentication token to act on your behalf.
+** Authenticating
+If you are going to be doing any
+asking/answering/commenting/upvoting/downvoting/ /etc./, you must use
+~sx-authenticate~ to provide SX with an authentication token to act on your
+behalf.
+
+After authentication, you will be redirected to the project page.  This page
+will prominently display your authentication token. *Keep this secret!* It's as
+good as your password as far as StackExchange is concerned.  Copy and paste the
+token into the prompt in Emacs.
+
+#+BEGIN_QUOTE
+SX will store this authentication token in plain text in the =sx= folder of
+your =.emacs.d=.  Please take any and all steps necessary to protect the
+security of your account.  This token is as good as a password.
+#+END_QUOTE
 
 * Contributing
 Please help contribute!  Doing any of the following will help us immensely:
