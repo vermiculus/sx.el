@@ -41,7 +41,7 @@ ordering of the list with =O=.  Other keys include:
 - =s s= :: Switch site.
 - =v= :: Visit the ~thing-at-point~ in your browser.
 - =w= :: Copy the ~thing-at-point~ (usually a link).
-n- =u= and =d= :: Upvote and downvote.
+- =u= and =d= :: Upvote and downvote.
 - =RET= :: Open the question buffer.
 
 *** Questions and Answers
