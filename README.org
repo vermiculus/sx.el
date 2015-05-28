@@ -81,6 +81,36 @@ your =.emacs.d=.  Please take any and all steps necessary to protect the
 security of your account.  This token is as good as a password.
 #+END_QUOTE
 
+** Sample Keybindings
+*** With =use-package=
+#+BEGIN_SRC elisp
+  (require 'use-package)
+
+  (use-package sx
+    :config
+    (bind-keys :prefix "C-c s"
+               :prefix-map my-sx-map
+               :prefix-docstring "Keymap for SX global functionality."
+               ("q" . sx-tab-all-questions)
+               ("i" . sx-inbox)
+               ("o" . sx-open-link)
+               ("u" . sx-tab-unanswered-my-tags)
+               ("a" . sx-ask)
+               ("s" . sx-search)))
+#+END_SRC
+*** Standard
+Shamelessly stolen from [[http://endlessparentheses.com/sx-el-announcement-and-more-launcher-map.html][Endless Parentheses]].
+#+BEGIN_SRC elisp
+(define-prefix-command 'launcher-map)
+(global-set-key (kbd "s-l") 'launcher-map)
+(define-key launcher-map "qq" #'sx-tab-all-questions)
+(define-key launcher-map "qi" #'sx-inbox)
+(define-key launcher-map "qo" #'sx-open-link)
+(define-key launcher-map "qu" #'sx-tab-unanswered-my-tags)
+(define-key launcher-map "qa" #'sx-ask)
+(define-key launcher-map "qs" #'sx-search)
+#+END_SRC
+
 * Contributing
 Please help contribute!  Doing any of the following will help us immensely:
  - [[https://github.com/vermiculus/sx.el/issues/new][Open an issue]]
