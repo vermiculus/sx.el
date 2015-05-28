@@ -1,6 +1,7 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
-DESTINATION_BRANCH=data
+DESTINATION_BRANCH=gh-pages
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 function notify-done {
     local title
@@ -23,14 +24,17 @@ function generate-tags {
     emacs -Q --batch \
           -L "./" -L "./bot/" -l sx-bot \
           -f sx-bot-fetch-and-write-tags
-    ret = $?
+    ret=$?
     notify-done
     return ${ret}
 }
 
-git branch ${DESTINATION_BRANCH} &&
+git checkout ${DESTINATION_BRANCH} &&
     git pull &&
     generate-tags &&
     git stage data/ &&
     git commit -m "Update tag data" &&
-    echo 'Ready for "git push"'
+    git push &&
+    echo 'Bot finished.'
+
+git checkout ${CURRENT_BRANCH}
