@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DESTINATION_BRANCH=gh-pages
+DESTINATION_BRANCH=data
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 function notify-done {
