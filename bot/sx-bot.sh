@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DESTINATION_BRANCH=gh-pages
+DESTINATION_BRANCH=data
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 function notify-done {
@@ -29,11 +29,12 @@ function generate-tags {
     return ${ret}
 }
 
-git branch ${DESTINATION_BRANCH} || git checkout ${DESTINATION_BRANCH}
-git pull &&
+git checkout ${DESTINATION_BRANCH} &&
+    git pull &&
     generate-tags &&
     git stage data/ &&
     git commit -m "Update tag data" &&
-    echo 'Ready for "git push"'
+    git push &&
+    echo 'Bot finished.'
 
 git checkout ${CURRENT_BRANCH}
