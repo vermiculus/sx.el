@@ -1,4 +1,4 @@
-;;; sx-button.el --- Defining buttons used throughout SX. -*- lexical-binding: t; -*-
+;;; sx-button.el --- defining buttons                -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -23,7 +23,7 @@
 ;; buttons, see:
 ;;   http://www.gnu.org/software/emacs/manual/html_node/elisp/Buttons.html
 ;;
-;; Most interactible parts of the SX buffers are buttons. Wherever you
+;; Most interactive parts of the SX buffers are buttons. Wherever you
 ;; are, you can always cycle through all buttons by hitting `TAB',
 ;; that should help identify what's a button in each buffer.
 ;;
@@ -34,7 +34,7 @@
 ;;
 ;; Buttons can then be inserted in their respective files using
 ;; `insert-text-button'. Give it the string, the `:type' you defined,
-;; and any aditional properties that can only be determined at
+;; and any additional properties that can only be determined at
 ;; creation. Existing text can be transformed into a button with
 ;; `make-text-button' instead.
 
@@ -49,7 +49,8 @@
 ;;; Face
 (defface sx-custom-button
   '((((type x w32 ns) (class color))	; Like default mode line
-     :box (:line-width 2 :style released-button)
+     :box (:line-width 3 :style released-button)
+     :height 0.9
      :background "lightgrey" :foreground "black"))
   "Face used on buttons such as \"Write an Answer\"."
   :group 'sx)
@@ -77,50 +78,67 @@ This is usually a link's URL, or the content of a code block."
                        (point) 'sx-button-copy-type)
                       content)))))
 
-(defun sx-button-edit-this (text-or-marker &optional major-mode)
-  "Open a temp buffer populated with the string TEXT-OR-MARKER using MAJOR-MODE.
+(defun sx-button-edit-this (text-or-marker &optional majormode)
+  "Open a temp buffer populated with the string TEXT-OR-MARKER using MAJORMODE.
 When given a marker (or interactively), use the 'sx-button-copy
 and the 'sx-mode text-properties under the marker. These are
 usually part of a code-block."
   (interactive (list (point-marker)))
   ;; Buttons receive markers.
   (when (markerp text-or-marker)
-    (setq major-mode (get-text-property text-or-marker 'sx-mode))
+    (setq majormode (get-text-property text-or-marker 'sx-mode))
     (unless (setq text-or-marker 
                   (get-text-property text-or-marker 'sx-button-copy))
       (sx-message "Nothing of interest here.")))
   (with-current-buffer (pop-to-buffer (generate-new-buffer
                                        "*sx temp buffer*"))
     (insert text-or-marker)
-    (when major-mode
-      (funcall major-mode))))
+    (when majormode
+      (funcall majormode))))
 
 (defun sx-button-follow-link (&optional pos)
   "Follow link at POS.  If POS is nil, use `point'."
   (interactive)
-  (browse-url
-   (or (get-text-property (or pos (point)) 'sx-button-url)
-       (sx-user-error "No url under point: %s" (or pos (point))))))
+  (let ((url (or (get-text-property (or pos (point)) 'sx-button-url)
+                 (sx-user-error "No url under point: %s" (or pos (point))))))
+    ;; If we didn't recognize the link, this errors immediately.  If
+    ;; we mistakenly recognize it, it will error when we try to fetch
+    ;; whatever we thought it was.
+    (condition-case nil (sx-open-link url)
+      ;; When it errors, don't blame the user, just visit externally.
+      (error (browse-url url)))))
 
 
 ;;; Help-echo definitions
-(defvar sx-button--help-echo
+(defconst sx-button--help-echo
   (concat "mouse-1, RET" 
           (propertize ": %s -- " 'face 'minibuffer-prompt)
           "w" 
           (propertize ": copy %s" 'face 'minibuffer-prompt))
   "Base help-echo on which others can be written.")
 
-(defvar sx-button--question-title-help-echo
+(defconst sx-button--user-help-echo
   (format sx-button--help-echo
-    (propertize "hide content" 'face 'minibuffer-prompt)
-    (propertize "link" 'face 'minibuffer-prompt))
+    "visit user page"
+    "link")
+  "Help echoed in the minibuffer when point is on a user.")
+
+(defconst sx-button--tag-help-echo
+  (format sx-button--help-echo
+    "Tag search"
+    "tag")
+  "Help echoed in the minibuffer when point is on a tag.")
+
+(defconst sx-button--question-title-help-echo
+  (format sx-button--help-echo
+    "hide content"
+    "link")
   "Help echoed in the minibuffer when point is on a section.")
 
-(defvar sx-button--link-help-echo
+(defconst sx-button--link-help-echo
   (format sx-button--help-echo
-    (propertize "visit %s" 'face 'minibuffer-prompt)
-    (propertize "URL" 'face 'minibuffer-prompt))
+    "visit %s"
+    "URL")
   "Help echoed in the minibuffer when point is on a section.")
 
 
@@ -145,12 +163,34 @@ usually part of a code-block."
   'action    #'sx-button-follow-link
   :supertype 'sx-button)
 
+(define-button-type 'sx-button-user
+  'action    #'sx-button-follow-link
+  'help-echo sx-button--user-help-echo
+  ;; We use different faces on different parts of the user button.
+  'face      'sx-user-name
+  :supertype 'sx-button)
+
+(declare-function sx-search-tag-at-point "sx-search")
+(define-button-type 'sx-button-tag
+  'action    #'sx-search-tag-at-point
+  'help-echo sx-button--tag-help-echo
+  'face      'sx-tag
+  :supertype 'sx-button)
+
 (define-button-type 'sx-button-comment
   'help-echo (concat "mouse-1, RET"
                      (propertize ": write a comment"
                                  'face 'minibuffer-prompt))
   'face 'sx-custom-button
   'action    #'sx-comment
+  :supertype 'sx-button)
+
+(define-button-type 'sx-button-accept
+  'help-echo (concat "mouse-1, RET"
+                     (propertize ": accept answer"
+                                 'face 'minibuffer-prompt))
+  'face 'sx-custom-button
+  'action    #'sx-accept
   :supertype 'sx-button)
 
 (define-button-type 'sx-button-answer
@@ -163,3 +203,7 @@ usually part of a code-block."
 
 (provide 'sx-button)
 ;;; sx-button.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

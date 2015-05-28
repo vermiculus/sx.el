@@ -19,17 +19,21 @@
 
 ;;; Commentary:
 
+;; This file provides various pieces of site logic, such as retrieving
+;; the list of sites and the list of a user's favorited questions.
+
 ;;; Code:
 
 (require 'sx-method)
 (require 'sx-cache)
 (require 'sx-filter)
 
-(defvar sx-site-browse-filter
+(defconst sx-site-browse-filter
   (sx-filter-from-nil
    ((site site_type
           name
           api_site_parameter
+          site_url
           related_sites)
     (related_site api_site_parameter
                   relation)))

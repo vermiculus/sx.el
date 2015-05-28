@@ -1,4 +1,4 @@
-;;; sx-encoding.el --- encoding -*- lexical-binding: t; -*-
+;;; sx-encoding.el --- encoding                      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,9 +19,17 @@
 
 ;;; Commentary:
 
+;; This file handles decoding the responses we get from the API.  They
+;; are received either as plain-text or as a `gzip' compressed archive.
+;; For this, `sx-encoding-gzipped-p' is used to determine if content
+;; has been compressed under `gzip'.
+
 ;;; Code:
 
 (require 'cl-lib)
+
+
+;;;; HTML Encoding
 
 (defcustom sx-encoding-html-entities-plist
   '(Aacute "Á" aacute "á" Acirc "Â" acirc "â" acute "´" AElig "Æ" aelig "æ"
@@ -42,7 +50,7 @@
            lang "〈" laquo "«" larr "←" lArr "⇐" lceil "⌈" ldquo "“" le "≤"
            lfloor "⌊" lowast "∗" loz "◊" lrm "" lsaquo "‹" lsquo "‘" lt "<"
            macr "¯" mdash "—" micro "µ" middot "·" minus "−" Mu "Μ" mu "μ"
-           nabla "∇" nbsp "" ndash "–" ne "≠" ni "∋" not "¬" notin "∉"
+           nabla "∇" nbsp " " ndash "–" ne "≠" ni "∋" not "¬" notin "∉"
            nsub "⊄" ntilde "ñ" Ntilde "Ñ" Nu "Ν" nu "ν" oacute "ó" Oacute "Ó"
            ocirc "ô" Ocirc "Ô" OElig "Œ" oelig "œ" ograve "ò" Ograve "Ò" oline "‾"
            omega "ω" Omega "Ω" Omicron "Ο" omicron "ο" oplus "⊕" or "∨" ordf "ª"
@@ -85,6 +93,9 @@ Return the decoded string."
                     ;; Skip the `#'
                     (substring ss 1))))))))
     (replace-regexp-in-string "&[^; ]*;" get-function string)))
+
+
+;;;; Convenience Functions
 
 (defun sx-encoding-normalize-line-endings (string)
   "Normalize the line endings for STRING.
@@ -130,6 +141,9 @@ some cases."
      ((vectorp data)
       (cl-map #'vector #'sx-encoding-clean-content-deep data))
      (t data))))
+
+
+;;;; GZIP
 
 (defun sx-encoding-gzipped-p (data)
   "Check for magic bytes in DATA.

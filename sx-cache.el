@@ -1,4 +1,4 @@
-;;; sx-cache.el --- caching -*- lexical-binding: t; -*-
+;;; sx-cache.el --- caching                          -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -19,17 +19,22 @@
 
 ;;; Commentary:
 
-;; All caches are retrieved and set using symbols.  The symbol should
-;; be the sub-subpackage that is using the cache.  For example,
-;; `sx-pkg' would use `(sx-cache-get 'pkg)'.
+;; This file handles the cache system.  All caches are retrieved and
+;; set using symbols.  The symbol should be the sub-package that is
+;; using the cache.  For example, `sx-pkg' would use
+;;
+;;   `(sx-cache-get 'pkg)'
 ;;
 ;; This symbol is then converted into a filename within
-;; `sx-cache-directory'.
+;; `sx-cache-directory' using `sx-cache-get-file-name'.
+;;
+;; Currently, the cache is written at every `sx-cache-set', but this
+;; write will eventually be done by some write-all function which will
+;; be set on an idle timer.
 
 ;;; Code:
 
-(defcustom sx-cache-directory
-  (expand-file-name ".sx" user-emacs-directory)
+(defcustom sx-cache-directory (locate-user-emacs-file ".sx")
   "Directory containing cached data."
   :type 'directory
   :group 'sx)
@@ -68,8 +73,9 @@ DATA will be written as returned by `prin1'.
 
 CACHE is resolved to a file name by `sx-cache-get-file-name'."
   (sx-cache--ensure-sx-cache-directory-exists)
-  (write-region (prin1-to-string data) nil
-                (sx-cache-get-file-name cache))
+  (let (print-length print-level)
+    (write-region (prin1-to-string data) nil
+                  (sx-cache-get-file-name cache)))
   data)
 
 (defun sx-cache--invalidate (cache &optional vars init-method)
@@ -89,7 +95,9 @@ re-initialize the cache."
 Afterwards reinitialize caches using `sx-initialize'. If
 SAVE-AUTH is non-nil, do not clear AUTH cache.
 
-Interactively only clear AUTH cache if prefix arg was given.
+Interactively, SAVE-AUTH is the negation of the prefix argument.
+That is, by default the auth cache is PRESERVED interactively.
+If you provide a prefix argument, the auth cache is INVALIDATED.
 
 Note:  This will also remove read/unread status of questions as well
 as delete the list of hidden questions."

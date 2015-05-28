@@ -48,12 +48,11 @@ File is savedd in `sx-bot-out-dir'."
     (with-temp-file file-name
       (let* (print-length
              (repr (prin1-to-string
-                    (sort (cdr data)
-                          #'string-lessp))))
+                    (sort (cdr data) #'string-lessp))))
         (insert repr "\n")
         (goto-char (point-min))
         (while (search-forward "\" \"" nil t)
-          (replace-match "\"\n \"" nil t))))
+          (replace-match "\"\n\"" nil t))))
     (message "Wrote %S" file-name)
     file-name))
 
@@ -64,7 +63,8 @@ File is savedd in `sx-bot-out-dir'."
          (site-tokens (sx-site-get-api-tokens))
          (number-of-sites (length site-tokens))
          (current-site-number 0)
-         (sx-request-all-items-delay 0.25))
+         (sx-request-remaining-api-requests-message-threshold 4000)
+         (sx-request-all-items-delay 1))
     (mapcar
      (lambda (site)
        (message "[%d/%d] Working on %S"

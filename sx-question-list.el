@@ -1,4 +1,4 @@
-;;; sx-question-list.el --- Major-mode for navigating questions list.  -*- lexical-binding: t; -*-
+;;; sx-question-list.el --- major-mode for navigating questions list  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -19,12 +19,16 @@
 
 ;;; Commentary:
 
+;; Provides question list logic (as used in e.g. `sx-tab-frontpage').
+
 ;;; Code:
 (require 'tabulated-list)
 (require 'cl-lib)
 
 (require 'sx)
+(require 'sx-switchto)
 (require 'sx-time)
+(require 'sx-tag)
 (require 'sx-site)
 (require 'sx-question)
 (require 'sx-question-mode)
@@ -47,6 +51,11 @@
 (defcustom sx-question-list-height 12
   "Height, in lines, of SX's *question-list* buffer."
   :type 'integer
+  :group 'sx-question-list)
+
+(defcustom sx-question-list-excluded-tags nil
+  "List of tags (strings) to be excluded from the question list."
+  :type '(repeat string)
   :group 'sx-question-list)
 
 (defface sx-question-list-parent
@@ -79,11 +88,6 @@
   ""
   :group 'sx-question-list-faces)
 
-(defface sx-question-list-tags
-  '((t :inherit sx-question-mode-tags))
-  ""
-  :group 'sx-question-list-faces)
-
 (defface sx-question-list-date
   '((t :inherit font-lock-comment-face))
   ""
@@ -109,18 +113,24 @@
   ""
   :group 'sx-question-list-faces)
 
-(defface sx-question-list-reputation
-  '((t :inherit sx-question-list-date))
-  ""
-  :group 'sx-question-list-faces)
-
-(defface sx-question-list-user
-  '((t :inherit font-lock-builtin-face))
-  ""
-  :group 'sx-question-list-faces)
-
 
 ;;; Backend variables
+
+(defvar sx-question-list--site nil
+  "Site being displayed in the *question-list* buffer.")
+(make-variable-buffer-local 'sx-question-list--site)
+
+(defvar sx-question-list--order nil
+  "Order being displayed in the *question-list* buffer.
+This is also affected by `sx-question-list--descending'.")
+(make-variable-buffer-local 'sx-question-list--order)
+
+(defvar sx-question-list--descending t
+  "In which direction should `sx-question-list--order' be sorted.
+If non-nil (default), descending.
+If nil, ascending.")
+(make-variable-buffer-local 'sx-question-list--order)
+
 (defvar sx-question-list--print-function #'sx-question-list--print-info
   "Function to convert a question alist into a tabulated-list entry.
 Used by `sx-question-list-mode', the default value is
@@ -130,14 +140,22 @@ If this is set to a different value, it may be necessary to
 change `tabulated-list-format' accordingly.")
 (make-variable-buffer-local 'sx-question-list--print-function)
 
+(defcustom sx-question-list-ago-string " ago"
+  "String appended to descriptions of the time since something happened.
+Used in the questions list to indicate a question was updated
+\"4d ago\"."
+  :type 'string
+  :group 'sx-question-list)
+
 (defun sx-question-list--print-info (question-data)
   "Convert `json-read' QUESTION-DATA into tabulated-list format.
 
 This is the default printer used by `sx-question-list'. It
 assumes QUESTION-DATA is an alist containing (at least) the
 elements:
- `site', `score', `upvoted', `answer_count', `title',
- `last_activity_date', `tags', `uestion_id'.
+ `question_id', `site_par', `score', `upvoted', `answer_count',
+ `title', `bounty_amount', `bounty_amount', `bounty_amount',
+ `last_activity_date', `tags', `owner'.
 
 Also see `sx-question-list-refresh'."
   (sx-assoc-let question-data
@@ -177,14 +195,9 @@ Also see `sx-question-list-refresh'."
          " "
          ;; @TODO: Make this width customizable. (Or maybe just make
          ;; the whole thing customizable)
-         (propertize (format "%-40s" (mapconcat #'sx-question--tag-format .tags " "))
-                     'face 'sx-question-list-tags)
+         (format "%-40s" (sx-tag--format-tags .tags sx-question-list--site))
          " "
-         (let-alist .owner
-           (format "%15s %5s"
-             (propertize .display_name 'face 'sx-question-list-user)
-             (propertize (number-to-string .reputation)
-                         'face 'sx-question-list-reputation)))
+         (sx-user--format "%15d %4r" .owner)
          (propertize " " 'display "\n")))))))
 
 (defvar sx-question-list--pages-so-far 0
@@ -226,23 +239,101 @@ and thus not displayed in the list of questions.
 This is ignored if `sx-question-list--refresh-function' is set.")
 (make-variable-buffer-local 'sx-question-list--dataset)
 
-(defvar sx-question-list--header-line
-  '("    "
-    (:propertize "n p j k" face mode-line-buffer-id)
-    ": Navigate"
-    "    "
-    (:propertize "RET" face mode-line-buffer-id)
-    ": View question"
-    "    "
-    (:propertize "v" face mode-line-buffer-id)
-    ": Visit externally"
-    "    "
-    (:propertize "q" face mode-line-buffer-id)
-    ": Quit")
+(defconst sx-question-list--key-definitions
+  '(
+    ;; S-down and S-up would collide with `windmove'.
+    ("<down>" sx-question-list-next)
+    ("<up>" sx-question-list-previous)
+    ("RET" sx-display "Display")
+    ("n" sx-question-list-next "Navigate")
+    ("p" sx-question-list-previous "Navigate")
+    ("j" sx-question-list-view-next "Navigate")
+    ("k" sx-question-list-view-previous "Navigate")
+    ("N" sx-question-list-next-far)
+    ("P" sx-question-list-previous-far)
+    ("J" sx-question-list-next-far)
+    ("K" sx-question-list-previous-far)
+    ("g" sx-question-list-refresh)
+    ("t" sx-tab-switch "tab")
+    ("a" sx-ask "ask")
+    ("S" sx-search "Search")
+    ("s" sx-switchto-map "switch-to")
+    ("v" sx-visit-externally "visit")
+    ("u" sx-upvote)
+    ("d" sx-downvote)
+    ("h" sx-question-list-hide "hide")
+    ("m" sx-question-list-mark-read "mark-read")
+    ("*" sx-favorite)
+    )
+  "List of key definitions for `sx-question-list-mode'.
+This list must follow the form described in
+`sx--key-definitions-to-header-line'.")
+
+(defconst sx-question-list--header-line
+  (sx--key-definitions-to-header-line
+   sx-question-list--key-definitions)
   "Header-line used on the question list.")
+
+(defvar sx-question-list--order-methods
+  '(("Recent Activity" . activity)
+    ("Creation Date"   . creation)
+    ("Most Voted"      . votes)
+    ("Score"           . votes))
+  "Alist of possible values to be passed to the `sort' keyword.")
+(make-variable-buffer-local 'sx-question-list--order-methods)
+
+(defun sx-question-list--interactive-order-prompt (&optional prompt)
+  "Interactively prompt for a sorting order.
+PROMPT is displayed to the user.  If it is omitted, a default one
+is used."
+  (let ((order (sx-completing-read
+                (or prompt "Order questions by: ")
+                (mapcar #'car sx-question-list--order-methods))))
+    (cdr-safe (assoc-string order sx-question-list--order-methods))))
+
+(defun sx-question-list--make-pager (method &optional submethod)
+  "Return a function suitable for use as a question list pager.
+Meant to be used as `sx-question-list--next-page-function'."
+  (lambda (page)
+    (sx-method-call method
+      :keywords `((page . ,page)
+                  ,@(when sx-question-list--order
+                      `((order . ,(if sx-question-list--descending 'desc 'asc))
+                        (sort . ,sx-question-list--order))))
+      :site sx-question-list--site
+      :auth t
+      :submethod submethod
+      :filter sx-browse-filter)))
 
 
 ;;; Mode Definition
+
+(defvar sx-question-list--current-tab "Latest"
+  ;; @TODO Other values (once we implement them) are "Top Voted",
+  ;; "Unanswered", etc.
+  "Variable describing current tab being viewed.")
+
+(defconst sx-question-list--mode-line-format
+  '("   "
+    (:propertize
+     (:eval (sx--pretty-site-parameter sx-question-list--site))
+     face mode-line-buffer-id)
+    " " mode-name ": "
+    (:propertize sx-question-list--current-tab
+                 face mode-line-buffer-id)
+    " ["
+    "Unread: "
+    (:propertize
+     (:eval (sx-question-list--unread-count))
+     face mode-line-buffer-id)
+    ", "
+    "Total: "
+    (:propertize
+     (:eval (int-to-string (length tabulated-list-entries)))
+     face mode-line-buffer-id)
+    "] ")
+  "Mode-line construct to use in question-list buffers.")
+
 (define-derived-mode sx-question-list-mode
   tabulated-list-mode "Question List"
   "Major mode for browsing a list of questions from StackExchange.
@@ -270,6 +361,10 @@ The full list of variables which can be set is:
  5. `sx-question-list--dataset'
       This is only used if both 3 and 4 are nil. It can be used to
       display a static list.
+ 6. `sx-question-list--order'
+      Set this to the `sort' method that should be used when
+      requesting the list, if that makes sense. If it doesn't
+      leave it as nil.
 \\<sx-question-list-mode-map>
 If none of these is configured, the behaviour is that of a
 \"Frontpage\", for the site given by
@@ -293,11 +388,12 @@ Adding further questions to the bottom of the list is done by:
    display; otherwise, decrement `sx-question-list--pages-so-far'.
 
 If `sx-question-list--site' is given, items 3 and 4 should take it
-into consideration.
+into consideration.  The same holds for `sx-question-list--order'.
 
 \\{sx-question-list-mode-map}"
   (hl-line-mode 1)
-  (sx-question-list--update-mode-line)
+  (setq mode-line-format
+        sx-question-list--mode-line-format)
   (setq sx-question-list--pages-so-far 0)
   (setq tabulated-list-format
         [("  V" 3 t :right-align t)
@@ -308,9 +404,11 @@ into consideration.
   ;; it's not terribly intuitive.
   (setq tabulated-list-sort-key nil)
   (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list-refresh nil t)
-  (add-hook 'tabulated-list-revert-hook
-    #'sx-question-list--update-mode-line nil t)
+            #'sx-question-list-refresh nil t)
+  ;; This is the default value, but we'll error out if the user has
+  ;; set it to nil.
+  (setq tabulated-list-use-header-line t)
+  (tabulated-list-init-header)
   (setq header-line-format sx-question-list--header-line))
 
 (defcustom sx-question-list-date-sort-method 'last_activity_date
@@ -320,42 +418,20 @@ into consideration.
   ;; Add a setter to protect the value.
   :group 'sx-question-list)
 
-(defun sx-question-list--date-more-recent-p (x y)
-  "Non-nil if tabulated-entry X is newer than Y."
-  (sx--<
-   sx-question-list-date-sort-method
-   (car x) (car y) #'>))
+(sx--create-comparator sx-question-list--date-more-recent-p
+  "Non-nil if tabulated-entry A is newer than B."
+  #'> (lambda (x)
+        (cdr (assq sx-question-list-date-sort-method (car x)))))
 
 
 ;;; Keybinds
-(mapc
- (lambda (x) (define-key sx-question-list-mode-map
-          (car x) (cadr x)))
- '(
-   ;; S-down and S-up would collide with `windmove'.
-   ([down] sx-question-list-next)
-   ([up] sx-question-list-previous)
-   ("n" sx-question-list-next)
-   ("p" sx-question-list-previous)
-   ("j" sx-question-list-view-next)
-   ("k" sx-question-list-view-previous)
-   ("N" sx-question-list-next-far)
-   ("P" sx-question-list-previous-far)
-   ("J" sx-question-list-next-far)
-   ("K" sx-question-list-previous-far)
-   ("g" sx-question-list-refresh)
-   ("t" sx-tab-switch)
-   ("a" sx-ask)
-   ("S" sx-search)
-   ("s" sx-switchto-map)
-   ("v" sx-visit-externally)
-   ("u" sx-upvote)
-   ("d" sx-downvote)
-   ("h" sx-question-list-hide)
-   ("m" sx-question-list-mark-read)
-   ("*" sx-favorite)
-   ([?\r] sx-display)
-   ))
+;; We need this quote+eval combo because `kbd' was a macro in 24.2.
+(mapc (lambda (x) (eval `(define-key sx-question-list-mode-map
+                      (kbd ,(car x)) #',(cadr x))))
+  sx-question-list--key-definitions)
+
+(sx--define-conditional-key sx-question-list-mode-map "O" #'sx-question-list-order-by
+  (and (boundp 'sx-question-list--order) sx-question-list--order))
 
 (defun sx-question-list-hide (data)
   "Hide question under point.
@@ -385,52 +461,22 @@ Non-interactively, DATA is a question alist."
   (when (called-interactively-p 'any)
     (sx-question-list-refresh 'redisplay 'noupdate)))
 
-(defvar sx-question-list--current-tab "Latest"
-  ;; @TODO Other values (once we implement them) are "Top Voted",
-  ;; "Unanswered", etc.
-  "Variable describing current tab being viewed.")
-
-(defvar sx-question-list--total-count 0
-  "Holds the total number of questions in the current buffer.")
-(make-variable-buffer-local 'sx-question-list--total-count)
-
-(defconst sx-question-list--mode-line-format
-  '("  "
-    mode-name
-    " "
-    (:propertize sx-question-list--current-tab
-                 face mode-line-buffer-id)
-    " ["
-    "Unread: "
-    (:propertize
-     (:eval (sx-question-list--unread-count))
-     face mode-line-buffer-id)
-    ", "
-    "Total: "
-    (:propertize
-     (:eval (int-to-string sx-question-list--total-count))
-     face mode-line-buffer-id)
-    "] ")
-  "Mode-line construct to use in question-list buffers.")
-
 (defun sx-question-list--unread-count ()
   "Number of unread questions in current dataset, as a string."
   (int-to-string
    (cl-count-if-not
     #'sx-question--read-p sx-question-list--dataset)))
 
-(defun sx-question-list--update-mode-line ()
-  "Fill the mode-line with useful information."
-  ;; All the data we need is right in the buffer.
-  (when (derived-mode-p 'sx-question-list-mode)
-    (setq mode-line-format
-          sx-question-list--mode-line-format)
-    (setq sx-question-list--total-count
-          (length tabulated-list-entries))))
-
-(defvar sx-question-list--site nil
-  "Site being displayed in the *question-list* buffer.")
-(make-variable-buffer-local 'sx-question-list--site)
+(defun sx-question-list--remove-excluded-tags (question-list)
+  "Return QUESTION-LIST, with some questions removed.
+Removes all questions hidden by the user, as well as those
+containing a tag in `sx-question-list-excluded-tags'."
+  (cl-remove-if (lambda (q)
+                  (or (sx-question--hidden-p q)
+                      (cl-intersection (let-alist q .tags)
+                                       sx-question-list-excluded-tags
+                                       :test #'string=)))
+                question-list))
 
 (defun sx-question-list-refresh (&optional redisplay no-update)
   "Update the list of questions.
@@ -451,26 +497,19 @@ a new list before redisplaying."
          ;; Preserve window positioning.
          (window (get-buffer-window (current-buffer)))
          (old-start (when window (window-start window))))
+    ;; The dataset contains everything. Hiding and filtering is done
+    ;; on the `tabulated-list-entries' below.
     (setq sx-question-list--dataset question-list)
     ;; Print the result.
     (setq tabulated-list-entries
           (mapcar sx-question-list--print-function
-                  (cl-remove-if #'sx-question--hidden-p question-list)))
+                  (sx-question-list--remove-excluded-tags
+                   sx-question-list--dataset)))
     (when redisplay
-      (tabulated-list-print 'remember)
-      ;; Display weird chars correctly
-      (set-buffer-multibyte nil)
-      (set-buffer-multibyte t))
+      (tabulated-list-print 'remember))
     (when window
       (set-window-start window old-start)))
   (sx-message "Done."))
-
-(defcustom sx-question-list-ago-string " ago"
-  "String appended to descriptions of the time since something happened.
-Used in the questions list to indicate a question was updated
-\"4d ago\"."
-  :type 'string
-  :group 'sx-question-list)
 
 (defun sx-question-list-view-previous (n)
   "Move cursor up N questions up and display this question.
@@ -516,12 +555,19 @@ high (if possible)."
          `(window window ,(selected-window) ,sx-question-mode--buffer))
         window)))
 
+(defvar sx-question-list--last-refresh (current-time)
+  "Time of the latest refresh.")
+
 (defun sx-question-list-next (n)
   "Move cursor down N questions.
 This does not update `sx-question-mode--window'."
   (interactive "p")
   (if (and (< n 0) (bobp))
-      (sx-question-list-refresh 'redisplay)
+      (when (> (time-to-seconds
+                (time-subtract (current-time) sx-question-list--last-refresh))
+               1)
+        (sx-question-list-refresh 'redisplay)
+        (setq sx-question-list--last-refresh (current-time)))
     (forward-line n)
     ;; If we were trying to move forward, but we hit the end.
     (when (eobp)
@@ -551,9 +597,8 @@ we're not. Do the same for 3 lines from the top."
   (when (functionp sx-question-list--next-page-function)
     ;; Try to get more questions
     (let ((list
-           (cl-map 'list #'identity
-                   (funcall sx-question-list--next-page-function
-                     (1+ sx-question-list--pages-so-far)))))
+           (funcall sx-question-list--next-page-function
+             (1+ sx-question-list--pages-so-far))))
       (if (null list)
           (message "No further questions.")
         ;; If it worked, increment the variable.
@@ -561,8 +606,7 @@ we're not. Do the same for 3 lines from the top."
         ;; And update the dataset.
         ;; @TODO: Check for duplicates.
         (setq sx-question-list--dataset
-              (append sx-question-list--dataset
-                      list))
+              (append sx-question-list--dataset list))
         (sx-question-list-refresh 'redisplay 'no-update)
         (forward-line 1)))))
 
@@ -604,5 +648,27 @@ Sets `sx-question-list--site' and then call
     (setq sx-question-list--site site)
     (sx-question-list-refresh 'redisplay)))
 
+(defun sx-question-list-order-by (sort &optional ascend)
+  "Order questions in the current list by the method SORT.
+Sets `sx-question-list--order' and then calls
+`sx-question-list-refresh' with `redisplay'.
+
+With a prefix argument or a non-nil ASCEND, invert the sorting
+order."
+  (interactive
+   (list (when sx-question-list--order
+           (sx-question-list--interactive-order-prompt))
+         current-prefix-arg))
+  (unless sx-question-list--order
+    (sx-user-error "This list can't be reordered"))
+  (when (and sort (symbolp sort))
+    (setq sx-question-list--order sort)
+    (setq sx-question-list--descending (not ascend))
+    (sx-question-list-refresh 'redisplay)))
+
 (provide 'sx-question-list)
 ;;; sx-question-list.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

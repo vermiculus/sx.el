@@ -1,6 +1,8 @@
 #+Title: SX -- Stack Exchange for Emacs
 
 [[https://travis-ci.org/vermiculus/sx.el][https://travis-ci.org/vermiculus/sx.el.svg?branch=master]]
+[[http://melpa.org/#/sx][file:http://melpa.org/packages/sx-badge.svg]]
+[[http://stable.melpa.org/#/sx][file:http://stable.melpa.org/packages/sx-badge.svg]]
 [[https://gitter.im/vermiculus/sx.el?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][https://badges.gitter.im/Join Chat.svg]]
 [[https://www.waffle.io/vermiculus/sx.el][https://badge.waffle.io/vermiculus/sx.el.svg]]
 
@@ -15,38 +17,36 @@ Emacs itself.
 View questions with one of the ~sx-tab-~ commands.  These translate to the
 different 'tabs' that you can view on the official site.  Implemented tabs
 include:
-- =frontpage= :: The default front page of questions.
-- =newest= :: Newest questions first.
-- =topvoted= :: Highest-voted questions first.
-- =hot= :: Questions with the most views, answers, and votes over the last few
-           days.
-- =week= :: Questions with the most views, answers, and votes this week.
-- =month= :: Questions with the most views, answers, and votes this month.
-The meaning of these tabs hopefully needs no explanation, but the official
-behavior is given as a tooltip on any site in the StackExchange network.
 
-Each of these opens up a list of questions.  Switch sites with =:=.  Navigate
-this list of questions with =jk= or =np=.  =jk= will also view the question in a
-separate buffer.  =v= will visit the question in your browser where =w= will
-simply copy a link.  Upvote and downvote with =u= and =d=.  =RET= will take you
-to the question buffer, where =RET= on headlines will expand and collapse each
-section.  Add comments with =c=.
+- ~sx-tab-all-questions~      :: All questions.
+- ~sx-tab-unanswered~         :: Unanswered questions.
+- ~sx-tab-unanswered-my-tags~ :: Unanswered questions in your followed tags.
+- ~sx-tab-featured~           :: Featured questions.
+- ~sx-tab-starred~            :: Your starred questions.
+
+Each of these opens up a list of questions, and you can further customize the
+ordering of the list with =O=.  Other keys include:
+
+- =s s= :: Switch site.
+- =n= and =p= :: Navigate the list.
+- =j= and =k= :: Navigate while viewing the question in a separate buffer.
+- =v= :: Visit the thing-at-point in your browser
+- =w= :: Copy the thing-at-point (usually a link).
+- =u= and =d= :: Upvote and downvote.
+- =RET= :: Open the question buffer.
 
 As always, =C-h m= is the definitive resource for the functions of this mode.
 
 * Installation
-To install the development version, follow the usual steps:
-- Clone this repository
-- Add this directory to your ~load-path~
-- Issue ~(require 'sx-load)~
-This should give you access to the ~sx-tab-~ functions (the main entry points at
-this time).
+SX is now available on MELPA!  Both the stable release and the development
+version can be found there.  Install it via the Package Menu or just run
+#+BEGIN_SRC text
+M-x package-install RET sx RET=
+#+END_SRC
 
 If you are going to be doing any asking / answering / commenting / upvoting /
 downvoting / /etc./, you must use ~sx-authenticate~ to provide SX with an
 authentication token to act on your behalf.
-
-Eventually, this package will be available on MELPA.
 
 * Contributing
 Please help contribute!  Doing any of the following will help us immensely:

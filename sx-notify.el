@@ -1,4 +1,4 @@
-;;; sx-notify.el --- Mode-line notifications. -*- lexical-binding: t; -*-
+;;; sx-notify.el --- mode-line notifications         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -27,7 +27,7 @@
 
 
 ;;; mode-line notification
-(defvar sx-notify--mode-line
+(defconst sx-notify--mode-line
   '((sx-inbox--unread-inbox (sx-inbox--unread-notifications " ["))
     (sx-inbox--unread-inbox
      (:propertize
@@ -72,11 +72,11 @@
   (setq sx-inbox--unread-inbox
         (cl-remove-if
          (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-inbox))
-         (append (sx-inbox-get) nil)))
+         (sx-inbox-get)))
   (setq sx-inbox--unread-notifications
         (cl-remove-if
          (lambda (x) (member (cdr (assq 'link x)) sx-inbox--read-notifications))
-         (append (sx-inbox-get t) nil))))
+         (sx-inbox-get t))))
 
 (provide 'sx-notify)
 ;;; sx-notify.el ends here

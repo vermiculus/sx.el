@@ -1,4 +1,4 @@
-;;; sx-interaction.el --- Voting, commenting, and otherwise interacting with questions.  -*- lexical-binding: t; -*-
+;;; sx-interaction.el --- voting, commenting, and other interaction  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -44,6 +44,7 @@
 (require 'sx-question-mode)
 (require 'sx-question-list)
 (require 'sx-compose)
+(require 'sx-cache)
 
 
 ;;; Using data in buffer
@@ -79,6 +80,13 @@ thrown unless NOERROR is non-nil."
       (and (null noerror)
            (error "No %s found here" (or type "data")))))
 
+(defun sx--marker-to-data (marker &rest rest)
+  "Get the data at MARKER.
+REST is passed to `sx--data-here'."
+  (save-excursion
+    (goto-char marker)
+    (apply #'sx--data-here rest)))
+
 (defun sx--error-if-unread (data)
   "Throw a user-error if DATA is an unread question.
 If it's not a question, or if it is read, return DATA."
@@ -88,22 +96,74 @@ If it's not a question, or if it is read, return DATA."
       (sx-user-error "Question not yet read. View it before acting on it")
     data))
 
-(defun sx--maybe-update-display (&optional buffer)
+(defun sx--maybe-update-display (&optional buffer site id)
   "Refresh whatever is displayed in BUFFER or the current buffer.
-If BUFFER is not live, nothing is done."
+If BUFFER is not live, nothing is done.
+
+If SITE is given but ID isn't, only update if BUFFER appears to
+be a question-list displaying SITE.
+If both SITE and ID are given, only update if BUFFER appears to
+be a question matching SITE and ID."
   (setq buffer (or buffer (current-buffer)))
   (when (buffer-live-p buffer)
     (with-current-buffer buffer
       (cond ((derived-mode-p 'sx-question-list-mode)
-             (sx-question-list-refresh 'redisplay 'no-update))
+             (when (or (not site)
+                       (and (not id)
+                            (string= site sx-question-list--site)))
+               (sx-question-list-refresh 'redisplay 'no-update)))
             ((derived-mode-p 'sx-question-mode)
-             (sx-question-mode-refresh 'no-update))))))
+             (when (or (not site)
+                       (and id
+                            (equal
+                             (let-alist (sx--data-here 'question)
+                               (cons .site_par .question_id))
+                             (cons site id))))
+               (sx-question-mode-refresh 'no-update)))))))
 
 (defun sx--copy-data (from to)
   "Copy all fields of alist FORM onto TO.
 Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
+
+(defun sx-ensure-authentication ()
+  "Signal user-error if the user refuses to authenticate.
+Note that `sx-method-call' already does authentication checking.
+This function is meant to be used by commands that don't
+immediately perform method calls, such as `sx-ask'.  This way,
+the unauthenticated user will be prompted before going through
+the trouble of composing an entire question."
+  (unless (sx-cache-get 'auth)
+    (if (y-or-n-p "This command requires authentication, would you like to authenticate? ")
+        (sx-authenticate)
+      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
+
+(defmacro sx--make-update-callback (&rest body)
+  "Return a function that runs BODY and updates display.
+`sx--maybe-update-display' is only called if the buffer where the
+function was created still exists.  In that case, BODY is also
+run in this buffer."
+  (declare (debug t))
+  `(let ((buffer (current-buffer)))
+     (lambda (result)
+       ;; See http://emacs.stackexchange.com/a/10725/50
+       (ignore result)
+       (if (buffer-live-p buffer)
+           (with-current-buffer buffer
+             ,@body
+             (sx--maybe-update-display))
+         ,@body))))
+
+(defun sx--copy-update-callback (data)
+  "Return a function that overwrites DATA and updates display.
+First, DATA is destructively overwritten with the car of the
+argument passed to the function.  Then,
+`sx--maybe-update-display' is called in the original buffer."
+  (sx--make-update-callback
+   ;; The api returns the new DATA.
+   (when result
+     (sx--copy-data (elt result 0) data))))
 
 
 ;;; Visiting
@@ -136,15 +196,27 @@ Element can be a question, answer, or comment."
                 (save-excursion (yank))
                 (thing-at-point 'url))))
      (list (read-string (concat "Link (" def "): ") nil nil def))))
-  (let ((data (sx--link-to-data link)))
-    (sx-assoc-let data
-      (cl-case .type
-        (answer
-         (sx-display-question
-          (sx-question-get-from-answer .site_par .id) 'focus))
-        (question
-         (sx-display-question
-          (sx-question-get-question .site_par .id) 'focus))))))
+  ;; For now, we have no chance of handling chat links, let's just
+  ;; send them to the browser.
+  (if (string-match (rx string-start "http" (opt "s") "://chat.") link)
+      (sx-visit-externally link)
+    (let ((data (sx--link-to-data link)))
+      (sx-assoc-let data
+        (cl-case .type
+          (comment
+           (sx-display-question
+            (sx-question-get-from-comment .site_par .id) 'focus)
+           (sx--find-in-buffer 'comment .id))
+          (answer
+           (sx-display-question
+            (sx-question-get-from-answer .site_par .id) 'focus)
+           (sx--find-in-buffer 'answer .id))
+          (question
+           (sx-display-question
+            (sx-question-get-question .site_par .id) 'focus))
+          (t (error "Don't know how to open this link, please file a bug report: %s"
+               link)
+             nil))))))
 
 
 ;;; Displaying
@@ -159,14 +231,35 @@ likes."
   (interactive (list (sx--data-here)))
   (sx-assoc-let data
     (cond
-     (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
-     (.item_type (sx-open-link .link))
+     ;; This is an attempt to identify when we have the question
+     ;; object itself, so there's no need to fetch anything.  This
+     ;; happens inside the question-list, but it can be easily
+     ;; confused with the inbox (whose items have a title, a body, and
+     ;; a question_id).
+     ((and .title .question_id .score
+           (not .item_type) (not .notification_type))
+      (sx-display-question data 'focus))
      (.answer_id
       (sx-display-question
-       (sx-question-get-from-answer .site_par .id) 'focus))
-     (.title
-      (sx-display-question data 'focus)))))
+       (sx-question-get-from-answer .site_par .answer_id)
+       'focus)
+      (if .comment_id
+          (sx--find-in-buffer 'comment .comment_id)
+        (sx--find-in-buffer 'answer .answer_id)))
+     (.question_id
+      (sx-display-question
+       (sx-question-get-question .site_par .question_id) 'focus)
+      (when .comment_id
+        (sx--find-in-buffer 'comment .comment_id)))
+     ;; `sx-question-get-from-comment' takes 2 api requests, so we
+     ;; test it last.
+     (.comment_id
+      (sx-display-question
+       (sx-question-get-from-comment .site_par .comment_id) 'focus)
+      (sx--find-in-buffer 'comment .comment_id))
+     (.notification_type
+      (sx-message "Viewing notifications is not yet implemented"))
+     (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
   "Display question given by DATA, on WINDOW.
@@ -189,22 +282,31 @@ If WINDOW nil, the window is decided by
       (switch-to-buffer sx-question-mode--buffer))))
 
 
-;;; Favoriting
+;;; Simple interactions
 (defun sx-favorite (data &optional undo)
   "Favorite question given by DATA.
 Interactively, it is guessed from context at point.
 With the UNDO prefix argument, unfavorite the question instead."
   (interactive (list (sx--error-if-unread (sx--data-here 'question))
                      current-prefix-arg))
-  (sx-assoc-let data
-    (sx-method-call 'questions
-      :id .question_id
-      :submethod (if undo 'favorite/undo 'favorite)
-      :auth 'warn
-      :site .site_par
-      :url-method 'post
-      :filter sx-browse-filter)))
+  (sx-method-post-from-data data
+    (if undo 'favorite/undo 'favorite)
+    :callback (sx--copy-update-callback data)))
 (defalias 'sx-star #'sx-favorite)
+
+(defun sx-accept (data &optional undo)
+  "Accept answer given by DATA.
+Interactively, it is guessed from context at point.
+With the UNDO prefix argument, unaccept the question instead."
+  (interactive (list (sx--data-here 'answer)
+                     current-prefix-arg))
+  (sx-ensure-authentication)
+  ;; When clicking the "Accept" button, first arg is a marker.
+  (when (markerp data)
+    (setq data (sx--marker-to-data data 'answer)))
+  (sx-method-post-from-data data
+    (if undo 'accept/undo 'accept)
+    :callback (sx--copy-update-callback data)))
 
 
 ;;; Voting
@@ -233,24 +335,32 @@ DATA can be a question, answer, or comment. TYPE can be
 
 Besides posting to the api, DATA is also altered to reflect the
 changes."
-  (let ((result
-         (sx-assoc-let data
-           (sx-method-call
-               (cond
-                (.comment_id "comments")
-                (.answer_id "answers")
-                (.question_id "questions"))
-             :id (or .comment_id .answer_id .question_id)
-             :submethod (concat type (unless status "/undo"))
-             :auth 'warn
-             :url-method 'post
-             :filter sx-browse-filter
-             :site .site_par))))
-    ;; The api returns the new DATA.
-    (when (> (length result) 0)
-      (sx--copy-data (elt result 0) data)
-      ;; Display the changes in `data'.
-      (sx--maybe-update-display))))
+  (sx-ensure-authentication)
+  (sx-method-post-from-data data
+    (concat type (unless status "/undo"))
+    :callback (sx--copy-update-callback data)))
+
+
+;;; Delete
+(defun sx-delete (data &optional undo)
+  "Delete an object given by DATA.
+DATA can be a question, answer, or comment. Interactively, it is
+guessed from context at point.
+With UNDO prefix argument, undelete instead."
+  (interactive (list (sx--error-if-unread (sx--data-here))
+                     current-prefix-arg))
+  (sx-ensure-authentication)
+  (when (y-or-n-p (format "DELETE this %s? "
+                    (let-alist data
+                      (cond (.comment_id "comment")
+                            (.answer_id "answer")
+                            (.question_id "question")))))
+    (sx-method-post-from-data data
+      (if undo 'delete/undo 'delete)
+      :callback (sx--make-update-callback
+                 ;; Indicate to ourselves this has been deleted.
+                 (setcdr data (cons (car data) (cdr data)))
+                 (setcar data 'deleted)))))
 
 
 ;;; Commenting
@@ -262,9 +372,10 @@ If DATA is a comment, the comment is posted as a reply to it.
 
 TEXT is a string. Interactively, it is read from the minibufer."
   (interactive (list (sx--error-if-unread (sx--data-here)) 'query))
+  (sx-ensure-authentication)
   ;; When clicking the "Add a Comment" button, first arg is a marker.
   (when (markerp data)
-    (setq data (sx--data-here))
+    (setq data (sx--marker-to-data data))
     (setq text 'query))
   (sx-assoc-let data
     ;; Get the comment text
@@ -272,7 +383,7 @@ TEXT is a string. Interactively, it is read from the minibufer."
       (setq text (read-string
                   "Comment text: "
                   (when .comment_id
-                    (concat (sx--user-@name .owner) " "))))
+                    (substring-no-properties (sx-user--format "%@ " .owner)))))
       (while (not (sx--comment-valid-p text 'silent))
         (setq text (read-string "Comment text (between 16 and 600 characters): " text))))
     ;; If non-interactive, `text' could be anything.
@@ -289,12 +400,10 @@ TEXT is a string. Interactively, it is read from the minibufer."
              :site .site_par
              :keywords `((body . ,text)))))
       ;; The api returns the new DATA.
-      (when (> (length result) 0)
+      (when result
         (sx--add-comment-to-object
-         (elt result 0)
-         (if .post_id
-             (sx--get-post .post_type .site_par .post_id)
-           data))
+         (sx--ensure-owner-in-object (list (cons 'display_name "(You)")) (elt result 0))
+         (if .post_id (sx--get-post .post_type .site_par .post_id) data))
         ;; Display the changes in `data'.
         (sx--maybe-update-display)))))
 
@@ -337,14 +446,19 @@ OBJECT can be a question or an answer."
         (progn
           (setcdr
            com-cell
-           (apply #'vector
-             (append
-              (cl-map 'list #'identity
-                      (cdr com-cell))
-              (list comment)))))
+           (append (cdr com-cell)
+                   (list comment))))
       ;; No previous comments, add it manually.
       (setcdr object (cons (car object) (cdr object)))
-      (setcar object `(comments . [,comment])))))
+      (setcar object `(comments . (,comment)))))
+  object)
+
+(defun sx--ensure-owner-in-object (owner object)
+  "Add `owner' property with value OWNER to OBJECT."
+  (unless (cdr-safe (assq 'owner object))
+    (setcdr object (cons (car object) (cdr object)))
+    (setcar object `(owner . ,owner)))
+  object)
 
 
 ;;; Editing
@@ -353,6 +467,7 @@ OBJECT can be a question or an answer."
 DATA is an answer or question alist. Interactively, it is guessed
 from context at point."
   (interactive (list (sx--data-here)))
+  (sx-ensure-authentication)
   ;; If we ever make an "Edit" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (sx-assoc-let data
@@ -401,6 +516,7 @@ If nil, use `sx--interactive-site-prompt' anyway."
   "Start composing a question for SITE.
 SITE is a string, indicating where the question will be posted."
   (interactive (list (sx--interactive-site-prompt)))
+  (sx-ensure-authentication)
   (let ((buffer (current-buffer)))
     (pop-to-buffer
      (sx-compose-create
@@ -418,6 +534,7 @@ context at point. "
   ;; probaby hit the button by accident.
   (interactive
    (list (sx--error-if-unread (sx--data-here 'question))))
+  (sx-ensure-authentication)
   ;; When clicking the "Write an Answer" button, first arg is a marker.
   (when (markerp data) (setq data (sx--data-here)))
   (let ((buffer (current-buffer)))
@@ -427,19 +544,22 @@ context at point. "
         .site_par .question_id nil
         ;; After send functions
         (list (lambda (_ res)
-                (sx--add-answer-to-question-object
-                 (elt res 0) sx-question-mode--data)
-                (sx--maybe-update-display buffer))))))))
+                (sx--add-answer-to-question-object (elt res 0) data)
+                (sx--maybe-update-display buffer .site_par .question_id))))))))
 
 (defun sx--add-answer-to-question-object (answer question)
   "Add alist ANSWER to alist QUESTION in the right place."
   (let ((cell (assoc 'answers question)))
     (if cell
-        (setcdr cell (apply #'vector
-                       (append (cdr cell) (list answer))))
+        (setcdr cell (append (cdr cell) (list answer)))
       ;; No previous comments, add it manually.
       (setcdr question (cons (car question) (cdr question)))
-      (setcar question `(answers . [,answer])))))
+      (setcar question `(answers . (,answer))))
+    question))
 
 (provide 'sx-interaction)
 ;;; sx-interaction.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

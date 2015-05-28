@@ -1,4 +1,4 @@
-#+MACRO: version 0.1
+#+MACRO: version 0.3
 #+MACRO: versiondate 16 November 2014
 #+MACRO: updated last updated {{{versiondate}}}
 
@@ -97,7 +97,7 @@ Scrolling past the bottom of the list fetches more questions.
 - ~sx-init-hook~ :: Run when ~sx-initialize~ is called.
 - ~sx-compose-before-send-hook~ :: Run before POSTing to the API from
      a buffer in ~sx-compose-mode~.  If any of the functions in this
-     hook, return nil, the transaction is cancelled.
+     hook, return nil, the transaction is canceled.
 - ~sx-compose-after-send-functions~ :: Run after POSTing to the API
      from a buffer in ~sx-compose-mode~, if the transaction was
      successful.
@@ -156,44 +156,45 @@ has a descriptive header explaining its purpose.  Still, to help you
 find your way around, we describe below the current project
 structure. This list is very loosely ordered form low to high-level.
 
-- ~sx.el~ - Utility functions used throughout the package. Essentially
-  every file indirectly requires this one. If you're adding a function
-  that's used by different parts of the package, add it to this file.
-- ~sx-time.el~ - Similar to ~sx.el~, but only contains a few
-  time-related functions.
-- ~sx-filter.el~ - Handles retrieval of filters.
-- ~sx-cache.el~ - Saves and restores persistent data between sessions.
-- ~sx-button.el~ - Defines all button types used throughout the
-  package. Currently used only by ~sx-question-print.el~.
-
-- ~sx-request.el~ - Requests and url manipulation. Backend used by
-  ~sx-method.el~. It shouldn't be necessary to use the functions in
-  this file outside ~sx-method.el~.
-- ~sx-method.el~ - Main interface for API method calls.
-
-- ~sx-favorites.el~ - Starred questions.
-- ~sx-networks.el~ - User network information.
-- ~sx-site.el~ - Browsing sites.
-- ~sx-auth.el~ - Handles user authentication.
-
-- ~sx-question.el~ - Base question logic. Holds several functions for
-  retrieving questions and for processing retrieved questions. Doesn't
-  do any sort of user interface, that is left for
-  ~sx-question-list.el~ and ~sx-question-mode.el~.
-- ~sx-question-list.el~ - Major-mode for navigating questions list.
-- ~sx-question-mode.el~ - User interface for displaying a
-  question. Creates the buffer and defines the major-mode.
-- ~sx-question-print.el~ - Populating the question buffer with
-  content. Used by ~sx-question-mode.el~ to actually print the content
-  of a question.
-- ~sx-babel.el~ - Font-locking code blocks printed by
-  ~sx-question-print.el~ according to the language.
-
-- ~sx-compose.el~ - Major-mode for composing questions and answers.
-- ~sx-interaction.el~ - Voting, commenting, and otherwise interacting with questions.
-- ~sx-tab.el~ - Functions for viewing different tabs.
-
-- ~sx-load.el~ - Load all files of the sx package.  Designed as an easy way in for users who install the package manually (since they don't have autoloads).
+- ~sx.el~ :: Utility functions used throughout the
+             package. Essentially every file indirectly requires this
+             one. If you're adding a function that's used by different
+             parts of the package, add it to this file.
+- ~sx-time.el~ :: Similar to ~sx.el~, but only contains a few
+                  time-related functions.
+- ~sx-filter.el~ :: Handles retrieval of filters.
+- ~sx-cache.el~ :: Saves and restores persistent data between
+                   sessions.
+- ~sx-button.el~ :: Defines all button types used throughout the
+                    package. Currently used only by
+                    ~sx-question-print.el~.
+- ~sx-request.el~ :: Requests and url manipulation. Back-end used by
+     ~sx-method.el~. It shouldn't be necessary to use the functions in
+     this file outside ~sx-method.el~.
+- ~sx-method.el~ :: Main interface for API method calls.
+- ~sx-favorites.el~ :: Starred questions.
+- ~sx-networks.el~ :: User network information.
+- ~sx-site.el~ :: Browsing sites.
+- ~sx-auth.el~ :: Handles user authentication.
+- ~sx-question.el~ :: Base question logic. Holds several functions for
+     retrieving questions and for processing retrieved
+     questions. Doesn't do any sort of user interface, that is left
+     for ~sx-question-list.el~ and ~sx-question-mode.el~.
+- ~sx-question-list.el~ :: Major-mode for navigating questions list.
+- ~sx-question-mode.el~ :: User interface for displaying a
+     question. Creates the buffer and defines the major-mode.
+- ~sx-question-print.el~ :: Populating the question buffer with
+     content. Used by ~sx-question-mode.el~ to actually print the
+     content of a question.
+- ~sx-babel.el~ :: Font-locking code blocks printed by
+                   ~sx-question-print.el~ according to the language.
+- ~sx-compose.el~ :: Major-mode for composing questions and answers.
+- ~sx-interaction.el~ :: Voting, commenting, and otherwise interacting
+     with questions.
+- ~sx-tab.el~ :: Functions for viewing different tabs.
+- ~sx-load.el~ :: Load all files of the SX package.  Designed as an
+                  easy way in for users who install the package
+                  manually (since they don't have autoloads).
 
 * COMMENT Local Variables
 #  LocalWords:  StackExchange SX inbox sx API url json inline Org

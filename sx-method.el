@@ -1,4 +1,4 @@
-;;; sx-method.el --- Main interface for API method calls. -*- lexical-binding: t; -*-
+;;; sx-method.el --- method calls                    -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Sean Allred
 
@@ -43,25 +43,28 @@
                                       get-all
                                       (process-function
                                        #'sx-request-response-get-items)
+                                      callback
                                       site)
   "Call METHOD with additional keys.
 
-:ID is the id associated with a question, answer, comment, post or
+ID is the id associated with a question, answer, comment, post or
 user.
-:SUBMETHOD is the additional segments of the method.
-:KEYWORDS are the api parameters.
-:FILTER is the set of filters to control the returned information
-:AUTH defines how to act if the method or filters require
+SUBMETHOD is the additional segments of the method.
+KEYWORDS are the api parameters.  Some parameters have their own
+keywords too, for convenience.  The KEYWORDS argument overrides
+parameter specific keywords.
+FILTER is the set of filters to control the returned information
+AUTH defines how to act if the method or filters require
 authentication.
-:URL-METHOD is either `post' or `get'
-:SITE is the api parameter specifying the site.
-:GET-ALL is nil or non-nil
-:PROCESS-FUNCTION is a response-processing function
-:PAGE is the page number which will be requested
-:PAGESIZE is the number of items to retrieve per request, default 100
-
-Any conflicting information in :KEYWORDS overrides the :PAGE
-and :PAGESIZE settings.
+URL-METHOD is either `post' or `get'
+SITE is the api parameter specifying the site.
+GET-ALL is nil or non-nil
+PROCESS-FUNCTION is a response-processing function
+PAGE is the page number which will be requested
+PAGESIZE is the number of items to retrieve per request, default
+100
+CALLBACK is a function to be called if the request succeeds.  It
+is given the returned result as an argument.
 
 When AUTH is nil, it is assumed that no auth-requiring filters or
 methods will be used.  If they are an error will be signaled.  This is
@@ -136,11 +139,46 @@ Return the entire response as a complex alist."
       (push `(pagesize . ,pagesize) keywords))
     (when site
       (push `(site . ,site) keywords))
-    (funcall call
-             full-method
-             keywords
-             url-method
-             (or get-all process-function))))
+    (let ((result (funcall call
+                    full-method
+                    keywords
+                    url-method
+                    (or get-all process-function))))
+      (when callback
+        (funcall callback result))
+      result)))
+
+(defun sx-method-post-from-data (data &rest keys)
+  "Make a POST `sx-method-call', deriving parameters from DATA.
+KEYS are [KEYWORD VALUE] pairs passed to `sx-method-call', except
+the following which are decided by this function:
+
+    METHOD :site and :id are derived from DATA, where METHOD is
+           either \"answers\", \"comments\", or \"questions\".
+    :url-method is post.
+    :filter is `sx-browse-filter'.
+    :auth is warn.
+
+As a special exception, if the car of KEYS is not a keyword, it
+is assumed to be the :submethod argument."
+  (declare (indent 1))
+  (sx-assoc-let data
+    (apply #'sx-method-call
+      (cond (.comment_id "comments")
+            (.answer_id "answers")
+            (.question_id "questions"))
+      :id (or .comment_id .answer_id .question_id)
+      :auth 'warn
+      :url-method 'post
+      :filter sx-browse-filter
+      :site .site_par
+      (if (keywordp (car keys))
+          keys
+        (cons :submethod keys)))))
 
 (provide 'sx-method)
 ;;; sx-method.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

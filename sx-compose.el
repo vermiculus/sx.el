@@ -1,4 +1,4 @@
-;;; sx-compose.el --- Major-mode for coposing questions and answers. -*- lexical-binding: t; -*-
+;;; sx-compose.el --- major-mode for composing questions and answers  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -34,6 +34,7 @@
 (require 'markdown-mode)
 
 (require 'sx)
+(require 'sx-tag)
 
 (defgroup sx-compose-mode nil
   "Customization group for sx-compose-mode."
@@ -67,7 +68,7 @@ succeeds.")
 Is invoked between `sx-compose-before-send-hook' and
 `sx-compose-after-send-functions'.")
 
-(defvar sx-compose--question-headers
+(defconst sx-compose--question-headers
   (concat
    #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
    "%s"
@@ -82,6 +83,23 @@ Is invoked between `sx-compose-before-send-hook' and
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
+(defconst sx-compose--header-line
+  '("    "
+    (:propertize "C-c C-c" face mode-line-buffer-id)
+    ": Finish and Send"
+    (sx-compose--is-question-p
+     ("    "
+      (:propertize "C-c C-q" face mode-line-buffer-id)
+      ": Insert tags"))
+    "    "
+    (:propertize "C-c C-k" face mode-line-buffer-id)
+    ": Discard Draft")
+  "Header-line used on `sx-compose-mode' drafts.")
+
+(defvar sx-compose--is-question-p nil
+  "Non-nil if this `sx-compose-mode' buffer is a question.")
+(make-variable-buffer-local 'sx-compose--is-question-p)
+
 (defvar sx-compose--site nil
   "Site which the curent compose buffer belongs to.")
 (make-variable-buffer-local 'sx-compose--site)
@@ -95,11 +113,15 @@ just implements some extra features related to posting to the
 API.
 
 This mode won't function if `sx-compose--send-function' isn't
-set. To make sure you set it correctly, you can create the buffer
-with the `sx-compose-create' function.
+set.  To make sure you set it correctly, you can create the
+buffer with the `sx-compose-create' function.
+
+If creating a question draft, the `sx-compose--is-question-p'
+variable should also be set to enable more functionality.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
+  (setq header-line-format sx-compose--header-line)
   (add-hook 'sx-compose-after-send-functions
     #'sx-compose-quit nil t)
   (add-hook 'sx-compose-after-send-functions
@@ -107,6 +129,9 @@ with the `sx-compose-create' function.
 
 (define-key sx-compose-mode-map "\C-c\C-c" #'sx-compose-send)
 (define-key sx-compose-mode-map "\C-c\C-k" #'sx-compose-quit)
+(sx--define-conditional-key
+    sx-compose-mode-map "\C-c\C-q" #'sx-compose-insert-tags
+  sx-compose--is-question-p)
 
 (defun sx-compose-send ()
   "Finish composing current buffer and send it.
@@ -115,10 +140,30 @@ contents to the API, then calls `sx-compose-after-send-functions'."
   (interactive)
   (when (run-hook-with-args-until-failure
          'sx-compose-before-send-hook)
-    (let ((result (funcall sx-compose--send-function)))
-      (with-demoted-errors
-          (run-hook-with-args 'sx-compose-after-send-functions
-                              (current-buffer) result)))))
+    (let ((result (funcall sx-compose--send-function))
+          (buf (current-buffer)))
+      (run-hook-wrapped
+       'sx-compose-after-send-functions
+       (lambda (func)
+         (with-demoted-errors
+             "[sx] Error encountered AFTER sending post, but the post was sent successfully: %s"
+           (funcall func buf result))
+         nil)))))
+
+(defun sx-compose-insert-tags ()
+  "Prompt for a tag list for this draft and insert them."
+  (interactive)
+  (save-excursion
+    (let* ((old (sx-compose--goto-tag-header))
+           (new
+            (save-match-data
+              (mapconcat
+               #'identity
+               (sx-tag-multiple-read sx-compose--site "Tags" old)
+               " "))))
+      (if (match-string 1)
+          (replace-match new :fixedcase nil nil 1)
+        (insert new)))))
 
 
 ;;; Functions for use in hooks
@@ -128,7 +173,7 @@ contents to the API, then calls `sx-compose-after-send-functions'."
   (when (buffer-live-p buffer)
     (let ((w (get-buffer-window buffer)))
       (when (window-live-p w)
-        (delete-window w)))
+        (ignore-errors (delete-window w))))
     (kill-buffer buffer)))
 
 (defun sx-compose--copy-as-kill (buffer _)
@@ -137,24 +182,29 @@ contents to the API, then calls `sx-compose-after-send-functions'."
     (with-current-buffer buffer
       (kill-new (buffer-string)))))
 
+(defun sx-compose--goto-tag-header ()
+  "Move to the \"Tags:\" header.
+Match data is set so group 1 encompasses any already inserted
+tags.  Return a list of already inserted tags."
+  (goto-char (point-min))
+  (unless (search-forward-regexp
+           (rx bol "Tags : " (group-n 1 (* not-newline)) eol)
+           (next-single-property-change (point-min) 'sx-compose-separator)
+           'noerror)
+    (error "No Tags header found"))
+  (save-match-data
+    (sx--split-string (match-string 1) (rx (any space ",;")))))
+
 (defun sx-compose--check-tags ()
   "Check if tags in current compose buffer are valid."
   (save-excursion
-    (goto-char (point-min))
-    (unless (search-forward-regexp
-             "^Tags : *\\([^[:space:]].*\\) *$"
-             (next-single-property-change (point-min) 'sx-compose-separator)
-             'noerror)
-      (error "No Tags header found"))
     (let ((invalid-tags
            (sx-tag--invalid-name-p
-            (split-string (match-string 1) "[[:space:],;]"
-                          'omit-nulls "[[:space:]]")
-            sx-compose--site)))
+            sx-compose--site (sx-compose--goto-tag-header))))
       (if invalid-tags
           ;; If the user doesn't want to create the tags, we return
           ;; nil and sending is aborted.
-          (y-or-n-p "Following tags don't exist. Create them? %s " invalid-tags)
+          (y-or-n-p (format "Following tags don't exist. Create them? %s " invalid-tags))
         t))))
 
 
@@ -180,6 +230,7 @@ respectively added locally to `sx-compose-before-send-hook' and
     (with-current-buffer (sx-compose--get-buffer-create site parent)
       (sx-compose-mode)
       (setq sx-compose--site site)
+      (setq sx-compose--is-question-p is-question)
       (setq sx-compose--send-function
             (if (consp parent)
                 (sx-assoc-let parent
@@ -243,15 +294,14 @@ Keywords meant to be used in `sx-method-call'.
 
 `body' is read as the `buffer-string'. If IS-QUESTION is non-nil,
 other keywords are read from the header "
+  (goto-char (point-min))
   `(,@(when is-question
         (let ((inhibit-point-motion-hooks t)
-              (inhibit-read-only t)
               (header-end
                (next-single-property-change
                 (point-min) 'sx-compose-separator))
               keywords)
           ;; Read the Title.
-          (goto-char (point-min))
           (unless (search-forward-regexp
                    "^Title: *\\(.*\\) *$" header-end 'noerror)
             (error "No Title header found"))
@@ -261,16 +311,13 @@ other keywords are read from the header "
           (unless (search-forward-regexp "^Tags : *\\([^[:space:]].*\\) *$"
                                          header-end 'noerror)
             (error "No Tags header found"))
-          (push (cons 'tags (split-string (match-string 1)
-                                          "[[:space:],;]" 'omit-nulls))
+          (push (cons 'tags (sx--split-string (match-string 1) "[[:space:],;]"))
                 keywords)
-          ;; And erase the header so it doesn't get sent.
-          (delete-region
-           (point-min)
-           (next-single-property-change
-            header-end 'sx-compose-separator))
+          ;; And move past the header so it doesn't get sent.
+          (goto-char (next-single-property-change
+                      header-end 'sx-compose-separator))
           keywords))
-    (body . ,(buffer-string))))
+    (body . ,(buffer-substring-no-properties (point) (point-max)))))
 
 (defun sx-compose--get-buffer-create (site data)
   "Get or create a buffer for use with `sx-compose-mode'.
@@ -302,3 +349,7 @@ the id property."
 
 (provide 'sx-compose)
 ;;; sx-compose.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:

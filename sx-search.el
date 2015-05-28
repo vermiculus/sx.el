@@ -1,4 +1,4 @@
-;;; sx-search.el --- Searching for questions.       -*- lexical-binding: t; -*-
+;;; sx-search.el --- searching for questions         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Artur Malabarba
 
@@ -19,7 +19,7 @@
 
 ;;; Commentary:
 
-;; Implements sarch functionality.  The basic function is
+;; Implements search functionality.  The basic function is
 ;; `sx-search-get-questions', which returns an array of questions
 ;; according to a search term.
 ;;
@@ -32,16 +32,18 @@
 
 (require 'sx)
 (require 'sx-question-list)
+(require 'sx-question-mode)
+(require 'sx-tag)
+(require 'sx-interaction)
 
 (defvar sx-search--query-history nil
   "Query history for interactive prompts.")
 
-(defvar sx-search--tag-history nil
-  "Tags history for interactive prompts.")
-
 
 ;;; Basic function
-(defun sx-search-get-questions (site page query &optional tags excluded-tags keywords)
+(defun sx-search-get-questions (site page query
+                                     &optional tags excluded-tags
+                                     &rest keywords)
   "Like `sx-question-get-questions', but restrict results by a search.
 
 Perform search on SITE.  PAGE is an integer indicating which page
@@ -54,7 +56,6 @@ fail.  EXCLUDED-TAGS is only is used if TAGS is also provided.
 KEYWORDS is passed to `sx-method-call'."
   (sx-method-call 'search
     :keywords `((page . ,page)
-                (sort . activity)
                 (intitle . ,query)
                 (tagged . ,tags)
                 (nottagged . ,excluded-tags)
@@ -63,8 +64,23 @@ KEYWORDS is passed to `sx-method-call'."
     :auth t
     :filter sx-browse-filter))
 
+(defconst sx-search--order-methods
+  (cons '("Relevance" . relevance)
+        (default-value 'sx-question-list--order-methods))
+  "Alist of possible values to be passed to the `sort' keyword.")
+
+(defcustom sx-search-default-order 'activity
+  "Default ordering method used on new searches.
+Possible values are the cdrs of `sx-search--order-methods'."
+  :type (cons 'choice
+              (mapcar (lambda (c) `(const :tag ,(car c) ,(cdr c)))
+                (cl-remove-duplicates
+                 sx-search--order-methods
+                 :key #'cdr)))
+  :group 'sx-question-list)
+
 
-;;; User command
+;;;###autoload
 (defun sx-search (site query &optional tags excluded-tags)
   "Display search on SITE for question titles containing QUERY.
 When TAGS is given, it is a lists of tags, one of which must
@@ -84,15 +100,12 @@ prefix argument, the user is asked for everything."
      (when (string= query "")
        (setq query nil))
      (when current-prefix-arg
-       (setq tags (sx--multiple-read
-                   (format "Tags (%s)"
-                     (if query "optional" "mandatory"))
-                   'sx-search--tag-history))
-       (when (and (not query) (string= "" tags))
+       (setq tags (sx-tag-multiple-read
+                   site (concat "Tags" (when query " (optional)"))))
+       (unless (or query tags)
          (sx-user-error "Must supply either QUERY or TAGS"))
        (setq excluded-tags
-             (sx--multiple-read
-              "Excluded tags (optional)" 'sx-search--tag-history)))
+             (sx-tag-multiple-read site "Excluded tags (optional)")))
      (list site query tags excluded-tags)))
   
   ;; Here starts the actual function
@@ -103,10 +116,38 @@ prefix argument, the user is asked for everything."
           (lambda (page)
             (sx-search-get-questions
              sx-question-list--site page
-             query tags excluded-tags)))
+             query tags excluded-tags
+             (cons 'order (if sx-question-list--descending 'desc 'asc))
+             (cons 'sort sx-question-list--order))))
     (setq sx-question-list--site site)
+    (setq sx-question-list--order sx-search-default-order)
+    (setq sx-question-list--order-methods sx-search--order-methods)
     (sx-question-list-refresh 'redisplay)
     (switch-to-buffer (current-buffer))))
 
+
+;;; Tag
+;;;###autoload
+(defun sx-search-tag-at-point (&optional pos)
+  "Follow tag under position POS or point."
+  (interactive)
+  (let ((tag (save-excursion
+               (when pos (goto-char pos))
+               (or (get-text-property (point) 'sx-tag)
+                   (thing-at-point 'symbol))))
+        (meta (save-excursion
+                (when pos (goto-char pos))
+                (get-text-property (point) 'sx-tag-meta)))
+        (site (replace-regexp-in-string
+               (rx string-start "meta.") ""
+               (or sx-question-list--site
+                   (sx-assoc-let sx-question-mode--data .site_par)))))
+    (sx-search (concat (when meta "meta.") site)
+               nil tag)))
+
 (provide 'sx-search)
 ;;; sx-search.el ends here
+
+;; Local Variables:
+;; indent-tabs-mode: nil
+;; End:
