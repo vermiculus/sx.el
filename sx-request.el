@@ -99,6 +99,20 @@ It is good to use a reasonable delay to avoid rate-limiting.")
 
 
 ;;; Making Requests
+(defvar sx--backoff-time nil)
+
+(defun sx-request--wait-while-backoff ()
+  (when sx--backoff-time
+    (let ((time  (cadr (current-time))))
+      (if (> (- sx--backoff-time time) 1000)
+          ;; If backoff-time is more than 1000 seconds in the future,
+          ;; we've likely just looped around the "least significant"
+          ;; bits of `current-time'.
+          (setq sx--backoff-time time)
+        (message "Backoff detected, waiting %s seconds" (< time sx--backoff-time))
+        (when (< time sx--backoff-time)
+          (sleep-for (+ 2 (- sx--backoff-time time))))))))
+
 (defun sx-request-all-items (method &optional args request-method
                                     stop-when)
   "Call METHOD with ARGS until there are no more items.
@@ -120,10 +134,10 @@ access the response wrapper."
           (sx-request-make method `((page . ,current-page) ,@args)
                            request-method process-function)))
     (while (not (funcall stop-when response))
-      (setq current-page (1+ current-page)
-            return-value
-            (nconc return-value
-                   (cdr (assoc 'items response))))
+      (let-alist response
+        (setq current-page (1+ current-page)
+              return-value
+              (nconc return-value .items)))
       (sleep-for sx-request-all-items-delay)
       (setq response
             (sx-request-make method `((page . ,current-page) ,@args)
@@ -156,6 +170,7 @@ then read with `json-read-from-string'.
 `sx-request-remaining-api-requests' is updated appropriately and
 the main content of the response is returned."
   (declare (indent 1))
+  (sx-request--wait-while-backoff)
   (let* ((url-automatic-caching t)
          (url-inhibit-uncompression t)
          (url-request-data (sx-request--build-keyword-arguments args nil))
@@ -202,6 +217,9 @@ the main content of the response is returned."
             (when .error_id
               (error "Request failed: (%s) [%i %s] %S"
                 .method .error_id .error_name .error_message))
+            (when .backoff
+              (message "Backoff received %s" .backoff)
+              (setq sx--backoff-time (+ (cadr (current-time)) .backoff)))
             (when (< (setq sx-request-remaining-api-requests .quota_remaining)
                      sx-request-remaining-api-requests-message-threshold)
               (sx-message "%d API requests remaining"
