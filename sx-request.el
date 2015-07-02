@@ -103,6 +103,7 @@ It is good to use a reasonable delay to avoid rate-limiting.")
 
 (defun sx-request--wait-while-backoff ()
   (when sx--backoff-time
+    (message "Waiting for backoff time: %s" sx--backoff-time)
     (let ((time  (cadr (current-time))))
       (if (> (- sx--backoff-time time) 1000)
           ;; If backoff-time is more than 1000 seconds in the future,
