@@ -60,20 +60,27 @@ File is savedd in `sx-bot-out-dir'."
   "Get a list of all tags of all sites and save to disk."
   (make-directory sx-bot-out-dir t)
   (let* ((url-show-status nil)
-         (site-tokens (sx-site-get-api-tokens))
+         (site-tokens (mapcar (lambda (site)  ;Fix bad sites
+                                (pcase site
+                                  ("metamunitybuilding" "meta.communitybuilding")
+                                  ((or "gamification" "meta.gamification") nil)
+                                  (_ site)))
+                              (sx-site-get-api-tokens)))
          (number-of-sites (length site-tokens))
          (current-site-number 0)
          (sx-request-remaining-api-requests-message-threshold 4000)
-         (sx-request-all-items-delay 1))
+         (sx-request-all-items-delay 0))
     (mapcar
      (lambda (site)
-       (message "[%d/%d] Working on %S"
-                (cl-incf current-site-number)
-                number-of-sites
-                site)
-       (sx-bot-write-to-file
-        (cons (concat site ".el")
-              (sx-tag--get-all site))))
+       (when site
+         (message "[%d/%d] Working on %S"
+                  (cl-incf current-site-number)
+                  number-of-sites
+                  site)
+         (with-demoted-errors (concat "Failed to get " site ": %S")
+           (sx-bot-write-to-file
+            (cons (concat site ".el")
+                  (sx-tag--get-all site))))))
      site-tokens)))
 
 

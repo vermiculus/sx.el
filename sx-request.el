@@ -92,8 +92,7 @@ number of requests left every time it finishes a call."
   :group 'sx
   :type 'integer)
 
-(defvar sx-request-all-items-delay
-  1
+(defvar sx-request-all-items-delay 0
   "Delay in seconds with each `sx-request-all-items' iteration.
 It is good to use a reasonable delay to avoid rate-limiting.")
 
@@ -110,9 +109,9 @@ It is good to use a reasonable delay to avoid rate-limiting.")
           ;; we've likely just looped around the "least significant"
           ;; bits of `current-time'.
           (setq sx--backoff-time time)
-        (message "Backoff detected, waiting %s seconds" (< time sx--backoff-time))
         (when (< time sx--backoff-time)
-          (sleep-for (+ 2 (- sx--backoff-time time))))))))
+          (message "Backoff detected, waiting %s seconds" (- sx--backoff-time time))
+          (sleep-for (+ 0.3 (- sx--backoff-time time))))))))
 
 (defun sx-request-all-items (method &optional args request-method
                                     stop-when)
