@@ -54,9 +54,9 @@ Either QUERY or TAGS must be non-nil, or the search will
 fail.  EXCLUDED-TAGS is only is used if TAGS is also provided.
 
 KEYWORDS is passed to `sx-method-call'."
-  (sx-method-call 'search
+  (sx-method-call 'search/advanced
     :keywords `((page . ,page)
-                (intitle . ,query)
+                (q . ,query)
                 (tagged . ,tags)
                 (nottagged . ,excluded-tags)
                 ,@keywords)
