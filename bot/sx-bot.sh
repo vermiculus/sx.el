@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ -z "$EMACS" ]] && EMACS="emacs";
+
 DESTINATION_BRANCH=data
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -21,9 +23,9 @@ function notify-done {
 }
 
 function generate-tags {
-    emacs -Q --batch \
-          -L "./" -L "./bot/" -l sx-bot \
-          -f sx-bot-fetch-and-write-tags
+    $EMACS -Q --batch \
+           -L "./" -L "./bot/" -l sx-bot \
+           -f sx-bot-fetch-and-write-tags
     ret=$?
     notify-done
     return ${ret}
