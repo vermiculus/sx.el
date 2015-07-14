@@ -88,6 +88,7 @@
 "diabetes"
 "diaper"
 "diaper-rash"
+"diarrhea"
 "diet"
 "disagreement"
 "discipline"

@@ -116,6 +116,7 @@
 "site-cleanup"
 "site-faq"
 "site-promotion"
+"slang"
 "social-norms"
 "sock-puppetry"
 "spam"

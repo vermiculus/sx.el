@@ -295,6 +295,7 @@
 "fsa"
 "fscs"
 "fund-manager"
+"funding"
 "funeral"
 "futures"
 "gbp"

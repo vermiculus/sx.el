@@ -265,6 +265,7 @@
 "raspbian"
 "raspbmc"
 "raspi-config"
+"raspicam"
 "raspivid"
 "razberry"
 "rdp"

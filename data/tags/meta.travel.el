@@ -65,6 +65,7 @@
 "openid"
 "place-names-and-spelling"
 "policy"
+"private"
 "privileges"
 "profile-page"
 "proposals"

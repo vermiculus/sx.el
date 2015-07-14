@@ -34,6 +34,7 @@
 "citations"
 "clarity"
 "cliches"
+"climax"
 "collaboration"
 "comedy"
 "comics"

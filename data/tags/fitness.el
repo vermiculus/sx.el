@@ -397,6 +397,7 @@
 "weightlifting"
 "weights"
 "weighttraining"
+"whey"
 "wilks"
 "workout"
 "workout-routines"

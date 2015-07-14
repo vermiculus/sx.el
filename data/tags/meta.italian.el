@@ -57,6 +57,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"suggested-edits"
 "support"
 "tag-synonyms"
 "tagging"

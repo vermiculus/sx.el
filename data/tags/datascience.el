@@ -5,6 +5,7 @@
 "anonymization"
 "apache-mahout"
 "apache-pig"
+"apache-spark"
 "aws"
 "barplot"
 "basket-analysis"
@@ -100,6 +101,7 @@
 "methods"
 "mongodb"
 "multiclass-classification"
+"multitask-learning"
 "named-entity-recognition"
 "neo4j"
 "neuralnetwork"
@@ -164,5 +166,4 @@
 "usecase"
 "version-control"
 "visualization"
-"weather"
-"wieghting")
+"weather")

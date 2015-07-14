@@ -250,7 +250,6 @@
 "mushrooms"
 "mycorrhizae"
 "native-conditions"
-"natives"
 "nectarines"
 "nematodes"
 "nepenthes"

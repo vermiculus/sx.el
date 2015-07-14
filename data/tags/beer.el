@@ -56,6 +56,7 @@
 "liquor"
 "local"
 "malt"
+"micropub"
 "mulling"
 "non-alcoholic"
 "nutrition"

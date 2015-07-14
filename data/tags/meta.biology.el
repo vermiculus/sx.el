@@ -2,6 +2,7 @@
 "allowed-questions"
 "answers"
 "asking-questions"
+"attitude"
 "badges"
 "big-list"
 "bounty"

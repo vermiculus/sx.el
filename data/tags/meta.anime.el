@@ -87,6 +87,7 @@
 "tags"
 "tags-by-season"
 "title-wording"
+"tour"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

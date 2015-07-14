@@ -108,7 +108,6 @@
 "etherchannel"
 "ethernet"
 "evc"
-"extreme"
 "f5"
 "failover"
 "fcoe"

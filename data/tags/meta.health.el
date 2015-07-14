@@ -19,6 +19,7 @@
 "deleted-comments"
 "deleted-questions"
 "design"
+"disclamer"
 "discussion"
 "down-votes"
 "editing"

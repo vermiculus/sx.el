@@ -84,6 +84,7 @@
 "site-salvage"
 "site-statistics"
 "soft-question"
+"software-questions"
 "spam"
 "speakers-bureau"
 "specific-question"

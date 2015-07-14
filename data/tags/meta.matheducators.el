@@ -51,6 +51,7 @@
 "scope"
 "search"
 "self-deletion"
+"self-learning"
 "site-evaluation"
 "site-promotion"
 "spam"

@@ -98,6 +98,7 @@
 "kickback"
 "kiln-dried-wood"
 "knot"
+"laminating"
 "lathe"
 "lathe-chuck"
 "lathe-faceplate"

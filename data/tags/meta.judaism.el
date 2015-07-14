@@ -32,6 +32,7 @@
 "daf-yomi"
 "data-dump"
 "data-explorer"
+"days-of-awe-project"
 "deleted-answers"
 "deleted-questions"
 "deleted-users"

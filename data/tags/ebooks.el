@@ -128,6 +128,7 @@
 "publishing"
 "reference-request"
 "repairing"
+"retina-display"
 "rss"
 "sales"
 "sbrz"

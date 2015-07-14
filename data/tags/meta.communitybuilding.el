@@ -50,6 +50,7 @@
 "scope"
 "search"
 "site-evaluation"
+"site-name"
 "site-promotion"
 "software"
 "specific-question"

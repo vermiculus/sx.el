@@ -113,6 +113,7 @@
 "odata"
 "offline"
 "open-source"
+"opera"
 "paging"
 "parameters"
 "perl"

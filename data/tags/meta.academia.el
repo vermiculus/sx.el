@@ -9,6 +9,7 @@
 "bounty"
 "bug"
 "burninate-request"
+"censorship"
 "chat"
 "close-reasons"
 "closed-questions"

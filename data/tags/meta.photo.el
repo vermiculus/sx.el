@@ -56,7 +56,6 @@
 "hyperlinks"
 "images"
 "interesting-tags"
-"legal"
 "license"
 "links"
 "login"

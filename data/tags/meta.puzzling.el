@@ -41,7 +41,6 @@
 "hotness"
 "hyperlinks"
 "interesting-tags"
-"lateral-thinking"
 "legal"
 "lists"
 "login"

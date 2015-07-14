@@ -96,6 +96,7 @@
 "tag-wiki"
 "tagging"
 "tags"
+"tour"
 "ui"
 "unanswered-questions"
 "up-votes"

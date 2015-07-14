@@ -367,6 +367,7 @@
 "speed"
 "spider"
 "spokes"
+"sprint"
 "sprocket"
 "sram"
 "stationary-bike"
