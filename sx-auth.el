@@ -35,7 +35,7 @@
 (defconst sx-auth-root
   "https://stackexchange.com/oauth/dialog")
 (defconst sx-auth-redirect-uri
-  "http://vermiculus.github.io/sx.el/auth/auth.htm")
+  "http://seanallred.com/sx.el/auth/auth.htm")
 (defconst sx-auth-client-id
   "3291")
 (defvar sx-auth-access-token
