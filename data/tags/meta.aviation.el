@@ -3,7 +3,6 @@
 "answers"
 "asking-questions"
 "badges"
-"books"
 "bot"
 "bounty"
 "bug"

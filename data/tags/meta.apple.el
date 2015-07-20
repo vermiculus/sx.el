@@ -101,6 +101,7 @@
 "subjective-questions"
 "suggested-edits"
 "support"
+"synonym"
 "tags"
 "troubleshooting"
 "twitter"

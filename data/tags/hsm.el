@@ -61,6 +61,7 @@
 "islamic-science"
 "japan"
 "kuhn"
+"language"
 "light"
 "linear-algebra"
 "linguistics"

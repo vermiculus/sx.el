@@ -46,7 +46,6 @@
 "off-topic"
 "openid"
 "policy"
-"politeness"
 "profile-page"
 "quality-evaluation"
 "questions"

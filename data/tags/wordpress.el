@@ -733,7 +733,6 @@
 "switch"
 "switch-theme"
 "switch-to-blog"
-"symlink"
 "sync"
 "syntax-highlighting"
 "table"

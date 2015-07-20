@@ -77,7 +77,6 @@
 "search"
 "self-answer"
 "site-evaluation"
-"site-events"
 "site-promotion"
 "specific-answer"
 "specific-question"

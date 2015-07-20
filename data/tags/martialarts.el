@@ -28,6 +28,7 @@
 "daito-ryu"
 "data"
 "defense"
+"discussion"
 "dogi"
 "dojo"
 "drills"

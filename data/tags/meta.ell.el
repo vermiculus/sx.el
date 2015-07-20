@@ -32,7 +32,6 @@
 "general-reference"
 "hyperlinks"
 "interesting-tags"
-"locked-questions"
 "login"
 "markdown"
 "meta"

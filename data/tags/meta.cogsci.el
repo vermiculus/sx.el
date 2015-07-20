@@ -17,7 +17,6 @@
 "deleted-questions"
 "design"
 "discussion"
-"display-name"
 "down-votes"
 "editing"
 "equations"

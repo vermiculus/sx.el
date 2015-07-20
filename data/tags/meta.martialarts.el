@@ -47,6 +47,7 @@
 "rss"
 "scope"
 "search"
+"should-not-be-meta"
 "site-evaluation"
 "site-promotion"
 "specific-question"

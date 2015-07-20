@@ -126,7 +126,6 @@
 "reviewing"
 "rollback"
 "rss"
-"santa-claus"
 "sc2-tournament"
 "scope"
 "search"

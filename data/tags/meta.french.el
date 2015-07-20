@@ -90,7 +90,6 @@
 "user-accounts"
 "user-interface"
 "users"
-"views"
 "vote-to-close"
 "votes"
 "voting")

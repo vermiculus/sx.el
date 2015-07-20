@@ -1,5 +1,4 @@
-("&#233;nfasis"
-"abbreviations"
+("abbreviations"
 "abreviaturas"
 "acentos"
 "acepci&#243;n"

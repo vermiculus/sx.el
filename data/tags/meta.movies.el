@@ -18,7 +18,6 @@
 "community-ads"
 "community-event"
 "community-wiki"
-"daily-reputation-limit"
 "data-dump"
 "data-explorer"
 "deleted-questions"

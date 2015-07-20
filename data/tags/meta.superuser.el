@@ -123,7 +123,6 @@
 "profile-popup"
 "protected-posts"
 "qotw"
-"quality-filters"
 "question-of-the-month"
 "question-of-the-week"
 "question-quality"

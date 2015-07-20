@@ -240,7 +240,6 @@
 "terrariums"
 "territory"
 "tetra"
-"thundershirt"
 "ticks"
 "toilet-training"
 "tonic-immobility"

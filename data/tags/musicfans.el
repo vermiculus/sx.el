@@ -44,6 +44,7 @@
 "database"
 "dead-can-dance"
 "deep-house"
+"def-leppard"
 "delerium"
 "digital-audio"
 "discography"

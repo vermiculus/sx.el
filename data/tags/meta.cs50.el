@@ -4,7 +4,6 @@
 "badges"
 "bounty"
 "bug"
-"burninate-request"
 "chat"
 "close-reasons"
 "closed-questions"

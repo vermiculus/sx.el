@@ -48,7 +48,6 @@
 "moderators"
 "new-users"
 "notifications"
-"off-topic"
 "on-topic"
 "openid"
 "poke"

@@ -132,7 +132,6 @@
 "problem-solving"
 "procrastination"
 "professional-life"
-"proficiency"
 "projects"
 "psychology"
 "quantified-self"

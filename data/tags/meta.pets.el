@@ -49,7 +49,6 @@
 "recent-activity"
 "reputation"
 "retagging"
-"reviewing"
 "rss"
 "scope"
 "search"

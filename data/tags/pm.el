@@ -219,7 +219,6 @@
 "user-experience-design"
 "user-stories"
 "using-tools"
-"velocity"
 "vision"
 "visualization"
 "waterfall"

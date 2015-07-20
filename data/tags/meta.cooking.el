@@ -39,7 +39,6 @@
 "hyperlinks"
 "interesting-tags"
 "language"
-"leftovers"
 "links"
 "login"
 "logo"

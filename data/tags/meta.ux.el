@@ -42,8 +42,6 @@
 "ia"
 "images"
 "interesting-tags"
-"language"
-"linked-questions"
 "login"
 "logo"
 "markdown"

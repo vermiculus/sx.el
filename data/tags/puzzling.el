@@ -15,6 +15,7 @@
 "burr-puzzle"
 "calculation-puzzle"
 "cards"
+"cellular-automata"
 "checkerboard"
 "chemistry"
 "chess"
@@ -177,4 +178,5 @@
 "word-problem"
 "word-search"
 "word-sequence"
+"word-square"
 "wordplay")

@@ -1,7 +1,6 @@
 ("10k-tools"
 "accepted-answer"
 "allowed-topics"
-"android-app"
 "android-browser"
 "android-versions"
 "answering-questions"

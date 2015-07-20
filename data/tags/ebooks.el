@@ -116,7 +116,6 @@
 "pdb"
 "pdf"
 "phone"
-"picture"
 "pocket"
 "power-management"
 "pricing"

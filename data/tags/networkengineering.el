@@ -10,7 +10,6 @@
 "adsl"
 "aironet"
 "alcatel-lucent-7750"
-"appsecure"
 "architecture"
 "arin"
 "arista"
@@ -102,7 +101,6 @@
 "education"
 "eem"
 "eigrp"
-"enterasys"
 "environmental-monitoring"
 "errors"
 "etherchannel"
@@ -350,6 +348,7 @@
 "wan"
 "wan-optimizer"
 "wifi"
+"windows"
 "wireless"
 "wireshark"
 "wlc")

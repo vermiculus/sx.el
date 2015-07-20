@@ -26,7 +26,6 @@
 "deleted-questions"
 "design"
 "discussion"
-"disputed-content"
 "down-votes"
 "downvote-request"
 "duplicates"

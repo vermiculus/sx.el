@@ -212,6 +212,7 @@
 "tridion2011"
 "tridion2013"
 "tridionui2012"
+"triggers"
 "ugc"
 "ui-2012"
 "ui-extension"

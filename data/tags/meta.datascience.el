@@ -36,7 +36,6 @@
 "new-users"
 "notifications"
 "openid"
-"pro-tem-moderators"
 "profile-page"
 "questions"
 "recent-activity"
