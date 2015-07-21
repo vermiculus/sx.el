@@ -238,6 +238,7 @@
 "entity-reference"
 "entity-translation"
 "erpal"
+"error"
 "error-handling"
 "event"
 "export"

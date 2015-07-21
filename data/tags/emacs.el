@@ -348,6 +348,7 @@
 "occur"
 "octave"
 "openwith"
+"optimization"
 "org-agenda"
 "org-babel"
 "org-capture"

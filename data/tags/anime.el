@@ -53,6 +53,7 @@
 "ao-no-exorcist"
 "aoi-bungaku"
 "aoishiro"
+"appleseed"
 "ar-nosurge"
 "ar-tonelico"
 "arakawa-under-the-bridge"

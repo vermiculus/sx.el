@@ -235,6 +235,7 @@
 "pi1"
 "pi2"
 "pi4j"
+"pib+"
 "piface"
 "pigpio"
 "ping"

@@ -273,6 +273,7 @@
 "proteins"
 "psychosomatic-illness"
 "pulmonology"
+"pulse"
 "quantified-self"
 "radiation"
 "radiations"

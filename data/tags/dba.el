@@ -197,6 +197,7 @@
 "decimal"
 "default-value"
 "deferrable-constraints"
+"definer"
 "delete"
 "denali"
 "dependencies"

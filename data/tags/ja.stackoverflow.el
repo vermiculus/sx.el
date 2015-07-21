@@ -583,6 +583,7 @@
 "selenium-webdriver"
 "selinux"
 "sendmail"
+"seo"
 "serializable"
 "service"
 "sessionid"

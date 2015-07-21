@@ -74,6 +74,7 @@
 "prerelease"
 "privileges"
 "profile-page"
+"protected-questions"
 "questions"
 "recent-activity"
 "reputation"

@@ -229,6 +229,7 @@
 "case"
 "case-sensitivity"
 "cat"
+"catfish"
 "ccache"
 "cd-command"
 "cde"

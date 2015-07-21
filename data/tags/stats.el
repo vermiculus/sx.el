@@ -715,6 +715,7 @@
 "median"
 "mediation"
 "medicine"
+"merge"
 "meta-analysis"
 "meta-regression"
 "method-comparison"

@@ -1239,6 +1239,7 @@
 "sony-xperia-arc"
 "sony-xperia-arc-s"
 "sony-xperia-c3"
+"sony-xperia-e3-dual"
 "sony-xperia-j"
 "sony-xperia-l"
 "sony-xperia-m-dual"
@@ -1501,4 +1502,5 @@
 "zte-merit"
 "zte-quartz"
 "zte-racer"
-"zte-score")
+"zte-score"
+"zte-speed-n9130")

@@ -199,6 +199,7 @@
 "nonuniform"
 "normalization"
 "notation"
+"novelty-detection"
 "nyquist"
 "object-recognition"
 "ocr"

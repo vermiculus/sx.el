@@ -2940,6 +2940,7 @@
 "sky-force-2014"
 "skyfall-bioes"
 "skyforce2014"
+"skyforge"
 "skylanders"
 "skylanders-cloud-patrol"
 "skylanders-giants"

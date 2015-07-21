@@ -384,6 +384,7 @@
 "cursor"
 "curvature"
 "customization"
+"cut"
 "cx-oracle"
 "cygwin"
 "d3"
