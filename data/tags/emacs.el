@@ -235,6 +235,7 @@
 "hippie-expand"
 "history"
 "history-variables"
+"homebrew"
 "hooks"
 "html"
 "http"

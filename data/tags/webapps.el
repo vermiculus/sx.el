@@ -404,6 +404,7 @@
 "google-checkout"
 "google-chrome"
 "google-chrome-extensions"
+"google-classroom"
 "google-code"
 "google-code-issues"
 "google-contacts"

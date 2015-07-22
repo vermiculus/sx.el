@@ -68,6 +68,7 @@
 "tags"
 "top-bar"
 "topic-of-the-week"
+"tour"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

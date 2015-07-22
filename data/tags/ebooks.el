@@ -59,6 +59,7 @@
 "fixed-layout"
 "font-rendering"
 "fonts"
+"footnotes"
 "format"
 "formatting"
 "free"

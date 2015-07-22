@@ -92,6 +92,7 @@
 "formation"
 "foundamental-astronomy"
 "fundamental-astronomy"
+"funding"
 "galactic-dynamics"
 "galaxies"
 "galaxy"

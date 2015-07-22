@@ -14,6 +14,7 @@
 "conditional-mood"
 "conditional-sentences"
 "conjunctions"
+"definizione"
 "difference"
 "english"
 "english-comparison"

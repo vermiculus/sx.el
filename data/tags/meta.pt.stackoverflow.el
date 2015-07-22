@@ -207,5 +207,4 @@
 "votos"
 "wiki-comunit&#225;rio"
 "wikis-de-tags"
-"winterbash-2014"
-"youtube")
+"winterbash-2014")

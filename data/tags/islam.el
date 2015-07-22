@@ -147,6 +147,7 @@
 "fashion-designing"
 "fast"
 "fasting"
+"fatima"
 "fatima-zahra"
 "fatwa"
 "fatwa-explanation"

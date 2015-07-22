@@ -10,6 +10,7 @@
 "arduino-duemilanove"
 "arduino-galileo"
 "arduino-ide"
+"arduino-ide-1.6.x"
 "arduino-intel-galileo"
 "arduino-leonardo"
 "arduino-mega"

@@ -14,6 +14,7 @@
 "boat"
 "brands"
 "brick"
+"brickcon"
 "bricklink"
 "bricks-and-pieces"
 "bridge"

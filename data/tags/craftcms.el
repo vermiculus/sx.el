@@ -190,6 +190,7 @@
 "params"
 "parents"
 "password"
+"patterns"
 "pdf"
 "pending"
 "performance"

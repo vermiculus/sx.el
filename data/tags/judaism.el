@@ -97,7 +97,6 @@
 "automobile"
 "avoda-zara-idol-worship"
 "avodah-zarah"
-"avodath"
 "avodath-hashem"
 "avos-derav-nosson"
 "avos-drabi-nosson"

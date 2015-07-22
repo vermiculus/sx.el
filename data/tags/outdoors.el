@@ -219,6 +219,7 @@
 "new-england"
 "new-zealand"
 "night"
+"norway"
 "nutrition"
 "ohio-river"
 "orienteering"

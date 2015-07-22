@@ -908,6 +908,7 @@
 "ring-flash"
 "risk"
 "roadtrip"
+"rodenstock"
 "roes"
 "rokinon"
 "rolling-shutter"

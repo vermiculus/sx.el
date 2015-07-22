@@ -43,6 +43,7 @@
 "definitions"
 "differential-equations"
 "differentiatd-instruction"
+"disability"
 "discrete-math"
 "division"
 "dyscalculia"

@@ -270,6 +270,7 @@
 "paths"
 "patio"
 "pavers"
+"peace-lilly"
 "peach"
 "peaches"
 "peanuts"

@@ -5281,6 +5281,7 @@
 "visual-studio-2010"
 "visual-studio-2012"
 "visual-studio-2013"
+"visual-studio-2015"
 "visual-styles"
 "visual-web-developer"
 "visualization"

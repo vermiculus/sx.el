@@ -121,6 +121,7 @@
 "bibliography"
 "bibtex"
 "bibtool"
+"bibtopic"
 "bibunits"
 "bidi"
 "big-list"

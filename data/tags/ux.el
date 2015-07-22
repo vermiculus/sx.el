@@ -221,6 +221,7 @@
 "detail"
 "development-frameworks"
 "device"
+"device-independent"
 "device-rotation"
 "diagram"
 "diagramming"
