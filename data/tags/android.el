@@ -1392,7 +1392,6 @@
 "unrevoked"
 "unroot"
 "unrooting"
-"untagged"
 "update"
 "updates"
 "upgrade"

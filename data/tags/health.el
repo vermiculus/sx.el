@@ -1,5 +1,4 @@
-("5-a-day"
-"acid-base-physiology"
+("acid-base-physiology"
 "acne"
 "acupuncture"
 "addiction"

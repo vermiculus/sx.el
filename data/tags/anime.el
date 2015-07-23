@@ -717,6 +717,7 @@
 "re-kan"
 "read-or-die"
 "reborn"
+"rebuild-of-evangelion"
 "redline"
 "requiem-for-the-phantom"
 "reset"

@@ -438,6 +438,7 @@
 "jogl"
 "joystick"
 "jquery"
+"jruby"
 "jumping"
 "kd-tree"
 "keyboard"

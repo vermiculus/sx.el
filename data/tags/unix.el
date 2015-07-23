@@ -1028,6 +1028,7 @@
 "logging"
 "login"
 "login-manager"
+"loginctl"
 "logind"
 "logoff"
 "logout"

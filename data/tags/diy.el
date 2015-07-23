@@ -577,6 +577,7 @@
 "span-tables"
 "speakers"
 "splicing"
+"spout"
 "spray-foam"
 "spraying"
 "spraypainting"

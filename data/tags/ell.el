@@ -90,6 +90,7 @@
 "date"
 "definite-article"
 "definition"
+"delimitation"
 "demonstrative"
 "demonstrative-pronouns"
 "demonyms"

@@ -40,6 +40,7 @@
 "help-center"
 "hotness"
 "hyperlinks"
+"intentionally-broad"
 "interesting-tags"
 "legal"
 "lists"

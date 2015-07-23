@@ -13,6 +13,7 @@
 "compounds"
 "conditional-mood"
 "conditional-sentences"
+"conjugations"
 "conjunctions"
 "definizione"
 "difference"

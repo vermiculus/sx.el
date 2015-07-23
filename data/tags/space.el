@@ -93,7 +93,6 @@
 "climate"
 "cme"
 "cold-welding"
-"collision"
 "collision-avoidance"
 "colonisation"
 "colonization"

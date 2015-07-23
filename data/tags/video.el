@@ -205,6 +205,7 @@
 "stereo"
 "stop-motion"
 "storage"
+"story"
 "streaming"
 "studio"
 "subtitles"

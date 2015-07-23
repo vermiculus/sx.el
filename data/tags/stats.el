@@ -1252,6 +1252,7 @@
 "truncation"
 "tukey-hsd"
 "tutorial"
+"tweedie"
 "tweedie-distribution"
 "twin"
 "two-sample"

@@ -744,6 +744,7 @@
 "google-charts"
 "google-chrome"
 "google-chrome-extens&#227;o"
+"google-cloud-messaging"
 "google-drive"
 "google-managed-vm"
 "google-maps"

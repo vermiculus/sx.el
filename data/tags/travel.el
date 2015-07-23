@@ -173,6 +173,7 @@
 "bergamo"
 "bergen"
 "berlin"
+"bermuda"
 "bhutan"
 "bicycles"
 "biking"

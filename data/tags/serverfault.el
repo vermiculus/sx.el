@@ -2580,6 +2580,7 @@
 "risk-management"
 "rj45"
 "rkhunter"
+"rkt"
 "rm"
 "rmagick"
 "rman"

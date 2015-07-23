@@ -425,6 +425,7 @@
 "merge-replication"
 "metadata"
 "migration"
+"min"
 "mirroring"
 "model"
 "mondrian"

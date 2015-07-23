@@ -126,6 +126,7 @@
 "podcast"
 "pomodoro-technique"
 "positive-psychology"
+"potential"
 "printing"
 "prioritization"
 "priority"

@@ -134,6 +134,7 @@
 "mmc"
 "monitoring"
 "multimedia"
+"mvc"
 "navigation"
 "network"
 "odata"

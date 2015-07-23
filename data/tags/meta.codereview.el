@@ -49,7 +49,6 @@
 "exact-duplicates"
 "example-code"
 "faq"
-"faq-proposed"
 "favorites"
 "feature-request"
 "featured"

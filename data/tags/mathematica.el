@@ -683,6 +683,7 @@
 "windowsize"
 "wolfram-alpha-queries"
 "wolfram-programming-cloud"
+"word-cloud"
 "workaround"
 "workbench"
 "writing"

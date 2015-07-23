@@ -77,6 +77,7 @@
 "cooking"
 "coping"
 "cosleeping"
+"counting"
 "crawling"
 "crib"
 "crying"
