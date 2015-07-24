@@ -36,6 +36,7 @@
 "cross-posting"
 "data-dump"
 "data-explorer"
+"delete"
 "deleted-answers"
 "deleted-questions"
 "design"

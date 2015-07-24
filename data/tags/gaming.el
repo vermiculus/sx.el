@@ -751,7 +751,6 @@
 "diablo-3-ros"
 "diablo-3-witch-doctor"
 "diablo-3-wizard"
-"diablo-console"
 "diablo-hellfire"
 "diablo-iii"
 "diablo-series"

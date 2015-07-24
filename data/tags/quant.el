@@ -516,6 +516,7 @@
 "transaction-costs"
 "transition-matrix"
 "trends"
+"trinomial-trees"
 "ttr"
 "untagged"
 "utility-theory"

@@ -186,6 +186,7 @@
 "vita-merlini"
 "weapons"
 "welsh"
+"welsh-triads"
 "werewolves"
 "wondjina"
 "yggdrasil"

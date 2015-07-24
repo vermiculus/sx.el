@@ -266,6 +266,7 @@
 "explorator"
 "extended-actions"
 "extras"
+"face-cards"
 "fading-suns"
 "faerun"
 "fallout-pnp-rpg"

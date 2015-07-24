@@ -592,6 +592,7 @@
 "war-on-terror"
 "warfare"
 "warsaw-pact"
+"watergate"
 "waterloo"
 "weapons"
 "weimar-republic"

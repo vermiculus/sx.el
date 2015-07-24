@@ -36,6 +36,7 @@
 "bike-culture"
 "bike-fit"
 "bike-frame"
+"bike-handling"
 "bike-lane"
 "bike-selection"
 "bike-setup"

@@ -297,6 +297,7 @@
 "core"
 "core2duo"
 "corrosion"
+"cortex"
 "cortex-a"
 "cortex-m"
 "cortex-m0"

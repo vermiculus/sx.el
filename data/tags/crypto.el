@@ -394,6 +394,7 @@
 "untagged"
 "verifiability"
 "vigenere"
+"visual-cryptography"
 "voip"
 "voting"
 "white-box"

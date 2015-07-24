@@ -713,6 +713,7 @@
 "launcherpro"
 "led"
 "lenovo"
+"lenovo-a3000"
 "lenovo-a660"
 "lenovo-a706"
 "lenovo-ideapad-tablet-a1"

@@ -276,6 +276,7 @@
 "nouns"
 "numbers"
 "numerals"
+"old-english"
 "old-norse"
 "online-resources"
 "onomastics"

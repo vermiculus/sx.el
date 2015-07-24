@@ -860,6 +860,7 @@
 "wesleyanism"
 "westminster-confession"
 "will-of-god"
+"william-carey"
 "willow-creek"
 "wine"
 "wisdom"

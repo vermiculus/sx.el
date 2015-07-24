@@ -325,6 +325,7 @@
 "rep-hound"
 "reputation"
 "reputation-audit"
+"reputation-bias"
 "reputation-history"
 "reputation-leagues"
 "research"

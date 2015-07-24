@@ -164,6 +164,7 @@
 "name"
 "nandi"
 "narada"
+"narada-purana"
 "naraka"
 "narasimha"
 "narayana"

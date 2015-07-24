@@ -80,6 +80,7 @@
 "entries-field"
 "entry"
 "entry-type"
+"entry-versions"
 "entrymodel"
 "environmental"
 "environments"

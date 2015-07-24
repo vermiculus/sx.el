@@ -1991,6 +1991,7 @@
 "handwriting-recognition"
 "hang"
 "hangouts"
+"haproxy"
 "hard-disk"
 "hard-disk-drive"
 "hard-disk-space"

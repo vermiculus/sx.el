@@ -145,6 +145,7 @@
 "plugin-omnisharp-vim"
 "plugin-powerline"
 "plugin-python-mode"
+"plugin-rope"
 "plugin-snipmate"
 "plugin-solarized"
 "plugin-spf13"

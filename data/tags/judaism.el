@@ -1176,6 +1176,7 @@
 "peyot"
 "philosophy"
 "phone"
+"phrase"
 "pictures"
 "pidyon-haben"
 "pidyon-shvuyim-prisoners"

@@ -145,6 +145,7 @@
 "cookies"
 "corporate-policy"
 "countermeasure"
+"covert-channel"
 "cracking"
 "credentials"
 "credit-card"
