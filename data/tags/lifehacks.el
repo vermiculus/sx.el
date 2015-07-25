@@ -1,6 +1,7 @@
 ("adhesive"
 "air"
 "appliances"
+"automation"
 "bathroom"
 "batteries"
 "bedroom"

@@ -122,6 +122,7 @@
 "examination-committee"
 "exams"
 "expenses"
+"expenses"
 "experiment-design"
 "extended-paper"
 "extracurricular"

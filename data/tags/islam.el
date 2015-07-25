@@ -637,7 +637,6 @@
 "uloom-al-hadith"
 "umrah"
 "universe"
-"untagged"
 "urine"
 "usool-ul-fiqh"
 "validity"

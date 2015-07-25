@@ -414,6 +414,7 @@
 "hotlinking"
 "hotmail"
 "hreflang"
+"hsts"
 "htaccess"
 "html"
 "html5"

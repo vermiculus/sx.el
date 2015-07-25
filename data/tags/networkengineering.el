@@ -248,6 +248,7 @@
 "private-vlan"
 "protocol-theory"
 "proxy"
+"ptp"
 "pvlan"
 "qinq"
 "qos"

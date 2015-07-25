@@ -358,7 +358,6 @@
 "ios"
 "ip"
 "iphone"
-"is-user-logged-in"
 "javascript"
 "jetpack"
 "jigoshop"

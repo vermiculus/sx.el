@@ -194,6 +194,7 @@
 "distributions"
 "documentation"
 "domain-access"
+"donations"
 "downloads"
 "draft"
 "draggable-table"

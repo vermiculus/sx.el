@@ -44,6 +44,7 @@
 "login"
 "lumping-and-splitting"
 "markdown"
+"memes"
 "meta"
 "migration"
 "moderation"

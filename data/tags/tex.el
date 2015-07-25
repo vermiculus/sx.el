@@ -210,6 +210,7 @@
 "classicthesis"
 "cleanup"
 "cleveref"
+"cmmi"
 "code"
 "code-folding"
 "code-review"

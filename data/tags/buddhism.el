@@ -121,6 +121,7 @@
 "hinduism"
 "history"
 "holidays"
+"human"
 "iconography"
 "ignorance"
 "illness"

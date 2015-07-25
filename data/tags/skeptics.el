@@ -44,6 +44,7 @@
 "archery"
 "architecture"
 "area-51"
+"armenia"
 "army"
 "art"
 "asia"

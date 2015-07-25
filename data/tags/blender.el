@@ -60,7 +60,6 @@
 "force-fields"
 "freestyle"
 "game-engine"
-"gamma"
 "geometry"
 "gpu"
 "graph-editor"

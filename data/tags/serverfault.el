@@ -2234,6 +2234,7 @@
 "pear"
 "pecl"
 "peering"
+"peplink"
 "perc"
 "perc6"
 "percona"

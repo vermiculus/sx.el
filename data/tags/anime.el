@@ -267,6 +267,7 @@
 "full-metal-panic"
 "full-moon-wo-sagashite"
 "fullmetal-alchemist"
+"funimation"
 "fuse"
 "fushigi-yugi"
 "future-boy-conan"

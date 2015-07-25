@@ -84,6 +84,7 @@
 "clefs"
 "college-preparation"
 "composers"
+"composing"
 "composition"
 "computer"
 "concertina"

@@ -149,6 +149,7 @@
 "hand"
 "head-trauma"
 "headache"
+"health-informatics"
 "hearing"
 "heart-attack"
 "hematocrit"

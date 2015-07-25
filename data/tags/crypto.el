@@ -116,6 +116,7 @@
 "feal"
 "feistel-network"
 "fhe"
+"fhe"
 "fiat-shamir"
 "file-encryption"
 "file-format"

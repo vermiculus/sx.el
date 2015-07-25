@@ -118,7 +118,6 @@
 "mwindo"
 "myth-identification"
 "mythical-creatures"
-"mythography"
 "mythohistory"
 "names"
 "native-american"

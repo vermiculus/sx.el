@@ -933,6 +933,7 @@
 "virtual-products"
 "virtualtype"
 "voiding"
+"wallet"
 "wamp"
 "warning"
 "web-services"

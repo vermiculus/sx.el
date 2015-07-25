@@ -142,6 +142,7 @@
 "determinant"
 "dfa"
 "directed-acyclic-graph"
+"discrepancy"
 "disjoint-paths"
 "distributed-systems"
 "dm.discrete-mathematics"
