@@ -231,6 +231,7 @@
 "integer-lattice"
 "integer-programming"
 "integrality-gap"
+"interaction-nets"
 "interactive-proofs"
 "interval-graphs"
 "intuition"

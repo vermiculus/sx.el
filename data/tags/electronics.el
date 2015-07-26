@@ -809,6 +809,7 @@
 "lufa"
 "lvds"
 "mac"
+"magnetic-flux"
 "magnetics"
 "magnetometer"
 "magstripe"

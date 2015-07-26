@@ -1324,6 +1324,7 @@
 "urlbst"
 "urls"
 "utf-8"
+"vario"
 "varioref"
 "varwidth"
 "vector"

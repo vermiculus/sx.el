@@ -82,7 +82,6 @@
 "data"
 "death"
 "deficiency"
-"dementia"
 "dentistry"
 "deodorant"
 "depression"

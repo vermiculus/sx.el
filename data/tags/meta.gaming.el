@@ -122,6 +122,7 @@
 "recent-activity"
 "reopen"
 "reputation"
+"reputation-leagues"
 "retag-request"
 "reviewing"
 "rollback"

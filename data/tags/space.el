@@ -634,6 +634,7 @@
 "spin-off"
 "spinoff"
 "spirit"
+"sport"
 "srb"
 "ssme"
 "sso"

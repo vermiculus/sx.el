@@ -1372,7 +1372,6 @@
 "pdf"
 "pdftk"
 "pdsh"
-"pecl"
 "pendrive"
 "perf"
 "perf-event"

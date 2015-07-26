@@ -215,7 +215,6 @@
 "uiautomation"
 "unit-tests"
 "unix"
-"untagged"
 "user-acceptance-testing"
 "user-stories"
 "virtualization"

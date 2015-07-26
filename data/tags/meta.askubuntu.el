@@ -172,6 +172,7 @@
 "tools"
 "top-7"
 "top-bar"
+"troll"
 "tutorials"
 "ubuntu-community"
 "uds"

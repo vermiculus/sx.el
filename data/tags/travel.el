@@ -961,6 +961,7 @@
 "mastercard"
 "maui"
 "mauritius"
+"mcx"
 "mdw"
 "mecca"
 "medical"

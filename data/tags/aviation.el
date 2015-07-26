@@ -250,7 +250,6 @@
 "fixed-wing"
 "flaps"
 "flashback"
-"flight"
 "flight-attendant"
 "flight-controls"
 "flight-data-recorder"

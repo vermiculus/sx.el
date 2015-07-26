@@ -1652,6 +1652,7 @@
 "tortall-universe"
 "total-recall"
 "total-recall-2070"
+"toy-story"
 "toy-story-2"
 "toys"
 "trade-federation"

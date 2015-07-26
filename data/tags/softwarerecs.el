@@ -677,6 +677,7 @@
 "windows-10"
 "windows-7"
 "windows-8"
+"windows-8.1"
 "windows-ce"
 "windows-ce-6.0"
 "windows-phone"

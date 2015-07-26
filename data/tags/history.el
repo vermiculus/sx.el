@@ -302,6 +302,7 @@
 "italy"
 "japan"
 "jefferson"
+"jerusalem"
 "jesus"
 "jews"
 "john-f-kennedy"

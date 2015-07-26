@@ -3,6 +3,7 @@
 "abortion"
 "academic-buddhism"
 "access-concentration"
+"accidental-merit"
 "adi-buddha"
 "ahimsa"
 "alan-watts"

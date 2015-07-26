@@ -3,6 +3,7 @@
 "area51"
 "asking-questions"
 "badges"
+"best-practice"
 "bounty"
 "bug"
 "chat"

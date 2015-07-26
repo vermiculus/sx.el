@@ -84,6 +84,7 @@
 "ethernet"
 "events"
 "fat"
+"fedora"
 "firmware"
 "flash"
 "float"

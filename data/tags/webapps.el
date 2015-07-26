@@ -113,7 +113,6 @@
 "calendar"
 "captcha"
 "captions"
-"change.org"
 "channel"
 "chart"
 "charts"

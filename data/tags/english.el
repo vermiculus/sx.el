@@ -630,6 +630,7 @@
 "origin-unknown"
 "ornithology"
 "orthography"
+"ought"
 "oxymoron"
 "pagination"
 "palaeogisms"

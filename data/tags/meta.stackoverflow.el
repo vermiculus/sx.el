@@ -197,7 +197,6 @@
 "https"
 "human-verification"
 "hyperlinks"
-"i"
 "idiom"
 "ignored-tags"
 "images"

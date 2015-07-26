@@ -109,7 +109,6 @@
 "java"
 "javascript"
 "jms"
-"jsf"
 "jsp"
 "keyword"
 "language-cloud"
