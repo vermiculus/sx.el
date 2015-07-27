@@ -126,6 +126,7 @@
 "pattern"
 "pencil-and-paper-games"
 "physics"
+"plants"
 "polyomino"
 "probability"
 "programming"
@@ -179,4 +180,5 @@
 "word-search"
 "word-sequence"
 "word-square"
-"wordplay")
+"wordplay"
+"zombies")

@@ -2462,6 +2462,7 @@
 "zf2"
 "zimbra"
 "zip"
+"zsh"
 "zte"
 "zxing"
 "аpache"

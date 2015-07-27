@@ -172,6 +172,7 @@
 "datacentre"
 "dbms"
 "ddos"
+"debian"
 "debugging"
 "decryption"
 "default-password"

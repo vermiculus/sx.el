@@ -155,7 +155,6 @@
 "grammaticality-in-context"
 "grammer"
 "greetings"
-"grmamar"
 "headlinese"
 "history"
 "homophones"

@@ -1947,6 +1947,7 @@
 "ttf"
 "tty"
 "ttyusb"
+"tuned"
 "tuning"
 "tunneling"
 "tunnels"

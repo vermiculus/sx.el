@@ -162,6 +162,7 @@
 "transliteration"
 "untagged"
 "usage"
+"useage"
 "verbs"
 "vocab"
 "vocabulary"

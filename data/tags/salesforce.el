@@ -924,6 +924,7 @@
 "skuid-model"
 "smartquery"
 "smartstore"
+"snippet"
 "soap"
 "soap-api"
 "sobject"

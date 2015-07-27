@@ -720,6 +720,7 @@
 "lenovo-ideapad-tablet-a1"
 "lenovo-s960"
 "lenovo-thinkpad-tablet"
+"lenovo-vibe-shot-z90-7"
 "lenovo-yoga"
 "lg"
 "lg-ally"

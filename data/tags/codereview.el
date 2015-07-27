@@ -486,6 +486,7 @@
 "memoization"
 "memory-management"
 "memory-optimization"
+"mercurial"
 "mergesort"
 "meta-programming"
 "metalsmith"

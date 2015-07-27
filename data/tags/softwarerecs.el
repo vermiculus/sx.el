@@ -108,6 +108,7 @@
 "continuous-integration"
 "cookies"
 "cooking"
+"copy-paste-detection"
 "cortana"
 "cpanel"
 "crm"

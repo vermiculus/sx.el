@@ -29,6 +29,7 @@
 "aku-no-hana"
 "akuma-no-riddle"
 "aldnoah-zero"
+"alexander-senki"
 "allison-and-lillia"
 "amagami"
 "amagi-brilliant-park"

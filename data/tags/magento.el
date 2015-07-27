@@ -337,6 +337,7 @@
 "fails"
 "fancybox2"
 "fatal-error"
+"favicon"
 "featured-product"
 "fedex"
 "field"

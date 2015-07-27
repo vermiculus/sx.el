@@ -87,6 +87,7 @@
 "openid"
 "podcast"
 "policy"
+"post-ban"
 "pre-migration"
 "privileges"
 "profile-page"
