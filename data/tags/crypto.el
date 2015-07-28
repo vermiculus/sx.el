@@ -71,6 +71,7 @@
 "cryptographic-hardware"
 "csprng"
 "ctr"
+"curve25519"
 "data-privacy"
 "database"
 "decryption-oracle"

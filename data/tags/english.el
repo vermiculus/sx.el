@@ -466,6 +466,7 @@
 "intrusive-r"
 "intuition"
 "inversion"
+"invoic"
 "ipa"
 "irish-english"
 "irony"

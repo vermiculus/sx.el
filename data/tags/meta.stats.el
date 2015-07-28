@@ -82,6 +82,7 @@
 "pedagogy"
 "policy"
 "polystats-project"
+"post-ban"
 "printing"
 "private-messaging"
 "probability"

@@ -52,6 +52,7 @@
 "site-evaluation"
 "site-promotion"
 "specific-question"
+"specific-tag"
 "stackexchange"
 "statistics"
 "status-bydesign"

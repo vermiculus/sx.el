@@ -180,6 +180,7 @@
 "red"
 "resolve"
 "rotoscope"
+"rotoscoping"
 "rtmp"
 "sampling-frequency"
 "scale"

@@ -11,6 +11,7 @@
 "ada"
 "ado.net"
 "adodb"
+"adventure"
 "adventure-game"
 "ai"
 "ajax"

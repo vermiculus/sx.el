@@ -500,7 +500,6 @@
 "coreboot"
 "coreutils"
 "couchdb"
-"courier"
 "covergloobus"
 "cp"
 "cpan"

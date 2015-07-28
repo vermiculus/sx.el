@@ -18,6 +18,7 @@
 "discussion"
 "diy"
 "down-votes"
+"duplicate"
 "editing"
 "etiquette"
 "exact-duplicates"

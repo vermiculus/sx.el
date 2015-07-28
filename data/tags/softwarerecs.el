@@ -645,6 +645,7 @@
 "virus-scanner"
 "visual-design"
 "visual-studio"
+"visual-studio-extension"
 "vlc"
 "vmm"
 "voice-command"

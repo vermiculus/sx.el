@@ -360,6 +360,7 @@
 "culture"
 "custodian-badge"
 "custom-close-reasons"
+"custom-tags"
 "cv"
 "daily-limit"
 "daily-reputation-badges"

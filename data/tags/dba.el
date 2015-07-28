@@ -808,6 +808,7 @@
 "sum"
 "surrogate-key"
 "sybase"
+"sybase-central"
 "sybase-sql-anywhere"
 "sybasease"
 "sybaseiq"

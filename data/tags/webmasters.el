@@ -228,6 +228,7 @@
 "desktop"
 "detection"
 "development"
+"dhis2"
 "directory"
 "directory-listing"
 "disaster-recovery"

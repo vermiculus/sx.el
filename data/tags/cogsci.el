@@ -83,6 +83,7 @@
 "economics"
 "educational-psychology"
 "eeg"
+"ego"
 "ego-depletion"
 "electrophysiology"
 "emotion"

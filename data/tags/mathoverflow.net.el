@@ -792,7 +792,6 @@
 "mathematical-economics"
 "mathematical-finance"
 "mathematical-modeling"
-"mathematical-physics"
 "mathematical-software"
 "mathematical-writing"
 "mathematics-education"
