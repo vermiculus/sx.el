@@ -121,7 +121,6 @@
 "tag-wiki"
 "tagging"
 "tagging"
-"taginfo"
 "tags"
 "third-party"
 "title"

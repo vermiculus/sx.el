@@ -724,6 +724,7 @@
 "read-or-die"
 "reborn"
 "redline"
+"reign-the-conqueror"
 "requiem-for-the-phantom"
 "reset"
 "resource-request"

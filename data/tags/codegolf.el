@@ -148,6 +148,7 @@
 "palindromes"
 "parsing"
 "path-finding"
+"pebble"
 "perl"
 "perl-6"
 "permutations"

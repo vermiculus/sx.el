@@ -157,6 +157,7 @@
 "fretless-bass-guitar"
 "fugue"
 "fusion"
+"garage-band"
 "genre"
 "glissando"
 "grading"

@@ -192,7 +192,6 @@
 "design"
 "desktop"
 "deviant-art"
-"dhis2"
 "diagrams"
 "diaspora"
 "dictionary"

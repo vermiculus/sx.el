@@ -6,6 +6,7 @@
 "academia"
 "accuracy"
 "active-learning"
+"adaboost"
 "add-one-smoothing"
 "adjustment"
 "admissibility"

@@ -48,6 +48,7 @@
 "openid"
 "profile-page"
 "quality-evaluation"
+"question-titles"
 "questions"
 "recent-activity"
 "reputation"

@@ -1297,6 +1297,7 @@
 "window-management"
 "window-manager"
 "windows"
+"windows-10"
 "windows-7"
 "windows-8"
 "windows-taskbar"

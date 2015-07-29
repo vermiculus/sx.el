@@ -204,6 +204,7 @@
 "mtu"
 "multicast"
 "nat"
+"nbar"
 "netflow"
 "netgear-prosafe"
 "network-core"

@@ -170,4 +170,5 @@
 "usecase"
 "version-control"
 "visualization"
-"weather")
+"weather"
+"word-embeddings")

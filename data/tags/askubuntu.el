@@ -1821,6 +1821,7 @@
 "ntop"
 "ntp"
 "numba"
+"numix"
 "numlock"
 "numpad"
 "numpy"

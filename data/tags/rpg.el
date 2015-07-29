@@ -351,6 +351,7 @@
 "halfling"
 "harp"
 "healing"
+"heavy-gear"
 "heavygear"
 "hero-system"
 "heroquest"

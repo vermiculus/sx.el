@@ -104,6 +104,7 @@
 "baseline"
 "bash"
 "bashful"
+"bbl"
 "beamer"
 "beamerarticle"
 "beamerposter"

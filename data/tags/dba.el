@@ -820,6 +820,7 @@
 "t-sql"
 "table"
 "table-partitioning"
+"table-variable"
 "tablespaces"
 "tabular-model"
 "tcpip"

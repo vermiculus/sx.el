@@ -5571,7 +5571,6 @@
 "windows-xp-mode"
 "windows-xp-sp3"
 "windows.old"
-"windows10"
 "windows7"
 "wine"
 "winetricks"

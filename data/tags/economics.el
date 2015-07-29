@@ -17,6 +17,7 @@
 "banking"
 "banks"
 "basic-income"
+"bayesian-econometrics"
 "bayesian-game"
 "behavioral-economics"
 "bellman-equations"

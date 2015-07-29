@@ -40,6 +40,7 @@
 "civicrm.settings.php"
 "cividiscount"
 "civievent"
+"civigrant"
 "civihr"
 "civimail"
 "civimember"

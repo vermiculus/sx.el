@@ -145,7 +145,6 @@
 "technique"
 "terminology"
 "testing"
-"traing"
 "training"
 "tricks"
 "ukemi"

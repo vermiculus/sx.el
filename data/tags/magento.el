@@ -825,6 +825,7 @@
 "soap-api-v2"
 "social"
 "social-buttons"
+"social-media"
 "socket"
 "solr"
 "sorting"

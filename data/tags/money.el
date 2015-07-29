@@ -52,6 +52,7 @@
 "bankruptcy"
 "banks"
 "behavioral-finance"
+"belgium"
 "benefits"
 "beta"
 "bid-ask"

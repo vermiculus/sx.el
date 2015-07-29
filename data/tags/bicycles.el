@@ -204,6 +204,7 @@
 "hills"
 "history"
 "hub"
+"hybrid"
 "hybrid-bike"
 "hydration"
 "hydraulic-disc-brake"

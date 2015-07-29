@@ -60,6 +60,7 @@
 "openid"
 "profile-page"
 "promotion"
+"question-list"
 "questions"
 "recent-activity"
 "reputation"
