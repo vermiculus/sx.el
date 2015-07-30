@@ -480,6 +480,7 @@
 "option"
 "options"
 "order"
+"ordering"
 "outside-wordpress"
 "overridable-functions"
 "page"

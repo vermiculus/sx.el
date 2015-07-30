@@ -1,5 +1,4 @@
 ("6-sigma"
-"agiel"
 "agile"
 "analysis"
 "artifacts"

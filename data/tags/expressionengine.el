@@ -258,6 +258,7 @@
 "gwcode-categories"
 "gypsy"
 "headers"
+"helpdesk"
 "hook"
 "hosting"
 "how-to"

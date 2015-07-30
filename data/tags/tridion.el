@@ -22,6 +22,7 @@
 "authorization"
 "auto-publish"
 "automatic-activity"
+"basichttp"
 "best-practices"
 "binary"
 "blueprint"

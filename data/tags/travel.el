@@ -1400,6 +1400,7 @@
 "sleeping"
 "slovakia"
 "slovenia"
+"slovenia-citizens"
 "smog"
 "smoking"
 "sna"

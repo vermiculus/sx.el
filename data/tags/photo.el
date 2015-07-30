@@ -16,7 +16,6 @@
 "adobe-camera-raw"
 "adobe-rgb"
 "adr"
-"advice"
 "aerial-photography"
 "af-s"
 "airplanes"

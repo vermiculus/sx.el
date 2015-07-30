@@ -115,6 +115,7 @@
 "fish"
 "fishing"
 "fishing-tackle"
+"fishing-tackle-rod"
 "flashlight"
 "flora"
 "fly-fishing"

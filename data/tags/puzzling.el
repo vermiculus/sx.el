@@ -34,6 +34,7 @@
 "crossword-clues"
 "crosswords"
 "cryptarithm"
+"cryptic-clues"
 "cryptic-crosswords"
 "cryptograms"
 "cryptography"

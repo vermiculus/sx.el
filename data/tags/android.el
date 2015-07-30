@@ -1489,6 +1489,7 @@
 "wma"
 "wpa-supplicant"
 "wpa2"
+"x64"
 "xiaomi"
 "xmpp"
 "xolo-x900"

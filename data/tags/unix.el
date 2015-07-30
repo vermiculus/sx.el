@@ -766,6 +766,7 @@
 "gvfs"
 "gvim"
 "gzip"
+"hacking"
 "hadoop"
 "handshake"
 "haproxy"

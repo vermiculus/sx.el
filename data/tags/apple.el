@@ -288,6 +288,7 @@
 "documents-in-the-cloud"
 "docx"
 "domain"
+"dotfiles"
 "downgrade"
 "download"
 "dpi"

@@ -54,6 +54,7 @@
 "declension"
 "definite-articles"
 "definition"
+"delimitation"
 "determiner"
 "diacritics"
 "dialect"

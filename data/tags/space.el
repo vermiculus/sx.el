@@ -134,6 +134,7 @@
 "cycler"
 "cyclone-4"
 "cygnus"
+"data-acquisition"
 "data-storage"
 "data-systems"
 "data-transmission"

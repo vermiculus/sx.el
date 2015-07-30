@@ -541,6 +541,7 @@
 "tournament"
 "trading"
 "trashing"
+"trick-move"
 "trick-taking-games"
 "troyes"
 "tsumego"

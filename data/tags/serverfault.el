@@ -2635,6 +2635,7 @@
 "ruby-puma"
 "ruby-rack"
 "rubygems"
+"rudder"
 "rules"
 "runas"
 "runit"

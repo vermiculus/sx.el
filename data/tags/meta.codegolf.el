@@ -63,6 +63,7 @@
 "profile-page"
 "puzzle-push"
 "questions"
+"racket"
 "recent-activity"
 "reopening"
 "reputation"

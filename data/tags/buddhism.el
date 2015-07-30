@@ -250,7 +250,6 @@
 "relationship"
 "religion"
 "repentance"
-"resource-request"
 "retreat"
 "right-action"
 "right-effort"

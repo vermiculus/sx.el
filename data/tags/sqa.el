@@ -207,6 +207,7 @@
 "testing-team"
 "testlink"
 "testng"
+"testrail"
 "tfs"
 "tfs2010"
 "tools"

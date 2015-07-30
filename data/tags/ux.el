@@ -472,6 +472,7 @@
 "logos"
 "logout"
 "long"
+"long-press"
 "lookandfeel"
 "lorem-ipsum"
 "mac-os-x"

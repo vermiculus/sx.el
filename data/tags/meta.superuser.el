@@ -212,6 +212,7 @@
 "voting"
 "websites"
 "what-irks-me"
+"windows-10"
 "windows-8"
 "windows-8-challenge"
 "winter-bash")

@@ -937,6 +937,7 @@
 "security-token-service"
 "security-trimming"
 "self-service"
+"send-to-destination"
 "seo"
 "serialization"
 "server"

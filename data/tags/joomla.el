@@ -226,6 +226,7 @@
 "system-plugin"
 "t3-framework"
 "tags"
+"task"
 "template-framework"
 "template-manager"
 "template-override"
