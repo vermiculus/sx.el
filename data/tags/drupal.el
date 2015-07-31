@@ -765,6 +765,7 @@
 "tokens"
 "toolbar"
 "tooltips"
+"training"
 "translation"
 "transliteration"
 "travis"

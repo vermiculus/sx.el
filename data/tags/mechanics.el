@@ -246,6 +246,7 @@
 "fiesta"
 "figo"
 "final-stage-resistor"
+"finish"
 "fit"
 "flash-programing"
 "flasher"

@@ -398,7 +398,6 @@
 "iglesia-ni-cristo"
 "ignatius-of-antioch"
 "immaculate-conception"
-"immersionist"
 "immortality"
 "incarnation"
 "incest"

@@ -72,6 +72,7 @@
 "gzip"
 "help"
 "https"
+"hyperlinks"
 "icons"
 "ignored-tags"
 "images"

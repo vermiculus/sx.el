@@ -266,6 +266,7 @@
 "corel"
 "cost"
 "course"
+"cowboy-studio"
 "cr2"
 "creative-commons"
 "creative-process"

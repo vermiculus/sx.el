@@ -254,6 +254,7 @@
 "pesticides"
 "ph"
 "pharmacology"
+"physical-exercise"
 "pill"
 "placebo"
 "plastic"

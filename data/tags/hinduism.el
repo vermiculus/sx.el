@@ -280,6 +280,7 @@
 "vedanta"
 "vedas"
 "vedic-gods"
+"vedic-rituals"
 "venkateshwara"
 "vikramaditya"
 "vishishtadvaita"

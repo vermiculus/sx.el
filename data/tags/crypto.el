@@ -148,6 +148,7 @@
 "history"
 "hkdf"
 "hmac"
+"hnp"
 "homomorphic-encryption"
 "homomorphic-signatures"
 "host-proof"

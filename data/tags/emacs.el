@@ -48,6 +48,7 @@
 "c"
 "c++"
 "c-mode"
+"cache"
 "calc"
 "calculator"
 "calendar"

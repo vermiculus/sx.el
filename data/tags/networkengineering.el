@@ -249,6 +249,7 @@
 "private-vlan"
 "protocol-theory"
 "proxy"
+"pseudowire"
 "pvlan"
 "qinq"
 "qos"

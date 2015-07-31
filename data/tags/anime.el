@@ -212,6 +212,7 @@
 "donyatsu"
 "doraemon"
 "dot-hack"
+"doubt"
 "doujinshi"
 "dragon-ball"
 "dragon-ball-gt"

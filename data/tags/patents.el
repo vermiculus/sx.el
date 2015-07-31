@@ -163,7 +163,6 @@
 "docket"
 "doctrine-of-equivalents"
 "documents"
-"doorbell"
 "drafting"
 "drawing"
 "drug-ingredients"

@@ -37,6 +37,7 @@
 "callisto"
 "carbon-cycle"
 "celestial-mechanics"
+"ceres"
 "charon"
 "chemistry"
 "chthonian"

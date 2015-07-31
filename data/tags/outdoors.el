@@ -342,6 +342,7 @@
 "trekking-poles"
 "tropic"
 "trucker-hitch"
+"two-way-radios"
 "tyvek"
 "uk"
 "uk-north-west"

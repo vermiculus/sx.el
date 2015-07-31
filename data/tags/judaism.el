@@ -1774,6 +1774,7 @@
 "yuma"
 "zealotry"
 "zecharia-book-of"
+"zekher-lchurban"
 "zemanim"
 "zemirot-shabbat"
 "zerizut-alacrity"

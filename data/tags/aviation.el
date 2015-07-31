@@ -17,6 +17,7 @@
 "af447-incident"
 "afd"
 "afm"
+"afterburner"
 "ailerons"
 "aim"
 "air-ambulance"

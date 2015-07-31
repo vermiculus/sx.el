@@ -872,6 +872,7 @@
 "simile"
 "simple"
 "simple-past"
+"since"
 "singapore-english"
 "single-word-request"
 "single-word-requests"
