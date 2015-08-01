@@ -1494,6 +1494,7 @@
 "speech-talking"
 "speeches-addresses"
 "spelling-variants"
+"spices"
 "sport-athletics"
 "stackexchange"
 "stam-yenam"

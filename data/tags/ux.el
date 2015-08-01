@@ -209,7 +209,6 @@
 "delete"
 "deletion"
 "deliverables"
-"desi"
 "design"
 "design-frameworks"
 "design-patterns"

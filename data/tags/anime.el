@@ -701,6 +701,7 @@
 "pretty-cure"
 "prince-of-tennis"
 "princess-and-the-pilot"
+"princess-comet"
 "princess-jellyfish"
 "princess-kaguya"
 "princess-mononoke"

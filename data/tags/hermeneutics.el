@@ -88,6 +88,7 @@
 "ezra"
 "faith"
 "fall"
+"feasts"
 "figure-of-speech"
 "fish"
 "five-scrolls"

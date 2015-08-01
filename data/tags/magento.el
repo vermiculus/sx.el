@@ -116,6 +116,7 @@
 "catalog-rules"
 "cataloginventory"
 "catalogsearch"
+"categoie"
 "categories"
 "category"
 "category-attribute"

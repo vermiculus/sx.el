@@ -4,6 +4,7 @@
 "algorithm"
 "analog-sampling"
 "analogread"
+"analogreadresolution"
 "analogwrite"
 "android"
 "arduino-due"

@@ -743,6 +743,7 @@
 "help-documentation"
 "heroku"
 "heuristics"
+"hexadecimal"
 "hibernate"
 "hidden-features"
 "hierarchy"

@@ -227,6 +227,7 @@
 "gauges"
 "generative-art"
 "geodesy"
+"geographics"
 "geography"
 "geometric-computation"
 "geometric-transform"

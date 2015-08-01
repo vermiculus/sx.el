@@ -179,7 +179,6 @@
 "email"
 "email-attachments"
 "email-client"
-"embedded"
 "embedded-systems"
 "emoji"
 "emulator"

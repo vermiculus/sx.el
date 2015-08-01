@@ -35,6 +35,7 @@
 "bad-questions"
 "badge-request"
 "badges"
+"badgesd"
 "banning"
 "behavior"
 "blacklist-request"

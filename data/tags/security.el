@@ -418,7 +418,6 @@
 "mediawiki"
 "memcpy"
 "memory"
-"metapsloit"
 "metasploit"
 "meterpreter"
 "metrics"

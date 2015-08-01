@@ -124,7 +124,6 @@
 "logic-gates"
 "lua"
 "machine-code"
-"magic-the-gathering"
 "manufactoria"
 "markov-chain"
 "math"

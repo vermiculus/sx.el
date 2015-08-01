@@ -125,6 +125,7 @@
 "hdmi"
 "headless"
 "home-automation"
+"hotspot"
 "html5"
 "htpc"
 "hub"

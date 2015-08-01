@@ -126,6 +126,7 @@
 "rss"
 "scope"
 "search"
+"share"
 "sidebar"
 "site-attributes"
 "site-definition"

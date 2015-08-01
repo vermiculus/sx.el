@@ -41,7 +41,6 @@
 "commodities"
 "common-prior-assumption"
 "communism"
-"company"
 "competition"
 "competitive-equilibrium"
 "complete-markets"

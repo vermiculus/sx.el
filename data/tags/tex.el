@@ -546,6 +546,7 @@
 "includeonlyframes"
 "includepdf"
 "incompatibility"
+"inconsolata"
 "indentation"
 "indexing"
 "indic"

@@ -24,6 +24,7 @@
 "android-studio"
 "android-support-library"
 "android-volley"
+"android-webview"
 "angularjs"
 "annotations"
 "ant"

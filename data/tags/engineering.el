@@ -142,7 +142,6 @@
 "heat-transfer"
 "highway-engineering"
 "hinges"
-"homework-exercises"
 "hss"
 "human-factors"
 "hvac"
