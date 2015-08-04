@@ -249,6 +249,7 @@
 "power"
 "power-management"
 "power-supply"
+"powershell"
 "ppp"
 "printing"
 "processor-speed"

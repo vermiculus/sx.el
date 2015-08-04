@@ -210,7 +210,7 @@
 "renyokei"
 "renyōkei"
 "resources"
-"respect"
+"resultatives"
 "rhetoric"
 "romaji"
 "rōmaji"

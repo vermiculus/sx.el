@@ -158,6 +158,7 @@
 "pacing"
 "pages"
 "paper"
+"paraphrase"
 "passive-voice"
 "perspective"
 "philosophy"

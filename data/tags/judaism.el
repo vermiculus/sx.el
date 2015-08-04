@@ -1425,7 +1425,6 @@
 "shliach-tzibur"
 "shlichus-agency"
 "shma"
-"shmad-antireligious-laws"
 "shmini-atzeres"
 "shmita"
 "shmona-esrei"

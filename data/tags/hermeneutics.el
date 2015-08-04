@@ -215,6 +215,7 @@
 "numerology"
 "nun"
 "obadiah"
+"old-covenant"
 "old-testament"
 "onomastics"
 "parables"

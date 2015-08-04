@@ -533,6 +533,7 @@
 "tramp"
 "transient-map"
 "translation"
+"tree-mode"
 "triage"
 "tuareg-mode"
 "typography"

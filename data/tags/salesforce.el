@@ -139,6 +139,7 @@
 "character-encoding"
 "charts"
 "chat"
+"chatkey"
 "chatter"
 "chatter-answers"
 "chatter-api"

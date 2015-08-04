@@ -274,6 +274,7 @@
 "custom-web-part-property"
 "custom-web-parts"
 "custom-workflow"
+"customization"
 "dashboard"
 "dashboard-designer-2013"
 "data"

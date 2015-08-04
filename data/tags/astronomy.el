@@ -277,6 +277,7 @@
 "telescope"
 "telescope-care"
 "telescope-lens"
+"telescope-maintenance"
 "temperature"
 "terminology"
 "terrestrial-planets"

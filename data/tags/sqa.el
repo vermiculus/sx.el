@@ -193,6 +193,7 @@
 "test-creation"
 "test-data"
 "test-design"
+"test-failures"
 "test-management"
 "test-planning"
 "test-report"

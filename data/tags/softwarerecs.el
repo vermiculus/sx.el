@@ -421,6 +421,7 @@
 "notification"
 "numerical-analysis"
 "obfuscation"
+"object-recognition"
 "ocr"
 "odt"
 "office"

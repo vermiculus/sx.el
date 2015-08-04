@@ -227,6 +227,7 @@
 "direct3d"
 "direct3d10"
 "direct3d11"
+"direct3d12"
 "direct3d9"
 "directinput"
 "direction"

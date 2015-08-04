@@ -37,6 +37,7 @@
 "formatting"
 "help-center"
 "hyperlinks"
+"idea-generation"
 "interesting-tags"
 "login"
 "low-quality"

@@ -127,6 +127,7 @@
 "question-of-the-week"
 "question-quality"
 "questions"
+"questions-filter"
 "ranting"
 "recent-activity"
 "reject"

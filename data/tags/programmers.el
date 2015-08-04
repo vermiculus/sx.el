@@ -835,7 +835,6 @@
 "interview-questions"
 "interviewing"
 "interviews"
-"intro-to-programming"
 "introduction"
 "invariants"
 "inversion-of-control"

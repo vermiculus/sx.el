@@ -226,7 +226,6 @@
 "regional-climate"
 "regional-geology"
 "remote-sensing"
-"renewable"
 "reproducibility"
 "resource-request"
 "resources"

@@ -64,6 +64,7 @@
 "site-evaluation"
 "site-faq"
 "site-graduation"
+"site-name"
 "site-promotion"
 "specific-question"
 "stackexchange"

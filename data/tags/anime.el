@@ -316,6 +316,7 @@
 "glasslip"
 "gochiusa"
 "gochuumon-wa-usagi-desuka"
+"god-eater"
 "gokukoku-no-brynhildr"
 "golden-boy"
 "golden-time"

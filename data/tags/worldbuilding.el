@@ -235,6 +235,7 @@
 "space-colonization"
 "space-construct"
 "space-station"
+"space-travel"
 "spaceflight"
 "spaceship"
 "spacetime-dimensions"

@@ -866,6 +866,7 @@
 "perl"
 "permission"
 "personal-hotspot"
+"pf"
 "phone.app"
 "phonetic"
 "photo"

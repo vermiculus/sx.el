@@ -79,6 +79,7 @@
 "custom-templates"
 "dashboard"
 "dashlet"
+"data-model"
 "database"
 "date-preferences"
 "debugging"

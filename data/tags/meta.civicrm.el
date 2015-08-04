@@ -6,6 +6,7 @@
 "bounty"
 "bug"
 "chat"
+"civicrm.org"
 "close-reasons"
 "closed-questions"
 "comments"
