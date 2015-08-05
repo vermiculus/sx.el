@@ -61,6 +61,7 @@
 "components"
 "core-libraries"
 "counterfeit"
+"cpu-cycles"
 "current"
 "damage-prevention"
 "data-type"

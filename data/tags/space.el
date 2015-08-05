@@ -358,6 +358,7 @@
 "low-earth-orbit"
 "low-energy-transfer"
 "lox"
+"lro"
 "luna"
 "lunar-landing"
 "lyappa"

@@ -915,6 +915,7 @@
 "webscalesql"
 "window-functions"
 "windows"
+"windows-10"
 "windows-2012-r2"
 "windows-8"
 "windows-server"

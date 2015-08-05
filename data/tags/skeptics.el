@@ -472,6 +472,7 @@
 "placebo"
 "placebo-effect"
 "planetology"
+"planned-parenthood"
 "plants"
 "poison"
 "police"

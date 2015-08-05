@@ -128,6 +128,7 @@
 "churchill"
 "cia"
 "cities"
+"civil-rights"
 "civil-war"
 "civilizations"
 "classical-antiquity"

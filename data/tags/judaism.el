@@ -67,6 +67,7 @@
 "animals"
 "anthropomorphism"
 "anti-semitism"
+"aphorisms-adages"
 "apocrypha"
 "appliances"
 "aqedat-yishak"

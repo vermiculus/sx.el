@@ -304,6 +304,7 @@
 "sex"
 "sex-education"
 "sexual-consent"
+"sexual-development"
 "sharing"
 "shopping"
 "siblings"

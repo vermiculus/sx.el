@@ -640,6 +640,7 @@
 "messaging"
 "metacpan"
 "microsoft"
+"microsoft-account"
 "microsoft-excel"
 "microsoft-excel-live"
 "microsoft-word"

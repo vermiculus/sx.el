@@ -16,7 +16,6 @@
 "arbitrary-precision"
 "argument-patterns"
 "arithmetic"
-"arity"
 "array"
 "assignment"
 "associations"

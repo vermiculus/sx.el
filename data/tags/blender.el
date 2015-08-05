@@ -51,6 +51,7 @@
 "edges"
 "editing"
 "effects"
+"error"
 "export"
 "external-applications"
 "faces"

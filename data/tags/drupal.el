@@ -647,6 +647,7 @@
 "scaling"
 "scheduler"
 "schema-api"
+"scorm"
 "search"
 "search-api"
 "search-api-solr"

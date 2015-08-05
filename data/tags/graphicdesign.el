@@ -169,7 +169,6 @@
 "drop-shadow"
 "e-mail"
 "ebook"
-"editorial-design"
 "education"
 "effects"
 "efficiency"

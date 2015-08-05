@@ -93,6 +93,7 @@
 "drupal"
 "drupal-7"
 "drupal-7"
+"drupal-8"
 "drupal-rules"
 "drupal-views"
 "drush"

@@ -287,6 +287,7 @@
 "windows-8"
 "windowsphone"
 "wine"
+"winrar"
 "wireshark"
 "x64"
 "x86"

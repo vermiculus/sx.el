@@ -1778,6 +1778,8 @@
 "visual-studio-2008"
 "visual-studio-2010"
 "visual-studio-2012"
+"visual-studio-2015"
+"visual-studio-online"
 "visualization"
 "vm"
 "vocabulary"

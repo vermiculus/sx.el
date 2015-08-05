@@ -48,6 +48,7 @@
 "migration"
 "moderation"
 "moderator-tools"
+"moderators"
 "new-users"
 "notifications"
 "openid"

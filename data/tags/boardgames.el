@@ -137,7 +137,6 @@
 "crokinole"
 "cuba"
 "curse-of-the-dark-pharaoh"
-"curse-of-the-dark-pharoah"
 "custom-game-pieces"
 "day-and-night"
 "dc-comics-deck-building"

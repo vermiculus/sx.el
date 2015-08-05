@@ -241,6 +241,7 @@
 "recruitment"
 "reference-request"
 "regression"
+"rehabilitation"
 "reinforcement-learning"
 "relaxation"
 "reliability"

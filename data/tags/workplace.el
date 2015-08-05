@@ -315,6 +315,7 @@
 "united-states"
 "unprofessional-behavior"
 "untagged"
+"us"
 "usa"
 "usa"
 "vacation"

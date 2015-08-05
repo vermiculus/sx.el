@@ -588,6 +588,7 @@
 "nominative-vs-oblique"
 "non-finite-verbs"
 "non-native-english"
+"non-restrictive"
 "non-standard"
 "nonce-words"
 "nonsubjective"

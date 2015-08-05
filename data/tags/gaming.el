@@ -2003,7 +2003,6 @@
 "micron"
 "micropolis"
 "microsoft-flight"
-"microsoft-jackpot"
 "microsoft-pinball"
 "microsoft-train-simulator"
 "microvolts"

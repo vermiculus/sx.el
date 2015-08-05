@@ -210,6 +210,7 @@
 "decoherence"
 "definition"
 "deformation-quantization"
+"degeneracy-pressure"
 "degrees-of-freedom"
 "density"
 "density-functional-theory"
