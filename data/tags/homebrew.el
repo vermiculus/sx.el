@@ -165,6 +165,7 @@
 "food"
 "food-safety"
 "force-carbonation"
+"french-cider"
 "frozen"
 "fruit"
 "fruit-extract"

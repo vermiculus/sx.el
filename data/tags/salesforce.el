@@ -33,6 +33,7 @@
 "angular"
 "angularjs"
 "ant"
+"ant-script"
 "apex"
 "apex-callouts"
 "apex-code"

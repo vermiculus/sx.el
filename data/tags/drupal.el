@@ -189,6 +189,7 @@
 "directory-structure"
 "display"
 "display-suite"
+"display-suite-extras"
 "disqus"
 "distribution"
 "distributions"

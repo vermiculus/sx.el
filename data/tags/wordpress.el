@@ -624,7 +624,6 @@
 "references"
 "regex"
 "register"
-"register-activation-hook"
 "register-sidebar"
 "register-taxonomy"
 "registered"

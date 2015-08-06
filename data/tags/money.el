@@ -393,6 +393,7 @@
 "israel"
 "italy"
 "itin"
+"jamaica"
 "japan"
 "jewelry"
 "job-change"

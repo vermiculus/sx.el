@@ -412,6 +412,7 @@
 "head"
 "header"
 "helper"
+"hhvm"
 "hide-attribute"
 "history"
 "holepunching"

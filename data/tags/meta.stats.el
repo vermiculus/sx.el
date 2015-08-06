@@ -86,6 +86,7 @@
 "post-ban"
 "printing"
 "private-messaging"
+"privileges"
 "probability"
 "profile-page"
 "question-of-the-week"

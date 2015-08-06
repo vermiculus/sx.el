@@ -197,6 +197,7 @@
 "tear-out"
 "technique"
 "terminology"
+"thermally-modified"
 "thickness-planer"
 "tolerance"
 "tool-identification"

@@ -69,6 +69,7 @@
 "contribution-page"
 "contributions"
 "conversion-tracking"
+"cookies"
 "cron-job"
 "css"
 "custom-actions"
@@ -157,6 +158,7 @@
 "nginx"
 "omnipay"
 "open-basedir"
+"pantheon"
 "payment-processor"
 "paypal"
 "pcp"
@@ -238,4 +240,5 @@
 "woocommerce"
 "wordpress"
 "workflow"
-"wysiwyg")
+"wysiwyg"
+"xero")

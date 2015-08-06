@@ -46,6 +46,7 @@
 "anime-production"
 "anime-retag"
 "anime-tenchou"
+"anime-wakaru-shinryonaika"
 "ano-hana"
 "ano-natsu-de-matteru"
 "another"

@@ -271,6 +271,7 @@
 "invasion"
 "ios"
 "istanbul"
+"jamaica"
 "jenga"
 "joseki"
 "joseki-deviation"

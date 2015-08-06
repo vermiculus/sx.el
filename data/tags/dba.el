@@ -599,7 +599,6 @@
 "postgres-9.2"
 "postgres-9.3"
 "postgres-xc"
-"postgres-xl"
 "postgresql"
 "postgresql-8.3"
 "postgresql-8.4"

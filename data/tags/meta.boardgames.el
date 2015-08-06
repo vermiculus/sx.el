@@ -37,6 +37,7 @@
 "login"
 "magic-the-gathering"
 "markdown"
+"merge"
 "meta"
 "migration"
 "moderation"

@@ -51,6 +51,7 @@
 "faerie"
 "fairies"
 "family-tree"
+"finnish"
 "first-nations"
 "flamines-minores"
 "flood-myth"

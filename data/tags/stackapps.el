@@ -173,7 +173,6 @@
 "streaming"
 "style"
 "stylish"
-"sublime-text"
 "support"
 "systemtray"
 "tag-wiki"

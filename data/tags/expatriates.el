@@ -185,6 +185,7 @@
 "salary"
 "san-francisco"
 "schengen"
+"self-employment"
 "services"
 "shipping"
 "shopping"

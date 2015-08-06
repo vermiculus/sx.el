@@ -19,6 +19,7 @@
 "deleted-questions"
 "design"
 "discussion"
+"dispute"
 "down-votes"
 "duplicate-question"
 "editing"

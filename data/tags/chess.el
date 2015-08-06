@@ -90,7 +90,6 @@
 "correspondence-chess"
 "counter-strategy"
 "cql"
-"d4"
 "database"
 "defence"
 "defense"

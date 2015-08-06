@@ -515,7 +515,6 @@
 "rust"
 "rvm"
 "rx-javascript"
-"s2jsf"
 "safari"
 "sails.js"
 "samba"

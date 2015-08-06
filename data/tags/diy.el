@@ -188,6 +188,7 @@
 "dwv"
 "earthquake"
 "egress"
+"elec"
 "electric-motor"
 "electrical"
 "electrical-distribution"

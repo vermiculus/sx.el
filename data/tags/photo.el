@@ -653,6 +653,7 @@
 "manual-focus"
 "manual-mode"
 "manufacture"
+"manufacturing"
 "marexar"
 "market-segments"
 "marketing"

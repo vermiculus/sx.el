@@ -520,6 +520,7 @@
 "pkcs1"
 "pkcs11"
 "pkcs12"
+"pkcs7"
 "pkcs8"
 "pki"
 "plugins"
