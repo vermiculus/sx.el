@@ -46,7 +46,6 @@
 "dissection"
 "dominoes"
 "dots-and-boxes"
-"dragon"
 "einsteins-puzzle"
 "encoded-message"
 "encoded-message"

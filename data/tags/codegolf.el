@@ -176,6 +176,7 @@
 "recursion"
 "regular-expression"
 "repeated-transformation"
+"restricted-complexity"
 "restricted-source"
 "reverse-engineering"
 "roman-numerals"

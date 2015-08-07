@@ -68,6 +68,7 @@
 "decimation"
 "decomposition"
 "deconvolution"
+"deep-learning"
 "defect-detection"
 "delay"
 "demodulation"

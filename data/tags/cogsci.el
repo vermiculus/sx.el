@@ -100,6 +100,7 @@
 "exercise"
 "experimental-psychology"
 "expertise"
+"extraversion"
 "extroversion"
 "eye-movement"
 "fear"

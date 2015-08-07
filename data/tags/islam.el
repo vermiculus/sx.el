@@ -546,6 +546,7 @@
 "source"
 "source-identification"
 "speciality"
+"spirituality"
 "sports"
 "steal"
 "successor"

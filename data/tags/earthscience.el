@@ -60,6 +60,7 @@
 "deposition"
 "desert"
 "diagenesis"
+"diurnal-cycle"
 "drought"
 "dust-bowl"
 "dynamics"

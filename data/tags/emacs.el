@@ -344,6 +344,7 @@
 "multiple-cursors"
 "muse"
 "music-player"
+"mysql"
 "narrowing"
 "navigation"
 "networking"

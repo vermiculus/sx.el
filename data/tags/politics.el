@@ -179,6 +179,7 @@
 "ngos"
 "non-aggression"
 "north-korea"
+"norway"
 "nuclear-energy"
 "nuclear-weapons"
 "ochlocracy"

@@ -21,6 +21,7 @@
 "discussion"
 "down-votes"
 "downvoting"
+"duplicates"
 "editing"
 "etiquette"
 "exact-duplicates"

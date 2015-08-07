@@ -362,7 +362,6 @@
 "jetta"
 "john-deere"
 "journey"
-"juke"
 "jump-start"
 "k10"
 "ka"

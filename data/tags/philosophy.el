@@ -1,4 +1,5 @@
 ("abortion"
+"adorno"
 "aesthetics"
 "agnosticism"
 "altruism"
@@ -117,6 +118,7 @@
 "formalisation"
 "foucault"
 "foundationalism"
+"frankfurt-school"
 "free-will"
 "frege"
 "functionalism"

@@ -1248,6 +1248,7 @@
 "shellshock"
 "shop"
 "short-links"
+"shorthand-links"
 "si-prefix"
 "sidebar"
 "sign-up"

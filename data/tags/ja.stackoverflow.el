@@ -590,6 +590,7 @@
 "svn"
 "swift"
 "swing"
+"swipe"
 "symfony2"
 "tableview"
 "tcp"

@@ -344,7 +344,6 @@
 "gui"
 "gulp.js"
 "gwt"
-"hackerrank"
 "hadoop"
 "haml"
 "hangman"

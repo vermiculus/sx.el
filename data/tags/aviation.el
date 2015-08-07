@@ -525,6 +525,7 @@
 "thunderbirds"
 "time"
 "tip-jets"
+"tis-b"
 "tmg"
 "traffic-pattern"
 "trainer"

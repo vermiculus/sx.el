@@ -450,6 +450,7 @@
 "john-book"
 "john-milton"
 "john-of-damascus"
+"john-paul-ii"
 "john-the-baptist"
 "jonah"
 "jonathan-edwards"

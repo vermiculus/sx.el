@@ -471,6 +471,7 @@
 "glass"
 "glass-plate"
 "gnd-filter"
+"godox"
 "golden-hour"
 "google"
 "gopro"

@@ -223,6 +223,7 @@
 "bo"
 "boneh-soter"
 "book-banning"
+"book-of-amos"
 "book-of-chronicles"
 "book-of-jeremiah"
 "book-of-judges"
