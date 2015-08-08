@@ -72,6 +72,7 @@
 "gait"
 "gazebo"
 "gearing"
+"gimbal"
 "gmis"
 "gps"
 "gyroscope"

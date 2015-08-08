@@ -51,7 +51,6 @@
 "notifications"
 "off-topic"
 "on-topic"
-"on-topic"
 "openid"
 "profile-page"
 "questions"

@@ -911,6 +911,7 @@
 "foreman"
 "format"
 "format-conversion"
+"formatting"
 "fortran"
 "fortune"
 "framebuffer"

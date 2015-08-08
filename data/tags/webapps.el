@@ -468,6 +468,7 @@
 "google-shopping"
 "google-sites"
 "google-spreadsheet"
+"google-spreadsheet-charts"
 "google-spreadsheets"
 "google-takeout"
 "google-talk"

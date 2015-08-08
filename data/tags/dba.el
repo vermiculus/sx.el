@@ -640,6 +640,7 @@
 "query-timeout"
 "queue"
 "quoted-identifier"
+"r-language"
 "rac"
 "raid"
 "rails"

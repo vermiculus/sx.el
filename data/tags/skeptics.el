@@ -449,6 +449,7 @@
 "osama-bin-laden"
 "pain"
 "pakistan"
+"palentology"
 "paleontology"
 "palestine"
 "parachutes"

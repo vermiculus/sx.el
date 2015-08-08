@@ -601,6 +601,7 @@
 "pig-latin"
 "playing-cards"
 "plotting"
+"plpgsql"
 "plsql"
 "plugin"
 "poco"

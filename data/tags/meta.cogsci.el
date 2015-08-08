@@ -42,6 +42,7 @@
 "name"
 "new-users"
 "notifications"
+"on-hold"
 "on-topic"
 "openid"
 "profile-page"

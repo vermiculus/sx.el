@@ -180,6 +180,7 @@
 "injections"
 "injury"
 "instruments"
+"insurance-coverage"
 "internal-organs"
 "iontophoresis"
 "iron"

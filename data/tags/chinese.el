@@ -24,7 +24,6 @@
 "classical-chinese"
 "classifiers"
 "colloquialisms"
-"comparision"
 "comparison"
 "congratulations"
 "conversation"

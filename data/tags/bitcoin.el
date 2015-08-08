@@ -367,6 +367,7 @@
 "message"
 "message-signing"
 "message-verification"
+"meta"
 "mgw"
 "micropayments"
 "midstate"

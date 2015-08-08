@@ -831,6 +831,7 @@
 "rest-service"
 "restresource"
 "retail"
+"richtext-notes"
 "richtextarea"
 "ringlead"
 "role-hierarchy"

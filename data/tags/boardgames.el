@@ -198,6 +198,7 @@
 "end-game"
 "epic-spell-wars"
 "eruption"
+"escape-curse-of-temple"
 "escape-from-atlantis"
 "etiquette"
 "euchre"
