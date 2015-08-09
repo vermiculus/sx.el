@@ -25,6 +25,7 @@
 "arranging"
 "articulation"
 "atonal"
+"audacity"
 "audiation"
 "audio"
 "audition"

@@ -610,6 +610,7 @@
 "seat-ibiza"
 "seat-leon"
 "sebring"
+"secondary-air-pump"
 "security"
 "sedona"
 "sensor"

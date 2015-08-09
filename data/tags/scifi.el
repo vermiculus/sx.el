@@ -535,6 +535,7 @@
 "fanfic"
 "fans"
 "fantastic-four"
+"fantastic-four-2015"
 "fantastic-voyage"
 "fantasy-genre"
 "fantomex"

@@ -182,6 +182,7 @@
 "deployment"
 "design-patterns"
 "dev-server"
+"devdesktop"
 "devel"
 "dhtml-menu"
 "dialogs"

@@ -45,6 +45,7 @@
 "openid"
 "profile-page"
 "proofreading"
+"quality"
 "questions"
 "recent-activity"
 "reopen"

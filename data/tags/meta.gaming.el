@@ -102,6 +102,7 @@
 "moderators"
 "mods"
 "mothership"
+"movie-night"
 "new-user"
 "new-users"
 "notifications"

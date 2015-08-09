@@ -188,6 +188,7 @@
 "planets"
 "plants"
 "politics"
+"poop"
 "population"
 "post-apocalypse"
 "post-scarcity"

@@ -37,6 +37,7 @@
 "glossary"
 "health-and-safety"
 "hyperlinks"
+"images"
 "interesting-tags"
 "language"
 "links"

@@ -1146,6 +1146,7 @@
 "wildlife"
 "wind"
 "windows"
+"windows-10"
 "windows-7"
 "windows-phone"
 "wireless"

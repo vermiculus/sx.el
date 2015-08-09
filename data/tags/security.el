@@ -602,7 +602,6 @@
 "sd-card"
 "sdl"
 "sdp"
-"seahorse"
 "secret-sharing"
 "secure-coding"
 "secure-renegotiation"

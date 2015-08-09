@@ -77,7 +77,6 @@
 "economic-measurement"
 "economic-methodology"
 "economic-terms"
-"economics-of-scale"
 "economies-of-scale"
 "edgeworth-box"
 "education"

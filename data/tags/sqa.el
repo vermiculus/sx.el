@@ -44,6 +44,7 @@
 "defect-tracking"
 "developer-relations"
 "development-process"
+"django"
 "documentation"
 "dot-net"
 "dynamic-testing"

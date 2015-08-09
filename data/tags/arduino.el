@@ -87,6 +87,7 @@
 "events"
 "fat"
 "fedora"
+"firmata"
 "firmware"
 "flash"
 "float"

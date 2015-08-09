@@ -84,7 +84,6 @@
 "conditionals"
 "config"
 "configuration"
-"convenience"
 "copy-paste"
 "cperl-mode"
 "cpu-high-usage"
