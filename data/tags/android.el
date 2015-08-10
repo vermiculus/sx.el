@@ -820,6 +820,7 @@
 "menu"
 "messaging"
 "mhl"
+"micromax"
 "micromax-a110"
 "micromax-a110q"
 "micromax-a35"

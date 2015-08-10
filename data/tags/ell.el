@@ -183,6 +183,7 @@
 "internet"
 "interpretation"
 "interrogative"
+"intransitive-verbs"
 "inversion"
 "ipa"
 "irony"

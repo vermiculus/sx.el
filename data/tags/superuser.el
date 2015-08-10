@@ -4023,6 +4023,7 @@
 "read-only"
 "read-write"
 "readability"
+"reading-list"
 "readitlater"
 "readline"
 "readonly"

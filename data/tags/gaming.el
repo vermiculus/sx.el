@@ -1944,6 +1944,7 @@
 "mean-bean-machine"
 "mechcommander-2"
 "mechwarrior"
+"mechwarrior-3"
 "mechwarrior-online"
 "medal-of-honor"
 "medieval-2-total-war"

@@ -240,6 +240,7 @@
 "punctuation"
 "puntuaci&#243;n"
 "puntuacion"
+"qu&#237;mica"
 "questions"
 "rae"
 "rare-words"

@@ -909,6 +909,7 @@
 "newline"
 "news"
 "newsletter"
+"next-badge"
 "nice-answer"
 "niche-area"
 "ninja"

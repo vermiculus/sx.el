@@ -16,6 +16,7 @@
 "attachment"
 "auctex"
 "auto-complete-mode"
+"auto-fill-mode"
 "auto-insert"
 "auto-revert-mode"
 "auto-save"

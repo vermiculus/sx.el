@@ -260,6 +260,7 @@
 "terminology"
 "terraforming"
 "time"
+"time-machine"
 "time-travel"
 "tools"
 "trans-humanism"

@@ -239,6 +239,7 @@
 "diodes"
 "dipole"
 "dipole-moment"
+"dirac-cones"
 "dirac-equation"
 "dirac-matrices"
 "dirac-monopole"

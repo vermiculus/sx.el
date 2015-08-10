@@ -150,6 +150,7 @@
 "related-questions"
 "remove-reasons"
 "reputation"
+"reputation-leagues"
 "retagging"
 "review"
 "review-audit"

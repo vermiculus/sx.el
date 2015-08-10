@@ -798,7 +798,6 @@
 "newenvironment"
 "newlfm"
 "newline"
-"newpage"
 "newpx"
 "newspaper"
 "newtx"

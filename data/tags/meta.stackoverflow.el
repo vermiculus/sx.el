@@ -98,6 +98,7 @@
 "cross-posting"
 "css"
 "custom-close-reasons"
+"custom-tags"
 "daily-reputation-badges"
 "daily-reputation-limit"
 "dart"

@@ -110,6 +110,7 @@
 "area51-series"
 "ark-of-the-covenant"
 "arkenstone"
+"armor"
 "armor-book"
 "armstrong-and-archer"
 "armus"

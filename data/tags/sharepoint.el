@@ -32,6 +32,7 @@
 "ad"
 "ad-account-creation-mode"
 "ad-lds"
+"adal"
 "adfs"
 "adi"
 "administration"

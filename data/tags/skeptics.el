@@ -19,6 +19,7 @@
 "alan-turing"
 "albert-einstein"
 "alcohol"
+"algeria"
 "alien"
 "aliens"
 "alkaline-diet"

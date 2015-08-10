@@ -3,6 +3,7 @@
 "adjustment-costs"
 "adverse-selection"
 "agriculture"
+"algorithmic-game-theory"
 "algorithms"
 "amplification"
 "applied-econometrics"

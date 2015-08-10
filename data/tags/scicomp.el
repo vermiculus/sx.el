@@ -192,8 +192,6 @@
 "multiphysics"
 "navier-stokes"
 "nearest-neighbors"
-"networks"
-"neural"
 "neuroscience"
 "newton"
 "newton-method"

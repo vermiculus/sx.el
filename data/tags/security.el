@@ -256,6 +256,7 @@
 "facebook"
 "fax"
 "federation"
+"fido"
 "file"
 "file-access"
 "file-encryption"

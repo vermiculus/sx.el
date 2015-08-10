@@ -748,7 +748,6 @@
 "pre"
 "pre-chat"
 "pre-release"
-"predefined"
 "pricebook"
 "pricebookentry"
 "pricing"

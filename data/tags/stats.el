@@ -662,6 +662,7 @@
 "log-likelihood"
 "log-linear"
 "logarithm"
+"logarithmic-series"
 "logic"
 "logistic"
 "logistic-regression"

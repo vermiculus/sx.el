@@ -286,6 +286,7 @@
 "gamble-fish"
 "game-history"
 "game-of-laplace"
+"gangsta"
 "gankutsuou"
 "gantz"
 "garo"
