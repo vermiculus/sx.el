@@ -43,6 +43,7 @@
 "applications"
 "arabic"
 "archiving"
+"arranging"
 "art"
 "artboard"
 "ascii"

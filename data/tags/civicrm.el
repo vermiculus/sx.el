@@ -145,6 +145,7 @@
 "location-type"
 "logs"
 "lts"
+"mailing"
 "mailserver"
 "mamp"
 "mandrill"

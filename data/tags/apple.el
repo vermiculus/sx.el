@@ -446,6 +446,7 @@
 "graphic"
 "graphics"
 "graphics-card"
+"grayscale"
 "griffin"
 "group"
 "growl"

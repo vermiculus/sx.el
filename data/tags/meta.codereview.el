@@ -23,6 +23,7 @@
 "closed-questions"
 "code-challenge"
 "code-length"
+"code-ownership"
 "comments"
 "community-ads"
 "community-advertising"

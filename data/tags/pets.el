@@ -211,6 +211,7 @@
 "sea-monkeys"
 "senior-pet"
 "separation"
+"service-animal"
 "shedding"
 "sheep"
 "shelter"

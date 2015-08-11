@@ -80,6 +80,7 @@
 "hyperlinks"
 "idioma"
 "imagem"
+"instabilidade-do-site"
 "interesting-tags"
 "interface"
 "interface-usu&#225;rio"

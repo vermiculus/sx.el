@@ -1358,6 +1358,7 @@
 "viewers"
 "vim"
 "vim-latex"
+"vimtex"
 "wallpaper"
 "warning"
 "warnings"

@@ -574,7 +574,6 @@
 "nations"
 "nativity"
 "natural-disasters"
-"natural-evil"
 "natural-law"
 "nature-of-god"
 "nature-of-man"

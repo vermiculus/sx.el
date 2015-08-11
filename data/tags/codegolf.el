@@ -206,7 +206,6 @@
 "tex"
 "tic-tac-toe"
 "tiling"
-"time-complexity"
 "tips"
 "tree-traversal"
 "trie"

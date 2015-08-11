@@ -926,6 +926,7 @@
 "pitch-game"
 "pivot"
 "pivot-table"
+"pivotal"
 "planned-comparisons-test"
 "plm"
 "plot"

@@ -386,6 +386,7 @@
 "extension"
 "external-app"
 "external-data-source"
+"external-lookup"
 "external-objects"
 "externalid"
 "facebook"

@@ -233,6 +233,7 @@
 "safari"
 "sandbox"
 "sbus"
+"scanf"
 "section"
 "security"
 "segmentation"

@@ -154,6 +154,7 @@
 "apc-smart-ups"
 "apcupsd"
 "app-v"
+"app-v-5"
 "apparmor"
 "appcmd"
 "appfabric"

@@ -176,6 +176,7 @@
 "social-process"
 "socrata"
 "software"
+"south-korea"
 "space"
 "sparql"
 "spending"

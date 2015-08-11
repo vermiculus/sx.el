@@ -67,6 +67,7 @@
 "greasepencil"
 "groups"
 "hair-particles"
+"id-mask"
 "image"
 "import"
 "installation"

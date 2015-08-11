@@ -147,7 +147,6 @@
 "semi-interactive-puzzle"
 "set"
 "seven-segment"
-"simple"
 "situation"
 "sliding-puzzle"
 "slitherlink"

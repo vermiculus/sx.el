@@ -118,6 +118,7 @@
 "cranks"
 "crankset"
 "creak"
+"crmo"
 "cross-training"
 "cruiser"
 "cycle-computer"

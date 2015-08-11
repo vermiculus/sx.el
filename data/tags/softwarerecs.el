@@ -466,7 +466,6 @@
 "plain-text"
 "planning"
 "play-store"
-"plugin"
 "png"
 "pod"
 "podcast"

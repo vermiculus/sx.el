@@ -435,6 +435,7 @@
 "focus-point-indicators"
 "focus-point-selection"
 "focus-stacking"
+"focusing"
 "focusing-screen"
 "fog"
 "food-photography"

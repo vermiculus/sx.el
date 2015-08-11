@@ -1629,7 +1629,6 @@
 "sasl"
 "sata"
 "sawfish"
-"scancodes"
 "scanner"
 "scapy"
 "scheduling"

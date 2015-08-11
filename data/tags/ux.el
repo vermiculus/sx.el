@@ -610,7 +610,6 @@
 "portfolio"
 "position"
 "posture"
-"pouring"
 "predictive-text"
 "preloader"
 "presentation"

@@ -26,6 +26,7 @@
 "down-votes"
 "editing"
 "editor"
+"election"
 "etiquette"
 "events"
 "exact-duplicates"

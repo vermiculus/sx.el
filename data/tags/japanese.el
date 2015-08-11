@@ -144,6 +144,7 @@
 "nuance"
 "nuances"
 "numbers"
+"obligations"
 "obsolete-kana"
 "offensive-words"
 "okinawan"

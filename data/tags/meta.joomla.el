@@ -54,6 +54,7 @@
 "search"
 "site-evaluation"
 "site-promotion"
+"spam"
 "specific-question"
 "stackexchange"
 "statistics"
