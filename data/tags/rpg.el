@@ -256,6 +256,7 @@
 "encounter-tables"
 "encounters"
 "encumbrance"
+"environmental-hazards"
 "epic-tier"
 "equipment"
 "errata"

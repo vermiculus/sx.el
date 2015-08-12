@@ -145,7 +145,6 @@
 "apps"
 "apps2sd"
 "archos-101"
-"archos-70c-cobalt"
 "archos-gen7"
 "archos-gen8"
 "arm-processors"

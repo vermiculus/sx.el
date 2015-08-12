@@ -37,6 +37,7 @@
 "cache"
 "camera"
 "camera-board"
+"can-bus"
 "case"
 "chrome-os"
 "chromecast"

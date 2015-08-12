@@ -91,6 +91,7 @@
 "git"
 "github"
 "global-configuration"
+"google"
 "google-analytics"
 "gpl"
 "gzip"

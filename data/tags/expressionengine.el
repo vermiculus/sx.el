@@ -293,6 +293,7 @@
 "keywords"
 "language"
 "layout-variables"
+"layouts"
 "license"
 "licensing"
 "links"

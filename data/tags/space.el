@@ -174,6 +174,7 @@
 "ecliptic-plane"
 "eclss"
 "economics"
+"education"
 "eelv"
 "electronics"
 "ellipse"

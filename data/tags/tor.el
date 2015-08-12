@@ -106,6 +106,7 @@
 "network-configuration"
 "network-health"
 "noscript"
+"nyx"
 "obfs4"
 "obfsproxy"
 "one-hop"

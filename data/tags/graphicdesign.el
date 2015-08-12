@@ -185,6 +185,7 @@
 "eyedropper"
 "favicon"
 "feedback"
+"file-conversion"
 "file-format"
 "file-size"
 "fill"

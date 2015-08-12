@@ -762,6 +762,7 @@
 "spell-checking"
 "spinner"
 "splash-screen"
+"splitters"
 "stackexchange"
 "standards"
 "states"

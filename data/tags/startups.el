@@ -31,6 +31,7 @@
 "business-proposal"
 "business-registration"
 "business-structure"
+"buy-out"
 "c-corp"
 "c-corporation"
 "california"

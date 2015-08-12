@@ -176,6 +176,7 @@
 "word"
 "word-ladder"
 "word-problem"
+"word-puzzle"
 "word-search"
 "word-sequence"
 "word-square"

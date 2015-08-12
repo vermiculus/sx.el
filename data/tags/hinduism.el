@@ -77,6 +77,7 @@
 "dream"
 "dress"
 "durga"
+"dussera"
 "dvaita"
 "earth"
 "eclipse"

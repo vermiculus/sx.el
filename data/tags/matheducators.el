@@ -97,6 +97,7 @@
 "math-circle"
 "math-contests"
 "math-puzzle"
+"mathematica"
 "mathematical-analysis"
 "mathematical-discourse"
 "mathematical-pedagogy"

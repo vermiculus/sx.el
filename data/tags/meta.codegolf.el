@@ -9,6 +9,7 @@
 "blog"
 "bounty"
 "bug"
+"burninate-request"
 "challenge-quality"
 "characters"
 "chat"

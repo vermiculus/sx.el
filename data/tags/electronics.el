@@ -203,6 +203,7 @@
 "catapult-c"
 "ccd"
 "ccfl"
+"cdc"
 "ce"
 "cell-battery"
 "cellphone"

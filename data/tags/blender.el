@@ -86,6 +86,7 @@
 "linux"
 "logic-bricks"
 "logic-editor"
+"loopcuts"
 "mac"
 "makehuman"
 "manual"

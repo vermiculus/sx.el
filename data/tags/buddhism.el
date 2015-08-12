@@ -295,6 +295,7 @@
 "shingon"
 "sila"
 "six-realms"
+"six-senses"
 "sleep"
 "sn-goenka"
 "social-justice"

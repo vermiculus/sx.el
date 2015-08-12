@@ -2737,6 +2737,7 @@
 "rf-online"
 "rfactor"
 "rhythm-game"
+"rhythm-tengoku-the-best-+"
 "rhythm-thief"
 "richard-burns-rally"
 "ricochet"

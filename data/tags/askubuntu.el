@@ -1074,6 +1074,7 @@
 "grub-error"
 "grub-legacy"
 "grub2"
+"grub4dos"
 "grubrescue"
 "grunt"
 "gsettings"

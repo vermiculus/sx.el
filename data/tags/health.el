@@ -333,6 +333,7 @@
 "sun-burn"
 "sunscreen"
 "surgery"
+"sweat"
 "swimming"
 "symptoms"
 "tcm"

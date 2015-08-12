@@ -185,6 +185,7 @@
 "pdf"
 "people"
 "people-hub"
+"performance"
 "personalization"
 "phone-connector-mac"
 "phone-memory"

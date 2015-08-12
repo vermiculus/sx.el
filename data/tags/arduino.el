@@ -1,6 +1,7 @@
 ("1-wire"
 "accelerometer"
 "adafruit"
+"adc"
 "algorithm"
 "analog-sampling"
 "analogread"

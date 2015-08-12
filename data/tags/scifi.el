@@ -1429,6 +1429,7 @@
 "star-trek-novels"
 "star-trek-ph2"
 "star-trek-q"
+"star-trek-reboot"
 "star-trek-tas"
 "star-trek-the-doctor"
 "star-trek-tng"

@@ -1150,7 +1150,6 @@
 "ontology"
 "oo"
 "ooad"
-"ood"
 "ooda"
 "oop"
 "oops"

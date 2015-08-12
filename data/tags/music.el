@@ -258,7 +258,6 @@
 "multi-instrumentalism"
 "muscles"
 "musescore"
-"music"
 "music-theory"
 "musical-forms"
 "musical-saw"
