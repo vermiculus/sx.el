@@ -238,6 +238,7 @@
 "entity-construction-kit"
 "entity-field-query"
 "entity-form"
+"entity-metadata-wrapper"
 "entity-reference"
 "entity-translation"
 "erpal"

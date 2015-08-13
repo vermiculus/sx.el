@@ -1494,6 +1494,7 @@
 "heroes-of-the-storm"
 "heroville"
 "hex-defense"
+"hex-tcg"
 "hexdefense"
 "hidden-chronicles"
 "high-noon-2"

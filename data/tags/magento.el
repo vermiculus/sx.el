@@ -500,7 +500,6 @@
 "mage-googleshopping"
 "mage-shell"
 "mage-xmlconnect"
-"magent0-1.6"
 "magento-1"
 "magento-1.11.0"
 "magento-1.12"

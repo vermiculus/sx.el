@@ -119,6 +119,7 @@
 "ncaa"
 "nfl"
 "nhl"
+"npsl"
 "officiating"
 "offside"
 "olympics"

@@ -53,6 +53,7 @@
 "edi&#231;&#227;o-sugerida"
 "edi&#231;&#245;es-sugeridas"
 "editing"
+"editor"
 "elei&#231;&#227;o"
 "escopo"
 "estat&#237;sicas"

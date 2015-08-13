@@ -87,6 +87,7 @@
 "distance"
 "diy"
 "do-it-yourself"
+"dog"
 "dogs"
 "down"
 "drinking"

@@ -78,6 +78,8 @@
 "research"
 "retag-request"
 "retagging"
+"review"
+"review-queues"
 "rss"
 "rules-as-written"
 "search"

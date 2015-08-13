@@ -603,6 +603,7 @@
 "weimar-republic"
 "west-germany"
 "western-civilisation"
+"witchcraft"
 "world"
 "world-war-2"
 "ww1"

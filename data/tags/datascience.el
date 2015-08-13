@@ -105,6 +105,7 @@
 "methods"
 "mongodb"
 "multiclass-classification"
+"multilabel-classification"
 "multitask-learning"
 "named-entity-recognition"
 "neo4j"

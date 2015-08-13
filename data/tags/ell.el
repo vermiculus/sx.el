@@ -257,7 +257,6 @@
 "participle-clause"
 "participles"
 "parts-of-speech"
-"passage-correction"
 "passive"
 "passive-voice"
 "past"

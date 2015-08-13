@@ -207,6 +207,7 @@
 "evolution"
 "exodus"
 "expansions"
+"exploding-kittens"
 "extension"
 "family-games"
 "farmageddon"

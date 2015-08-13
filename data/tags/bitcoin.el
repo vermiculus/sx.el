@@ -656,7 +656,6 @@
 "vanity-address"
 "vanitygen"
 "verification"
-"version"
 "vertcoin"
 "video"
 "virtual-currency"

@@ -70,7 +70,6 @@
 "attack-on-titan"
 "avatar"
 "avatar-the-last-airbender"
-"awards"
 "ayakashi"
 "azumanga-daioh"
 "b-gata-h-kei"
