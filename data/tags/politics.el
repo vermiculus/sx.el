@@ -43,6 +43,7 @@
 "council-of-europe"
 "crimea"
 "crimes-against-humanity"
+"cronyism"
 "cuba"
 "currency"
 "data-sources"

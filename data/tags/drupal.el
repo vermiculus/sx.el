@@ -583,7 +583,6 @@
 "preprocess"
 "pressflow"
 "preview"
-"print"
 "printing"
 "private-download"
 "privatemsg"

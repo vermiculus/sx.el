@@ -17,6 +17,7 @@
 "closed-questions"
 "comments"
 "community-ads"
+"community-bulletin"
 "community-user"
 "community-wiki"
 "contest"

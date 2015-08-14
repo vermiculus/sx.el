@@ -6,6 +6,7 @@
 "4.6.2"
 "4.6.3"
 "4.6.4"
+"4.6.6"
 "abtesting"
 "accounting"
 "acl"

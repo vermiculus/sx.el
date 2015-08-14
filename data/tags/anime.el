@@ -524,6 +524,7 @@
 "madoka-magica"
 "magi"
 "magic-users-club"
+"magical-taruruuto-kun"
 "magical-warfare"
 "magician"
 "mahoromatic"

@@ -5,7 +5,6 @@
 "access-concentration"
 "accidental-merit"
 "adi-buddha"
-"aeon"
 "aggregates"
 "ahimsa"
 "alan-watts"

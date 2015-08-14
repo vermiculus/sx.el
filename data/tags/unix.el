@@ -765,6 +765,7 @@
 "guake"
 "guest-account"
 "gui"
+"guix"
 "gulp"
 "gummiboot"
 "gvfs"

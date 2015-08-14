@@ -4,6 +4,7 @@
 "anthropology"
 "asking-questions"
 "badges"
+"blacklist"
 "bounty"
 "bug"
 "challenge"

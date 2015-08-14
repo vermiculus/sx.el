@@ -123,6 +123,7 @@
 "officiating"
 "offside"
 "olympics"
+"open-water"
 "origins"
 "padel"
 "paintball"

@@ -40,6 +40,7 @@
 "barcode-scanner"
 "bare-conductive"
 "battery"
+"baud-rate"
 "bluetooth"
 "board-choice"
 "bootloader"

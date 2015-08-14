@@ -1236,6 +1236,7 @@
 "prohibited-items"
 "proof-of-accomodation"
 "proof-of-address"
+"proof-of-employment"
 "proof-of-funds"
 "proof-of-onward-travel"
 "protocol"

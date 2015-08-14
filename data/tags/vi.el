@@ -73,6 +73,7 @@
 "gvim"
 "habit-breaking"
 "help-system"
+"hidden-buffers"
 "highlight"
 "history"
 "history-of"

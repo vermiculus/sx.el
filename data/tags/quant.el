@@ -452,6 +452,7 @@
 "sde"
 "seasonal-effects"
 "sec"
+"self-study"
 "sensitivities"
 "sharpe"
 "sharpe-ratio"

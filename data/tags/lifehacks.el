@@ -109,6 +109,7 @@
 "toys"
 "trash"
 "travel"
+"vehicle"
 "water"
 "wifi"
 "winter")

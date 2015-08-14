@@ -1693,6 +1693,7 @@
 "kingdom-hearts-series"
 "kingdom-of-loathing"
 "kingdom-rush"
+"kingdom-rush-origins"
 "kingdoms-amalur-reckoning"
 "kingdoms-of-camelot"
 "kings-bounty-crossworlds"

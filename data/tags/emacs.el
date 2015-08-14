@@ -424,6 +424,7 @@
 "r"
 "rcirc"
 "read-only-mode"
+"real-auto-save"
 "realgud"
 "rectangle"
 "recursive-edit"

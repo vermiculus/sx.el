@@ -71,6 +71,7 @@
 "status-review"
 "support"
 "tag-synonyms"
+"tag-wiki"
 "tagging"
 "tags"
 "titles"

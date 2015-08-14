@@ -232,6 +232,7 @@
 "imam-mahdi"
 "imam-sadiq"
 "imamah"
+"imperfection"
 "infallability"
 "infallible"
 "inheritance"

@@ -637,7 +637,6 @@
 "flood"
 "flow"
 "flow-accumulation"
-"flow-accumulationzonal"
 "flow-map"
 "fly-through"
 "fme"
@@ -828,6 +827,7 @@
 "google-maps"
 "google-maps-api"
 "google-maps-engine"
+"google-places-api"
 "google-street-view"
 "government"
 "gpgpu"
@@ -2057,5 +2057,6 @@
 "zip4"
 "zipcodes"
 "zonal"
+"zonal-statistics"
 "zoom"
 "zxy")

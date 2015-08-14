@@ -442,6 +442,7 @@
 "etymology"
 "eve-chava"
 "evening-night"
+"evidence"
 "evil-inclination"
 "evil-resha"
 "evil-risha"

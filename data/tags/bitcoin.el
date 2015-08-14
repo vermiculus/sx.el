@@ -627,6 +627,7 @@
 "trading"
 "transaction"
 "transaction-fees"
+"transaction-input"
 "transaction-malleability"
 "transaction-selection"
 "transaction-verification"

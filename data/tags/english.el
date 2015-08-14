@@ -250,7 +250,6 @@
 "dialects"
 "dialog"
 "dialogue"
-"dick"
 "dickens"
 "diction"
 "dictionaries"

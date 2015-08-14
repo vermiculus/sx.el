@@ -365,7 +365,6 @@
 "join-tables"
 "jquery"
 "jquery-ui"
-"js"
 "json"
 "jwplayer"
 "l10n"
