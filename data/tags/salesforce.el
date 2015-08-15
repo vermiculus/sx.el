@@ -1046,6 +1046,7 @@
 "uninstall"
 "unique-field"
 "unit-test"
+"unlimited"
 "unlisted"
 "unmanaged-package"
 "untagged"

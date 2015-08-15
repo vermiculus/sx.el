@@ -282,6 +282,7 @@
 "temperature"
 "terminology"
 "terrestrial-planets"
+"theia"
 "tidal-forces"
 "tides"
 "time-dilation"

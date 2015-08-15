@@ -4364,6 +4364,7 @@
 "setxkbmap"
 "seven"
 "sfc"
+"sfinae"
 "sftp"
 "sh"
 "sha-2"

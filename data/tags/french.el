@@ -69,6 +69,7 @@
 "cuisine"
 "culture"
 "curriculum-vitae"
+"d&#233;finition"
 "d&#233;monstratifs"
 "d&#233;terminants"
 "dates"

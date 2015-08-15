@@ -110,6 +110,7 @@
 "history"
 "holi"
 "horoscopes"
+"human"
 "idols"
 "incarnation"
 "india"

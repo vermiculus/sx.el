@@ -218,7 +218,6 @@
 "drupal-static"
 "drupal-theming"
 "drupal-views"
-"drupal.org"
 "drupalcon"
 "drupalgap"
 "drush"

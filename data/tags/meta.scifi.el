@@ -149,6 +149,7 @@
 "subjective"
 "suggested-edit"
 "suggested-order"
+"superheroes"
 "support"
 "swag"
 "tag"

@@ -231,6 +231,7 @@
 "fire-hazard"
 "fire-pit"
 "fire-sprinkler"
+"fireblocking"
 "fireplace"
 "fireproof"
 "firewood"

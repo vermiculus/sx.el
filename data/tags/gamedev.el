@@ -178,6 +178,7 @@
 "convex-hull"
 "coordinates"
 "copyright"
+"cornering"
 "corona-sdk"
 "costs"
 "cpu"

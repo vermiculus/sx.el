@@ -21,6 +21,7 @@
 "clothing"
 "comfort"
 "computer"
+"contact-lenses"
 "container"
 "cooking"
 "door"

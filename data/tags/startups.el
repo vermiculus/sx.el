@@ -26,6 +26,7 @@
 "buisness-model"
 "business-capital"
 "business-card"
+"business-methodology"
 "business-model"
 "business-plan"
 "business-proposal"

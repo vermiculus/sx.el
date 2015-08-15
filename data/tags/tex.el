@@ -853,6 +853,7 @@
 "pagebreak"
 "pagenote"
 "pagesel"
+"pageslts"
 "pandoc"
 "paper-size"
 "paracol"

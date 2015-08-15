@@ -346,6 +346,7 @@
 "side-channel-attacks"
 "signature"
 "simon"
+"siphash"
 "siv"
 "skein"
 "skipjack"

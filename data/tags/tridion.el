@@ -79,6 +79,7 @@
 "dreamweaver"
 "dwt"
 "dxa"
+"dxa-search"
 "dynamic-content-broker"
 "dynamic-linking"
 "dynamic-publishing"

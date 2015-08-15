@@ -179,6 +179,7 @@
 "skrillex"
 "solomon-burke"
 "song-title"
+"soul"
 "sound"
 "sound-quality"
 "soundgarden"

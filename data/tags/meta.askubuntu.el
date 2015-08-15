@@ -162,6 +162,7 @@
 "tag-blacklist-request"
 "tag-merge"
 "tag-synonyms"
+"tag-tips"
 "tag-wiki"
 "tagging"
 "tagging"

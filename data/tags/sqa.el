@@ -21,6 +21,7 @@
 "bug-severity"
 "bugzilla"
 "build-verification-test"
+"c"
 "c#"
 "calabash"
 "career-development"
