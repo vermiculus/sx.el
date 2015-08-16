@@ -287,6 +287,7 @@
 "minimum-spanning-tree"
 "modal-logic"
 "model-checking"
+"model-theory"
 "modelling"
 "modular-arithmetic"
 "monte-carlo"

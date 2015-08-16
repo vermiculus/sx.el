@@ -406,7 +406,6 @@
 "inside-mari"
 "inuyasha"
 "irregular-at-magic-high"
-"irregular-at-magic-high"
 "is-the-order-a-rabbit"
 "is-this-a-zombie"
 "isshuukan-friends"

@@ -321,7 +321,6 @@
 "kepler-telescope"
 "kerbal-space-program"
 "kestrel"
-"kuiper-belt"
 "ladee"
 "lagrange-points"
 "lagrangian-points"

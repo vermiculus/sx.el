@@ -240,7 +240,6 @@
 "ecmascript-6"
 "edit-distance"
 "efficiency"
-"efficiency"
 "eigen"
 "elasticsearch"
 "elisp"

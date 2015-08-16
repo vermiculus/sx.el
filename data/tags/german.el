@@ -239,7 +239,6 @@
 "software"
 "song-text"
 "speaking"
-"spell"
 "spelling"
 "spoken-language"
 "standard-german"

@@ -20,6 +20,7 @@
 "data-explorer"
 "deleted-answers"
 "deleted-questions"
+"deletion"
 "design"
 "discussion"
 "down-votes"

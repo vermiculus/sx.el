@@ -113,7 +113,6 @@
 "mlb"
 "mls"
 "mma"
-"motogp"
 "nascar"
 "nba"
 "ncaa"

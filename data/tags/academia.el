@@ -152,6 +152,7 @@
 "graduate-admissions"
 "graduate-school"
 "graduation"
+"graduation-requirements"
 "grammar"
 "grants"
 "graphics"

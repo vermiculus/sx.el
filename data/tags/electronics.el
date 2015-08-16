@@ -913,6 +913,7 @@
 "network-interface"
 "networking"
 "nfc"
+"ngspice"
 "nicd-battery"
 "nimh"
 "nixie"

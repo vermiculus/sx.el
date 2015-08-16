@@ -241,7 +241,6 @@
 "microphones"
 "microtonal"
 "microtonality"
-"middle-eastern"
 "midi"
 "midi-controller-keyboard"
 "mikrokosmos"

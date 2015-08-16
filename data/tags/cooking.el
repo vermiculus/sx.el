@@ -434,6 +434,7 @@
 "low-carb"
 "low-fat"
 "macaron"
+"macarons"
 "maillard"
 "maintenance"
 "malt"

@@ -309,6 +309,7 @@
 "japanese"
 "java"
 "javascript"
+"jdbc"
 "jekyll"
 "job-hunting"
 "jogging"

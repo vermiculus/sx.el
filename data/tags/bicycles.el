@@ -254,6 +254,7 @@
 "medical"
 "men-specific"
 "messenger-bags"
+"mips"
 "mirrors"
 "mixte"
 "modification"

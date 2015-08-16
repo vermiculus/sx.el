@@ -71,6 +71,7 @@
 "church-records"
 "citation"
 "civil-records"
+"civil-registration"
 "clergy"
 "coat-of-arms"
 "communication"

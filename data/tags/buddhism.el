@@ -106,6 +106,7 @@
 "ethics"
 "evil"
 "evolution"
+"exercise"
 "experiential"
 "faith"
 "fake-buddha-quotes"

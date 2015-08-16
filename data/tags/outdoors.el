@@ -77,6 +77,7 @@
 "cooking"
 "cotton"
 "cougars"
+"cracks"
 "crampons"
 "crevasses"
 "cross-country-skiing"

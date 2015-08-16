@@ -318,7 +318,6 @@
 "human-genetics"
 "human-genome"
 "human-physiology"
-"hunting"
 "hybridization"
 "hydration"
 "hygiene"

@@ -785,6 +785,7 @@
 "yaris"
 "yezdi"
 "yukon"
+"z3"
 "zetec"
 "zs-180"
 "zzr600")

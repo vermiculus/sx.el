@@ -392,6 +392,7 @@
 "png"
 "portfolio"
 "portrait"
+"post"
 "post-press"
 "posters"
 "ppi"

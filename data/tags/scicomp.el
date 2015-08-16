@@ -6,7 +6,6 @@
 "advection-diffusion"
 "advice"
 "algorithms"
-"ansys"
 "approximation-algorithms"
 "architecture"
 "arpack"
