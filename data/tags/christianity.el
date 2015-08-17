@@ -823,7 +823,6 @@
 "textual-discrepancies"
 "thaddeus"
 "the-four-evangelists"
-"theft"
 "theistic-evolution"
 "theodicy"
 "theological-frameworks"

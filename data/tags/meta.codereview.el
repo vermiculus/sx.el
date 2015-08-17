@@ -88,6 +88,7 @@
 "pictures"
 "post-notice"
 "profile-page"
+"projects"
 "publicity"
 "questions"
 "recent-activity"

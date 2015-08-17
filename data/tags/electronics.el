@@ -1154,6 +1154,7 @@
 "rectifier"
 "redundancy"
 "reed"
+"reel"
 "reference"
 "reference-materials"
 "reflow"

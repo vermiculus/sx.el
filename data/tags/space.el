@@ -330,6 +330,7 @@
 "language"
 "laser"
 "launch"
+"launch-assist"
 "launch-campaign"
 "launch-escape-system"
 "launch-failure"

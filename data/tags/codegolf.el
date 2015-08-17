@@ -2,7 +2,6 @@
 "3d"
 "abstract-algebra"
 "ai-player"
-"algorithm-advice"
 "anagrams"
 "animation"
 "answer-chaining"

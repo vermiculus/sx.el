@@ -90,7 +90,6 @@
 "paper-filter"
 "peaberry"
 "percolator"
-"pirate-gold"
 "pixie"
 "pods"
 "portafilter"

@@ -1263,6 +1263,7 @@
 "trend"
 "trimmed-mean"
 "truncation"
+"tsne"
 "tukey-hsd"
 "tutorial"
 "tweedie"

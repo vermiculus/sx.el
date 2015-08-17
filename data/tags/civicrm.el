@@ -220,6 +220,7 @@
 "socketlabs"
 "sql"
 "standalone"
+"staticfiles"
 "stripe"
 "sysadmin"
 "system-workflow-messages"

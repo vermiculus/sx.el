@@ -31,7 +31,6 @@
 "backward-compatibility"
 "badges"
 "barchart"
-"barchart3d"
 "benchmarking"
 "big-list"
 "big-numbers"

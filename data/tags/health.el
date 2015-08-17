@@ -198,6 +198,7 @@
 "life-expectancy"
 "lifestyle"
 "liver"
+"lyme-disease"
 "lymph"
 "marathon"
 "marijuana"
