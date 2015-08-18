@@ -217,6 +217,7 @@
 "philippines"
 "phone"
 "planning"
+"poland"
 "politics"
 "portfolio"
 "position"

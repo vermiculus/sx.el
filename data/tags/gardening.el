@@ -144,6 +144,7 @@
 "french-beans"
 "frost"
 "frugal"
+"fruit-drop"
 "fruit-trees"
 "fruits"
 "fungus"

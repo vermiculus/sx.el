@@ -366,6 +366,7 @@
 "hell-girl"
 "hellsing"
 "henneko"
+"hentai-ouji-to-warawanai"
 "hentai-prince-stony-cat"
 "hibike-euphonium"
 "hidamari-sketch"

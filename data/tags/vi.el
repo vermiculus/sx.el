@@ -86,6 +86,7 @@
 "installing"
 "invocation"
 "iterm2"
+"json"
 "jumplist"
 "key-bindings"
 "key-mappings"

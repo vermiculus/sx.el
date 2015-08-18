@@ -933,6 +933,7 @@
 "job-control"
 "jobs"
 "joe"
+"john-the-ripper"
 "join"
 "journald"
 "journaling"

@@ -21,6 +21,7 @@
 "down-votes"
 "duplicate-questions"
 "editing"
+"election"
 "error"
 "etiquette"
 "event"

@@ -75,6 +75,7 @@
 "genkoyoshi"
 "genkōyōshi"
 "gerund"
+"gestures"
 "giving-and-receiving"
 "godan-verbs"
 "grammar"

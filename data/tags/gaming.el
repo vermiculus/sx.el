@@ -3009,6 +3009,7 @@
 "solatorobo-red-the-hunter"
 "soldier-fortune-payback"
 "solomons-boneyard"
+"sonic-2"
 "sonic-3"
 "sonic-3-and-knuckles"
 "sonic-adventure-2-battle"

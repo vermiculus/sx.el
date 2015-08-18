@@ -189,6 +189,7 @@
 "smart-target"
 "smarttarget"
 "solr"
+"spring"
 "sso"
 "storage-extensions"
 "stri"

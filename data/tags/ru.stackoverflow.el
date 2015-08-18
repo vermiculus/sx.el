@@ -2280,7 +2280,6 @@
 "voyager"
 "vpn"
 "vps"
-"vs"
 "vsto"
 "vuforia"
 "vxworks"

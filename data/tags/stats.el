@@ -990,6 +990,7 @@
 "propensity-scores"
 "proportion"
 "protovis"
+"pruning"
 "pseudo-random"
 "psychology"
 "psychometrics"

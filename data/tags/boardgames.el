@@ -465,6 +465,7 @@
 "seven-wonders"
 "shadow-hunters"
 "shadowrun-crossfire"
+"shadows-of-brimstone"
 "shadows-over-camelot"
 "shape"
 "shelem"

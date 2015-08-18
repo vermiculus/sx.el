@@ -305,6 +305,7 @@
 "ftp"
 "functional"
 "functional-programming"
+"futures"
 "gadt"
 "game"
 "game-maker"

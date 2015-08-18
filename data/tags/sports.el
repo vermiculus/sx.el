@@ -93,6 +93,7 @@
 "itf"
 "ittf"
 "jersey"
+"kabaddi"
 "kart-racing"
 "karting"
 "kayak"

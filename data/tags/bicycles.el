@@ -316,6 +316,7 @@
 "rails"
 "rain"
 "randonneuring"
+"re-use"
 "rear-wheel"
 "recumbent"
 "reference"
