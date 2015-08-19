@@ -208,6 +208,7 @@
 "nbar"
 "netflow"
 "netgear-prosafe"
+"network-access"
 "network-core"
 "network-discovery"
 "network-edge"
@@ -239,6 +240,7 @@
 "pim"
 "ping"
 "pix"
+"poe"
 "point-to-point"
 "policing"
 "port-security"
@@ -352,7 +354,6 @@
 "wan"
 "wan-optimizer"
 "wifi"
-"windows"
 "wireless"
 "wireshark"
 "wlc")

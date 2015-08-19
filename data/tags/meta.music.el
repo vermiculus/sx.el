@@ -4,6 +4,7 @@
 "asking-questions"
 "badges"
 "best-practice"
+"blacklist-request"
 "bounty"
 "bug"
 "chat"

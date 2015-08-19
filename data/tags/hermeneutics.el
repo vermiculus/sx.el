@@ -200,6 +200,7 @@
 "moses"
 "mystery"
 "names-of-god"
+"names-of-people"
 "narrative-analysis"
 "nativity"
 "nehemiah"

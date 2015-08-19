@@ -506,6 +506,7 @@
 "nosql"
 "ntfs"
 "null"
+"numa"
 "number-formatting"
 "number-table"
 "nuodb"

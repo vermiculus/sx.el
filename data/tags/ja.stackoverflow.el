@@ -648,7 +648,6 @@
 "vb.net"
 "vba"
 "vbs"
-"vcruntime"
 "vhdl"
 "video"
 "vim"

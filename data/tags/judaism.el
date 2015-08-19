@@ -766,6 +766,7 @@
 "lighting"
 "limud-torah"
 "liquor-beer"
+"literalism"
 "literature"
 "lo-bashamayim-hi"
 "lo-thithgodedu"

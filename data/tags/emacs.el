@@ -384,7 +384,6 @@
 "pastebin"
 "patch"
 "path"
-"pcomplete"
 "pdf"
 "performance"
 "perl"

@@ -54,6 +54,7 @@
 "canonical"
 "captcha"
 "careers"
+"careers-select"
 "certificate"
 "challenge-rating"
 "character-length"

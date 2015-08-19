@@ -55,6 +55,7 @@
 "grammar"
 "greetings"
 "hakka"
+"hanban"
 "handwriting"
 "hanzi"
 "history"

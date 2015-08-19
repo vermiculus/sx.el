@@ -25,6 +25,7 @@
 "capitalism"
 "central-bank"
 "change"
+"charter-schools"
 "checks-and-balances"
 "china"
 "citizenship"

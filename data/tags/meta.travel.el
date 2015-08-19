@@ -4,6 +4,7 @@
 "badges"
 "beta"
 "blog"
+"bounties"
 "bounty"
 "broadness"
 "broken-link"

@@ -211,6 +211,7 @@
 "facebook-share"
 "fatal"
 "feature-request"
+"feed"
 "feedparser"
 "field-conversion"
 "field-editor"

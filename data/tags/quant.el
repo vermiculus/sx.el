@@ -180,6 +180,7 @@
 "european"
 "event"
 "event-study"
+"evt"
 "excel"
 "exchange"
 "exotics"

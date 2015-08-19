@@ -731,6 +731,7 @@
 "gnuplot"
 "gnustep"
 "gnutls"
+"gnuwin32"
 "google-chrome"
 "google-drive"
 "gparted"

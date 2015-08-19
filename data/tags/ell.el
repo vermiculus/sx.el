@@ -408,7 +408,6 @@
 "typography"
 "uncountable-nouns"
 "understanding"
-"untagged"
 "until"
 "usage"
 "valediction"

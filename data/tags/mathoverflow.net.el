@@ -556,7 +556,6 @@
 "grothendieck-riemann-roch"
 "grothendieck-rings"
 "grothendieck-topology"
-"group"
 "group-actions"
 "group-algebras"
 "group-cohomology"

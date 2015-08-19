@@ -252,7 +252,6 @@
 "twitter"
 "uc-browser"
 "unlocking"
-"untagged"
 "update"
 "update-to-8.1"
 "upgrading"

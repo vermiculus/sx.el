@@ -130,6 +130,7 @@
 "joomla-3.4"
 "joomla-3.x"
 "joomla-api"
+"joomla-framework"
 "joomla-framework-1.x"
 "joomla-user-groups"
 "joomla.org"

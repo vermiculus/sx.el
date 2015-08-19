@@ -42,6 +42,7 @@
 "migration"
 "moderation"
 "new-users"
+"newsletter"
 "notifications"
 "off-topic"
 "openid"

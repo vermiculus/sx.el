@@ -120,6 +120,7 @@
 "retagging"
 "review"
 "review-queue"
+"richard-mod"
 "rss"
 "scope"
 "search"

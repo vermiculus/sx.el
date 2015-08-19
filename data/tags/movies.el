@@ -753,6 +753,7 @@
 "history-of-the-world-1"
 "hitch"
 "hitman"
+"hogans-heroes"
 "hollyoaks"
 "hollywood"
 "homefront"

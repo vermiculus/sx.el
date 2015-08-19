@@ -1513,6 +1513,7 @@
 "xiaomi"
 "xiaomi-redmi-note-4g"
 "xmpp"
+"xolo"
 "xolo-x900"
 "xoom"
 "xperia-neo"
