@@ -305,6 +305,7 @@
 "snowdonia"
 "snowshoeing"
 "snowshoes"
+"solo-climbing"
 "solo-trekking"
 "spain"
 "spelunking"

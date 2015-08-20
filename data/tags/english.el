@@ -692,6 +692,7 @@
 "philology"
 "philosophy"
 "phobia-word-requests"
+"phobias"
 "phonemes"
 "phonetics"
 "phonics"

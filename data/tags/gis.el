@@ -445,6 +445,7 @@
 "definition-query"
 "definitions"
 "degrees"
+"delete"
 "delimiter"
 "dem"
 "demographics"

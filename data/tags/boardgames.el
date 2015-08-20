@@ -33,6 +33,7 @@
 "ascension"
 "asia-engulfed"
 "at-the-gates-of-loyang"
+"auction"
 "auf-achse"
 "avalonhill"
 "axis-and-allies"

@@ -70,6 +70,7 @@
 "bias"
 "big-data"
 "billing"
+"blackout"
 "blog"
 "booking"
 "booking-system"

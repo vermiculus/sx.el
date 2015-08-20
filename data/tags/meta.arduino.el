@@ -3,6 +3,7 @@
 "answers"
 "asking-questions"
 "badges"
+"beta-progress"
 "bounty"
 "bug"
 "canonical-question"

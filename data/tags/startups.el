@@ -90,6 +90,7 @@
 "finance"
 "financing"
 "forecasting"
+"formation"
 "founder"
 "france"
 "freelancing"

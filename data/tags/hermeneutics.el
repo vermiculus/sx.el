@@ -221,6 +221,7 @@
 "old-covenant"
 "old-testament"
 "onomastics"
+"onomatology"
 "parables"
 "paragogic"
 "pastorals"

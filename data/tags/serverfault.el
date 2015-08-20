@@ -1892,7 +1892,6 @@
 "mssqlserver"
 "mstsc"
 "msxml"
-"mta"
 "mtime"
 "mtr"
 "mtu"

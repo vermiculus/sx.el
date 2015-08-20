@@ -15,6 +15,7 @@
 "bate-papo"
 "beta"
 "big-7"
+"bloqueio"
 "boletim-da-comunidade"
 "bounty"
 "bug"

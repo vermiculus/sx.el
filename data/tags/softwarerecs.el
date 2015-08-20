@@ -566,6 +566,7 @@
 "simulation"
 "skeleton-application"
 "skype"
+"sleep-mode"
 "slideshow"
 "sms"
 "smtp"

@@ -577,6 +577,7 @@
 "libraries"
 "licenses"
 "light-application-object"
+"lighting-ui"
 "lightning-apps"
 "lightning-components"
 "lightning-connect"

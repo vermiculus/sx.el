@@ -258,6 +258,7 @@
 "cemetery"
 "cemetery-grave"
 "chabad"
+"chachamim-sages"
 "chagim-holidays"
 "chala-shabbat-bread"
 "chalakeh"

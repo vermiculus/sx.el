@@ -386,6 +386,7 @@
 "symbols"
 "synonyms"
 "syntax"
+"tactfulness"
 "tag-questions"
 "teaching"
 "technical"

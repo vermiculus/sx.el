@@ -2200,6 +2200,7 @@
 "xfreerdp"
 "xfs"
 "xft"
+"xhost"
 "xine"
 "xinerama"
 "xinetd"

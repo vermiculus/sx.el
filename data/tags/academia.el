@@ -93,6 +93,7 @@
 "deadlines"
 "defense"
 "degree"
+"degree-requirement"
 "design"
 "digital-libraries"
 "disability"

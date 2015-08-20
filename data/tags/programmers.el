@@ -856,7 +856,6 @@
 "isa"
 "iso"
 "issue-tracking"
-"issues"
 "iterative-development"
 "iterator"
 "itunesconnect"

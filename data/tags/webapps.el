@@ -128,6 +128,7 @@
 "cloud-storage"
 "cloud9"
 "cms"
+"codalab"
 "code"
 "codeplex"
 "codeproject"

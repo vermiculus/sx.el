@@ -50,6 +50,7 @@
 "cp-dashboard"
 "craft-features"
 "craft-pro"
+"craft3"
 "csrf"
 "css"
 "current-user"
