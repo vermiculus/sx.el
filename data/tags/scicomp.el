@@ -290,6 +290,7 @@
 "testing"
 "time-harmonic"
 "time-integration"
+"transfer-matrix-method"
 "trilinos"
 "trust-regions"
 "umfpack"

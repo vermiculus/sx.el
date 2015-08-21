@@ -64,6 +64,7 @@
 "fonts"
 "freebsd"
 "freedom-hosting"
+"ftp"
 "geoip"
 "git"
 "global-adversary"

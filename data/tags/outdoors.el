@@ -42,7 +42,6 @@
 "bow-hunting"
 "breathing"
 "bugs"
-"burrito-wrap"
 "california"
 "camping"
 "canada"

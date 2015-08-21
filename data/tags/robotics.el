@@ -136,6 +136,7 @@
 "nxt"
 "occupancygrid"
 "odometry"
+"opencv"
 "openni"
 "operating-systems"
 "particle-filter"

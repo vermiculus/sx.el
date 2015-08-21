@@ -4,6 +4,7 @@
 "badges"
 "bounty"
 "bug"
+"canonical-answers"
 "chat"
 "close-reasons"
 "closed-questions"

@@ -124,7 +124,6 @@
 "natural-wood"
 "noise"
 "oiling"
-"oregon"
 "outdoor"
 "paint"
 "pallet"

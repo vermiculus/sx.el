@@ -74,7 +74,6 @@
 "jigsaw-puzzle"
 "joke"
 "josephus-problem"
-"kiddish"
 "klotski-puzzle"
 "knights-and-knaves"
 "knowledge"

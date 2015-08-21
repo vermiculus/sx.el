@@ -719,6 +719,7 @@
 "superannuation"
 "sweden"
 "switzerland"
+"taiwan"
 "target-date-fund"
 "tax"
 "tax-brackets"

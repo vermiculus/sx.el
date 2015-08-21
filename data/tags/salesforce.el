@@ -400,6 +400,7 @@
 "feed-based-layout"
 "feedcomment"
 "feeditem"
+"fflib"
 "field-dependencies"
 "field-history"
 "field-level-security"

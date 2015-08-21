@@ -179,6 +179,7 @@
 "macfamilytree"
 "maine"
 "manifest"
+"manor"
 "map"
 "maps"
 "markdown"

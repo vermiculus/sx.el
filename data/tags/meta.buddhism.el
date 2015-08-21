@@ -25,6 +25,8 @@
 "editing"
 "elections"
 "etiquette"
+"etiquitte"
+"ettiquite"
 "exact-duplicates"
 "faq"
 "favorites"

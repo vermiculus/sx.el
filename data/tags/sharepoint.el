@@ -474,6 +474,7 @@
 "foundation"
 "front-end"
 "frontpage-rpc"
+"full-trust-proxy"
 "fulltextsqlquery"
 "gac"
 "gantt-view"

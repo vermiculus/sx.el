@@ -46,6 +46,7 @@
 "site-definition"
 "site-evaluation"
 "site-promotion"
+"software"
 "specific-question"
 "stackexchange"
 "statistics"

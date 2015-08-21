@@ -1385,6 +1385,7 @@
 "stm32f2"
 "stm32f3"
 "stm32f4"
+"stm32f7"
 "stm8"
 "storage"
 "strain-gage"

@@ -10,7 +10,6 @@
 "adapters"
 "addis-ababa"
 "adventure"
-"aegean"
 "aegean-airlines"
 "aep"
 "aeroflot"

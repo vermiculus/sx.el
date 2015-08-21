@@ -994,7 +994,6 @@
 "personal-statistics"
 "personalization"
 "philosophy"
-"php-developers-smell"
 "picture"
 "ping"
 "piracy"

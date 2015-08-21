@@ -694,6 +694,7 @@
 "spaces"
 "spam"
 "splashify"
+"spreadsheet"
 "sql-query"
 "sql-server"
 "sql-sync"

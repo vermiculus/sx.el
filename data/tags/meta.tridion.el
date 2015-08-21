@@ -17,6 +17,7 @@
 "design"
 "discussion"
 "down-votes"
+"dxa"
 "editing"
 "election"
 "etiquette"

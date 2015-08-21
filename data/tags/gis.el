@@ -1,4 +1,5 @@
 (".gdb"
+".las"
 ".net"
 ".qml"
 "2d"

@@ -225,6 +225,7 @@
 "development-speed"
 "dialog-tree"
 "difficulty"
+"dijkstra"
 "direct2d"
 "direct3d"
 "direct3d10"

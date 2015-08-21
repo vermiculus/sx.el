@@ -144,6 +144,7 @@
 "derby"
 "devise"
 "dhcp"
+"dhtmlx"
 "dialog"
 "directx"
 "django"

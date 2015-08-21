@@ -264,6 +264,7 @@
 "coolpix"
 "copyright"
 "corel"
+"cosina"
 "cost"
 "course"
 "cowboy-studio"

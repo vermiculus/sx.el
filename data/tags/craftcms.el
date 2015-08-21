@@ -214,6 +214,7 @@
 "plugin-duktoauth"
 "plugin-dukttwitter"
 "plugin-duktvideos"
+"plugin-elementapi"
 "plugin-embedder"
 "plugin-feedme"
 "plugin-guestentries"

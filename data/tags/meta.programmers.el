@@ -20,6 +20,7 @@
 "closed-questions"
 "closing-questions"
 "code"
+"coffee"
 "comments"
 "community"
 "community-ads"

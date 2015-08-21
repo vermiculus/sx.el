@@ -1507,6 +1507,7 @@
 "wireless-charging"
 "wireless-network"
 "wireless-networking"
+"wlan"
 "wma"
 "wpa-supplicant"
 "wpa2"

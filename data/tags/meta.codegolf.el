@@ -31,6 +31,7 @@
 "design"
 "discussion"
 "down-votes"
+"duplicates"
 "editing"
 "etiquette"
 "exact-duplicates"
