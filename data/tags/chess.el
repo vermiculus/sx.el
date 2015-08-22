@@ -232,6 +232,7 @@
 "rapid"
 "rating"
 "refuted"
+"resigning"
 "retrograde-analysis"
 "rook"
 "rook-and-minor-endgame"

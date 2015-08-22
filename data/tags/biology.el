@@ -171,7 +171,6 @@
 "differentiation"
 "digestion"
 "digestive-system"
-"dise"
 "diseases"
 "dissection"
 "dissociation-constant"

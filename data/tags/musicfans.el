@@ -71,6 +71,7 @@
 "funk"
 "genre"
 "gospel"
+"grateful-dead"
 "green-day"
 "gregorian-chant"
 "guitar-synth"

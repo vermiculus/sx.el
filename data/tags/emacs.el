@@ -116,6 +116,7 @@
 "desktop"
 "development"
 "diary"
+"diff"
 "diff-mode"
 "directories"
 "directory-local-variables"

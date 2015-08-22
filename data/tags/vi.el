@@ -195,6 +195,7 @@
 "shortmess"
 "signs"
 "silent-mode"
+"sort"
 "source"
 "spell-checking"
 "split"

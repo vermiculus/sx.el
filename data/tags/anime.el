@@ -890,7 +890,6 @@
 "tesagure-bukatsumono"
 "tetsujin-28"
 "the-breaker"
-"the-cain-saga"
 "the-eccentric-family"
 "the-eotena-onslaught"
 "the-familiar-of-zero"

@@ -1041,6 +1041,7 @@
 "layer-group"
 "layer-package"
 "layer-resource"
+"layer-switcher"
 "layers"
 "layouts"
 "laz"

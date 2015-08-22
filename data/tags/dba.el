@@ -702,6 +702,7 @@
 "scheduler"
 "schema"
 "schema-copy"
+"schemas"
 "sco-unix"
 "script"
 "script-component"

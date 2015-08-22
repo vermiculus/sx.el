@@ -212,6 +212,7 @@
 "pay"
 "payment"
 "payment"
+"payscale"
 "people-management"
 "performance"
 "performance-reviews"

@@ -71,7 +71,6 @@
 "kanji"
 "kinship"
 "language-learning"
-"lanuage"
 "learn-chinese"
 "learning"
 "listening"

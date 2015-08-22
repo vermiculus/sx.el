@@ -284,7 +284,6 @@
 "spirit"
 "symbology"
 "synoptic-problem"
-"synoptic-problem"
 "synoptics"
 "syntax"
 "tabernacle"

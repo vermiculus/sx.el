@@ -10,6 +10,7 @@
 "comments"
 "community-ads"
 "community-wiki"
+"cross-posting"
 "data-dump"
 "data-explorer"
 "deleted-questions"

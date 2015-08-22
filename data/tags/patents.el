@@ -570,6 +570,7 @@
 "tandberg"
 "tech"
 "technology"
+"tecnology"
 "telecommunications"
 "term"
 "terminology"

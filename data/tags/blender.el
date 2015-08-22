@@ -130,6 +130,7 @@
 "point-clouds"
 "preferences"
 "properties"
+"proportional-editing"
 "pynodes"
 "python"
 "render"

@@ -51,6 +51,7 @@
 "civipetiton"
 "civipledge"
 "civireport"
+"civirules"
 "civisepa"
 "civisms"
 "civisualize"

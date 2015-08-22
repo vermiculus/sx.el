@@ -143,6 +143,7 @@
 "jar"
 "java"
 "javascript"
+"jffs2"
 "jtag"
 "kernel-mode"
 "law"
