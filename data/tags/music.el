@@ -359,7 +359,6 @@
 "sitar"
 "skill-level"
 "slide-guitar"
-"slur"
 "snare-drum"
 "software"
 "solfege"

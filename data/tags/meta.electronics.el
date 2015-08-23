@@ -16,7 +16,6 @@
 "community-ads"
 "community-decision"
 "community-wiki"
-"controling-users"
 "data-dump"
 "data-explorer"
 "deleted-answers"

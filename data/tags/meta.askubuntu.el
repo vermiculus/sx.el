@@ -90,7 +90,6 @@
 "image"
 "incorrectly-closed"
 "interesting-tags"
-"keyboard-shortcuts"
 "knowledge-management"
 "languages"
 "launchpad"

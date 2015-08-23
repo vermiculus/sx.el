@@ -102,7 +102,6 @@
 "laser"
 "legged"
 "lidar"
-"limb"
 "line-following"
 "linear-bearing"
 "linux"

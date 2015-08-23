@@ -33,7 +33,6 @@
 "language"
 "login"
 "markdown"
-"membership"
 "meta"
 "migration"
 "moderation"

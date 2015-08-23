@@ -192,7 +192,6 @@
 "pooja"
 "pork"
 "practice"
-"practices"
 "pralaya"
 "prasad"
 "prayer"

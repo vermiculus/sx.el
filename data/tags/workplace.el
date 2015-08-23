@@ -106,8 +106,6 @@
 "failure"
 "farewell"
 "feedback"
-"filing"
-"finland"
 "firing"
 "first-job"
 "follow-up"

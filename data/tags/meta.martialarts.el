@@ -37,7 +37,6 @@
 "new-users"
 "notifications"
 "openid"
-"privileges"
 "profile-page"
 "quality-evaluation"
 "questions"

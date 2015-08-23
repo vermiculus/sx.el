@@ -521,7 +521,6 @@
 "transition-matrix"
 "trends"
 "trinomial-trees"
-"ttr"
 "untagged"
 "utility-theory"
 "validation"

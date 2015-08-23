@@ -13,7 +13,6 @@
 "community-wiki"
 "data-dump"
 "data-explorer"
-"delete-comments"
 "deleted-questions"
 "design"
 "discussion"

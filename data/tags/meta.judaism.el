@@ -129,7 +129,6 @@
 "status-review"
 "sukkot-project"
 "support"
-"tag-blacklist"
 "tag-synonyms"
 "tag-wiki"
 "tagging"

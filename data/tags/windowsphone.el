@@ -34,6 +34,7 @@
 "brightness"
 "browser"
 "buttons"
+"c#"
 "calendar"
 "calendars"
 "call-sms-filter"
@@ -63,7 +64,6 @@
 "display"
 "download-mode"
 "driving-mode"
-"dual-sim"
 "email"
 "error"
 "exchange"
@@ -282,6 +282,5 @@
 "wpdm"
 "xbox-live"
 "xbox-music"
-"youtube"
 "zune"
 "zune-player")

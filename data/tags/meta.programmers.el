@@ -3,7 +3,6 @@
 "answer-quality"
 "answers"
 "asking-questions"
-"author"
 "bad-questions"
 "badges"
 "best-practice"

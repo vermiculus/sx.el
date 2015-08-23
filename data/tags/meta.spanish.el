@@ -18,7 +18,6 @@
 "discussion"
 "down-votes"
 "editing"
-"espana"
 "etiquette"
 "exact-duplicates"
 "faq"

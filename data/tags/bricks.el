@@ -8,7 +8,6 @@
 "afol"
 "angles"
 "automation"
-"banbao"
 "bionicle"
 "bluetooth"
 "boat"

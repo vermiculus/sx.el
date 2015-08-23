@@ -109,7 +109,6 @@
 "nook-simple-touch"
 "notes"
 "odyssey"
-"offline"
 "operating-system"
 "opf"
 "optimization"

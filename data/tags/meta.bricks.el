@@ -51,7 +51,6 @@
 "search"
 "site-evaluation"
 "site-promotion"
-"speakers-bureau"
 "specific-question"
 "stackexchange"
 "statistics"

@@ -99,5 +99,4 @@
 "vote-to-reopen"
 "votes"
 "voting"
-"winterbash-2014"
-"zombies")
+"winterbash-2014")

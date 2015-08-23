@@ -27,7 +27,6 @@
 "design"
 "discussion"
 "down-votes"
-"downvoting"
 "editing"
 "election"
 "elections"
@@ -104,7 +103,6 @@
 "user-accounts"
 "user-interface"
 "users"
-"vot"
 "vote-to-close"
 "votes"
 "voting")

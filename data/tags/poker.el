@@ -15,7 +15,6 @@
 "button"
 "california"
 "cash-game"
-"cash-out"
 "casino"
 "cheating"
 "dead-mans-hand"

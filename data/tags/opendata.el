@@ -169,7 +169,6 @@
 "sea"
 "search-engine"
 "security"
-"semantic-mediawiki"
 "sentiment-analysis"
 "singapore"
 "social-media"

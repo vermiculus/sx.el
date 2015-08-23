@@ -34,7 +34,6 @@
 "homework"
 "hyperlinks"
 "interesting-tags"
-"ios-app"
 "login"
 "markdown"
 "mathjax"

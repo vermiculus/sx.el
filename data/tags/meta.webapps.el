@@ -4,7 +4,6 @@
 "answers"
 "app-recommendation"
 "asking-questions"
-"auto-deletion"
 "badges"
 "beta"
 "blacklist"

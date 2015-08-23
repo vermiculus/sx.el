@@ -693,7 +693,6 @@
 "sorting"
 "spaces"
 "spam"
-"splashify"
 "spreadsheet"
 "sql-query"
 "sql-server"
@@ -871,5 +870,4 @@
 "yaml"
 "youtube"
 "zen"
-"zend"
-"zoom")
+"zend")

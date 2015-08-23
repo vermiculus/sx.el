@@ -190,7 +190,6 @@
 "resume"
 "reviews"
 "revision"
-"rewriting"
 "rhythm"
 "romance"
 "rules"

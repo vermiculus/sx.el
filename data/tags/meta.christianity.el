@@ -89,7 +89,6 @@
 "scope"
 "search"
 "sensitive-topics"
-"sex"
 "site-definition"
 "site-promotion"
 "spam"

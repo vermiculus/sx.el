@@ -59,7 +59,6 @@
 "childcare"
 "chores"
 "christmas"
-"classmates"
 "cleaning"
 "cleanliness"
 "cloth-diaper"

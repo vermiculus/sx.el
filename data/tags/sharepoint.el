@@ -1120,7 +1120,6 @@
 "tagcloud"
 "tagging"
 "tags"
-"target"
 "task-list"
 "tasks"
 "taxonomy"

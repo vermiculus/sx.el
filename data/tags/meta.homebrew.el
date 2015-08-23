@@ -37,7 +37,6 @@
 "notifications"
 "off-topic"
 "openid"
-"picture"
 "policy"
 "profile-page"
 "quality-evaluation"

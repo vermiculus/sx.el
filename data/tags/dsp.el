@@ -231,6 +231,7 @@
 "polar"
 "poles-zeros"
 "position"
+"power-law"
 "power-spectral-density"
 "preprocessing"
 "processing"
