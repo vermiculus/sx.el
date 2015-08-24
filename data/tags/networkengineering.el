@@ -140,6 +140,7 @@
 "ieee-802.3ad"
 "ieee-802.3x"
 "igmp"
+"igp"
 "ike"
 "interface"
 "internet"

@@ -295,6 +295,7 @@
 "terminology"
 "textual-criticism"
 "textual-discrepancies"
+"textual-emendation"
 "thanksgiving"
 "theodicy"
 "theophany"

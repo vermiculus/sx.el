@@ -391,7 +391,6 @@
 "u-prove"
 "u2f"
 "uc"
-"udp"
 "unicity-distance"
 "universal-composability"
 "universal-hash"

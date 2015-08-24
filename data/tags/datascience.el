@@ -96,6 +96,7 @@
 "libsvm"
 "linear-regression"
 "logistic-regression"
+"loss-function"
 "machine-learning"
 "map-reduce"
 "market-data"

@@ -449,6 +449,7 @@
 "php"
 "physical-coins"
 "poclbm"
+"point-of-sale-device"
 "politics"
 "pool"
 "pool-hopping"

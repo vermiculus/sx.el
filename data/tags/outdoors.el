@@ -27,6 +27,7 @@
 "beginner"
 "belay"
 "big-wall-climbing"
+"bike"
 "biking"
 "bird-watching"
 "birds"

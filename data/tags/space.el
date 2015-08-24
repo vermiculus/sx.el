@@ -28,7 +28,6 @@
 "apollo-13"
 "apollo-program"
 "apollo-soyuz"
-"areobraking"
 "areology"
 "ares-i"
 "ares-v"

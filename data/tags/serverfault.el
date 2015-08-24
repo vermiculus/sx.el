@@ -3635,7 +3635,6 @@
 "xvfb"
 "yaml"
 "yaws"
-"yosemite"
 "yp"
 "yslow"
 "yum"

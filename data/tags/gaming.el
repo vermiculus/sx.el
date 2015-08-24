@@ -3097,6 +3097,7 @@
 "spyro-series"
 "spyro-year-of-the-dragon"
 "sr4-saints-save-christmas"
+"ss3-afv"
 "ssx-2012"
 "stack-egg"
 "stacking"

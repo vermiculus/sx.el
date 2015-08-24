@@ -55,6 +55,7 @@
 "off-topic"
 "openid"
 "outdated-content"
+"policies"
 "profile-page"
 "questions"
 "recent-activity"

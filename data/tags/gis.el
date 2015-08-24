@@ -147,7 +147,6 @@
 "arcobjects.net"
 "arcobjectsjava"
 "arcobjectsjava"
-"arcp"
 "arcpad"
 "arcpress"
 "arcpy"

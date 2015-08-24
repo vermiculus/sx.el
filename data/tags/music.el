@@ -36,7 +36,6 @@
 "banjo"
 "baroque"
 "bartok"
-"bass"
 "bass-clarinet"
 "bass-drum"
 "bass-frequencies"

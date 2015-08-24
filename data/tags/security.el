@@ -721,7 +721,6 @@
 "uefi"
 "unicode"
 "unix"
-"untagged"
 "updates"
 "url"
 "url-redirection"

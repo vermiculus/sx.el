@@ -133,6 +133,7 @@
 "chrome"
 "cinema-4d"
 "circle"
+"clickteam-fusion"
 "client"
 "client-server"
 "clipping"

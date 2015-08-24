@@ -319,6 +319,7 @@
 "reproducible-research"
 "reputation"
 "research"
+"research-and-development"
 "research-assistantship"
 "research-dissemination"
 "research-group"
