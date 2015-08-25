@@ -129,6 +129,7 @@
 "background"
 "background-app-refresh"
 "backlight"
+"backspace"
 "backup"
 "bash"
 "battery"

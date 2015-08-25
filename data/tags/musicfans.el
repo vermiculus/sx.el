@@ -35,6 +35,7 @@
 "classification"
 "clifford-joseph-harris-jr"
 "coding"
+"cole-porter"
 "compilations"
 "concert"
 "cool-jazz"

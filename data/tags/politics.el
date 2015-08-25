@@ -171,6 +171,7 @@
 "middle-east"
 "military"
 "military-law"
+"minorities"
 "monarchy"
 "money"
 "money-supply"

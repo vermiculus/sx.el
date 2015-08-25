@@ -264,7 +264,6 @@
 "copyright"
 "corel"
 "cosina"
-"cost"
 "course"
 "cowboy-studio"
 "cr2"

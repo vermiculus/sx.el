@@ -230,6 +230,7 @@
 "french-revolution"
 "fur-trade"
 "game"
+"game-theory"
 "gender"
 "geneology"
 "genocide"

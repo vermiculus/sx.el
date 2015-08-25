@@ -544,6 +544,7 @@
 "fantasy-genre"
 "fantomex"
 "farscape"
+"fear-the-walking-dead"
 "federation"
 "felix-gilman"
 "fellowship-of-the-ring"

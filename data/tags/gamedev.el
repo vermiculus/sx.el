@@ -36,6 +36,7 @@
 "and-engine"
 "andengine"
 "android"
+"android-studio"
 "angles"
 "animation"
 "ant"

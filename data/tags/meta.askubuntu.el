@@ -183,6 +183,7 @@
 "user-communication"
 "user-interface"
 "users"
+"vote-retraction"
 "vote-to-close"
 "votes"
 "voting"

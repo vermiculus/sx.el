@@ -533,6 +533,7 @@
 "visual-artifacts"
 "visualization"
 "visualization"
+"wacom"
 "wayfinding"
 "web"
 "web"

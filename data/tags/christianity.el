@@ -463,6 +463,7 @@
 "just-war-theory"
 "justice"
 "justification"
+"karl-barth"
 "ken-ham"
 "killing"
 "king-james-version"

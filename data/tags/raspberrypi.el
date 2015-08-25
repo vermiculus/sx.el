@@ -318,6 +318,7 @@
 "share"
 "shared-libraries"
 "signal"
+"sip"
 "snappy"
 "sockets"
 "software-compatibility"

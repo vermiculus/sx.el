@@ -416,6 +416,7 @@
 "mazda"
 "mazda-3"
 "mazda-6"
+"mazda-626"
 "measurement"
 "media"
 "megane"

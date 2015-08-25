@@ -232,6 +232,7 @@
 "t3-framework"
 "tags"
 "task"
+"template"
 "template-framework"
 "template-manager"
 "template-override"

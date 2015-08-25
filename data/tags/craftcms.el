@@ -206,6 +206,7 @@
 "permissions"
 "php"
 "plugin-amnav"
+"plugin-calendar"
 "plugin-contactform"
 "plugin-dev"
 "plugin-development"

@@ -227,7 +227,6 @@
 "colortbl"
 "columnbreak"
 "columns"
-"combinatorics"
 "combine"
 "comicsans"
 "comma"

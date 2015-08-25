@@ -63,6 +63,7 @@
 "interesting-tags"
 "ios-app"
 "javascript"
+"journals"
 "latex3"
 "licensing"
 "lists"
