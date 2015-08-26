@@ -113,7 +113,6 @@
 "blue-seed"
 "bodacious-space-pirates"
 "boku-h"
-"boku-no-hero-academia"
 "boku-no-imouto-osaka-okan"
 "boku-wa-mari-no-naka"
 "bokura-ga-ita"

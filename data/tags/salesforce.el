@@ -444,6 +444,7 @@
 "geocoding"
 "geolocation"
 "getcontent"
+"getcontentaspdf"
 "git"
 "github"
 "global-actions"

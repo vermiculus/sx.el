@@ -187,6 +187,7 @@
 "heaven"
 "hell"
 "helping"
+"henna"
 "hermaprodite"
 "hijab"
 "history"

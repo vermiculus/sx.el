@@ -1808,6 +1808,7 @@
 "nm-applet"
 "nmap"
 "nmcli"
+"no-internet"
 "nodejs"
 "nohup"
 "noise"

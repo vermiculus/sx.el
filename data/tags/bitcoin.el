@@ -65,6 +65,7 @@
 "bip38"
 "bip39"
 "bip44"
+"bip65"
 "bip66"
 "bip70"
 "bitaddress.org"

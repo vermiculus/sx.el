@@ -67,6 +67,7 @@
 "apt-file"
 "apt-get"
 "apt-mirror"
+"apt-offline"
 "aptitude"
 "ar"
 "arch"

@@ -367,7 +367,6 @@
 "sound"
 "sousaphone"
 "speakers"
-"spelling"
 "staccato"
 "stage-fright"
 "stage-setup"

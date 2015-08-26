@@ -241,6 +241,8 @@
 "plant-identification"
 "plants"
 "poison-oak"
+"poland"
+"poland-tatra"
 "preparation"
 "prevention"
 "proper-fit"

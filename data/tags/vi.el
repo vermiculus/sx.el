@@ -54,6 +54,7 @@
 "filetype-html"
 "filetype-java"
 "filetype-javascript"
+"filetype-jinja2"
 "filetype-latex"
 "filetype-lua"
 "filetype-markdown"

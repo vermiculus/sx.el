@@ -148,6 +148,7 @@
 "negation"
 "neologism"
 "neue-rechtschreibung"
+"newspaper"
 "nomenclature"
 "nominalization"
 "nominative"

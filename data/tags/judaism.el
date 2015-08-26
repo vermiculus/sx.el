@@ -726,6 +726,7 @@
 "kohen-priest"
 "kol-isha"
 "kol-mikadesh"
+"kol-nidre"
 "kol-ram"
 "kollel"
 "korban"

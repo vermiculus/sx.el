@@ -9,7 +9,6 @@
 "close-reasons"
 "closed-questions"
 "comments"
-"community"
 "community-ads"
 "community-wiki"
 "cyrillic"

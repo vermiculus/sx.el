@@ -512,6 +512,7 @@
 "magento-1.9.0.1"
 "magento-1.9.1.1"
 "magento-1.9.2.0"
+"magento-1.9.2.1"
 "magento-audit"
 "magento-ce"
 "magento-collection"

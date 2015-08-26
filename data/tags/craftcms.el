@@ -320,4 +320,5 @@
 "varnish"
 "whitespace"
 "workflow"
-"wysiwyg")
+"wysiwyg"
+"yii")

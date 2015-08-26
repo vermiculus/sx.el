@@ -434,7 +434,6 @@
 "pset2"
 "pset2bugs"
 "pset3"
-"pset3-find"
 "pset3-helpers"
 "pset4"
 "pset5"

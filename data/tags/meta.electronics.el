@@ -18,6 +18,7 @@
 "community-wiki"
 "data-dump"
 "data-explorer"
+"datasheet"
 "deleted-answers"
 "deleted-questions"
 "design"

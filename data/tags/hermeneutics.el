@@ -24,6 +24,7 @@
 "allegory"
 "ambiguity"
 "amos"
+"anatomy"
 "angels"
 "antediluvian"
 "apocalyptic"

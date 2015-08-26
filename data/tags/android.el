@@ -293,6 +293,7 @@
 "contact-shortcut"
 "contacts"
 "content-filter"
+"cookies"
 "copy-paste"
 "crash-reports"
 "crashes"

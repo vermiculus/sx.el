@@ -177,6 +177,7 @@
 "evil"
 "eww"
 "excursion"
+"exec-path"
 "exit"
 "faces"
 "ffi"

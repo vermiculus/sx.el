@@ -104,6 +104,7 @@
 "ethics"
 "eurocodes"
 "experimental-physics"
+"failure-analysis"
 "fasteners"
 "fastenings"
 "fea"

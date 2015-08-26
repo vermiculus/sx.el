@@ -1277,7 +1277,6 @@
 "signal-theory"
 "signal-to-noise"
 "silicon-carbide"
-"silicon-photonics"
 "silkscreen"
 "sim"
 "sim900"

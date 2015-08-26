@@ -212,6 +212,7 @@
 "mental-poker"
 "merkle-damgaard"
 "merkle-damgard"
+"merkle-tree"
 "message-digest"
 "mixing-function"
 "mixnets"

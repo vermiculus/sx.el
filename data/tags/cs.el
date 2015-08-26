@@ -133,7 +133,6 @@
 "design-patterns"
 "dictionaries"
 "didactics"
-"diff"
 "digital-circuits"
 "digital-preservation"
 "discrete-mathematics"
