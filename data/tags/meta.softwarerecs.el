@@ -53,6 +53,7 @@
 "private-beta"
 "privileges"
 "profile-page"
+"protected-questions"
 "question-quality"
 "questions"
 "recent-activity"

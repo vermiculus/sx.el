@@ -145,6 +145,7 @@
 "application-manager"
 "application-space"
 "applications"
+"appops"
 "apps"
 "apps2sd"
 "archos-101"

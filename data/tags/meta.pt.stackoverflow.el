@@ -1,6 +1,7 @@
 ("accepted-answer"
 "aceita&#231;&#227;o"
 "acentua&#231;&#227;o"
+"ajax"
 "an&#225;lise"
 "android-app"
 "answers"

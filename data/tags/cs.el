@@ -110,6 +110,7 @@
 "coq"
 "correctness-proof"
 "counting"
+"cpu"
 "cpu-cache"
 "cpu-pipelines"
 "crossing-number"

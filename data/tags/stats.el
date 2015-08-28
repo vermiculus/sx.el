@@ -1260,6 +1260,7 @@
 "tree"
 "trend"
 "trimmed-mean"
+"truncated-normal"
 "truncation"
 "tsne"
 "tukey-hsd"

@@ -123,6 +123,7 @@
 "git"
 "globals"
 "godaddy"
+"google-maps"
 "group"
 "guest"
 "guest-entries"

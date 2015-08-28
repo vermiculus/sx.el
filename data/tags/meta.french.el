@@ -85,6 +85,7 @@
 "translation"
 "typography"
 "unanswered-questions"
+"unicode"
 "up-votes"
 "user-accounts"
 "user-interface"

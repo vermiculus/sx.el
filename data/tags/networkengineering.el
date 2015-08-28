@@ -84,6 +84,7 @@
 "dhcp"
 "dhcp-snooping"
 "dhcpv6"
+"dmz"
 "dnat"
 "dns"
 "docsis"

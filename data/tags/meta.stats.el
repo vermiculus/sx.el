@@ -57,7 +57,6 @@
 "images"
 "interesting-tags"
 "journal-club"
-"julia-lang"
 "link-only-answers"
 "login"
 "logo"

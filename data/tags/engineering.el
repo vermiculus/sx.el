@@ -46,6 +46,7 @@
 "columns"
 "combustion"
 "communication"
+"composite"
 "compressed-air"
 "compressed-gases"
 "compressors"

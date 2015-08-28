@@ -152,6 +152,7 @@
 "localhost"
 "location"
 "login"
+"logs"
 "maintenance"
 "media-manager"
 "menu"

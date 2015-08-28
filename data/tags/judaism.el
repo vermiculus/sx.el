@@ -1452,6 +1452,7 @@
 "shviit"
 "siddur"
 "sidur"
+"sifra"
 "simanim"
 "simchah-joy-happiness"
 "simchas-torah"

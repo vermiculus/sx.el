@@ -275,7 +275,6 @@
 "ubersetzung"
 "uebersetzung"
 "umlaut"
-"untagged"
 "usage"
 "valediction"
 "valedictions"

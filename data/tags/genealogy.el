@@ -35,6 +35,7 @@
 "anglican-church"
 "apprenticeship-records"
 "archives"
+"arkansas"
 "army"
 "artifacts"
 "asia"

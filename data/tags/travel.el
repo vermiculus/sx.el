@@ -228,6 +228,7 @@
 "bsl"
 "bucharest"
 "bucolic"
+"bud"
 "budapest"
 "budget"
 "budgeting"

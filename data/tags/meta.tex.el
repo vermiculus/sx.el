@@ -143,7 +143,6 @@
 "typography"
 "unanswered-questions"
 "undelete-request"
-"unexpected-behaviour"
 "up-votes"
 "user-accounts"
 "user-interface"

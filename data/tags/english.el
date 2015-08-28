@@ -604,6 +604,7 @@
 "number"
 "numbers"
 "numerals"
+"numeronyms"
 "nx-ny-vs-ny-of-nx"
 "nz-english"
 "o-ou"

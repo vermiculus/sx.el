@@ -12,6 +12,7 @@
 "adam-connector"
 "adamtridionconnector"
 "adf"
+"alchemy4tridion"
 "amazon"
 "ambient"
 "ambient-data-framework"

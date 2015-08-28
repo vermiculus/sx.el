@@ -21,6 +21,7 @@
 "apps"
 "attachments"
 "audio"
+"audio-recording"
 "authenticator"
 "autocorrect"
 "autoreply"

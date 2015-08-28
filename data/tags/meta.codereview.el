@@ -98,7 +98,6 @@
 "review"
 "rss"
 "scope"
-"scratch-programming"
 "search"
 "self-answer"
 "site-policy"

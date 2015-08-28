@@ -1239,6 +1239,7 @@
 "document-scanning"
 "documentation"
 "documents"
+"documentum"
 "docx"
 "dokan"
 "dokuwiki"
