@@ -137,6 +137,7 @@
 "hardware"
 "hardware-implementation"
 "harris"
+"hearing"
 "highpass-filter"
 "hilbert"
 "histogram"

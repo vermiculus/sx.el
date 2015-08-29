@@ -235,7 +235,6 @@
 "vimscript"
 "vimscript-lua"
 "vimscript-python"
-"vimtex"
 "visual-mode"
 "whitespace"
 "wildmenu"

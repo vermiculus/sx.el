@@ -694,6 +694,7 @@
 "san"
 "sap"
 "sap-hana"
+"savepoint"
 "scalability"
 "scaling"
 "scc"

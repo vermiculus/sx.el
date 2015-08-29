@@ -442,6 +442,7 @@
 "patent-services"
 "patentability"
 "patentapplicationnumber"
+"patentese"
 "patentnumber"
 "payment"
 "pci-dss"

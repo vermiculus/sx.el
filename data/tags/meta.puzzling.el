@@ -98,6 +98,7 @@
 "tagging"
 "tags"
 "title"
+"topic-challenge"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

@@ -1134,6 +1134,7 @@
 "quadrature"
 "quartus"
 "quartus-ii"
+"qucs"
 "r2r"
 "radar"
 "radiation"

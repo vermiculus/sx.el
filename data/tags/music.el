@@ -254,7 +254,6 @@
 "movements"
 "mozart"
 "multi-instrumentalism"
-"multiple-instruments"
 "muscles"
 "musescore"
 "music-theory"

@@ -405,6 +405,7 @@
 "bukkit"
 "bukkit-worldedit"
 "bulletstorm"
+"bully"
 "bunni"
 "bunny-must-die"
 "burnout"

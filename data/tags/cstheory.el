@@ -461,6 +461,7 @@
 "structural-complexity"
 "submodularity"
 "subset-sum"
+"substructural-logic"
 "succinct"
 "sum-of-squares"
 "survey"

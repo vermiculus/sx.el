@@ -496,6 +496,7 @@
 "scotland"
 "script"
 "sculpture"
+"secularism"
 "sengoku"
 "serfdom"
 "settlement"

@@ -338,6 +338,7 @@
 "step-parents"
 "stools"
 "stroller"
+"summer-camp"
 "sunlight"
 "supervision"
 "swaddle"

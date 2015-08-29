@@ -1294,7 +1294,6 @@
 "ontology"
 "opacity"
 "opel"
-"open"
 "open-data"
 "open-data-kit"
 "open-gis"

@@ -308,6 +308,7 @@
 "question-ban"
 "question-editor"
 "question-lists"
+"question-protection"
 "question-quality"
 "questions"
 "rarest-badges"

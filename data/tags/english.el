@@ -378,6 +378,7 @@
 "gre"
 "great-vowel-shift"
 "greek"
+"greel"
 "greengrocers-apostrophe"
 "greeting"
 "greetings"

@@ -346,7 +346,6 @@
 "law"
 "lc-40"
 "ldsd"
-"legal"
 "leo"
 "liability"
 "libration-points"

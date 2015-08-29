@@ -4,7 +4,6 @@
 "abalone"
 "age-puzzle"
 "algorithm"
-"american-english"
 "anagram"
 "arithmetic"
 "astronomy"
