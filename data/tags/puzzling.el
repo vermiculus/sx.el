@@ -86,6 +86,7 @@
 "liars"
 "limerick"
 "linguistics"
+"linguistics"
 "literature"
 "locks"
 "logic"

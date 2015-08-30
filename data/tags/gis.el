@@ -912,6 +912,7 @@
 "idrisi"
 "idw"
 "if-statement"
+"igis"
 "ihs-kingdom"
 "iis"
 "illustrator"

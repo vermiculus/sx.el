@@ -620,7 +620,6 @@
 "postsharp"
 "powerpoint"
 "powershell"
-"poweshell"
 "prime"
 "primes"
 "processing"

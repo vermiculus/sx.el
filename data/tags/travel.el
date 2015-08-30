@@ -358,6 +358,7 @@
 "consulates"
 "continental-airlines"
 "cooking"
+"cooling-off-periods"
 "copenhagen"
 "corruption"
 "corsica"

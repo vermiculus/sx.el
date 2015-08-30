@@ -274,6 +274,7 @@
 "numbers"
 "numerals"
 "old-english"
+"old-french"
 "old-norse"
 "online-resources"
 "onomastics"

@@ -2544,7 +2544,6 @@
 "pokemon-oras"
 "pokemon-play-it"
 "pokemon-puzzle-league"
-"pokemon-ranger-gs"
 "pokemon-reborn"
 "pokemon-rse"
 "pokemon-rumble-world"

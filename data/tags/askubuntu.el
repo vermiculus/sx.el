@@ -601,7 +601,6 @@
 "defrag"
 "deivatives"
 "deja-dup"
-"delay"
 "delete"
 "delicious"
 "dell"

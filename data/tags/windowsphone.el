@@ -262,6 +262,7 @@
 "viber"
 "vibration"
 "video"
+"video-calling"
 "voicemail"
 "volume"
 "vpn"

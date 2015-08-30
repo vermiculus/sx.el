@@ -198,6 +198,7 @@
 "life-expectancy"
 "lifestyle"
 "liver"
+"lungs"
 "lyme-disease"
 "lymph"
 "marathon"

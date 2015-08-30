@@ -595,7 +595,6 @@
 "lenses"
 "lenticular-printing"
 "levels"
-"license"
 "licensing"
 "light"
 "light-box"

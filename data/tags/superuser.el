@@ -3425,6 +3425,7 @@
 "one-way-sync"
 "onedrive"
 "oneget"
+"oneget"
 "onenote"
 "onenote-2007"
 "onenote-2010"

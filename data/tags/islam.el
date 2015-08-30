@@ -132,6 +132,7 @@
 "equivalent"
 "eschatology"
 "ethics"
+"evil"
 "evil-eye"
 "evolution"
 "existence"

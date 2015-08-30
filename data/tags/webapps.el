@@ -372,6 +372,7 @@
 "gmail-filters"
 "gmail-imap"
 "gmail-labels"
+"gmail-multiple-inbox"
 "gmail-search"
 "gmail-themes"
 "gmx"

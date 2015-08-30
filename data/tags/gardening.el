@@ -228,7 +228,6 @@
 "lilac"
 "lily"
 "longan"
-"low-light"
 "lucky-bamboo"
 "lupines"
 "lupins"

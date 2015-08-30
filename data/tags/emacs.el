@@ -299,7 +299,6 @@
 "lexical-scoping"
 "libraries"
 "line-break"
-"line-manipulation"
 "line-numbers"
 "line-spacing"
 "linum-mode"

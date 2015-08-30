@@ -39,7 +39,6 @@
 "association-rules"
 "assumptions"
 "astronomy"
-"asym"
 "asymptotics"
 "attribute-selection"
 "auc"

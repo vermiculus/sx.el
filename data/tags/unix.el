@@ -804,6 +804,7 @@
 "home"
 "homebrew"
 "hook"
+"hostaliases"
 "hostapd"
 "hosting-services"
 "hostname"

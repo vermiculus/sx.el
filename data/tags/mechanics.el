@@ -338,6 +338,7 @@
 "iat"
 "idle"
 "ignition"
+"ignition-coil"
 "ignition-key"
 "immobilizer"
 "impala"

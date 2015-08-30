@@ -454,6 +454,7 @@
 "serif"
 "shadows"
 "shapes"
+"sharpening"
 "shortcuts"
 "signage"
 "signals"

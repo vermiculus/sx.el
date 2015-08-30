@@ -768,6 +768,7 @@
 "websites"
 "websocket"
 "wep"
+"whatsapp"
 "whitebox"
 "whitelist"
 "wifi"

@@ -35,7 +35,6 @@
 "data"
 "death"
 "debunking"
-"demography"
 "depiction-of-scientists"
 "differential-geometry"
 "discoveries"
@@ -95,7 +94,6 @@
 "plate-tectonics"
 "polymath"
 "probability"
-"programming"
 "psychology"
 "publishing"
 "quantum-mechanics"
@@ -123,5 +121,6 @@
 "time"
 "topology"
 "units"
+"untagged"
 "world-war-2"
 "zero")

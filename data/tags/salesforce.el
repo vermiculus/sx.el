@@ -936,6 +936,7 @@
 "size"
 "skuid"
 "skuid-model"
+"slds"
 "smartquery"
 "smartstore"
 "snippet"

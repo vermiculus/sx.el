@@ -278,6 +278,7 @@
 "varuna"
 "vashishta"
 "vedanta"
+"vedanta-desika"
 "vedas"
 "vedic-gods"
 "vedic-rituals"
