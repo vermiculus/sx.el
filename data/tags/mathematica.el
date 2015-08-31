@@ -301,6 +301,7 @@
 "intervals"
 "introspection"
 "inverse"
+"ipython"
 "iterators"
 "java"
 "jlink"

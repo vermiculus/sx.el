@@ -18,6 +18,7 @@
 "community-ads"
 "community-wiki"
 "competitions"
+"copyright"
 "data-dump"
 "data-explorer"
 "deleted-answers"

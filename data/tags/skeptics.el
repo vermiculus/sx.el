@@ -166,6 +166,7 @@
 "death"
 "death-penalty"
 "death-penalty"
+"deforestation"
 "democracy"
 "demographics"
 "denmark"

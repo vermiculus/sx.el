@@ -492,6 +492,7 @@
 "samurai"
 "saudi-arabia"
 "scandanavia"
+"scandinavia"
 "science"
 "scotland"
 "script"

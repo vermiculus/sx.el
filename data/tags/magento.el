@@ -365,7 +365,6 @@
 "forms"
 "formtabs"
 "fpc"
-"fraud"
 "free-gift"
 "free-shipping"
 "frontend"

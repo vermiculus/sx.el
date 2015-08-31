@@ -494,6 +494,7 @@
 "lifestyle"
 "limited-atonement"
 "literalism"
+"literary-criticism"
 "liturgical-calendar"
 "liturgy"
 "liturgy-of-hours"

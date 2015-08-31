@@ -307,6 +307,7 @@
 "cloaking"
 "clockwork-orange"
 "clones"
+"closure-limited"
 "clothing"
 "cloud-atlas"
 "cloudy-with-meatballs"

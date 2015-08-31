@@ -118,6 +118,7 @@
 "biber"
 "bibkey"
 "biblatex"
+"biblatex-apa"
 "biblatex-chem"
 "biblatex-dw"
 "bibliographies"

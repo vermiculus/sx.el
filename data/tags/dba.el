@@ -191,6 +191,7 @@
 "dblink"
 "dbms"
 "dbms-datapump"
+"dbms-metadata"
 "dbms-redefinition"
 "dbms-resource-manager"
 "dbms-scheduler"

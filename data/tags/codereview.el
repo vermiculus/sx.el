@@ -2,6 +2,7 @@
 ".net"
 ".net-2.0"
 ".net.3.5"
+".net4.5"
 "abap"
 "abstract-factory"
 "actionscript"

@@ -2868,6 +2868,7 @@
 "soap"
 "socat"
 "socket"
+"socketio"
 "socks"
 "socks5"
 "soekris"

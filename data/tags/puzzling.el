@@ -141,6 +141,7 @@
 "puzzle-theory"
 "puzzlehunt"
 "reachability"
+"real"
 "rebus"
 "regional-dialects"
 "rhyme"

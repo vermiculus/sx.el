@@ -483,7 +483,6 @@
 "google-transit"
 "google-translate"
 "google-trends"
-"google-visualization-api"
 "google-voice"
 "google-wallet"
 "googlemail"

@@ -659,6 +659,7 @@
 "fsck"
 "fsfreeze"
 "fstab"
+"fstrim"
 "ftp"
 "fullscreen"
 "function"

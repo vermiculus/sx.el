@@ -287,6 +287,7 @@
 "pedagogy"
 "pedals"
 "penny-whistle"
+"pentatonic"
 "percussion"
 "percussion-instruments"
 "performance"

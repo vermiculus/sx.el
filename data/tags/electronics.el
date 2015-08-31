@@ -1301,6 +1301,7 @@
 "smbus"
 "smd"
 "smith-chart"
+"smoke"
 "smoke-sensor"
 "smps"
 "smt"

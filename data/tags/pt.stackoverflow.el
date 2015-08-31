@@ -1137,6 +1137,7 @@
 "local"
 "local-notification"
 "locale"
+"localhost"
 "localiza&#231;&#227;o"
 "localiza&#231;&#227;o-geogr&#225;fica"
 "localizar"

@@ -104,6 +104,7 @@
 "genesis"
 "geography"
 "goatskin"
+"good-news-bible"
 "gospel-message"
 "gospel-of-barnabas"
 "gospel-of-john"

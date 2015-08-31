@@ -30,6 +30,7 @@
 "complex-analysis"
 "computation"
 "computer-science"
+"continuum-mechanics"
 "cosmology"
 "cybernetics"
 "data"

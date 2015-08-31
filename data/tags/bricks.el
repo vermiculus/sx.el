@@ -74,6 +74,7 @@
 "lego-group"
 "lego-store"
 "lego-technic"
+"legoland"
 "lejos"
 "lighting"
 "lotr"

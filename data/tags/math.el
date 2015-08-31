@@ -357,6 +357,7 @@
 "divisor-counting-function"
 "divisor-sum"
 "domain-theory"
+"double-factorial"
 "ds.dynamical-systems"
 "dual-cone"
 "duality-theorems"

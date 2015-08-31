@@ -1,5 +1,6 @@
 ("ablution"
 "abrogation"
+"acapella"
 "accuracy"
 "adab"
 "adam-and-eve"

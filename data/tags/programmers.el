@@ -893,7 +893,6 @@
 "jvm"
 "kanban"
 "kernel"
-"key-value-store"
 "keyboard"
 "keyboard-shortcuts"
 "keys"
