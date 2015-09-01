@@ -34,6 +34,7 @@
 "colour"
 "commander"
 "compatibility"
+"creator"
 "customization"
 "decals"
 "design"

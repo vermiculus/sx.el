@@ -30,6 +30,7 @@
 "fixed-price"
 "foreign-incorporation"
 "foreign-markets"
+"france"
 "freelance-websites"
 "friends-services"
 "germany"

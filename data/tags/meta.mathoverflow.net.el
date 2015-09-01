@@ -52,7 +52,6 @@
 "meta"
 "migration"
 "minor-edits"
-"mo"
 "moderation"
 "moderators"
 "new-users"

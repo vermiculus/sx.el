@@ -409,6 +409,7 @@
 "file-storage"
 "files"
 "filters"
+"financialforce"
 "flex"
 "flexipages"
 "flow"

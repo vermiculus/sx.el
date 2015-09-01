@@ -1,5 +1,6 @@
 (".dun"
 ".pal"
+"0"
 "2014"
 "2015"
 "32bit"
@@ -112,6 +113,7 @@
 "copy"
 "copy.c"
 "core-dumped"
+"counting"
 "course-info"
 "course-materials"
 "crack"
@@ -277,6 +279,7 @@
 "helpers.c"
 "helpers.h"
 "hexadecimal"
+"history"
 "honourcode"
 "hosts-file"
 "html"
@@ -639,4 +642,5 @@
 "xcode"
 "xubuntu"
 "yahoo-error"
+"zero"
 "zip")

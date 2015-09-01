@@ -532,6 +532,7 @@
 "feature-request-process"
 "featured"
 "featured-question"
+"featured-request"
 "featured-tab"
 "featured-tag"
 "feed"

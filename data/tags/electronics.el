@@ -1404,6 +1404,7 @@
 "switching-losses"
 "switching-regulator"
 "switching-voltage-reg"
+"swo"
 "swr-meter"
 "symbol"
 "synchro"

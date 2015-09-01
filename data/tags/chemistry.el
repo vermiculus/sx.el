@@ -25,7 +25,6 @@
 "bond"
 "bonding"
 "books"
-"breaking-bad"
 "carbocation"
 "carbohydrates"
 "carbon-allotropes"

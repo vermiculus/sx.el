@@ -263,6 +263,7 @@
 "getmemorypool"
 "gettransactions"
 "getwork"
+"ghost"
 "glbse"
 "governance"
 "government"

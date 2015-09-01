@@ -47,6 +47,7 @@
 "broccoli"
 "bromeliads"
 "bugs"
+"bulb"
 "bulbs"
 "butterflies"
 "cabbage"

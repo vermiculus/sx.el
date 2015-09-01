@@ -226,6 +226,7 @@
 "standalone"
 "staticfiles"
 "stripe"
+"summaryfields"
 "sysadmin"
 "system-workflow-messages"
 "tags"

@@ -50,6 +50,7 @@
 "new-users"
 "notifications"
 "openid"
+"policy"
 "private-beta"
 "privileges"
 "profile-page"

@@ -92,6 +92,7 @@
 "status-reproduced"
 "status-review"
 "support"
+"suspension"
 "tag-synonyms"
 "tag-wiki"
 "tagging"

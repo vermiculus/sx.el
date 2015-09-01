@@ -60,7 +60,6 @@
 "common-sense"
 "community"
 "comparative-religion"
-"comparison"
 "compassion"
 "conditionality"
 "conditioned"

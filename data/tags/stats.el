@@ -576,6 +576,7 @@
 "ipw"
 "irls"
 "irt"
+"isotonic"
 "item-analysis"
 "item-response-theory"
 "iv"

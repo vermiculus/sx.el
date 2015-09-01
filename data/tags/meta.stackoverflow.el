@@ -353,8 +353,6 @@
 "se-quality-project"
 "search"
 "security"
-"sede"
-"seed"
 "self-answer"
 "self-promotion"
 "seo"

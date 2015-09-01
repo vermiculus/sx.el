@@ -1087,7 +1087,6 @@
 "renormalization"
 "representable-functors"
 "representation-theory"
-"research-situation"
 "reshetikhin-turaev"
 "resolution-of-singulariti"
 "restricted-lie-algebras"
