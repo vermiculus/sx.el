@@ -203,7 +203,6 @@
 "ortograf&#237;a"
 "ortografia"
 "ox&#237;moron"
-"palabras"
 "palabras-interrogativas"
 "palabras-raras"
 "participio"

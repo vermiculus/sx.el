@@ -5,6 +5,7 @@
 "agile"
 "agile-testing"
 "android"
+"angular"
 "api-testing"
 "appium"
 "assert"

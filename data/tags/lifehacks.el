@@ -41,6 +41,7 @@
 "food"
 "food-safety"
 "furniture"
+"garage"
 "gardening"
 "glass"
 "glasses"

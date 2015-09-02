@@ -25,6 +25,7 @@
 "activex"
 "adb"
 "adblock"
+"adduser"
 "administration"
 "adobe-flash"
 "afs"

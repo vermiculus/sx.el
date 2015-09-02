@@ -111,6 +111,7 @@
 "javascript"
 "jce"
 "jdatabase"
+"jdate"
 "jdocument"
 "jed"
 "jerror"

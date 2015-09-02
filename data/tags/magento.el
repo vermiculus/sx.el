@@ -269,6 +269,7 @@
 "directory"
 "disable"
 "discount"
+"docs"
 "documentation"
 "domain"
 "doubt"

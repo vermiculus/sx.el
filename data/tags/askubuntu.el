@@ -1500,6 +1500,7 @@
 "location-bar"
 "lock"
 "lock-screen"
+"locked-screen"
 "lockup"
 "locoteams"
 "log"

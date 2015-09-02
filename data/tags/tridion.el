@@ -166,6 +166,7 @@
 "reference-implementation"
 "rel"
 "release-process"
+"renderer"
 "republishing"
 "rest"
 "rtf"

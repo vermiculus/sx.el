@@ -114,6 +114,7 @@
 "famous-games"
 "famous-moves"
 "famous-players"
+"fashion"
 "fen"
 "fianchetto"
 "fiction"

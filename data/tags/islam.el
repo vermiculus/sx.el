@@ -318,6 +318,7 @@
 "martyr"
 "masjid"
 "masjid-al-haram"
+"masturbation"
 "mawalid"
 "meaning"
 "meat"

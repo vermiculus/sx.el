@@ -1182,7 +1182,6 @@
 "transition"
 "transmission"
 "transmit"
-"transparency"
 "trash"
 "trello"
 "trim"

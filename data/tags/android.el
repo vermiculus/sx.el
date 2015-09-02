@@ -1310,6 +1310,7 @@
 "sqlite"
 "ssh"
 "ssl"
+"stagefright"
 "standby"
 "startup"
 "statistics"

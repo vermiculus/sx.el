@@ -437,6 +437,7 @@
 "loan"
 "loan-consolidation"
 "loans"
+"long-term-disability"
 "losses"
 "lottery"
 "loyalty-programs"

@@ -995,6 +995,7 @@
 "vulkan"
 "water"
 "waves"
+"waypoints"
 "web"
 "webapp"
 "webgl"

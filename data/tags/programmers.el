@@ -26,7 +26,6 @@
 "admob"
 "ado.net"
 "adobe"
-"advancements"
 "advantages"
 "advertisement"
 "advocacy"

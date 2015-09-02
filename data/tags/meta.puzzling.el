@@ -26,6 +26,7 @@
 "design"
 "discussion"
 "down-votes"
+"duplicates"
 "editing"
 "encoded-message"
 "etiquette"

@@ -739,6 +739,7 @@
 "sacraments"
 "sacred-deposit-of-faith"
 "sacrifice"
+"sadducees"
 "saint"
 "salvation"
 "same-sex-marriage"

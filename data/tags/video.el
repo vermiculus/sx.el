@@ -196,6 +196,7 @@
 "sound"
 "special-effects"
 "specifications"
+"speedgrade"
 "ssd"
 "stabilisation"
 "standards-converter"

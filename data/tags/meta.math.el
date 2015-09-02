@@ -145,7 +145,6 @@
 "rant"
 "rate-limiting"
 "re-open"
-"reactions"
 "recent-activity"
 "reference"
 "related-questions"

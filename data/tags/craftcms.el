@@ -64,6 +64,7 @@
 "dateinterval"
 "datetime"
 "debugging"
+"default"
 "defaut"
 "defined"
 "deletion"

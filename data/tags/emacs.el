@@ -76,6 +76,7 @@
 "commands"
 "comment"
 "common-lisp"
+"company"
 "company-mode"
 "compilation"
 "compilation-mode"

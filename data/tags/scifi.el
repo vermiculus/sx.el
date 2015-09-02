@@ -1340,6 +1340,7 @@
 "shape-shifter"
 "shared-universe"
 "sharknado"
+"she-hulk"
 "shield"
 "shielding"
 "shopping"

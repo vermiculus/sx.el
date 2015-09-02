@@ -105,6 +105,7 @@
 "json-ld"
 "kml"
 "language"
+"latin-america"
 "law"
 "leak"
 "legal"

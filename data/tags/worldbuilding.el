@@ -221,7 +221,6 @@
 "renaissance"
 "reproduction"
 "reptiles"
-"resource-recommendations"
 "rivers"
 "robot-overlord"
 "robots"
@@ -239,6 +238,7 @@
 "senses"
 "sex"
 "shapeshifters"
+"shared-worlds"
 "shipbuilding"
 "ships"
 "siege"
@@ -318,5 +318,6 @@
 "worldbuilding-process"
 "worldbuilding-resources"
 "wormholes"
+"xenobiology"
 "zero-gravity"
 "zombies")

@@ -48,7 +48,6 @@
 "burninate-request"
 "burninate-system"
 "burnination-request"
-"c++"
 "caching"
 "candidate-score"
 "canonical"
