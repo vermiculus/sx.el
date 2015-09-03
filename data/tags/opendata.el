@@ -69,6 +69,7 @@
 "file-format"
 "film"
 "finance"
+"five-stars"
 "foia"
 "food"
 "france"

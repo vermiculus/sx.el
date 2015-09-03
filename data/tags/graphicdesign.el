@@ -384,6 +384,7 @@
 "photoshop"
 "photoshop-effects"
 "photoshop-scripting"
+"pictures"
 "pixel"
 "pixel-art"
 "pixel-grid"

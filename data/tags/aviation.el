@@ -11,7 +11,6 @@
 "aeroacoustics"
 "aerobatics"
 "aerodrome"
-"aerodymanics"
 "aerodynamics"
 "aeroelasticity"
 "aeronautical-charts"

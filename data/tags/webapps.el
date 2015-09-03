@@ -572,7 +572,6 @@
 "java"
 "javascript"
 "jira"
-"jobs"
 "js"
 "js-bin"
 "jsfiddle"

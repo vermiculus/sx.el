@@ -280,6 +280,7 @@
 "song-of-songs"
 "soteriology"
 "source-criticism"
+"speaker-identification"
 "spirit"
 "symbology"
 "synoptic-problem"

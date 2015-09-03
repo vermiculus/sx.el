@@ -2337,6 +2337,7 @@
 "scapy"
 "schedule"
 "scheduled"
+"scheme"
 "scidavis"
 "scikit-image"
 "scikit-learn"

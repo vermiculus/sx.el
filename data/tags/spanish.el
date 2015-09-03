@@ -253,6 +253,7 @@
 "redacci&#243;n"
 "reflexives"
 "reflexivos"
+"refranes"
 "regional-differences"
 "religi&#243;n"
 "religion"

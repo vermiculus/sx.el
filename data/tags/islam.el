@@ -351,6 +351,7 @@
 "music"
 "muslim"
 "muslim-practices"
+"mustache"
 "mustahab"
 "mutah"
 "mythology"

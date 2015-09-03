@@ -105,6 +105,7 @@
 "user-interface"
 "users"
 "versions"
+"visualization"
 "vote-to-close"
 "vote-to-close"
 "votes"

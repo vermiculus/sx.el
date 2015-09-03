@@ -91,6 +91,7 @@
 "banach-algebras"
 "banach-manifold"
 "banach-spaces"
+"basis"
 "bayesian"
 "bell-numbers"
 "belyi"

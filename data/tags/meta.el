@@ -218,6 +218,7 @@
 "candidate-score"
 "candidate-statistics"
 "canonical"
+"canonical-answers"
 "canonical-questions"
 "capitalization"
 "captcha"

@@ -156,6 +156,7 @@
 "cryptography"
 "csrf"
 "css"
+"cuckoo"
 "curl"
 "custom-scheme"
 "cve"

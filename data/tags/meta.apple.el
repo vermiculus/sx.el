@@ -44,6 +44,7 @@
 "fun"
 "graphics"
 "guideline"
+"help"
 "hyperlinks"
 "images"
 "inbox"

@@ -87,6 +87,7 @@
 "bots"
 "boxes"
 "breadcrumbs"
+"brightcove"
 "bulk-operations"
 "bundles"
 "cache"

@@ -1421,6 +1421,7 @@
 "sprawl-trilogy"
 "squib"
 "squirrel-girl"
+"stan-lee"
 "stanislaw-lem"
 "star-control-2"
 "star-trek"
