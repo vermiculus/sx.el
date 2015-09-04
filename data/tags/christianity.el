@@ -653,6 +653,7 @@
 "personalism"
 "persons-of-the-trinity"
 "peter"
+"pharisees"
 "philosophy"
 "phrase"
 "pietism"

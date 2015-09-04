@@ -3334,6 +3334,7 @@
 "vcloud-automation-center"
 "vcpu"
 "vcs"
+"vcsrepo"
 "vdi"
 "vds"
 "veeam"

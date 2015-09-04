@@ -1154,6 +1154,7 @@
 "hostname"
 "hosts"
 "hot-spot"
+"hotkey"
 "hotot"
 "hotplug"
 "hp"

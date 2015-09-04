@@ -734,6 +734,7 @@
 "nikon-d7100"
 "nikon-d80"
 "nikon-d800"
+"nikon-d810"
 "nikon-d90"
 "nikon-v1"
 "nimh"

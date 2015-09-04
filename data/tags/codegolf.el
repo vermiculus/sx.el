@@ -199,6 +199,7 @@
 "string"
 "subsequence"
 "sudoku"
+"swift"
 "syntax"
 "test-battery"
 "tetris"

@@ -1,4 +1,5 @@
 ("abbreviations"
+"academic-japanese"
 "adjectives"
 "adverbs"
 "ainu"
@@ -128,6 +129,7 @@
 "manyōgana"
 "mathematics"
 "meaning"
+"medicine"
 "metaphor"
 "mnemonics"
 "modality"

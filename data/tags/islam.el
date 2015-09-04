@@ -337,6 +337,7 @@
 "modesty"
 "money"
 "monotheism"
+"month"
 "morality"
 "mortgage"
 "moses"

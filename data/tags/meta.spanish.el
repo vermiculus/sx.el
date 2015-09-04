@@ -50,6 +50,7 @@
 "rss"
 "scope"
 "search"
+"seo"
 "site-evaluation"
 "specific-question"
 "stackexchange"

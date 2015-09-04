@@ -70,6 +70,7 @@
 "clojure"
 "code-folding"
 "coding-conventions"
+"cojure"
 "coloring"
 "colors"
 "comint"

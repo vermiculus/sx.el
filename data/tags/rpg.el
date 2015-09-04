@@ -106,7 +106,6 @@
 "character-levels"
 "character-sheets"
 "character-templates"
-"character-traits"
 "charge"
 "charop"
 "chases"

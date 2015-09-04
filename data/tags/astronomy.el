@@ -182,7 +182,6 @@
 "nebula"
 "neptune"
 "neutrinos"
-"neutron"
 "neutron-star"
 "newtonian-gravity"
 "newtonian-telescope"

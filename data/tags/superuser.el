@@ -2842,6 +2842,7 @@
 "master-slave"
 "mastering"
 "mate"
+"mate-de"
 "math-input-panel"
 "mathematica"
 "mathematica-notebook"

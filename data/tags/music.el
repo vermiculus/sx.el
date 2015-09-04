@@ -385,6 +385,7 @@
 "synthesis"
 "synthesizer"
 "tab"
+"tabla"
 "tablature"
 "teachers"
 "teaching"

@@ -344,6 +344,7 @@
 "guyver"
 "hachimitsu-to-clover"
 "haganai"
+"haibane-renmei"
 "haikyuu"
 "haiyore-nyaruko-san"
 "hajime-no-ippo"

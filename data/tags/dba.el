@@ -16,7 +16,6 @@
 "amazon-ec2"
 "amazon-linux"
 "amazonrds"
-"analysis-service"
 "android"
 "ansi-sql-standard"
 "application-design"

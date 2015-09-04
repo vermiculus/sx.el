@@ -42,6 +42,7 @@
 "formatting"
 "freedom"
 "glossary"
+"goldpseudo"
 "historically"
 "hyperlinks"
 "images"

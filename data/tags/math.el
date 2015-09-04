@@ -1367,7 +1367,6 @@
 "univalent-foundations"
 "universal-algebra"
 "universal-property"
-"untagged"
 "utility"
 "valuation-theory"
 "vector-analysis"

@@ -162,6 +162,7 @@
 "literature"
 "lotus-position"
 "lotus-sutra"
+"love"
 "loving-kindness"
 "mahasi-sayadaw"
 "mahayana"
