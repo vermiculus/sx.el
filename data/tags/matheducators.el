@@ -138,6 +138,7 @@
 "ratio-and-proportion"
 "real-analysis"
 "real-numbers"
+"reciprocal-teaching"
 "recreational-learning"
 "recruitment"
 "reference-books"

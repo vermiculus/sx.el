@@ -147,6 +147,7 @@
 "insultos"
 "interjecciones"
 "interjections"
+"interpretaci&#243;n"
 "interrogative-words"
 "iron&#237;a"
 "irregular-forms"

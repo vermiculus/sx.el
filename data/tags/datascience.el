@@ -141,6 +141,7 @@
 "relational-dbms"
 "reproducibility"
 "research"
+"rmsprop"
 "rstudio"
 "sampling"
 "sas"

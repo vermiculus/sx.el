@@ -38,6 +38,7 @@
 "conditional"
 "config"
 "configuration"
+"console"
 "content"
 "contentmodel"
 "control-panel"

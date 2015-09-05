@@ -597,6 +597,7 @@
 "hilbert-function"
 "hilbert-manifolds"
 "hilbert-schemes"
+"hilbert-schmidt-operators"
 "hilbert-spaces"
 "hilbert-symbol"
 "ho.history-overview"

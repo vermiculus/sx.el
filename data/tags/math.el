@@ -20,6 +20,7 @@
 "affine-geometry"
 "affine-schemes"
 "ag.algebraic-geometry"
+"alexandroff-double-circle"
 "algebra-precalculus"
 "algebraic-closure"
 "algebraic-combinatorics"

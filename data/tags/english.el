@@ -1020,6 +1020,7 @@
 "varieties"
 "verb"
 "verb-agreement"
+"verb-construction"
 "verb-forms"
 "verb-patterns"
 "verb-phrases"

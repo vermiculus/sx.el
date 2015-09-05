@@ -1305,6 +1305,7 @@
 "ride-sharing"
 "rideshare"
 "riga"
+"rinca"
 "rio-de-janeiro"
 "river"
 "riverboats"

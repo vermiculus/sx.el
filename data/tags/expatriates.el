@@ -172,6 +172,7 @@
 "poland"
 "polish-citizens"
 "portugal"
+"portuguese-citizens"
 "postal-system"
 "qualifications"
 "real-estate"

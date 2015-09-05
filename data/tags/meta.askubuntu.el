@@ -99,7 +99,6 @@
 "loco"
 "login"
 "low-quality-posts"
-"main-meta"
 "markdown"
 "merge"
 "merge-request"

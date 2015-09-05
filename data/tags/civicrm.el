@@ -42,6 +42,7 @@
 "civicrm-buildkit"
 "civicrm-entity"
 "civicrm-home"
+"civicrm.org"
 "civicrm.settings.php"
 "cividiscount"
 "civievent"

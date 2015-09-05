@@ -130,6 +130,7 @@
 "god"
 "godel"
 "goedel"
+"golden-rule"
 "good-and-evil"
 "governmentality"
 "greeks"

@@ -129,6 +129,7 @@
 "questions"
 "questions-filter"
 "ranting"
+"recaptcha"
 "recent-activity"
 "reject"
 "related-problems"

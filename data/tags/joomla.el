@@ -200,6 +200,8 @@
 "redirect"
 "regex"
 "registration"
+"repeatable"
+"repeatable-field"
 "responsive-web-design"
 "restful-api"
 "reviews"

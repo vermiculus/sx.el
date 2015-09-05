@@ -104,6 +104,7 @@
 "calendar"
 "cancel"
 "canonical"
+"capabilities"
 "captcha"
 "cart"
 "cart-rule"

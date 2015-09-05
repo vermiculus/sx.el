@@ -354,6 +354,7 @@
 "regular-verbs"
 "relative-clauses"
 "research"
+"resource-request"
 "resources"
 "rhoticity"
 "rhyming"

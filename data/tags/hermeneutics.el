@@ -223,6 +223,7 @@
 "onomastics"
 "onomatology"
 "parables"
+"passion-narrative"
 "pastorals"
 "paul"
 "pauline-epistles"

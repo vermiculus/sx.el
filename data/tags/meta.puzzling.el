@@ -79,6 +79,7 @@
 "self-answer"
 "site-evaluation"
 "site-promotion"
+"spam"
 "specific-answer"
 "specific-question"
 "spoilers"

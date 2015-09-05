@@ -974,6 +974,7 @@
 "standardcontroller"
 "standardsetcontroller"
 "startchat"
+"startchatwithwindow"
 "stateful"
 "static"
 "static-resources"

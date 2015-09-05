@@ -239,6 +239,7 @@
 "visual-effects"
 "vlc"
 "vocal"
+"vp9"
 "watermarking"
 "webvideos"
 "windows"

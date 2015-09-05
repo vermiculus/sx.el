@@ -349,6 +349,7 @@
 "mumin"
 "munafiq"
 "mushaf"
+"mushrikeen"
 "music"
 "muslim"
 "muslim-practices"

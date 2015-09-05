@@ -227,6 +227,7 @@
 "mentoring"
 "meta"
 "methodology"
+"mindmap"
 "mooc"
 "motivation"
 "ms"

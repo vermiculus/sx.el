@@ -250,6 +250,7 @@
 "private-vlan"
 "protocol-theory"
 "proxy"
+"proxy-arp"
 "pseudowire"
 "pvlan"
 "qinq"
