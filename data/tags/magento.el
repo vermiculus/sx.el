@@ -225,6 +225,7 @@
 "custom-product-type"
 "custom-row"
 "custom-table"
+"custom-variable"
 "customer"
 "customer-account"
 "customer-address"

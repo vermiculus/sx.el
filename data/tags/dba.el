@@ -98,6 +98,7 @@
 "compatibilitylevel"
 "composite-types"
 "compression"
+"computed-column"
 "concat"
 "concurrency"
 "concurrent-execution"

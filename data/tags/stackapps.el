@@ -31,6 +31,7 @@
 "chrome"
 "chrome-extensions"
 "cinnamon"
+"cleanup"
 "closing"
 "cocoa"
 "coffeescript"

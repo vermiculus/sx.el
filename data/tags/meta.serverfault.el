@@ -132,6 +132,7 @@
 "super-user"
 "support"
 "syntax-highlighting"
+"tag-burnination"
 "tag-synonyms"
 "tag-warnings"
 "tagging"

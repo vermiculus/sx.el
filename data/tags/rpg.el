@@ -482,6 +482,7 @@
 "module-recommendation"
 "modules"
 "monk"
+"monster"
 "monster-of-the-week"
 "monsterhearts"
 "monsters"

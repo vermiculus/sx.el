@@ -342,7 +342,6 @@
 "symptoms"
 "tcm"
 "tea"
-"teen"
 "teeth"
 "tendinitis"
 "tendinopathy"

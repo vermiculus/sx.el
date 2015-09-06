@@ -54,7 +54,6 @@
 "reputation"
 "retagging"
 "rss"
-"sandbox"
 "scope"
 "search"
 "site-evaluation"

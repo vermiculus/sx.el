@@ -251,7 +251,6 @@
 "data-management"
 "data-mining"
 "data-preprocessing"
-"data-request"
 "data-transformation"
 "data-visualisation"
 "data-visualization"

@@ -464,6 +464,7 @@
 "restricted-area"
 "return"
 "reverse-related-entries"
+"revisions"
 "rewrite"
 "richtext"
 "routing"

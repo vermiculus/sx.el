@@ -1186,6 +1186,7 @@
 "prometheus"
 "prometheus-2"
 "promotion"
+"pronunciation"
 "prophecy"
 "props"
 "propulsion"

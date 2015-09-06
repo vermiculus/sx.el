@@ -308,6 +308,7 @@
 "hardening"
 "hardware"
 "hash"
+"hashcat"
 "hashing"
 "healthcare"
 "heap-overflow"

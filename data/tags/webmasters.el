@@ -326,6 +326,7 @@
 "free"
 "freelancer"
 "freshness"
+"front-page"
 "ftp"
 "funnel"
 "geolocation"

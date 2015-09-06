@@ -161,7 +161,6 @@
 "software-recommendation"
 "spark"
 "sports"
-"spss"
 "sql"
 "state-of-the-art"
 "statistics"

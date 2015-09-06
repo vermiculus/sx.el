@@ -439,6 +439,7 @@
 "vocals"
 "voice"
 "voice-leading"
+"voice-training"
 "vst"
 "walking-bass"
 "warm-up"

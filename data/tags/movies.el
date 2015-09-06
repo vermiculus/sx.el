@@ -1487,6 +1487,7 @@
 "some-like-it-hot"
 "somewhere"
 "somewhere-in-time"
+"song-of-the-sea"
 "sons-of-anarchy"
 "sound-effects"
 "soundtrack"

@@ -298,6 +298,7 @@
 "tiempo"
 "tiempos-verbales"
 "time"
+"top&#243;nimos"
 "traducci&#243;n"
 "traduccion"
 "translation"

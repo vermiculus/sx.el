@@ -380,6 +380,7 @@
 "installation"
 "installation-profile"
 "internationalization"
+"invite"
 "invoice"
 "item-list"
 "javascript"

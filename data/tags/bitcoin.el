@@ -325,6 +325,7 @@
 "library"
 "license"
 "lightningnetwork"
+"lightweight"
 "limit"
 "linode"
 "linux"

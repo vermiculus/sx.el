@@ -60,6 +60,7 @@
 "fun"
 "general-reference"
 "google"
+"guidance"
 "hyperlinks"
 "images"
 "interesting-tags"

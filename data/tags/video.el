@@ -176,6 +176,7 @@
 "recording"
 "red"
 "resolve"
+"rode"
 "rotoscoping"
 "rtmp"
 "sampling-frequency"
