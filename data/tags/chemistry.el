@@ -196,7 +196,6 @@
 "relativistic"
 "resonance"
 "safety"
-"salt"
 "selectivity"
 "silver"
 "smell"

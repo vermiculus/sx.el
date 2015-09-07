@@ -46,6 +46,7 @@
 "questions"
 "recent-activity"
 "reputation"
+"retag-request"
 "retagging"
 "rss"
 "scope"

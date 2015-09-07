@@ -617,6 +617,7 @@
 "thumbnail"
 "thunderbird"
 "time-management"
+"tls"
 "touchscreen"
 "transcription"
 "translation"

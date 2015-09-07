@@ -64,6 +64,7 @@
 "reopen-closed"
 "reputation"
 "retagging"
+"reviewing"
 "rss"
 "scope"
 "search"

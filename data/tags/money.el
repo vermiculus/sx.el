@@ -46,6 +46,7 @@
 "balance"
 "balance-sheet"
 "balance-transfer"
+"bangladesh"
 "bank-account"
 "bank-of-america"
 "banking"

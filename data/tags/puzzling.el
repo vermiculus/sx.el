@@ -114,7 +114,6 @@
 "number-sequence"
 "number-theory"
 "numbers"
-"octo-star"
 "open-ended"
 "optimization"
 "packing"

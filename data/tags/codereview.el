@@ -33,7 +33,7 @@
 "arduino"
 "array"
 "artificial-intelligence"
-"ascii"
+"ascii-art"
 "asm.js"
 "asp-classic"
 "asp.net"

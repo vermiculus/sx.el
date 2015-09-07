@@ -271,6 +271,7 @@
 "file-field-sources"
 "file-permissions"
 "file-system"
+"file-type"
 "file-usage"
 "filedepot"
 "files"

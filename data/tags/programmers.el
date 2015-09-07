@@ -440,6 +440,7 @@
 "degree"
 "delegates"
 "delegation"
+"delete"
 "delimited-files"
 "delivery"
 "delphi"

@@ -221,6 +221,7 @@
 "ilm-mustalah-al-hadith"
 "imaan"
 "image"
+"imam"
 "imam-al-jamaah"
 "imam-ali"
 "imam-jamaa"

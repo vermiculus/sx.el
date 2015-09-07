@@ -144,6 +144,7 @@
 "jroute"
 "jsession"
 "jtable"
+"jview"
 "k2"
 "k2store"
 "kunena"

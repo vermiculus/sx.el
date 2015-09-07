@@ -14,7 +14,6 @@
 "120hz"
 "16-bit"
 "1password"
-"2"
 "2wire"
 "3.5mm"
 "32-bit"

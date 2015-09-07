@@ -32,6 +32,7 @@
 "chronology"
 "chukchi"
 "comparative"
+"cosmology"
 "creation"
 "cross-mythology"
 "cross-mythology"

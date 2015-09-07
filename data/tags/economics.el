@@ -167,6 +167,7 @@
 "methodology"
 "micro-data"
 "microeconomics"
+"migration"
 "minimum-wage"
 "monetary-policy"
 "money"

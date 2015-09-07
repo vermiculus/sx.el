@@ -996,6 +996,7 @@
 "safari-reader"
 "safari-windows"
 "safe-mode"
+"safety"
 "samba"
 "sandbox"
 "sata"
