@@ -870,6 +870,7 @@
 "triggers"
 "troubleshooting"
 "truncate"
+"tsql"
 "tungsten-replicator"
 "tuning"
 "type-conversion"

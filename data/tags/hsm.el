@@ -73,6 +73,7 @@
 "material-science"
 "mathematical-logic"
 "mathematical-physics"
+"mathematician"
 "mathematicians"
 "mathematics"
 "measurement"

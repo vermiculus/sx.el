@@ -173,6 +173,7 @@
 "monarchy"
 "money"
 "money-supply"
+"mongolia"
 "nationalism"
 "nato"
 "nazism"

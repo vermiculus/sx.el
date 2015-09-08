@@ -136,7 +136,6 @@
 "content-access"
 "content-management"
 "content-profile"
-"content-types"
 "context"
 "contextual"
 "contextual-links"

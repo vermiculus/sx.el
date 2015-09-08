@@ -77,6 +77,7 @@
 "tag-wiki"
 "tagging"
 "tags"
+"title"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

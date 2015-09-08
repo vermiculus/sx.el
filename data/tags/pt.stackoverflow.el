@@ -519,6 +519,7 @@
 "dexie"
 "diagrama"
 "dialog"
+"dialog-fragment"
 "dicion&#225;rio"
 "dictionary"
 "diff"

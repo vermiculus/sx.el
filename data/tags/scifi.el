@@ -278,6 +278,7 @@
 "chacha-chaudhary"
 "chalion"
 "chameleon-circuit"
+"changeling"
 "chappie"
 "character-development"
 "character-identification"

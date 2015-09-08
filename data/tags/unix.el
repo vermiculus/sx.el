@@ -1067,6 +1067,7 @@
 "lua"
 "lubuntu"
 "luks"
+"lustre"
 "lvm"
 "lvm2"
 "lvreduce"

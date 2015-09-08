@@ -106,6 +106,7 @@
 "horror"
 "humor"
 "ideas"
+"idioms"
 "illustrations"
 "images"
 "indexing"

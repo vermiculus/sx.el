@@ -61,6 +61,7 @@
 "rss"
 "scientific-rigor"
 "search"
+"site-activity"
 "site-evaluation"
 "site-promotion"
 "site-scope"

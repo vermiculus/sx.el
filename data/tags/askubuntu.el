@@ -1025,6 +1025,7 @@
 "gnu"
 "gnu-r"
 "gnu-screen"
+"gnucash"
 "gnumeric"
 "gnupg"
 "gnuplot"

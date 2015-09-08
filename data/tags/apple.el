@@ -133,6 +133,7 @@
 "bash"
 "battery"
 "battery-life"
+"beats1"
 "benchmark"
 "bento"
 "beta-seed-program"

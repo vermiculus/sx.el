@@ -1256,6 +1256,7 @@
 "sister-site"
 "site-activity"
 "site-age"
+"site-analytics"
 "site-crossover"
 "site-evaluation"
 "site-faq"

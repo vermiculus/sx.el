@@ -118,7 +118,6 @@
 "indra"
 "isha-upanishad"
 "islam"
-"janak"
 "japamala"
 "jiva"
 "jyotirlinga"

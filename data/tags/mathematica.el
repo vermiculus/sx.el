@@ -223,7 +223,6 @@
 "game"
 "gathering"
 "gauges"
-"general"
 "generative-art"
 "geodesy"
 "geography"

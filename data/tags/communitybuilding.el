@@ -82,6 +82,7 @@
 "small-communities"
 "social-network"
 "spam"
+"sponsorship"
 "stack-exchange"
 "starting-up"
 "term-duration"

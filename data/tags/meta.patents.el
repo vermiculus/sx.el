@@ -28,6 +28,7 @@
 "featured"
 "flagging"
 "formatting"
+"help-page"
 "hyperlinks"
 "interesting-tags"
 "login"

@@ -51,6 +51,7 @@
 "danish-citizens"
 "denied-entry"
 "denmark"
+"dental-care"
 "dependent-visa"
 "digital-nomads"
 "diplomats"
