@@ -450,6 +450,7 @@
 "fujifilm-x10t"
 "fujifilm-xe1"
 "fujifilm-xpro1"
+"fujifilm-xt10"
 "full-frame"
 "fun"
 "fungus"

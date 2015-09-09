@@ -44,6 +44,7 @@
 "data-warehouse-testing"
 "database"
 "defect-tracking"
+"desktop-application"
 "developer-relations"
 "development-process"
 "django"

@@ -287,6 +287,7 @@
 "sea-kayak"
 "search-and-rescue"
 "security"
+"self-arrest"
 "self-rescue"
 "setting-up-an-anchor"
 "shelter"

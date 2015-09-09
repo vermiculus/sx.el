@@ -732,6 +732,7 @@
 "gnustep"
 "gnutls"
 "gnuwin32"
+"google"
 "google-chrome"
 "google-drive"
 "gparted"

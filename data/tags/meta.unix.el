@@ -63,6 +63,7 @@
 "on-topic"
 "openid"
 "plagiarism"
+"privilege"
 "profile-page"
 "programming"
 "promotion"

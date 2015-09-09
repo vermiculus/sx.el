@@ -332,6 +332,7 @@
 "teaching"
 "temples"
 "tendai"
+"term"
 "terminology"
 "texts"
 "thai"

@@ -408,6 +408,7 @@
 "installation"
 "institutionalizing-ux"
 "instructions"
+"insurance"
 "interaction"
 "interaction"
 "interaction-design"

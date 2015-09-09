@@ -3,7 +3,6 @@
 "50-fathoms"
 "7th-sea"
 "a-game-of-thrones"
-"aberrant-rpg"
 "ability-scores"
 "absent-players"
 "accessibility"

@@ -865,6 +865,7 @@
 "larry-niven"
 "last-unicorn"
 "last-watch"
+"latinum"
 "laundry-files"
 "laurell-k-hamilton"
 "laws"

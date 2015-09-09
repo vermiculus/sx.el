@@ -32,6 +32,7 @@
 "hyperlinks"
 "images"
 "interesting-tags"
+"language"
 "login"
 "markdown"
 "meta"

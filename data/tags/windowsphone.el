@@ -127,6 +127,7 @@
 "lumia-denim"
 "lumia-denim-update"
 "lumia-icon"
+"lumia-video-trimmer"
 "mail"
 "mango"
 "maps"

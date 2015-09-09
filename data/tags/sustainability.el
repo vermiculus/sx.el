@@ -8,6 +8,7 @@
 "bags"
 "balanced-ecosystems"
 "balcony"
+"bats"
 "batteries"
 "battery-charging"
 "biodegradable-waste"

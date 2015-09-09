@@ -51,6 +51,7 @@
 "quality"
 "questions"
 "recent-activity"
+"remove-tag-request"
 "reputation"
 "resources"
 "retagging"

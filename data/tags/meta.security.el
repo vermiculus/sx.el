@@ -80,6 +80,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"suggestion"
 "support"
 "swag"
 "tag-pruning"

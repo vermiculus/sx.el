@@ -171,6 +171,7 @@
 "kbkdf"
 "kdf"
 "keccak"
+"kem"
 "key-check-value"
 "key-derivation"
 "key-distribution"

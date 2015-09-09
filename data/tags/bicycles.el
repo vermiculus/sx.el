@@ -380,6 +380,7 @@
 "stem"
 "stingy"
 "storage"
+"strava"
 "subjective"
 "suit"
 "sun-protection"

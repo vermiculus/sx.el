@@ -88,6 +88,7 @@
 "correspondence"
 "correspondence-chess"
 "counter-strategy"
+"counterplay"
 "cql"
 "database"
 "defence"

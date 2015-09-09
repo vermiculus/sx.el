@@ -43,6 +43,7 @@
 "cepstral-analysis"
 "channelcoding"
 "circle-detection"
+"class"
 "classification"
 "coherence"
 "color"

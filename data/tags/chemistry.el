@@ -208,6 +208,7 @@
 "spectroscopy"
 "spin"
 "stability"
+"statistical-mechanics"
 "stereochemistry"
 "stereoisomerism"
 "stoichiometry"
