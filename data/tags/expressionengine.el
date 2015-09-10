@@ -273,6 +273,7 @@
 "iis"
 "image"
 "image-galleries"
+"image-manipulations"
 "image-path"
 "import"
 "index"

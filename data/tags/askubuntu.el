@@ -2729,6 +2729,7 @@
 "turbo-boost"
 "tuxguitar"
 "tuxonice"
+"tuxpaint"
 "tv"
 "tv-card"
 "tv-os"

@@ -242,6 +242,7 @@
 "merged-questions"
 "meta"
 "meta-tags"
+"microsoft-edge"
 "migrated-questions"
 "migration"
 "mobile-web"

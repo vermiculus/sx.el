@@ -7,6 +7,7 @@
 "adobe"
 "adobe-media-encoder"
 "adobe-premiere"
+"aerender"
 "after-effects"
 "after-effects-expressions"
 "alpha"

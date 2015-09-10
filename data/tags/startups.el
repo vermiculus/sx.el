@@ -75,6 +75,7 @@
 "e-commerce"
 "earnings"
 "economics"
+"email-marketing"
 "employee-compensation"
 "employees"
 "employment"

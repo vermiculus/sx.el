@@ -170,6 +170,7 @@
 "user-accounts"
 "user-interface"
 "users"
+"views"
 "volume"
 "vote-to-close"
 "vote-to-reopen"

@@ -570,7 +570,6 @@
 "issue-tracking"
 "itunes"
 "jabber"
-"java"
 "javascript"
 "jira"
 "js"

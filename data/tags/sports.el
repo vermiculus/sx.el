@@ -57,6 +57,7 @@
 "etiquette"
 "euro"
 "euro-2012"
+"eurobasket"
 "fans"
 "fantasy"
 "fencing"

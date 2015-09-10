@@ -112,6 +112,7 @@
 "java"
 "javascript"
 "jms"
+"json"
 "jsp"
 "keyword"
 "language-cloud"

@@ -527,6 +527,7 @@
 "mvvm"
 "mysql"
 "mysqli"
+"n-queens"
 "n-tier"
 "namespaces"
 "natural-language-proc"

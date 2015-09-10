@@ -68,6 +68,7 @@
 "history"
 "html"
 "hyperlinking"
+"hyphenation"
 "i18n"
 "ibooks"
 "image"

@@ -134,6 +134,7 @@
 "pursuit-evasion"
 "puzzle-creation"
 "puzzle-identification"
+"puzzle-improvement"
 "puzzle-theory"
 "puzzlehunt"
 "reachability"

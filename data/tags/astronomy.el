@@ -1,5 +1,6 @@
 ("67p"
 "abiogenesis"
+"accretion"
 "accretion-discs"
 "active-galaxy"
 "age"
@@ -68,6 +69,7 @@
 "deep-sky-observing"
 "density"
 "differentiation"
+"disc"
 "disk"
 "distances"
 "dobsonian-telescope"
@@ -308,4 +310,5 @@
 "weather"
 "white-dwarf"
 "white-hole"
-"wormhole")
+"wormhole"
+"x-ray")

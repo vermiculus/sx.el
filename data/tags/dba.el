@@ -132,6 +132,7 @@
 "data-archival"
 "data-cleansing"
 "data-collection"
+"data-export"
 "data-import"
 "data-integrity"
 "data-keeper"

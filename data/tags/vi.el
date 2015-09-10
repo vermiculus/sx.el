@@ -63,6 +63,8 @@
 "folding"
 "font"
 "formatting"
+"function"
+"functions"
 "git"
 "grammar-checking"
 "gvim"

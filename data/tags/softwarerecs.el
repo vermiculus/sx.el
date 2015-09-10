@@ -554,6 +554,7 @@
 "search"
 "search-engine"
 "security"
+"self-hosted"
 "sentiment-analysis"
 "server"
 "sftp"

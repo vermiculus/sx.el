@@ -45,7 +45,6 @@
 "editor"
 "election"
 "ell"
-"english"
 "etiquette"
 "etymology"
 "exact-duplicates"

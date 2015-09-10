@@ -840,6 +840,7 @@
 "slam-dunk"
 "slayers"
 "smash-hit"
+"smokin-parade"
 "somedays-dreamers"
 "sono-hanabira"
 "sora-no-method"

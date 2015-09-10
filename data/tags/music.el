@@ -172,6 +172,7 @@
 "guitars"
 "hammer-dulcimer"
 "hand-independence"
+"harmon"
 "harmonica"
 "harmonics"
 "harmony"

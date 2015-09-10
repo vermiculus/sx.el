@@ -52,6 +52,7 @@
 "definitions"
 "demarchy"
 "democracy"
+"denmark"
 "direct-action"
 "direct-democracy"
 "discrimination"

@@ -74,6 +74,7 @@
 "question-quality"
 "questions"
 "recent-activity"
+"recommendations"
 "renaming"
 "reputation"
 "retagging"

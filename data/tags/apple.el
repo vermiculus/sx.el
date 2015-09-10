@@ -160,6 +160,7 @@
 "bugs"
 "build-version"
 "bus-power"
+"cal"
 "caldav"
 "calendar"
 "calibre"
