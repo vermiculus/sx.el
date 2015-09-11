@@ -1198,6 +1198,7 @@
 "one-flew-over-cuckoo-nest"
 "one-piece"
 "only-god-forgives"
+"only-in-monroe"
 "only-lovers-left-alive"
 "open-your-eyes"
 "orange-is-the-new-black"

@@ -30,6 +30,7 @@
 "chrome"
 "coded-ui-tests"
 "combinatorial-testing"
+"compatibility-testing"
 "concurrency"
 "conference"
 "continuous-integration"

@@ -209,6 +209,7 @@
 "retail"
 "retention"
 "revenue"
+"rss"
 "s-corp"
 "s-corporation"
 "saas"

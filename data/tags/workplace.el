@@ -237,7 +237,6 @@
 "raise"
 "recommendation"
 "recommendation-letter"
-"recr"
 "recruiter"
 "recruiter"
 "recruiters"

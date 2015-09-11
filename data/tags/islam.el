@@ -420,6 +420,7 @@
 "pregnancy"
 "profession"
 "profit"
+"pronunciation"
 "property"
 "prophecy"
 "prophet"

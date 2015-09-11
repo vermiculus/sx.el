@@ -222,6 +222,7 @@
 "culinary-uses"
 "culinology"
 "cultural-difference"
+"cultured-food"
 "cupcakes"
 "cure"
 "curing"

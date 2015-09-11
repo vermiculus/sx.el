@@ -37,6 +37,7 @@
 "features"
 "flagging"
 "formatting"
+"graduation"
 "home-page"
 "homework"
 "hyperlinks"

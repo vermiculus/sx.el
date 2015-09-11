@@ -32,6 +32,7 @@
 "flagging"
 "formatting"
 "general-reference"
+"graduation"
 "hyperlinks"
 "interesting-tags"
 "login"

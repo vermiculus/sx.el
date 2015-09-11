@@ -269,6 +269,7 @@
 "gas"
 "gate-post"
 "gates"
+"gauge"
 "generator"
 "gfci"
 "glass"

@@ -306,6 +306,7 @@
 "sila"
 "six-realms"
 "six-senses"
+"skillful-means"
 "sleep"
 "sn-goenka"
 "social-justice"

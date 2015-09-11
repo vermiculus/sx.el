@@ -32,6 +32,7 @@
 "flagging"
 "formatting"
 "furigana"
+"graduation"
 "hats"
 "hyperlinks"
 "ime"

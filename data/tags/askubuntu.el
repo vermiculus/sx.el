@@ -1201,6 +1201,7 @@
 "ideapad"
 "idevices"
 "idle"
+"idle-python"
 "idm"
 "ie"
 "ifconfig"

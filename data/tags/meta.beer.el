@@ -46,6 +46,7 @@
 "scope"
 "search"
 "site-evaluation"
+"site-health"
 "site-promotion"
 "specific-question"
 "stackexchange"

@@ -785,6 +785,7 @@
 "sql-server-tools"
 "sql-update"
 "sql-variant-property"
+"sql-view"
 "sqlcmd"
 "sqlcmd-mode"
 "sqlite"

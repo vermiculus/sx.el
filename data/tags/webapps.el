@@ -731,6 +731,7 @@
 "photo-sharing"
 "photobucket"
 "photos"
+"photosphere"
 "piazza"
 "picasa-web-albums"
 "pictures"

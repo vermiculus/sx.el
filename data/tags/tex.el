@@ -159,6 +159,7 @@
 "breqn"
 "bugtracking"
 "build-system"
+"bullets"
 "bussproofs"
 "bytefield"
 "calculations"

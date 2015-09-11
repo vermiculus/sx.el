@@ -20,6 +20,7 @@
 "english-comparison"
 "etymology"
 "exclamations"
+"expression"
 "foreign-words"
 "formal"
 "gender"

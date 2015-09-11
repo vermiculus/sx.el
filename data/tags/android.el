@@ -1002,6 +1002,7 @@
 "peripherals"
 "permissions"
 "personal-info"
+"personalization"
 "phone"
 "phone-calls"
 "phone-hardware"

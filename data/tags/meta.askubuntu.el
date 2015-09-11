@@ -115,6 +115,7 @@
 "plagiarism"
 "post"
 "post-ban"
+"posting"
 "privileges"
 "profile-page"
 "promote"

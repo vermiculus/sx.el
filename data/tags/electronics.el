@@ -125,6 +125,7 @@
 "battery-operated"
 "baudrate"
 "beagleboard"
+"beaglebone"
 "beaglebone-black"
 "behavioral-source"
 "best-practice"

@@ -38,6 +38,7 @@
 "flagging"
 "formatting"
 "games"
+"graduation"
 "gratis"
 "help-center"
 "hyperlinks"

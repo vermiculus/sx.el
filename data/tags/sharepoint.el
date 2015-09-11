@@ -118,6 +118,7 @@
 "bug"
 "bug-fix"
 "build"
+"build-number"
 "build-server"
 "bulk"
 "business"

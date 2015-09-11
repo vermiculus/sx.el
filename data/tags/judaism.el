@@ -1698,6 +1698,7 @@
 "vayetze"
 "vayigash"
 "vayishlach"
+"veahavta-lereicha-kimocha"
 "veal-hanisim"
 "vegetables"
 "vehicles-transportation"

@@ -882,6 +882,7 @@
 "emc"
 "emc-vnx"
 "emc-vnxe"
+"emerge"
 "emulation"
 "emulator"
 "emulex"

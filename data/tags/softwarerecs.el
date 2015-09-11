@@ -406,6 +406,7 @@
 "music"
 "music-composing"
 "music-production"
+"music-recognition"
 "mvc"
 "mysql"
 "naturallyspeaking"

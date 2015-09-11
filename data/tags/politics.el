@@ -212,6 +212,7 @@
 "political-transitions"
 "polling"
 "popularity"
+"population"
 "poverty"
 "power"
 "presidency-term"

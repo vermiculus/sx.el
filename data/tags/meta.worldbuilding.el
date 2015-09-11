@@ -57,6 +57,7 @@
 "protected-questions"
 "questions"
 "recent-activity"
+"reference"
 "referral"
 "reputation"
 "retagging"

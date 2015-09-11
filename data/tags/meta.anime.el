@@ -37,6 +37,7 @@
 "featured"
 "flagging"
 "formatting"
+"graduation"
 "guidelines"
 "hyperlinks"
 "identification-questions"
