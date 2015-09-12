@@ -1078,6 +1078,7 @@
 "residuals"
 "resources"
 "resources"
+"reversible-jump"
 "rhadoop"
 "ridge-regression"
 "risk"

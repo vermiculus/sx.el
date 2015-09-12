@@ -1993,6 +1993,7 @@
 "uefi"
 "ufs"
 "ufw"
+"uget"
 "uhttpd"
 "ulimit"
 "umask"

@@ -189,6 +189,7 @@
 "multi-environment"
 "multi-site"
 "multilingual"
+"mysql"
 "navigation"
 "nested-set"
 "newrelic"

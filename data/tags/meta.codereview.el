@@ -63,7 +63,6 @@
 "formatting"
 "fun"
 "google"
-"graduation"
 "help-center"
 "homework"
 "hyperlinks"

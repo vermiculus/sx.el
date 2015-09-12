@@ -1769,6 +1769,7 @@
 "nas"
 "nat"
 "natty"
+"natural"
 "nautilus"
 "nautilus-3.6"
 "nautilus-actions"

@@ -540,6 +540,7 @@
 "incremental-crawl"
 "index"
 "index-component"
+"index-reset"
 "indexed-column"
 "indexing"
 "infopath"

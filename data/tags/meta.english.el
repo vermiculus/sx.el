@@ -40,6 +40,7 @@
 "disagreement"
 "discussion"
 "down-votes"
+"dupehammer"
 "duplicates"
 "editing"
 "editor"

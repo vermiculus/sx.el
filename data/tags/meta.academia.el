@@ -6,7 +6,6 @@
 "badges"
 "best-practices"
 "bias"
-"bias-en-academia"
 "bounty"
 "bug"
 "burninate-request"

@@ -81,7 +81,6 @@
 "documentation"
 "donations"
 "dress-code"
-"drugtest"
 "education"
 "efficiency"
 "egypt"

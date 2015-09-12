@@ -474,6 +474,7 @@
 "fractional-calculus"
 "fractional-iteration"
 "fractions"
+"frechet"
 "frechet-manifold"
 "free-groups"
 "free-lie-algebras"

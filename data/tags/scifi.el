@@ -857,7 +857,6 @@
 "kurt-vonnegut"
 "kushiel"
 "kyle-xy"
-"kylo-ren"
 "l-e-modesitt"
 "l-ron-hubbard"
 "la-femme-nikita-tv"

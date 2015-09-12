@@ -59,6 +59,7 @@
 "biofilms"
 "bioinformatics"
 "bioinorganic-chemistry"
+"biological-control"
 "biological-networks"
 "bioluminescence"
 "biomedical-engineering"

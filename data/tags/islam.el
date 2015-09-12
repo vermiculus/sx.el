@@ -653,6 +653,7 @@
 "uloom-al-hadith"
 "umar-ibn-al-khattab"
 "umrah"
+"unbeliever"
 "universe"
 "usool-ul-fiqh"
 "validity"

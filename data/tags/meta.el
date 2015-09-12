@@ -248,6 +248,7 @@
 "chatbot"
 "cheating"
 "checkmark"
+"child-meta"
 "chrome"
 "chrome-canary"
 "citation"
