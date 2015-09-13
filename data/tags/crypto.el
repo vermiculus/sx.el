@@ -129,6 +129,7 @@
 "frequency-analysis"
 "function-evaluation"
 "functional-encryption"
+"garbled-circuits"
 "gcm"
 "gnupg"
 "goldwasser-micali"

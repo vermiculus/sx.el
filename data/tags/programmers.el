@@ -437,7 +437,6 @@
 "defect"
 "defensive-programming"
 "definition"
-"degree"
 "delegates"
 "delegation"
 "delimited-files"

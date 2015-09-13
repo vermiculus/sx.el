@@ -120,7 +120,6 @@
 "exploding-head-syndrome"
 "eye"
 "fatality"
-"fda"
 "feet"
 "fever"
 "fiber"

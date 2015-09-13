@@ -16,6 +16,7 @@
 "2-timothy"
 "4-living-creatures"
 "666"
+"a-w-pink"
 "aaronic-priesthood"
 "abortion"
 "abraham"

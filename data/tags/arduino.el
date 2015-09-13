@@ -148,6 +148,7 @@
 "node.js"
 "nrf24l01+"
 "one-wire"
+"op-amp"
 "oscillator-clock"
 "osx"
 "performance"

@@ -22,6 +22,7 @@
 "admin-theme"
 "administration-views"
 "administrator"
+"advagg"
 "advanced-forum"
 "advertising"
 "aegir"

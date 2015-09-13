@@ -196,6 +196,7 @@
 "taper"
 "tear-out"
 "technique"
+"template"
 "terminology"
 "thermally-modified"
 "thickness-planer"

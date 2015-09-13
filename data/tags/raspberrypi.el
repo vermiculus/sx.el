@@ -389,6 +389,7 @@
 "wifi"
 "wifi-direct"
 "windows"
+"windows-iot"
 "windows10"
 "wireless"
 "wireless-adapter"

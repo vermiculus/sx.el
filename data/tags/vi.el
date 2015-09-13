@@ -63,6 +63,7 @@
 "folding"
 "font"
 "formatting"
+"forward-search"
 "functions"
 "git"
 "grammar-checking"
@@ -134,6 +135,7 @@
 "plugin-emmet-vim"
 "plugin-fugitive"
 "plugin-jedi-vim"
+"plugin-latex-box"
 "plugin-lid.vim"
 "plugin-managers"
 "plugin-neocompcache"
@@ -231,4 +233,5 @@
 "write"
 "x11"
 "xmllint"
-"yank")
+"yank"
+"zathura")

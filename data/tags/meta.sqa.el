@@ -59,6 +59,7 @@
 "status-review"
 "subjective-questions"
 "support"
+"syntax-highlighting"
 "tag-synonyms"
 "tagging"
 "tags"

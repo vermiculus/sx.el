@@ -115,6 +115,7 @@
 "fingerprint-recognition"
 "finite-impulse-response"
 "fir"
+"fit"
 "fixed-point"
 "floating-point"
 "forward-error-correction"

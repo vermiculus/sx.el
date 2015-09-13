@@ -1395,6 +1395,7 @@
 "innodb-barracuda"
 "inode"
 "inotify"
+"inspircd"
 "install"
 "installation"
 "instant-messaging"

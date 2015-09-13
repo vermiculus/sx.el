@@ -73,6 +73,7 @@
 "interesting-tags"
 "linked-accounts"
 "linux"
+"locked-questions"
 "login"
 "low-quality"
 "many-bears"
