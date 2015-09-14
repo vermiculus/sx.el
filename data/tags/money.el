@@ -64,6 +64,7 @@
 "board-of-directors"
 "boardroom"
 "bond"
+"bond-etf"
 "bond-funds"
 "bonds"
 "bonus"

@@ -1187,7 +1187,6 @@
 "princess-tutu"
 "printing"
 "production"
-"progress"
 "project-almanac"
 "prolong"
 "prometheus"

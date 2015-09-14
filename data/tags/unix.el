@@ -1999,7 +1999,6 @@
 "umask"
 "unicode"
 "uninstall"
-"uninterruptible"
 "union-mount"
 "unionfs"
 "uniq"

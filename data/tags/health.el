@@ -312,6 +312,7 @@
 "scientific-method"
 "scleroderma"
 "screening"
+"scrotum"
 "seizure"
 "senses"
 "sensors"

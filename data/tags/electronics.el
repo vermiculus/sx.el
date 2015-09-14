@@ -1125,6 +1125,7 @@
 "pspice"
 "psram"
 "psu"
+"psv"
 "ptc"
 "pulldown"
 "pullup"

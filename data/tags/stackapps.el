@@ -143,6 +143,7 @@
 "rss"
 "ruby"
 "ruby-on-rails"
+"safari"
 "scope"
 "script"
 "script-request"

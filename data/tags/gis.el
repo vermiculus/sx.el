@@ -1822,6 +1822,7 @@
 "survey"
 "svg"
 "swipe"
+"switzerland"
 "symap"
 "symbol"
 "symbol"

@@ -162,7 +162,6 @@
 "osmosis"
 "oxidation-state"
 "ozone"
-"pauliexclusionprinciple"
 "periodic-table"
 "periodic-trends"
 "ph"

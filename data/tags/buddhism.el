@@ -288,6 +288,7 @@
 "sariputta"
 "sati"
 "satipatthana"
+"sceptic"
 "science"
 "scripture"
 "sects"

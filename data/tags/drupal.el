@@ -704,7 +704,6 @@
 "terms"
 "testing"
 "text"
-"text-format"
 "textarea"
 "textfield"
 "theme"

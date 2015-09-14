@@ -376,6 +376,7 @@
 "eigenvalues-eigenvectors"
 "eigenvectors"
 "eilenberg-maclane-spaces"
+"elementary"
 "elementary-functions"
 "elementary-number-theory"
 "elementary-set-theory"

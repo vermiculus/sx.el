@@ -132,6 +132,7 @@
 "canon-lawyer"
 "canonization"
 "capital-punishment"
+"casuistry"
 "catechism"
 "catechumenate"
 "catholic"

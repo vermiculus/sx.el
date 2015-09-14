@@ -1495,6 +1495,7 @@
 "somewhere"
 "somewhere-in-time"
 "song-of-the-sea"
+"song-of-the-south"
 "sons-of-anarchy"
 "sound-effects"
 "soundtrack"

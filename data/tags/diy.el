@@ -375,6 +375,7 @@
 "lumber"
 "mailbox"
 "maintenance"
+"mantel"
 "marble"
 "masonry"
 "materials"

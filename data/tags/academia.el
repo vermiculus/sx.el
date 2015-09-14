@@ -105,7 +105,6 @@
 "distance-learning"
 "doi"
 "dual-major"
-"early"
 "early-career"
 "economics"
 "editors"
