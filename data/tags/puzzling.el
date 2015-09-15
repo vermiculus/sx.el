@@ -151,6 +151,7 @@
 "seasonal"
 "semi-interactive-puzzle"
 "seven-segment"
+"silly"
 "situation"
 "sliding-puzzle"
 "slitherlink"

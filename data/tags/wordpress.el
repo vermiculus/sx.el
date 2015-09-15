@@ -705,6 +705,7 @@
 "sort"
 "sorting"
 "spam"
+"spellcheck"
 "split"
 "sql"
 "ssh"

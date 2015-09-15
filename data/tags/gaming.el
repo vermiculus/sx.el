@@ -347,6 +347,7 @@
 "blocky-roads"
 "blood-and-glory-2"
 "blood-bowl"
+"blood-bowl-2"
 "blood-bowl-legendary-ed"
 "blood-brothers"
 "bloodborne"

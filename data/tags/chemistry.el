@@ -27,6 +27,7 @@
 "books"
 "carbocation"
 "carbohydrates"
+"carbon"
 "carbon-allotropes"
 "carbonyl-complexes"
 "carbonyl-compounds"

@@ -1113,6 +1113,7 @@
 "parallels"
 "paranoia"
 "pariah"
+"parseltongue"
 "pathfinder"
 "patrick-rothfuss"
 "patronus-charm"

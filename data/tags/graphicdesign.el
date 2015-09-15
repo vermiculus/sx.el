@@ -498,6 +498,7 @@
 "template-design"
 "terminology"
 "text"
+"text-on-path"
 "text-wrap"
 "texture"
 "tiff"

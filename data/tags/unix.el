@@ -1556,6 +1556,7 @@
 "redis"
 "redmine"
 "redundancy"
+"reentrant"
 "reference"
 "refind"
 "refit"

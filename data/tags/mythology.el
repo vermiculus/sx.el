@@ -154,6 +154,7 @@
 "resurrection"
 "roman"
 "romulus-and-remus"
+"rosicrucianism"
 "sacrifice"
 "sanskrit"
 "scientology"

@@ -161,7 +161,6 @@
 "apturl"
 "aquaris"
 "arabic"
-"arb"
 "architecture"
 "archive"
 "ardour"

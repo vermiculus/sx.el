@@ -229,6 +229,7 @@
 "uk-citizens"
 "uk-citizenship"
 "ukraine"
+"ukrainian-citizens"
 "unemployment-benefits"
 "united-kingdom"
 "untagged"

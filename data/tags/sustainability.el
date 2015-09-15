@@ -172,6 +172,7 @@
 "transport"
 "travel"
 "treatment"
+"trees"
 "uk"
 "untagged"
 "upcycling"

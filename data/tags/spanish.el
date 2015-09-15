@@ -74,6 +74,7 @@
 "diacritics"
 "dialectos"
 "dialects"
+"diccionario"
 "dichos"
 "diferencias-regionales"
 "difference"

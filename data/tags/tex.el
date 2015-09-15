@@ -504,7 +504,6 @@
 "gradetable"
 "gradient"
 "grammar"
-"grammer"
 "graphics"
 "graphicx"
 "graphs"

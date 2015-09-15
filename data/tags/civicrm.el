@@ -116,6 +116,7 @@
 "email"
 "entity-reference"
 "envelope"
+"error"
 "error-page"
 "events"
 "events"
@@ -145,6 +146,7 @@
 "infrastructure"
 "installation"
 "integration"
+"invoice"
 "ipn"
 "issue"
 "issues"
@@ -267,5 +269,6 @@
 "woocommerce"
 "wordpress"
 "workflow"
+"wsod"
 "wysiwyg"
 "xero")

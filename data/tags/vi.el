@@ -159,6 +159,7 @@
 "plugin-vim-jsbeautify"
 "plugin-vim-jsx"
 "plugin-vim-latex"
+"plugin-vim-plug"
 "plugin-vim-surround"
 "plugin-vimshell"
 "plugin-vimtex"

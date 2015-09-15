@@ -449,7 +449,6 @@
 "modal-popup"
 "moderation"
 "module"
-"module-development"
 "modules"
 "mollom"
 "mongodb"

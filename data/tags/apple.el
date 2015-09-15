@@ -351,6 +351,7 @@
 "external-display"
 "face-recognition"
 "facebook"
+"faces"
 "facetime"
 "fake.app"
 "family-sharing"

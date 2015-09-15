@@ -626,6 +626,7 @@
 "prepared-statement"
 "primary-key"
 "privileges"
+"privileges"
 "procedure-cache"
 "procedure-definition"
 "process"
