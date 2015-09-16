@@ -547,6 +547,7 @@
 "tokaido-crossroads"
 "tournament"
 "trading"
+"tragedy-looper"
 "trashing"
 "trick-move"
 "trick-taking-games"

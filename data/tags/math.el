@@ -580,7 +580,6 @@
 "groupoids"
 "groups-of-lie-type"
 "gt.geometric-topology"
-"guidance"
 "hadamard-product"
 "hamilton-equations"
 "hamilton-jacobi-equation"

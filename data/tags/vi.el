@@ -63,7 +63,6 @@
 "folding"
 "font"
 "formatting"
-"forward-search"
 "functions"
 "git"
 "grammar-checking"

@@ -122,6 +122,7 @@
 "exploding-head-syndrome"
 "eye"
 "fatality"
+"fda-approval"
 "feet"
 "fever"
 "fiber"

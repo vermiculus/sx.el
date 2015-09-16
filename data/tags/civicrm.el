@@ -210,6 +210,7 @@
 "reporting"
 "resource-urls"
 "rest"
+"restore"
 "roles"
 "salesforce"
 "sandbox"

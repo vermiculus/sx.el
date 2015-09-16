@@ -12,6 +12,7 @@
 "caffeine"
 "cappuccino"
 "capsule"
+"cardamom"
 "cheese"
 "chemex"
 "chemistry"

@@ -48,6 +48,7 @@
 "big-table"
 "binlog"
 "bitmap-index"
+"bitwise-comparison"
 "blob"
 "blocking"
 "books"

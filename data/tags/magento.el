@@ -562,6 +562,7 @@
 "massaction"
 "maxvalue"
 "media"
+"megamenu"
 "memcache"
 "memcached"
 "memory"

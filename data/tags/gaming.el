@@ -3162,6 +3162,7 @@
 "star-trek-online"
 "star-wars-assault-team"
 "star-wars-battlefront"
+"star-wars-battlefront-2"
 "star-wars-commander"
 "star-wars-dark-forces"
 "star-wars-empire-at-war"

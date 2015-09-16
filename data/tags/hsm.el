@@ -111,6 +111,7 @@
 "scientific-method"
 "set-theory"
 "social-context"
+"social-sciences"
 "statistical-mechanics"
 "statistics"
 "steam-engines"

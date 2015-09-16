@@ -850,6 +850,7 @@
 "migration"
 "milestone"
 "miracast"
+"mirror"
 "missed-calls"
 "miui"
 "mmi-code"

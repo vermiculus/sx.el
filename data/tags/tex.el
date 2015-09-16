@@ -1103,6 +1103,7 @@
 "sidecap"
 "sidenotes"
 "sideways"
+"silence"
 "siunits"
 "siunitx"
 "size"

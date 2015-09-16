@@ -103,6 +103,7 @@
 "mechanical-puzzles"
 "minesweeper"
 "minimum-solve"
+"minimum-solve"
 "monty-hall"
 "movies"
 "music"
