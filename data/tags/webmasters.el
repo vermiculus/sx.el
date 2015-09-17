@@ -67,6 +67,7 @@
 "asp.net"
 "asp.net-mvc"
 "aspx"
+"assets"
 "audio"
 "authentication"
 "author"

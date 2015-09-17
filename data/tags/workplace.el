@@ -272,6 +272,7 @@
 "self-employment"
 "sexual-harassment"
 "sexuality"
+"sick"
 "sickness"
 "skills"
 "skunkworks"

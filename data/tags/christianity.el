@@ -14,6 +14,7 @@
 "2-samuel"
 "2-thessalonians"
 "2-timothy"
+"3-nephi"
 "4-living-creatures"
 "666"
 "a-w-pink"

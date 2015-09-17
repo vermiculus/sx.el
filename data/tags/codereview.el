@@ -73,6 +73,7 @@
 "battle-simulation"
 "bdd"
 "beautiful-soup"
+"begginer"
 "beginner"
 "bem"
 "benchmarking"

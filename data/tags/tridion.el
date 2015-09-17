@@ -229,6 +229,7 @@
 "user-rights"
 "usergroups"
 "vbscript"
+"visio-designer"
 "wcf"
 "webdav"
 "webdev"

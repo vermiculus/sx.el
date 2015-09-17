@@ -89,6 +89,7 @@
 "ethernet-port"
 "failure"
 "faq"
+"fbi"
 "fedora"
 "ffmpeg"
 "file"

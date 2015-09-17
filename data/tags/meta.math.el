@@ -134,6 +134,7 @@
 "poll"
 "post-ban"
 "privacy"
+"private-messages"
 "privileges"
 "problem-solving"
 "profile-page"

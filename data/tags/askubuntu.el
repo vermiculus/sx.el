@@ -1853,6 +1853,7 @@
 "numpy"
 "nut"
 "nux"
+"nvidea"
 "nvidia"
 "nvidia-current"
 "nvidia-current-dev"

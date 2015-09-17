@@ -25,6 +25,7 @@
 "alien-frontiers"
 "american-megafauna"
 "android-netrunner"
+"antike-duellum"
 "arcadia-quest"
 "arcana"
 "archipelago"

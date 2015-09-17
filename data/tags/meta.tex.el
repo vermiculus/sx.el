@@ -30,7 +30,6 @@
 "contests"
 "contributing"
 "copyright"
-"cross-referencing"
 "daily-reputation-limit"
 "data-dump"
 "data-explorer"

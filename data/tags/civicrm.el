@@ -173,6 +173,7 @@
 "microsoft"
 "migration"
 "mobile"
+"modules"
 "moneris"
 "multi-record"
 "multisite"

@@ -98,6 +98,7 @@
 "status-reproduced"
 "status-review"
 "support"
+"tag-reorganization"
 "tag-synonyms"
 "tag-wiki-excerpts"
 "tag-wikis"

@@ -72,6 +72,7 @@
 "help"
 "hidden-services"
 "hop"
+"hsdir"
 "html5"
 "https"
 "i2p"

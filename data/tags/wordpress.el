@@ -373,7 +373,6 @@
 "labels"
 "language"
 "latex"
-"librar"
 "library"
 "license"
 "licensing"

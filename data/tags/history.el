@@ -232,6 +232,7 @@
 "french-empire"
 "french-revolution"
 "fur-trade"
+"furniture"
 "game"
 "game-theory"
 "gender"

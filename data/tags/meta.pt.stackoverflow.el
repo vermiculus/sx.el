@@ -95,6 +95,7 @@
 "licen&#231;a"
 "localiza&#231;&#227;o"
 "login"
+"logo"
 "magic-links"
 "markdown"
 "matem&#225;tica"

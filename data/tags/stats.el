@@ -158,6 +158,7 @@
 "cluster-sample"
 "clustered-standard-errors"
 "clustering"
+"cmm"
 "cochran-mantel-haenszel"
 "cochran-q"
 "coda"
