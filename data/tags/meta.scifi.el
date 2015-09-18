@@ -66,6 +66,7 @@
 "group-watching"
 "hats"
 "help-center"
+"horror"
 "hot-network-questions"
 "hyperlinks"
 "identify"

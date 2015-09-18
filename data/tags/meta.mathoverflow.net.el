@@ -2,6 +2,7 @@
 "accepted-answer"
 "allowed-questions"
 "answers"
+"archiving"
 "area51"
 "asking-questions"
 "association-bonus"

@@ -841,7 +841,6 @@
 "microsoft"
 "microsoft-edge"
 "midnight"
-"migr"
 "migrated-questions"
 "migration"
 "migration-notice"

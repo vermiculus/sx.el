@@ -1249,6 +1249,7 @@
 "webpart"
 "webparts"
 "welcome-page"
+"wf-4"
 "wiki"
 "wiki-pages"
 "win-form"

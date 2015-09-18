@@ -314,6 +314,7 @@
 "ginga-eiyuu-densetsu"
 "gingitsune"
 "gintama"
+"girl"
 "girl-leapt-through-time"
 "girl-may-kill"
 "girls-of-the-wilds"

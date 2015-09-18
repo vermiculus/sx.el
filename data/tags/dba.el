@@ -385,6 +385,7 @@
 "job"
 "jobs"
 "join"
+"join-conditions"
 "json"
 "kerberos"
 "keyboard-shortcuts"

@@ -176,7 +176,6 @@
 "spin"
 "sports-psychology"
 "squash"
-"stadiums"
 "stanley-cup"
 "statistics"
 "stats"

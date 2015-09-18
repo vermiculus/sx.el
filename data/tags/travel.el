@@ -1706,6 +1706,7 @@
 "vatican-city"
 "vayama"
 "vce"
+"vegetation"
 "venezuela"
 "venezuelan-citizens"
 "venice"

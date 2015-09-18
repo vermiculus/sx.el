@@ -153,6 +153,7 @@
 "repeater"
 "repeater-coverage"
 "rfi"
+"rsgb"
 "rssi"
 "rtl-sdr"
 "safety"

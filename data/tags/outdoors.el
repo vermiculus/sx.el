@@ -87,6 +87,7 @@
 "cross-country-skiing"
 "czech"
 "deer"
+"deet"
 "deserts"
 "disease"
 "distance"

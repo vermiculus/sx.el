@@ -183,6 +183,7 @@
 "phrase-history"
 "phrase-request"
 "phrases"
+"place-names"
 "pluperfect"
 "plural"
 "plurality"

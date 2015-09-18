@@ -144,6 +144,7 @@
 "catalan-numbers"
 "categorical-logic"
 "categorification"
+"category"
 "category-o"
 "cauchy-schwarz-inequality"
 "cech-cohomology"

@@ -688,6 +688,7 @@
 "presbyterianism"
 "preservation-of-scripture"
 "presuppositionalism"
+"pride"
 "priesthood"
 "priests"
 "progressive"

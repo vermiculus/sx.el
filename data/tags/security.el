@@ -411,6 +411,7 @@
 "log-analysis"
 "logging"
 "login"
+"logjam"
 "lte"
 "luks"
 "lync"

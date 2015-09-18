@@ -21,6 +21,7 @@
 "amazon-ses"
 "api"
 "architecture"
+"attachments"
 "authentication"
 "authorize.net"
 "backdrop"

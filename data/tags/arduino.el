@@ -203,6 +203,7 @@
 "sketch"
 "sketch-size"
 "sleep"
+"softserial"
 "software"
 "softwareserial"
 "solar"

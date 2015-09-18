@@ -805,6 +805,7 @@
 "network"
 "network-user"
 "networking"
+"news.app"
 "newsstand"
 "nfs"
 "nike-running"

@@ -150,6 +150,7 @@
 "search"
 "self-answer"
 "share"
+"site-analytics"
 "site-definition"
 "site-promotion"
 "site-rec"

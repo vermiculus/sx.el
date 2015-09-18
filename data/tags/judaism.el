@@ -982,6 +982,7 @@
 "moon"
 "mordechai"
 "morning-day"
+"mosaic"
 "moses"
 "moses-moshe-rabenu"
 "moshe"

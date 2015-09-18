@@ -9,6 +9,7 @@
 "au-citizens"
 "australia"
 "australian-citizens"
+"australian-citzens"
 "austria"
 "bangladeshi-citizens"
 "banking"
@@ -240,4 +241,5 @@
 "visa"
 "visa-change"
 "voting"
+"working-holiday-visas"
 "working-visas")
