@@ -707,6 +707,7 @@
 "macvim"
 "magic-mouse"
 "magic-trackpad"
+"magnetic-charger"
 "magsafe"
 "magsafe-2"
 "mail"

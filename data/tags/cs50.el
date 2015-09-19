@@ -195,7 +195,6 @@
 "expected-output"
 "expire"
 "expression"
-"extension"
 "external"
 "extra"
 "extra-feature"

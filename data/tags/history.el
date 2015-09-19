@@ -425,7 +425,6 @@
 "paleolithic"
 "palestine"
 "paris"
-"patrice-lumumba"
 "peasants"
 "persia"
 "persona"

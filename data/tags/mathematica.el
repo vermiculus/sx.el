@@ -295,6 +295,7 @@
 "internet"
 "interop"
 "interoperability"
+"interpolatingfunction"
 "interpolation"
 "interpreter"
 "interruption"

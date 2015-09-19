@@ -217,6 +217,7 @@
 "legal"
 "legendary-badge"
 "license"
+"line-numbers"
 "link-only-answers"
 "linked-questions"
 "linux"

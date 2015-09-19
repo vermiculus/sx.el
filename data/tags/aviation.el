@@ -202,7 +202,6 @@
 "defense-aviation"
 "density-altitude"
 "descent"
-"design"
 "designated-examiner"
 "deviation"
 "dgca-india"

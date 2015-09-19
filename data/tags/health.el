@@ -41,6 +41,7 @@
 "blood"
 "blood-pressure"
 "blood-tests"
+"bmi"
 "body-fat"
 "bones"
 "brain"

@@ -684,6 +684,7 @@
 "monitor-calibration"
 "monitors"
 "monochrome"
+"monolights"
 "monopod"
 "montage"
 "mood"

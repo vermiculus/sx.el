@@ -214,6 +214,7 @@
 "network-core"
 "network-discovery"
 "network-edge"
+"next-hop"
 "nexus"
 "nms"
 "ntp"

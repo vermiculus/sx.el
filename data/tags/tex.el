@@ -1375,6 +1375,7 @@
 "vim"
 "vim-latex"
 "vimtex"
+"vspace"
 "wallpaper"
 "warning"
 "warnings"

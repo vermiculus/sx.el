@@ -392,6 +392,7 @@
 "performanceanalytics"
 "poisson"
 "portfolio"
+"portfolio-insurance"
 "portfolio-management"
 "portfolio-optimization"
 "portfolio-selection"

@@ -143,6 +143,7 @@
 "mms"
 "multi-tasking"
 "music"
+"mvno"
 "my-family"
 "narrator"
 "networking"

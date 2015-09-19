@@ -859,6 +859,7 @@
 "s-control"
 "s2s"
 "s3"
+"saas"
 "saleforce"
 "sales-cloud"
 "sales-process"

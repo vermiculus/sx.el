@@ -1,6 +1,7 @@
 ("3d-cursor"
 "3d-printing"
 "3d-view"
+"action"
 "add-on"
 "addon"
 "alpha"

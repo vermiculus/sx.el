@@ -71,6 +71,7 @@
 "openid"
 "pastoral-advice-questions"
 "political-correctness"
+"post-notice"
 "pov"
 "privileges"
 "profile-page"

@@ -267,6 +267,7 @@
 "bfq"
 "bfs"
 "bgcolor"
+"bible"
 "binary"
 "bind"
 "binutils"

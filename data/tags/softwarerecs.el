@@ -345,6 +345,7 @@
 "linked-data"
 "linkedin"
 "lint"
+"linu"
 "linux"
 "linux-distribution"
 "linux-kernel"

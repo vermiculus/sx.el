@@ -735,6 +735,7 @@
 "prism-nana"
 "prisma-illya"
 "psycho-pass"
+"psycho-pass-2"
 "psyren"
 "puella-magi-madoka-magica"
 "punchline"
