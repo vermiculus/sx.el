@@ -294,6 +294,7 @@
 "contact-shortcut"
 "contacts"
 "content-filter"
+"control"
 "cookies"
 "copy-paste"
 "crash-reports"

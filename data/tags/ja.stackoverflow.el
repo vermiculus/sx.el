@@ -661,6 +661,7 @@
 "xcassets"
 "xcode"
 "xcode6"
+"xcode7"
 "xhtml"
 "xib"
 "xively"

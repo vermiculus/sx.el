@@ -1841,7 +1841,6 @@
 "glassfish"
 "glib"
 "glibc"
-"glitch"
 "global"
 "globbing"
 "glusterfs"

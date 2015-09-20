@@ -56,6 +56,7 @@
 "export"
 "external-applications"
 "faces"
+"fcurve"
 "file-browser"
 "file-format"
 "fluid-simulation"

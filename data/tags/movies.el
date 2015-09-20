@@ -820,7 +820,6 @@
 "identify-this-actor"
 "identify-this-episode"
 "identify-this-movie"
-"identify-this-quote"
 "identify-this-tv-show"
 "identity"
 "idiocracy"

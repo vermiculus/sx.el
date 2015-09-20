@@ -298,6 +298,7 @@
 "foxpro"
 "fragmentation"
 "freetds"
+"full-outer-join"
 "full-text-search"
 "functions"
 "fusion-io"
@@ -950,5 +951,4 @@
 "xtrabackup"
 "xtradb"
 "xtradb-cluster"
-"ysql"
 "zos")

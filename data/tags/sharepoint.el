@@ -712,7 +712,6 @@
 "newform"
 "newsfeed"
 "newsletter"
-"nintex"
 "nlb"
 "no-code-solution"
 "nodejs"

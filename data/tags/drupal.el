@@ -764,6 +764,7 @@
 "versions"
 "vertical-tabs"
 "video"
+"video.js"
 "view"
 "view-mode"
 "views"

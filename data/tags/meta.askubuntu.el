@@ -20,7 +20,6 @@
 "auto-delete"
 "badges"
 "best-practice"
-"bobcat"
 "bounty"
 "browser"
 "bug"

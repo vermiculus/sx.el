@@ -97,6 +97,7 @@
 "geologic-layers"
 "geology"
 "geomagnetism"
+"geometry"
 "geomorphology"
 "geomythology"
 "geophysics"

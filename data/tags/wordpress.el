@@ -350,6 +350,7 @@
 "include"
 "infinite-scroll"
 "init"
+"inline-mode"
 "innodb"
 "input"
 "install"

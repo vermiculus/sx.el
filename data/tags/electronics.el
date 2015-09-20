@@ -373,6 +373,7 @@
 "decoupling"
 "decoupling-capacitor"
 "delay"
+"delta"
 "demodulation"
 "depletion-mode"
 "depletion-region"

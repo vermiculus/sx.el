@@ -1102,7 +1102,6 @@
 "ronald-fisher"
 "rotation"
 "rpart"
-"rqda"
 "ruby"
 "rule-of-thumb"
 "runs"

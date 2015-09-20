@@ -27,6 +27,7 @@
 "avconv"
 "avid"
 "battery"
+"bitrate"
 "blender"
 "bluescreen"
 "bluray"

@@ -219,7 +219,6 @@
 "vimball"
 "vimdiff"
 "viml"
-"vimprobable"
 "vimrc"
 "vimscript"
 "vimscript-lua"

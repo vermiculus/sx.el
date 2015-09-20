@@ -335,7 +335,6 @@
 "russia"
 "sabbatical"
 "salary"
-"salary-equity"
 "scholarships"
 "science"
 "scientific-productivity"

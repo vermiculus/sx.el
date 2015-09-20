@@ -1180,6 +1180,7 @@
 "time-tracking"
 "timezone"
 "tips-and-tricks"
+"tmutil"
 "tmux"
 "tor"
 "torrent"
