@@ -8,7 +8,6 @@
 "chat"
 "close-reasons"
 "closed-questions"
-"code-formatting"
 "comments"
 "community-ads"
 "community-wiki"

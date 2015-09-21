@@ -225,6 +225,7 @@
 "color-gamut"
 "color-green"
 "color-management"
+"color-purple"
 "color-red"
 "color-spaces"
 "color-temperature"

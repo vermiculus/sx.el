@@ -31,6 +31,7 @@
 "duplicate"
 "editing"
 "election"
+"email"
 "etiquette"
 "exact-duplicates"
 "expiration"

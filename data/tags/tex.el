@@ -372,6 +372,7 @@
 "epstool"
 "epstopdf"
 "epub"
+"epxl3"
 "equation"
 "equations"
 "error"

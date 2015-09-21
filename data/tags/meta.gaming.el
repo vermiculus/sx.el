@@ -111,6 +111,7 @@
 "off-topic-content"
 "old-questions"
 "openid"
+"outdated"
 "poll"
 "privileges"
 "profile"

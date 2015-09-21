@@ -270,6 +270,7 @@
 "image-trace"
 "imagemagick"
 "images"
+"import"
 "indesign"
 "indesign-scripting"
 "industry-term"

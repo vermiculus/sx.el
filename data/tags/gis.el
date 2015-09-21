@@ -1806,7 +1806,6 @@
 "stereo-imagery"
 "storage"
 "story-map"
-"strava"
 "stream-order"
 "street-address"
 "streets"

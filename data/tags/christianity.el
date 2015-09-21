@@ -88,6 +88,7 @@
 "barabbas"
 "bartholomew"
 "beast"
+"beatific-vision"
 "belief"
 "benedict-xvi"
 "bernard-of-clairvaux"

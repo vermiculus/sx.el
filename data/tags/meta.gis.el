@@ -14,6 +14,7 @@
 "burninate-request"
 "canonical"
 "chat"
+"chat-rooms"
 "close-dialog"
 "close-reasons"
 "closed-questions"

@@ -102,6 +102,7 @@
 "data-explorer"
 "debugging-questions"
 "declined-flags"
+"delete"
 "deleted-accounts"
 "deleted-answers"
 "deleted-comments"

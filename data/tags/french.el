@@ -187,6 +187,7 @@
 "mode"
 "mode-grammatical"
 "mood"
+"morphologie"
 "mots-compos&#233;s"
 "mots-composes"
 "musique"

@@ -514,6 +514,7 @@
 "sx.el"
 "symbolic-links"
 "symbols"
+"synonyms"
 "syntax"
 "syntax-highlighting"
 "syntax-table"
