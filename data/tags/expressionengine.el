@@ -359,6 +359,7 @@
 "multiple-sites"
 "multiselect"
 "mustash"
+"mx"
 "mx-calculator"
 "mx-cloner"
 "mx-google-map"

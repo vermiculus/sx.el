@@ -938,7 +938,6 @@
 "python"
 "quality"
 "quartz-composer"
-"qui"
 "quicklook"
 "quicklook-plugin"
 "quicksilver"

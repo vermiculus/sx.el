@@ -46,6 +46,7 @@
 "electromagnetism"
 "elementary-algebra"
 "elliptic-curve"
+"elliptic-curves"
 "energy"
 "engineering"
 "etymology"

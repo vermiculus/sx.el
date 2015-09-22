@@ -394,6 +394,7 @@
 "lambda-sensor"
 "lance-vintage"
 "lancer"
+"land-cruiser"
 "lantis-323"
 "lap-times"
 "lawnmower"

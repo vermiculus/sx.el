@@ -304,6 +304,7 @@
 "qualifying-exam"
 "quitting"
 "quotation"
+"r"
 "ranking"
 "reading"
 "recommendation-letter"

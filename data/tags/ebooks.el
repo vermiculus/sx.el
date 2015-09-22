@@ -26,6 +26,7 @@
 "cleartype"
 "collections"
 "color"
+"comic-books"
 "conversion"
 "copyright"
 "cover"

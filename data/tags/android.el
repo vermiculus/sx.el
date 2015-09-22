@@ -381,6 +381,7 @@
 "eclair"
 "editing"
 "email"
+"ematic-egs102"
 "emergency-calls"
 "emoji"
 "emoticons"

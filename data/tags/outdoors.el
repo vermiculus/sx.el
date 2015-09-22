@@ -162,6 +162,7 @@
 "health"
 "helmet"
 "high-altitude"
+"high-altitude-diet"
 "hiking"
 "himalaya"
 "historical-events"

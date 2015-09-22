@@ -274,6 +274,7 @@
 "windows-10"
 "windows-7"
 "windows-8"
+"windows-insider"
 "windows-live"
 "windows-live-id"
 "windows-mobile"

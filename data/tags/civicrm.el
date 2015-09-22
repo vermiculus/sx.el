@@ -224,6 +224,7 @@
 "security"
 "select2"
 "selenium"
+"senangpay"
 "session"
 "settings"
 "site-key"

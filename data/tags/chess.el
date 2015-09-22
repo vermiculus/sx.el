@@ -76,6 +76,7 @@
 "claim-draw"
 "closed-position"
 "clubs"
+"coach"
 "cochrane-gambit"
 "colle-system"
 "colle-zukertort"

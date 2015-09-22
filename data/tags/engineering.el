@@ -4,6 +4,7 @@
 "ac"
 "actuator"
 "adc"
+"aerodynamics"
 "aerospace-engineering"
 "air-quality"
 "aircraft-design"

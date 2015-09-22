@@ -411,6 +411,7 @@
 "system-message"
 "tactical-downvoting"
 "tag"
+"tag-badge-tracker"
 "tag-badges"
 "tag-blacklist"
 "tag-creation"

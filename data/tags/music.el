@@ -263,7 +263,6 @@
 "music-theory"
 "musical-forms"
 "musical-saw"
-"musicianship"
 "musicology"
 "musicxml"
 "mute"
