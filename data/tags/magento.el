@@ -974,5 +974,6 @@
 "xml"
 "xmlrpc"
 "zend-framework"
+"zero"
 "zero-subtotal"
 "zoom")

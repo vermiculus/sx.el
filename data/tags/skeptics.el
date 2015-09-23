@@ -484,6 +484,7 @@
 "planned-parenthood"
 "plants"
 "poison"
+"poland"
 "police"
 "politics"
 "pollution"

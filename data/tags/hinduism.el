@@ -151,6 +151,7 @@
 "loka"
 "lokas"
 "lokayata"
+"madhvacharya"
 "mahabharata"
 "mandukya-upanishad"
 "manners"

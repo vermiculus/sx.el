@@ -443,7 +443,6 @@
 "tumbleweed"
 "tumbleweed-badge"
 "twitter"
-"typing"
 "typographical-error"
 "unaccepted-answer"
 "unanswered-questions"

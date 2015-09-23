@@ -45,7 +45,6 @@
 "electricity"
 "electromagnetism"
 "elementary-algebra"
-"elliptic-curve"
 "elliptic-curves"
 "energy"
 "engineering"

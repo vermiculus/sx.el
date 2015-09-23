@@ -148,7 +148,6 @@
 "gallbladder"
 "gamekeepers-thumb"
 "gastroenterology"
-"general-health"
 "genetic-engineering"
 "germs"
 "glaucoma"

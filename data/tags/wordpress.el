@@ -791,7 +791,6 @@
 "timthumb"
 "tinymce"
 "title"
-"title-tag"
 "tooltip"
 "transfer"
 "transient"

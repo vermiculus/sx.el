@@ -987,6 +987,7 @@
 "pads"
 "padstack"
 "pal"
+"panel-design"
 "panelize"
 "parallax"
 "parallel"

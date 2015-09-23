@@ -2648,6 +2648,7 @@
 "rsa"
 "rsh"
 "rsnapshot"
+"rss"
 "rst"
 "rstp"
 "rsync"

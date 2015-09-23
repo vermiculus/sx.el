@@ -266,6 +266,7 @@
 "diphthongs"
 "direct-object"
 "direction"
+"disability-sensitive"
 "disambiguities"
 "discourse-markers"
 "disjunction"

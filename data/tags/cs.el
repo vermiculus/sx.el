@@ -500,7 +500,6 @@
 "tree-grammars"
 "trees"
 "tsp"
-"turing"
 "turing-completeness"
 "turing-machines"
 "turing-test"

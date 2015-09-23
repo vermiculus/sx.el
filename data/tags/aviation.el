@@ -513,6 +513,7 @@
 "sidestick"
 "simulator"
 "single-engine"
+"skid"
 "skydiving"
 "skywriting"
 "smoke-detectors"

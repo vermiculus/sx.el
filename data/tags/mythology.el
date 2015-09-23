@@ -22,6 +22,7 @@
 "british"
 "brittany"
 "buddhist"
+"bundahishn"
 "canaanite"
 "celtic"
 "ceremonies"
@@ -92,6 +93,7 @@
 "india"
 "indigenous-australian"
 "interpretation"
+"iran"
 "irish"
 "islam"
 "japanese"
@@ -198,4 +200,5 @@
 "werewolves"
 "wondjina"
 "yggdrasil"
-"zeus")
+"zeus"
+"zoroastrianism")

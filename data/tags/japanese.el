@@ -239,6 +239,8 @@
 "speaking"
 "spelling"
 "spoken-language"
+"sports"
+"sports-vocabulary"
 "stroke-count"
 "stroke-order"
 "stroke-type"

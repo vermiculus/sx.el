@@ -152,6 +152,7 @@
 "crispr"
 "crocus-sativus"
 "crossover"
+"cryonics"
 "cycle"
 "cytogenetics"
 "cytokinesis"

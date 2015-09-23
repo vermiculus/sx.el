@@ -94,6 +94,7 @@
 "expected-utility"
 "experimental-economics"
 "externalities"
+"fairness"
 "fdi"
 "federal-reserve"
 "finance"

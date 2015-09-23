@@ -131,7 +131,6 @@
 "maze"
 "metagolf"
 "minesweeper"
-"monday-mini-golf"
 "morse"
 "multiple-holes"
 "music"

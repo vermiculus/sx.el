@@ -308,7 +308,6 @@
 "line-spacing"
 "linum-mode"
 "linux"
-"lispy"
 "list"
 "literate-programming"
 "load-path"
