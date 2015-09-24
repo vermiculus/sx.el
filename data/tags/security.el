@@ -618,6 +618,7 @@
 "sd-card"
 "sdl"
 "sdp"
+"secp521r1"
 "secret-sharing"
 "secure-coding"
 "secure-renegotiation"

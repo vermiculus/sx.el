@@ -269,6 +269,7 @@
 "rasbian"
 "raspbian"
 "raspbmc"
+"raspi-check"
 "raspi-config"
 "raspicam"
 "raspivid"

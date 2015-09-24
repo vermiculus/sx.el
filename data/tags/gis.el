@@ -535,6 +535,7 @@
 "embedded-gis"
 "emergency-services"
 "emf"
+"encode"
 "encoding"
 "enterprise"
 "envi"

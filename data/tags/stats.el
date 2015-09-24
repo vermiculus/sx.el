@@ -370,6 +370,7 @@
 "exact-test"
 "excel"
 "expectation"
+"expectation"
 "expectation-maximization"
 "expectation-propagation"
 "expected-value"

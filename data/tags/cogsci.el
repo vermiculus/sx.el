@@ -4,6 +4,7 @@
 "addiction"
 "adhd"
 "aesthetics"
+"afni"
 "agent-based-modeling"
 "aggression"
 "aging"

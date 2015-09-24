@@ -91,7 +91,7 @@
 "support"
 "swag"
 "synonym-request"
-"tag-request"
+"tag-creation"
 "tag-synonyms"
 "tag-wiki"
 "tagging"

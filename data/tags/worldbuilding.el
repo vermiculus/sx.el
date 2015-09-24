@@ -244,6 +244,7 @@
 "sims"
 "simulated-world"
 "skeletons"
+"slavery"
 "sleep"
 "social-norms"
 "society"

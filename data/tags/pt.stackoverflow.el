@@ -1766,6 +1766,7 @@
 "selenium"
 "seletores"
 "self"
+"selfhost"
 "sem&#226;ntica"
 "semantica"
 "sencha"

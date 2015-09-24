@@ -114,6 +114,7 @@
 "neo4j"
 "neuralnetwork"
 "nlp"
+"normalization"
 "nosql"
 "notation"
 "object-recognition"
@@ -180,4 +181,5 @@
 "version-control"
 "visualization"
 "weather"
+"weighted-data"
 "word-embeddings")

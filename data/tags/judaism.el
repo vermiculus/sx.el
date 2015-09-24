@@ -1683,7 +1683,6 @@
 "united-states"
 "unkelus"
 "unleavened-bread"
-"untagged"
 "upsherin"
 "upshernish"
 "v-al-hannissim"

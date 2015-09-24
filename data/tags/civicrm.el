@@ -90,6 +90,7 @@
 "custom-templates"
 "dashboard"
 "dashlet"
+"data-loss"
 "data-model"
 "database"
 "date-preferences"

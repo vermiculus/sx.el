@@ -282,6 +282,7 @@
 "fate-fae"
 "fate-points"
 "fear-itself"
+"feat"
 "feat-qualifications"
 "feats"
 "feng-shui"

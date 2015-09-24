@@ -76,6 +76,7 @@
 "express-entry"
 "factoids"
 "family"
+"fatca"
 "financial"
 "finland"
 "food-and-drink"

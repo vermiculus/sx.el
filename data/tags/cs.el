@@ -181,7 +181,6 @@
 "formal-methods"
 "fourier-transform"
 "functional-programming"
-"galgorithms"
 "game-semantics"
 "game-theory"
 "garbage-collection"

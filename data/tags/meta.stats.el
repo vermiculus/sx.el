@@ -104,7 +104,6 @@
 "search"
 "self-answer"
 "self-delete"
-"sharing"
 "signatures"
 "site-name"
 "site-promotion"

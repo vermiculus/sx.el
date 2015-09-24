@@ -286,6 +286,7 @@
 "historical-trade-data"
 "history"
 "hive"
+"homebrew"
 "hosting"
 "http"
 "humble-bundle"
