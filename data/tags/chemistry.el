@@ -107,7 +107,6 @@
 "halides"
 "halocarbons"
 "heat"
-"higher-order-structure"
 "history-of-chemistry"
 "home-experiment"
 "homework"

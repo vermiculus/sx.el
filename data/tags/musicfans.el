@@ -194,6 +194,7 @@
 "solomon-burke"
 "son-house"
 "song-title"
+"songwriter"
 "soul"
 "sound"
 "sound-quality"

@@ -50,6 +50,7 @@
 "einsteins-puzzle"
 "encoded-message"
 "encoded-message"
+"encrypted"
 "english"
 "enigmatic-puzzles"
 "explanation"

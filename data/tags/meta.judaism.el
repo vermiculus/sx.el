@@ -93,6 +93,7 @@
 "profile-page"
 "project-929"
 "pronunciation"
+"publications"
 "publishing"
 "purim-project"
 "purim-torah-policy"

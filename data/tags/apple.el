@@ -27,6 +27,7 @@
 "activation-lock"
 "active-directory"
 "activesync"
+"activity-achievements"
 "activity-monitor"
 "activity.app"
 "ad-hoc"

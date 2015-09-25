@@ -396,6 +396,7 @@
 "universal-composability"
 "universal-hash"
 "universal-re-encryption"
+"unlinkability"
 "untagged"
 "verifiability"
 "vigenere"

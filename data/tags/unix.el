@@ -1296,6 +1296,7 @@
 "nxt"
 "ocr"
 "od"
+"odbc"
 "ogg"
 "oh-my-zsh"
 "okular"

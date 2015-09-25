@@ -123,7 +123,6 @@
 "review"
 "review-queue"
 "rss"
-"scifi.se"
 "scope"
 "search"
 "self-answer"

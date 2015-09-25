@@ -362,7 +362,6 @@
 "octave"
 "openwith"
 "optimization"
-"org"
 "org-agenda"
 "org-babel"
 "org-capture"

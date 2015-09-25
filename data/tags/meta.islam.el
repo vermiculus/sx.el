@@ -129,6 +129,7 @@
 "tajweed"
 "tour-page"
 "unanswered-questions"
+"undelete-request"
 "up-votes"
 "user-accounts"
 "user-interface"

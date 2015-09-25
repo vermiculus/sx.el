@@ -396,6 +396,7 @@
 "superlative"
 "symbols"
 "synonyms"
+"syntactic-analysis"
 "syntax"
 "tag-questions"
 "teaching"
@@ -453,6 +454,7 @@
 "word-stress"
 "word-usage"
 "world-english"
+"would-rather"
 "writing"
 "written-english"
 "zero-article")

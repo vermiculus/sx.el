@@ -1700,6 +1700,7 @@
 "us-virgin-islands"
 "us-visa-waiver-program"
 "usa"
+"usa-citizens"
 "utah"
 "uzbek-citizens"
 "uzbekistan"

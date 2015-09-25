@@ -936,6 +936,7 @@
 "imagej"
 "imagepyramid"
 "imagery"
+"imagine-photogrammetry"
 "implementation"
 "import"
 "imposm"
@@ -1570,6 +1571,7 @@
 "rainfall"
 "random"
 "random-forest"
+"rank"
 "raspberry-pi"
 "raster"
 "raster-calculator"
@@ -2106,5 +2108,6 @@
 "zipcodes"
 "zonal"
 "zonal-statistics"
+"zoning"
 "zoom"
 "zxy")

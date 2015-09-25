@@ -596,6 +596,7 @@
 "mirai-shounen-conan"
 "miss-monochrome"
 "mission-e"
+"mizuki"
 "mnemosyne"
 "mobile-suit-gundam-seed"
 "moetan"

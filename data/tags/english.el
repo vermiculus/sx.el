@@ -895,6 +895,7 @@
 "single-word-request"
 "single-word-requests"
 "singular"
+"singular-and-plural"
 "singular-plural"
 "singular-plural"
 "singular-they"

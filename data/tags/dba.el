@@ -533,7 +533,6 @@
 "openldap"
 "openrowset"
 "operator"
-"opinion"
 "optimization"
 "optimize"
 "optimizer"

@@ -642,6 +642,7 @@
 "lookup-column"
 "lotus-notes"
 "lync"
+"m"
 "mac-os-x"
 "machine-translation"
 "maintenance"

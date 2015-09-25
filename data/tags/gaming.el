@@ -2405,6 +2405,8 @@
 "organ-trail"
 "ori-and-the-blind-forest"
 "origin"
+"orion-dino-hunt"
+"orion-prelude"
 "orion-vault"
 "os-x"
 "osmos"

@@ -678,7 +678,6 @@
 "wolfram-programming-cloud"
 "word-cloud"
 "wordpress"
-"wordstem"
 "workaround"
 "workbench"
 "writing"
