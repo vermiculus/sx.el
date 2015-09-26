@@ -86,6 +86,7 @@
 "search"
 "site-attributes"
 "site-promotion"
+"smartphones"
 "specific-question"
 "sponsorship"
 "stackexchange"

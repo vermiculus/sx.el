@@ -49,6 +49,7 @@
 "images"
 "immigration-questions"
 "interesting-tags"
+"legal"
 "list-questions"
 "login"
 "malware"

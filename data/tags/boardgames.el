@@ -555,6 +555,7 @@
 "trashing"
 "trick-move"
 "trick-taking-games"
+"trivial-pursuit"
 "troyes"
 "tsumego"
 "tsuro"

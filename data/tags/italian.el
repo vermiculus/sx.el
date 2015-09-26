@@ -33,6 +33,7 @@
 "infinitive"
 "interjections"
 "interrogatives"
+"l"
 "latin"
 "letters"
 "list"

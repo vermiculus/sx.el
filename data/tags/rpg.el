@@ -265,6 +265,7 @@
 "evil-campaign"
 "exalted"
 "experience-points"
+"exploration"
 "extended-actions"
 "extras"
 "fading-suns"

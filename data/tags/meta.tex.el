@@ -86,6 +86,7 @@
 "new-features"
 "new-users"
 "notifications"
+"off-topic"
 "openid"
 "package-authors"
 "packages"

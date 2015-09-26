@@ -1157,6 +1157,7 @@
 "top-link-bar"
 "topology"
 "training"
+"transparency"
 "tripoli"
 "troubleshooting"
 "trusted-domain"

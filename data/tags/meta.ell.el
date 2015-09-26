@@ -46,6 +46,7 @@
 "off-topic"
 "online-resources"
 "openid"
+"possible-duplicates"
 "profile-page"
 "proofreading"
 "quality"

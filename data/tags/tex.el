@@ -928,6 +928,7 @@
 "pgfpages"
 "pgfplots"
 "pgfplotstable"
+"phjcp-style"
 "php"
 "physics"
 "picinpar"

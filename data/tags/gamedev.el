@@ -560,6 +560,7 @@
 "multiple-windows"
 "multisampling"
 "multitexturing"
+"multithreaded"
 "multithreading"
 "multitouch"
 "music"

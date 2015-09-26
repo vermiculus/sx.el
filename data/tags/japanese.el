@@ -218,6 +218,7 @@
 "register"
 "relative-clause"
 "relative-clauses"
+"religion"
 "rendaku"
 "renyokei"
 "renyōkei"

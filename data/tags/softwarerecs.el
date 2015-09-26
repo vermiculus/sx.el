@@ -412,7 +412,6 @@
 "music-recognition"
 "mvc"
 "mysql"
-"naturallyspeaking"
 "navigation"
 "netbeans"
 "network"

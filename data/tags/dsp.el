@@ -93,6 +93,7 @@
 "ecc"
 "ecg"
 "edge-detection"
+"education"
 "eeg"
 "embedded-systems"
 "emg"

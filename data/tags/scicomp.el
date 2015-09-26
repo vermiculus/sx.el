@@ -308,5 +308,4 @@
 "wave-propagation"
 "wavelet"
 "weka"
-"well-posedness"
-"weno")
+"well-posedness")

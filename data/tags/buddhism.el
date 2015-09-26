@@ -240,6 +240,7 @@
 "pali"
 "pali-canon"
 "pali-language"
+"paramitas"
 "parents"
 "parts-whole"
 "past-lives"

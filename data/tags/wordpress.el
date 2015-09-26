@@ -109,6 +109,7 @@
 "cleanup"
 "clone-site"
 "cloud"
+"cmb2"
 "cms"
 "code"
 "codex"

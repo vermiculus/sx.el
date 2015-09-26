@@ -74,7 +74,6 @@
 "authorize.net"
 "automation"
 "availability"
-"aws"
 "awstats"
 "azure"
 "background-image"

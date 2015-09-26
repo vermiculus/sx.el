@@ -17,6 +17,7 @@
 "community"
 "community-ads"
 "community-wiki"
+"conduct"
 "conflict-of-interest"
 "data-dump"
 "data-explorer"

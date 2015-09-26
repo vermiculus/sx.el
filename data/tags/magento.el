@@ -555,6 +555,7 @@
 "magmi"
 "magneto-1.7"
 "magneto1.7"
+"magneto2"
 "mail"
 "maintenance"
 "mamp"

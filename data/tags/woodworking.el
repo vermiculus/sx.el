@@ -91,6 +91,7 @@
 "inlay"
 "insects"
 "jig"
+"jigsaw"
 "joinery"
 "joinery-identification"
 "joining"

@@ -191,7 +191,6 @@
 "similar-artists"
 "singles"
 "skrillex"
-"solomon-burke"
 "son-house"
 "song-title"
 "songwriter"

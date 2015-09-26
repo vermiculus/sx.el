@@ -892,6 +892,7 @@
 "motorola-moto-g"
 "motorola-moto-g-xt1031"
 "motorola-moto-g2"
+"motorola-moto-g3"
 "motorola-photon"
 "motorola-photon-q-xt897"
 "motorola-razr-i"

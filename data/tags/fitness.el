@@ -21,6 +21,7 @@
 "barbell"
 "barbell-rows"
 "barefoot"
+"battleropes"
 "bcaa"
 "beginners"
 "bellyfat"

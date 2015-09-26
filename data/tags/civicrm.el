@@ -248,6 +248,7 @@
 "taxes"
 "templates"
 "theme"
+"timestamp"
 "tinymce"
 "tip"
 "tokens"

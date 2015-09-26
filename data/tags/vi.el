@@ -10,6 +10,8 @@
 "binary-file"
 "buffers"
 "callback"
+"chrome"
+"chromium"
 "clientserver"
 "colorscheme"
 "command-history"

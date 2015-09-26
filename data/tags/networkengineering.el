@@ -338,6 +338,7 @@
 "untagged"
 "uplinks"
 "video"
+"virtual"
 "vlan"
 "vmware"
 "voice"

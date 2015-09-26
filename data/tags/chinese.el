@@ -160,7 +160,6 @@
 "transliteration"
 "untagged"
 "usage"
-"useage"
 "verbs"
 "vocabulary"
 "websites"
