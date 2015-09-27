@@ -71,7 +71,6 @@
 "status-reproduced"
 "status-review"
 "subjective"
-"suggested-edits"
 "support"
 "tag-synonyms"
 "tagging"

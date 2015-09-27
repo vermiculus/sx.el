@@ -17,7 +17,6 @@
 "closing-questions"
 "comments"
 "community-ads"
-"community-blog"
 "community-moderation"
 "community-wiki"
 "contest"

@@ -1,7 +1,6 @@
 ("20m-band"
 "2m-band"
 "70cm-band"
-"afsk"
 "airband"
 "am"
 "amplifier"

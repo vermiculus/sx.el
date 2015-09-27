@@ -41,7 +41,6 @@
 "featured"
 "flagging"
 "flags"
-"fonts"
 "formatting"
 "homework"
 "hyperlinks"

@@ -106,5 +106,4 @@
 "video"
 "vote-to-close"
 "votes"
-"voting"
-"wireframe")
+"voting")

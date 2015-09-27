@@ -2,7 +2,6 @@
 "answers"
 "asking-questions"
 "badges"
-"big-list"
 "bounty"
 "bug"
 "chat"

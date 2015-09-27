@@ -37,7 +37,6 @@
 "hyperlinks"
 "interesting-tags"
 "language"
-"literature"
 "login"
 "low-quality-posts"
 "markdown"

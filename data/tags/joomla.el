@@ -217,7 +217,6 @@
 "server-response-time"
 "session"
 "sh404sef"
-"sha1"
 "showon"
 "site"
 "smartsearch"

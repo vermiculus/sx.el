@@ -78,6 +78,7 @@
 "pets"
 "phone"
 "photography"
+"physical"
 "plastics"
 "rain"
 "reading"

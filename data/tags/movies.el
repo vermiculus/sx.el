@@ -758,7 +758,6 @@
 "healer"
 "heist"
 "helix"
-"hell-on-wheels"
 "hellboy"
 "hellboy-ii-golden-army"
 "hello-darling"

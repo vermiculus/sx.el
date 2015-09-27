@@ -207,7 +207,6 @@
 "parents"
 "password"
 "patterns"
-"pdf"
 "pending"
 "performance"
 "permissions"

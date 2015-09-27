@@ -129,6 +129,7 @@
 "iupac"
 "kinetics"
 "laboratory"
+"lcp"
 "lewis-structure"
 "liquid-crystals"
 "magnetism"

@@ -80,7 +80,6 @@
 "list-questions"
 "login"
 "markdown"
-"memes"
 "meta"
 "migration"
 "mobile"

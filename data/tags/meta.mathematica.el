@@ -53,7 +53,6 @@
 "profile-page"
 "questions"
 "recent-activity"
-"reopen"
 "reputation"
 "retagging"
 "review"

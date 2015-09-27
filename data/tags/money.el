@@ -533,7 +533,6 @@
 "options-assignment"
 "options-clearing"
 "overdraft"
-"pakistan"
 "paper-money"
 "partnership"
 "passive-income"

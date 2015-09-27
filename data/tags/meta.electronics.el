@@ -90,7 +90,6 @@
 "status-review"
 "subjective"
 "support"
-"symbols"
 "syntax-highlighting"
 "tag-blacklist-request"
 "tag-cleanup"

@@ -50,7 +50,6 @@
 "feature-request"
 "featured"
 "files"
-"filesize"
 "flagging"
 "flair"
 "fonts"

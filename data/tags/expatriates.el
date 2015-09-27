@@ -121,7 +121,6 @@
 "japan"
 "japanese-citizens"
 "job-hunting"
-"johor-bahru"
 "k1-visa"
 "l1-visa"
 "labour-law"

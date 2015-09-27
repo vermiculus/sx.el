@@ -65,7 +65,6 @@
 "profile-page"
 "protected-questions"
 "qr-codes"
-"quality-filter"
 "question-appropriateness"
 "questions"
 "recent-activity"

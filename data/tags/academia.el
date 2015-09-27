@@ -170,7 +170,6 @@
 "homework"
 "honor-societies"
 "humanities"
-"ideals"
 "ieee"
 "ielts"
 "impact-factor"

@@ -933,5 +933,4 @@
 "xml"
 "xml-rpc"
 "youtube"
-"ziparchive"
-"zxcvbn")
+"ziparchive")

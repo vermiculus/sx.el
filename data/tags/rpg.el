@@ -553,6 +553,7 @@
 "pacing"
 "paladin"
 "palladium-system"
+"pandemonio"
 "papercraft"
 "paragon-path"
 "paragon-tier"

@@ -92,7 +92,6 @@
 "minifig"
 "minifigure"
 "minifigures"
-"mobile"
 "moc"
 "model-identification"
 "modular-buildings"

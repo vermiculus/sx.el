@@ -173,7 +173,6 @@
 "tagging"
 "tagline"
 "tags"
-"terms-of-service"
 "text-formattng"
 "time"
 "tools"

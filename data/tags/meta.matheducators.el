@@ -39,7 +39,6 @@
 "notifications"
 "openid"
 "profile-page"
-"protected-questions"
 "public-beta"
 "question-standards"
 "questions"

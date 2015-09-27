@@ -72,7 +72,6 @@
 "on-topic-discussion"
 "openid"
 "photographer"
-"photographs"
 "photoshop"
 "post-review"
 "profile-page"

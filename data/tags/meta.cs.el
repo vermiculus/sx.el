@@ -58,7 +58,6 @@
 "private-beta"
 "profile-page"
 "programming"
-"protected-questions"
 "question-quality"
 "questions"
 "recent-activity"

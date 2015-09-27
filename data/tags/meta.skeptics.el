@@ -3,7 +3,6 @@
 "adopt-a-question"
 "advertising"
 "android-app"
-"anecdotal-evidence"
 "answering"
 "answering-questions"
 "answers"

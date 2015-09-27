@@ -326,7 +326,6 @@
 "temps-surcompos&#233;s"
 "tenses"
 "terminologie"
-"th&#233;&#226;tre"
 "time"
 "titres"
 "toponymes"

@@ -38,7 +38,6 @@
 "featured"
 "flagging"
 "formatting"
-"fun"
 "hats"
 "hyperlinks"
 "interesting-tags"

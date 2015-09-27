@@ -41,7 +41,6 @@
 "openid"
 "prior-art"
 "prior-art-request"
-"privileges"
 "profile-page"
 "question-quality"
 "questions"

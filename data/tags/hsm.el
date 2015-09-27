@@ -126,7 +126,6 @@
 "thermodynamics"
 "time"
 "topology"
-"trigonometry"
 "units"
 "world-war-2"
 "zero")

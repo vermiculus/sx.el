@@ -104,7 +104,6 @@
 "support"
 "synonym"
 "tags"
-"troubleshooting"
 "twitter"
 "unanswered-questions"
 "up-votes"

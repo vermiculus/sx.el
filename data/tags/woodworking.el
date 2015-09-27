@@ -49,6 +49,7 @@
 "douglas-fir"
 "dovetail"
 "dowel"
+"draw-knife"
 "drawer"
 "drawer-construction"
 "drawing"

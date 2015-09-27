@@ -69,7 +69,6 @@
 "declination"
 "deep-sky-observing"
 "density"
-"differentiation"
 "disc"
 "disk"
 "distances"
