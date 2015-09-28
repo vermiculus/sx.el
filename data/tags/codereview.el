@@ -346,6 +346,7 @@
 "grunt"
 "grunt.js"
 "gson"
+"gtk"
 "guava"
 "gui"
 "gulp.js"

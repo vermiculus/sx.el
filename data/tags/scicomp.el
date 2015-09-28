@@ -23,6 +23,7 @@
 "boundary-conditions"
 "c"
 "c++"
+"calculus"
 "cdr-equation"
 "cfd"
 "cfd"

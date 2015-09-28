@@ -1250,6 +1250,7 @@
 "memory-limit"
 "menu"
 "mercadolivre"
+"mercadopago"
 "mercurial"
 "merge"
 "meta-tags"

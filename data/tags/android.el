@@ -751,6 +751,7 @@
 "lg-g2"
 "lg-g2-mini"
 "lg-g3"
+"lg-g3-vigor"
 "lg-g4"
 "lg-gt540-optimus"
 "lg-gt540-swift"

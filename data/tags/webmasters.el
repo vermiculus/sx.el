@@ -285,6 +285,7 @@
 "error-code"
 "error-reporting"
 "escaped-fragment"
+"eu-cookie-law"
 "ev-certificate"
 "event-tracking"
 "excel"

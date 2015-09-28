@@ -97,6 +97,7 @@
 "line-numbers"
 "linux"
 "linux-arch"
+"linux-debian"
 "load"
 "macro"
 "macvim"

@@ -1237,6 +1237,7 @@
 "parks-and-recreation"
 "parody"
 "passion"
+"pawn-sacrifice"
 "payback"
 "penny-dreadful"
 "perception"

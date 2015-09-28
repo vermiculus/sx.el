@@ -36,6 +36,7 @@
 "atm"
 "atr"
 "auction"
+"aud-au-dollar"
 "audit"
 "australia"
 "austria"

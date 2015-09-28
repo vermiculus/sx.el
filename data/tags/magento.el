@@ -190,6 +190,7 @@
 "core"
 "core-config-data"
 "core-file-storage"
+"core-hacks"
 "core-session"
 "countries"
 "country-regions"

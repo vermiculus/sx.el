@@ -95,7 +95,6 @@
 "bronze-age"
 "buddhism"
 "building"
-"buisness"
 "bulgaria"
 "business"
 "business-history"

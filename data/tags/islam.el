@@ -39,6 +39,7 @@
 "atheists"
 "authenticity"
 "ayah"
+"ayyam-e-tashrik"
 "azadari"
 "baby"
 "baby-names"

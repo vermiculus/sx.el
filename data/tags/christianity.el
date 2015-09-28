@@ -37,6 +37,7 @@
 "amish"
 "angel"
 "angels"
+"angelus"
 "anger"
 "anglicanism"
 "animals"

@@ -241,6 +241,7 @@
 "grep"
 "grids"
 "gui-design"
+"guides"
 "halftone"
 "hardware"
 "hardware-recommendation"
