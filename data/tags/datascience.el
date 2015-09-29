@@ -166,6 +166,7 @@
 "sql"
 "state-of-the-art"
 "statistics"
+"supervised-learning"
 "survival-analysis"
 "svm"
 "tableau"

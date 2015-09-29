@@ -31,7 +31,6 @@
 "canopy"
 "carbon"
 "carbon-cycle"
-"carbon-monoxide"
 "carbonate"
 "carboniferous"
 "cf-metadata"

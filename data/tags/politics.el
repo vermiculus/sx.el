@@ -295,7 +295,6 @@
 "usa"
 "venezuela"
 "veto"
-"volkswagen-scandal"
 "voting"
 "voting-districts"
 "voting-systems"

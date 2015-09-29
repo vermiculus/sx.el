@@ -161,7 +161,6 @@
 "rcservo"
 "real-time"
 "reference-request"
-"regulator"
 "reinforcement-learning"
 "reliability"
 "reprap"

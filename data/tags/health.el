@@ -270,6 +270,7 @@
 "pain"
 "paracetamol"
 "patch"
+"pathophysiology"
 "peanut-butter"
 "penicillin"
 "penis"

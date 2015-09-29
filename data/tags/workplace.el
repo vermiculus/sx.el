@@ -270,6 +270,7 @@
 "sexual-harassment"
 "sexuality"
 "sickness"
+"singapore"
 "skills"
 "skunkworks"
 "social-media"

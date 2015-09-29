@@ -91,6 +91,7 @@
 "side-pots"
 "sit-and-go"
 "skill"
+"sng"
 "soft-question"
 "software"
 "standard-deviation"

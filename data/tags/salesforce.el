@@ -318,6 +318,7 @@
 "developer"
 "developer-console"
 "developer-edition"
+"developer-org"
 "developer-productivity"
 "developername"
 "diagram"

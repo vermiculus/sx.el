@@ -125,6 +125,7 @@
 "gender"
 "genealogy-of-morals"
 "german-philosophy"
+"gettier"
 "god"
 "godel"
 "goedel"

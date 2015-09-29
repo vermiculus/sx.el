@@ -1259,7 +1259,6 @@
 "replicator"
 "resident-evil"
 "retcon"
-"returm-of-the-king"
 "return-of-the-jedi"
 "return-of-the-king"
 "revelation-space"

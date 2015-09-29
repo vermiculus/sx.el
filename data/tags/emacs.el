@@ -498,6 +498,7 @@
 "spacemacs"
 "speedbar"
 "spell-checking"
+"spreadsheet"
 "sql"
 "sql-interactive-mode"
 "sql-mode"

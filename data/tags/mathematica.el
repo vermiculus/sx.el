@@ -581,6 +581,7 @@
 "string-manipulation"
 "string-patterns"
 "strings"
+"structural-operations"
 "style"
 "stylesheet"
 "subgraph"

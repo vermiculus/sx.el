@@ -293,6 +293,7 @@
 "command"
 "command-history"
 "command-line"
+"command-line-args"
 "command-names"
 "command-not-found"
 "command-substitution"

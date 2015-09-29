@@ -445,6 +445,7 @@
 "john-milton"
 "john-of-damascus"
 "john-paul-ii"
+"john-piper"
 "john-the-baptist"
 "jonah"
 "jonathan-edwards"

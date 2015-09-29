@@ -353,6 +353,7 @@
 "heavy-gear"
 "heavygear"
 "hero-system"
+"heroes-unlimited"
 "heroquest"
 "hexagonal-mapping"
 "hexcrawl"

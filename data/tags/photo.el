@@ -340,6 +340,8 @@
 "ebay"
 "eclipse"
 "education"
+"ef"
+"ef-s"
 "effect"
 "effective-aperture"
 "electronic-shutter"

@@ -775,7 +775,6 @@
 "importance"
 "incentives"
 "include"
-"income"
 "indentation"
 "indexeddb"
 "indexing"

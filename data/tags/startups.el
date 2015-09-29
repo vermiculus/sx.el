@@ -15,6 +15,7 @@
 "asset-managers"
 "australia"
 "b2b"
+"bank"
 "benefits"
 "beta-testing"
 "billing"

@@ -93,7 +93,6 @@
 "food-chemistry"
 "formal-charge"
 "formatting"
-"fplc"
 "free-energy"
 "ft-ir"
 "fuel"

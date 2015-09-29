@@ -596,6 +596,7 @@
 "ridgeline"
 "rims"
 "rio"
+"rogue"
 "roof-bars"
 "rotors"
 "rough-idle"

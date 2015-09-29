@@ -41,6 +41,7 @@
 "openid"
 "profile-page"
 "questions"
+"questions"
 "recent-activity"
 "reputation"
 "retagging"

@@ -638,6 +638,7 @@
 "java"
 "javascript"
 "kaleidoscope"
+"keepass"
 "kerberos"
 "kernel"
 "kernel-extensions"

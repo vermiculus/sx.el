@@ -134,6 +134,7 @@
 "katha-upanishad"
 "kauravas"
 "kaushitaki-upanishad"
+"kholapur"
 "krishna"
 "kshatriya"
 "kumbh-mela"

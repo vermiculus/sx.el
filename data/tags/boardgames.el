@@ -37,7 +37,6 @@
 "at-the-gates-of-loyang"
 "auction"
 "auf-achse"
-"avalonhill"
 "axis-and-allies"
 "axis-and-allies-mini"
 "bacchus-banquet"

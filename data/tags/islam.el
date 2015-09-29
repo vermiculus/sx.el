@@ -171,6 +171,7 @@
 "game"
 "ghusl"
 "god"
+"gold"
 "government"
 "grave"
 "greetings"

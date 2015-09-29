@@ -1529,6 +1529,7 @@
 "wpa-supplicant"
 "wpa2"
 "xiaomi"
+"xiaomi-mi4"
 "xiaomi-redmi-note-4g"
 "xmpp"
 "xolo"
