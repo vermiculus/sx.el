@@ -210,7 +210,6 @@
 "umpire"
 "universiade"
 "untagged"
-"us-open"
 "venues"
 "volleyball"
 "wages"

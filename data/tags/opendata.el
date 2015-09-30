@@ -104,6 +104,7 @@
 "json"
 "json-ld"
 "kml"
+"labor"
 "language"
 "latin-america"
 "law"

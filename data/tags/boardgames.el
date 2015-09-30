@@ -77,6 +77,7 @@
 "carcassonne-catapult"
 "carcassonne-new-world"
 "carcassonne-river"
+"card-counting"
 "card-sleeves"
 "card-wars"
 "cardfight-vanguard"

@@ -549,7 +549,6 @@
 "internet"
 "interpolation"
 "intervalometer"
-"ios"
 "ipad"
 "iphone"
 "iphoto"

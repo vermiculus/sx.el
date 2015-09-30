@@ -796,7 +796,6 @@
 "mathematical-finance"
 "mathematical-modeling"
 "mathematical-philosophy"
-"mathematical-pilosophy"
 "mathematical-software"
 "mathematical-writing"
 "mathematics-education"

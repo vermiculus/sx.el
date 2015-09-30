@@ -217,6 +217,7 @@
 "configuration"
 "configuration-management"
 "configuration-profiles"
+"connect"
 "console"
 "contacts"
 "contacts.app"

@@ -127,6 +127,7 @@
 "cherrypy"
 "chess"
 "child-process"
+"circuit"
 "circular-buffer"
 "circular-list"
 "classes"

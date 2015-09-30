@@ -415,6 +415,7 @@
 "typography"
 "uncountable-nouns"
 "understanding"
+"untagged"
 "usage"
 "valediction"
 "verb"

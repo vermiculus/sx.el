@@ -194,7 +194,6 @@
 "mounting"
 "mouse"
 "mpeg-2"
-"mplayer"
 "mysql"
 "name"
 "netatalk"

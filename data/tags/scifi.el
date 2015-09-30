@@ -1531,6 +1531,7 @@
 "superman-returns"
 "supernatural"
 "supernatural-abilities"
+"superpowers"
 "susan-cooper"
 "suspended-animation"
 "sw-the-old-republic"

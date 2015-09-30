@@ -7,6 +7,7 @@
 "arithmetic"
 "arithmetic"
 "astronomy"
+"astronomy"
 "audio"
 "blue-eyes"
 "board-games"

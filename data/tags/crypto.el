@@ -354,7 +354,6 @@
 "smartcard"
 "smc"
 "smpc"
-"soft-question"
 "software-obfuscation"
 "speck"
 "sponge"

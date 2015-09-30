@@ -255,6 +255,7 @@
 "colour"
 "colour-coding"
 "common"
+"common-collector"
 "common-mode"
 "communication"
 "compact-fluorescent-lamp"

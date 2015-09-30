@@ -448,6 +448,7 @@
 "google-news"
 "google-now"
 "google-photos"
+"google-photos-collections"
 "google-places"
 "google-play"
 "google-play-music"

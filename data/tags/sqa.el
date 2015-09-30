@@ -75,7 +75,6 @@
 "gui"
 "hardware"
 "hp-alm"
-"hp-alm-12.2"
 "hp-alm-12.20"
 "hp-quality-center"
 "hp-uft"

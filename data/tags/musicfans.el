@@ -90,6 +90,7 @@
 "jimi-hendrix"
 "johann-sebastian-bach"
 "john-denver"
+"john-fogerty"
 "john-hartford"
 "john-lennon"
 "johnny-dyani"

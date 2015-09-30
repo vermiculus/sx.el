@@ -567,6 +567,7 @@
 "pathfinder-society"
 "pbp"
 "pcgen"
+"pendragon"
 "phasing"
 "pixie"
 "planes"

@@ -816,6 +816,7 @@
 "reduplication"
 "reference"
 "reflexives"
+"regional"
 "regionalisms"
 "register"
 "relative"

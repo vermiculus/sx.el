@@ -145,7 +145,6 @@
 "chirality"
 "classical-electrodynamics"
 "classical-field-theory"
-"classical-limit"
 "classical-mechanics"
 "classical-physics"
 "clifford-algebra"

@@ -213,6 +213,7 @@
 "hoare-logic"
 "homotopy-type-theory"
 "human-computing"
+"hypercomputation"
 "image-processing"
 "imperative-programming"
 "in-place"
