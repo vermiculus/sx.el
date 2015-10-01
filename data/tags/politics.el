@@ -142,6 +142,7 @@
 "judicial-branch"
 "judiciary"
 "justice"
+"kurdistan"
 "labor"
 "labour-party"
 "land"

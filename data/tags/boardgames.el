@@ -365,6 +365,7 @@
 "necron"
 "netrunner-ccg"
 "neuroshima-hex"
+"niagara"
 "nine-mens-morris"
 "ninja-burger"
 "notation"

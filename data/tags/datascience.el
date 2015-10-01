@@ -8,6 +8,7 @@
 "apache-pig"
 "apache-spark"
 "aws"
+"aws-redshift"
 "barplot"
 "basket-analysis"
 "beginner"

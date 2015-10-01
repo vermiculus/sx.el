@@ -190,6 +190,7 @@
 "jogging"
 "joints"
 "juice"
+"jump-rope"
 "kcal"
 "ketogenic-diet"
 "kettlebell"

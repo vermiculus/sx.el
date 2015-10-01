@@ -673,6 +673,7 @@
 "setting"
 "setting-recommendation"
 "settings"
+"shadow-of-the-demon-lord"
 "shadowrun"
 "shadowrun-sr3"
 "shadowrun-sr4"

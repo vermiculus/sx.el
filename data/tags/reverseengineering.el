@@ -24,6 +24,7 @@
 "binary-analysis"
 "binary-format"
 "bindiff"
+"bios"
 "breakpoint"
 "buffer-overflow"
 "byte-code"
@@ -292,4 +293,6 @@
 "x64"
 "x86"
 "xor"
-"zigbee")
+"zigbee"
+"zynos"
+"zyxel")

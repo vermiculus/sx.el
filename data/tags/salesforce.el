@@ -165,6 +165,7 @@
 "class"
 "clickjacking"
 "clicktools"
+"client"
 "client-id"
 "clone"
 "closedate"

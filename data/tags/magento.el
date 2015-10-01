@@ -113,6 +113,7 @@
 "catalogsearch"
 "categories"
 "category"
+"category-a"
 "category-attribute"
 "category-products"
 "category-tree"
@@ -971,6 +972,5 @@
 "xml"
 "xmlrpc"
 "zend-framework"
-"zero"
 "zero-subtotal"
 "zoom")

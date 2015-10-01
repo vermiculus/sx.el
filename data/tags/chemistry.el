@@ -229,6 +229,7 @@
 "teaching-lab"
 "temperature"
 "terminology"
+"textbook"
 "textbook-erratum"
 "theoretical-chemistry"
 "thermodynamics"

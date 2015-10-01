@@ -145,7 +145,6 @@
 "core"
 "core-modifications"
 "count"
-"cpt"
 "create"
 "crm"
 "cron"

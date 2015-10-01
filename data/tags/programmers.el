@@ -1665,6 +1665,7 @@
 "type-theory"
 "typeclass"
 "typescript"
+"typing"
 "typos"
 "ubuntu"
 "ui"

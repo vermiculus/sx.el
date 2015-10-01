@@ -138,6 +138,7 @@
 "odometry"
 "openni"
 "operating-systems"
+"orientation"
 "particle-filter"
 "pid"
 "planning"

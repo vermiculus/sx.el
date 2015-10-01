@@ -31,6 +31,7 @@
 "battery-saver"
 "beta"
 "bing"
+"blu-win-hd"
 "bluetooth"
 "brightness"
 "browser"

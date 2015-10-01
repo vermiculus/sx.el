@@ -957,6 +957,7 @@
 "reading-list"
 "readitlater"
 "reboot"
+"record"
 "recording"
 "recovery"
 "recovery-hd"

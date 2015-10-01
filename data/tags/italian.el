@@ -30,6 +30,7 @@
 "homograph"
 "hypernym"
 "idioms"
+"imperative"
 "infinitive"
 "interjections"
 "interrogatives"

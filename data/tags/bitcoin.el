@@ -141,6 +141,7 @@
 "chargeback"
 "charity"
 "charts"
+"checklocktimeverify"
 "checkpoints"
 "checksig"
 "china"

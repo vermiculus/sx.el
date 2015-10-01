@@ -1212,6 +1212,7 @@
 "stepwise-regression"
 "stochastic-approximation"
 "stochastic-ordering"
+"stochastic-process"
 "stochastic-processes"
 "stratification"
 "structural-change"
