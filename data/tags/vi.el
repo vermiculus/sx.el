@@ -196,6 +196,7 @@
 "split"
 "startup"
 "status-line"
+"string-manipulation"
 "substitute"
 "swap-file"
 "syntax-highlighting"

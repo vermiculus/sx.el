@@ -221,4 +221,5 @@
 "vote-to-close"
 "votes"
 "voting"
+"warnings"
 "winter-bash")

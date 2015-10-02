@@ -17,6 +17,7 @@
 "data-dump"
 "data-explorer"
 "deleted-questions"
+"deletion"
 "design"
 "discussion"
 "down-votes"

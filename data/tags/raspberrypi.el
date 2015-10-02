@@ -352,6 +352,7 @@
 "systemd"
 "taskbar"
 "teaching"
+"television-tuner"
 "temperature"
 "tftp"
 "timekeeping"

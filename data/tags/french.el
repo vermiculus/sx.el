@@ -106,6 +106,7 @@
 "evolution"
 "exclamations"
 "expressions"
+"f&#233;minin"
 "fashion"
 "faux-amis"
 "figure-de-style"

@@ -95,6 +95,7 @@
 "bokeh"
 "books"
 "borders"
+"boudoir-photography"
 "bounce"
 "bounce-flash"
 "bracketing"

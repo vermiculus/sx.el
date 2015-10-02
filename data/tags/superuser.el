@@ -2868,6 +2868,7 @@
 "mdfind"
 "mdns"
 "mds"
+"mdt"
 "meaning"
 "measurement"
 "media"

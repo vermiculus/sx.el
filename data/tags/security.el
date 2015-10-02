@@ -481,7 +481,6 @@
 "openid"
 "openid-connect"
 "openpgp"
-"opensll"
 "opensource"
 "openssh"
 "openssl"

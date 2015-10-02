@@ -847,6 +847,7 @@
 "kim-harrison"
 "kim-stanley-robinson"
 "king-kong"
+"king-of-katoren"
 "king-solomons-mines"
 "kingdom-hospital"
 "klingon"

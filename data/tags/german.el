@@ -247,6 +247,7 @@
 "spelling"
 "spoken-language"
 "standard-german"
+"stil"
 "stress"
 "style"
 "subject"

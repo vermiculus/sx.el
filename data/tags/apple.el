@@ -727,6 +727,7 @@
 "markdown"
 "mavericks"
 "mbp"
+"mdfind"
 "mdm"
 "mdns"
 "mds"

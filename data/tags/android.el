@@ -1533,6 +1533,7 @@
 "wpa2"
 "xiaomi"
 "xiaomi-mi4"
+"xiaomi-mi4i"
 "xiaomi-redmi-note-4g"
 "xmpp"
 "xolo"

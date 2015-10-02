@@ -240,6 +240,7 @@
 "css3"
 "csv"
 "cti"
+"cumulus-ci"
 "curl"
 "currency"
 "currencytype"

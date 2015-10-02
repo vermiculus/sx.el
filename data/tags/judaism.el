@@ -71,6 +71,7 @@
 "aqedat-yishak"
 "arabic"
 "aramaic"
+"arava"
 "aravit"
 "arayot"
 "arba-kosot"

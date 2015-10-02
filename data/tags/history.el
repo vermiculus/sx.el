@@ -586,7 +586,6 @@
 "ussr"
 "venice"
 "versailles"
-"vexillology"
 "victorian"
 "vietnam"
 "vietnam-war"
