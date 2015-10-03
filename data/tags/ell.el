@@ -115,6 +115,7 @@
 "ellipsis"
 "email"
 "emphasis"
+"english"
 "error"
 "etiquette"
 "etymology"

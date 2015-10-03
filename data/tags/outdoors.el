@@ -32,6 +32,8 @@
 "big-wall-climbing"
 "bike"
 "biking"
+"bird-feeding"
+"bird-nest"
 "bird-watching"
 "birds"
 "bite"

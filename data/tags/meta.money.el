@@ -31,6 +31,7 @@
 "flagging"
 "foreign-exchange"
 "formatting"
+"google"
 "hyperlinks"
 "interesting-tags"
 "login"

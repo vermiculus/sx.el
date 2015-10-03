@@ -30,6 +30,7 @@
 "feedback"
 "flagging"
 "formatting"
+"help-center"
 "hyperlinks"
 "interesting-tags"
 "login"

@@ -78,6 +78,7 @@
 "employee-compensation"
 "employees"
 "employment"
+"enterprise"
 "entrepreneurism-abroad"
 "entrepreneurship"
 "equity"

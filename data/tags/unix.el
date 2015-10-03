@@ -1914,6 +1914,7 @@
 "text-to-speech"
 "text-user-interface"
 "tftp"
+"tftpd"
 "thc-hydra"
 "theme"
 "thinkpad"

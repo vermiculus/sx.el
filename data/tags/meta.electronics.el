@@ -99,7 +99,6 @@
 "tag-wiki"
 "tagging"
 "tags"
-"terminology"
 "tex"
 "unanswered-questions"
 "untagged"

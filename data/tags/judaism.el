@@ -605,6 +605,7 @@
 "honors"
 "hosea-hoshea"
 "hoshana-rabbah"
+"hoshanos"
 "hoshen-mishpat-civil-law"
 "hotzaa-carrying-reshuyot"
 "how-to"

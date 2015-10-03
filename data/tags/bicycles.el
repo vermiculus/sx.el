@@ -101,6 +101,7 @@
 "co2"
 "coaster"
 "cog"
+"comfort"
 "commute"
 "commuter"
 "commuting-bike"

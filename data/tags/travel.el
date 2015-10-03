@@ -1163,6 +1163,7 @@
 "osaka"
 "osl"
 "oslo"
+"ottawa"
 "outdoor-activities"
 "overbooking"
 "overland"

@@ -707,6 +707,7 @@
 "product-page"
 "product-prices"
 "product-relations"
+"product-tag"
 "product-type"
 "product-urls"
 "product-view"

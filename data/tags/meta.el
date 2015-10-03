@@ -1337,6 +1337,7 @@
 "stars"
 "statistics"
 "stats"
+"status"
 "status-bydesign"
 "status-completed"
 "status-declined"

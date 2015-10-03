@@ -430,6 +430,7 @@
 "matrix"
 "maxima"
 "mazda"
+"mazda-2"
 "mazda-3"
 "mazda-6"
 "mazda-626"

@@ -176,7 +176,6 @@
 "local-features"
 "lowpass-filter"
 "lpc"
-"lte"
 "machine-learning"
 "magnitude"
 "matched-filter"
