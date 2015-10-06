@@ -91,6 +91,7 @@
 "chili"
 "chiller"
 "chilling"
+"chloramines"
 "chocolate"
 "cider"
 "clarification"

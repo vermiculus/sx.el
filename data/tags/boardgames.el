@@ -14,6 +14,7 @@
 "advanced-civilization"
 "advanced-squad-leader"
 "afrika-korps"
+"age-of-sigmar"
 "age-of-steam"
 "agricola"
 "agricola-fotm"

@@ -656,6 +656,7 @@
 "small-engine"
 "smartkey"
 "smell"
+"smoke"
 "software"
 "soldering"
 "solstice"

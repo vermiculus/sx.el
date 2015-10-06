@@ -27,6 +27,7 @@
 "cb"
 "circular-polarization"
 "citizens-band"
+"club"
 "coax"
 "coaxial-cable"
 "connectors"

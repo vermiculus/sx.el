@@ -89,7 +89,6 @@
 "notation"
 "notations"
 "number-theory"
-"oncology"
 "optics"
 "particle-physics"
 "philosophy-of-science"

@@ -2,6 +2,7 @@
 "accomodation"
 "alaska"
 "ancestry-visas"
+"application-status"
 "argentina"
 "argentine-citizens"
 "arrival"

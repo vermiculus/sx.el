@@ -120,6 +120,7 @@
 "isha-upanishad"
 "islam"
 "janev"
+"japa"
 "japamala"
 "jiva"
 "jnana"

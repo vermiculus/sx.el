@@ -119,7 +119,6 @@
 "electricity"
 "emergency"
 "endocrinology"
-"environmental-health"
 "epicondylitis"
 "epidemiology"
 "ergonomics"

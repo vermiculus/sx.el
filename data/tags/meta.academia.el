@@ -58,6 +58,7 @@
 "profile-page"
 "publishing"
 "quality-evaluation"
+"question-salvaging"
 "questions"
 "recent-activity"
 "redundancy"

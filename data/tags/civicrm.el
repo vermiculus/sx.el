@@ -256,7 +256,6 @@
 "tinymce"
 "tip"
 "tokens"
-"tshirt"
 "tutorials"
 "twilio"
 "ubercart"

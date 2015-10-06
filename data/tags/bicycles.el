@@ -429,6 +429,7 @@
 "turbo-trainer"
 "tyre"
 "tyres"
+"uci"
 "uk"
 "unicycle"
 "untagged"

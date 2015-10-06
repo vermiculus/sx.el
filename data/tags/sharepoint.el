@@ -1099,7 +1099,6 @@
 "stats"
 "status"
 "storage"
-"stress-test"
 "string"
 "sts"
 "stsadm"

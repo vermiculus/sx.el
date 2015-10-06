@@ -302,6 +302,7 @@
 "war"
 "weapons"
 "welfare"
+"western-world"
 "whistleblowers"
 "world-war-ii"
 "yemen-crisis"

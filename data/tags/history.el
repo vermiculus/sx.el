@@ -242,6 +242,7 @@
 "given-name"
 "gladiators"
 "gold"
+"gorbachev"
 "government"
 "great-depression"
 "greco-persian-wars"

@@ -692,4 +692,5 @@
 "xrp-reserve"
 "yacoin"
 "zerocoin"
-"zeroknowledge")
+"zeroknowledge"
+"zeromq")

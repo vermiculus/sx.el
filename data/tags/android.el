@@ -971,6 +971,7 @@
 "onedrive"
 "onenote"
 "oneplus-one"
+"oneplus-two"
 "oom-priority"
 "open-source"
 "openoffice"
@@ -1555,6 +1556,7 @@
 "zte-light-tab"
 "zte-max"
 "zte-merit"
+"zte-optik"
 "zte-racer"
 "zte-score"
 "zte-speed-n9130")

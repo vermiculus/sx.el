@@ -342,6 +342,7 @@
 "historical-analysis"
 "historical-data"
 "history"
+"hkd-hk-dollar"
 "hobby-income"
 "holidays"
 "home"

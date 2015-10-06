@@ -232,6 +232,7 @@
 "psychiatry"
 "psychoacoustics"
 "psychoanalysis"
+"psycholingusitics"
 "psychology"
 "psychometrics"
 "psychopharmacology"

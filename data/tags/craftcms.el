@@ -50,6 +50,7 @@
 "craft-features"
 "craft-pro"
 "craft3"
+"cron"
 "csrf"
 "css"
 "current-user"
@@ -333,4 +334,5 @@
 "wordress"
 "workflow"
 "wysiwyg"
+"xml"
 "yii")

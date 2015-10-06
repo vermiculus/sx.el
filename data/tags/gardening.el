@@ -131,6 +131,7 @@
 "fall-gardening"
 "fava-beans"
 "fence"
+"fennel"
 "fern"
 "ferns"
 "fertiliser"
