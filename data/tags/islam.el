@@ -652,6 +652,7 @@
 "tv"
 "udhiyyah"
 "uloom-al-hadith"
+"uloom-al-quran"
 "umar-ibn-al-khattab"
 "umm-ul-banin"
 "umrah"

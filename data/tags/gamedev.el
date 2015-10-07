@@ -566,6 +566,7 @@
 "music"
 "mvc"
 "mysql"
+"narrative"
 "navigation-mesh"
 "navmesh"
 "ndk"

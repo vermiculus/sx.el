@@ -237,6 +237,7 @@
 "red-dwarf"
 "red-giant"
 "redshift"
+"reflector-telescope"
 "refractor-telescope"
 "resource"
 "roche-limit"

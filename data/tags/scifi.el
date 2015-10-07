@@ -1336,7 +1336,6 @@
 "science-fiction-history"
 "scott-lynch"
 "scott-pilgrim"
-"scotty"
 "scp-173"
 "scp-foundation"
 "seaquest"

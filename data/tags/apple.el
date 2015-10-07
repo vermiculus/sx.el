@@ -1061,6 +1061,7 @@
 "sim"
 "simbl"
 "single-user"
+"sip"
 "sips"
 "siri"
 "skim"

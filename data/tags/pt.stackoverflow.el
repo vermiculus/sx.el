@@ -813,6 +813,7 @@
 "google-managed-vm"
 "google-maps"
 "google-maps-android-api-2"
+"google-maps-api-3"
 "google-openid"
 "google-php-api-client"
 "google-play"

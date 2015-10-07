@@ -733,6 +733,7 @@
 "led"
 "lenovo"
 "lenovo-a3000"
+"lenovo-a316i"
 "lenovo-a328"
 "lenovo-a6000-plus"
 "lenovo-a660"

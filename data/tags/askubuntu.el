@@ -463,6 +463,7 @@
 "commands"
 "commercial"
 "community"
+"compact"
 "compaq"
 "comparison"
 "compat-wireless"

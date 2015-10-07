@@ -730,6 +730,7 @@
 "questions"
 "queue"
 "quote"
+"quote-merge"
 "quoteitem"
 "random"
 "ratings"

@@ -131,6 +131,7 @@
 "habitability"
 "hair"
 "hard-science"
+"hardcopy"
 "health"
 "herd"
 "history"

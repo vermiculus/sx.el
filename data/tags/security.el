@@ -307,6 +307,7 @@
 "grub"
 "gsm"
 "gssapi"
+"gzip"
 "hardening"
 "hardware"
 "hash"

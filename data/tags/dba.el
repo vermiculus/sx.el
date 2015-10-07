@@ -483,6 +483,7 @@
 "mysql-event"
 "mysql-fabric"
 "mysql-mha"
+"mysql-percona"
 "mysql-proxy"
 "mysql-upgrade"
 "mysql-workbench"

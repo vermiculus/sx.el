@@ -43,6 +43,7 @@
 "hyperlinks"
 "idea"
 "identification"
+"images"
 "interesting-tags"
 "late-answers"
 "latex"

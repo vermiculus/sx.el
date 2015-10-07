@@ -77,6 +77,7 @@
 "common-cold"
 "computers"
 "concussion"
+"congenital"
 "contagious"
 "contraception"
 "cooking"

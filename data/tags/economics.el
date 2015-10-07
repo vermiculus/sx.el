@@ -195,6 +195,7 @@
 "optimization"
 "options-pricing"
 "otree"
+"parado"
 "pareto-efficiency"
 "perfect-complements"
 "pigouvian-taxes"
