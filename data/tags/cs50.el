@@ -690,6 +690,7 @@
 "wraparound"
 "x-negative-velocity"
 "xcode"
+"xxd"
 "yahoo-error"
 "zero"
 "zip")

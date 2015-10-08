@@ -309,6 +309,7 @@
 "subscription"
 "surnames"
 "surrey"
+"sussex"
 "sweden"
 "switzerland"
 "tasmania"

@@ -2725,7 +2725,6 @@
 "rainbow-6-vegas-2"
 "rainbow-moon"
 "rainbow-six-3"
-"rainbow-six-siege-beta"
 "ramble-planet"
 "randals-monday"
 "raptor-safari"

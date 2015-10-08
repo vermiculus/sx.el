@@ -235,7 +235,6 @@
 "phon&#233;tique"
 "phonetics"
 "phonologie"
-"phrase"
 "physique"
 "places"
 "plantes"

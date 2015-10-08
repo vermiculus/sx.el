@@ -87,6 +87,7 @@
 "rubbish"
 "safety"
 "sales"
+"scratch-removal"
 "search"
 "sex"
 "shave"

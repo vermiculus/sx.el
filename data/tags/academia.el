@@ -411,6 +411,8 @@
 "tutoring"
 "two-body-problem"
 "typesetting"
+"typesetting"
+"typography"
 "typography"
 "undergraduate"
 "united-kingdom"

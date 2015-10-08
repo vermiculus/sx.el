@@ -71,7 +71,6 @@
 "grease-pencil"
 "greasepencil"
 "groups"
-"hair"
 "hair-particles"
 "id-mask"
 "image"

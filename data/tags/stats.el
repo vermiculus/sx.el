@@ -613,7 +613,6 @@
 "kde"
 "kde"
 "kendall-tau"
-"kernel"
 "kernel-density-estimate"
 "kernel-regression"
 "kernel-trick"

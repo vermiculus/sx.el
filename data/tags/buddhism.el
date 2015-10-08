@@ -299,7 +299,6 @@
 "science"
 "scripture"
 "sects"
-"secular"
 "secular-buddhism"
 "self"
 "sexual-misconduct"

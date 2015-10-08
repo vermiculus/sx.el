@@ -355,6 +355,7 @@
 "sheet-music"
 "sibelius"
 "sight-reading"
+"singer-songwriter"
 "singing"
 "sitar"
 "skill-level"

@@ -52,6 +52,7 @@
 "compatability"
 "compatibility"
 "contacts"
+"continuum"
 "cortana"
 "custom-rom"
 "data"

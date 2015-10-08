@@ -429,6 +429,7 @@
 "ifconfig"
 "iframe"
 "image"
+"image-by-attribute-value"
 "image-preview"
 "image-upload"
 "import"

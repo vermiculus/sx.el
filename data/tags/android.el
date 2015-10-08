@@ -1146,6 +1146,7 @@
 "samsung-galaxy-i5800"
 "samsung-galaxy-i5801"
 "samsung-galaxy-i7500"
+"samsung-galaxy-j5"
 "samsung-galaxy-mini"
 "samsung-galaxy-mini-2"
 "samsung-galaxy-music-duos"

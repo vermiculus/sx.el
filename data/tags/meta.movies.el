@@ -24,6 +24,7 @@
 "design"
 "discussion"
 "down-votes"
+"down-votes"
 "editing"
 "election"
 "etiquette"
