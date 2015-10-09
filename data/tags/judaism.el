@@ -1417,6 +1417,7 @@
 "shiduchim"
 "shield-of-david"
 "shiluach-haken"
+"shimon"
 "shimshon-raphael-hirsch"
 "shimshon-samson"
 "shinuy-deviation"

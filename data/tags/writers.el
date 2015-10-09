@@ -215,6 +215,7 @@
 "short-fiction"
 "short-story"
 "software"
+"stakes"
 "story"
 "storyline"
 "structure"

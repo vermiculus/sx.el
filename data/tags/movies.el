@@ -512,6 +512,7 @@
 "dogma"
 "dollars-trilogy"
 "dollhouse"
+"dolphin-tale"
 "domino-one"
 "don-jon"
 "donnie-brasco"

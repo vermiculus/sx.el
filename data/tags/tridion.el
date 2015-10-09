@@ -86,6 +86,7 @@
 "eclipse"
 "embedded-items"
 "encoding"
+"entity"
 "event"
 "event-system"
 "experience-manager"

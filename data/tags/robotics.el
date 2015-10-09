@@ -52,6 +52,7 @@
 "differential-drive"
 "digital-audio"
 "digital-systems"
+"digitalservo"
 "distributed-systems"
 "driver"
 "dynamic-programming"

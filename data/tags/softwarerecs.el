@@ -230,6 +230,7 @@
 "free-libre-software"
 "freetype"
 "freeware"
+"fsfe"
 "ftp"
 "gallery"
 "game"

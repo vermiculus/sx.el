@@ -264,6 +264,7 @@
 "flowplayer"
 "fonts"
 "footer"
+"forex"
 "form"
 "form-field-validation"
 "form-submission"

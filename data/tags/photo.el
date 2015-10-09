@@ -1160,7 +1160,6 @@
 "xti"
 "yashica"
 "ycbcr"
-"yongnou"
 "yongnuo"
 "zeiss"
 "zenit"

@@ -215,6 +215,7 @@
 "taiwan"
 "tax"
 "tax-deductions"
+"tax-treaties"
 "taxes"
 "technology"
 "telephone"
@@ -241,6 +242,7 @@
 "vehicle-registration"
 "visa"
 "visa-change"
+"visa-sponsor"
 "voting"
 "working-holiday-visas"
 "working-visas")

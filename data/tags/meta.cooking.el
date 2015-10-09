@@ -40,6 +40,7 @@
 "images"
 "interesting-tags"
 "language"
+"late-answers"
 "links"
 "login"
 "logo"

@@ -516,6 +516,7 @@
 "sudo"
 "sunrise-commander"
 "svg"
+"svn"
 "swift-mode"
 "swiper-helm"
 "sx.el"

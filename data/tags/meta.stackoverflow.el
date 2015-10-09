@@ -388,7 +388,6 @@
 "statistics"
 "stats"
 "status-bydesign"
-"status-complete"
 "status-completed"
 "status-declined"
 "status-deferred"

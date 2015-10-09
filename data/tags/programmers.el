@@ -634,7 +634,6 @@
 "forward-compatibility"
 "foss"
 "fossil"
-"fossil-scm"
 "fpa"
 "fragmentation"
 "framework"

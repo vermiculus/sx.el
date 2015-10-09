@@ -245,7 +245,6 @@
 "gui-construction"
 "gui-elements"
 "guidelines"
-"hard"
 "hardware"
 "hashing"
 "hdf5"

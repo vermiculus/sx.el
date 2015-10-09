@@ -2228,6 +2228,7 @@
 "partition"
 "partition-alignment"
 "partition-table"
+"pase"
 "passenger"
 "passive"
 "passphrase"

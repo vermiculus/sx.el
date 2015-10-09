@@ -4,6 +4,7 @@
 "badges"
 "bounty"
 "bug"
+"celebration"
 "chat"
 "close-reasons"
 "closed-questions"

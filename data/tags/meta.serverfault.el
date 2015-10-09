@@ -71,6 +71,7 @@
 "https"
 "hyperlinks"
 "interesting-tags"
+"late-answers"
 "linked-accounts"
 "linux"
 "locked-questions"
@@ -149,4 +150,5 @@
 "vote-to-close"
 "votes"
 "voting"
+"whack-a-mole"
 "windows")

@@ -1193,6 +1193,7 @@
 "samsung-galaxy-x"
 "samsung-galaxy-y"
 "samsung-galaxy-y-duos"
+"samsung-galaxy-y-s6312"
 "samsung-gt-i5800"
 "samsung-gt-i9000"
 "samsung-gt-s5660"

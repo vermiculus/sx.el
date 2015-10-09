@@ -38,6 +38,7 @@
 "enumerate"
 "error"
 "escape"
+"evangelism"
 "ex-command"
 "ex-mode"
 "external-command"

@@ -177,6 +177,7 @@
 "trivia"
 "twisty-puzzles"
 "verbal-arithmetic"
+"video-games"
 "visual"
 "weighing"
 "word"

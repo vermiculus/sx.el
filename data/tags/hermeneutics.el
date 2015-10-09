@@ -280,6 +280,7 @@
 "silence"
 "sin"
 "sirach"
+"slavery"
 "solomon"
 "song-of-songs"
 "soteriology"

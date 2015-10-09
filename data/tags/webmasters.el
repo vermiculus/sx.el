@@ -980,6 +980,7 @@
 "website-promotion"
 "website-review"
 "weebly"
+"whitelist"
 "whm"
 "whmcs"
 "whois"
