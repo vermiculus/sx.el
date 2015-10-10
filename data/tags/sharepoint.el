@@ -388,6 +388,7 @@
 "enterprise-keywords"
 "enterprise-search"
 "enterprise-wiki"
+"entity-framework"
 "environment"
 "error"
 "error-handling"

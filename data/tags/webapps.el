@@ -860,6 +860,7 @@
 "sound"
 "soundcloud"
 "sourceforge"
+"sourceforge-tickets"
 "spam"
 "spam-prevention"
 "spamcop"

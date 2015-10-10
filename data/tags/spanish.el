@@ -267,7 +267,6 @@
 "seleccion-de-palabras"
 "semantic-range"
 "senses"
-"siglas"
 "significado"
 "silabas"
 "sin&#243;nimos"

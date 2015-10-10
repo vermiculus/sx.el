@@ -1009,6 +1009,7 @@
 "parasitic-capacitance"
 "parity"
 "parts"
+"partsim"
 "passive"
 "passive-components"
 "passive-networks"

@@ -252,6 +252,7 @@
 "taxes"
 "templates"
 "theme"
+"timeline"
 "timestamp"
 "tinymce"
 "tip"

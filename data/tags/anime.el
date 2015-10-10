@@ -800,6 +800,7 @@
 "sakasama-no-patema"
 "saki"
 "sakigake-otokojuku"
+"sakurako-san"
 "samurai-champloo"
 "samurai-deeper-kyo"
 "samurai-flamenco"

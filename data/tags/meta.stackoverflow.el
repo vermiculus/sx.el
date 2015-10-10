@@ -359,6 +359,7 @@
 "self-promotion"
 "seo"
 "serial-voting"
+"settings-page"
 "sharing"
 "short-links"
 "sidebar"

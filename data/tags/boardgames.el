@@ -268,7 +268,6 @@
 "hnefatafl"
 "hordes"
 "house-rules"
-"hymenoptera"
 "icehouse"
 "identify-this-game"
 "illuminati"

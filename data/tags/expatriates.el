@@ -65,6 +65,7 @@
 "dutch-citizens"
 "education"
 "education-visa"
+"egypt"
 "egyptian-citizens"
 "ehic"
 "elections"

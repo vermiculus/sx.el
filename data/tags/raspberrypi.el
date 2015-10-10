@@ -373,6 +373,7 @@
 "virtualization"
 "vlc"
 "vnc"
+"volume"
 "vpn"
 "watchdog"
 "wayland"

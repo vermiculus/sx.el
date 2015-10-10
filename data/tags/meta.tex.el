@@ -11,6 +11,7 @@
 "beta"
 "big-list"
 "blog"
+"books"
 "bounty"
 "bug"
 "bumping"

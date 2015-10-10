@@ -225,6 +225,7 @@
 "resources"
 "resultatives"
 "rhetoric"
+"role-language"
 "romaji"
 "rōmaji"
 "salutations"

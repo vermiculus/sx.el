@@ -66,6 +66,7 @@
 "cherries"
 "cherry"
 "chestnut"
+"children"
 "chili"
 "chilli"
 "cilantro"

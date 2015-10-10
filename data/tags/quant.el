@@ -89,7 +89,6 @@
 "cds"
 "cep"
 "cfd"
-"cfds"
 "cgmy-model"
 "charts"
 "china"

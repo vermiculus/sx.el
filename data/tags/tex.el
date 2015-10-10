@@ -1245,6 +1245,7 @@
 "texlipse"
 "texlive"
 "texlive2010"
+"texlogos"
 "texmacs"
 "texmaker"
 "texmf"

@@ -632,6 +632,7 @@
 "transactions"
 "transit-fees"
 "travel"
+"trezor"
 "trucoin"
 "trust"
 "two-factor"

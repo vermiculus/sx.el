@@ -523,6 +523,7 @@
 "magento-1.9.2.1"
 "magento-2.0"
 "magento-audit"
+"magento-catalog"
 "magento-ce"
 "magento-community"
 "magento-connect"

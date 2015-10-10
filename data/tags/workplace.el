@@ -20,6 +20,7 @@
 "birthday"
 "blogging"
 "bonus"
+"boredom"
 "boss"
 "bosses"
 "brazil"

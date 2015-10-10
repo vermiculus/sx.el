@@ -453,6 +453,7 @@
 "pentium"
 "pest3"
 "php"
+"phpinfo"
 "phpmailer"
 "phpmyadmin"
 "pickup"

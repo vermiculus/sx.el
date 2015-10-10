@@ -16,7 +16,6 @@
 "african"
 "alexander-technique"
 "algorithmic-composition"
-"alt"
 "alternative-tunings"
 "alto-recorder"
 "amplification"

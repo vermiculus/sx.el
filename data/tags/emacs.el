@@ -13,6 +13,7 @@
 "arara"
 "archive-mode"
 "artist-mode"
+"aspell"
 "association-lists"
 "async"
 "attachment"
@@ -357,6 +358,7 @@
 "navigation"
 "networking"
 "newlines"
+"nodejs"
 "notmuch"
 "nrepl"
 "nroff"
@@ -596,4 +598,5 @@
 "xml"
 "yank"
 "yasnippet"
+"yes"
 "zoom")

@@ -87,6 +87,7 @@
 "bx-dnd"
 "cadillacs-and-dinosaurs"
 "call-of-cthulhu"
+"call-of-cthulhu-7e"
 "call-of-cthulhu-d20"
 "campaign"
 "campaign-development"

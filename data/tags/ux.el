@@ -684,7 +684,6 @@
 "response-time"
 "responsive"
 "responsive-design"
-"retail"
 "ribbon"
 "right-click"
 "roles"

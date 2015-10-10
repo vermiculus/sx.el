@@ -165,6 +165,7 @@
 "head-trauma"
 "headache"
 "health-informatics"
+"health-outcomes"
 "hearing"
 "heart-attack"
 "heart-disease"
