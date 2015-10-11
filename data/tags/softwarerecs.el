@@ -645,6 +645,7 @@
 "url"
 "url-shortening"
 "usb"
+"usenet"
 "user-interface"
 "user-management"
 "validation"

@@ -138,7 +138,6 @@
 "delegate"
 "delphi"
 "deploy"
-"devdays"
 "devise"
 "dhtmlx"
 "dialog"

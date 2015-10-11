@@ -261,7 +261,6 @@
 "isnad"
 "istikharah"
 "itikaf"
-"jafar-sadiq"
 "jahannam"
 "jahiliyya"
 "jamaat"

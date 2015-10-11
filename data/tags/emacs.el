@@ -598,5 +598,4 @@
 "xml"
 "yank"
 "yasnippet"
-"yes"
 "zoom")

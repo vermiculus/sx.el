@@ -151,6 +151,7 @@
 "law"
 "leontief"
 "linear-algebra"
+"linear-expenditure"
 "linear-programming"
 "liquidity"
 "literature-request"
@@ -283,5 +284,6 @@
 "utility"
 "value"
 "wages"
+"walrasian"
 "welfare"
 "welfare-economics")

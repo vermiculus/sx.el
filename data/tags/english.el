@@ -216,7 +216,6 @@
 "cultural-correctness"
 "cultural-phrases"
 "currency"
-"dangling-modifiers"
 "dangling-participles"
 "danish"
 "dash"

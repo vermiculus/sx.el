@@ -338,7 +338,6 @@
 "tutoiement"
 "typographie"
 "usage"
-"verbe"
 "verbe-pronominal"
 "verbes"
 "verbes-d&#233;fectifs"

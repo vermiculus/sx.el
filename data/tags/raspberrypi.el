@@ -58,6 +58,7 @@
 "console"
 "cooling"
 "cpu"
+"crash"
 "cron"
 "cross-compilation"
 "cups"

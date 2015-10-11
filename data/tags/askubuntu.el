@@ -1612,7 +1612,6 @@
 "media-buttons"
 "media-library"
 "media-manager"
-"media-player"
 "mediaelch"
 "mediaserver"
 "mediatek"

@@ -152,6 +152,7 @@
 "remove-reasons"
 "reputation"
 "reputation-leagues"
+"reputation-tab"
 "retagging"
 "review"
 "review-audit"

@@ -205,7 +205,6 @@
 "ios-app"
 "ipad"
 "jobs"
-"jobs-near-you"
 "jsfiddle"
 "keyboard-shortcuts"
 "language-versions"

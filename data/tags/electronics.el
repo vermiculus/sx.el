@@ -1209,6 +1209,7 @@
 "resolution"
 "resonance"
 "resonant-converter"
+"return-current"
 "reuse"
 "reverse-engineering"
 "reverse-polarity"
