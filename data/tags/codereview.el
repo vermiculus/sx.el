@@ -857,7 +857,6 @@
 "travelling-salesman"
 "tree"
 "trie"
-"tuple"
 "turtle-graphics"
 "twig"
 "twisted"

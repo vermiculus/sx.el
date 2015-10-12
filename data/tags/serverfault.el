@@ -1105,7 +1105,6 @@
 "geodns"
 "geoip"
 "geolocation"
-"geronimo"
 "gerrit"
 "getaddrinfo"
 "gettext"

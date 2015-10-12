@@ -31,7 +31,6 @@
 "ag.algebraic-geometry"
 "albert-algebras"
 "alexandrov-geometry"
-"algebraic"
 "algebraic-combinatorics"
 "algebraic-complexity"
 "algebraic-curves"

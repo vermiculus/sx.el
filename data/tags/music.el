@@ -422,6 +422,7 @@
 "trumpet"
 "tuba"
 "tuning"
+"tuplet"
 "turntables"
 "tuxguitar"
 "ukulele"

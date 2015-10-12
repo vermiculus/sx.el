@@ -155,7 +155,6 @@
 "php"
 "physics"
 "pi"
-"pixel-art"
 "polyglot"
 "polynomials"
 "popularity-contest"

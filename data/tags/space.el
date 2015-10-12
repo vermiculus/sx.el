@@ -180,6 +180,7 @@
 "engines"
 "environment"
 "ephemeris"
+"error"
 "esa"
 "escape-velocity"
 "europa"

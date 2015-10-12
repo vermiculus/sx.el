@@ -268,6 +268,7 @@
 "signal-analysis"
 "signal-detection"
 "signal-synthesis"
+"signals-history"
 "singing"
 "sinogram"
 "smoothing"

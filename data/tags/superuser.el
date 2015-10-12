@@ -2401,6 +2401,7 @@
 "irq"
 "irssi"
 "isa"
+"isbn"
 "iscsi"
 "isdn"
 "isight"

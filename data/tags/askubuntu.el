@@ -1496,6 +1496,7 @@
 "live-usb"
 "livecd"
 "livedvd"
+"livestreamer"
 "lm-sensors"
 "lmms"
 "local"

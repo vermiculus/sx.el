@@ -180,6 +180,7 @@
 "mobile"
 "modules"
 "moneris"
+"moodle"
 "multi-record"
 "multisite"
 "mysql"

@@ -574,7 +574,6 @@
 "iplayer"
 "ipod-touch"
 "irc"
-"issue-tracking"
 "itunes"
 "jabber"
 "javascript"

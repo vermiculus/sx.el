@@ -89,6 +89,7 @@
 "support"
 "tag-pruning"
 "tag-synonyms"
+"tag-wiki"
 "tagging"
 "tags"
 "tex"

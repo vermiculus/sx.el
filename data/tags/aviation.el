@@ -486,7 +486,6 @@
 "propeller"
 "propulsion"
 "pushback"
-"pw-4062"
 "qnh"
 "radar"
 "radio"
