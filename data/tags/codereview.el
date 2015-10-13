@@ -703,7 +703,6 @@
 "require.js"
 "requirejs"
 "rest"
-"restful"
 "revealing-module-pattern"
 "rhino"
 "rock-paper-scissors"

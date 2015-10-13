@@ -77,6 +77,7 @@
 "dll"
 "dll-injection"
 "dlmalloc"
+"documentation"
 "dos"
 "dos-com"
 "dos-exe"

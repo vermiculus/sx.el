@@ -1211,6 +1211,7 @@
 "longpolling"
 "look-and-feel"
 "loop"
+"loopback"
 "lua"
 "lua-table"
 "lubridate"

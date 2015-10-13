@@ -516,7 +516,6 @@
 "harvard-style"
 "he-she"
 "header-footer"
-"headers"
 "headings"
 "hebrew"
 "height"

@@ -108,7 +108,6 @@
 "resource-recommendation"
 "riemannian-geometry"
 "roman-empire"
-"science"
 "scientific-method"
 "set-theory"
 "social-context"

@@ -1035,6 +1035,7 @@
 "solutions"
 "sorting"
 "source-control"
+"sp.js"
 "sp.sod"
 "sp.ui"
 "spa"

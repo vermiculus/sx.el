@@ -1752,6 +1752,7 @@
 "transwarp"
 "triangle"
 "triwizard-tournament"
+"trolls"
 "tron"
 "tron-legacy"
 "tron-uprising"

@@ -381,7 +381,6 @@
 "pseudo-random-generators"
 "pumping-lemma"
 "pushdown-automata"
-"python"
 "quantum-computing"
 "queueing-theory"
 "quicksort"

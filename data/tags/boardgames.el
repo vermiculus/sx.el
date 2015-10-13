@@ -311,6 +311,7 @@
 "lifeboat"
 "little-balancing"
 "little-dungeon"
+"little-red-riding-hood"
 "little-wars"
 "lord-of-the-rings-lcg"
 "lords-of-waterdeep"

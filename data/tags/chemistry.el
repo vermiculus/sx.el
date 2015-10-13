@@ -71,6 +71,7 @@
 "electronegativity"
 "electronic-configuration"
 "electrons"
+"electrophile"
 "electrostatic-energy"
 "elemental-analysis"
 "elements"

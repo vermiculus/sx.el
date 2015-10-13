@@ -654,6 +654,7 @@
 "storage"
 "sub-orbital"
 "suitport"
+"sun"
 "sun-synchronous"
 "sun-synchronous-orbit"
 "sunlight"

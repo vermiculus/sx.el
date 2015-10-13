@@ -553,6 +553,7 @@
 "security"
 "security-key"
 "seed"
+"selection"
 "selfish-mining"
 "sell-bitcoins"
 "sending"

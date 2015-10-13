@@ -114,6 +114,7 @@
 "flora"
 "food"
 "forestry"
+"futuristic"
 "futurology"
 "games"
 "gas-giants"

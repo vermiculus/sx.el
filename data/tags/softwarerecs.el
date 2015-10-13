@@ -542,6 +542,7 @@
 "safari"
 "samba"
 "sandbox"
+"sass"
 "scala"
 "scan"
 "scanning"

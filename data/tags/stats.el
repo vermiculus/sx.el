@@ -85,6 +85,7 @@
 "binning"
 "binomial"
 "bioinformatics"
+"biophysics"
 "biostatistics"
 "biplot"
 "bivariate"

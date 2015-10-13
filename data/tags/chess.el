@@ -279,6 +279,7 @@
 "time-control"
 "time-management"
 "titles"
+"topalov"
 "tournament"
 "tournament-directors"
 "training"

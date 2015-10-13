@@ -257,6 +257,7 @@
 "place-names"
 "poland"
 "portraits"
+"portugal"
 "preservation"
 "privacy"
 "probate"

@@ -953,7 +953,6 @@
 "tokimeki-tonight"
 "tokyo-esp"
 "tokyo-ghoul"
-"tokyo-ghoul-root-a"
 "tokyo-godfathers"
 "tokyo-mew-mew"
 "tokyo-ravens"

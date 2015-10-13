@@ -49,7 +49,6 @@
 "recent-activity"
 "reputation"
 "retagging"
-"rigging"
 "rss"
 "scheduled-chat"
 "scope"

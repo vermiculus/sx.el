@@ -56,6 +56,7 @@
 "ensemble-modeling"
 "error-handling"
 "evaluation"
+"expectation-maximization"
 "experiments"
 "feature-construction"
 "feature-extraction"

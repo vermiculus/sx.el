@@ -78,7 +78,6 @@
 "project-delivery"
 "project-management"
 "proposal"
-"prospection"
 "referral"
 "registration"
 "regression-testing"
