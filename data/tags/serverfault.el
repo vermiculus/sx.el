@@ -796,6 +796,7 @@
 "dotfiles"
 "dotnet-framework"
 "dotnetnuke"
+"dottrace"
 "doubletake"
 "dovecot"
 "downgrade"

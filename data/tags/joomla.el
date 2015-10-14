@@ -245,6 +245,7 @@
 "template-manager"
 "template-override"
 "templates"
+"this"
 "tinymce"
 "tools"
 "trademark"

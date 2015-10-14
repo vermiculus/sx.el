@@ -266,6 +266,7 @@
 "apple-mail"
 "apple-remote"
 "apple-remote-desktop"
+"appledouble"
 "applescript"
 "applet"
 "appletv"

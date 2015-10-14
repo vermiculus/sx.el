@@ -230,6 +230,7 @@
 "pure-exchange-economy"
 "python"
 "quantative-easing"
+"quantitative-easing"
 "queuing-discipline"
 "r"
 "randomized-experiment"

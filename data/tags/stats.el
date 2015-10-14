@@ -481,7 +481,6 @@
 "glmmlasso"
 "glmnet"
 "gls"
-"gls"
 "gmm"
 "gmm"
 "gmmboost"

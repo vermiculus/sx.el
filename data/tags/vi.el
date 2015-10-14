@@ -67,6 +67,7 @@
 "formatting"
 "functions"
 "git"
+"global-command"
 "grammar-checking"
 "gvim"
 "habit-breaking"

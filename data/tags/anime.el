@@ -354,7 +354,6 @@
 "haikyuu"
 "haiyore-nyaruko-san"
 "hajime-no-ippo"
-"haki"
 "hakuouki"
 "hamatora"
 "hana-yori-dango"

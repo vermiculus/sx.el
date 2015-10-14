@@ -128,6 +128,7 @@
 "data-entry"
 "data-liberation"
 "data-recovery"
+"data-request"
 "data-transfer"
 "data-verification"
 "data-visualization"

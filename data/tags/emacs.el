@@ -166,6 +166,7 @@
 "emphasis"
 "encryption"
 "enh-ruby-mode"
+"envi"
 "environment"
 "epa"
 "epub"

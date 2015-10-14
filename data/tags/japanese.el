@@ -173,6 +173,7 @@
 "particle-ni"
 "particle-no"
 "particle-o"
+"particle-shika"
 "particle-to"
 "particle-tte"
 "particle-wa"

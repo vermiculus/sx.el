@@ -141,6 +141,7 @@
 "descriptive-complexity"
 "determinant"
 "dfa"
+"dichotomy-theorems"
 "directed-acyclic-graph"
 "discrepancy"
 "disjoint-paths"

@@ -874,6 +874,7 @@
 "superattribute"
 "swatches"
 "switcher"
+"syntax-error"
 "system-config"
 "system-configuration"
 "system.log"

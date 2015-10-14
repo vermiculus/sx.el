@@ -252,6 +252,7 @@
 "health-kit"
 "heroku"
 "highcharts"
+"homebrew"
 "hpack"
 "html"
 "html-agility-pack"

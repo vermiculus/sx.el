@@ -609,6 +609,7 @@
 "rust"
 "rv"
 "rwd"
+"rx8"
 "s-type"
 "s10"
 "s2000"

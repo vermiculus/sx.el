@@ -594,7 +594,6 @@
 "species"
 "species-distribution"
 "species-identification"
-"spectrosopy"
 "speculative"
 "spliceosome"
 "splicing"

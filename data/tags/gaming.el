@@ -1321,6 +1321,7 @@
 "genji-days-of-the-blade"
 "geometry-dash"
 "ggtracker"
+"ghost-recon"
 "ghost-recon-aw"
 "ghost-recon-fs"
 "ghost-recon-phantoms"

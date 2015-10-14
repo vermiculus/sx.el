@@ -657,7 +657,6 @@
 "functions"
 "furps+"
 "future"
-"future-development"
 "future-proof"
 "game-development"
 "games"
