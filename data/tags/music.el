@@ -305,6 +305,7 @@
 "picking"
 "picks"
 "pipe-organ"
+"pitch"
 "plucking"
 "polyrhythm"
 "pop-music"

@@ -1136,7 +1136,6 @@
 "prototyping"
 "proximity-sensor"
 "ps2"
-"psice"
 "psoc"
 "pspice"
 "psram"

@@ -1337,7 +1337,6 @@
 "valuative-criteria"
 "vanishing"
 "vanishing-cycles"
-"varet"
 "variational-calculus"
 "vector-bundles"
 "vector-spaces"

@@ -2,6 +2,7 @@
 "abseiling"
 "access-rights"
 "accessory-cord"
+"acclimatization"
 "africa"
 "aid-climbing"
 "alpine"

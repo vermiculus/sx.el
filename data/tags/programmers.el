@@ -271,6 +271,7 @@
 "code-contracts"
 "code-formatting"
 "code-generation"
+"code-inspection"
 "code-kata"
 "code-layout"
 "code-metrics"

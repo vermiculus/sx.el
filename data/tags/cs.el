@@ -226,6 +226,7 @@
 "integers"
 "integrity"
 "interactive-proof-systems"
+"interior-point"
 "interpreters"
 "intervals"
 "intuition"

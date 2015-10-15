@@ -232,6 +232,7 @@
 "counterbalancing"
 "courses"
 "covariance"
+"covariance-matrix"
 "covariate"
 "coverage-probability"
 "cox-model"

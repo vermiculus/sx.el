@@ -164,6 +164,7 @@
 "collection-filtering"
 "collection-limit"
 "collections"
+"color"
 "color-swatches"
 "column"
 "command-line"

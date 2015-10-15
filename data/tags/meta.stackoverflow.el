@@ -204,7 +204,6 @@
 "internet-explorer"
 "ios-app"
 "ipad"
-"jobs"
 "jsfiddle"
 "keyboard-shortcuts"
 "language-versions"

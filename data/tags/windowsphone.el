@@ -258,6 +258,7 @@
 "unlocking"
 "update"
 "update-to-8.1"
+"upgrade"
 "upgrading"
 "uploading"
 "usb"

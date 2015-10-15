@@ -230,6 +230,7 @@
 "plugin-guestentries"
 "plugin-import"
 "plugin-languagelink"
+"plugin-pushnotifications"
 "plugin-redactorclips"
 "plugin-redactorstyles"
 "plugin-smartmap"
