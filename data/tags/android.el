@@ -135,6 +135,7 @@
 "app-development"
 "app-drawer"
 "app-icons"
+"app-identification"
 "app-killers"
 "app-market-link"
 "app-ratings"

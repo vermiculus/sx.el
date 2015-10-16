@@ -3272,7 +3272,6 @@
 "network-attached-storage"
 "network-camera"
 "network-connections"
-"network-core"
 "network-discovery"
 "network-drive"
 "network-interface"

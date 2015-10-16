@@ -294,6 +294,7 @@
 "bind"
 "bind9"
 "bindings"
+"binwalk"
 "bios"
 "bird"
 "bitlocker"

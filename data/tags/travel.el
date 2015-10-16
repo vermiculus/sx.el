@@ -1579,6 +1579,7 @@
 "theme-parks"
 "thessaloniki"
 "third-party-sites"
+"thousand-islands"
 "tibet"
 "tickets"
 "tikal"

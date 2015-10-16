@@ -206,6 +206,7 @@
 "gcm"
 "gearvr"
 "gem"
+"genymotion"
 "geoserver"
 "get"
 "getopt"

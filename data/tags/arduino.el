@@ -152,6 +152,7 @@
 "oscillator-clock"
 "osx"
 "performance"
+"phant.io"
 "photoresistor"
 "pid"
 "piezo"

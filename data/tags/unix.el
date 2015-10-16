@@ -366,7 +366,6 @@
 "cups"
 "curl"
 "cursor"
-"customization"
 "cut"
 "cutycapt"
 "cvlc"

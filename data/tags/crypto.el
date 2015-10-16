@@ -284,6 +284,7 @@
 "private-set-intersection"
 "prng"
 "probabilistic-encryption"
+"proof"
 "proof-of-work"
 "protocol-analysis"
 "protocol-design"

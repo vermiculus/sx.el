@@ -16,6 +16,7 @@
 "author"
 "auto-generate"
 "auto-updates"
+"aws"
 "baseelementmodel"
 "batch"
 "best-practice"

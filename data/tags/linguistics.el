@@ -277,6 +277,7 @@
 "notation"
 "noun-classes"
 "nouns"
+"nsm"
 "numbers"
 "numerals"
 "old-english"

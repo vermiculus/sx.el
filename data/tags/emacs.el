@@ -421,7 +421,6 @@
 "preview-latex"
 "previewing"
 "print"
-"prioritity"
 "privileges"
 "problem-tracking"
 "process"

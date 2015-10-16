@@ -209,6 +209,7 @@
 "quicksearch"
 "receipts"
 "recurring-contributions"
+"recurring-events"
 "recurring-payments"
 "redirect"
 "registration"

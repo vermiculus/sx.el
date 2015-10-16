@@ -877,7 +877,6 @@
 "spacetime-metric"
 "special-functions"
 "special-relativity"
-"specific-heat"
 "specific-reference"
 "spectroscopy"
 "speed"

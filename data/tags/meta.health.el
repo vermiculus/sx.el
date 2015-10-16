@@ -59,6 +59,7 @@
 "scope"
 "search"
 "site-promotion"
+"site-tour"
 "sources"
 "specific-question"
 "stackexchange"

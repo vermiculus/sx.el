@@ -114,7 +114,6 @@
 "formality"
 "formas-de-verbos"
 "formas-irregulares"
-"format"
 "formulaci&#243;n-de-palabras"
 "frases-idiom&#225;ticas"
 "future"

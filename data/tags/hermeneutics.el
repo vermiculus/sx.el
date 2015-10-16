@@ -194,6 +194,7 @@
 "marriage"
 "mary"
 "masoretic-text"
+"masoretic-texttrans"
 "mathematics"
 "matthew"
 "melchizedek"

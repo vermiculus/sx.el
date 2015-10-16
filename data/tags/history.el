@@ -194,7 +194,6 @@
 "economy"
 "education"
 "egypt"
-"einstein"
 "election"
 "electoral-system"
 "emigration"

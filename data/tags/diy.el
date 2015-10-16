@@ -141,6 +141,7 @@
 "dado"
 "damage"
 "damp-proof-course"
+"danfoss"
 "dangerous"
 "dangerous"
 "data-wiring"

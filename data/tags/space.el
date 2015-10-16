@@ -577,6 +577,7 @@
 "self-replication"
 "separation"
 "seti"
+"settlement"
 "shielding"
 "shuttle-carrier-aircraft"
 "shuttle-derived"
