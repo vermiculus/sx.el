@@ -49,6 +49,7 @@
 "army"
 "art"
 "asia"
+"aspartame"
 "astrology"
 "astronomy"
 "atheism"

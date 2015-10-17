@@ -153,6 +153,7 @@
 "kalama"
 "kamma"
 "karma"
+"karuna"
 "kasina"
 "killing"
 "kleshas"

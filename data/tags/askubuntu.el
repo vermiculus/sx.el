@@ -2446,7 +2446,6 @@
 "simon"
 "single-sign-on"
 "single-user"
-"singleclick"
 "sip"
 "sis-graphics"
 "skel"

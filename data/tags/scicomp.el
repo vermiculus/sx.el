@@ -195,6 +195,7 @@
 "neuroscience"
 "newton"
 "newton-method"
+"nmf"
 "non-hermtitian"
 "nonconvex"
 "nonlinear-algebra"

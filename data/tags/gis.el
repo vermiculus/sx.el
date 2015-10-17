@@ -1928,6 +1928,7 @@
 "topo"
 "topo-maps"
 "topographic"
+"topographic-wetness-index"
 "topography"
 "topojson"
 "topology"

@@ -56,6 +56,7 @@
 "kopiluwak"
 "latte"
 "latte-art"
+"leaves"
 "maintenance"
 "milk"
 "moka"

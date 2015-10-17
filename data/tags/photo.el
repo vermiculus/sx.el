@@ -1045,6 +1045,7 @@
 "subject-positioning"
 "sun"
 "sunlight"
+"sunpak"
 "sunrise"
 "sunset"
 "superresolution"

@@ -41,6 +41,7 @@
 "config"
 "configuration"
 "console"
+"contains"
 "content"
 "contentmodel"
 "control-panel"

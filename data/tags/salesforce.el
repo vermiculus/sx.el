@@ -75,6 +75,7 @@
 "articles"
 "asset"
 "assignment-rules"
+"asssertequals"
 "asyncapexjob"
 "asynchronous"
 "attachment"

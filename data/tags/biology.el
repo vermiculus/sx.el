@@ -13,7 +13,6 @@
 "allelopathy"
 "allergies"
 "allometry"
-"als"
 "altruism"
 "amino-acids"
 "anaerobic-respiration"

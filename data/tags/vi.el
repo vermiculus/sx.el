@@ -127,6 +127,7 @@
 "performance"
 "permissions"
 "persistent-state"
+"plugin"
 "plugin-ag.vim"
 "plugin-atp"
 "plugin-autoformat"

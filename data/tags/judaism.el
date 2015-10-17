@@ -1400,6 +1400,7 @@
 "shemona-esrai"
 "shemona-esrei"
 "shemone-esre"
+"shemoneh-esrei"
 "shemos-sacred-names"
 "shemot-exodus"
 "shemuel--book-of"

@@ -77,7 +77,6 @@
 "fastest-code"
 "fibonacci"
 "file-system"
-"fizzbuzz"
 "floating-point"
 "fractal"
 "fractran"

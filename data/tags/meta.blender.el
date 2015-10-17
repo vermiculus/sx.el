@@ -6,6 +6,7 @@
 "bounty"
 "bug"
 "chat"
+"clean-up"
 "close-reasons"
 "closed-questions"
 "comments"

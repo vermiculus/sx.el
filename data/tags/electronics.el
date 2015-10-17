@@ -360,7 +360,6 @@
 "dc-motor"
 "dc-offset"
 "dc-transformer"
-"dcdc"
 "ddr"
 "ddr2"
 "ddr3"

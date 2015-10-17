@@ -418,6 +418,7 @@
 "politics"
 "polygamy"
 "pork"
+"power"
 "practical-islam"
 "practices"
 "prayer"

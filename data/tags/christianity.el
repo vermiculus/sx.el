@@ -724,7 +724,6 @@
 "rapture"
 "rastafarian"
 "rc-sproul"
-"reading-bible"
 "reborn"
 "reconciliation"
 "redemption"

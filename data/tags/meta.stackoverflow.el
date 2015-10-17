@@ -126,7 +126,6 @@
 "duplicate-answers"
 "duplicate-questions"
 "edit-ban"
-"edit-review"
 "edit-summary"
 "editing"
 "editing-help"
