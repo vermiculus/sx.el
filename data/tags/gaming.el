@@ -1519,7 +1519,6 @@
 "hero-of-sparta-2"
 "hero-siege"
 "heroes-and-generals"
-"heroes-chronicles"
 "heroes-might-magic-1"
 "heroes-might-magic-2"
 "heroes-might-magic-3"

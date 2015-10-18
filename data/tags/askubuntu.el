@@ -2368,6 +2368,7 @@
 "scratch"
 "screen"
 "screen-corruption"
+"screen-reader"
 "screencast"
 "screenlets"
 "screensaver"

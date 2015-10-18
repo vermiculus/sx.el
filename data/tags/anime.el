@@ -349,6 +349,7 @@
 "gurren-lagann"
 "guyver"
 "hachimitsu-to-clover"
+"hacka-doll"
 "haganai"
 "haibane-renmei"
 "haikyuu"

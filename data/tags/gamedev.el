@@ -12,6 +12,7 @@
 "4x"
 "a-star"
 "aabb"
+"accelerometer"
 "accessibility"
 "achievements"
 "actions"

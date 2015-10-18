@@ -114,6 +114,7 @@
 "fourier-transform"
 "genomics"
 "geometry"
+"ghost-particles"
 "gmres"
 "gmsh"
 "gnuplot"

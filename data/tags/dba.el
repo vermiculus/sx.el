@@ -522,7 +522,6 @@
 "object-scripting"
 "odbc"
 "odp.net"
-"ofbiz"
 "offset-fetch"
 "olap"
 "oledb"

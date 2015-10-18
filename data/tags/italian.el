@@ -55,6 +55,7 @@
 "punctuation"
 "regional"
 "regionalism"
+"relative-clause"
 "resources"
 "sentences"
 "single-words"

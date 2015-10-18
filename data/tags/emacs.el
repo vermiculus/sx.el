@@ -211,6 +211,7 @@
 "gdb"
 "gfm-mode"
 "ghc-mod"
+"gif"
 "git"
 "github"
 "gnus"

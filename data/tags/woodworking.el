@@ -159,7 +159,6 @@
 "thermally-modified"
 "thickness-planer"
 "tolerance"
-"tool"
 "tool-identification"
 "tool-maintenance"
 "tool-modification"

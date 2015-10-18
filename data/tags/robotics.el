@@ -127,6 +127,7 @@
 "motion"
 "motion-planning"
 "motor"
+"moveit"
 "movement"
 "multi-agent"
 "multi-rotor"

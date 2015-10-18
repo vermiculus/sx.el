@@ -137,6 +137,7 @@
 "katha-upanishad"
 "kauravas"
 "kaushitaki-upanishad"
+"kesari"
 "kholapur"
 "krishna"
 "kshatriya"

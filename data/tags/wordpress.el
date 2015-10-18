@@ -107,6 +107,7 @@
 "child-theme"
 "children"
 "cleanup"
+"clear-cache"
 "clone-site"
 "cloud"
 "cmb2"

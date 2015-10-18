@@ -405,7 +405,6 @@
 "time-signatures"
 "timing"
 "timpani"
-"tin-ear"
 "tonal"
 "tone"
 "tonguing"

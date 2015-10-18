@@ -51,6 +51,7 @@
 "blog"
 "books"
 "business-school"
+"campus-life"
 "canada"
 "career"
 "career-path"

@@ -887,6 +887,7 @@
 "multiple"
 "multiple-accounts"
 "multiple-answers"
+"my-logins"
 "my-tags"
 "myopenid"
 "narq"
