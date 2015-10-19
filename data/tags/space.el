@@ -684,6 +684,7 @@
 "thermal-control"
 "thermodynamics"
 "thrust"
+"thruster"
 "tiangong"
 "tidal-locking"
 "tides"

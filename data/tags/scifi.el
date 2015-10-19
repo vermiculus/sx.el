@@ -891,6 +891,7 @@
 "league-of-legends"
 "legend-of-zelda"
 "legends-of-dragonrealm"
+"legends-of-tomorrow"
 "lego-movie"
 "leigh-eddings"
 "lester-del-rey"

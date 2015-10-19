@@ -668,6 +668,7 @@
 "smartcard"
 "smartphone"
 "smime"
+"smm"
 "sms"
 "smtp"
 "sniffer"

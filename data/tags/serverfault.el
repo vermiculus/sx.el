@@ -2043,6 +2043,7 @@
 "ns"
 "ns-record"
 "nsca"
+"nscd"
 "nsclient++"
 "nsd"
 "nslookup"

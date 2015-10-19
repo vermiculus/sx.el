@@ -138,7 +138,6 @@
 "postseason"
 "pro-wrestling"
 "promotions"
-"qualifcation"
 "qualification"
 "quidditch"
 "racewalking"

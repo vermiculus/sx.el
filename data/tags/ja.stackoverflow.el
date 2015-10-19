@@ -344,6 +344,7 @@
 "man"
 "mapkit"
 "mapnik"
+"mariadb"
 "marionette"
 "markdown"
 "material-design"

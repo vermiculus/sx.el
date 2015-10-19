@@ -208,6 +208,7 @@
 "fullscreen"
 "functions"
 "fuzzy-search"
+"garbage-collect"
 "gdb"
 "gfm-mode"
 "ghc-mod"

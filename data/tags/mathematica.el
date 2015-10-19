@@ -139,6 +139,7 @@
 "dialog-window"
 "dictionary"
 "difference-equations"
+"differential-equatiions"
 "differential-equations"
 "differentials"
 "diophantine-equations"

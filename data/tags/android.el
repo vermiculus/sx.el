@@ -1290,6 +1290,7 @@
 "sony-xperia-arc"
 "sony-xperia-arc-s"
 "sony-xperia-c3"
+"sony-xperia-c3-dual"
 "sony-xperia-e3-dual"
 "sony-xperia-j"
 "sony-xperia-l"

@@ -188,6 +188,7 @@
 "db2-9.5"
 "db2-9.7"
 "db2-luw"
+"db2-midrange"
 "dba"
 "dbcc"
 "dbcc-checkdb"

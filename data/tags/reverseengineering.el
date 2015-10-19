@@ -173,6 +173,7 @@
 "mshtml"
 "mssql"
 "multi-process"
+"nacl"
 "nand"
 "nasm"
 "ne"

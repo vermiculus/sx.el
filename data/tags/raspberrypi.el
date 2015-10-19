@@ -410,7 +410,6 @@
 "xbmc"
 "xbmc-subtitles"
 "xenomai"
-"xmbc"
 "xming"
 "xorg"
 "yocto"

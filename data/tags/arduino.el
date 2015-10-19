@@ -102,6 +102,7 @@
 "gyroscope"
 "h-bridge"
 "hardware"
+"hc-05"
 "heat"
 "home-automation"
 "i2c"

@@ -12,6 +12,7 @@
 "answer-set-programming"
 "api-design"
 "applied-theory"
+"approximatio"
 "approximation"
 "approximation-algorithms"
 "approximation-algorithms"

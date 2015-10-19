@@ -43,6 +43,7 @@
 "battery"
 "battery-life"
 "benchmarking"
+"bibtex"
 "binary-data"
 "bios"
 "bitcoin"
