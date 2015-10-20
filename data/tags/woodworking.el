@@ -148,6 +148,7 @@
 "storage"
 "strength"
 "surface-preparation"
+"table-making"
 "table-saw"
 "tabletop"
 "tack-cloth"

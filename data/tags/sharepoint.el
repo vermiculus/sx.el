@@ -807,6 +807,7 @@
 "port"
 "portalsitemapprovider"
 "postback"
+"power"
 "powerbi"
 "powerpivot"
 "powerpoint"

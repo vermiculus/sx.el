@@ -156,6 +156,7 @@
 "superheroes"
 "support"
 "swag"
+"taco"
 "tag"
 "tag-blacklist-request"
 "tag-cleanup"

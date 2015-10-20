@@ -191,6 +191,7 @@
 "other-religions"
 "padma-purana"
 "panchabhoota"
+"panchakatcham"
 "panchang"
 "pancharatra"
 "pandavas"

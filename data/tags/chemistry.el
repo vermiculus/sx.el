@@ -219,7 +219,7 @@
 "stereoisomerism"
 "stoichiometry"
 "structural-biology"
-"structural-diagrams"
+"structural-formula"
 "sublimation"
 "surface-chemistry"
 "surfactants"

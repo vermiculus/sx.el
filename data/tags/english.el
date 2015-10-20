@@ -285,6 +285,7 @@
 "editing"
 "eggcorn"
 "either-or"
+"elizabethan-english"
 "ellipsis"
 "email"
 "emoticons"

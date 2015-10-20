@@ -2,6 +2,7 @@
 "10m-questions-milestone"
 "a-b-testing"
 "abandoned-questions"
+"about-me"
 "accepted-answer"
 "accessibility"
 "account-suspension"

@@ -166,6 +166,7 @@
 "localisation"
 "location"
 "location-type"
+"logging"
 "logs"
 "lts"
 "mailing"

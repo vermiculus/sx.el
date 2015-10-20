@@ -190,6 +190,7 @@
 "vertical-gardening"
 "virtual-water"
 "waste"
+"waste-incineration"
 "waste-minimisation"
 "waste-water"
 "water"

@@ -171,7 +171,6 @@
 "shahnameh"
 "shinto"
 "silver"
-"slavic"
 "sophocles"
 "source-request"
 "statue"

@@ -640,6 +640,7 @@
 "weight-loss"
 "weightloss"
 "welfare"
+"wifi"
 "william-shakespeare"
 "wind-power"
 "winston-churchill"

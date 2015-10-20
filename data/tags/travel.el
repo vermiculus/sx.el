@@ -164,6 +164,7 @@
 "basel"
 "basque-country"
 "bath-england"
+"batswana-citizens"
 "batumi"
 "bavaria"
 "bcn"

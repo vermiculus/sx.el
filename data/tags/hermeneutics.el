@@ -49,6 +49,7 @@
 "body-of-christ"
 "book-of-hebrews"
 "cain"
+"calf"
 "canonicity"
 "christ"
 "christology"

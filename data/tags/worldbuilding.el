@@ -19,6 +19,7 @@
 "archaeology"
 "architecture"
 "armors"
+"armour"
 "arthropods"
 "artificial-intelligence"
 "artificial-womb"

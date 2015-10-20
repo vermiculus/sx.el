@@ -193,4 +193,5 @@
 "visualization"
 "weather"
 "weighted-data"
-"word-embeddings")
+"word-embeddings"
+"word2vec")

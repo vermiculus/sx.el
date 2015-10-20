@@ -508,6 +508,7 @@
 "couchdb"
 "covergloobus"
 "cowbuilder"
+"cowsay"
 "cp"
 "cpan"
 "cpu"

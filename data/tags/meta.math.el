@@ -217,6 +217,7 @@
 "user-interface"
 "user-names"
 "user-profile"
+"user-scripts"
 "users"
 "vandalism"
 "vote-to-close"

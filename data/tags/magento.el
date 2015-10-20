@@ -938,6 +938,7 @@
 "user-roles"
 "usps"
 "utf-8"
+"vagrant"
 "validation"
 "values"
 "varchar"

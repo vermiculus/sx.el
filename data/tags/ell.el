@@ -215,6 +215,7 @@
 "japanese"
 "jargon"
 "jokes"
+"just"
 "language-improvement"
 "latin"
 "learning"

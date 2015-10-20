@@ -210,7 +210,6 @@
 "clouds"
 "cls"
 "clubs"
-"cmd"
 "cmos-image-sensor"
 "cmyk"
 "cokin"
