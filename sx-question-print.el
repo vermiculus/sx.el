@@ -622,18 +622,18 @@ END-MARKER should be a marker."
               (replace-match "")
               ;; Handle stuff between the two tags.
               (save-match-data (sx-question-mode--process-html-tags l r))
-              (cond
-               ((string= tag "kbd")
-                (add-text-properties l r '(face sx-question-mode-kbd-tag))
-                (when (looking-at-p
-                       (format sx-question-mode--html-tag-regexp "kbd"))
-                  (insert " ")))
-               ((string= tag "sub")
-                (add-text-properties
-                 l r '(face sx-question-mode-sub-sup-tag display (raise -0.3))))
-               ((string= tag "sup")
-                (add-text-properties
-                 l r '(face sx-question-mode-sub-sup-tag display (raise +0.3))))))))))))
+              (pcase tag
+                (`"kbd"
+                 (add-text-properties l r '(face sx-question-mode-kbd-tag))
+                 (when (looking-at-p
+                        (format sx-question-mode--html-tag-regexp "kbd"))
+                   (insert " ")))
+                (`"sub"
+                 (add-text-properties
+                  l r '(face sx-question-mode-sub-sup-tag display (raise -0.3))))
+                (`"sup"
+                 (add-text-properties
+                  l r '(face sx-question-mode-sub-sup-tag display (raise +0.3))))))))))))
 
 
 ;;; Handling links
