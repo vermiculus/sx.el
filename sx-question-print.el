@@ -506,6 +506,10 @@ font-locks code-blocks according to mode."
               (goto-char end)))))
       (goto-char (point-max)))))
 
+(defconst sx-question-mode-hr
+  (propertize (make-string 72 ?―)
+              'face 'markdown-header-rule-face))
+
 (defun sx-question-mode--insert-markdown (text)
   "Return TEXT fontified according to `markdown-mode'."
   (let ((beg (point)))
@@ -535,7 +539,8 @@ font-locks code-blocks according to mode."
         `((,(rx (or blank line-start)
                 (group-n 1 (and "@" (1+ (not space))))
                 symbol-end)
-           1 font-lock-builtin-face)))
+           1 font-lock-builtin-face)
+          ("^---+$" 0 '(face nil display ,sx-question-mode-hr))))
        ;; Everything.
        (font-lock-fontify-region (point-min) (point-max))
        (replace-regexp-in-string "[[:blank:]]+\\'" "" (buffer-string))))
@@ -573,6 +578,21 @@ This can be inline Markdown code or a Markdown code-block."
         (save-excursion
           (sx-question-mode--skip-and-fontify-pre 'dont-fontify)))))
 
+(defun sx-question-mode--standalone-tag-p (string)
+  "Return non-nil if STRING ends in \"/>\"."
+  (string-match "/[[:blank:]]*>\\'" string))
+
+(defun sx-question-mode--next-tag (tag &optional closing end)
+  "Move point to the next occurrence of html TAG, or return nil.
+Don't move past END.
+If CLOSING is non-nil, find a closing tag."
+  (search-forward-regexp
+   (format sx-question-mode--html-tag-regexp
+           (if closing
+               (concat "/[[:blank:]]*" tag)
+             tag))
+   end 'noerror))
+
 (defun sx-question-mode--process-html-tags (beg end-marker)
   "Hide all html tags between BEG and END and possibly interpret them.
 END-MARKER should be a marker."
@@ -580,17 +600,20 @@ END-MARKER should be a marker."
   ;; nested in itself (e.g., <kbd><kbd></kbd></kbd>).
   (set-marker-insertion-type end-marker t)
   (goto-char beg)
-  (while (search-forward-regexp
-          (format sx-question-mode--html-tag-regexp "[[:alpha:]]+")
-          end-marker 'noerror)
+  (while (sx-question-mode--next-tag "[[:alpha:]]+" nil end-marker)
     (unless (sx-question-mode--inside-code-p)
       (let ((tag (match-string 1))
+            (full (match-string 0))
             (l   (match-beginning 0)))
         (replace-match "")
-        (when (search-forward-regexp
-               (format sx-question-mode--html-tag-regexp (concat "/" tag))
-               ;; Searching for a match has no bounds.
-               end-marker 'noerror)
+        (pcase tag
+          (`"hr"
+           (unless (looking-at-p "^") (insert "\n"))
+           (insert (propertize "---" 'display sx-question-mode-hr))
+           (unless (eq (char-after) ?\n) (insert "\n")))
+          (`"br" (insert "\n  ")))
+        (when (and (not (sx-question-mode--standalone-tag-p full))
+                   (sx-question-mode--next-tag tag 'closing))
           (let ((r (copy-marker (match-beginning 0))))
             ;; The code tag is special, because it quotes everything inside.
             (if (string= tag "code")
