@@ -580,7 +580,6 @@
 "frozen-rooms"
 "fui"
 "full-site"
-"full-size"
 "fun"
 "gallery"
 "games"

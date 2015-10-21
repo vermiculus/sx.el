@@ -821,6 +821,7 @@
 "screenshot"
 "scribd"
 "scripts"
+"seamless"
 "search"
 "search-engine"
 "search-engines"

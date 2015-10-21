@@ -255,7 +255,6 @@
 "ethernet"
 "ethics"
 "eu-data-protection"
-"eu-data-protection-act"
 "exchange"
 "exfiltration"
 "exploit"

@@ -121,7 +121,6 @@
 "gpu"
 "graph-theory"
 "grid"
-"h"
 "hartree-fock"
 "helmholtz-equation"
 "heuristics"

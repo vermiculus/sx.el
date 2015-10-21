@@ -10,6 +10,7 @@
 "2-chronicles"
 "2-corinthians"
 "2-kings"
+"2-nephi"
 "2-peter"
 "2-samuel"
 "2-thessalonians"

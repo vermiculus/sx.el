@@ -263,6 +263,7 @@
 "french-drain"
 "fridge"
 "front-door"
+"frost"
 "fungus"
 "furnace"
 "furniture"

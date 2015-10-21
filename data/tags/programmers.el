@@ -902,6 +902,7 @@
 "latency"
 "law"
 "layers"
+"lazarus"
 "lazy-initialization"
 "leadership"
 "lean"

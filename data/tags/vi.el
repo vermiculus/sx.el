@@ -113,6 +113,7 @@
 "markup"
 "merge"
 "microsoft-windows"
+"mnemonics"
 "modeline"
 "motion"
 "mouse"

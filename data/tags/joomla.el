@@ -117,6 +117,7 @@
 "jdatabase"
 "jdate"
 "jdocument"
+"jdump"
 "jed"
 "jerror"
 "jevents"

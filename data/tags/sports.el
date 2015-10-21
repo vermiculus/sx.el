@@ -149,7 +149,6 @@
 "relegations"
 "road-racing"
 "roller-derby"
-"rubgy-league"
 "rugby"
 "rugby-league"
 "rugby-union"

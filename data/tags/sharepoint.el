@@ -1230,6 +1230,7 @@
 "visual-studio-2010"
 "visual-studio-2012"
 "visual-studio-2013"
+"visual-studio-2015"
 "visual-studio-online"
 "visual-web-part"
 "vmware"

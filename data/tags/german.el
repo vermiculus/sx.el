@@ -286,7 +286,6 @@
 "valediction"
 "valedictions"
 "varieties"
-"verb"
 "verb-choice"
 "verb-usage"
 "verbs"

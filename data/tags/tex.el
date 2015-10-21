@@ -159,6 +159,7 @@
 "braces"
 "brackets"
 "breqn"
+"bridge"
 "bugtracking"
 "build-system"
 "bussproofs"

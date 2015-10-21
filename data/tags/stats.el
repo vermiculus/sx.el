@@ -283,6 +283,7 @@
 "density-function"
 "dependence"
 "dependence"
+"dependent"
 "derivative"
 "descriptive-statistics"
 "design-based-inference"

@@ -865,6 +865,7 @@
 "wordpress.com"
 "wordpress.org"
 "workflow"
+"wp"
 "wp-admin"
 "wp-api"
 "wp-autop"
