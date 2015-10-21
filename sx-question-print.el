@@ -185,10 +185,10 @@ replaced with the comment."
            ("Newer"          . sx-answer-newer-p)
            ("More active"    . sx-answer-more-active-p))))
     (append (mapcar (lambda (x) (cons (concat (car x) " first") (cdr x)))
-              methods)
+                    methods)
             (mapcar (lambda (x) (cons (concat (car x) " last")
-                                 (sx--invert-predicate (cdr x))))
-              methods))))
+                                      (sx--invert-predicate (cdr x))))
+                    methods))))
 
 (defcustom sx-question-mode-answer-sort-function
   #'sx-answer-higher-score-p
@@ -196,7 +196,7 @@ replaced with the comment."
   :type
   (cons 'choice
         (mapcar (lambda (x) `(const :tag ,(car x) ,(cdr x)))
-          sx-question-mode--sort-methods))
+                sx-question-mode--sort-methods))
   :group 'sx-question-mode)
 
 (defcustom sx-question-mode-use-images
@@ -237,9 +237,9 @@ QUESTION must be a data structure returned by `json-read'."
       (sx-question-mode--print-close-reason .closed_reason .closed_date .closed_details))
     (sx-question-mode--print-section question)
     (mapc #'sx-question-mode--print-section
-      (cl-remove-if
-       #'sx--deleted-p
-       (cl-sort .answers sx-question-mode-answer-sort-function))))
+          (cl-remove-if
+           #'sx--deleted-p
+           (cl-sort .answers sx-question-mode-answer-sort-function))))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   ;; Go up
@@ -255,9 +255,9 @@ DETAILS, when given is an alist further describing the close."
     (let-alist details
       (insert "\n    "
               (propertize (format " %s as %s, %s ago. "
-                            (if .on_hold "Put on hold" "Closed")
-                            reason
-                            (sx-time-since date))
+                                  (if .on_hold "Put on hold" "Closed")
+                                  reason
+                                  (sx-time-since date))
                           'face 'sx-question-mode-closed)
               "\n")
       (when .description
@@ -321,8 +321,8 @@ DATA can represent a question or an answer."
           (sx-time-seconds-to-date .creation_date)
           (when .last_edit_date
             (format sx-question-mode-last-edit-format
-              (sx-time-since .last_edit_date)
-              (sx-user--format "%d" .last_editor))))
+                    (sx-time-since .last_edit_date)
+                    (sx-user--format "%d" .last_editor))))
          'sx-question-mode-date)
 
         ;; Score and upvoted/downvoted status.
@@ -393,18 +393,18 @@ The comment is indented, filled, and then printed according to
                 " "))
       (insert
        (format sx-question-mode-comments-format
-         (sx-user--format "%d" .owner)
-         (substring
-          ;; We use temp buffer, so that image overlays don't get
-          ;; inserted with the comment.
-          (with-temp-buffer
-            ;; We fill with three spaces at the start, so the comment is
-            ;; slightly indented.
-            (sx-question-mode--insert-markdown (concat "   " (sx--squash-whitespace .body_markdown)))
-            (buffer-string))
-          ;; Then we remove the spaces from the first line, since we'll
-          ;; add the username there anyway.
-          3))))))
+               (sx-user--format "%d" .owner)
+               (substring
+                ;; We use temp buffer, so that image overlays don't get
+                ;; inserted with the comment.
+                (with-temp-buffer
+                  ;; We fill with three spaces at the start, so the comment is
+                  ;; slightly indented.
+                  (sx-question-mode--insert-markdown (concat "   " (sx--squash-whitespace .body_markdown)))
+                  (buffer-string))
+                ;; Then we remove the spaces from the first line, since we'll
+                ;; add the username there anyway.
+                3))))))
 
 (defun sx-question-mode--insert-header (&rest args)
   "Insert propertized ARGS.
@@ -716,11 +716,11 @@ URL is used as 'help-echo and 'url properties."
                       ;; Mouse-over
                       'help-echo
                       (format sx-button--link-help-echo
-                        ;; If TEXT is a shortened url, we don't shorten URL.
-                        (propertize (if (and (stringp text)
-                                             (string-match "^https?:" text))
-                                        url (sx--shorten-url url))
-                                    'face 'font-lock-function-name-face))
+                              ;; If TEXT is a shortened url, we don't shorten URL.
+                              (propertize (if (and (stringp text)
+                                                   (string-match "^https?:" text))
+                                              url (sx--shorten-url url))
+                                          'face 'font-lock-function-name-face))
                       ;; For visiting and stuff.
                       'sx-button-url url
                       'sx-button-copy url
@@ -738,7 +738,7 @@ If ID is nil, use FALLBACK-ID instead."
       (goto-char (point-min))
       (when (search-forward-regexp
              (format sx-question-mode--reference-regexp
-               (or id fallback-id))
+                     (or id fallback-id))
              nil t)
         (match-string-no-properties 1)))))
 
