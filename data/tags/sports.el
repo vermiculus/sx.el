@@ -15,6 +15,7 @@
 "baseball"
 "basketball"
 "beach-tennis"
+"beach-volleyball"
 "beachtennis"
 "betting"
 "biathlon"

@@ -231,6 +231,7 @@
 "python"
 "quantative-easing"
 "quantitative-easing"
+"quantity-theory-of-money"
 "queuing-discipline"
 "r"
 "randomized-experiment"

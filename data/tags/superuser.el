@@ -5171,6 +5171,7 @@
 "usb-hub"
 "usb-keyboard"
 "usb-modem"
+"usb-monitor"
 "usb-network-adapter"
 "usb-stick"
 "usb-storage"

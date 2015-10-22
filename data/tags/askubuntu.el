@@ -2470,6 +2470,7 @@
 "sms"
 "smtp"
 "snap-windows"
+"snapcraft"
 "snappy"
 "snapshot"
 "snmp"

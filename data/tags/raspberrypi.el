@@ -67,6 +67,7 @@
 "cvlc"
 "data-transfer"
 "database"
+"dead"
 "debian"
 "debug"
 "defect"

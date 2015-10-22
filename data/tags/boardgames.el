@@ -135,6 +135,7 @@
 "cosmic-encounter"
 "counting"
 "coup"
+"cranium"
 "crayon-rail-games"
 "crazy8s"
 "cribbage"

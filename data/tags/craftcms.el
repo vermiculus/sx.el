@@ -83,7 +83,6 @@
 "dynamicfield"
 "ecommerce"
 "editor"
-"elementapi"
 "elementcriteriamodel"
 "elementtype"
 "emails"

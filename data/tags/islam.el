@@ -4,6 +4,7 @@
 "accounting"
 "accuracy"
 "adab"
+"adam"
 "adam-and-eve"
 "adhan"
 "adultery"

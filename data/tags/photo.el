@@ -917,6 +917,7 @@
 "roes"
 "rokinon"
 "rolling-shutter"
+"rostrum"
 "rotation"
 "ruggedized-equipment"
 "rule-of-thirds"

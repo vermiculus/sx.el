@@ -142,7 +142,6 @@
 "drafting"
 "drivetrain"
 "drivetrain-slipping"
-"drivetrainconve"
 "dropouts"
 "dynamo"
 "dynamo-hub"

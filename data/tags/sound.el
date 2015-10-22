@@ -78,6 +78,7 @@
 "authentic"
 "automation"
 "autotune"
+"aux-sends"
 "avid"
 "background"
 "backgroundambience"

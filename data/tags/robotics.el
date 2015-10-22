@@ -132,6 +132,7 @@
 "multi-agent"
 "multi-rotor"
 "navigation"
+"networking"
 "noise"
 "not-exactly-c"
 "nxc"

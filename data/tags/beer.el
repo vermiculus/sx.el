@@ -79,6 +79,7 @@
 "serving"
 "shandy"
 "skunking"
+"south-korea"
 "specialty-beers"
 "storage"
 "stout"

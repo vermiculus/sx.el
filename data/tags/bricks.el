@@ -4,6 +4,7 @@
 "9v"
 "abs"
 "accessories"
+"adult-lego"
 "advent-calendar"
 "afol"
 "angles"

@@ -1104,6 +1104,7 @@
 "power-dissipation"
 "power-distribution"
 "power-electronics"
+"power-engineering"
 "power-factor"
 "power-factor-correction"
 "power-generation"

@@ -385,6 +385,7 @@
 "javascript"
 "joomla"
 "json"
+"jwt"
 "kali"
 "kali-linux"
 "kdf"

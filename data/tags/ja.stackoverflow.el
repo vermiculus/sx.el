@@ -265,6 +265,7 @@
 "http2"
 "https"
 "httpservletrequest"
+"hugo"
 "iad"
 "ibatis"
 "ibeacon"

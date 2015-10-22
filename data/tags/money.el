@@ -417,6 +417,7 @@
 "landlord"
 "latvia"
 "law"
+"lawsuit"
 "lawsuit-settlement"
 "learning"
 "lease"

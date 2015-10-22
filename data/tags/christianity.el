@@ -722,6 +722,7 @@
 "puritanism"
 "purpose"
 "racism"
+"ransom-theory"
 "rapture"
 "rastafarian"
 "rc-sproul"

@@ -199,7 +199,6 @@
 "near-future"
 "nomenclature"
 "nomenclature"
-"not-faster-than-light"
 "orbital-mechanics"
 "orbits"
 "orbits"
