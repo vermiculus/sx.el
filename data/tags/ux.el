@@ -827,6 +827,7 @@
 "timeout"
 "title"
 "toggle"
+"toilet"
 "tone-of-voice"
 "toolbar"
 "tools"

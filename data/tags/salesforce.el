@@ -831,7 +831,6 @@
 "recycle"
 "recycle-bin"
 "redirect"
-"reduce"
 "reference"
 "reflected-xss"
 "reflection"

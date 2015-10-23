@@ -206,7 +206,6 @@
 "nat"
 "nbar"
 "netflow"
-"netgear"
 "netgear-prosafe"
 "network-access"
 "network-core"

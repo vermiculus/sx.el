@@ -811,7 +811,6 @@
 "quoting"
 "racism"
 "range-inclusion"
-"rant"
 "rare-words"
 "readability"
 "reading"

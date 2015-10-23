@@ -17,8 +17,6 @@
 "cards"
 "cellular-automata"
 "challenge"
-"chasley"
-"chasly"
 "checkerboard"
 "chemistry"
 "chess"

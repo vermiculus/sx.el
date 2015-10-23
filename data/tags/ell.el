@@ -413,7 +413,6 @@
 "sit-set"
 "slang"
 "so"
-"so-that"
 "spacing"
 "speech"
 "spelling"

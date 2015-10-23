@@ -195,7 +195,6 @@
 "filling"
 "filtering"
 "finance"
-"financial"
 "financial-data"
 "find-instance"
 "findclusters"

@@ -1353,7 +1353,6 @@
 "osx-finder"
 "out-of-memory"
 "output"
-"output-formatting"
 "output-redirect"
 "overlayfs"
 "ovirt"

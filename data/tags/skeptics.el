@@ -377,6 +377,7 @@
 "magnets"
 "mahatma-gandhi"
 "malaria"
+"malay"
 "malware"
 "management"
 "manufacturing"

@@ -7,6 +7,7 @@
 "action"
 "adhesion"
 "adiabatic"
+"adinkras"
 "ads-cft"
 "aerodynamics"
 "aether"

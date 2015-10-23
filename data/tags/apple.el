@@ -863,6 +863,7 @@
 "parental-controls"
 "partition"
 "passbook"
+"passcode"
 "password"
 "passwords"
 "pasteboard"

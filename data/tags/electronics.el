@@ -1282,6 +1282,7 @@
 "selectmap"
 "self-test"
 "semiconductors"
+"sense"
 "sensing"
 "sensitivity"
 "sensor"

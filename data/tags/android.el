@@ -1240,6 +1240,7 @@
 "seesmic"
 "selinux"
 "sensors"
+"serverauditor"
 "services"
 "setcpu"
 "settings"

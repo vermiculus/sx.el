@@ -1671,6 +1671,7 @@
 "firefox3.6"
 "firestarter"
 "firewall"
+"firewall-cmd"
 "firewalld"
 "firewire"
 "fireworks"

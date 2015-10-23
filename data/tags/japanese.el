@@ -45,6 +45,7 @@
 "culture"
 "definitions"
 "deictic"
+"deixis"
 "demonstratives"
 "demonyms"
 "dialects"

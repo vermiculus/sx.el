@@ -1074,6 +1074,7 @@
 "regression-strategies"
 "regression-testing"
 "regression-to-the-mean"
+"regularity"
 "regularization"
 "reinforcement-learning"
 "rejection-sampling"

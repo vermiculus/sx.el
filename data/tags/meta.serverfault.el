@@ -106,6 +106,7 @@
 "retagging"
 "review"
 "review-audits"
+"review-queue"
 "reviewing"
 "rss"
 "search"

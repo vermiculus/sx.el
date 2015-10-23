@@ -165,6 +165,7 @@
 "dixit-odyssey"
 "dnd-adventure-system"
 "do-it-yourself"
+"doctor-who-cg"
 "domaine"
 "dominion"
 "dominion-adventures"

@@ -149,6 +149,7 @@
 "category"
 "category-o"
 "cauchy-schwarz-inequality"
+"cayley-graph"
 "cech-cohomology"
 "cellular-automata"
 "central-simple-algebras"

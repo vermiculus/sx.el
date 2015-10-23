@@ -244,7 +244,6 @@
 "online"
 "oregon"
 "organization"
-"origin"
 "palaeography"
 "panama"
 "parish-register"
