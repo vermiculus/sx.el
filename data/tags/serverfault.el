@@ -1191,6 +1191,7 @@
 "gsa"
 "gsm"
 "gssapi"
+"gsutil"
 "gtk"
 "guest"
 "gui"

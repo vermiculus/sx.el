@@ -334,6 +334,7 @@
 "guidance"
 "gyroscopic-instruments"
 "hang-glider"
+"hangar"
 "heading"
 "headset"
 "height"

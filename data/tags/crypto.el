@@ -29,6 +29,7 @@
 "blind-signature"
 "blinding"
 "block-cipher"
+"block-cyphers"
 "blocksize"
 "blowfish"
 "blum-blum-shub"

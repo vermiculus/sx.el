@@ -50,7 +50,6 @@
 "hardware"
 "headphones"
 "home"
-"hygeine"
 "hygiene"
 "jewelry"
 "junk-food"

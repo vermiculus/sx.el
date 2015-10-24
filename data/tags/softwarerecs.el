@@ -197,6 +197,7 @@
 "er-diagram"
 "ergonomics"
 "exif"
+"face-recognition"
 "facebook"
 "facial-recognition"
 "fax"

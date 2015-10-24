@@ -229,6 +229,7 @@
 "usergroups"
 "vbscript"
 "visio-designer"
+"wai"
 "wcf"
 "web"
 "webdav"

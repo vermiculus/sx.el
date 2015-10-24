@@ -452,6 +452,7 @@
 "joel"
 "john-apostle"
 "john-book"
+"john-chrysostom"
 "john-climacus"
 "john-milton"
 "john-of-damascus"

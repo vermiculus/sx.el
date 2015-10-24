@@ -26,6 +26,7 @@
 "barefoot"
 "beach"
 "bear-bag"
+"bear-grylls"
 "bears"
 "beer"
 "beginner"

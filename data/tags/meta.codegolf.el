@@ -24,6 +24,7 @@
 "community-ads"
 "community-wiki"
 "contest-type"
+"css"
 "data-dump"
 "data-explorer"
 "defaults"

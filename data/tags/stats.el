@@ -344,6 +344,7 @@
 "efficiency"
 "eigenvalues"
 "elastic-net"
+"elasticity"
 "elections"
 "elicitation"
 "elo"

@@ -171,6 +171,7 @@
 "moksha"
 "monks"
 "mukti"
+"murari"
 "mythology"
 "nadis"
 "nakshatra"

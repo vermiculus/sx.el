@@ -130,7 +130,6 @@
 "cities"
 "civil-rights"
 "civil-war"
-"civilians"
 "civilizations"
 "classical-antiquity"
 "classical-greece"

@@ -14,6 +14,7 @@
 "conditional-mood"
 "conditional-sentences"
 "conjunctions"
+"currency"
 "difference"
 "english"
 "english-comparison"

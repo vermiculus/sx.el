@@ -67,6 +67,7 @@
 "clear"
 "clipboard"
 "clock"
+"cloud-computing"
 "cluster-analysis"
 "code-generation"
 "code-golf"

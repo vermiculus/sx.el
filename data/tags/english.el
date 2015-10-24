@@ -310,6 +310,7 @@
 "exclamation-mark"
 "exclamation-point"
 "exclamations"
+"existential-constructions"
 "explanation"
 "expletives"
 "expression"

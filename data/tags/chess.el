@@ -290,6 +290,7 @@
 "untagged"
 "uscf"
 "variations"
+"videos"
 "wcc"
 "websites"
 "winboard"

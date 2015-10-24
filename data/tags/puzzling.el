@@ -3,6 +3,7 @@
 "2048"
 "age-puzzle"
 "algorithm"
+"alternate-reality-game"
 "anagram"
 "arithmetic"
 "arithmetic"

@@ -1131,7 +1131,6 @@
 "voigtlander"
 "volcanos"
 "vr"
-"wallpaper"
 "warmth"
 "water"
 "watermark"

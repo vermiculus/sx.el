@@ -91,6 +91,7 @@
 "dharmas"
 "dhatu"
 "dilemma"
+"divorce"
 "doctrine"
 "doubt"
 "dreams"
