@@ -313,7 +313,6 @@
 "hacked"
 "hacks"
 "handling"
-"has-archive"
 "header"
 "header-image"
 "headers"

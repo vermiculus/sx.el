@@ -186,7 +186,6 @@
 "escape-velocity"
 "europa"
 "eva"
-"event-horizon"
 "exhaust"
 "exoplanet"
 "exosphere"

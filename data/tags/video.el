@@ -132,6 +132,7 @@
 "live-recording"
 "mac"
 "magic-lantern"
+"mask"
 "matroska"
 "maya"
 "media"

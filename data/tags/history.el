@@ -422,6 +422,7 @@
 "ottoman-empire"
 "pacific-islanders"
 "pakistan"
+"palaeography"
 "paleolithic"
 "palestine"
 "paris"

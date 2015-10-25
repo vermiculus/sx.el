@@ -330,6 +330,7 @@
 "license"
 "licensing"
 "lightweight-grid"
+"linear-a"
 "linear-algebra"
 "linearprogramming"
 "linux"

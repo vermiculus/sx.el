@@ -107,6 +107,7 @@
 "frequency"
 "fsck"
 "fstab"
+"fswebcam"
 "fuses"
 "g++-4.8"
 "gamepad"

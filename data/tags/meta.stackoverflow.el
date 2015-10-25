@@ -199,7 +199,6 @@
 "hyperlinks"
 "ignored-tags"
 "images"
-"insecure-code"
 "instant-self-answer"
 "interesting-page"
 "internationalization"

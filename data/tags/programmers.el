@@ -222,7 +222,6 @@
 "cassandra"
 "catch-phrases"
 "cdn"
-"centos"
 "certificate"
 "certification"
 "ceylon"

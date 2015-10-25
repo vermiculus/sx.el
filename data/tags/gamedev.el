@@ -634,6 +634,7 @@
 "peer-to-peer"
 "pegi"
 "per-pixel"
+"perform"
 "performance"
 "perlin-noise"
 "perspective"

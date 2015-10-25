@@ -200,6 +200,7 @@
 "options-pricing"
 "otree"
 "package-suggestion"
+"paneldata"
 "pareto-efficiency"
 "perfect-complements"
 "pigouvian-taxes"

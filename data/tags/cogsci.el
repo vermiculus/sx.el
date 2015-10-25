@@ -41,7 +41,6 @@
 "biofeedback"
 "bipolar-disorder"
 "body-language"
-"borderline"
 "bpd"
 "brain-computer-interface"
 "brain-development"
