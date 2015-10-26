@@ -338,6 +338,7 @@
 "scarring"
 "scientific-method"
 "scleroderma"
+"scoliosis"
 "screening"
 "scrotum"
 "seizure"

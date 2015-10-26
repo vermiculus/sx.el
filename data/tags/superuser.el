@@ -1839,6 +1839,7 @@
 "git-bash"
 "git-shell"
 "git-svn"
+"gitblit"
 "gitg"
 "github"
 "gitlab"

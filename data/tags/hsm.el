@@ -112,6 +112,7 @@
 "set-theory"
 "social-context"
 "social-sciences"
+"sociology"
 "statistical-mechanics"
 "statistics"
 "steam-engines"

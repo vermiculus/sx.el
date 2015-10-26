@@ -176,6 +176,7 @@
 "usage"
 "varnish"
 "veneer"
+"vises"
 "warp"
 "water-protection"
 "weathered"

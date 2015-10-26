@@ -1613,7 +1613,6 @@
 "suburgatory"
 "sucker-punch"
 "suicide-club"
-"suicide-squad"
 "suits"
 "sunshine"
 "sunshine-2007"

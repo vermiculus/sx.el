@@ -70,6 +70,7 @@
 "on-topic-definition"
 "openid"
 "pastoral-advice-questions"
+"policy-proposal"
 "political-correctness"
 "post-notice"
 "pov"

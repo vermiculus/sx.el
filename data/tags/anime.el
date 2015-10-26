@@ -95,7 +95,7 @@
 "berubara"
 "beyblade"
 "beyond-the-boundary"
-"billybat"
+"billy-bat"
 "binbou-gami-ga"
 "binchou-tan"
 "black-bullet"

@@ -30,7 +30,6 @@
 "blinding"
 "block-cipher"
 "block-cypher"
-"block-cyphers"
 "blocksize"
 "blowfish"
 "blum-blum-shub"

@@ -346,6 +346,7 @@
 "partitions"
 "pattern-recognition"
 "peer-to-peer"
+"perceptron"
 "performance"
 "permutations"
 "persistent-data-structure"

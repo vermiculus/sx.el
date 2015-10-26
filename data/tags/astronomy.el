@@ -73,6 +73,7 @@
 "disk"
 "distances"
 "dobsonian-telescope"
+"doppler-effect"
 "ds9"
 "dust"
 "dwarf-galaxy"

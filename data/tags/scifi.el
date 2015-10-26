@@ -511,7 +511,6 @@
 "enemy-mine"
 "energy"
 "engineering"
-"enterprise"
 "entertainment-industry"
 "ents"
 "environment"

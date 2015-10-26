@@ -121,6 +121,7 @@
 "labyrinth"
 "lambda-calculus"
 "linear-algebra"
+"logic"
 "logic-gates"
 "lua"
 "machine-code"

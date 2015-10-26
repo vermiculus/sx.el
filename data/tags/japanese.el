@@ -160,7 +160,6 @@
 "okurigana"
 "onomatopoeia"
 "onyomi"
-"origin"
 "orthography"
 "parsing"
 "part-of-speech"

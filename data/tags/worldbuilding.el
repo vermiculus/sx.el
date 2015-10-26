@@ -308,7 +308,6 @@
 "time-travel"
 "tools"
 "topography"
-"trade"
 "trans-humanism"
 "transportation"
 "travel"

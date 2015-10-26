@@ -144,6 +144,7 @@
 "melting-point"
 "metal"
 "metallurgy"
+"minerals"
 "mixtures"
 "molar"
 "mole"

@@ -116,7 +116,6 @@
 "drum-machine"
 "drumming"
 "drums"
-"drumset"
 "dynamics"
 "ear-training"
 "echo"

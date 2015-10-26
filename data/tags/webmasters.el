@@ -810,6 +810,7 @@
 "site-verification"
 "sitelinks"
 "sitemap"
+"size"
 "skills"
 "sms"
 "smtp"

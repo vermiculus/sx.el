@@ -117,7 +117,6 @@
 "formas-de-verbos"
 "formas-irregulares"
 "formulaci&#243;n-de-palabras"
-"frase"
 "frases-idiom&#225;ticas"
 "future"
 "futuro"
