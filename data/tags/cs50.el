@@ -641,6 +641,7 @@
 "syntaxerror"
 "table"
 "takingforever"
+"teaching"
 "teamviewer"
 "telnet"
 "terminal"

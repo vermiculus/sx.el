@@ -151,6 +151,7 @@
 "georgia"
 "germany"
 "glacier"
+"gloves"
 "gore-tex"
 "gps"
 "grilling"

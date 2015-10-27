@@ -3,6 +3,7 @@
 "aeropress"
 "arabica"
 "aroma"
+"bean-to-cup"
 "bean-varieties"
 "beans"
 "blends"

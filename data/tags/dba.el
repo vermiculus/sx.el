@@ -232,6 +232,7 @@
 "document-oriented"
 "documentation"
 "downgrade"
+"dpm"
 "drbd"
 "drop-table"
 "drupal"

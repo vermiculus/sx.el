@@ -1289,6 +1289,7 @@
 "puzzles"
 "pyqt4"
 "python"
+"python-2.x"
 "python-3.x"
 "pythonic"
 "qa"

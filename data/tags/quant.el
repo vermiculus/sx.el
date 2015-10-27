@@ -194,6 +194,7 @@
 "extrapolation"
 "factor-loading"
 "factor-models"
+"fair-price"
 "fama-french"
 "feed"
 "fees"

@@ -268,6 +268,7 @@
 "chromecast"
 "chromium"
 "chromium-os"
+"chrony"
 "chroot"
 "chrubuntu"
 "chvt"

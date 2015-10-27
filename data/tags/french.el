@@ -76,6 +76,7 @@
 "dates"
 "de"
 "defective-verbs"
+"deformations"
 "demande-de-mot"
 "demonstratives"
 "determiners"

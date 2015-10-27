@@ -103,7 +103,6 @@
 "link"
 "loco"
 "login"
-"lookfeel"
 "low-quality-posts"
 "markdown"
 "merge"

@@ -1842,6 +1842,7 @@
 "gitblit"
 "gitg"
 "github"
+"github-desktop"
 "gitlab"
 "gitolite"
 "gksudo"

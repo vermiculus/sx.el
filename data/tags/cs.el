@@ -7,6 +7,7 @@
 "algorithm-analysis"
 "algorithm-design"
 "algorithms"
+"alpha-beta"
 "ambiguity"
 "amortized-analysis"
 "answer-set-programming"

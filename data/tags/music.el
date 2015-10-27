@@ -383,6 +383,7 @@
 "strumming"
 "studio"
 "styles"
+"support"
 "sustain"
 "swing"
 "synthesis"

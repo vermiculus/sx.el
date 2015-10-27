@@ -123,6 +123,7 @@
 "down-votes"
 "downvote-reason"
 "draft"
+"drama"
 "dupehammer"
 "duplicate-accounts"
 "duplicate-answers"

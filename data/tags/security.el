@@ -618,6 +618,7 @@
 "samba"
 "same-origin-policy"
 "saml"
+"san"
 "sandbox"
 "santoku-linux"
 "satellite"

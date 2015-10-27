@@ -18,6 +18,7 @@
 "calculators"
 "calculus"
 "career"
+"cas"
 "category-theory"
 "certification"
 "class-participation"

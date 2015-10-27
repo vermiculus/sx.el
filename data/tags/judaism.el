@@ -177,6 +177,7 @@
 "bet-kneset"
 "beth-din-court"
 "bible"
+"biblical-criticism"
 "bicurim"
 "bigdei-kehunah"
 "bikkurim-first-fruits"

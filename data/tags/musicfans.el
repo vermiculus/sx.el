@@ -115,6 +115,7 @@
 "miles-davis"
 "milesdavis"
 "mods"
+"mp3"
 "muse"
 "music-business"
 "music-video"

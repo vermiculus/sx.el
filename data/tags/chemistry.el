@@ -192,6 +192,7 @@
 "radioactivity"
 "raman"
 "rare-earth-elements"
+"rate"
 "reaction"
 "reaction-control"
 "reaction-coordinate"

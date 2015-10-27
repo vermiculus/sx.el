@@ -620,6 +620,7 @@
 "fast-five"
 "fast-times-ridgemont-high"
 "fatal-attraction"
+"fear-loathing-las-vegas"
 "fear-the-walking-dead"
 "felidae"
 "fellowship-of-the-ring"

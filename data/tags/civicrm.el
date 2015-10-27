@@ -251,6 +251,7 @@
 "theme"
 "timeline"
 "timestamp"
+"timezone"
 "tinymce"
 "tokens"
 "tutorials"

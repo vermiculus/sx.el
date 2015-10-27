@@ -302,7 +302,6 @@
 "past-tense"
 "past-vs-past-perfect"
 "pedagogy"
-"perfect"
 "perfect-aspect"
 "perfect-constructions"
 "perfect-continuous"
