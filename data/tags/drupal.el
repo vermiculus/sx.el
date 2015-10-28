@@ -728,6 +728,7 @@
 "views-bulk-operations"
 "views-contextual-filters"
 "views-data-export"
+"views-datasource"
 "views-field-view"
 "views-filters"
 "views-handlers"

@@ -60,6 +60,7 @@
 "license"
 "links"
 "login"
+"low-quality-posts"
 "markdown"
 "mergers"
 "meta"

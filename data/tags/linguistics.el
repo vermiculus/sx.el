@@ -184,6 +184,7 @@
 "infinitive"
 "inflection"
 "information-extraction"
+"information-retrieval"
 "information-structure"
 "interjections"
 "interlinear-gloss"

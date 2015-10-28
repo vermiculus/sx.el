@@ -934,6 +934,7 @@
 "notation"
 "np-complete"
 "nt.number-theory"
+"nth-prime"
 "number-systems"
 "number-theory"
 "numeral-systems"

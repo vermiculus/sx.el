@@ -463,6 +463,7 @@
 "simulation"
 "sketch"
 "sketch-3"
+"sketch-app"
 "sketching"
 "sketchup"
 "skew"

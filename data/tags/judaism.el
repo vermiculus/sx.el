@@ -1788,6 +1788,7 @@
 "zekher-lchurban"
 "zemanim"
 "zemirot-shabbat"
+"zephaniah-book"
 "zerizut-alacrity"
 "zeroa-lechayayim-keiva"
 "zimmun"

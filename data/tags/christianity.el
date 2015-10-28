@@ -407,6 +407,7 @@
 "hypostatic-union"
 "iconoclasm"
 "iconography"
+"idealism"
 "idealist"
 "identity-christianity"
 "idolatry"

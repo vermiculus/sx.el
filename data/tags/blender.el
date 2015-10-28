@@ -177,6 +177,7 @@
 "unwrapping"
 "user-preferences"
 "uv"
+"uv-editor"
 "uv-texture"
 "versions"
 "vertex-colors"

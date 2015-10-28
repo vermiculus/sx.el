@@ -1621,6 +1621,7 @@
 "super-mario-bros"
 "super-sentai"
 "superbad"
+"supergirl"
 "superman"
 "superman-animated-series"
 "superman-returns"

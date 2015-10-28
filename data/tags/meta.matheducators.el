@@ -31,6 +31,7 @@
 "interesting-tags"
 "login"
 "markdown"
+"mathjax"
 "meta"
 "migration"
 "moderation"

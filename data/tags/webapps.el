@@ -581,7 +581,6 @@
 "js-bin"
 "jsfiddle"
 "keeeb"
-"keyboard"
 "keyboard-shortcut"
 "keyboard-shortcuts"
 "keyword"

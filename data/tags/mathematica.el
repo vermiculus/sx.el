@@ -242,7 +242,6 @@
 "grid"
 "grid-layouts"
 "grid-lines"
-"groebner"
 "groebner-bases"
 "group-by"
 "group-theory"

@@ -33,6 +33,7 @@
 "flagging"
 "formatting"
 "functionality"
+"header"
 "hyperlinks"
 "interesting-tags"
 "login"

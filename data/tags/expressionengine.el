@@ -427,6 +427,7 @@
 "preload-replace"
 "price-modifier"
 "primary-category"
+"print"
 "privacy"
 "product"
 "profile"

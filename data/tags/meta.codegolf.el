@@ -38,6 +38,7 @@
 "exact-duplicates"
 "faq"
 "faq-proposed"
+"fastest-gun-in-the-west"
 "favorites"
 "feature-request"
 "featured"

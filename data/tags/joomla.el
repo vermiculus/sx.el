@@ -43,6 +43,7 @@
 "component"
 "component-params"
 "compression"
+"con"
 "configuration"
 "content"
 "content-filtering"
