@@ -148,6 +148,7 @@
 "checksig"
 "china"
 "client"
+"cloud-mining"
 "coin"
 "coin-age"
 "coinbase"

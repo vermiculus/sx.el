@@ -120,6 +120,7 @@
 "kolmogorov-complexity"
 "labyrinth"
 "lambda-calculus"
+"language-design"
 "linear-algebra"
 "logic"
 "logic-gates"

@@ -20,6 +20,7 @@
 "abraham"
 "acts"
 "adam"
+"adonijah"
 "aliens"
 "allegory"
 "ambiguity"

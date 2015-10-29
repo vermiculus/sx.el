@@ -162,6 +162,7 @@
 "nokia-lumia-620"
 "nokia-lumia-625"
 "nokia-lumia-630"
+"nokia-lumia-635"
 "nokia-lumia-640xl"
 "nokia-lumia-720"
 "nokia-lumia-730"

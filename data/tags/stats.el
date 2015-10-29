@@ -621,6 +621,7 @@
 "kde"
 "kendall-tau"
 "kernel-density-estimate"
+"kernel-density-estimation"
 "kernel-regression"
 "kernel-smoothing"
 "kernel-trick"

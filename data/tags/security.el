@@ -686,6 +686,7 @@
 "source-code"
 "spam"
 "spammer"
+"sparc"
 "spdy"
 "spoofing"
 "spyware"

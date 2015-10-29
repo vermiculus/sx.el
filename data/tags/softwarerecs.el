@@ -129,6 +129,7 @@
 "data-analysis"
 "data-cd"
 "data-entry"
+"data-extraction"
 "data-liberation"
 "data-recovery"
 "data-request"

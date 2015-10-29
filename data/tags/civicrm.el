@@ -27,6 +27,7 @@
 "backups"
 "best-practice"
 "binary-logging"
+"bootstrap"
 "bounce"
 "bugs"
 "bugs"

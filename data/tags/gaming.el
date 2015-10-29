@@ -1069,6 +1069,7 @@
 "fallout-2"
 "fallout-3"
 "fallout-3-dc-interiors"
+"fallout-4"
 "fallout-new-vegas"
 "fallout-series"
 "fallout-shelter"

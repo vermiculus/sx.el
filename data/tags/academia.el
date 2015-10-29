@@ -121,7 +121,6 @@
 "enrichment"
 "erratum"
 "errors-erratum"
-"et"
 "ethics"
 "etiquette"
 "eu"

@@ -51,6 +51,7 @@
 "body-fat"
 "bones"
 "brain"
+"breastfeeding"
 "breathing"
 "broken-bones"
 "bronchitis"

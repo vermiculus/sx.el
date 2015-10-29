@@ -112,6 +112,7 @@
 "android-m"
 "android-market"
 "android-mini-pc"
+"android-one"
 "android-pc"
 "android-sdk"
 "android-tablet"

@@ -560,6 +560,7 @@
 "sort"
 "sphinx"
 "spring"
+"spring-boot"
 "spritekit"
 "sql"
 "sql-azure"
