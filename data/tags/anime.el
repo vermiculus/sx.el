@@ -748,7 +748,6 @@
 "princess-tutu"
 "prism-nana"
 "prisma-illya"
-"prison-school"
 "psycho-pass"
 "psyren"
 "puella-magi-madoka-magica"

@@ -148,6 +148,8 @@
 "extract"
 "extract-brewing"
 "extract-plus-grains"
+"fermaid-k"
+"fermaid-o"
 "fermentation"
 "fermentation-temperature"
 "fermenter"

@@ -263,7 +263,6 @@
 "soul"
 "spiritual-level"
 "sraddha"
-"sri"
 "sri-vaishnava"
 "sukracharya"
 "sundaraghandam"

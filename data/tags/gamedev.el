@@ -323,6 +323,7 @@
 "framework"
 "free"
 "free-to-play"
+"freetype"
 "frustum"
 "frustum-culling"
 "fsm"

@@ -23,6 +23,7 @@
 "analysis-of-variance"
 "ancova"
 "anderson-darling"
+"anomaly-detection"
 "anosim"
 "anova"
 "application"

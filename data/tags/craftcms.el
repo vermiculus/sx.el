@@ -155,7 +155,6 @@
 "includecss"
 "includejs"
 "index"
-"inputs"
 "install"
 "installation"
 "integer"

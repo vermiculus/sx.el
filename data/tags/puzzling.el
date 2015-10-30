@@ -72,7 +72,6 @@
 "graph-theory"
 "haiku"
 "halloween"
-"halloween"
 "hat-guessing"
 "historical"
 "history"

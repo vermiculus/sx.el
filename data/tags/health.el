@@ -286,6 +286,7 @@
 "patch"
 "pathophysiology"
 "peanut-butter"
+"pediatrics"
 "penicillin"
 "penis"
 "pesticides"

@@ -13,6 +13,7 @@
 "automation"
 "bdd"
 "books"
+"br"
 "browser-automation"
 "browser-session"
 "browsers"

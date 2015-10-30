@@ -228,7 +228,6 @@
 "new-mexico"
 "new-south-wales"
 "new-york"
-"new-york"
 "new-york-city"
 "new-york-state"
 "new-zealand"

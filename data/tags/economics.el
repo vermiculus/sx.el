@@ -22,6 +22,7 @@
 "bayesian-game"
 "behavioral-economics"
 "bellman-equations"
+"bimetallism"
 "binary-outcome-models"
 "bitcoin"
 "black-market"

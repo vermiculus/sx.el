@@ -1147,6 +1147,7 @@
 "real-algebraic-geometry"
 "real-analysis"
 "real-numbers"
+"recommendation"
 "recreational-mathematics"
 "rectangles"
 "recurrence"

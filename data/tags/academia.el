@@ -266,6 +266,7 @@
 "pedagogy"
 "peer-review"
 "personal-name"
+"personal-statement"
 "phd"
 "phd-committee"
 "phd-thesis"

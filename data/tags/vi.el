@@ -218,7 +218,6 @@
 "unix"
 "untagged"
 "user-commands"
-"utf8"
 "variables"
 "version"
 "version-control-systems"

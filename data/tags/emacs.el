@@ -159,6 +159,7 @@
 "emacs23"
 "emacs24"
 "emacs24.4"
+"emacs25.0"
 "emacsclient"
 "email"
 "emms"

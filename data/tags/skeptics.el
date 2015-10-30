@@ -94,6 +94,7 @@
 "branding"
 "breast-cancer"
 "bruce-lee"
+"buddhism"
 "caffeine"
 "canada"
 "cancer"

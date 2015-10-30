@@ -91,6 +91,7 @@
 "syntax-highlighting"
 "tag-synonyms"
 "tag-synonyms"
+"tag-wikis"
 "tagging"
 "tags"
 "toc"

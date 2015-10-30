@@ -976,7 +976,6 @@
 "repair-permissions"
 "resolution"
 "resources"
-"rest"
 "restart"
 "restore"
 "resume"

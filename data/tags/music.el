@@ -147,6 +147,7 @@
 "fingering"
 "fingerstyle-bass"
 "fingerstyle-guitar"
+"fl-studio"
 "flamenco"
 "flanger"
 "flugelhorn"

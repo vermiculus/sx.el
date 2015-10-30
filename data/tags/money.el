@@ -11,6 +11,7 @@
 "adjustable-rate-mortgage"
 "adjusted-gross-income"
 "adr"
+"affordable-care-act"
 "after-hours-trading"
 "airline"
 "alerts"

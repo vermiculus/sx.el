@@ -263,6 +263,7 @@
 "epic-tier"
 "equipment"
 "errata"
+"evasion"
 "everway"
 "evil-campaign"
 "exalted"
