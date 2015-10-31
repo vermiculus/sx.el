@@ -125,7 +125,6 @@
 "php"
 "placeholder"
 "posts"
-"profile-page"
 "python"
 "qml"
 "qt"

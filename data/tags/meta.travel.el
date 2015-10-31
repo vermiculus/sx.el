@@ -84,7 +84,6 @@
 "sarcasm"
 "scope"
 "search"
-"self-answer"
 "shopping"
 "singular-tags"
 "spam"

@@ -84,7 +84,6 @@
 "tags"
 "top-7"
 "topical"
-"tour"
 "unaccepted-answers"
 "unanswered-questions"
 "up-votes"

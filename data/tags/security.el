@@ -106,6 +106,7 @@
 "capabilities"
 "captcha"
 "captive-portal"
+"card"
 "career"
 "career-education"
 "cctv"

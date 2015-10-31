@@ -300,7 +300,6 @@
 "team-role"
 "teamwork"
 "tech-industry"
-"techlogy"
 "technology"
 "telecommute"
 "termination"
@@ -325,7 +324,6 @@
 "usa"
 "usa"
 "vacation"
-"vendors"
 "venezuela"
 "vesting"
 "visa"
@@ -338,7 +336,6 @@
 "work-flow"
 "work-life-balance"
 "work-time"
-"workers-council"
 "working-conditions"
 "workload"
 "workplace-rhythm")

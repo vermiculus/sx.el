@@ -75,7 +75,6 @@
 "tagging"
 "tagging"
 "tags"
-"terminology"
 "trolling"
 "unanswered-questions"
 "up-votes"

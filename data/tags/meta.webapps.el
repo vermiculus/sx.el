@@ -2,7 +2,6 @@
 "accepted-answer"
 "account-association"
 "answers"
-"app-recommendation"
 "area51"
 "asking-questions"
 "badges"

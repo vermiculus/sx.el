@@ -52,6 +52,7 @@
 "dissection"
 "dominoes"
 "dots-and-boxes"
+"eight-segment"
 "einsteins-puzzle"
 "encoded-message"
 "encoded-message"

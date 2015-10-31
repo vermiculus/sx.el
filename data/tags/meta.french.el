@@ -82,7 +82,6 @@
 "tag-wiki"
 "tagging"
 "tags"
-"translation"
 "typography"
 "unanswered-questions"
 "unicode"

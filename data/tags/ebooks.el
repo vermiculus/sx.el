@@ -75,7 +75,6 @@
 "image"
 "independent-publishing"
 "indesign"
-"india"
 "instapaper"
 "isbn"
 "kdp"

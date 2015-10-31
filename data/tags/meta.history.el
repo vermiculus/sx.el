@@ -1,7 +1,6 @@
 ("accepted-answer"
 "american-english"
 "answers"
-"anthropology"
 "asking-questions"
 "badges"
 "blacklist"

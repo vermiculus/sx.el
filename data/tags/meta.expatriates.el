@@ -42,7 +42,6 @@
 "off-topic"
 "openid"
 "profile-page"
-"promotions"
 "questions"
 "recent-activity"
 "reputation"

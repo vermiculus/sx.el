@@ -38,7 +38,6 @@
 "flagging"
 "formatting"
 "good-practice"
-"help-center"
 "hotness"
 "hyperlinks"
 "interesting-tags"

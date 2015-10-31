@@ -172,7 +172,6 @@
 "dormer"
 "downspout"
 "draft"
-"draft-inducer"
 "drafting"
 "draiange"
 "drain"
@@ -475,7 +474,6 @@
 "pond"
 "pool"
 "popcorn"
-"popcorn-ceiling"
 "porch"
 "porch-swing"
 "post"
@@ -523,7 +521,6 @@
 "repainting"
 "repair"
 "replacement"
-"retaining"
 "retaining-wall"
 "retrofit"
 "reuse"
@@ -740,5 +737,4 @@
 "woodworking"
 "workshop"
 "wring"
-"yurt"
-"zones")
+"yurt")

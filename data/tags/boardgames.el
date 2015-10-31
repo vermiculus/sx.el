@@ -479,7 +479,6 @@
 "shadows-of-brimstone"
 "shadows-over-camelot"
 "shape"
-"shelem"
 "shogi"
 "shogun"
 "shuffling"

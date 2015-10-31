@@ -15,7 +15,6 @@
 "bge"
 "blend-files"
 "blend-modes"
-"blender-2.70"
 "blender-internal"
 "blender-render"
 "blender-units"

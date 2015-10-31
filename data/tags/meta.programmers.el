@@ -126,7 +126,6 @@
 "scope"
 "search"
 "share"
-"sidebar"
 "site-attributes"
 "site-definition"
 "site-promotion"

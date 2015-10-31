@@ -24,7 +24,6 @@
 "design"
 "discussion"
 "down-votes"
-"economics"
 "editing"
 "etiquette"
 "exact-duplicates"

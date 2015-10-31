@@ -35,7 +35,6 @@
 "equipment"
 "escapes"
 "escrima"
-"eskrima"
 "etiquette"
 "exercise"
 "fencing"
@@ -152,5 +151,4 @@
 "weight-lifting"
 "wing-chun"
 "wrestling"
-"wrist-hold"
 "wrists")

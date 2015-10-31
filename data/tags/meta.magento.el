@@ -50,8 +50,6 @@
 "notifications"
 "on-topic"
 "openid"
-"openions"
-"opinion"
 "profile-page"
 "questions"
 "realmagento"

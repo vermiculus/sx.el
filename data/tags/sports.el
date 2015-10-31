@@ -88,7 +88,6 @@
 "indian-premier-league"
 "indoor-climbing"
 "injuries"
-"inline-hockey"
 "international-sports"
 "interruption"
 "italian-longsword"

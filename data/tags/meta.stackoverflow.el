@@ -92,7 +92,6 @@
 "convention-badge"
 "convert-to-comment"
 "copycat-sites"
-"coursera"
 "creative-commons"
 "cross-posting"
 "css"

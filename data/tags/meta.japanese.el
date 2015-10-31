@@ -82,7 +82,6 @@
 "tags"
 "target-audience"
 "unanswered-questions"
-"unicode"
 "up-votes"
 "user-accounts"
 "user-interface"

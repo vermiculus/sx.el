@@ -56,7 +56,6 @@
 "openid"
 "policy"
 "profile-page"
-"publishing"
 "quality-evaluation"
 "question-salvaging"
 "questions"

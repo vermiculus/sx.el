@@ -31,6 +31,7 @@
 "favorites"
 "feature-request"
 "featured"
+"featured-posts"
 "flagging"
 "formatting"
 "hyperlinks"

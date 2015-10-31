@@ -207,6 +207,7 @@
 "denpa-onna"
 "denpa-onna-seishun-otoko"
 "denpa-teki-na-kanojo"
+"desert-punk"
 "detective-conan"
 "devil-may-cry"
 "diabolik-lovers"

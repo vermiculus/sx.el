@@ -65,7 +65,6 @@
 "email"
 "end-of-life"
 "etiquette"
-"events"
 "exact-duplicates"
 "faq"
 "faq-proposed"

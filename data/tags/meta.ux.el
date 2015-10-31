@@ -53,7 +53,6 @@
 "migrate"
 "migration"
 "mobile"
-"mobile-web"
 "mockups"
 "moderation"
 "moderators"

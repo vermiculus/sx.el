@@ -31,7 +31,6 @@
 "flagging"
 "formatting"
 "genre"
-"help-center"
 "hyperlinks"
 "interesting-tags"
 "list-question"

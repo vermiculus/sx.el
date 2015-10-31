@@ -40,7 +40,6 @@
 "migration"
 "moderation"
 "new-users"
-"notice"
 "notifications"
 "off-topic"
 "openid"

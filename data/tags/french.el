@@ -236,7 +236,6 @@
 "philosophie"
 "phon&#233;tique"
 "phonetics"
-"phonologie"
 "physique"
 "places"
 "plantes"

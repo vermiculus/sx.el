@@ -118,7 +118,6 @@
 "site-cleanup"
 "site-faq"
 "site-promotion"
-"sock-puppetry"
 "spam"
 "specific-question"
 "spelling"

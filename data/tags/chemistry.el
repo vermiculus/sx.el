@@ -36,6 +36,7 @@
 "chemistry-in-fiction"
 "chirality"
 "chromatography"
+"classical-mechanics"
 "classification"
 "cleaning"
 "colloids"

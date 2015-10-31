@@ -32,7 +32,6 @@
 "featured"
 "flagging"
 "formatting"
-"help-system"
 "hyperlinks"
 "interesting-tags"
 "login"

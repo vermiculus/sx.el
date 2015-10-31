@@ -13,7 +13,6 @@
 "committment"
 "community-ads"
 "community-wiki"
-"copyright"
 "data-dump"
 "data-explorer"
 "deleted-questions"

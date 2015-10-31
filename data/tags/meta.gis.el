@@ -24,6 +24,7 @@
 "community-wiki"
 "conference"
 "conversion"
+"cross-posts"
 "data"
 "data-dump"
 "data-explorer"
