@@ -124,7 +124,6 @@
 "education"
 "effects"
 "effects-pedal"
-"electric"
 "electric-bass-guitar"
 "electric-guitar"
 "electronic-drumset"

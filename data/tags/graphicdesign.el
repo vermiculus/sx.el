@@ -414,7 +414,6 @@
 "product-design"
 "project-management"
 "proofing"
-"psd"
 "publishing"
 "quark-quarkxpress"
 "quarkxpress"

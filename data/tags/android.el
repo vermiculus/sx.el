@@ -1243,6 +1243,7 @@
 "setcpu"
 "settings"
 "share-menu"
+"sharp-sh7218u"
 "shazam"
 "shell"
 "shortcuts"

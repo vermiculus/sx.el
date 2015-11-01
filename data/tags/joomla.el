@@ -128,6 +128,7 @@
 "jimport"
 "jinput"
 "jlayout"
+"jlog"
 "jmail"
 "jmenu"
 "jmodel"

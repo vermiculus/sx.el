@@ -10,6 +10,7 @@
 "astronomy"
 "astronomy"
 "audio"
+"blackboard"
 "blue-eyes"
 "board-games"
 "brainteaser"

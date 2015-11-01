@@ -211,6 +211,7 @@
 "publishing"
 "punctuation"
 "puns"
+"quantifiers"
 "questions"
 "quotes"
 "radicals"

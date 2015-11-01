@@ -626,6 +626,7 @@
 "scada"
 "scan"
 "scanner"
+"scep"
 "scripting"
 "scrypt"
 "sctp"

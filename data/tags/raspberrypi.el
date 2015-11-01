@@ -73,6 +73,7 @@
 "defect"
 "deluge"
 "design"
+"device-tree"
 "dhcp"
 "dht22"
 "display"

@@ -550,7 +550,6 @@
 "graph-minors"
 "graph-polynomials"
 "graph-reconstruction"
-"graph-th"
 "graph-theory"
 "grassmannians"
 "gray-codes"

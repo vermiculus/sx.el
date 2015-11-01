@@ -756,6 +756,7 @@
 "sh"
 "sharepoint"
 "shell"
+"shortest-path"
 "shuffle"
 "sicp"
 "siebel-escript"

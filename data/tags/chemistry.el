@@ -207,6 +207,7 @@
 "resonance"
 "safety"
 "selectivity"
+"self-study"
 "silver"
 "smell"
 "software"

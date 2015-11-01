@@ -194,6 +194,7 @@
 "compile-error"
 "component"
 "composite-app"
+"compound-fields"
 "concurrency"
 "conditional"
 "configuration"

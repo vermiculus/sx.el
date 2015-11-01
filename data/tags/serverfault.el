@@ -145,6 +145,7 @@
 "apache-ds"
 "apache-flume"
 "apache-mesos"
+"apache-spark"
 "apache-traffic-server"
 "apache1"
 "apache2.2"

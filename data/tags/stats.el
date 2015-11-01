@@ -1266,6 +1266,7 @@
 "text-mining"
 "textbook"
 "textbooks"
+"theano"
 "theory"
 "theta-method"
 "threshold"

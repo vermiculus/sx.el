@@ -143,7 +143,6 @@
 "astronomy"
 "atlantis"
 "attack-of-the-clones"
-"attack-on-titan"
 "audio-book"
 "author-identification"
 "authors"

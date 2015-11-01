@@ -299,6 +299,7 @@
 "super-powers"
 "supernova"
 "survival"
+"table"
 "tactics"
 "technological-development"
 "technology"

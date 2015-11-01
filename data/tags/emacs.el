@@ -499,6 +499,7 @@
 "smie"
 "smtpmail"
 "sorting"
+"sound"
 "source"
 "spacemacs"
 "speedbar"
