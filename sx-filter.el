@@ -36,7 +36,7 @@
 ;;; Customizations
 
 (defvar sx--filter-alist
-  (sx-cache-get 'filter)
+  nil
   "An alist of known filters.  See `sx-filter-compile'.
 Structure:
 
@@ -96,6 +96,8 @@ be returned.  Otherwise, compile INCLUDE, EXCLUDE, and BASE into
 a filter with `sx-filter-compile' and push the association onto
 `sx--filter-alist'.  Re-cache the alist with `sx-cache-set' and
 return the compiled filter."
+  (unless sx--filter-alist
+    (setq sx--filter-alist (sx-cache-get 'filter)))
   (or (cdr (assoc (list include exclude base) sx--filter-alist))
       (let ((filter (sx-filter-compile include exclude base)))
         (when filter
