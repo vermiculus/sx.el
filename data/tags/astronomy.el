@@ -215,6 +215,7 @@
 "photography"
 "photometry"
 "photons"
+"physical-constants"
 "planet"
 "planetary-discriminant"
 "planetary-formation"

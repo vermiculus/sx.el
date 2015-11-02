@@ -16,7 +16,6 @@
 "android-app"
 "announcer"
 "anonymous-user"
-"answer-in-question"
 "answer-quality"
 "answer-similar-questions"
 "answers"

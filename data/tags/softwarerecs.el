@@ -460,6 +460,7 @@
 "parser"
 "password-manager"
 "password-recovery"
+"pastebin"
 "pdf"
 "pdf-viewer"
 "performance-analysis"

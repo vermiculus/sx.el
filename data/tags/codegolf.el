@@ -32,7 +32,6 @@
 "calendar"
 "calendar"
 "card-games"
-"carrot"
 "cellular-automata"
 "chef"
 "chemistry"

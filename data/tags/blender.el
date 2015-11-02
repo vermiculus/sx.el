@@ -27,6 +27,7 @@
 "camera"
 "cloth-simulation"
 "collada"
+"color"
 "color-management"
 "command-line"
 "compatibility"

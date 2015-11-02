@@ -148,6 +148,7 @@
 "names"
 "negation"
 "ni-and-de"
+"no-da"
 "nominalisation"
 "nominalization"
 "nouns"

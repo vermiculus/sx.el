@@ -182,6 +182,7 @@
 "competing-risks"
 "composite"
 "compositional-data"
+"compound-distributions"
 "compound-poisson"
 "compression"
 "computational-statistics"

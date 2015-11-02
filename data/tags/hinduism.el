@@ -214,6 +214,7 @@
 "prayer"
 "puja"
 "punyam"
+"purana"
 "puranas"
 "radha"
 "rama"

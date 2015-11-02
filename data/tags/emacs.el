@@ -147,6 +147,7 @@
 "elpa"
 "elpy"
 "elscreen"
+"ema"
 "emacs-c"
 "emacs-daemon"
 "emacs-development"

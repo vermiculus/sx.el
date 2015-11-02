@@ -144,6 +144,7 @@
 "chargeback"
 "charity"
 "charts"
+"checkblocks"
 "checklocktimeverify"
 "checkpoints"
 "checksig"

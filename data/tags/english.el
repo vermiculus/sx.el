@@ -542,7 +542,6 @@
 "mass-nouns"
 "math"
 "mathematics"
-"mean"
 "meaning"
 "meaning-in-context"
 "meanings"

@@ -129,6 +129,7 @@
 "forwarding"
 "geocoding"
 "git"
+"github"
 "global-menu"
 "google-hangouts"
 "gravity-civicrm"
