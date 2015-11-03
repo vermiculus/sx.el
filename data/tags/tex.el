@@ -302,6 +302,7 @@
 "dimension-expressions"
 "dimensions"
 "dinbrief"
+"directlua"
 "directory"
 "dirtree"
 "displaybreak"

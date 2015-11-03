@@ -680,6 +680,7 @@
 "invariant-theory"
 "inverse"
 "inverse-problems"
+"inverse-series"
 "invertible-sheaves"
 "involutions"
 "irrational-numbers"

@@ -121,6 +121,7 @@
 "mobile"
 "mock"
 "monkeytalk"
+"ms-uiautomation"
 "mstest"
 "mtm"
 "netbeans"

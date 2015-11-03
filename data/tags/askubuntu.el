@@ -2002,7 +2002,6 @@
 "pcsxr"
 "pdf"
 "pdf-bookmarks"
-"pdf-viewer"
 "pdfgrep"
 "pdftk"
 "pelican"

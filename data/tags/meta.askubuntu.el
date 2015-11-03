@@ -147,6 +147,7 @@
 "searching"
 "self-made-qa"
 "server"
+"site-analitics"
 "site-attributes"
 "site-faq"
 "site-promotion"

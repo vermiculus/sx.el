@@ -43,6 +43,7 @@
 "brahmanas"
 "brahmanda-purana"
 "brahmins"
+"bramha"
 "brihadaranyaka-upanishad"
 "buddhism"
 "calendar"

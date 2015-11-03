@@ -5,6 +5,7 @@
 "3d-printing"
 "4566932"
 "abadoned"
+"abandoned-patent"
 "abstract"
 "accenture"
 "accept"

@@ -866,6 +866,7 @@
 "special-price"
 "special-products"
 "sql"
+"ssh"
 "ssl"
 "staging"
 "state"

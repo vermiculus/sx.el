@@ -715,6 +715,7 @@
 "phrase-order"
 "phrase-requests"
 "phrase-usage"
+"phraseology"
 "phrases"
 "phrasing"
 "pied-piping"

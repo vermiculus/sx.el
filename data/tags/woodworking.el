@@ -97,6 +97,7 @@
 "natural-wood"
 "noise"
 "oiling"
+"organization"
 "outdoor"
 "paint"
 "pallet"

@@ -136,6 +136,7 @@
 "point-clouds"
 "preferences"
 "properties"
+"ps3-controller"
 "pynodes"
 "python"
 "render"

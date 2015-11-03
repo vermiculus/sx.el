@@ -1454,6 +1454,7 @@
 "escape-sequences"
 "escaping"
 "esd"
+"esent"
 "eset"
 "espeak"
 "esxi"

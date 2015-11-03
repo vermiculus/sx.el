@@ -273,6 +273,7 @@
 "human-rating"
 "humans"
 "hybrid-rocket"
+"hydra"
 "hydrazine"
 "hydrogen"
 "hypergravity"

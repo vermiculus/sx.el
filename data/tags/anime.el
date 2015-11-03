@@ -209,7 +209,6 @@
 "denpa-teki-na-kanojo"
 "desert-punk"
 "detective-conan"
-"devil-fruit"
 "devil-may-cry"
 "diabolik-lovers"
 "diebuster"

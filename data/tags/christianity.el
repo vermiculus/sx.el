@@ -470,7 +470,6 @@
 "joy"
 "jubilee"
 "judaism"
-"judas"
 "judas-iscariot"
 "jude"
 "judging-others"
