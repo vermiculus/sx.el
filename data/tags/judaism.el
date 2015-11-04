@@ -1553,6 +1553,7 @@
 "tattoo"
 "taxes"
 "tchiyas-hamesim"
+"teaching"
 "techeles"
 "techelet"
 "techiyat-hameitim"

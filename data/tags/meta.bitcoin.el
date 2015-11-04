@@ -2,6 +2,7 @@
 "answers"
 "asking-questions"
 "badges"
+"beta"
 "bounty"
 "bug"
 "canonical-answers"

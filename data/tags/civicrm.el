@@ -192,6 +192,7 @@
 "pcp"
 "pdf"
 "pear"
+"pending"
 "performance"
 "permissions"
 "personal-campaign-pages"

@@ -513,7 +513,6 @@
 "php.ini"
 "phpmailer"
 "phpmyadmin"
-"phpunit"
 "pictures"
 "pingbacks"
 "pluggable"

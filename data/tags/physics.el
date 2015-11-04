@@ -404,6 +404,7 @@
 "gravitational-collapse"
 "gravitational-lensing"
 "gravitational-potential"
+"gravitational-potential"
 "gravitational-redshift"
 "gravitational-waves"
 "gravity"

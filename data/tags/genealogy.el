@@ -159,6 +159,7 @@
 "handwriting-analysis"
 "haplogroup"
 "headstone"
+"hebrew"
 "heraldry"
 "historical-context"
 "historical-gazetteer"

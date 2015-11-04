@@ -90,6 +90,7 @@
 "emulation"
 "ethernet"
 "ethernet-port"
+"explorer-hat"
 "failure"
 "faq"
 "fbi"

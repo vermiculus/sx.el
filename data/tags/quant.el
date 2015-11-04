@@ -200,6 +200,7 @@
 "finance-mathematics"
 "financial"
 "financial-engineering"
+"financial-markets"
 "finite-difference-method"
 "fix"
 "fixed"

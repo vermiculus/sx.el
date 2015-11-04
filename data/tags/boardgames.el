@@ -202,6 +202,7 @@
 "en-garde"
 "encore"
 "end-game"
+"epic-spell-wars"
 "eruption"
 "escape-curse-of-temple"
 "escape-from-atlantis"

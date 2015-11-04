@@ -352,6 +352,7 @@
 "scales"
 "self-learning"
 "semi-acoustic-guitar"
+"sequencer"
 "serial"
 "set-theory"
 "setup"

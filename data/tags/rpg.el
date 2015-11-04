@@ -34,6 +34,7 @@
 "alternate-class-feature"
 "amber-diceless"
 "anima-beyond-fantasy"
+"anima-prime"
 "animal"
 "animal-companions"
 "antipaladin"

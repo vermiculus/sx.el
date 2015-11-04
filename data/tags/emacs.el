@@ -73,6 +73,7 @@
 "coding-conventions"
 "coloring"
 "colors"
+"column"
 "comint"
 "command-line-arguments"
 "commands"

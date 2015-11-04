@@ -500,7 +500,6 @@
 "text"
 "text-on-path"
 "text-wrap"
-"texttype"
 "texture"
 "tiff"
 "tiles"

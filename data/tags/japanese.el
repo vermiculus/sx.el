@@ -179,6 +179,7 @@
 "particle-no"
 "particle-o"
 "particle-shika"
+"particle-te"
 "particle-to"
 "particle-tte"
 "particle-wa"

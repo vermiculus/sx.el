@@ -94,6 +94,7 @@
 "copycat-sites"
 "creative-commons"
 "cross-posting"
+"cross-site-duplicates"
 "css"
 "custom-close-reasons"
 "custom-tags"

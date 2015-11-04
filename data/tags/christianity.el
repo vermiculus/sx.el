@@ -783,6 +783,7 @@
 "sermon-on-the-mount"
 "serpent"
 "servants"
+"session-of-christ"
 "seth"
 "seventh-day-adventists"
 "sex"

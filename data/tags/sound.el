@@ -1229,6 +1229,7 @@
 "wind-protection"
 "windjammer"
 "windows"
+"windows-10"
 "windows-7"
 "windscreens"
 "windshield"

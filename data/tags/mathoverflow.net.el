@@ -176,6 +176,7 @@
 "circulant-matrix"
 "citations"
 "class-field-theory"
+"classical"
 "classical-analysis"
 "classical-groups"
 "classical-invariant-theor"

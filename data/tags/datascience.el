@@ -24,6 +24,7 @@
 "cheatsheet"
 "chess"
 "classification"
+"classifier-chains"
 "clustering"
 "clusters"
 "computer-vision"

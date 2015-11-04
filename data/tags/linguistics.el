@@ -474,6 +474,7 @@
 "wonderwort"
 "word-boundaries"
 "word-classes"
+"word-embeddings"
 "word-formation"
 "word-order"
 "word-sense-disambiguation"

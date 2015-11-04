@@ -199,6 +199,7 @@
 "pdb"
 "pe"
 "pe-resources"
+"pecompact"
 "php"
 "physical-attacks"
 "pic"

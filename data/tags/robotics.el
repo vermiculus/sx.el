@@ -212,7 +212,6 @@
 "usb"
 "valve"
 "vex"
-"visual-servo"
 "visual-servoing"
 "visualization"
 "walk"

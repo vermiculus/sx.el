@@ -1847,6 +1847,7 @@
 "gksudo"
 "glass"
 "glassfish"
+"glasswire"
 "glib"
 "glibc"
 "global"

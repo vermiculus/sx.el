@@ -94,6 +94,7 @@
 "distributed-decryption"
 "dpa"
 "dsa"
+"dual-ec-drbg"
 "dual-ec-drgb"
 "eax"
 "ecb"

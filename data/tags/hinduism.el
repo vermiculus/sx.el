@@ -94,6 +94,7 @@
 "ganesh-chaturthi"
 "ganesha"
 "ganga"
+"garuda"
 "garuda-purana"
 "gaudiya-vaishnavism"
 "gayatri"
