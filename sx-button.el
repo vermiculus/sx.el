@@ -45,6 +45,12 @@
 (require 'sx)
 (require 'sx-question)
 
+(declare-function sx-accept "sx-interaction")
+(declare-function sx-answer "sx-interaction")
+(declare-function sx-comment "sx-interaction")
+(declare-function sx-open-link "sx-interaction")
+(declare-function sx-question-mode-hide-show-section "sx-question-mode")
+
 
 ;;; Face
 (defface sx-custom-button
