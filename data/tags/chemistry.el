@@ -6,6 +6,7 @@
 "alcohol"
 "allotropes"
 "alloy"
+"aluminum"
 "amines"
 "analytical-chemistry"
 "applied-chemistry"

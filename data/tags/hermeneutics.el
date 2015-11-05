@@ -248,6 +248,7 @@
 "pseudepigrapha"
 "pun"
 "punctuation"
+"purpose"
 "q-source"
 "rabbinic-interpretation"
 "redaction-criticism"

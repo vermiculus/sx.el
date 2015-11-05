@@ -140,6 +140,7 @@
 "code-review"
 "code-signing"
 "cold-boot-attack"
+"command"
 "common-criteria"
 "compiler"
 "compliance"

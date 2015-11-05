@@ -96,6 +96,7 @@
 "breast-cancer"
 "bruce-lee"
 "buddhism"
+"burma"
 "caffeine"
 "canada"
 "cancer"

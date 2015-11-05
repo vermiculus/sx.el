@@ -114,6 +114,7 @@
 "authentication"
 "authorization"
 "auto-complete"
+"auto-launch"
 "auto-update"
 "autocorrect"
 "autofs"

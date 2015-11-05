@@ -466,6 +466,7 @@
 "post-grant"
 "post-grant-review"
 "power-supply"
+"ppa"
 "practicality"
 "pre"
 "pre-aia"

@@ -34,6 +34,7 @@
 "auto-growth"
 "auto-increment"
 "automation"
+"autovacuum"
 "availability"
 "availability-groups"
 "awr"

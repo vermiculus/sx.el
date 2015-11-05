@@ -499,6 +499,7 @@
 "redmine"
 "redo"
 "regex"
+"renderscript"
 "requirejs"
 "rest"
 "retrofit"

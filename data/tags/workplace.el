@@ -275,6 +275,7 @@
 "self-employment"
 "sexual-harassment"
 "sexuality"
+"shortcut"
 "sickness"
 "singapore"
 "skills"

@@ -32,6 +32,7 @@
 "formatting"
 "hyperlinks"
 "interesting-tags"
+"legal"
 "login"
 "markdown"
 "meta"

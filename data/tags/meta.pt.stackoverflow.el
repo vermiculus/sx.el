@@ -122,6 +122,7 @@
 "pergunta-espec&#237;fica"
 "pergunta-subjetiva"
 "perguntas"
+"perguntas-amplas"
 "perguntas-apagadas"
 "perguntas-duplicadas"
 "perguntas-fechadas"

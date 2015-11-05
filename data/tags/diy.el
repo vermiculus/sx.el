@@ -73,6 +73,7 @@
 "carbon-monoxide"
 "carpentry"
 "carpet"
+"carport"
 "cartridge"
 "cast-iron"
 "cat-door"

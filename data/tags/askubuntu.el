@@ -976,6 +976,7 @@
 "gems"
 "genymotion"
 "geoip"
+"geolocation"
 "gestures"
 "get-iplayer"
 "gettext"

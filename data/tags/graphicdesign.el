@@ -134,6 +134,7 @@
 "copyright"
 "corel-draw"
 "corel-paint-shop-pro"
+"corporate-design"
 "createspace"
 "creative-cloud"
 "creative-commons"

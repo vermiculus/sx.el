@@ -517,6 +517,8 @@
 "httpcontext"
 "httpmodules"
 "https"
+"hybrid"
+"hybrid-sites"
 "hybrid-solution"
 "hyperlink"
 "ie"

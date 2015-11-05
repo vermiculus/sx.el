@@ -74,6 +74,7 @@
 "esta"
 "eu"
 "eu-citizens"
+"eu-spouses"
 "express-entry"
 "family"
 "fatca"
