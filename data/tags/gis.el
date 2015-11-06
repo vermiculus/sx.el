@@ -1517,6 +1517,7 @@
 "py2exe"
 "pycharm"
 "pycsw"
+"pygqis"
 "pyodbc"
 "pyproj"
 "pyqgis"

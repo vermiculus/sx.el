@@ -1006,7 +1006,6 @@
 "specification"
 "speedlite"
 "splash"
-"split"
 "split-lighting"
 "split-tone"
 "sports"

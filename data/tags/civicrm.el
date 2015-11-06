@@ -228,6 +228,7 @@
 "search-builder"
 "search-results"
 "security"
+"security-advisory"
 "select2"
 "selenium"
 "senangpay"

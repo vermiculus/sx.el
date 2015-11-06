@@ -309,6 +309,7 @@
 "sex-education"
 "sexual-consent"
 "sexual-development"
+"shaming"
 "sharing"
 "shopping"
 "siblings"

@@ -1020,6 +1020,7 @@
 "passive-networks"
 "paste"
 "pata"
+"pc"
 "pcb"
 "pcb-antenna"
 "pcb-assembly"

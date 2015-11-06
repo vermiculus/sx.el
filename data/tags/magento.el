@@ -914,6 +914,7 @@
 "theme-fallback"
 "third-party-module"
 "thumbnail"
+"tiered-pricing"
 "tierprice"
 "time"
 "timezone"

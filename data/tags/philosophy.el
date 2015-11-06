@@ -223,6 +223,7 @@
 "objectivism"
 "objectivity"
 "omnipotence"
+"omniscience"
 "ontological-argument"
 "ontology"
 "pain-and-pleasure"

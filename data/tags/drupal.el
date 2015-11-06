@@ -176,7 +176,6 @@
 "drupal-commerce"
 "drupal-commerce-file"
 "drupal-commons"
-"drupal-console"
 "drupal-gardens"
 "drupal-hooks"
 "drupal-http-request"

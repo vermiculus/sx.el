@@ -228,6 +228,7 @@
 "vimscript"
 "vimscript-lua"
 "vimscript-python"
+"vimsplit"
 "visual-mode"
 "whitespace"
 "wildmenu"

@@ -59,6 +59,7 @@
 "charactercode"
 "charts"
 "chemistry"
+"cholesky-decomposition"
 "citation-management"
 "classify"
 "clear"

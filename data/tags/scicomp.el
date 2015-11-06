@@ -140,7 +140,6 @@
 "intel-mkl"
 "interpolation"
 "interval-arithmetic"
-"introduction"
 "inverse"
 "inverse-problem"
 "io"

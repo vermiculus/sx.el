@@ -861,6 +861,7 @@
 "replaceall"
 "replication"
 "report"
+"report-builder"
 "report-chart"
 "reporting"
 "reports-api"

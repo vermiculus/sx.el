@@ -66,6 +66,7 @@
 "add-apt-repository"
 "add-on"
 "add-ons"
+"additional-drivers"
 "addon"
 "address-book"
 "adduser"

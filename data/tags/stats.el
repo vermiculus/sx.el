@@ -1151,6 +1151,7 @@
 "search-theory"
 "seasonality"
 "segmentation"
+"segmented"
 "segmented-regression"
 "self-organizing-maps"
 "self-study"

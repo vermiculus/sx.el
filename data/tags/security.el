@@ -686,6 +686,7 @@
 "snot"
 "soc"
 "social-engineering"
+"socks5"
 "software"
 "solaris"
 "source-code"

@@ -145,6 +145,7 @@
 "progress-monitor"
 "progress-report"
 "project-charter"
+"project-governance"
 "project-leader"
 "project-management-style"
 "project-proposal"

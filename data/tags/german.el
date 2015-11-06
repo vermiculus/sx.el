@@ -246,6 +246,7 @@
 "sociolinguistics"
 "software"
 "song-text"
+"song-text"
 "speaking"
 "spelling"
 "spoken-language"
