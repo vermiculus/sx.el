@@ -39,7 +39,6 @@
 "on-topic"
 "openid"
 "profile-page"
-"proposal"
 "questions"
 "recent-activity"
 "references"

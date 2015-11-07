@@ -128,8 +128,6 @@
 "osl"
 "osx"
 "outliner"
-"paint"
-"palette"
 "parent"
 "particles"
 "path"

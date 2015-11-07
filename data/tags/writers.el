@@ -3,6 +3,7 @@
 "accessibility"
 "agent"
 "ambiguity"
+"american"
 "antagonist"
 "ap-style"
 "apa"

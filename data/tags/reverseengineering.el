@@ -226,6 +226,7 @@
 "radio-interception"
 "ransomware"
 "reassembly"
+"rebase"
 "register"
 "reil"
 "remote"

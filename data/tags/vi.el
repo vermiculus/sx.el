@@ -213,6 +213,7 @@
 "undo-redo"
 "undocumented-behaviour"
 "unicode"
+"uniq"
 "unix"
 "untagged"
 "user-commands"

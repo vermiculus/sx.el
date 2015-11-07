@@ -234,6 +234,7 @@
 "possessives"
 "pr&#233;stamo-ling&#252;&#237;stico"
 "preguntas"
+"prensa"
 "preposiciones"
 "prepositions"
 "prestamo-linguistico"

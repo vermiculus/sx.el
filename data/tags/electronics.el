@@ -1614,6 +1614,7 @@
 "wear-leveling"
 "wearable"
 "website"
+"wheat"
 "wheatstone-bridge"
 "wheel"
 "wiegand"

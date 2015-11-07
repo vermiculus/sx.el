@@ -65,6 +65,7 @@
 "references"
 "reputation"
 "retagging"
+"review"
 "rss"
 "scope"
 "search"

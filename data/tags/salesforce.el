@@ -577,6 +577,7 @@
 "joined-reports"
 "journeybuilder"
 "jquery"
+"jquery-knob"
 "jquerymobile"
 "js-remoting"
 "jsforce"

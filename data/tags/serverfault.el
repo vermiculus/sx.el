@@ -2340,6 +2340,7 @@
 "plone"
 "ploop"
 "plsql"
+"pm2"
 "podcast"
 "poe"
 "point-of-sale"

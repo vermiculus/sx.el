@@ -100,6 +100,7 @@
 "spectacles"
 "sports"
 "spring"
+"stationary"
 "stationery"
 "storage"
 "substitute-tool"

@@ -119,6 +119,7 @@
 "openid"
 "padroniza&#231;&#227;o"
 "perfil"
+"pergunta-camale&#227;o"
 "pergunta-espec&#237;fica"
 "pergunta-subjetiva"
 "perguntas"

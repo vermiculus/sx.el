@@ -140,6 +140,7 @@
 "sharpening"
 "shop"
 "softwood"
+"sphere"
 "spline"
 "stability"
 "stain"

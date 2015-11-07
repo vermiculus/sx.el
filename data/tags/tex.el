@@ -1360,6 +1360,7 @@
 "typearea"
 "typefaces"
 "typein"
+"typeout"
 "typesetting"
 "typewriter"
 "typography"

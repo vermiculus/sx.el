@@ -49,6 +49,7 @@
 "grappling"
 "hapkido"
 "health"
+"hema"
 "history"
 "hyeong"
 "iaido"

@@ -433,6 +433,7 @@
 "file-transfer"
 "files"
 "filter"
+"finger-print-scanner"
 "firefox"
 "firewall"
 "firmware"

@@ -285,7 +285,7 @@
 "blender"
 "bless"
 "blocklist"
-"blogs"
+"blog"
 "blu-ray"
 "bluefish"
 "bluegriffon"

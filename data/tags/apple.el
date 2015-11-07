@@ -362,6 +362,7 @@
 "file"
 "file-conversion"
 "file-extensions"
+"file-permissions"
 "file-recovery"
 "file-sharing"
 "file-transfer"

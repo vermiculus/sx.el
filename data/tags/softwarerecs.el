@@ -280,6 +280,7 @@
 "history"
 "home-automation"
 "home-server"
+"hosted"
 "hpc"
 "html"
 "html-editor"

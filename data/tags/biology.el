@@ -565,7 +565,6 @@
 "senescence"
 "sensation"
 "senses"
-"sensory"
 "sensory-systems"
 "sepsis"
 "sequence-alignment"

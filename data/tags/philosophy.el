@@ -256,6 +256,7 @@
 "poetry"
 "political-philosophy"
 "politics"
+"polytheism"
 "popper"
 "popular-science"
 "population-ethics"

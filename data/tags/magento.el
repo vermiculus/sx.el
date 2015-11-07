@@ -982,6 +982,7 @@
 "web-services"
 "webandpeople"
 "websites"
+"whitelist"
 "widget"
 "widget-instance"
 "widgets"

@@ -306,7 +306,6 @@
 "vedas"
 "vedic-gods"
 "vedic-rituals"
-"veg"
 "venkateshwara"
 "vikramaditya"
 "vishishtadvaita"

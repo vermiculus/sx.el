@@ -6,6 +6,7 @@
 "alcohol-level"
 "ale"
 "aroma"
+"beer-cocktails"
 "bottle-conditioning"
 "bottles"
 "bottling"

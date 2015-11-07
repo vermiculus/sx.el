@@ -64,6 +64,7 @@
 "creatures"
 "crime"
 "criminal-underworld"
+"cryogenics"
 "crystals"
 "culture"
 "currency"

@@ -124,6 +124,7 @@
 "chrome"
 "cifs"
 "cipher-selection"
+"ciphers"
 "cisco"
 "cisco-ios"
 "cissp"

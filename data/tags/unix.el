@@ -1937,6 +1937,7 @@
 "thunar"
 "thunar-volman"
 "thunderbird"
+"tig"
 "tilda"
 "tilde"
 "tiling-wm"

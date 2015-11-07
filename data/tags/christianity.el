@@ -926,7 +926,6 @@
 "works"
 "world-youth-day"
 "worship"
-"xmas"
 "yahweh"
 "yhwh"
 "young-earth-creation"

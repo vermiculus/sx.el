@@ -1483,6 +1483,7 @@
 "specialization"
 "specifications"
 "speed"
+"spinlock"
 "spoken-languages"
 "spreadsheet"
 "spring"

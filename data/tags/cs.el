@@ -257,7 +257,6 @@
 "lo.logic"
 "logic"
 "logic-programming"
-"logical-programming"
 "logical-validity"
 "longest-common-substring"
 "loop-invariants"

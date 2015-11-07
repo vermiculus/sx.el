@@ -228,6 +228,7 @@
 "software"
 "software-architecture"
 "sorting"
+"spam"
 "sql"
 "ssl"
 "statistics"
