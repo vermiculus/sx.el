@@ -35,7 +35,6 @@
 "brightness"
 "browser"
 "buttons"
-"c#"
 "calendar"
 "calendars"
 "call-sms-filter"

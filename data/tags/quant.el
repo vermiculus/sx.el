@@ -22,6 +22,7 @@
 "arma"
 "artificial-intelligence"
 "artificial-markets"
+"asian"
 "asian-option"
 "ask"
 "asset"

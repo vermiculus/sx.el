@@ -2075,6 +2075,7 @@
 "web-services"
 "webadf"
 "webmap"
+"weighted-overlay"
 "wfs"
 "wfs-t"
 "wgs84"

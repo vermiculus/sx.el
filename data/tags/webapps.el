@@ -797,7 +797,6 @@
 "reddit"
 "regex"
 "registration"
-"relayrides"
 "remember-the-milk"
 "rememberthemilk"
 "reminder"

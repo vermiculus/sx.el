@@ -593,6 +593,7 @@
 "tea"
 "technology"
 "teeth"
+"telephone"
 "telephony"
 "television"
 "terrorism"

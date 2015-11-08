@@ -229,6 +229,7 @@
 "rig-veda"
 "rishi"
 "rituals"
+"rudra"
 "rudraksha"
 "sacrifice"
 "sadhana"

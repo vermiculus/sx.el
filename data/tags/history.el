@@ -314,6 +314,7 @@
 "jesus"
 "jews"
 "john-f-kennedy"
+"jordan"
 "journalism"
 "julius-caesar"
 "kazakhstan"

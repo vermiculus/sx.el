@@ -285,6 +285,7 @@
 "pagedown"
 "pagination"
 "people-reached"
+"performance"
 "permalink"
 "personal-data"
 "plagiarism"

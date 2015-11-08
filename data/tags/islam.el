@@ -24,7 +24,6 @@
 "ali-akbar"
 "all-madhhab"
 "allah"
-"ancient-scholars"
 "angel"
 "animals"
 "apostasy"

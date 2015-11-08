@@ -519,6 +519,7 @@
 "fastest-gun"
 "favicon"
 "favorite"
+"favorite-rooms"
 "favorite-tags"
 "favorites"
 "favorites-notifications"

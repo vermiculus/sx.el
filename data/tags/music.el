@@ -423,6 +423,7 @@
 "tremolo"
 "tremolo-system"
 "trills"
+"triplet"
 "trombone"
 "trumpet"
 "tuba"

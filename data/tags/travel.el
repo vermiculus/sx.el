@@ -1348,6 +1348,7 @@
 "russian-language"
 "russianfederation"
 "rvs"
+"rwanda"
 "ryanair"
 "ryokans"
 "saarland"

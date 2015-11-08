@@ -327,6 +327,7 @@
 "social-media"
 "socialization"
 "solids"
+"soothe"
 "spanking"
 "special-education"
 "special-needs"

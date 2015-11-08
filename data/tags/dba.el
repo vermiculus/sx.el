@@ -541,7 +541,6 @@
 "openldap"
 "openrowset"
 "operator"
-"oplsql"
 "optimization"
 "optimize"
 "optimizer"

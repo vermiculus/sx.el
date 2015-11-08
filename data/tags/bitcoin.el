@@ -235,6 +235,7 @@
 "error"
 "escrow"
 "ethereum"
+"ethhash-mining"
 "eu"
 "europe"
 "exchange-fees"
