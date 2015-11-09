@@ -163,6 +163,7 @@
 "astro"
 "asus-eee-pad-transformer"
 "asus-fonepad-8"
+"asus-fonepad-k004"
 "asus-memo-pad-hd-7"
 "asus-padfone-t00c"
 "asus-transformer"

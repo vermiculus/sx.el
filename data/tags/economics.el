@@ -79,6 +79,7 @@
 "dynamic-programming"
 "dynare"
 "econometrics"
+"economic-bubble"
 "economic-failure"
 "economic-measurement"
 "economic-methodology"

@@ -550,6 +550,7 @@
 "satoshidice"
 "scalability"
 "scam"
+"schildbach-wallet"
 "science"
 "script"
 "scrypt"

@@ -2101,6 +2101,7 @@
 "openam"
 "openbd"
 "openbsd"
+"opencl"
 "openconnect"
 "opendirectory"
 "opendkim"

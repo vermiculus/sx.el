@@ -126,7 +126,6 @@
 "olympics"
 "open-water"
 "origins"
-"paddle"
 "paddle-tennis"
 "padel"
 "paintball"

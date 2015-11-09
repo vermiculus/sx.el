@@ -573,6 +573,7 @@
 "version-compatibilty"
 "version-control"
 "video"
+"view-lossage"
 "vim-emulation"
 "visibility"
 "visited-links"

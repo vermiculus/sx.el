@@ -212,6 +212,7 @@
 "catapult-c"
 "ccd"
 "ccfl"
+"cd4047"
 "cdc"
 "ce"
 "cell-battery"

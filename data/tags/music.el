@@ -104,6 +104,7 @@
 "diaphragm"
 "diatonic-harmony"
 "didgeridoo"
+"difficult"
 "digital-piano"
 "disco"
 "dissonance"

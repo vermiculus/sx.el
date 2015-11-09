@@ -181,6 +181,7 @@
 "eurex"
 "eurodollars"
 "european"
+"european-options"
 "event"
 "event-study"
 "evt"

@@ -371,6 +371,7 @@
 "hayate-no-gotoku"
 "hayate-the-combat-butler"
 "heavens-lost-property"
+"heavy-object"
 "heidi-girl-of-the-alps"
 "hell-girl"
 "hellsing"

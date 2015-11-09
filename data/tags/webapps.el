@@ -29,6 +29,7 @@
 "alexa"
 "alfresco"
 "alias"
+"allrecipes.com"
 "alternative"
 "amazon"
 "amazon-cloud-drive"

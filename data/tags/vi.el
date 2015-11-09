@@ -49,6 +49,7 @@
 "file-operations"
 "filenames"
 "filesystem"
+"filet"
 "filetype"
 "filetype-c"
 "filetype-c#"

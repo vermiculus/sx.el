@@ -139,6 +139,7 @@
 "maya"
 "media"
 "memory"
+"metadata"
 "microphone"
 "mixer"
 "mixing"

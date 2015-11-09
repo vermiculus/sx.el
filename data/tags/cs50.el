@@ -284,6 +284,7 @@
 "github"
 "glabel"
 "glitch"
+"global"
 "gnu-make-utility"
 "google"
 "google-earth"

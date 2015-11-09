@@ -54,6 +54,7 @@
 "images"
 "interesting-tags"
 "interesting-tags"
+"locked-questions"
 "login"
 "markdown"
 "meta"

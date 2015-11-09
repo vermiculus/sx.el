@@ -1067,6 +1067,7 @@
 "time-dependent-workflow"
 "timeout"
 "timezone"
+"tooling"
 "tooling-api"
 "toolingapi"
 "tools"
