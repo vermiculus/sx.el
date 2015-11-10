@@ -116,6 +116,7 @@
 "covariance-estimation"
 "covariance-matrix"
 "credit"
+"credit-derivatives"
 "credit-ratings"
 "credit-risk"
 "credit-scoring"

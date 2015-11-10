@@ -3,7 +3,7 @@
 "acid"
 "acid-base"
 "adsorption"
-"alcohol"
+"alcohols"
 "allotropes"
 "alloy"
 "amines"

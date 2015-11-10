@@ -3167,6 +3167,7 @@
 "xnview"
 "xorg"
 "xorg-edgers"
+"xorg.conf"
 "xp"
 "xperia"
 "xprop"

@@ -300,6 +300,7 @@
 "skiing"
 "sleeping"
 "sleeping-bag"
+"sleeping-mattress"
 "sleeping-pad"
 "snakes"
 "snorkeling"

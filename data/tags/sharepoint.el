@@ -947,6 +947,7 @@
 "search-express"
 "search-query"
 "search-results"
+"search-results-webpart"
 "search-scope"
 "searchserviceapplication"
 "secure-store"

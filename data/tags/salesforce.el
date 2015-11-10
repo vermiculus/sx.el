@@ -776,6 +776,7 @@
 "pilot"
 "platform-activity"
 "platform-bug"
+"platform-cache"
 "platform-developer-1"
 "platform-encryption"
 "pod"

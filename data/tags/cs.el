@@ -514,7 +514,6 @@
 "undecidability"
 "unification"
 "union-find"
-"untagged"
 "user-interface"
 "variable-binding"
 "vc-dimension"

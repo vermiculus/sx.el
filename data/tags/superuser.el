@@ -3681,6 +3681,7 @@
 "peap"
 "pear"
 "peazip"
+"pebble"
 "pecl"
 "peer-to-peer"
 "pen"

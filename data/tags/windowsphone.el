@@ -233,6 +233,7 @@
 "speech"
 "spinning-gears"
 "ssl-certificate"
+"start-folders"
 "storage"
 "storage-check"
 "store"

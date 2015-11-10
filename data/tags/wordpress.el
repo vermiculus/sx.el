@@ -29,6 +29,7 @@
 "admin"
 "admin-bar"
 "admin-css"
+"admin-enqueue-scripts"
 "admin-init"
 "admin-menu"
 "admin-ui"

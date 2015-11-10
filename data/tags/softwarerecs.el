@@ -575,6 +575,7 @@
 "sharepoint"
 "sharing"
 "shell-scripting"
+"shopping"
 "shopping-cart"
 "signal-processing"
 "simulation"

@@ -247,7 +247,6 @@
 "philosophy-of-physics"
 "philosophy-of-religion"
 "philosophy-of-science"
-"philosophy-of-se"
 "philosophy-of-technology"
 "philosophy-of-war"
 "physicalism"

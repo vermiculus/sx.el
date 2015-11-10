@@ -80,6 +80,7 @@
 "instances"
 "interface"
 "internal-render"
+"internel"
 "keyframes"
 "keystroke"
 "knife-tool"
@@ -196,4 +197,5 @@
 "wiki"
 "windows"
 "wireframe"
-"workflow")
+"workflow"
+"world")

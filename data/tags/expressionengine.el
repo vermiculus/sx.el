@@ -179,6 +179,7 @@
 "ee2-upgrades"
 "ee2.9.2"
 "ee2.9.3"
+"ee3"
 "eeharbor"
 "email"
 "email-contact-form"

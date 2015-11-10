@@ -77,6 +77,7 @@
 "retail-availiability"
 "saison"
 "schwarzbier"
+"science"
 "serving"
 "shandy"
 "skunking"

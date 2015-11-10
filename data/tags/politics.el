@@ -23,6 +23,7 @@
 "campaigning"
 "canada"
 "capitalism"
+"catalonia"
 "central-bank"
 "charter-schools"
 "checks-and-balances"

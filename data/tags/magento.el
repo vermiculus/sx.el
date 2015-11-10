@@ -563,6 +563,7 @@
 "magespec"
 "magic"
 "magic-getter"
+"magicento"
 "magmi"
 "magneto-1.7"
 "magneto1.7"

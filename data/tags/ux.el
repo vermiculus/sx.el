@@ -923,6 +923,7 @@
 "web"
 "web-app"
 "webdesign"
+"webfonts"
 "webforms"
 "website"
 "website-design"
