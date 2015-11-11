@@ -938,6 +938,7 @@
 "jdk"
 "jenkins"
 "jfs"
+"jhbuild"
 "jmx"
 "job-control"
 "jobs"

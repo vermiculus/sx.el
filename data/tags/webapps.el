@@ -366,6 +366,7 @@
 "github-issues"
 "github-pages"
 "gitlab"
+"glassdoor"
 "gliffy"
 "gliph"
 "gmail"

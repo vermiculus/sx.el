@@ -102,6 +102,7 @@
 "support"
 "suspensions"
 "tag-synonyms"
+"tag-warnings"
 "tagging"
 "tags"
 "tex"

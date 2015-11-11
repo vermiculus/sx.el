@@ -104,7 +104,6 @@
 "geometry"
 "glassware"
 "gloves"
-"gold"
 "green-chemistry"
 "group-theory"
 "halides"

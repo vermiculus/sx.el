@@ -3505,7 +3505,6 @@
 "operating-systems"
 "opkg"
 "opml"
-"optical"
 "optical-cable"
 "optical-drive"
 "optical-media"

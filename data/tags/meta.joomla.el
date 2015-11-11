@@ -70,6 +70,7 @@
 "tag-synonyms"
 "tagging"
 "tags"
+"team"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

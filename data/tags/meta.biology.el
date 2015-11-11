@@ -64,6 +64,7 @@
 "references"
 "reopen"
 "reputation"
+"request"
 "retagging"
 "rss"
 "search"

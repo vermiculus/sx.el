@@ -68,6 +68,7 @@
 "children"
 "chili"
 "chilli"
+"chrysanthemums"
 "cilantro"
 "citrus"
 "clay"

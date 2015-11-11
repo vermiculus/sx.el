@@ -10,6 +10,7 @@
 "address-shortening"
 "addresses"
 "adoption"
+"airbitz"
 "airdrop"
 "alert-system"
 "algorithms"

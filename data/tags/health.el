@@ -120,6 +120,7 @@
 "estrogen"
 "exercise"
 "eye"
+"fast-food"
 "fatigue"
 "fda-approval"
 "feet"

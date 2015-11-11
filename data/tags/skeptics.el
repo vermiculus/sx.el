@@ -407,6 +407,7 @@
 "medical-science"
 "medications"
 "medicine"
+"medicines"
 "meditation"
 "mehmet-oz"
 "memory"

@@ -806,6 +806,7 @@
 "warehouse-clubs"
 "warrants"
 "wash-sale"
+"washington"
 "water"
 "wealth-preservation"
 "websites"
@@ -818,5 +819,6 @@
 "working-abroad"
 "working-at-home"
 "world"
+"wyoming"
 "yahoo-finance"
 "yield")

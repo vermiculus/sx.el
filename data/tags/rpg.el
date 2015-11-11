@@ -107,6 +107,7 @@
 "character-death"
 "character-development"
 "character-levels"
+"character-optimization"
 "character-sheets"
 "character-templates"
 "charge"

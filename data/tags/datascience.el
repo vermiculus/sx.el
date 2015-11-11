@@ -81,7 +81,6 @@
 "google"
 "gradient-descent"
 "graphs"
-"h2o"
 "hadoop"
 "hbase"
 "hierarchical-data-format"

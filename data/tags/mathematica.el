@@ -561,7 +561,6 @@
 "slideshows"
 "slideview"
 "slot"
-"slow"
 "social-media"
 "solid-geometry"
 "solve"

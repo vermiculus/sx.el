@@ -5,6 +5,7 @@
 "afterlife"
 "agamas"
 "agni"
+"agni-purana"
 "agnosticism"
 "ahimsa"
 "aitareya-brahmana"

@@ -54,6 +54,7 @@
 "edges"
 "editing"
 "effects"
+"error"
 "export"
 "exr"
 "external-applications"
@@ -80,7 +81,6 @@
 "instances"
 "interface"
 "internal-render"
-"internel"
 "keyframes"
 "keystroke"
 "knife-tool"
@@ -197,5 +197,4 @@
 "wiki"
 "windows"
 "wireframe"
-"workflow"
-"world")
+"workflow")

@@ -194,7 +194,6 @@
 "sort"
 "source"
 "spell-checking"
-"spelling"
 "split"
 "startup"
 "status-line"

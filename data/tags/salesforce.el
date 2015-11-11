@@ -942,6 +942,7 @@
 "security-review"
 "security-scanner"
 "security-token"
+"selectcheckboxes"
 "selectivity"
 "selectlist"
 "selectoption"
