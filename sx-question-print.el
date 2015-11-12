@@ -199,9 +199,7 @@ replaced with the comment."
                 sx-question-mode--sort-methods))
   :group 'sx-question-mode)
 
-(defcustom sx-question-mode-use-images
-  (eval-when-compile
-    (image-type-available-p 'imagemagick))
+(defcustom sx-question-mode-use-images (image-type-available-p 'imagemagick)
   "Non-nil if SX should download and display images.
 By default, this is `t' if the `imagemagick' image type is
 available (checked with `image-type-available-p').  If this image
