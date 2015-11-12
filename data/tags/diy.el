@@ -561,6 +561,7 @@
 "severe-weather"
 "sewer"
 "sharpening"
+"shearwall"
 "sheathing"
 "shed"
 "sheetrock"

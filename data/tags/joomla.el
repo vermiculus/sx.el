@@ -127,6 +127,7 @@
 "jfactory"
 "jform"
 "jhtml"
+"jimage"
 "jimport"
 "jinput"
 "jlayout"

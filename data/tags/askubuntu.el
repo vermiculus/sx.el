@@ -367,6 +367,7 @@
 "capture"
 "card-reader"
 "cardapio"
+"case"
 "case-insensitive"
 "cat"
 "catalyst"

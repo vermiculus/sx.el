@@ -1399,6 +1399,7 @@
 "television"
 "temp-files"
 "terminal"
+"terminology"
 "tether"
 "tethering"
 "text-copy"

@@ -57,7 +57,6 @@
 "career-path"
 "categorization"
 "certification"
-"change-of-field"
 "changing-fields"
 "chapters"
 "cheating"

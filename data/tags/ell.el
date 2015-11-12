@@ -114,7 +114,6 @@
 "discourse-context"
 "discourse-markers"
 "dislocation"
-"distinguish"
 "ditransitive"
 "do-support"
 "double-genitive"

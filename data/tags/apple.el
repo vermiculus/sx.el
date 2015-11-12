@@ -123,6 +123,7 @@
 "automator"
 "automount"
 "autosave"
+"available-space"
 "avi"
 "awk"
 "back-to-my-mac"

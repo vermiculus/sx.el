@@ -45,6 +45,7 @@
 "differentiatd-instruction"
 "disability"
 "discrete-math"
+"diversity"
 "division"
 "dyscalculia"
 "education-research"

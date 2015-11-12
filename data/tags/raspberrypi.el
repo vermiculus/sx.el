@@ -324,7 +324,7 @@
 "servo"
 "settings"
 "setup"
-"shairport"
+"shairplay"
 "share"
 "shared-libraries"
 "signal"

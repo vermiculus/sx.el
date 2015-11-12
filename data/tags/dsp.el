@@ -272,6 +272,7 @@
 "signals-history"
 "singing"
 "sinogram"
+"skill"
 "smoothing"
 "snr"
 "soft-question"

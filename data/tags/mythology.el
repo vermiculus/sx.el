@@ -67,6 +67,7 @@
 "folkvangr"
 "frazer"
 "funerals"
+"gawain"
 "gender"
 "genius"
 "germania"

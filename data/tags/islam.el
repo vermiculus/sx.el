@@ -38,6 +38,7 @@
 "atheism"
 "atheists"
 "authenticity"
+"awrah"
 "ayah"
 "ayyam-e-tashrik"
 "azadari"

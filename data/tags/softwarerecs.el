@@ -55,6 +55,7 @@
 "boot"
 "bootable"
 "bootloader"
+"browser"
 "bukkit"
 "business-card"
 "business-intelligence"

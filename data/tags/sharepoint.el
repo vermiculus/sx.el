@@ -198,6 +198,7 @@
 "connected-web-parts"
 "connection"
 "console-application"
+"constant"
 "consumer"
 "contacts"
 "containspredicate"

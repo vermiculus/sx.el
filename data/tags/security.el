@@ -324,6 +324,7 @@
 "hash"
 "hashcat"
 "hashing"
+"header"
 "healthcare"
 "heap-overflow"
 "heartbleed"

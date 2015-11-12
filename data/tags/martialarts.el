@@ -119,7 +119,6 @@
 "shoes"
 "short-stick"
 "shotokan"
-"shotokan-do"
 "shu-ha-ri"
 "social"
 "soreness"

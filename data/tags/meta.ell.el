@@ -76,6 +76,7 @@
 "suggested-edits"
 "support"
 "tag-cleaning"
+"tag-request"
 "tag-synonyms"
 "tag-wiki"
 "tagging"

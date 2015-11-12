@@ -32,6 +32,7 @@
 "combinatorics"
 "computer-puzzle"
 "computer-science"
+"connecting-wall"
 "connections-puzzle"
 "construction"
 "counting"

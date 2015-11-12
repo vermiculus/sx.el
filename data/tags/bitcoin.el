@@ -17,6 +17,7 @@
 "alias"
 "allocation"
 "altcoin"
+"altcoin-developement"
 "altcoin-development"
 "alternative-blockchains"
 "alternatives"

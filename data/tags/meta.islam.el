@@ -88,6 +88,7 @@
 "rescue-attempt"
 "retagging"
 "review"
+"revision"
 "rss"
 "salafi"
 "scholars"

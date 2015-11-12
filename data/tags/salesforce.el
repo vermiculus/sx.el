@@ -635,6 +635,7 @@
 "lookup-filter"
 "loop"
 "mac-os-x"
+"mail-chimp"
 "mail-merge"
 "managed"
 "managed-extension"

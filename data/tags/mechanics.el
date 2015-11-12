@@ -183,6 +183,7 @@
 "crown-victoria"
 "cruise-control"
 "crv"
+"cts"
 "cupra-leon"
 "cv-boot"
 "cv-joint"
