@@ -1128,6 +1128,7 @@
 "versioning"
 "verticalresize"
 "vf"
+"vf-remote-objects"
 "video"
 "view"
 "viewstate"

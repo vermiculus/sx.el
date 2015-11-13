@@ -177,6 +177,7 @@
 "kdf"
 "keccak"
 "kem"
+"kerberos"
 "key-check-value"
 "key-derivation"
 "key-distribution"

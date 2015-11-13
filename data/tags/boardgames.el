@@ -253,7 +253,6 @@
 "goban"
 "gomoku"
 "gosu"
-"gotactics"
 "great-dalmuti"
 "great-museum-caper"
 "guards-guards"

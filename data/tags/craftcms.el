@@ -163,6 +163,7 @@
 "json"
 "label"
 "language"
+"layout"
 "learning-craft"
 "license"
 "lightswitch"

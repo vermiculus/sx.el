@@ -245,7 +245,6 @@
 "dmoz"
 "dns"
 "dns-lookup"
-"dns-name"
 "dns-server"
 "dns-servers"
 "dnsbl"

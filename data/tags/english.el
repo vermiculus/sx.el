@@ -251,6 +251,8 @@
 "diagraming"
 "diagramming"
 "dialect"
+"dialect-equivalent"
+"dialectal-equivalent"
 "dialects"
 "dialog"
 "dialogue"

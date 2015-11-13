@@ -39,6 +39,7 @@
 "cjam"
 "classification"
 "clock"
+"code-billiards"
 "code-bowling"
 "code-challenge"
 "code-generation"

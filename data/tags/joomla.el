@@ -163,6 +163,7 @@
 "libraries"
 "linux"
 "localhost"
+"logging"
 "login"
 "logs"
 "maintenance"

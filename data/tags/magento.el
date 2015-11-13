@@ -475,6 +475,7 @@
 "json"
 "key"
 "knockoutjs"
+"labels"
 "landing-pages"
 "language"
 "laravel-framework"

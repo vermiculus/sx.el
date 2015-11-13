@@ -279,6 +279,7 @@
 "grants"
 "grid"
 "guestbook"
+"guzzle"
 "header"
 "heartbeat"
 "hierarchical-select"

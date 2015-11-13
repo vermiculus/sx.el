@@ -67,6 +67,7 @@
 "request"
 "retagging"
 "rss"
+"scope"
 "search"
 "site-evaluation"
 "site-promotion"

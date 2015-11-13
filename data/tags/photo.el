@@ -624,6 +624,7 @@
 "lightroom-mobile"
 "lights"
 "lightstands"
+"limited-editions"
 "limited-space"
 "linux"
 "live-view"

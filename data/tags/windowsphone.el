@@ -271,6 +271,7 @@
 "whatsapp"
 "wifi"
 "windows-10"
+"windows-10-mobile"
 "windows-7"
 "windows-8"
 "windows-insider"

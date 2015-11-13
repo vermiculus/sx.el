@@ -454,6 +454,7 @@
 "spectral-graph-theory"
 "st.statistics"
 "stable"
+"state-complexity"
 "statistical-physics"
 "stochastic-process"
 "streaming"

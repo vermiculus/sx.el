@@ -731,6 +731,7 @@
 "gnu-make"
 "gnu-parallel"
 "gnu-screen"
+"gnucash"
 "gnuclad"
 "gnuclient"
 "gnuplot"

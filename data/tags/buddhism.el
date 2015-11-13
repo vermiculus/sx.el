@@ -315,7 +315,6 @@
 "shikantaza"
 "shin-buddhism"
 "shingon"
-"sick"
 "sila"
 "six-realms"
 "six-senses"

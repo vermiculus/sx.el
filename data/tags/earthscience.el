@@ -92,7 +92,6 @@
 "fracking"
 "gas"
 "geobiology"
-"geochemical"
 "geochemistry"
 "geochronology"
 "geodesy"
