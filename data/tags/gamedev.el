@@ -607,6 +607,7 @@
 "opengl-es"
 "opengl-es2"
 "opengl-es3"
+"openscenegraph"
 "opentk"
 "operating-system"
 "optimization"

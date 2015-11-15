@@ -2125,6 +2125,7 @@
 "openscap"
 "openshift-online"
 "openshift-origin"
+"opensmtpd"
 "opensolaris"
 "opensource"
 "openssh"

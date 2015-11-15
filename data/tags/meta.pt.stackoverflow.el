@@ -48,6 +48,7 @@
 "devday"
 "diferen&#231;as-regionais"
 "discussion"
+"discussion"
 "divulga&#231;&#227;o"
 "down-votes"
 "dump-dados"

@@ -631,6 +631,7 @@
 "sable"
 "safety"
 "santa-fe"
+"santro"
 "saturn"
 "sbc"
 "scan-tool"

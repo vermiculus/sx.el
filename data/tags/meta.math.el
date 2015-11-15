@@ -53,6 +53,7 @@
 "deleted-questions"
 "deletion"
 "design"
+"disciplining"
 "discussion"
 "disputed-review-audits"
 "down-votes"

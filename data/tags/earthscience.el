@@ -23,7 +23,6 @@
 "barometric-pressure"
 "bathymetry"
 "bedrock"
-"big-data"
 "biogeochemistry"
 "biomass"
 "biomineralization"

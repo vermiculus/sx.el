@@ -74,7 +74,6 @@
 "communication"
 "community"
 "community-college"
-"competition"
 "computer-science"
 "conference"
 "conflict-of-interest"

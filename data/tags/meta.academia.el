@@ -1,4 +1,5 @@
 ("accepted-answer"
+"admissions"
 "allowed-questions"
 "answers"
 "area51"

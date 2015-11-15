@@ -9,7 +9,6 @@
 "amateur"
 "amateur-astronomy"
 "amateur-observing"
-"ancients"
 "angular-diameter"
 "angular-resolution"
 "antimatter"

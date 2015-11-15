@@ -655,7 +655,6 @@
 "psql"
 "pt-table-checksum"
 "python"
-"ql"
 "queries"
 "query"
 "query"

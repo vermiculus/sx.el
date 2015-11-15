@@ -645,6 +645,7 @@
 "rogue"
 "rogue-trader"
 "rokugan"
+"role-playing-poem"
 "rolemaster"
 "roleplaying"
 "roll-for-shoes"

@@ -31,6 +31,7 @@
 "communities"
 "community"
 "community-ads"
+"community-user"
 "community-wiki"
 "conferences"
 "css"

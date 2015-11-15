@@ -72,6 +72,7 @@
 "craving"
 "cults"
 "culture"
+"current-events"
 "daily-life"
 "dalai-lama"
 "dana"

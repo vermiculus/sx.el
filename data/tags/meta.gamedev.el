@@ -61,6 +61,7 @@
 "recent-activity"
 "reputation"
 "retagging"
+"review"
 "rss"
 "search"
 "site-attributes"

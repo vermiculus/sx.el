@@ -354,6 +354,7 @@
 "upanishad"
 "utilitarianism"
 "validity"
+"values"
 "vedanta"
 "virtue-ethics"
 "whitehead"

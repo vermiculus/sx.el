@@ -155,6 +155,7 @@
 "suggested-order"
 "superheroes"
 "support"
+"suspension"
 "swag"
 "tag"
 "tag-blacklist-request"

@@ -89,6 +89,7 @@
 "inverted-vee"
 "ionosphere"
 "itu-zones"
+"japan"
 "jargon"
 "jota"
 "jt65"

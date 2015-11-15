@@ -169,6 +169,7 @@
 "soundtrack"
 "speakers"
 "spinal-tap"
+"spotify"
 "style"
 "swing"
 "technique"

@@ -115,6 +115,7 @@
 "ir"
 "isp"
 "isr"
+"java"
 "johnny-five"
 "keyboard"
 "lan"

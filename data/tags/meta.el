@@ -239,6 +239,7 @@
 "chat-ads"
 "chat-event"
 "chat-faq"
+"chat-feeds"
 "chat-flags"
 "chat-pins"
 "chat-search"

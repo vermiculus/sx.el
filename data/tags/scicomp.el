@@ -126,7 +126,6 @@
 "helmholtz-equation"
 "heuristics"
 "high-dimensional"
-"home"
 "homework"
 "hough"
 "hpc"

@@ -350,6 +350,7 @@
 "monopoly-deal"
 "monopoly-millionaire"
 "mordheim"
+"mountains-of-madness"
 "mr-jack-pocket"
 "mtg"
 "mtg-archenemy"

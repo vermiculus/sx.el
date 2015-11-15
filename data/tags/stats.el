@@ -1121,6 +1121,7 @@
 "rmr"
 "rms"
 "rmse"
+"rnn"
 "robust"
 "robust-standard-error"
 "roc"
