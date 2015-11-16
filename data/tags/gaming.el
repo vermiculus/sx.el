@@ -2529,6 +2529,7 @@
 "persona-4-arena"
 "persona-4-golden"
 "persona-q"
+"pes-2009"
 "pes-2010"
 "pes-2011"
 "pes-2012"

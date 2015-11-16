@@ -184,7 +184,6 @@
 "protons"
 "purification"
 "qtaim"
-"quantum"
 "quantum-chemistry"
 "quantum-mechanics"
 "radicals"

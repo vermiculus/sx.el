@@ -813,6 +813,7 @@
 "sqlite"
 "sqll"
 "sqlplus"
+"sqlpsx"
 "sqlserver"
 "srid"
 "ssas"

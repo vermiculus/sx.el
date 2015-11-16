@@ -259,6 +259,7 @@
 "substantive"
 "suetterlin"
 "suffix"
+"suffixes"
 "swabian"
 "swiss-german"
 "swiss-standard-german"

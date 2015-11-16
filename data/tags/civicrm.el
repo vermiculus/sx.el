@@ -176,6 +176,7 @@
 "memory"
 "menu"
 "message-templates"
+"metatags"
 "microsoft"
 "migration"
 "mobile"

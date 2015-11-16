@@ -72,6 +72,7 @@
 "finance"
 "forecast"
 "freebase"
+"fuzzy-logic"
 "gate"
 "gbm"
 "genes"
@@ -207,4 +208,5 @@
 "visualization"
 "weather"
 "weighted-data"
+"weka"
 "word-embeddings")

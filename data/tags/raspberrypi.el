@@ -81,6 +81,7 @@
 "docker"
 "dpkg"
 "driver"
+"ds1307"
 "ds18b20"
 "dsi"
 "durability"

@@ -435,6 +435,7 @@
 "irrlicht"
 "isometric"
 "java"
+"javafx"
 "javascript"
 "jbox2d"
 "jframe"

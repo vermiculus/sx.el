@@ -95,7 +95,6 @@
 "status-planned"
 "status-reproduced"
 "status-review"
-"stdin"
 "support"
 "synonym-request"
 "tag-badges"

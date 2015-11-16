@@ -187,6 +187,7 @@
 "naraka"
 "narasimha"
 "narayana"
+"narayaniya"
 "nature"
 "navagraha"
 "navrathri"

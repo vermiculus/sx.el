@@ -284,6 +284,7 @@
 "sports"
 "subjunctive"
 "subjuntivo"
+"subordinadas"
 "suffix"
 "suffixes"
 "sufijos"

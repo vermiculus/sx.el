@@ -36,6 +36,7 @@
 "moderation"
 "new-users"
 "notifications"
+"nous-sommes-parisiens"
 "openid"
 "profile-page"
 "questions"

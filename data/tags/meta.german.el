@@ -51,6 +51,7 @@
 "on-topic"
 "openid"
 "profile-page"
+"question-titles"
 "questions"
 "recent-activity"
 "reputation"
