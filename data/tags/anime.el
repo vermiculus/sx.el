@@ -603,6 +603,7 @@
 "michiko-to-hatchin"
 "midori-days"
 "minami-ke"
+"minami-kun-no-koibito"
 "miniskirt-space-pirates"
 "mirai-nikki"
 "mirai-shounen-conan"

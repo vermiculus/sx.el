@@ -197,7 +197,6 @@
 "twitter"
 "ui"
 "unanswered-questions"
-"undervote"
 "unicode"
 "up-votes"
 "usability"

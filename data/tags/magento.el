@@ -418,6 +418,7 @@
 "grouped-products"
 "grunt"
 "guest-checkout"
+"gui-tool"
 "gzip"
 "hack"
 "head"

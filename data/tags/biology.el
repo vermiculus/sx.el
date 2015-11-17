@@ -315,7 +315,6 @@
 "horizontal-gene-transfer"
 "hormones"
 "host-pathogen-interaction"
-"human"
 "human-anatomy"
 "human-biology"
 "human-ear"

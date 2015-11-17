@@ -499,6 +499,7 @@
 "redis"
 "redmine"
 "redo"
+"redux"
 "regex"
 "renderscript"
 "requirejs"

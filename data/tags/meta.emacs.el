@@ -34,6 +34,7 @@
 "featured"
 "flagging"
 "formatting"
+"graduation"
 "help"
 "help-center"
 "hyperlinks"

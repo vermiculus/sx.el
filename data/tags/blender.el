@@ -138,7 +138,6 @@
 "properties"
 "pynodes"
 "python"
-"quick-smoke"
 "render"
 "render-layers"
 "render-passes"

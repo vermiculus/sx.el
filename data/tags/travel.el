@@ -1414,6 +1414,7 @@
 "sharia-law"
 "sharm-el-sheikh"
 "shenzhen"
+"shetland"
 "shinkansen"
 "shipping"
 "ships"

@@ -30,6 +30,7 @@
 "flagging"
 "formatting"
 "future"
+"graduation"
 "help-center"
 "hyperlinks"
 "interesting-tags"

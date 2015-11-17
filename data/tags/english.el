@@ -374,6 +374,7 @@
 "got-gotten"
 "government"
 "gradability"
+"graduate"
 "grammar"
 "grammatical-gender"
 "grammatical-number"

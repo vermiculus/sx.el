@@ -25,6 +25,7 @@
 "featured"
 "flagging"
 "formatting"
+"graduation"
 "hyperlinks"
 "interesting-tags"
 "login"

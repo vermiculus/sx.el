@@ -250,6 +250,7 @@
 "speaking"
 "spelling"
 "spoken-language"
+"sprichwort"
 "standard-german"
 "stress"
 "style"

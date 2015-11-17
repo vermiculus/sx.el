@@ -166,6 +166,7 @@
 "language"
 "laws"
 "lay-buddhism"
+"lay-practices"
 "layman"
 "learning"
 "learning-materials"

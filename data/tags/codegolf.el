@@ -31,7 +31,6 @@
 "c++"
 "calendar"
 "calendar"
-"captcha"
 "card-games"
 "cellular-automata"
 "chef"

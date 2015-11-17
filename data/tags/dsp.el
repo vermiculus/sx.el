@@ -260,6 +260,7 @@
 "s-transform"
 "sampling"
 "scale-space"
+"scipy"
 "sdr"
 "segmentation"
 "self-study"

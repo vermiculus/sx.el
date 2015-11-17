@@ -246,6 +246,7 @@
 "video-quality"
 "video-recording"
 "video-standards"
+"videopad-video-editor"
 "videotape"
 "vimeo"
 "virtualdub"

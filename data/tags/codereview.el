@@ -20,6 +20,8 @@
 "akka"
 "algorithm"
 "amazon-s3"
+"amazon-s3"
+"amazon-web-services"
 "amp"
 "android"
 "angular"

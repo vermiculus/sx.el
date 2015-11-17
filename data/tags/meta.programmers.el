@@ -89,6 +89,7 @@
 "moderation"
 "moderator-tools"
 "moderators"
+"name-that-thing"
 "new-users"
 "notifications"
 "off-topic"
