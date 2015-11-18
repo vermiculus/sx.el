@@ -120,6 +120,7 @@
 "envelope"
 "error"
 "error-page"
+"evaluating-civicrm"
 "events"
 "events"
 "export"

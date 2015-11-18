@@ -47,6 +47,7 @@
 "end-grain"
 "ergonomics"
 "fasteners"
+"faux-finish"
 "fence"
 "finish"
 "finish"

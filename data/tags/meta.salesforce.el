@@ -4,6 +4,7 @@
 "badges"
 "beta"
 "blacklist-request"
+"blog"
 "bounty"
 "bug"
 "burninate-request"

@@ -191,6 +191,7 @@
 "hadith"
 "hadith-interpretation"
 "hadith-science"
+"hafidh"
 "hair"
 "haj"
 "hajj"

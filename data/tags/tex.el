@@ -366,6 +366,7 @@
 "emp"
 "emphasis"
 "empheq"
+"enctex"
 "endfloat"
 "endnotes"
 "engineering"

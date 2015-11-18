@@ -3141,6 +3141,7 @@
 "mozy"
 "mp3"
 "mp3-player"
+"mp3tag"
 "mp4"
 "mp4box"
 "mpd"

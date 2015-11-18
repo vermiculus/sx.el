@@ -1629,7 +1629,6 @@
 "time-stamp"
 "time-tracking"
 "tips"
-"tips-and-tricks"
 "tomcat"
 "toolkit"
 "tools"

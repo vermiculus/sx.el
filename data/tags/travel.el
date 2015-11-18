@@ -603,6 +603,7 @@
 "france"
 "frankfurt"
 "fraud"
+"freedom-of-movement"
 "freighter-travel"
 "french"
 "french-citizens"

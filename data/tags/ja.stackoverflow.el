@@ -599,7 +599,6 @@
 "tls"
 "tmlib.js"
 "tmux"
-"toast"
 "tomcat"
 "travis-ci"
 "tshark"

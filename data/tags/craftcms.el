@@ -289,6 +289,7 @@
 "singles"
 "siteurl"
 "slug"
+"sort"
 "sorting"
 "sources"
 "spaceless"

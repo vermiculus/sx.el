@@ -599,6 +599,7 @@
 "learning"
 "libraries"
 "licenses"
+"lighnting"
 "light-application-object"
 "lighting-ui"
 "lightning"
@@ -1181,4 +1182,5 @@
 "xsrf"
 "xss"
 "zip"
-"zone")
+"zone"
+"zuora")

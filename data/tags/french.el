@@ -334,6 +334,7 @@
 "toponymes"
 "traduction"
 "trait-d-union"
+"transitif"
 "translation"
 "transports"
 "travail"

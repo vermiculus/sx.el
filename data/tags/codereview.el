@@ -211,6 +211,7 @@
 "database-schema"
 "databinding"
 "datatable"
+"datatables"
 "datetime"
 "db2"
 "ddd"

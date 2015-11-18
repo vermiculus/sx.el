@@ -52,6 +52,7 @@
 "retagging"
 "review"
 "rss"
+"sabotage"
 "scope"
 "search"
 "site-evaluation"

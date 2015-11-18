@@ -45,6 +45,7 @@
 "astronaut-lifestyle"
 "astronauts"
 "astronomy"
+"astrosat"
 "atlas-v"
 "atmosphere"
 "atmospheric-drag"

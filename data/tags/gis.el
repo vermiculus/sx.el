@@ -478,6 +478,7 @@
 "digitalglobe"
 "digitising"
 "digitizing"
+"digitiziong"
 "dijkstra"
 "dimensions"
 "direct-connect"

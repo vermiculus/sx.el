@@ -36,6 +36,7 @@
 "callback"
 "calling-conventions"
 "callstack"
+"capstone"
 "career-advice"
 "carry-flag"
 "cms"

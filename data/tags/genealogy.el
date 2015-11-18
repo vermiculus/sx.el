@@ -125,6 +125,7 @@
 "europe"
 "evaluating-records"
 "evidence"
+"facial-recognition"
 "family"
 "family-history-library"
 "family-legend"

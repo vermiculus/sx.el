@@ -141,6 +141,7 @@
 "axel"
 "axi"
 "background-process"
+"backintime"
 "backlight"
 "backports"
 "backtrack"

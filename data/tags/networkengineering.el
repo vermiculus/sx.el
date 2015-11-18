@@ -363,4 +363,5 @@
 "wifi"
 "wireless"
 "wireshark"
-"wlc")
+"wlc"
+"xfp")

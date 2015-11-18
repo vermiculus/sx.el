@@ -546,6 +546,7 @@
 "text-editing"
 "text-properties"
 "themes"
+"thumbnails"
 "time-date"
 "timers"
 "todo"

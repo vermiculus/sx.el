@@ -94,7 +94,6 @@
 "dynamics"
 "education"
 "elastic-modulus"
-"electric-grid"
 "electrical-engineering"
 "electrical-grid"
 "electrical-insulation"

@@ -72,6 +72,7 @@
 "deployer"
 "deployer-extension"
 "deployment"
+"device"
 "directoryservicegroup"
 "documentation"
 "dreamviewer"
