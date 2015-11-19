@@ -137,6 +137,7 @@
 "selling"
 "sensor-color"
 "sensor-colour"
+"sensor-gyro"
 "sensor-ultrasonic"
 "set-database"
 "set-information"

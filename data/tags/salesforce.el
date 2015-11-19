@@ -599,7 +599,6 @@
 "learning"
 "libraries"
 "licenses"
-"lighnting"
 "light-application-object"
 "lighting-ui"
 "lightning"

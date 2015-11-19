@@ -895,6 +895,7 @@
 "stores"
 "structured-data"
 "submenu"
+"supee-5594"
 "supee-6788"
 "superattribute"
 "swatches"

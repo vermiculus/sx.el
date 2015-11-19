@@ -44,6 +44,7 @@
 "reputation"
 "retag-request"
 "rss"
+"scope"
 "search"
 "site-climate"
 "site-promotion"

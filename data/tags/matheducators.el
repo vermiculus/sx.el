@@ -75,6 +75,7 @@
 "history-of-math"
 "homeschooling"
 "homework"
+"induction"
 "inquiry-based-learning"
 "instructional-technology"
 "integration"

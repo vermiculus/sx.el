@@ -383,6 +383,7 @@
 "perspective"
 "photo-editing"
 "photography"
+"photomontage"
 "photoshop"
 "photoshop-effects"
 "photoshop-scripting"

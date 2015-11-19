@@ -208,6 +208,7 @@
 "meditation-zazen"
 "mental-factors"
 "mental-health"
+"mercy"
 "merit"
 "metta-bhavana"
 "middle-way"

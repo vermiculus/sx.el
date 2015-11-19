@@ -130,6 +130,7 @@
 "forms"
 "forwarding"
 "geocoding"
+"gift-aid-extension"
 "git"
 "github"
 "global-menu"

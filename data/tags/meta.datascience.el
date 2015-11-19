@@ -16,6 +16,7 @@
 "deleted-questions"
 "design"
 "discussion"
+"down"
 "down-votes"
 "editing"
 "etiquette"

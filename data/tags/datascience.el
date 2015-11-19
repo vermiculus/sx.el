@@ -62,6 +62,7 @@
 "ensemble-modeling"
 "error-handling"
 "evaluation"
+"excel"
 "expectation-maximization"
 "experiments"
 "feature-construction"

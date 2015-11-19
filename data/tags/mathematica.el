@@ -249,6 +249,7 @@
 "hardware"
 "hashing"
 "hdf5"
+"hdf5-format"
 "head"
 "headers"
 "histograms"

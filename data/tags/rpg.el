@@ -127,6 +127,7 @@
 "combat"
 "combat-advantage"
 "combat-maneuver"
+"combatgm-techniques"
 "communication"
 "compels"
 "concealment"

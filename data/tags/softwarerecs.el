@@ -489,6 +489,7 @@
 "pod"
 "podcast"
 "point-of-sale"
+"poll"
 "portable"
 "posix"
 "postfix"

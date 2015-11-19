@@ -312,6 +312,7 @@
 "homeopathy"
 "homosexuality"
 "honey"
+"hong-kong"
 "household"
 "hpv"
 "human-body"

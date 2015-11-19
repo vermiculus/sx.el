@@ -324,7 +324,6 @@
 "distributions"
 "dlm"
 "documentation"
-"domain-adaptation"
 "double-blind"
 "down-sample"
 "dropout"

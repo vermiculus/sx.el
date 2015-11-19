@@ -124,6 +124,7 @@
 "core-plot"
 "coredata"
 "coreos"
+"cors"
 "cpp"
 "crystal-reports"
 "csrf"

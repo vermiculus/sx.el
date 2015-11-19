@@ -1443,6 +1443,7 @@
 "pluma"
 "plymouth"
 "pm-utils"
+"pmount"
 "png"
 "policykit"
 "polipo"

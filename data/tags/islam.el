@@ -203,7 +203,6 @@
 "haram"
 "haram-halal"
 "health"
-"heart"
 "heaven"
 "hell"
 "helping"

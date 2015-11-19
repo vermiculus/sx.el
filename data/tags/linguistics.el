@@ -204,6 +204,7 @@
 "khmer"
 "kinship-terms"
 "korean"
+"lacunas"
 "lambda-calculus"
 "language-acquisition"
 "language-change"

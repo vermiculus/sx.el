@@ -1417,7 +1417,6 @@
 "web"
 "welsh"
 "whatsit"
-"whitespace"
 "widows"
 "widows-orphans"
 "width"

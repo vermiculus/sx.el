@@ -6,6 +6,7 @@
 "adversarial-model"
 "aes"
 "algebraic-attack"
+"algebraic-eraser"
 "algorithm-design"
 "alternating-step"
 "anonymity"

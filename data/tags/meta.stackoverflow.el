@@ -175,7 +175,6 @@
 "footer"
 "formatting"
 "forums"
-"foul-play"
 "front-page"
 "gamification"
 "gender"
