@@ -265,6 +265,7 @@
 "gps"
 "gpu"
 "gpu-monitor"
+"gpx"
 "graphic-design"
 "graphs"
 "gratis"

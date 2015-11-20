@@ -481,6 +481,7 @@
 "kill-la-kill"
 "kimi-ni-todoke"
 "kimiuso"
+"king-of-braves-gaogaigar"
 "kingdom"
 "kingdom-hearts"
 "kiniro-mosaic"

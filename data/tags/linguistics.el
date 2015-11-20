@@ -87,6 +87,7 @@
 "ctakes"
 "cxg"
 "czech"
+"danish"
 "dark-l"
 "datasets"
 "dead-languages"

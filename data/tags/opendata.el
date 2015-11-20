@@ -192,6 +192,7 @@
 "survey"
 "taxes"
 "telecom"
+"text"
 "time-series"
 "tool-request"
 "trade"

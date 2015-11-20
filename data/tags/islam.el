@@ -380,6 +380,7 @@
 "mutah"
 "mythology"
 "nafl"
+"najis"
 "najs"
 "namaz"
 "names"

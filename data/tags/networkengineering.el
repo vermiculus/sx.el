@@ -136,6 +136,8 @@
 "idf"
 "idp"
 "ieee-802.11"
+"ieee-802.11k"
+"ieee-802.11r"
 "ieee-802.1s"
 "ieee-802.1x"
 "ieee-802.3ad"

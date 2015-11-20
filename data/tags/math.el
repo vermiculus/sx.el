@@ -428,6 +428,7 @@
 "expected-value"
 "experimental-mathematics"
 "explanation"
+"exponential-distribution"
 "exponential-function"
 "exponential-sum"
 "exponentiation"

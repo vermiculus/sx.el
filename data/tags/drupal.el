@@ -165,8 +165,6 @@
 "draggable-views"
 "drop-down-menu"
 "dropdown"
-"drupal-add-library"
-"drupal-alter"
 "drupal-commerce"
 "drupal-commerce-file"
 "drupal-commons"

@@ -9,6 +9,7 @@
 "badges"
 "beta"
 "beta-phase"
+"black-hat"
 "blacklist-request"
 "bounty"
 "bug"

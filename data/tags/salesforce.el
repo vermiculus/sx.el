@@ -500,6 +500,7 @@
 "hierarchy"
 "high-volume-portal"
 "highcharts"
+"history"
 "history-tracking"
 "holidays"
 "home-page-component"

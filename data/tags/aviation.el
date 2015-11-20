@@ -344,6 +344,7 @@
 "headset"
 "height"
 "helicopter"
+"helipad"
 "high-altitude"
 "high-lift-device"
 "hijack"

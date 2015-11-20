@@ -719,6 +719,7 @@
 "substititution"
 "substitutes"
 "substitutions"
+"substutions"
 "sugar"
 "sugar-free"
 "sunbutter"

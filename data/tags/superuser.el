@@ -2921,6 +2921,7 @@
 "memory-timings"
 "memory-usage"
 "memorystick"
+"memset"
 "memtest"
 "memtest86+"
 "mencoder"

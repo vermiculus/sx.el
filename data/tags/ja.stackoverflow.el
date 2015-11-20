@@ -126,6 +126,7 @@
 "coreos"
 "cors"
 "cpp"
+"cron"
 "crystal-reports"
 "csrf"
 "css"

@@ -74,6 +74,7 @@
 "climbing-grade"
 "clothing"
 "coast"
+"coconut-palm"
 "coconut-tree"
 "cold"
 "cold-weather"

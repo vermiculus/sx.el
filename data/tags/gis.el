@@ -126,6 +126,7 @@
 "arcgis-silverlight-viewer"
 "arcgis-soap-api"
 "arcgis-state-government"
+"arcgis-water-utilities"
 "arcgis-web-adf"
 "arcgis-web-appbuilder"
 "arcgis-workflow-manager"

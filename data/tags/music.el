@@ -350,7 +350,6 @@
 "rudiments"
 "samba"
 "samples"
-"satb"
 "saxophone"
 "scales"
 "self-learning"

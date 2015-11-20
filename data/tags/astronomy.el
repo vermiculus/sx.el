@@ -92,6 +92,7 @@
 "exposure"
 "extinction"
 "extra-terrestrial"
+"fate-of-universe"
 "fermi-paradox"
 "flare"
 "formation"
