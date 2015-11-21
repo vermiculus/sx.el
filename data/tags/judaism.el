@@ -289,6 +289,7 @@
 "children-of-noach"
 "children-parenting"
 "chillul-hashem"
+"chillul-shabbat"
 "chilul-hashem"
 "chilul-kidush-hashem"
 "chinuch-education"

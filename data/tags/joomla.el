@@ -199,6 +199,7 @@
 "overrides"
 "packaging"
 "pagination"
+"path"
 "performance"
 "permissions"
 "phocagallery"

@@ -487,7 +487,6 @@
 "google-spreadsheet"
 "google-spreadsheet-charts"
 "google-spreadsheets"
-"google-storage"
 "google-takeout"
 "google-talk"
 "google-tasks"

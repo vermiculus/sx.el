@@ -1,7 +1,5 @@
 ("10gbase"
 "3-com"
-"802.11k"
-"802.11r"
 "aaa"
 "access-control"
 "access-point"

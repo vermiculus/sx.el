@@ -445,6 +445,7 @@
 "political-history"
 "political-party"
 "politics"
+"polynesia"
 "pope"
 "popular-culture"
 "population"

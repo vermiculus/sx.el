@@ -143,6 +143,7 @@
 "free-climbing"
 "free-solo-climbing"
 "french"
+"fruits"
 "fuel"
 "fungus"
 "garbage-disposal"

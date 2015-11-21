@@ -42,6 +42,7 @@
 "cataclysms"
 "caves"
 "chemistry"
+"chimera-folk"
 "cities"
 "civil-war"
 "civil-war"

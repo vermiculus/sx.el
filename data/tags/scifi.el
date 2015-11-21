@@ -839,6 +839,7 @@
 "jericho"
 "jericho-tv-series"
 "jerry-pournelle"
+"jessica-jones"
 "jgballard"
 "jim-butcher"
 "jk-rowling"

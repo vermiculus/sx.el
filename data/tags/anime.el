@@ -907,6 +907,7 @@
 "sunday-without-god"
 "sundome"
 "super-sonico"
+"superior"
 "sword-art-online"
 "symbolism"
 "taiho-shichau-zo"

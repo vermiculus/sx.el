@@ -210,6 +210,7 @@
 "orrery"
 "parallax"
 "parsec"
+"philosophy"
 "phobos"
 "photography"
 "photometry"

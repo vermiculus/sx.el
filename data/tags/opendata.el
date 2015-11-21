@@ -141,6 +141,7 @@
 "open-definition"
 "opencorporates"
 "openfda"
+"openfec"
 "openrefine"
 "openstreetmap"
 "parking"

@@ -29,6 +29,7 @@
 "clustering"
 "clusters"
 "computer-vision"
+"conferences"
 "confusion-matrix"
 "consumerweb"
 "convnet"

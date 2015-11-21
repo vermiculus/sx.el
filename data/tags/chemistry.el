@@ -174,7 +174,6 @@
 "phase"
 "photochemistry"
 "physical-chemistry"
-"physics"
 "plastics"
 "pnictogen"
 "polarity"

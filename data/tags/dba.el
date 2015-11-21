@@ -144,6 +144,7 @@
 "data-import"
 "data-integrity"
 "data-loss"
+"data-masking"
 "data-migration"
 "data-pages"
 "data-quality-services"

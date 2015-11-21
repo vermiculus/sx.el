@@ -88,6 +88,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"suggested-edits"
 "support"
 "swag"
 "syntax-highlighting"

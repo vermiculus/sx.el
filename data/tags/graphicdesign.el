@@ -162,6 +162,8 @@
 "desktop"
 "diagram"
 "dicom"
+"diecut"
+"dieline"
 "digital"
 "dimensions"
 "distort"

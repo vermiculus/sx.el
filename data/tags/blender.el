@@ -1,4 +1,5 @@
 ("3d-cursor"
+"3d-manipulator"
 "3d-printing"
 "3d-view"
 "add-on"
@@ -119,6 +120,7 @@
 "normals"
 "npr"
 "nurbs-surface"
+"object-data"
 "objects"
 "ocean-simulation"
 "opencl"
@@ -133,7 +135,6 @@
 "particles"
 "path"
 "performance"
-"photogrammetry"
 "physics"
 "point-clouds"
 "preferences"
@@ -198,4 +199,5 @@
 "wiki"
 "windows"
 "wireframe"
-"workflow")
+"workflow"
+"workspace")

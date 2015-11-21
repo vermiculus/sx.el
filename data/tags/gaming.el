@@ -1928,6 +1928,7 @@
 "madden-12"
 "madden-13"
 "madden-15"
+"madden-16"
 "madden-25"
 "maddog-williams"
 "mafia-1"

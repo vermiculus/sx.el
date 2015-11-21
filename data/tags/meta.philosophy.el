@@ -29,6 +29,7 @@
 "featured"
 "flagging"
 "formatting"
+"guides"
 "hyperlinks"
 "interesting-tags"
 "latex"

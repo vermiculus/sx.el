@@ -3422,6 +3422,7 @@
 "office-2013-preview"
 "office-communicator"
 "office-communicator-2007"
+"office-deployment-tool"
 "office-equipment"
 "office-for-mac"
 "office-live"
