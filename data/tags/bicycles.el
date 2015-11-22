@@ -128,6 +128,7 @@
 "derailer"
 "derailler"
 "derailleur"
+"derailleur-front"
 "derailleur-rear"
 "design"
 "diamondback"

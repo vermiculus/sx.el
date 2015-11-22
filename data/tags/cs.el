@@ -4,6 +4,7 @@
 "access-control"
 "adjacency-matrix"
 "agent-based-computing"
+"algebra"
 "algorithm-analysis"
 "algorithm-design"
 "algorithms"

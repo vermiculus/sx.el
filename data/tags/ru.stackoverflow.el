@@ -304,6 +304,7 @@
 "bug"
 "bugs"
 "build"
+"build-automation"
 "bundles"
 "button"
 "byte"

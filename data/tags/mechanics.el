@@ -661,6 +661,7 @@
 "sentra"
 "sequoia"
 "service"
+"service-manual"
 "servicing"
 "shaking"
 "shifting"

@@ -1302,6 +1302,7 @@
 "nodata"
 "node"
 "node-gdal"
+"node-mapnik"
 "node.js"
 "nodejs"
 "noise"

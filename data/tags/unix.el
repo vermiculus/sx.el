@@ -1610,6 +1610,7 @@
 "reverse-proxy"
 "rewrite"
 "rhel"
+"rhel7"
 "rhev"
 "rhythmbox"
 "right-to-left"

@@ -178,6 +178,7 @@
 "crm"
 "css"
 "csv"
+"curryhunter"
 "custom-map"
 "customer-support"
 "customization"

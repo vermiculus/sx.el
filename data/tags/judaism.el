@@ -589,7 +589,6 @@
 "hishtachavaya"
 "historical-figures"
 "history"
-"holidays"
 "holocaust-shoah"
 "holy-objects"
 "home-house"

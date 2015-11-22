@@ -207,6 +207,7 @@
 "possiblebug"
 "premiums"
 "price-sets"
+"primary"
 "profile"
 "quicksearch"
 "receipts"

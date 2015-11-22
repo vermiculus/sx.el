@@ -75,7 +75,6 @@
 "clothing"
 "coast"
 "coconut-palm"
-"coconut-tree"
 "cold"
 "cold-weather"
 "colorado"

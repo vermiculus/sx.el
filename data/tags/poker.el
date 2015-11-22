@@ -45,6 +45,7 @@
 "learning"
 "let-there-be-range"
 "live"
+"microstakes"
 "misdeal"
 "movie"
 "mtt"

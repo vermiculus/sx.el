@@ -227,6 +227,7 @@
 "copula"
 "correlated-predictors"
 "correlation"
+"correlation-matrix"
 "correspondence"
 "correspondence-analysis"
 "cosine-distance"

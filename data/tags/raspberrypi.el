@@ -174,7 +174,6 @@
 "lxde"
 "lxsession"
 "lxterminal"
-"mac"
 "mail-server"
 "make"
 "makefile"

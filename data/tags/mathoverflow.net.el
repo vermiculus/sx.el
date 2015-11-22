@@ -1337,7 +1337,6 @@
 "vanishing"
 "vanishing-cycles"
 "variational-calculus"
-"variety"
 "vector-bundles"
 "vector-spaces"
 "vertex-algebras"

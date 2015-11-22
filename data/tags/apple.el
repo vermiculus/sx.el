@@ -694,6 +694,7 @@
 "mac-address"
 "mac-app-store"
 "mac-appstore"
+"mac-fuse"
 "mac-mini"
 "mac-pro"
 "macbook"

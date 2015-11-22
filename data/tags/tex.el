@@ -694,7 +694,6 @@
 "listoftables"
 "listoftables"
 "lists"
-"lite"
 "literate-programming"
 "live-preview"
 "llncs"

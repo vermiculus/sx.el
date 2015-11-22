@@ -849,7 +849,6 @@
 "lpf"
 "lti"
 "lti-system"
-"ltpsice"
 "ltspice"
 "lufa"
 "luminous-flux"
