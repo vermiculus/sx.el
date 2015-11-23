@@ -776,7 +776,6 @@
 "memory"
 "menukeys"
 "mercurial"
-"meta"
 "metadata"
 "metafont"
 "metafun"

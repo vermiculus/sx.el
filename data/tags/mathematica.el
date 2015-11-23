@@ -642,7 +642,6 @@
 "typesetting"
 "ubuntu"
 "under-development"
-"underdevelopment"
 "undo"
 "undocumented"
 "unevaluated"

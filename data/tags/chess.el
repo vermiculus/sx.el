@@ -135,6 +135,7 @@
 "gelfand"
 "glicko"
 "grandmaster"
+"graphics"
 "grunfeld"
 "grunfeld-defense"
 "handicapping"

@@ -106,6 +106,7 @@
 "percy-jackson"
 "plagiarism"
 "policy"
+"poll"
 "popular-topics"
 "post-notice"
 "privileges"

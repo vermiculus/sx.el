@@ -7,6 +7,7 @@
 "affine-processes"
 "algo"
 "algorithm"
+"algorithmic-derivative"
 "algorithmic-trading"
 "allocation"
 "american-options"

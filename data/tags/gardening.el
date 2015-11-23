@@ -41,6 +41,7 @@
 "bonsai"
 "border"
 "botanics"
+"bougainvillea"
 "box"
 "boxwood"
 "boysenberries"

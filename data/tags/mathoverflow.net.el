@@ -196,6 +196,7 @@
 "cohen-macaulay-rings"
 "coherence"
 "coherent-cohomology"
+"coherent-rings"
 "coherent-sheaves"
 "cohomological-dimension"
 "cohomology"

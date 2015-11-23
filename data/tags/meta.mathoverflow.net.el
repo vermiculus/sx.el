@@ -54,6 +54,7 @@
 "meta"
 "migration"
 "minor-edits"
+"mirror-sites"
 "moderation"
 "moderators"
 "new-users"

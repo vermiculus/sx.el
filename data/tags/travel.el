@@ -997,7 +997,6 @@
 "massachusetts"
 "mastercard"
 "maui"
-"mauritania"
 "mauritius"
 "mcx"
 "mdw"

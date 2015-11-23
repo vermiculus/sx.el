@@ -212,4 +212,5 @@
 "weather"
 "weighted-data"
 "weka"
-"word-embeddings")
+"word-embeddings"
+"xgboost")
