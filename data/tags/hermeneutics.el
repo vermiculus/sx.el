@@ -190,6 +190,7 @@
 "malachi"
 "manuscript"
 "marcion"
+"mariology"
 "mark"
 "marriage"
 "mary"

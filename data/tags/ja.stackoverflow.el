@@ -663,7 +663,6 @@
 "webrtc"
 "websocket"
 "webview"
-"whatis"
 "win32api"
 "winapi"
 "windows"

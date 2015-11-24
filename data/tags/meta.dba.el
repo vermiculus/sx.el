@@ -53,6 +53,7 @@
 "retag-request"
 "retagging"
 "review-lists"
+"review-queues"
 "rss"
 "scope"
 "search"

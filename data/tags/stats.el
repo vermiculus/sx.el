@@ -80,7 +80,6 @@
 "bic"
 "big-data"
 "big-data"
-"big-list"
 "bimodal"
 "binary"
 "binary-data"

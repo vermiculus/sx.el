@@ -83,6 +83,7 @@
 "complexity"
 "complexity-classes"
 "complexity-theory"
+"compression"
 "computability"
 "computable-analysis"
 "computation-models"

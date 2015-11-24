@@ -241,6 +241,7 @@
 "chat-faq"
 "chat-flags"
 "chat-pins"
+"chat-profile"
 "chat-search"
 "chat-stars"
 "chat-transcript"

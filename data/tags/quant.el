@@ -556,6 +556,7 @@
 "vwap"
 "wacc"
 "wavelet"
+"weather"
 "weekday-effects"
 "wiener"
 "wienerprocess"

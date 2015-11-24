@@ -291,6 +291,7 @@
 "tradition"
 "translation-request"
 "trinity"
+"tulsi"
 "uddhava-gita"
 "untouchability"
 "upanishads"

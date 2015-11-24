@@ -922,7 +922,6 @@
 "weekend-challenge"
 "weekend-challenge"
 "weekly-challenge"
-"while"
 "wildfly"
 "winapi"
 "windows"

@@ -11,6 +11,7 @@
 "alternating-step"
 "anonymity"
 "approximate-gcd"
+"argon2"
 "arithmetic"
 "arx"
 "asn.1"

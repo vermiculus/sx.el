@@ -461,6 +461,7 @@
 "saboteur"
 "saboteur-2"
 "saint-petersburg"
+"samurai-spirit"
 "san-juan"
 "scarborough-fair"
 "schnapsen"

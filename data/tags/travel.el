@@ -788,6 +788,7 @@
 "irkutsk"
 "isg"
 "ishigaki"
+"isis"
 "islam"
 "islands"
 "isle-of-man"

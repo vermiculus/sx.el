@@ -56,6 +56,7 @@
 "merged-question"
 "meta"
 "migration"
+"mod-abuse"
 "moderation"
 "moderators"
 "new-users"

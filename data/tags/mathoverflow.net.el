@@ -542,7 +542,6 @@
 "graded-banach-algebras"
 "graded-rings-modules"
 "grants"
-"graph"
 "graph-co"
 "graph-colorings"
 "graph-cut"

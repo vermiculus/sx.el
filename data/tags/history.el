@@ -298,6 +298,7 @@
 "infantry"
 "inheritance"
 "inquisition"
+"intelligence-operations"
 "international-relations"
 "internet"
 "invasion"

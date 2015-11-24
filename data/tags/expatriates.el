@@ -72,6 +72,7 @@
 "employment-authorization"
 "erasmus"
 "esta"
+"estonia"
 "eu"
 "eu-citizens"
 "eu-spouses"

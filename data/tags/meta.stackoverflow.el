@@ -269,6 +269,7 @@
 "not-constructive"
 "notifications"
 "oauth2"
+"obsolete-flags"
 "off-topic"
 "offensive"
 "offensive-flag"

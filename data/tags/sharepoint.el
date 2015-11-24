@@ -1101,6 +1101,7 @@
 "sql-server"
 "sql-server-2008"
 "sql-server-2012"
+"sql-server-2014"
 "ssas"
 "ssl"
 "sso"

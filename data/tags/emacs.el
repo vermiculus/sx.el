@@ -112,7 +112,6 @@
 "default"
 "defcustom"
 "deft-mode"
-"delete-selection-mode"
 "deletion"
 "delimiters"
 "desktop"

@@ -218,6 +218,7 @@
 "permissions"
 "php"
 "plugin-amnav"
+"plugin-cachewarmer"
 "plugin-calendar"
 "plugin-contactform"
 "plugin-dev"

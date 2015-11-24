@@ -77,6 +77,7 @@
 "duality"
 "dutch-disease"
 "dynamic-games"
+"dynamic-optimization"
 "dynamic-programming"
 "dynare"
 "econometrics"

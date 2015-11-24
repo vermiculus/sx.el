@@ -21,6 +21,7 @@
 "amazon-ses"
 "api"
 "architecture"
+"assignee"
 "attachments"
 "authentication"
 "authorize.net"

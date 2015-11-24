@@ -1878,6 +1878,7 @@
 "weaver"
 "webcomics"
 "weeping-angels"
+"welcome-to-night-vale"
 "werewolf"
 "werewolves"
 "western"

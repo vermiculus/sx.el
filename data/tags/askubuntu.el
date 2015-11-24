@@ -1386,6 +1386,7 @@
 "keyboard-shortcuts"
 "keychain"
 "keycodes"
+"keylogger"
 "keyrings"
 "keys"
 "keyserver"
