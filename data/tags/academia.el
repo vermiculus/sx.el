@@ -3,6 +3,7 @@
 "abroad"
 "abstract"
 "abuse"
+"academic"
 "academic-freedom"
 "academic-history"
 "academic-life"

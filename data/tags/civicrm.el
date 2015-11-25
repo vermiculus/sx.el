@@ -222,6 +222,7 @@
 "reminder"
 "reporting"
 "reporting"
+"reports"
 "resource-urls"
 "rest"
 "restore"

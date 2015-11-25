@@ -446,6 +446,7 @@
 "phantomjs"
 "photoshop"
 "php"
+"phpexcel"
 "phpmyadmin"
 "phpstorm"
 "picasso"

@@ -25,6 +25,7 @@
 "backpacking"
 "bait"
 "barefoot"
+"batteries"
 "beach"
 "bear-bag"
 "bears"

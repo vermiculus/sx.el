@@ -538,6 +538,7 @@
 "google-plus-photos"
 "google-reader"
 "google-search"
+"google-search-bar"
 "google-services-framework"
 "google-settings"
 "google-sheets"

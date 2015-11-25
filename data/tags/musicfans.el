@@ -95,6 +95,7 @@
 "joss-whedon"
 "korean"
 "language"
+"last.fm"
 "led-zeppelin"
 "leonard-cohen"
 "linkin-park"

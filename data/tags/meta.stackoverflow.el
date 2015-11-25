@@ -401,6 +401,8 @@
 "status-completed"
 "status-declined"
 "status-deferred"
+"status-jeremy"
+"status-norepo"
 "status-norepro"
 "status-planned"
 "status-reproduced"

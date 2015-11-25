@@ -567,6 +567,7 @@
 "russian-segment"
 "safe-mode"
 "safety"
+"salyut"
 "sample-return"
 "santa-claus"
 "satellites"

@@ -133,6 +133,7 @@
 "history"
 "history-economic-thought"
 "housing"
+"human-capital"
 "identification"
 "industrial-organisation"
 "inequality"

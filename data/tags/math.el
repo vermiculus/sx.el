@@ -1196,7 +1196,6 @@
 "riemann-surfaces"
 "riemann-zeta"
 "riemannian-geometry"
-"riemannmappingtheorem"
 "riesz-spaces"
 "rigid-analytic-spaces"
 "rigid-transformation"

@@ -50,7 +50,6 @@
 "causes"
 "celibacy"
 "cetasika"
-"chan-buddhism"
 "chant"
 "chanting"
 "chinese-buddhism"

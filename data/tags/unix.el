@@ -1089,6 +1089,7 @@
 "lvreduce"
 "lvresize"
 "lxc"
+"lxd"
 "lxde"
 "lxterminal"
 "lynx"

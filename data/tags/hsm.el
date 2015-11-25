@@ -88,6 +88,7 @@
 "nomenclature"
 "notation"
 "notations"
+"nuclear"
 "number-theory"
 "optics"
 "particle-physics"

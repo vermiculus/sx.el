@@ -456,6 +456,7 @@
 "peercoin"
 "peers"
 "performance"
+"perl"
 "pgp"
 "phishing"
 "phoenix"

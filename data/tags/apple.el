@@ -101,6 +101,7 @@
 "application-switcher"
 "applications"
 "appstore"
+"aptx"
 "arabic"
 "archive"
 "archive-utility"
