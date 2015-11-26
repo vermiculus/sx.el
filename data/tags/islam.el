@@ -92,6 +92,7 @@
 "cleanliness"
 "clothing"
 "companies"
+"comparative-madahib"
 "comparative-religions"
 "congregational-prayer"
 "consent"

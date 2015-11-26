@@ -1,6 +1,7 @@
 ("404-image"
 "accepted-answer"
 "account-association"
+"analytics"
 "answers"
 "area51"
 "asking-questions"

@@ -339,6 +339,7 @@
 "differential-operators"
 "differential-topology"
 "differentiation"
+"diffusion-equation"
 "digamma-function"
 "digits"
 "dihedral-groups"

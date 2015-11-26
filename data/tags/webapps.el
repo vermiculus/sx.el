@@ -453,7 +453,6 @@
 "google-local"
 "google-location-history"
 "google-maps"
-"google-moderator"
 "google-movies"
 "google-music"
 "google-my-maps"

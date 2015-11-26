@@ -1997,6 +1997,7 @@
 "ubuntugis"
 "udig"
 "uk"
+"ukraine"
 "uml"
 "umn-mapserver"
 "understanding"

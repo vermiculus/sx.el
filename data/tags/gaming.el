@@ -1828,6 +1828,7 @@
 "legend-of-zelda"
 "legend-of-zelda-series"
 "legends-of-dawn"
+"legends-of-eisenwald"
 "legends-of-wrestling-2"
 "legends-of-yore"
 "legion-of-heroes"

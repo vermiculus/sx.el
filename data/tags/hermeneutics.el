@@ -321,6 +321,7 @@
 "tools-of-biblical-studies"
 "torah"
 "translation"
+"translation-accessibility"
 "translation-approaches"
 "translation-methodology"
 "translation-philosophy"

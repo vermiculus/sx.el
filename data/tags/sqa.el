@@ -116,6 +116,7 @@
 "management"
 "manual"
 "manual-testing"
+"menu"
 "metrics"
 "microsoft-test-manager"
 "mobile"

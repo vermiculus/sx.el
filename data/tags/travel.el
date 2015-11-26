@@ -816,7 +816,6 @@
 "jeju"
 "jerusalem"
 "jet-airways"
-"jet-pack"
 "jetlag"
 "jetstar"
 "jfk"

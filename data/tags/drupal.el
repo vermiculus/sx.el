@@ -113,7 +113,6 @@
 "computed-field"
 "conditional-clause"
 "conditional-fields"
-"config-entity"
 "configuration-management"
 "contact"
 "content-management"

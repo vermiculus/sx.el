@@ -122,7 +122,6 @@
 "normals"
 "npr"
 "nurbs-surface"
-"object-data"
 "objects"
 "ocean-simulation"
 "opencl"
@@ -201,5 +200,4 @@
 "weight-painting"
 "windows"
 "wireframe"
-"workflow"
-"workspace")
+"workflow")

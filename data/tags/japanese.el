@@ -175,6 +175,7 @@
 "particle-hodo"
 "particle-ka"
 "particle-kara"
+"particle-kurai"
 "particle-made"
 "particle-mo"
 "particle-na"

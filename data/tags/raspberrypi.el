@@ -158,6 +158,7 @@
 "kali"
 "kernel"
 "keyboard"
+"kiosk"
 "kodi"
 "laptop"
 "led"

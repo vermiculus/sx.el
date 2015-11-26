@@ -350,6 +350,7 @@
 "google-adsense-policies"
 "google-adwords"
 "google-algorithm"
+"google-ana"
 "google-analytics"
 "google-analytics-spam"
 "google-app-engine"

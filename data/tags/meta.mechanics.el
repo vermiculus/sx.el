@@ -16,6 +16,7 @@
 "data-explorer"
 "deleted-questions"
 "design"
+"diagnosis"
 "discussion"
 "down-votes"
 "editing"

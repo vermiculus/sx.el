@@ -95,6 +95,7 @@
 "gender-neutrality"
 "genitiv"
 "genitive"
+"genus"
 "german-to-english"
 "gerund"
 "grammar"

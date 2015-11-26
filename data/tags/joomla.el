@@ -23,6 +23,7 @@
 "bitbucket"
 "bootstrap"
 "breadcumb"
+"breezingforms"
 "browser"
 "browser-detection"
 "bug-testing"

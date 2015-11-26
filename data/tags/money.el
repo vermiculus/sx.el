@@ -370,6 +370,7 @@
 "iban"
 "identity-theft"
 "illinois"
+"ils-israeli-shekel"
 "implied-volatility"
 "income"
 "income-statement"
