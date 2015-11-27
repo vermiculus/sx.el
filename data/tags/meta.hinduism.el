@@ -40,6 +40,7 @@
 "moderators"
 "new-users"
 "notifications"
+"on-topic"
 "openid"
 "post-quality"
 "privileges"

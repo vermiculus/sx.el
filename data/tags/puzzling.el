@@ -125,7 +125,6 @@
 "nonogram"
 "number-sequence"
 "number-theory"
-"numbers"
 "open-ended"
 "optimization"
 "outer-space"

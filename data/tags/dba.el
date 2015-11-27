@@ -811,6 +811,7 @@
 "sql-update"
 "sql-variant-property"
 "sql-view"
+"sqlagent"
 "sqlcmd"
 "sqlcmd-mode"
 "sqlite"

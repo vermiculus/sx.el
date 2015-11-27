@@ -433,6 +433,7 @@
 "helicity"
 "heterotic-string"
 "heterotic-string"
+"hidden-variables"
 "hierarchy-problem"
 "higgs"
 "higgs-boson"

@@ -323,6 +323,7 @@
 "gnucash"
 "going-private"
 "gold"
+"goods"
 "google"
 "google-finance"
 "government"

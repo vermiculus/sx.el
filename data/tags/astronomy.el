@@ -19,6 +19,7 @@
 "asteroid-belt"
 "asteroids"
 "astrobiology"
+"astrochemistry"
 "astrometry"
 "astronomical-conventions"
 "astrophotography"

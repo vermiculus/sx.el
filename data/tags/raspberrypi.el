@@ -244,6 +244,8 @@
 "php"
 "pi-gpio"
 "pi-store"
+"pi-zero"
+"pi0"
 "pi1"
 "pi2"
 "pi4j"

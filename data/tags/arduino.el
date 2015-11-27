@@ -237,6 +237,7 @@
 "tmrpcm"
 "transistor"
 "tri-state"
+"u8glib"
 "uart"
 "ubuntu"
 "ui"

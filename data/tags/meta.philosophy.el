@@ -6,6 +6,7 @@
 "banning"
 "bounty"
 "bug"
+"canonical"
 "chat"
 "close-reasons"
 "closed-questions"

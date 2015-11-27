@@ -2,6 +2,7 @@
 "advertising"
 "allowed-topics"
 "answers"
+"answers-in-comments"
 "appropriateness"
 "asking-questions"
 "badges"
@@ -124,5 +125,6 @@
 "voting"
 "winterbash"
 "winterbash-2014"
+"wizards-of-the-coast"
 "world-of-darkness"
 "xy-problem")

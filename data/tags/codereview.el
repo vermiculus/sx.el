@@ -257,7 +257,6 @@
 "email"
 "embedded"
 "ember.js"
-"encryption"
 "entity-component-system"
 "entity-framework"
 "enum"

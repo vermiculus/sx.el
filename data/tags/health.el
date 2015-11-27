@@ -131,7 +131,6 @@
 "evolution"
 "exercise"
 "eye"
-"fainting"
 "fast-food"
 "fatigue"
 "fda-approval"

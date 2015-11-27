@@ -1480,6 +1480,7 @@
 "trends"
 "triage"
 "trivial"
+"trivial-edit"
 "trolling"
 "troubleshooting"
 "truncated"

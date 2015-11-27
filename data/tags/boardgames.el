@@ -208,6 +208,7 @@
 "eruption"
 "escape-curse-of-temple"
 "escape-from-atlantis"
+"ethics"
 "etiquette"
 "euchre"
 "evil-baby-orphanage"

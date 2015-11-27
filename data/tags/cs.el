@@ -389,6 +389,7 @@
 "pseudo-random-generators"
 "pumping-lemma"
 "pushdown-automata"
+"quadratic-programming"
 "quantum-computing"
 "queueing-theory"
 "quicksort"

@@ -354,6 +354,7 @@
 "index.php"
 "infiniteloop"
 "infoheaders"
+"infowindow"
 "init"
 "initbricks"
 "initialize"
