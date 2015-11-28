@@ -117,6 +117,7 @@
 "bloody-monday-last-season"
 "blue-exorcist"
 "blue-seed"
+"bobobo-bo-bo-bobo"
 "bodacious-space-pirates"
 "boku-h"
 "boku-no-imouto-osaka-okan"

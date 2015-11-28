@@ -48,6 +48,7 @@
 "particles"
 "phonetics"
 "phrase"
+"poetry"
 "prefixes"
 "preposition"
 "pronouns"

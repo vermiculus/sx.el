@@ -193,7 +193,6 @@
 "marxism"
 "materialism"
 "mathematics"
-"mathmatics"
 "mctaggert"
 "meaning"
 "meaning-of-life"

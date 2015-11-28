@@ -1542,6 +1542,7 @@
 "syd"
 "sydney"
 "syracuse"
+"syria"
 "syrian-citizens"
 "syx"
 "t-and-t-citizens"

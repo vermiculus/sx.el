@@ -1099,6 +1099,7 @@
 "rules"
 "russian"
 "sagetex"
+"samepage"
 "sans-serif"
 "savetrees"
 "scaling"

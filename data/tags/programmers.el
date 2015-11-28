@@ -626,7 +626,6 @@
 "flowchart"
 "focus"
 "fonts"
-"for"
 "foreign-key"
 "forking"
 "formal-methods"

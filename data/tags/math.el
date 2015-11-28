@@ -271,6 +271,7 @@
 "convex-sets"
 "convexity"
 "convolution"
+"coordinate"
 "coordinate-geometry"
 "coordinate-systems"
 "correlation"

@@ -161,6 +161,7 @@
 "cms-block"
 "code"
 "code-analysis"
+"code-generation"
 "code-reuse"
 "coding"
 "coding-standards"

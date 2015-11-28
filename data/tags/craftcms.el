@@ -36,6 +36,7 @@
 "cloudflare"
 "cms"
 "comments"
+"commerce-plugin"
 "concatenation"
 "conditional"
 "config"

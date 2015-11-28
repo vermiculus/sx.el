@@ -73,6 +73,7 @@
 "cults"
 "culture"
 "current-events"
+"daily"
 "daily-life"
 "dalai-lama"
 "dana"

@@ -168,6 +168,7 @@
 "mantras"
 "manu"
 "manu-smriti"
+"manvantara"
 "marriage"
 "matsya-purana"
 "maya"

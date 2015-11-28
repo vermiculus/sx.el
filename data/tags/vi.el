@@ -70,7 +70,6 @@
 "functions"
 "git"
 "global-command"
-"gq"
 "grammar-checking"
 "gvim"
 "habit-breaking"

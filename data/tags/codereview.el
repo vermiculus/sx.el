@@ -923,6 +923,7 @@
 "weekend-challenge"
 "weekend-challenge"
 "weekly-challenge"
+"whitespace-language"
 "wildfly"
 "winapi"
 "windows"

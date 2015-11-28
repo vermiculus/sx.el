@@ -631,7 +631,6 @@
 "registered"
 "registration"
 "rel-canonical"
-"release-candidate"
 "release-process"
 "remote"
 "remote-login"

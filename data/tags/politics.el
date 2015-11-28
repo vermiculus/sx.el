@@ -11,6 +11,7 @@
 "asylum"
 "australia"
 "austria"
+"bahrain"
 "ballot"
 "barack-obama"
 "basic-income"

@@ -30,7 +30,6 @@
 "featured"
 "flagging"
 "formatting"
-"guides"
 "hyperlinks"
 "interesting-tags"
 "latex"
@@ -77,4 +76,5 @@
 "users"
 "vote-to-close"
 "votes"
-"voting")
+"voting"
+"when-to-hold-on-questions")

@@ -168,6 +168,7 @@
 "parsing"
 "part-of-speech"
 "particle-de"
+"particle-demo"
 "particle-e"
 "particle-ga"
 "particle-ha"
