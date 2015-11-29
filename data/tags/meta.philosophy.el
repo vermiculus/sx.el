@@ -76,5 +76,4 @@
 "users"
 "vote-to-close"
 "votes"
-"voting"
-"when-to-hold-on-questions")
+"voting")

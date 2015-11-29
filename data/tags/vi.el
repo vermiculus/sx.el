@@ -75,7 +75,6 @@
 "habit-breaking"
 "help-system"
 "hidden-buffers"
-"hide"
 "highlight"
 "history"
 "history-of"

@@ -187,7 +187,6 @@
 "troll"
 "tutorials"
 "ubuntu-community"
-"ubuntu-flavours"
 "uds"
 "uds-n"
 "unanswered-questions"

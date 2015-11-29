@@ -426,7 +426,6 @@
 "trills"
 "triplet"
 "trombone"
-"tropical-music"
 "trumpet"
 "tuba"
 "tuning"

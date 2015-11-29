@@ -8,6 +8,7 @@
 "advent-calendar"
 "afol"
 "angles"
+"animation"
 "automation"
 "bionicle"
 "bluetooth"

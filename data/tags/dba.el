@@ -935,7 +935,6 @@
 "vacuum"
 "varbinary"
 "varchar"
-"variables"
 "vba"
 "vendor-support"
 "version-control"

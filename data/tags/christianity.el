@@ -843,6 +843,7 @@
 "syncretism"
 "systematic-theology"
 "tabernacle"
+"telekinesis"
 "temple"
 "temptation"
 "ten-commandments"

@@ -303,6 +303,7 @@
 "information-management"
 "inkscape"
 "inno-setup"
+"instagram"
 "installer"
 "instant-messaging"
 "internet"

@@ -705,6 +705,7 @@
 "express&#227;o-regular"
 "express&#245;es"
 "express&#245;es-regulares"
+"express-edition"
 "expressao-regular"
 "expression-trees"
 "expressjs"

@@ -44,7 +44,6 @@
 "community-wiki"
 "comparison"
 "compounds"
-"congruence"
 "conjugation"
 "conjunctions"
 "connotation"

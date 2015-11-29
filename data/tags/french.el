@@ -318,6 +318,7 @@
 "swearing"
 "swiss-french"
 "synonymes"
+"syntax"
 "syntaxe"
 "t&#233;l&#233;phone"
 "t&#233;l&#233;vision"

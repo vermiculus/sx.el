@@ -522,7 +522,6 @@
 "hidden-features"
 "hide"
 "highlight"
-"highrise"
 "hipchat"
 "hootsuite"
 "hosted"

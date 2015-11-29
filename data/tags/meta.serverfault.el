@@ -137,6 +137,7 @@
 "syntax-highlighting"
 "tag-burnination"
 "tag-synonyms"
+"tag-warnings"
 "tagging"
 "tags"
 "troubleshooting"

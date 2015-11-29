@@ -118,6 +118,7 @@
 "lumia-635"
 "lumia-810"
 "lumia-900"
+"lumia-920"
 "lumia-925"
 "lumia-amber"
 "lumia-black-update"

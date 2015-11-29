@@ -823,6 +823,7 @@
 "samurai-x"
 "sankarea"
 "santa-company"
+"sasurai-emanon"
 "satisfaction-guaranteed"
 "sayonara-zetsubou-sensei"
 "sazan-eyes"

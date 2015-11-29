@@ -1591,6 +1591,7 @@
 "wiki"
 "wikipedia"
 "wildcards"
+"windows-10"
 "windows-7"
 "windows-8"
 "windows-gadget"

@@ -598,7 +598,6 @@
 "rbac"
 "rc4"
 "rdp"
-"reconnaisance"
 "reconnaissance"
 "recovery"
 "reference-request"

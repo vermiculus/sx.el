@@ -2270,6 +2270,7 @@
 "xxd"
 "xz"
 "yaourt"
+"yash"
 "yast"
 "yocto"
 "youtube"

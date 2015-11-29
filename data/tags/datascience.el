@@ -133,6 +133,7 @@
 "neo4j"
 "neuralnetwork"
 "nlp"
+"nodexl"
 "normalization"
 "nosql"
 "notation"
