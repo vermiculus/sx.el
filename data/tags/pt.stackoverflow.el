@@ -1522,7 +1522,6 @@
 "ormlite"
 "osx"
 "otimiza&#231;&#227;o"
-"outofmemoryerror"
 "overload"
 "owin"
 "owl"

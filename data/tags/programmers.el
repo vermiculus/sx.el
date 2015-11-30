@@ -1425,6 +1425,7 @@
 "server-side"
 "service"
 "service-bus"
+"service-locator"
 "services"
 "session"
 "setters"

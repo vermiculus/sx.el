@@ -1,4 +1,5 @@
-("abbreviations"
+("a&#241;os"
+"abbreviations"
 "abreviaturas"
 "acentos"
 "acentuaci&#243;n"

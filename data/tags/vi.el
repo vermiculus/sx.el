@@ -32,6 +32,7 @@
 "cut-copy-paste"
 "cygwin"
 "debug"
+"delete"
 "delimiter-matching"
 "diff"
 "digraphs"

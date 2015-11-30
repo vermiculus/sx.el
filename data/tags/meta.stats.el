@@ -4,6 +4,7 @@
 "asking-questions"
 "badges"
 "beta"
+"blacklist-request"
 "blog"
 "bounty"
 "bug"

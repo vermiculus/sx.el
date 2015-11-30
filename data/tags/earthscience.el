@@ -123,6 +123,7 @@
 "humidity"
 "hurricane"
 "hydrofluoric-acid"
+"hydrogeology"
 "hydrology"
 "hydrothermal-vents"
 "hypothetical"

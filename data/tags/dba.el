@@ -841,6 +841,7 @@
 "standby"
 "star-schema"
 "startup"
+"statistical-database"
 "statistics"
 "storage"
 "storage-engine"

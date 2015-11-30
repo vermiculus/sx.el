@@ -93,7 +93,6 @@
 "crampons"
 "crevasses"
 "cross-country-skiing"
-"cycling"
 "czech"
 "deer"
 "deet"

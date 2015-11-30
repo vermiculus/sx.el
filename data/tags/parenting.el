@@ -353,7 +353,6 @@
 "swaddling"
 "swimming"
 "talking"
-"talking"
 "tantrums"
 "teacher"
 "teaching"

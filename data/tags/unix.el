@@ -763,6 +763,7 @@
 "grml"
 "groff"
 "group"
+"grove"
 "grsecurity"
 "grub"
 "grub-legacy"

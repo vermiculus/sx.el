@@ -933,6 +933,7 @@
 "women-priests"
 "word-of-faith"
 "word-of-god"
+"word-of-wisdom"
 "word-study"
 "words-of-jesus"
 "works"

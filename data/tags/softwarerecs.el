@@ -5,6 +5,7 @@
 "achievements"
 "activemq"
 "ad-blocker"
+"ad-free"
 "affiliate-sales"
 "ajax"
 "algorithms"

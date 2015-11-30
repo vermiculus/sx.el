@@ -19,6 +19,7 @@
 "admin"
 "ajax"
 "amazon-ses"
+"angular"
 "api"
 "architecture"
 "assignee"

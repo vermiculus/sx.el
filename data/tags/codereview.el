@@ -640,7 +640,6 @@
 "postsharp"
 "powerpoint"
 "powershell"
-"pretty-printing"
 "prime"
 "primes"
 "priority-queue"

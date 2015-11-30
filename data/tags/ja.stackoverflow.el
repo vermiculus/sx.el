@@ -273,6 +273,7 @@
 "haskell"
 "health-kit"
 "heroku"
+"hibernate"
 "highcharts"
 "homebrew"
 "hpack"

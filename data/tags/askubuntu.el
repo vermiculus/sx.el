@@ -1271,6 +1271,7 @@
 "intallation"
 "integrated"
 "intel"
+"intel-atom"
 "intel-cpu"
 "intel-graphics"
 "intel-hd"
