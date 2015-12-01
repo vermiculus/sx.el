@@ -55,6 +55,7 @@
 "anonymous-authentication"
 "anti-virus"
 "aop"
+"api"
 "app"
 "app-fabric"
 "app-part"

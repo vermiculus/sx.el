@@ -95,6 +95,7 @@
 "explicit-methods"
 "extrapolation"
 "factorization"
+"fast-multipoles"
 "features"
 "fem"
 "fem"

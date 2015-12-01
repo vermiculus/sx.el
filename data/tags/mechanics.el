@@ -569,7 +569,6 @@
 "pcv-valve"
 "pedals"
 "performance"
-"petrol"
 "peugeot"
 "phillips"
 "pick-up"

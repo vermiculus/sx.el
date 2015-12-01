@@ -690,7 +690,6 @@
 "indentation"
 "indexing"
 "indication"
-"information"
 "information-display"
 "informed-badge"
 "inline-code"

@@ -206,6 +206,7 @@
 "cleaning"
 "close-up-filter"
 "cloth"
+"clothing"
 "clouds"
 "cls"
 "clubs"

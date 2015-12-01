@@ -46,6 +46,7 @@
 "moderators"
 "new-users"
 "notifications"
+"old-question"
 "openid"
 "profile-page"
 "quality-evaluation"

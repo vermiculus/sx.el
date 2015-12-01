@@ -492,7 +492,6 @@
 "dystopia"
 "e-e-smith"
 "e.t"
-"earendil"
 "earth-2"
 "earth-final-conflict"
 "earthsea"

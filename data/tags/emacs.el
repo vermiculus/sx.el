@@ -391,6 +391,7 @@
 "package-repositories"
 "pairing"
 "pallet"
+"paradox"
 "paragraphs"
 "paredit"
 "parentheses"

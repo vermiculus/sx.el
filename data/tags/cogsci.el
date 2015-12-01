@@ -10,6 +10,7 @@
 "aging"
 "alcohol"
 "altruism"
+"amygdala"
 "analysis"
 "anchoring"
 "animal-cognition"

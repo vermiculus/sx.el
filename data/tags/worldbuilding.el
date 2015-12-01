@@ -233,6 +233,7 @@
 "proto-human"
 "psionics"
 "psychology"
+"quantum"
 "races"
 "radiation"
 "radio"

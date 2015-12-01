@@ -163,7 +163,6 @@
 "gapping"
 "gender"
 "genderless-pronouns"
-"generic-noun-phrase"
 "genitive"
 "german"
 "gerund"

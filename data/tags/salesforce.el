@@ -176,6 +176,7 @@
 "cloud"
 "code"
 "code-coverage"
+"code-quality"
 "code-scan"
 "collaborationgroup"
 "collection"

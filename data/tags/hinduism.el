@@ -246,6 +246,7 @@
 "samudra-manthan"
 "sankalpa"
 "sanskrit"
+"santoshi"
 "sanyasi"
 "saraswati"
 "sati-goddess"

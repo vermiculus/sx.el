@@ -187,6 +187,7 @@
 "kent"
 "kentucky"
 "korea"
+"lancashire"
 "land"
 "latin"
 "latvia"

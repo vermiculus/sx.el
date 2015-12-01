@@ -85,6 +85,7 @@
 "captcha"
 "cck"
 "cdn"
+"centos"
 "change-control"
 "charts"
 "chat"

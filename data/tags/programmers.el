@@ -9,6 +9,7 @@
 "abap"
 "abi"
 "abstract-class"
+"abstract-factory"
 "abstraction"
 "abstractions"
 "acceptance-testing"

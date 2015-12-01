@@ -27,6 +27,7 @@
 "cooking"
 "cooling"
 "door"
+"drinking"
 "drinks"
 "dust"
 "easter"
