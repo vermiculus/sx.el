@@ -132,6 +132,7 @@
 "co-sign"
 "cobra"
 "coins"
+"collateral"
 "collectibles"
 "collections"
 "college"

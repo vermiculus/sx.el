@@ -51,6 +51,7 @@
 "meta"
 "migration"
 "moderation"
+"moderators"
 "new-users"
 "notifications"
 "openid"

@@ -447,6 +447,7 @@
 "violin-family"
 "virtual-instrument"
 "vocal-cords"
+"vocal-fry"
 "vocal-range"
 "vocals"
 "voice"

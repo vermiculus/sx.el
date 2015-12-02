@@ -44,6 +44,7 @@
 "data-formats"
 "data-indexing-techniques"
 "data-mining"
+"data-product"
 "data-stream-mining"
 "data-visualization"
 "data-wrangling"

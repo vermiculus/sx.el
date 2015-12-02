@@ -834,6 +834,7 @@
 "newenvironment"
 "newlfm"
 "newline"
+"newpage"
 "newspaper"
 "newtheorem"
 "newtx"

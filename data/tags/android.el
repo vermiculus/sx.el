@@ -989,6 +989,7 @@
 "onda-tablet"
 "onedrive"
 "onenote"
+"oneplus-2"
 "oneplus-one"
 "oneplus-two"
 "oom-priority"

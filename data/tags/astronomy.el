@@ -249,7 +249,6 @@
 "rotation"
 "satellite"
 "saturn"
-"scale-factor"
 "science"
 "seeing"
 "shooting-star"

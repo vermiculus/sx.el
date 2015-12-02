@@ -360,7 +360,6 @@
 "charlie-chaplin"
 "charlie-kaufman"
 "cheers"
-"children"
 "children-of-men"
 "children-of-the-corn"
 "childrens-hospital"

@@ -296,6 +296,7 @@
 "salutations"
 "science"
 "sens"
+"sens+"
 "sequence-of-tenses"
 "slang"
 "sms-lingo"

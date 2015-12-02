@@ -88,6 +88,7 @@
 "interpretation"
 "iran"
 "irish"
+"islam"
 "japanese"
 "journey-to-the-west"
 "judaism"

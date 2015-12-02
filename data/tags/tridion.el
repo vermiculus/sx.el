@@ -80,6 +80,7 @@
 "dreamweaver"
 "dwt"
 "dxa"
+"dxa-java"
 "dxa-search"
 "dynamic-content-broker"
 "dynamic-linking"

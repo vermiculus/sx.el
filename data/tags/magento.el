@@ -42,6 +42,7 @@
 "amazon-web-services"
 "amazonses"
 "android"
+"animation"
 "apache"
 "apache2"
 "apc"

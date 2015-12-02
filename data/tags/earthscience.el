@@ -116,6 +116,7 @@
 "great-oxidation-event"
 "greenland"
 "groundwater"
+"habitable"
 "history-of-science"
 "homework"
 "hotspot"

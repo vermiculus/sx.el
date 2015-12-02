@@ -628,7 +628,6 @@
 "heartbeat"
 "heartbleed"
 "hebrew"
-"heisenbug"
 "hellban"
 "help"
 "help-center"

@@ -1366,6 +1366,7 @@
 "vowpal-wabbit"
 "ward"
 "wavelet"
+"weak-law-of-large-numbers"
 "web"
 "weibull"
 "weighted-data"

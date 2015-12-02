@@ -140,7 +140,6 @@
 "microsoft-account"
 "microsoft-acount"
 "microsoft-band"
-"microsoft-lumia"
 "mms"
 "multi-tasking"
 "music"
