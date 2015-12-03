@@ -36,6 +36,7 @@
 "deleted-answers"
 "deleted-questions"
 "deleted-users"
+"deletions"
 "design"
 "discussion"
 "display"

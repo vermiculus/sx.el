@@ -198,6 +198,7 @@
 "substitute"
 "swap-file"
 "syntax-highlighting"
+"t"
 "tab-characters"
 "tabbed-user-interface"
 "tags"

@@ -522,6 +522,7 @@
 "resource-management"
 "result-accumulation"
 "return-value"
+"revolutionplot3d"
 "rewrite-rules"
 "rlink"
 "rotate"

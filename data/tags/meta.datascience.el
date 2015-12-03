@@ -35,6 +35,7 @@
 "moderation"
 "new-users"
 "notifications"
+"off-topic"
 "openid"
 "profile-page"
 "questions"

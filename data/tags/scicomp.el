@@ -165,6 +165,7 @@
 "local-coordinates"
 "lu"
 "machine-learning"
+"magma-cas"
 "maple"
 "mapping-strategy"
 "master-equation"

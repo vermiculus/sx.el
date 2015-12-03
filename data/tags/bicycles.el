@@ -43,6 +43,7 @@
 "bike-travel"
 "bike-vs-car"
 "bikeluggage"
+"bikepacking"
 "bikeroutes"
 "bikes-on-public-transit"
 "bikes-on-public-transport"

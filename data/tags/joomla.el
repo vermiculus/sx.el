@@ -41,6 +41,7 @@
 "com-plugins"
 "commercial"
 "community-builder"
+"compatibility"
 "component"
 "component-params"
 "compression"

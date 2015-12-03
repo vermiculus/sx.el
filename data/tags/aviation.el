@@ -191,6 +191,7 @@
 "cost"
 "cpdlc"
 "cpl"
+"crash"
 "crash-investigation"
 "crew"
 "crop-dusting"

@@ -321,6 +321,7 @@
 "vishnu-purana"
 "vishnu-sahasranama"
 "vishwamitra"
+"vivekananda"
 "vrata"
 "vyasa"
 "war"

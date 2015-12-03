@@ -253,6 +253,7 @@
 "slang"
 "song-lyric"
 "song-lyrics"
+"sorting-order"
 "sound-symbolism"
 "speaking"
 "spelling"

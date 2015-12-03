@@ -644,6 +644,7 @@
 "s80"
 "saab"
 "sable"
+"sadona"
 "safety"
 "santa-fe"
 "santro"

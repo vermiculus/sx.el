@@ -17,6 +17,7 @@
 "adobe-rgb"
 "adr"
 "aerial-photography"
+"aesthetics"
 "af-s"
 "airplanes"
 "airshows"

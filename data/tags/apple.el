@@ -740,6 +740,7 @@
 "merge"
 "messages"
 "metadata"
+"metal"
 "mhl"
 "microphone"
 "microsoft"

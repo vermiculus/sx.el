@@ -1381,6 +1381,7 @@
 "seaquest"
 "secret-history"
 "secret-identity"
+"secret-wars"
 "security"
 "segments"
 "sense8"

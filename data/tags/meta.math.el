@@ -209,7 +209,6 @@
 "tour"
 "typesetting"
 "unanswered-questions"
-"unclear"
 "undeletion"
 "unicode"
 "unregistered-users"
