@@ -104,4 +104,5 @@
 "vote-to-close"
 "votes"
 "voting"
+"winterbash"
 "winterbash-2014")

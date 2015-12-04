@@ -202,7 +202,6 @@
 "referral"
 "resale"
 "reservation"
-"reserve"
 "resources"
 "restaurants"
 "restricted-stock"

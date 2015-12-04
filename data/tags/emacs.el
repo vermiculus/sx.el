@@ -20,6 +20,7 @@
 "auto-capitalize-mode"
 "auto-complete-mode"
 "auto-fill-mode"
+"auto-hscroll-mode"
 "auto-insert"
 "auto-revert-mode"
 "auto-save"

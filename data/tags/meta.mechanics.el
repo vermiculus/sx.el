@@ -43,6 +43,7 @@
 "recent-activity"
 "reputation"
 "retagging"
+"review-queue"
 "rss"
 "scope"
 "search"

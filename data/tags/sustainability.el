@@ -199,6 +199,7 @@
 "waste-water"
 "water"
 "water-conservation"
+"water-footprint"
 "water-heating"
 "water-management"
 "wind-power"

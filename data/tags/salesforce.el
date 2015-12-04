@@ -587,6 +587,7 @@
 "js-remoting"
 "jsforce"
 "json"
+"jsonstructure"
 "jstree"
 "junction-object"
 "key"

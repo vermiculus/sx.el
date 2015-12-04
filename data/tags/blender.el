@@ -89,7 +89,6 @@
 "keyframes"
 "keystroke"
 "knife-tool"
-"landscape"
 "layers"
 "library"
 "light"

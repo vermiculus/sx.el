@@ -268,6 +268,7 @@
 "rain"
 "rain-gear"
 "rappelling"
+"rattlesnake"
 "recurve-bow"
 "recycling"
 "repairs"

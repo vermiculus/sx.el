@@ -890,6 +890,7 @@
 "dragon-nest"
 "dragon-quest-9"
 "dragon-quest-heroes"
+"dragon-quest-ix"
 "dragon-quest-series"
 "dragon-quest-v"
 "dragon-quest-viii"

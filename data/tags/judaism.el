@@ -568,6 +568,7 @@
 "hashkafah"
 "hashkafah-philosophy"
 "hasidic-story"
+"hasidic-thought-chasidut"
 "hasisa"
 "hats"
 "havdalah"

@@ -337,6 +337,7 @@
 "subjectivity"
 "syllogism"
 "symbolic-logic"
+"symmetry"
 "taoism"
 "teleology"
 "terminology"
@@ -362,6 +363,7 @@
 "william-james"
 "wittgenstein"
 "work"
+"yin-and-yang"
 "zeno-of-elea"
 "zizek"
 "zombies")

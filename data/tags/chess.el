@@ -199,6 +199,7 @@
 "pawns"
 "peak-rating"
 "performance"
+"perpetual"
 "petroff-defense"
 "pgn"
 "philidor-defence"

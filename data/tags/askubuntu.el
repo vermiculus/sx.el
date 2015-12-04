@@ -1620,6 +1620,7 @@
 "md5sum"
 "mdadm"
 "mdm"
+"mdns"
 "media"
 "media-buttons"
 "media-library"

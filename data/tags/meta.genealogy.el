@@ -31,6 +31,7 @@
 "flagging"
 "formatting"
 "graduation"
+"hats"
 "hyperlinks"
 "interesting-tags"
 "login"

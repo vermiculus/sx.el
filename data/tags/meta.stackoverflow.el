@@ -211,6 +211,7 @@
 "internet-explorer"
 "ios-app"
 "ipad"
+"items-per-page"
 "jsfiddle"
 "keyboard-shortcuts"
 "language-versions"

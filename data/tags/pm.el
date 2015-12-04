@@ -19,6 +19,7 @@
 "change-management"
 "clients"
 "cmmi"
+"cocomo"
 "code-of-conduct"
 "communication"
 "communication-management"

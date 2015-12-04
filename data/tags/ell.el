@@ -135,6 +135,7 @@
 "exclamatives"
 "existentials"
 "expletive-pronoun"
+"expression-meaning"
 "expressions"
 "extraposition"
 "eye-dialect"
@@ -331,6 +332,7 @@
 "predicative-complement"
 "prefixes"
 "preposing"
+"prepositional-passive"
 "prepositional-phrase"
 "prepositions"
 "present"
@@ -488,6 +490,7 @@
 "word-request"
 "word-stress"
 "word-usage"
+"would"
 "would-rather"
 "writing"
 "zero-article")

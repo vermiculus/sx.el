@@ -761,6 +761,7 @@
 "programming"
 "promotions"
 "prototype-js"
+"psr"
 "purchase-order"
 "purchase-price"
 "qty-increment"

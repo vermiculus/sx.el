@@ -1471,6 +1471,7 @@
 "surface-mount"
 "surge-protection"
 "swd"
+"swinging"
 "switch"
 "switch-mode-power-supply"
 "switcher"

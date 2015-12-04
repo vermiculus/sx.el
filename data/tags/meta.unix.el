@@ -122,4 +122,5 @@
 "vote-to-close"
 "votes"
 "voting"
-"winterbash-2014")
+"winterbash-2014"
+"winterbash-2015")
