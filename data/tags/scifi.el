@@ -585,7 +585,6 @@
 "final-fight"
 "firefly"
 "first-contact"
-"flash"
 "flash-forward"
 "flash-gordon"
 "flashpoint-paradox"

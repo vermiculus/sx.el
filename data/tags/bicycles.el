@@ -460,5 +460,4 @@
 "wind"
 "winter"
 "women-specific"
-"workshop"
 "xc")

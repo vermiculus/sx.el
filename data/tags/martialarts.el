@@ -1,5 +1,4 @@
-("aiki"
-"aikido"
+("aikido"
 "anatomy"
 "application"
 "arnis"

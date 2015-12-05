@@ -14,7 +14,6 @@
 "community-wiki"
 "competitions"
 "country-specific"
-"cross-posting"
 "data-dump"
 "data-explorer"
 "deleted-questions"

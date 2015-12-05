@@ -492,6 +492,7 @@
 "wildcard"
 "winterbash"
 "winterbash-2014"
+"winterbash-2015"
 "wrong-answers"
 "xy-problem"
 "yearling-badge")

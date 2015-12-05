@@ -311,6 +311,7 @@
 "legal"
 "legend-of-the-five-rings"
 "legends-of-andor"
+"lets-kill-krampus"
 "liars-dice"
 "libertalia"
 "lifeboat"

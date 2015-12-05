@@ -7,7 +7,6 @@
 "bounty"
 "bug"
 "chat"
-"check-my-proof"
 "close-reasons"
 "closed-questions"
 "comments"
@@ -104,5 +103,4 @@
 "vote-to-close"
 "votes"
 "voting"
-"winterbash"
-"winterbash-2014")
+"winterbash")

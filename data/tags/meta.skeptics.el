@@ -112,5 +112,4 @@
 "vote-to-close"
 "votes"
 "voting"
-"winterbash"
 "youtube")

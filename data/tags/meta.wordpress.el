@@ -36,7 +36,6 @@
 "featured"
 "flagging"
 "formatting"
-"guide"
 "humor"
 "hyperlinks"
 "interesting-tags"

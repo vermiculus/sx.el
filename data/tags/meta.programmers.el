@@ -98,7 +98,6 @@
 "on-topic-definition"
 "openid"
 "opinion-based"
-"participation"
 "polling"
 "popular-questions"
 "posse"

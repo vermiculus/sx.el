@@ -70,5 +70,4 @@
 "users"
 "vote-to-close"
 "votes"
-"voting"
-"winterbash")
+"voting")

@@ -42,7 +42,6 @@
 "formatting"
 "games"
 "graduation"
-"gratis"
 "help-center"
 "hyperlinks"
 "interesting-tags"
@@ -106,5 +105,4 @@
 "vote-to-reopen"
 "votes"
 "voting"
-"websites"
-"winterbash2014")
+"websites")

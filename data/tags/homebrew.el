@@ -48,7 +48,6 @@
 "biab"
 "bittering"
 "bitterness"
-"bitterness-gravity-ratio"
 "bjcp"
 "blow-off"
 "blow-off-tube"

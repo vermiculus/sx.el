@@ -1,6 +1,5 @@
 ("about-page"
 "accepted-answer"
-"advertising"
 "answers"
 "asking-questions"
 "badges"

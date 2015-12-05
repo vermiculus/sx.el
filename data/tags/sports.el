@@ -3,7 +3,6 @@
 "amateur"
 "american-football"
 "analysis"
-"apparel"
 "archery"
 "assembly"
 "atp"

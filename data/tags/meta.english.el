@@ -1,5 +1,4 @@
 ("10k-tools"
-"abbreviations"
 "accepted-answer"
 "advertising"
 "american-english"
@@ -161,5 +160,4 @@
 "votes"
 "voting"
 "winterbash"
-"winterbash-2013"
-"winterbash-2014")
+"winterbash-2013")

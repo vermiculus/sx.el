@@ -1043,6 +1043,7 @@
 "spdif"
 "speakers"
 "spectral"
+"spectrogram"
 "spectrum"
 "speech"
 "speed"

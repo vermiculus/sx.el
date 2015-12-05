@@ -10,7 +10,6 @@
 "blog"
 "bounty"
 "bug"
-"canonical-questions"
 "captcha"
 "chat"
 "close-reasons"

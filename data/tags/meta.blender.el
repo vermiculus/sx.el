@@ -67,6 +67,7 @@
 "status-reproduced"
 "status-review"
 "support"
+"swag-request"
 "tag-synonyms"
 "tagging"
 "tags"

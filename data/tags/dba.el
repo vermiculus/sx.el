@@ -762,7 +762,6 @@
 "slony"
 "slow-log"
 "slowly-changing-dimension"
-"slq-server"
 "smallsql"
 "smo"
 "snapshot"

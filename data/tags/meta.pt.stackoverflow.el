@@ -137,7 +137,6 @@
 "profile-page"
 "proposta-para-faq"
 "qualidade"
-"quest&#245;es"
 "questions"
 "raz&#245;es-fechamento"
 "re-tag"
@@ -215,4 +214,5 @@
 "votos"
 "wiki-comunit&#225;rio"
 "wikis-de-tags"
-"winterbash-2014")
+"winterbash-2014"
+"winterbash-2015")

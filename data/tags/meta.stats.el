@@ -84,7 +84,6 @@
 "openid"
 "papers"
 "participation"
-"pedagogy"
 "policy"
 "polystats-project"
 "post-ban"

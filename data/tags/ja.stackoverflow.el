@@ -19,6 +19,7 @@
 "android-alertdialog"
 "android-animation"
 "android-asynctask"
+"android-download-manager"
 "android-fragments"
 "android-intent"
 "android-layout"

@@ -165,7 +165,6 @@
 "mahabharata"
 "mahanarayana-upanishad"
 "mandukya-upanishad"
-"manners"
 "mantras"
 "manu"
 "manu-smriti"

@@ -54,7 +54,6 @@
 "openid"
 "peer-review"
 "policy"
-"privileges"
 "product-rec"
 "profile-page"
 "publicity"

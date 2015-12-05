@@ -284,7 +284,6 @@
 "sctp"
 "sdn"
 "security"
-"serial"
 "service-provider"
 "sflow"
 "sfp"

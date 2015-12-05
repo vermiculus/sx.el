@@ -36,7 +36,6 @@
 "new-users"
 "notifications"
 "openid"
-"policy"
 "profile-page"
 "questions"
 "recent-activity"

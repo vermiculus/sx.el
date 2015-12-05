@@ -343,7 +343,6 @@
 "retraction"
 "review-articles"
 "reviewing"
-"rtd-b"
 "russia"
 "sabbatical"
 "salary"

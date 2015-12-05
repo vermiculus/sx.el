@@ -35,7 +35,6 @@
 "food-safety"
 "formatting"
 "glossary"
-"health-and-safety"
 "hyperlinks"
 "images"
 "interesting-tags"

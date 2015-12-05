@@ -102,7 +102,6 @@
 "mac-os"
 "maintenance"
 "markdown"
-"media-overlay"
 "media-queries"
 "metadata"
 "mobi"

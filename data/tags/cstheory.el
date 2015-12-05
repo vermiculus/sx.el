@@ -412,7 +412,6 @@
 "recursive"
 "reductions"
 "reference-request"
-"regression"
 "regular-expressions"
 "regular-language"
 "relational-structures"

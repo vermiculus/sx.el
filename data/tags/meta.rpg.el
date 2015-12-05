@@ -70,7 +70,6 @@
 "openid"
 "playtesting"
 "policy"
-"privileges"
 "process"
 "profile-page"
 "questions"
@@ -124,7 +123,7 @@
 "votes"
 "voting"
 "winterbash"
-"winterbash-2014"
+"winterbash-2015"
 "wizards-of-the-coast"
 "world-of-darkness"
 "xy-problem")

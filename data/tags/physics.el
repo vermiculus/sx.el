@@ -227,7 +227,6 @@
 "derivatives"
 "design"
 "determinism"
-"detonation"
 "dg"
 "diamond"
 "dielectric"

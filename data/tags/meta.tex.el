@@ -66,7 +66,6 @@
 "ios-app"
 "javascript"
 "journals"
-"latex3"
 "licensing"
 "lists"
 "login"
@@ -163,4 +162,5 @@
 "votes"
 "votes"
 "voting"
-"winterbash-2013")
+"winterbash-2013"
+"winterbash-2015")

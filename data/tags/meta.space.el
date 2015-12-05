@@ -1,5 +1,4 @@
 ("accepted-answer"
-"accidents"
 "announcement"
 "answers"
 "asking-questions"
@@ -88,7 +87,6 @@
 "user-accounts"
 "user-interface"
 "users"
-"video"
 "vote-to-close"
 "votes"
 "voting")

@@ -27,7 +27,6 @@
 "avconv"
 "avi"
 "avid"
-"battery"
 "bitrate"
 "blender"
 "bluescreen"

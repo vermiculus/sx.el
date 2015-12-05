@@ -189,5 +189,4 @@
 "votes"
 "voting"
 "winterbash"
-"winterbash-2014"
 "youtube-embed")

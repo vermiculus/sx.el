@@ -106,7 +106,6 @@
 "julia"
 "k-means"
 "kaggle"
-"kibana"
 "knowledge-base"
 "language"
 "language-model"

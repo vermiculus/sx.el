@@ -209,7 +209,6 @@
 "scrivener"
 "self-preservation"
 "self-publishing"
-"sequel"
 "series"
 "setting"
 "sex"

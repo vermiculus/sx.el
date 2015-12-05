@@ -48,7 +48,6 @@
 "conjunctions"
 "connotation"
 "consonant-sounds"
-"consumer-advice"
 "continuous-form"
 "contractions"
 "culture"

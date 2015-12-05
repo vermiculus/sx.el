@@ -69,6 +69,7 @@
 "recent-activity"
 "reopen-request"
 "reputation"
+"resume"
 "retagging"
 "rss"
 "scope"

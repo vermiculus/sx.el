@@ -6,7 +6,6 @@
 "beta"
 "bounty"
 "bug"
-"challenge"
 "chat"
 "climbing"
 "close-reasons"

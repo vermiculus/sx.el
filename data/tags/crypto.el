@@ -136,7 +136,6 @@
 "garbled-circuits"
 "gcm"
 "gnupg"
-"goldwasser-micali"
 "gpg"
 "group-theory"
 "hamming"
