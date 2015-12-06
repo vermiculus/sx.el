@@ -1246,6 +1246,7 @@
 "stochastic-ordering"
 "stochastic-process"
 "stochastic-processes"
+"stop"
 "stratification"
 "structural-change"
 "structural-equations"

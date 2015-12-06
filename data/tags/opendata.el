@@ -1,4 +1,5 @@
-("address"
+("5-star-scheme"
+"address"
 "aerial-photography"
 "africa"
 "aid"

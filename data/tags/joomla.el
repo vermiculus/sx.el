@@ -11,6 +11,7 @@
 "alias"
 "angularjs"
 "apache"
+"application"
 "array"
 "article-manager"
 "articles"

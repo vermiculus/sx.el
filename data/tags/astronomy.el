@@ -242,7 +242,6 @@
 "reflector-telescope"
 "refractor-telescope"
 "resource"
-"rings-of-saturn"
 "roche-limit"
 "rogue-planet"
 "rotation"

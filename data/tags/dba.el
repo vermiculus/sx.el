@@ -818,6 +818,7 @@
 "sqlcmd-mode"
 "sqlite"
 "sqll"
+"sqll-server"
 "sqlplus"
 "sqlpsx"
 "sqlserver"

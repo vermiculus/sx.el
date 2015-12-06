@@ -472,6 +472,7 @@
 "seafarers-of-catan"
 "sealed-deck"
 "seasons"
+"secret-hitler"
 "senet"
 "senji"
 "sentinels-multiverse"

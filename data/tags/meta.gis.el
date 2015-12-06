@@ -49,6 +49,7 @@
 "flagging"
 "formatting"
 "gis"
+"hats"
 "help-center"
 "hyperlinks"
 "images"

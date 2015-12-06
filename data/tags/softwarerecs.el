@@ -620,6 +620,7 @@
 "synchronization"
 "sysadmin"
 "system-monitor"
+"tab"
 "tablet"
 "task-management"
 "templating"

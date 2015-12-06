@@ -32,6 +32,7 @@
 "future"
 "graduation"
 "help-center"
+"history"
 "hyperlinks"
 "interesting-tags"
 "login"

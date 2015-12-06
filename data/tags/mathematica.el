@@ -208,6 +208,7 @@
 "formatting"
 "fortran"
 "fourier-analysis"
+"fract"
 "fractals"
 "free-form-input"
 "frequency"

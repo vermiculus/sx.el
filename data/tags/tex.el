@@ -110,6 +110,7 @@
 "bbding"
 "bbl"
 "bclogo"
+"beam"
 "beamer"
 "beamerarticle"
 "beamerposter"
