@@ -16,6 +16,7 @@
 "bug"
 "bulk-edits"
 "canon"
+"captcha"
 "chat"
 "chat-event"
 "citations"

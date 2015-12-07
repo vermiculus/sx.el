@@ -374,7 +374,6 @@
 "united-states"
 "united-states-gulf-coast"
 "united-states-michigan"
-"united-states-wisconsin"
 "untagged"
 "urbex"
 "us-new-england"

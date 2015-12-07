@@ -565,6 +565,7 @@
 "cnc-zero-hour"
 "cobalt"
 "cod-advanced-warfare"
+"cod-black-ops-3-zombies"
 "cod-black-ops-zombies"
 "cod-united-offensive"
 "code-combat"

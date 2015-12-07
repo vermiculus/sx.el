@@ -1420,6 +1420,7 @@
 "pgp"
 "php"
 "php5"
+"php7"
 "phpmyadmin"
 "pictures"
 "pid"

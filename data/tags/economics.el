@@ -134,6 +134,7 @@
 "history"
 "history-economic-thought"
 "housing"
+"hp-filter"
 "human-capital"
 "identification"
 "industrial-organisation"

@@ -287,6 +287,7 @@
 "ios"
 "istanbul"
 "jamaica"
+"japenese-card-game"
 "jenga"
 "joseki"
 "joseki-deviation"

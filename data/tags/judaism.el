@@ -416,6 +416,7 @@
 "employment"
 "employment-work"
 "emunah"
+"emunat-chachamim"
 "engagement-shidduch"
 "english"
 "environment"

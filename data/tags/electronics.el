@@ -663,6 +663,7 @@
 "host"
 "hot-air"
 "how-does-it-work"
+"hspice"
 "hub"
 "hum"
 "humidity"

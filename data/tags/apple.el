@@ -827,6 +827,7 @@
 "office365"
 "omni-focus"
 "omni-graffle"
+"omni-plan"
 "onenote"
 "open-directory"
 "open-office"

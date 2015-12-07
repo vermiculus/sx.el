@@ -213,6 +213,7 @@
 "falklands-war"
 "family"
 "famine"
+"famous-people"
 "fascism"
 "fashion"
 "festival"

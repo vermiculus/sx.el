@@ -620,6 +620,7 @@
 "list-metadata"
 "list-view"
 "liveagent"
+"livechattranscript"
 "lma"
 "lmo"
 "loader"

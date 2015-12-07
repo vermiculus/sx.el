@@ -46,6 +46,7 @@
 "bullet-chess"
 "calculation"
 "candidate-move"
+"candidates"
 "capablanca"
 "capablanca-chess"
 "captures"

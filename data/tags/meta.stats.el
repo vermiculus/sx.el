@@ -150,4 +150,5 @@
 "vote-to-close"
 "vote-to-close"
 "votes"
-"voting")
+"voting"
+"winterbash")

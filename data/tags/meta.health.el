@@ -87,4 +87,5 @@
 "users"
 "vote-to-close"
 "votes"
-"voting")
+"voting"
+"winterbash-2015")

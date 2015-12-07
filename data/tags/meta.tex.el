@@ -104,7 +104,6 @@
 "request-for-information"
 "retagging"
 "review-page"
-"reviewing"
 "rss"
 "sandbox"
 "scope"
