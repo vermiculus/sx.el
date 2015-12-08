@@ -407,6 +407,7 @@
 "chm2pdf"
 "chmod"
 "chmsee"
+"choppy"
 "chorded-keyboard"
 "chown"
 "chrome"

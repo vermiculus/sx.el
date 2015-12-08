@@ -279,6 +279,7 @@
 "global-warming"
 "glucose"
 "glycan"
+"glycogen"
 "green-fluorescent-protein"
 "growth"
 "growth-media"

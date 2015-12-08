@@ -1669,6 +1669,7 @@
 "firefox-6"
 "firefox-7"
 "firefox-addon"
+"firefox-automatic-updates"
 "firefox-developer-edition"
 "firefox-developer-tools"
 "firefox-extension"

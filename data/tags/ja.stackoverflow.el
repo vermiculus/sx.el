@@ -318,6 +318,7 @@
 "iterator"
 "iterm"
 "jackson"
+"jasmine"
 "java"
 "java-ee"
 "java8"

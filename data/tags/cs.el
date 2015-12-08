@@ -125,6 +125,7 @@
 "database-theory"
 "databases"
 "deadlocks"
+"deamortization"
 "decision-problem"
 "decomposition"
 "denotational-semantics"

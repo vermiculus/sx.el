@@ -12,7 +12,6 @@
 "blog"
 "bounty"
 "broken-code"
-"broken-code"
 "bug"
 "burninate-request"
 "character-limit"

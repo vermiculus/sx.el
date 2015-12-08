@@ -189,6 +189,7 @@
 "computational-statistics"
 "computer-vision"
 "computing"
+"concavity"
 "concordance"
 "condition-number"
 "conditional-expectation"

@@ -283,6 +283,7 @@
 "getjson"
 "getlonglong"
 "getopt"
+"getpt"
 "getstring"
 "getwidth"
 "gevents.h"

@@ -117,6 +117,7 @@
 "furlough"
 "gender"
 "germany"
+"gifts"
 "glassdoor"
 "gossip"
 "government"

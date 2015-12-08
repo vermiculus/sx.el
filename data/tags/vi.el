@@ -36,7 +36,6 @@
 "delimiter-matching"
 "diff"
 "digraphs"
-"easy-align"
 "elvis"
 "encoding"
 "enumerate"

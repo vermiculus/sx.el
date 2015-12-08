@@ -2389,6 +2389,7 @@
 "power-over-ethernet"
 "power-supply"
 "power-supply-unit"
+"powerbroker"
 "powercli"
 "powerdns"
 "poweredge"

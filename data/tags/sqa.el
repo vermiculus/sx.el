@@ -166,6 +166,7 @@
 "screenshot"
 "scrum"
 "sdet"
+"security"
 "security-testing"
 "seetest"
 "selenium"

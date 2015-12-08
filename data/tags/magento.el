@@ -896,6 +896,7 @@
 "stores"
 "structured-data"
 "submenu"
+"subtotal"
 "supee-6788"
 "superattribute"
 "swatches"

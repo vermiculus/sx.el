@@ -1787,6 +1787,7 @@
 "spacewalk"
 "spamassasin"
 "sparc"
+"sparql"
 "sparse-files"
 "special-characters"
 "speech-recognition"

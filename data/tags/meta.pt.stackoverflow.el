@@ -70,6 +70,7 @@
 "feature-request"
 "featured"
 "fechamento"
+"filas-de-an&#225;lise"
 "flagging"
 "flags"
 "fora-do-t&#243;pico"

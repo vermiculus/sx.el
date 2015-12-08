@@ -38,6 +38,7 @@
 "design"
 "disagreement"
 "discussion"
+"display"
 "down-votes"
 "dupehammer"
 "duplicates"

@@ -585,6 +585,7 @@
 "kindle"
 "kiwi-irc"
 "kml"
+"koding"
 "language"
 "language-learning"
 "last.fm"

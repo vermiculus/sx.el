@@ -1704,6 +1704,7 @@
 "wedding"
 "whiskey"
 "whisper"
+"who-is-a-jew"
 "wine"
 "women"
 "women-female"

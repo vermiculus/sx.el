@@ -274,7 +274,6 @@
 "route-server"
 "route-summarization"
 "router"
-"routes"
 "routing"
 "routing-registry"
 "rsvp"
