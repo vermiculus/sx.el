@@ -132,6 +132,7 @@
 "bash"
 "battery"
 "battery-life"
+"bbedit"
 "beats1"
 "benchmark"
 "bento"

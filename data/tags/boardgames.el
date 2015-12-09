@@ -385,6 +385,7 @@
 "nuts"
 "odysseus"
 "once-upon-a-time"
+"one-hit-kill"
 "one-night-werewolf"
 "online"
 "opening"

@@ -162,6 +162,7 @@
 "chrome-shelled-regios"
 "chu2koi"
 "chuunibyou"
+"city-hunter"
 "clannad"
 "claymore"
 "clockwork-planet"

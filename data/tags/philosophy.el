@@ -153,6 +153,7 @@
 "induction"
 "infinite"
 "infinity"
+"int"
 "intelligence"
 "intentionality"
 "interpretation"

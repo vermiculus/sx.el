@@ -208,6 +208,7 @@
 "bos"
 "bosnia"
 "boston"
+"botswana"
 "botswanian-citizens"
 "bratislava"
 "brazil"

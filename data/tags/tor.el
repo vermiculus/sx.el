@@ -10,6 +10,7 @@
 "authentication"
 "back-door"
 "bandwidth"
+"bash"
 "binaries"
 "bittorrent"
 "blocked"
@@ -35,6 +36,7 @@
 "cookies"
 "customization"
 "darknet"
+"dash"
 "deanonymization"
 "debian"
 "density"
@@ -202,4 +204,5 @@
 "web-proxy"
 "website"
 "whonix"
-"windows")
+"windows"
+"zsh")

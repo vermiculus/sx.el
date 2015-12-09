@@ -772,6 +772,7 @@
 "shell"
 "shuffle"
 "sicp"
+"sidekiq"
 "siebel-escript"
 "sieve-of-eratosthenes"
 "signal-handling"

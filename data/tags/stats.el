@@ -291,6 +291,7 @@
 "dependence"
 "dependence"
 "derivative"
+"derived-distributions"
 "descriptive-statistics"
 "design-based-inference"
 "determinant"

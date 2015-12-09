@@ -10,6 +10,7 @@
 "area51"
 "asking-questions"
 "atividades-recentes"
+"autopromo&#231;&#227;o"
 "autoria"
 "backticks"
 "badges"

@@ -153,6 +153,7 @@
 "free-relative-clauses"
 "french"
 "fronting"
+"functional-grammar"
 "functions"
 "fused-determiner"
 "future"

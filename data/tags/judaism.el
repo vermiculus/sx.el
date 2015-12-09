@@ -679,6 +679,7 @@
 "kavana-intention"
 "kavod"
 "kavod-hamet"
+"kavod-seforim"
 "kavvanah-concentration"
 "kavvanah-intention"
 "kedusha-holiness"

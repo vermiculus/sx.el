@@ -344,6 +344,7 @@
 "sunyata"
 "sutras"
 "suttas"
+"suttas"
 "tanha"
 "tantra"
 "taoism"

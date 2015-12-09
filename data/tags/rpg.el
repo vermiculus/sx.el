@@ -33,7 +33,6 @@
 "all-for-one"
 "alternate-class-feature"
 "amber-diceless"
-"amusing-contrivances"
 "anima-beyond-fantasy"
 "anima-prime"
 "animal"

@@ -555,7 +555,6 @@
 "error"
 "error-handling"
 "escape-characters"
-"escape-sequences"
 "etc"
 "ethernet"
 "events"

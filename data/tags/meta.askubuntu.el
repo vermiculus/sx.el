@@ -37,6 +37,7 @@
 "close-reasons"
 "close-review-queue"
 "closed-questions"
+"code"
 "code-formatting"
 "comments"
 "community"

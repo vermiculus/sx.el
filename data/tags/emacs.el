@@ -229,6 +229,7 @@
 "header-line"
 "helm"
 "helm-for-files"
+"helm-projectile"
 "helm-selection"
 "helm-sources"
 "help"

@@ -418,6 +418,7 @@
 "db"
 "db2"
 "dba"
+"dbix-class"
 "dbms"
 "ddd"
 "deadlines"

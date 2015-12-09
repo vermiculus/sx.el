@@ -370,6 +370,7 @@
 "u-boot"
 "uart"
 "ubuntu"
+"underclocking"
 "untagged"
 "update"
 "upgrade"

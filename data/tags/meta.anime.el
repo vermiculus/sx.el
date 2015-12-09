@@ -55,6 +55,7 @@
 "new-users"
 "notifications"
 "off-topic"
+"on-topic"
 "openid"
 "outdated-content"
 "policies"

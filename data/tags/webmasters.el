@@ -887,6 +887,7 @@
 "throttling"
 "thumbnail"
 "ticket-system"
+"timing"
 "title"
 "title-attribute"
 "titles"

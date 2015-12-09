@@ -13,6 +13,7 @@
 "almonds"
 "alternative"
 "aluminum-cookware"
+"aluminum-foil"
 "american-cuisine"
 "apple"
 "apple"

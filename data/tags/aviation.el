@@ -557,6 +557,7 @@
 "soviet-union"
 "space-craft"
 "space-shuttle"
+"special-purpose-airplane"
 "special-use-airspace"
 "special-vfr"
 "spins"

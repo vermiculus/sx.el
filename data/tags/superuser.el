@@ -2627,6 +2627,7 @@
 "lenovo-laptop"
 "leo-editor"
 "less"
+"letsencrypt"
 "lexmark-printer"
 "lftp"
 "lg-monitor"

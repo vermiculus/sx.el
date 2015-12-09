@@ -99,7 +99,6 @@
 "full-hd"
 "gear"
 "gh4"
-"grading"
 "greenscreen"
 "grip"
 "h.264"
