@@ -45,6 +45,7 @@
 "bang"
 "barbarian-prince"
 "basing"
+"battlecon"
 "battleship-galaxies"
 "battlestar-galactica"
 "behavior"

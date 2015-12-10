@@ -357,6 +357,7 @@
 "treatment"
 "treatment-options"
 "triglycerides"
+"tuberculosis"
 "tumors"
 "type-1-diabetes"
 "typhoid"

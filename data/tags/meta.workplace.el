@@ -50,6 +50,7 @@
 "legal-questions"
 "login"
 "markdown"
+"merge"
 "meta"
 "migration"
 "moderation"

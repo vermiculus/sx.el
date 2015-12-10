@@ -225,6 +225,7 @@
 "sram"
 "ssh"
 "st7920"
+"stepper"
 "string"
 "strings"
 "struct"

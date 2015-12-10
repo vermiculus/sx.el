@@ -139,6 +139,8 @@
 "differentials"
 "diophantine-equations"
 "discreteplot"
+"discretization"
+"discretizegraphics"
 "display"
 "distance"
 "distributions"

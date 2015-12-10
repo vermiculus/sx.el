@@ -33,6 +33,7 @@
 "feature-request"
 "featured"
 "flagging"
+"flair"
 "formatting"
 "forum"
 "hats"

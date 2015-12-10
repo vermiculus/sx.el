@@ -597,6 +597,7 @@
 "poison"
 "pokemon-tabletop-adv"
 "pokemon-tabletop-united"
+"pokerole"
 "polaris"
 "polymorph"
 "post-apocalyptic"

@@ -833,6 +833,7 @@
 "profiling"
 "project-online"
 "project-server"
+"project-templates"
 "project2007"
 "projectedfield"
 "promises"

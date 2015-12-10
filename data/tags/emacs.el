@@ -468,6 +468,7 @@
 "rust"
 "rx"
 "save-excursion"
+"savehist"
 "saveplace"
 "saving"
 "scaling"

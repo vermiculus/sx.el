@@ -244,6 +244,7 @@
 "exchange-rate"
 "exchanges"
 "export"
+"factom"
 "fallback-nodes"
 "faucets"
 "finance"

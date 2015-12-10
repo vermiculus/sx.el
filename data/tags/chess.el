@@ -277,6 +277,7 @@
 "terminology"
 "theory"
 "threefold-repition"
+"tie-breaks"
 "time-control"
 "time-management"
 "titles"

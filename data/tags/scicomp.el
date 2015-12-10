@@ -308,6 +308,7 @@
 "variational-calculus"
 "vector"
 "vectorization"
+"ver"
 "verification"
 "viennacl"
 "visualization"

@@ -4630,6 +4630,7 @@
 "sql-server-express"
 "sqldeveloper"
 "sqlite"
+"sqlplus"
 "sqoop"
 "squashfs"
 "squeeze"

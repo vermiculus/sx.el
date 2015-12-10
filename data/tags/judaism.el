@@ -490,6 +490,7 @@
 "gender-identity"
 "genealogy"
 "genizah-storage"
+"genocide"
 "gentiles"
 "geography"
 "geonim"

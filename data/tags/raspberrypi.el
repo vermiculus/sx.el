@@ -37,6 +37,7 @@
 "camera"
 "camera-board"
 "can-bus"
+"cars"
 "case"
 "chrome-os"
 "chromecast"

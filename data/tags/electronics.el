@@ -1483,6 +1483,7 @@
 "synchro-check"
 "synchronization"
 "synchronous"
+"synchronous-motor"
 "synthesis"
 "synthesizer"
 "system"

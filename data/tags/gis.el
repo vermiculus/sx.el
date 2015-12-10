@@ -563,6 +563,7 @@
 "error-000539"
 "error-000582"
 "error-000628"
+"error-000725"
 "error-000732"
 "error-000800"
 "error-000824"

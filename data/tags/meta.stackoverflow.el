@@ -305,6 +305,7 @@
 "popup"
 "portuguese-stackoverflow"
 "post-ban"
+"post-feedback"
 "post-summary"
 "posting"
 "privacy"

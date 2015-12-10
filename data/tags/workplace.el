@@ -154,6 +154,7 @@
 "job-acceptance"
 "job-change"
 "job-description"
+"job-hopping"
 "job-listing"
 "job-offer"
 "job-satisfaction"

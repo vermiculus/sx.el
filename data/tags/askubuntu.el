@@ -889,6 +889,7 @@
 "firepro"
 "firestarter"
 "firewall"
+"firewalld"
 "firewire"
 "firmware"
 "fish"

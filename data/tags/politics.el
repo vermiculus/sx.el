@@ -55,6 +55,7 @@
 "direct-action"
 "direct-democracy"
 "discrimination"
+"donald-trump"
 "drugs"
 "ebola"
 "ecology"

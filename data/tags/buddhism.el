@@ -5,6 +5,7 @@
 "accidental-merit"
 "aggregates"
 "ahimsa"
+"alan-wallace"
 "alan-watts"
 "alaya-vijnana"
 "amitabha"

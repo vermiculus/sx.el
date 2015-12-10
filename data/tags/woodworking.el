@@ -186,6 +186,5 @@
 "wood-repair"
 "wood-selection"
 "wood-species"
-"woodworking-history"
 "workbench"
 "zero-clearance-insert")

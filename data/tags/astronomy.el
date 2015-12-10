@@ -291,7 +291,6 @@
 "supermassive-black-hole"
 "supernova"
 "surface"
-"swimming"
 "telescope"
 "telescope-care"
 "telescope-lens"
