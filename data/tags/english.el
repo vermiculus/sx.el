@@ -374,7 +374,6 @@
 "government"
 "gradability"
 "graduate"
-"gramaticality"
 "grammar"
 "grammatical-gender"
 "grammatical-number"

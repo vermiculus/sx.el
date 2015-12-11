@@ -46,6 +46,7 @@
 "fun"
 "general-reference"
 "help-center"
+"homepage"
 "hyperlinks"
 "interesting-tags"
 "late-answers"

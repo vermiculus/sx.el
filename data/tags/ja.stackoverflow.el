@@ -547,6 +547,7 @@
 "scenekit"
 "scheme"
 "scikit-learn"
+"scoop"
 "scrollview"
 "seaser2"
 "security"

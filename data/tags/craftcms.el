@@ -79,7 +79,6 @@
 "documentation"
 "draft"
 "drop-down"
-"dynamic-entry-title"
 "dynamicfield"
 "ecommerce"
 "editor"

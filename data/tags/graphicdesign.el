@@ -398,7 +398,6 @@
 "pixel-grid"
 "pixelation"
 "pixelmator"
-"pixlr-editor"
 "placeholder"
 "plagiarism"
 "plugin"

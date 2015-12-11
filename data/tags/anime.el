@@ -217,6 +217,7 @@
 "diebuster"
 "digimon"
 "digimon-tamers"
+"digimon-tri"
 "disgaea"
 "dog-days"
 "dokkiri-doctor"

@@ -184,7 +184,6 @@
 "smoke-testing"
 "soapui"
 "sockets"
-"software"
 "source-control"
 "specflow"
 "sql"

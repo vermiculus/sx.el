@@ -784,6 +784,7 @@
 "recommendations"
 "reddit"
 "regex"
+"registrar"
 "registration"
 "relayrides"
 "remember-the-milk"

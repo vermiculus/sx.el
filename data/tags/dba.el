@@ -18,7 +18,6 @@
 "amazon-linux"
 "amazonrds"
 "android"
-"aneanemometer"
 "anemometer"
 "ansi-sql-standard"
 "application-design"

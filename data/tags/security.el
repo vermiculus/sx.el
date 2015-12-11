@@ -340,6 +340,7 @@
 "historical"
 "history"
 "hmac"
+"homework"
 "homomorphic-encryption"
 "honeypot"
 "host-discovery"

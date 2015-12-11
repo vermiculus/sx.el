@@ -52,6 +52,7 @@
 "coordination-compounds"
 "covalent-compounds"
 "crystal"
+"crystal-field-theory"
 "crystal-structure"
 "crystalline-structure"
 "cyclic-voltammetry"

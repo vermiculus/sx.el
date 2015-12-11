@@ -386,6 +386,7 @@
 "signed-languages"
 "sino-tibetan"
 "slang"
+"slavic"
 "slavic-languages"
 "slovenian"
 "sociolinguistics"

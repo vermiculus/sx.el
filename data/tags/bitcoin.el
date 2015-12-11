@@ -561,6 +561,7 @@
 "security"
 "security-key"
 "seed"
+"segregated-witness"
 "selection"
 "selfish-mining"
 "sell-bitcoins"

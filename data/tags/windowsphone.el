@@ -236,6 +236,7 @@
 "sound"
 "speech"
 "spinning-gears"
+"spotify"
 "ssl-certificate"
 "start-folders"
 "storage"

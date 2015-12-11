@@ -545,6 +545,7 @@
 "monobehaviour"
 "monodevelop"
 "monogame"
+"monogame-extended"
 "monotouch"
 "morph-targets"
 "motion"

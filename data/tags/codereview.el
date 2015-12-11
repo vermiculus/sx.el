@@ -241,6 +241,7 @@
 "dynamic-loading"
 "dynamic-programming"
 "e-commerce"
+"e-mail"
 "easymock"
 "ebay"
 "ebnf"

@@ -18,6 +18,7 @@
 "bounty"
 "bug"
 "chat"
+"chat-faq"
 "close-reasons"
 "closed-questions"
 "comments"

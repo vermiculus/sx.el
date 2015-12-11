@@ -979,6 +979,7 @@
 "sfdc-styleguide"
 "sfdcmobilesdk-android"
 "sfmc"
+"sfo"
 "sfrestrequest"
 "shared-activities"
 "sharerecord"

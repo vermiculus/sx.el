@@ -1292,6 +1292,7 @@
 "theta-method"
 "threshold"
 "tikhonov"
+"tikhonov-regularization"
 "time-complexity"
 "time-series"
 "time-varying-covariate"

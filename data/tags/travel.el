@@ -1546,6 +1546,7 @@
 "tajik-citizens"
 "tajikistan"
 "tallinn"
+"tam-airlines"
 "tamil-nadu"
 "tangier"
 "tanzania"

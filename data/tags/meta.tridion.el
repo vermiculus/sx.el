@@ -30,6 +30,7 @@
 "hyperlinks"
 "innovate"
 "interesting-tags"
+"license"
 "login"
 "markdown"
 "meta"
@@ -69,4 +70,5 @@
 "users"
 "vote-to-close"
 "votes"
-"voting")
+"voting"
+"web8")
