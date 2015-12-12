@@ -177,6 +177,8 @@
 "hormones"
 "hygiene"
 "hypertension"
+"hyperthyroid"
+"hypothyroid"
 "immune-system"
 "immunity"
 "infant"

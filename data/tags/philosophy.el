@@ -346,6 +346,7 @@
 "time"
 "translation"
 "truth"
+"turing"
 "types"
 "universe"
 "untagged"

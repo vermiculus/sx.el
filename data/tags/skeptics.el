@@ -9,6 +9,7 @@
 "adolf-hitler"
 "adolph-hitler"
 "advertising"
+"affirmative-action"
 "afghanistan"
 "africa"
 "aging"

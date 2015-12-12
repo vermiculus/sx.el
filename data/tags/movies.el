@@ -1550,6 +1550,7 @@
 "silver-linings-playbook"
 "sin-city"
 "sin-city-dame-to-kill-for"
+"singin-in-the-rain"
 "sinister"
 "sitcoms"
 "six-million-dollar-man"

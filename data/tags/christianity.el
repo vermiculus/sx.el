@@ -37,7 +37,6 @@
 "altar"
 "ame"
 "ame-zion"
-"america"
 "amillenialism"
 "amillennialism"
 "amish"

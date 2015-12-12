@@ -35,7 +35,6 @@
 "continuum-mechanics"
 "cosmology"
 "cybernetics"
-"data"
 "death"
 "debunking"
 "depiction-of-scientists"

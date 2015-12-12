@@ -33,6 +33,7 @@
 "aliasing"
 "align"
 "alignat"
+"aligned"
 "alphabet"
 "ampersand"
 "amsart"

@@ -2600,7 +2600,6 @@
 "svn"
 "swap"
 "swf"
-"swift"
 "switch-user"
 "switchable-graphics"
 "switchbox"

@@ -486,6 +486,7 @@
 "synchronization"
 "syntax"
 "syntax-trees"
+"tail-recursion"
 "tape-complexity"
 "temporal-logic"
 "term-rewriting"

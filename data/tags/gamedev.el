@@ -172,6 +172,7 @@
 "conceptual"
 "configuration"
 "console"
+"constexpr"
 "construct-2"
 "content-generation"
 "content-rating"

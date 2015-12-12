@@ -911,6 +911,8 @@
 "meraglim-spies"
 "mesakein-maneh"
 "mesechet-shabbat"
+"mesira"
+"mesirah"
 "mesiruth-nefesh-martyrdom"
 "mesora"
 "mesorah-tradition"

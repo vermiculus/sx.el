@@ -45,6 +45,7 @@
 "learning"
 "let-there-be-range"
 "live"
+"maniac"
 "microstakes"
 "misdeal"
 "movie"

@@ -33,6 +33,7 @@
 "cache"
 "cache-handler"
 "category"
+"category-blog"
 "cck"
 "check-in"
 "chronoforms"

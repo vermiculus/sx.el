@@ -1267,6 +1267,8 @@
 "ngrok"
 "nice"
 "nightly"
+"nim"
+"nimol"
 "nis"
 "nix"
 "nixos"

@@ -31,7 +31,6 @@
 "cursor-movement"
 "cut-copy-paste"
 "cygwin"
-"dbext"
 "debug"
 "delete"
 "delimiter-matching"

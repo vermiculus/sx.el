@@ -479,6 +479,7 @@
 "maternity-leave"
 "maturity"
 "medical-tourism"
+"medicare"
 "memberships"
 "metric"
 "mexico"

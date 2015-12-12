@@ -183,6 +183,7 @@
 "arp-poisoning"
 "arptables"
 "arr"
+"artifactory"
 "aruba"
 "as-number"
 "as400"

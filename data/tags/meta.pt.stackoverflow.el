@@ -92,6 +92,7 @@
 "internacionaliza&#231;&#227;o"
 "ipad"
 "justificar-voto"
+"l&#237;ngua"
 "layout"
 "licen&#231;a"
 "limite"

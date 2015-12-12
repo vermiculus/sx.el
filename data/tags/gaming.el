@@ -857,6 +857,7 @@
 "dont-get-fired"
 "dont-look-back"
 "dont-starve"
+"dont-starve-shipwrecked"
 "dont-starve-together"
 "dont-touch-the-spikes"
 "doodle-devil"

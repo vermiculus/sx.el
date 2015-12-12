@@ -540,6 +540,7 @@
 "subscriptions"
 "super-admin"
 "supersearch"
+"svgs"
 "switch"
 "switchee"
 "sync"

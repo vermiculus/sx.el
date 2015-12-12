@@ -64,6 +64,7 @@
 "display"
 "download-mode"
 "driving-mode"
+"dual-sim"
 "email"
 "error"
 "exchange"
