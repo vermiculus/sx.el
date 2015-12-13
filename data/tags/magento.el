@@ -517,6 +517,7 @@
 "login-error"
 "logout"
 "lost"
+"m"
 "m2e"
 "m2epro"
 "mage-googleshopping"

@@ -170,7 +170,6 @@
 "custom-sql"
 "custom-taxonomy"
 "custom-write-panel"
-"customiser"
 "customization"
 "customize"
 "customizer"

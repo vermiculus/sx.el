@@ -172,6 +172,7 @@
 "quine"
 "r"
 "random"
+"range"
 "rational-numbers"
 "recursion"
 "regular-expression"

@@ -12,7 +12,6 @@
 "arara"
 "arcanist"
 "archive-mode"
-"arcnist"
 "artist-mode"
 "aspell"
 "association-lists"

@@ -212,7 +212,6 @@
 "ios-app"
 "ipad"
 "items-per-page"
-"jonskeet"
 "jsfiddle"
 "keyboard-shortcuts"
 "language-versions"
@@ -249,7 +248,6 @@
 "merged-questions"
 "meta"
 "meta-tags"
-"micro-services"
 "microsoft-edge"
 "migrated-questions"
 "migration"
@@ -257,7 +255,6 @@
 "moderation"
 "moderator-abilities"
 "moderator-election"
-"moderator-sucks"
 "moderator-tools"
 "moderators"
 "modified-answer"
@@ -334,7 +331,6 @@
 "recent-names"
 "recommendation-questions"
 "recommended-tab"
-"refactoring"
 "registration"
 "rejected-edits"
 "related-questions"
@@ -501,4 +497,5 @@
 "winterbash-2015"
 "wrong-answers"
 "xy-problem"
-"yearling-badge")
+"yearling-badge"
+"zero-score-answers")

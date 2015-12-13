@@ -265,6 +265,7 @@
 "passwords"
 "pbkdf"
 "pbkdf-2"
+"pedagogy"
 "pen-and-paper"
 "perfect-secrecy"
 "performance"

@@ -51,6 +51,7 @@
 "buchi-automata"
 "busy-beaver"
 "c"
+"calculus-of-constructions"
 "category-theory"
 "cc.complexity-theory"
 "ccs"

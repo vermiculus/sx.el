@@ -7,6 +7,7 @@
 "appropriate-tags"
 "asking-questions"
 "automatic-flagging"
+"backdrop"
 "badges"
 "beta"
 "block-tag-requests"

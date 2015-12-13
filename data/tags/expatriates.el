@@ -17,6 +17,7 @@
 "belgium"
 "benefits"
 "birth-certificate"
+"blue-card"
 "bolivian-citizen"
 "brazil"
 "brazilian-citizens"

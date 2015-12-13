@@ -852,6 +852,7 @@
 "sprite"
 "sprite-kit"
 "spritebatch"
+"spritefont"
 "sprites"
 "spritesheet"
 "sql"

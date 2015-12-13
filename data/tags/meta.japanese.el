@@ -35,6 +35,7 @@
 "furigana"
 "graduation"
 "hats"
+"help-improvement"
 "hyperlinks"
 "ime"
 "interesting-tags"

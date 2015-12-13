@@ -127,6 +127,7 @@
 "complexity"
 "conditions"
 "configure"
+"confirmation"
 "confused"
 "connection"
 "console"

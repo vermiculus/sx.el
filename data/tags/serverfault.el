@@ -114,6 +114,7 @@
 "amazon-route53"
 "amazon-s3"
 "amazon-ses"
+"amazon-sns"
 "amazon-storage-gateway"
 "amazon-vpc"
 "amazon-web-services"

@@ -1877,6 +1877,7 @@
 "svg"
 "sweden"
 "swipe"
+"swipe-tool"
 "switzerland"
 "symap"
 "symbol"
