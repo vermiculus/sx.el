@@ -719,7 +719,6 @@
 "sso"
 "sspi"
 "stagefright"
-"startcom"
 "starttls"
 "static-analysis"
 "statistics"

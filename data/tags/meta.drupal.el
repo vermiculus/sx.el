@@ -45,7 +45,6 @@
 "hats"
 "highlighting-code"
 "interesting-tags"
-"late-answers"
 "links"
 "login"
 "markdown"

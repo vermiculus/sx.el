@@ -215,6 +215,7 @@
 "dgca-india"
 "dgca-india-regulations"
 "disasters"
+"discontinued"
 "dispatch"
 "display"
 "ditching"

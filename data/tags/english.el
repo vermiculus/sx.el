@@ -142,6 +142,7 @@
 "cloze-test"
 "clusivity"
 "coin"
+"coin-a-term"
 "collective-nouns"
 "collocation"
 "collocations"

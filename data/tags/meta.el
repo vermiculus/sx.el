@@ -622,6 +622,7 @@
 "hard-drives"
 "hardware"
 "hash"
+"hat"
 "hat-request"
 "hats"
 "header"

@@ -214,6 +214,7 @@
 "security"
 "seed"
 "sell"
+"seo"
 "servers"
 "service"
 "shipping"

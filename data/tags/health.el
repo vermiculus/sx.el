@@ -153,6 +153,7 @@
 "genetic-engineering"
 "glucose"
 "gums"
+"gynaecology"
 "gyneacology"
 "hair"
 "hairloss"

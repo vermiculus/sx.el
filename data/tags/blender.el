@@ -142,6 +142,7 @@
 "point-clouds"
 "preferences"
 "properties"
+"proxy-objects"
 "pynodes"
 "python"
 "render"

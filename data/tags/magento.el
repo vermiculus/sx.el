@@ -449,6 +449,7 @@
 "image"
 "image-by-attribute-value"
 "image-preview"
+"image-size-validation"
 "image-upload"
 "import"
 "importexport"

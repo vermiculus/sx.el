@@ -149,7 +149,6 @@
 "dhtml-menu"
 "dialogs"
 "diff"
-"directory-structure"
 "display-suite"
 "disqus"
 "distribution"

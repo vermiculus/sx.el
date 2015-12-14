@@ -9,6 +9,7 @@
 "accounts"
 "achievements-dialog"
 "activity-tab"
+"adblocker"
 "advanced-search"
 "advertising"
 "age"
@@ -497,5 +498,4 @@
 "winterbash-2015"
 "wrong-answers"
 "xy-problem"
-"yearling-badge"
-"zero-score-answers")
+"yearling-badge")

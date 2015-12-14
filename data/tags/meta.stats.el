@@ -26,6 +26,7 @@
 "copycat-sites"
 "cross-posting"
 "data"
+"data-challenge"
 "data-dump"
 "data-explorer"
 "data-mining"

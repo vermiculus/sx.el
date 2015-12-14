@@ -147,6 +147,7 @@
 "fluency"
 "focus-adverbs"
 "for"
+"foreign-words"
 "formal"
 "formality"
 "format"

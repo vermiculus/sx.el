@@ -548,6 +548,7 @@
 "text"
 "text-editing"
 "text-properties"
+"text-size"
 "themes"
 "thumbnails"
 "time-date"

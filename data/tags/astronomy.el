@@ -109,6 +109,7 @@
 "gamma-ray-bursts"
 "gas"
 "gas-giants"
+"geminids"
 "general-relativity"
 "geocentrism"
 "geology"

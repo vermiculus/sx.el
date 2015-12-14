@@ -13,6 +13,7 @@
 "ada"
 "ado.net"
 "adodb"
+"advent-of-code"
 "adventure-game"
 "aes"
 "agda"

@@ -1447,7 +1447,6 @@
 "last-command"
 "last.fm-client"
 "latex"
-"launch"
 "launcher"
 "launchpad"
 "launchpad-api"

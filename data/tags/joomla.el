@@ -215,6 +215,7 @@
 "plugingroup"
 "positions"
 "postgresql"
+"preview"
 "profile"
 "project"
 "recommended-practices"

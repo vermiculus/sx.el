@@ -372,6 +372,7 @@
 "munchkin-quest"
 "mundus-novus"
 "my-little-pony-ccg"
+"mysterium"
 "mystery-of-the-abbey"
 "nanuk"
 "necromunda"
