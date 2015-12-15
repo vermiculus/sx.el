@@ -167,6 +167,7 @@
 "osmosis"
 "oxidation-state"
 "ozone"
+"pericyclic"
 "periodic-table"
 "periodic-trends"
 "ph"

@@ -42,6 +42,7 @@
 "profile-page"
 "questions"
 "recent-activity"
+"reference"
 "reputation"
 "retagging"
 "rss"

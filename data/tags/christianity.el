@@ -731,6 +731,7 @@
 "ransom-theory"
 "rapture"
 "rastafarian"
+"ravi-zacharias"
 "rc-sproul"
 "reborn"
 "reconciliation"

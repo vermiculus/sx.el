@@ -78,7 +78,6 @@
 "bitcoin-core"
 "bitcoin-core-version"
 "bitcoin-days-destroyed"
-"bitcoin-debit-card"
 "bitcoin-foundation"
 "bitcoin-literature"
 "bitcoin-qt"

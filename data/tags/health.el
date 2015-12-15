@@ -154,7 +154,6 @@
 "glucose"
 "gums"
 "gynaecology"
-"gyneacology"
 "hair"
 "hairloss"
 "hand"

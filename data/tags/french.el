@@ -116,6 +116,7 @@
 "formatage"
 "formulation"
 "formulation-idiomatique"
+"fran&#231;ais-moyen"
 "francais-classique"
 "france"
 "futur"

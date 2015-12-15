@@ -193,6 +193,7 @@
 "mathematics"
 "matthew"
 "melchizedek"
+"memra"
 "messianic"
 "metaphor"
 "micah"

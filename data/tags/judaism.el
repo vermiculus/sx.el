@@ -1505,6 +1505,7 @@
 "sukkos"
 "sukkot"
 "summer"
+"sunset-shekia"
 "superstition"
 "surnames"
 "swear-oath"

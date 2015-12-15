@@ -93,6 +93,7 @@
 "minifig"
 "minifigure"
 "minifigures"
+"miniland"
 "moc"
 "model-identification"
 "modular-buildings"

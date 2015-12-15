@@ -1094,6 +1094,7 @@
 "transcript"
 "translation"
 "translation-workbench"
+"trending-post"
 "trial"
 "trialforce"
 "trigger"

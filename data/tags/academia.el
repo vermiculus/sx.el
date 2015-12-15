@@ -172,7 +172,6 @@
 "h-index"
 "habilitation"
 "harassment"
-"harvard"
 "health-issues"
 "healthcare"
 "hiring"

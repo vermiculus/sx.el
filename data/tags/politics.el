@@ -41,6 +41,7 @@
 "corporations"
 "corruption"
 "council-of-europe"
+"crime"
 "crimea"
 "cronyism"
 "cuba"

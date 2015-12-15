@@ -100,6 +100,7 @@
 "appleworks"
 "application-switcher"
 "applications"
+"apps"
 "appstore"
 "arabic"
 "archive"

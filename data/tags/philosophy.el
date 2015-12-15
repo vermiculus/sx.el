@@ -38,6 +38,7 @@
 "buddhism"
 "camus"
 "cassirer"
+"categorical-framework"
 "categorical-imperative"
 "causality"
 "causation"

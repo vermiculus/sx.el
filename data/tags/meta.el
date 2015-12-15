@@ -623,6 +623,7 @@
 "hardware"
 "hash"
 "hat"
+"hat"
 "hat-request"
 "hats"
 "header"
