@@ -160,6 +160,7 @@
 "infinite-impulse-response"
 "information-theory"
 "integration"
+"interest-points"
 "interpolation"
 "iq"
 "java"

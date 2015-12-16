@@ -344,7 +344,6 @@
 "google-mock"
 "google-sheets"
 "google-test"
-"gpgpu"
 "gradle"
 "grails"
 "grammar"

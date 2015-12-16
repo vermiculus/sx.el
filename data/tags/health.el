@@ -180,6 +180,7 @@
 "hygiene"
 "hypertension"
 "hyperthyroid"
+"hypnotherapy"
 "hypothyroid"
 "immune-system"
 "immunity"

@@ -46,6 +46,7 @@
 "chinese-philosophy"
 "christianity"
 "cicero"
+"classification"
 "cogito"
 "cognitive-sciences"
 "compatibilism"

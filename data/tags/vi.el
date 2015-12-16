@@ -147,6 +147,7 @@
 "plugin-neocompcache"
 "plugin-nerdtree"
 "plugin-omnisharp-vim"
+"plugin-powerline"
 "plugin-rope"
 "plugin-snipmate"
 "plugin-solarized"

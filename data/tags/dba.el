@@ -274,6 +274,7 @@
 "error-log"
 "errors"
 "erwin"
+"escape-sequence"
 "etl"
 "event"
 "event-notification"

@@ -26,6 +26,7 @@
 "crema"
 "cup"
 "decaffeinated"
+"desert"
 "digestion"
 "drip-brew"
 "egg-coffee"

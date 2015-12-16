@@ -2,6 +2,7 @@
 "abort"
 "accident"
 "active-seti"
+"actuators"
 "advanced-propulsion"
 "aerial-photography"
 "aerobot"

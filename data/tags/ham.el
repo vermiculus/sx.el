@@ -7,6 +7,8 @@
 "antenna"
 "antenna-construction"
 "antenna-reflector"
+"antenna-system"
+"antenna-theory"
 "antenna-tuner"
 "aprs"
 "arrl"

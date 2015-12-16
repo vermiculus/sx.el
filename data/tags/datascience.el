@@ -71,6 +71,7 @@
 "expectation-maximization"
 "experiments"
 "feature-construction"
+"feature-engineering"
 "feature-extraction"
 "feature-scaling"
 "feature-selection"

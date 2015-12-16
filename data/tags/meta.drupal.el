@@ -42,7 +42,6 @@
 "flagging"
 "flags"
 "formatting"
-"hats"
 "highlighting-code"
 "interesting-tags"
 "links"

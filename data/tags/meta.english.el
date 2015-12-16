@@ -94,6 +94,7 @@
 "pronunciation"
 "proposed-edits"
 "protected-questions"
+"question-ban"
 "question-closure"
 "question-requirements"
 "question-restrictions"

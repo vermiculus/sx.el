@@ -29,6 +29,7 @@
 "authorize.net"
 "backdrop"
 "backups"
+"batches"
 "best-practice"
 "binary-logging"
 "bootstrap"

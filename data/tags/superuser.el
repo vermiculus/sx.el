@@ -3030,6 +3030,7 @@
 "microsoft-word-2013"
 "microsoft-word-2016"
 "microsoft-works"
+"microstation"
 "midi"
 "midi-virtual-keyboard"
 "midnight-commander"

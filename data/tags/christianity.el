@@ -130,6 +130,7 @@
 "calendar"
 "calling"
 "calvanism"
+"calvary-chapel"
 "calvin"
 "calvinism"
 "canaan"

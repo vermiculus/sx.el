@@ -157,6 +157,7 @@
 "cloud-mining"
 "coin"
 "coin-age"
+"coin-shuffle"
 "coinbase"
 "coinbase-transaction"
 "coinbase.com"
