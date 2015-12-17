@@ -1122,6 +1122,7 @@
 "poe"
 "pointers"
 "polarity"
+"pole-zeroplot"
 "pololu"
 "polyfuse"
 "polynomial-math"
@@ -1698,4 +1699,5 @@
 "zener"
 "zero-crossing"
 "zif"
-"zigbee")
+"zigbee"
+"zoh")

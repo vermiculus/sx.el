@@ -200,6 +200,7 @@
 "debitcard"
 "decentralized"
 "decentralized-assets"
+"decred"
 "deflation"
 "destroy-bitcoins"
 "deterministic"

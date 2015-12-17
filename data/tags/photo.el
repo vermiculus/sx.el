@@ -481,6 +481,7 @@
 "gnd-filter"
 "godox"
 "golden-hour"
+"golden-ratio"
 "google"
 "gopro"
 "gorillapod"

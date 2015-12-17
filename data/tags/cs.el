@@ -206,6 +206,7 @@
 "hash"
 "hash-tables"
 "hashing"
+"haskell"
 "hci"
 "heap-sort"
 "heaps"

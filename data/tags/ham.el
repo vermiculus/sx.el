@@ -21,7 +21,6 @@
 "baofeng"
 "battery"
 "beacon"
-"beam"
 "calibration"
 "callsign"
 "canada"

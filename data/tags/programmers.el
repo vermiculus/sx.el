@@ -133,6 +133,7 @@
 "bash"
 "basic"
 "basic-skills"
+"batman"
 "bcl"
 "bdd"
 "behat"

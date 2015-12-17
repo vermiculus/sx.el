@@ -790,7 +790,6 @@
 "pronoun-dropping"
 "pronounciation"
 "pronouns"
-"pronuncation"
 "pronunciation"
 "pronunciation-vs-spelling"
 "proper"

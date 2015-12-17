@@ -351,6 +351,7 @@
 "full-screen"
 "gadget"
 "games"
+"ganttify"
 "gchat"
 "geeklist"
 "genealogy"

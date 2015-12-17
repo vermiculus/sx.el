@@ -65,6 +65,7 @@
 "general-reference"
 "google"
 "guidance"
+"hats"
 "hyperlinks"
 "images"
 "interesting-tags"

@@ -59,6 +59,7 @@
 "front-page"
 "glossary"
 "graduation"
+"hackers"
 "haggada-project"
 "haggadah-project"
 "halacha"

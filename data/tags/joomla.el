@@ -81,6 +81,7 @@
 "extension-request"
 "extensions"
 "external-script"
+"fabrik"
 "facebook"
 "fatal-error"
 "features"

@@ -120,6 +120,7 @@
 "enuresis"
 "etiquette"
 "evidence"
+"exercise"
 "extended-family"
 "extraversion"
 "eyes"

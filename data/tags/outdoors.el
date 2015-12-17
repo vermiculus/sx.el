@@ -311,6 +311,7 @@
 "shooting"
 "shoulder-season"
 "signage"
+"skateboarding"
 "ski-repair"
 "ski-touring"
 "skiing"

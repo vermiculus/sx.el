@@ -174,6 +174,7 @@
 "matrices"
 "matrix"
 "matrix-equations"
+"matrix-factorization"
 "matrix-free"
 "maxwell"
 "memory-management"

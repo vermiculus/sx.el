@@ -153,6 +153,7 @@
 "spam"
 "spam-handling"
 "specific-question"
+"sso"
 "stackexchange"
 "statistics"
 "status-bydesign"

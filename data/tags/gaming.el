@@ -696,6 +696,7 @@
 "dawn-of-heroes"
 "dawn-of-the-dragons"
 "dawn-of-war-2"
+"dawn-of-war-soulstorm"
 "dawnguard"
 "day-of-defeat"
 "day-of-defeat-source"

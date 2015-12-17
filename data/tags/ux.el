@@ -96,6 +96,7 @@
 "career-development"
 "carousel"
 "cars"
+"cart"
 "case-studies"
 "catalog"
 "categories"

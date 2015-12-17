@@ -825,6 +825,7 @@
 "mg.metric-geometry"
 "micro-local-analysis"
 "milnor-invariant"
+"minimal"
 "minimal-model-program"
 "mirror-symmetry"
 "mixing"

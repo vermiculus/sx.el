@@ -407,6 +407,7 @@
 "exam"
 "exams"
 "excel"
+"excel-access-web-part"
 "excel-services"
 "excel-web-access-webpart"
 "exception"

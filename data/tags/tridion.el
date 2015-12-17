@@ -173,6 +173,7 @@
 "schema-synchronization"
 "sdl"
 "sdl-mobile"
+"sdl-tridion"
 "sdl-tridion-2013-sp1"
 "sdltridion2013"
 "search"

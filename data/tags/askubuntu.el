@@ -443,6 +443,7 @@
 "cloning"
 "cloud"
 "cloud-init"
+"cloudera-manager"
 "cluster"
 "clutter"
 "clutterflow"

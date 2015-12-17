@@ -560,6 +560,7 @@
 "error-handling"
 "escape-characters"
 "etc"
+"etckeeper"
 "ethernet"
 "events"
 "evince"

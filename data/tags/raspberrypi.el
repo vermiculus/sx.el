@@ -133,6 +133,7 @@
 "hdmi"
 "headless"
 "heroku"
+"hifiberry"
 "home-automation"
 "hotspot"
 "html5"

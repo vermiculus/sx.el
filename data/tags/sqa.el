@@ -128,7 +128,6 @@
 "non-functional"
 "nunit"
 "office"
-"opc"
 "open-source"
 "oracle-ats"
 "oracle-openscript"

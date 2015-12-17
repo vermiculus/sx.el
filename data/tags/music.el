@@ -430,6 +430,7 @@
 "trombone"
 "trumpet"
 "tuba"
+"tuner"
 "tuning"
 "tuplet"
 "turntables"

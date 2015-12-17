@@ -27,6 +27,7 @@
 "cup"
 "decaffeinated"
 "desert"
+"dessert"
 "digestion"
 "drip-brew"
 "egg-coffee"

@@ -53,6 +53,7 @@
 "anchor"
 "android"
 "animated"
+"animated-gif"
 "aol"
 "apache"
 "apache-log-files"
