@@ -100,6 +100,7 @@
 "probability"
 "psychology"
 "publishing"
+"pythagorean-proposition"
 "quantum-mechanics"
 "quote"
 "radiation"

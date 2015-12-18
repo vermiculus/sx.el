@@ -1812,6 +1812,7 @@
 "york"
 "yorkshire"
 "yosemite"
+"yow"
 "yukon"
 "yul"
 "yunnan"

@@ -915,7 +915,6 @@
 "vicar"
 "violence"
 "virgin-mary"
-"virtue-ethics"
 "visions"
 "vocations"
 "vodou"

@@ -221,6 +221,7 @@
 "user-scripts"
 "users"
 "vandalism"
+"view-counter"
 "vote-to-close"
 "votes"
 "voting"

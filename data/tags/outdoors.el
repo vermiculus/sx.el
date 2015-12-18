@@ -18,6 +18,7 @@
 "appalachian-trail"
 "archery"
 "arctic"
+"arrows"
 "australia"
 "austria"
 "autumn"

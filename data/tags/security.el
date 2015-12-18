@@ -375,6 +375,7 @@
 "incident-response"
 "infection"
 "infection-vector"
+"information-gathering"
 "initialisation-vector"
 "injection"
 "insider-threats"

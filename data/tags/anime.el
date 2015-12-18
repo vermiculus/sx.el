@@ -475,6 +475,7 @@
 "kaze-no-stigma"
 "kaze-no-tani-no-nausicaa"
 "kaze-tachinu"
+"kazuki-takahashi"
 "kekkai-sensen"
 "ken-akamatsu"
 "kenichi"

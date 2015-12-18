@@ -47,7 +47,6 @@
 "appstore"
 "arcade"
 "architecture"
-"arihmetic"
 "art"
 "artemis"
 "articles"

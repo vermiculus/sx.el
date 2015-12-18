@@ -234,6 +234,7 @@
 "divide-and-conquer"
 "django"
 "doctrine"
+"dogescript"
 "dojo"
 "dom"
 "drupal"

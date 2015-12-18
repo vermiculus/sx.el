@@ -317,6 +317,7 @@
 "product-support"
 "profile-page"
 "profile-picture"
+"programming-tools"
 "protected-questions"
 "quality-filter"
 "quality-improvement"

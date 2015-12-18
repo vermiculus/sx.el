@@ -694,6 +694,7 @@
 "website-integration"
 "websites"
 "websockets"
+"weusecoins.com"
 "wiki"
 "wikileaks"
 "windows"

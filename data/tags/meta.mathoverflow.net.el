@@ -35,6 +35,7 @@
 "etiquette"
 "exact-duplicates"
 "faq"
+"faq-proposed"
 "favorites"
 "feature-request"
 "featured"

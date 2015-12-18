@@ -169,6 +169,7 @@
 "document-management"
 "documentation-generator"
 "documentation-viewer"
+"dokuwiki"
 "donation"
 "dos"
 "download-manager"

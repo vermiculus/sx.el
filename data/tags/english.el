@@ -1078,6 +1078,7 @@
 "whoever-vs-whomever"
 "whom"
 "whose"
+"wikipedia"
 "will-be-going"
 "will-future"
 "will-would"

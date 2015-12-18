@@ -94,6 +94,7 @@
 "hadoop"
 "hbase"
 "hierarchical-data-format"
+"hinge-loss"
 "history"
 "hive"
 "hog"

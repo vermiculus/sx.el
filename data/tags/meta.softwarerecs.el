@@ -43,6 +43,7 @@
 "games"
 "graduation"
 "help-center"
+"humor"
 "hyperlinks"
 "interesting-tags"
 "login"

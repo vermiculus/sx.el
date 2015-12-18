@@ -2709,7 +2709,6 @@
 "localhost"
 "localization"
 "locate"
-"location"
 "location-bar"
 "location-services"
 "lock"

@@ -116,6 +116,7 @@
 "philosophy-of-maths"
 "physical-sciences"
 "pisa"
+"place-value"
 "powers"
 "precalculus"
 "prerequisites"

@@ -229,6 +229,7 @@
 "conversion"
 "cookie"
 "copy-and-paste"
+"copy-content"
 "copy-item"
 "core"
 "core-api"

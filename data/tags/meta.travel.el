@@ -27,6 +27,7 @@
 "discussion"
 "down-votes"
 "duplicates"
+"edge"
 "editing"
 "election"
 "etiquette"

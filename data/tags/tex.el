@@ -837,6 +837,7 @@
 "nesting"
 "newcommand"
 "newenvironment"
+"newicktree"
 "newlfm"
 "newline"
 "newspaper"
