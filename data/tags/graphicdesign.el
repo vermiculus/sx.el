@@ -150,6 +150,7 @@
 "cs6"
 "css"
 "cur"
+"cursive"
 "cutter"
 "cyrillic"
 "data-merge"

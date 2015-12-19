@@ -607,6 +607,7 @@
 "fetchmail"
 "ffmpeg"
 "ffs"
+"fft"
 "fglrx"
 "fhs"
 "fifo"

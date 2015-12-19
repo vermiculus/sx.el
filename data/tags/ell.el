@@ -127,7 +127,6 @@
 "ellipsis"
 "email"
 "emphasis"
-"enunciation"
 "error"
 "etiquette"
 "etymology"

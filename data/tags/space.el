@@ -621,6 +621,7 @@
 "space-medicine"
 "space-probes"
 "space-program"
+"space-proofing"
 "space-race"
 "space-shuttle"
 "space-sickness"

@@ -907,6 +907,7 @@
 "multilinear-algebra"
 "multinomial-coefficients"
 "multinomial-theorem"
+"multiple-integral"
 "multiplicative-function"
 "multiplicative-order"
 "multisets"

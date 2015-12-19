@@ -58,6 +58,7 @@
 "friends"
 "gears"
 "glue"
+"gyro"
 "harry-potter"
 "hero-factory"
 "heroica"

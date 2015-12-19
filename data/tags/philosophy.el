@@ -250,6 +250,7 @@
 "philosophy-of-war"
 "physicalism"
 "physics"
+"pirsig"
 "plato"
 "plotinus"
 "poetry"

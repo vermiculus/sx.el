@@ -481,6 +481,7 @@
 "scheme"
 "scratch-buffer"
 "screencast"
+"script"
 "scroll-bars"
 "scrolling"
 "search"

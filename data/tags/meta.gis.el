@@ -65,6 +65,7 @@
 "new-users"
 "notifications"
 "openid"
+"planetary"
 "profile-page"
 "qgis"
 "questions"

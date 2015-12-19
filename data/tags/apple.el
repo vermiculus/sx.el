@@ -97,6 +97,7 @@
 "applescript"
 "applescript-studio"
 "appletv"
+"appletv-4"
 "appleworks"
 "application-switcher"
 "applications"

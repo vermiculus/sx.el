@@ -115,7 +115,6 @@
 "career-education"
 "cctv"
 "cdma"
-"censor"
 "censorship"
 "centos"
 "certificate-authority"

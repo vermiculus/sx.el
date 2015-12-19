@@ -491,6 +491,7 @@
 "plain-text"
 "planning"
 "play-store"
+"plug-in"
 "png"
 "pod"
 "podcast"

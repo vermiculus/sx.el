@@ -140,6 +140,7 @@
 "ficus"
 "fig"
 "figs"
+"fish"
 "flowering"
 "flowers"
 "food-crops"

@@ -1772,6 +1772,7 @@
 "simplify"
 "simulation"
 "singapore"
+"singlepart"
 "sink"
 "sip"
 "skeleton"

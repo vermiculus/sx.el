@@ -100,6 +100,7 @@
 "probability"
 "psychology"
 "publishing"
+"pythagoras"
 "pythagorean-proposition"
 "quantum-mechanics"
 "quote"

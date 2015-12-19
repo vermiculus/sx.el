@@ -95,6 +95,7 @@
 "genitive"
 "genus"
 "german-to-english"
+"german-to-spanish"
 "gerund"
 "grammar"
 "grammatical-case"

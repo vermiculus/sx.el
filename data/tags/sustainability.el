@@ -168,6 +168,7 @@
 "safe-chemicals"
 "safety"
 "seawater"
+"self-sufficiency"
 "solar-power"
 "solar-thermal"
 "space-heating"
