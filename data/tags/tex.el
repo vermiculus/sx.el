@@ -719,6 +719,7 @@
 "longtable"
 "longtabu"
 "loops"
+"lrbox"
 "lscape"
 "ltablex"
 "ltxgrid"

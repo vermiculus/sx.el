@@ -112,6 +112,7 @@
 "children"
 "choices"
 "chrome"
+"classification"
 "cli"
 "click"
 "client"

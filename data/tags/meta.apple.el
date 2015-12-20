@@ -100,7 +100,6 @@
 "status-planned"
 "status-reproduced"
 "status-review"
-"status-whoops"
 "style"
 "subjective-questions"
 "suggested-edits"

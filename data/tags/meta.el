@@ -1602,6 +1602,7 @@
 "winterbash-2013"
 "winterbash-2014"
 "winterbash-2015"
+"winterbash-leaderboard"
 "wmd"
 "woot"
 "wording"

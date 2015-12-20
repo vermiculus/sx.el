@@ -96,6 +96,7 @@
 "homonyms"
 "homophonic-kanji"
 "honorifics"
+"hypernyms"
 "i-adjectives"
 "ichidan-verbs"
 "idioms"

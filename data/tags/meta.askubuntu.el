@@ -137,7 +137,6 @@
 "review"
 "review-beta"
 "review-queue"
-"review-queue-test"
 "revision-history"
 "revisions"
 "rss"

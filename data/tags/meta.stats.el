@@ -8,6 +8,7 @@
 "blog"
 "bounty"
 "bug"
+"burninate-request"
 "careers"
 "chat"
 "checked-answers"

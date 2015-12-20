@@ -268,6 +268,7 @@
 "natural-gender"
 "natural-languages"
 "negation"
+"negative-concord"
 "neologism"
 "neurolinguistics"
 "nlg"

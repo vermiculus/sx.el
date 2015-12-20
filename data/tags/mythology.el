@@ -158,7 +158,6 @@
 "sun"
 "symbolism"
 "tacitus"
-"tacticus"
 "tain-bo-cuailnge"
 "tammuz"
 "teutonic"

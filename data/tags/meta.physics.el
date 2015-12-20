@@ -44,6 +44,7 @@
 "formatting"
 "homework"
 "hyperlinks"
+"image"
 "inbox"
 "interesting-tags"
 "language"

@@ -166,6 +166,7 @@
 "characteristic-functions"
 "characteristics"
 "characters"
+"charpits"
 "chebyshev-function"
 "chebyshev-polynomials"
 "chemistry"

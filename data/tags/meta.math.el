@@ -89,6 +89,7 @@
 "homework"
 "hot-questions-list"
 "https"
+"humor"
 "hyperlinks"
 "ignored-tags"
 "images"

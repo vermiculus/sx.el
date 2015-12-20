@@ -255,7 +255,6 @@
 "footer"
 "foreach"
 "form"
-"form-submission"
 "formatting"
 "forms"
 "forum"

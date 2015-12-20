@@ -371,7 +371,6 @@
 "kinetics"
 "lab-reagents"
 "lab-techniques"
-"lactation"
 "landscape-ecology"
 "language"
 "lcr"

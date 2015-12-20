@@ -343,6 +343,7 @@
 "loot"
 "macedon"
 "machiavelli"
+"madagascar"
 "mail"
 "malaysia"
 "malta"

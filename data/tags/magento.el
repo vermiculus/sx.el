@@ -156,6 +156,7 @@
 "checkout"
 "chrome-browser"
 "class"
+"class-alias"
 "cli"
 "cloud"
 "cloudfront-cdn"

@@ -771,6 +771,7 @@
 "towing"
 "town-and-country"
 "toyota"
+"tpi"
 "tpms"
 "track"
 "tracker"

@@ -33,7 +33,6 @@
 "easter"
 "eating"
 "efficiency"
-"effiency"
 "eggs"
 "electricity"
 "energy"

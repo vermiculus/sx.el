@@ -75,7 +75,6 @@
 "vote-to-close"
 "votes"
 "voting"
-"winterbash"
 "авторские-права"
 "аттестация"
 "аудит"
