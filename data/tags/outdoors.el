@@ -197,6 +197,7 @@
 "insects"
 "insulation"
 "invasive-species"
+"jacket"
 "kayak"
 "kayak-fibreglass"
 "kayak-plastic"
@@ -414,5 +415,6 @@
 "wolves"
 "women"
 "wood"
+"wool"
 "youghiogheny-river"
 "zion")

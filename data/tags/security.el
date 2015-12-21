@@ -404,6 +404,7 @@
 "javascript"
 "joomla"
 "json"
+"juniper"
 "jwt"
 "kali"
 "kali-linux"

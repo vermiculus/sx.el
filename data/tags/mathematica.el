@@ -244,7 +244,6 @@
 "gui-elements"
 "gui-elements"
 "guidelines"
-"guikit"
 "hardware"
 "hashing"
 "hdf5"

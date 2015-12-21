@@ -754,6 +754,7 @@
 "office-graph"
 "office-integration"
 "office-web-apps"
+"office3"
 "office365apis"
 "offline"
 "offline-sync"

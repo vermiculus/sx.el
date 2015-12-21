@@ -157,6 +157,7 @@
 "arcpy-mapping"
 "arcpy.mapping"
 "arcreader"
+"arcrest"
 "arcscan"
 "arcscene"
 "arcsde"

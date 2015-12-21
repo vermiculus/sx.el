@@ -45,7 +45,6 @@
 "discworld"
 "disney-star-wars"
 "down-votes"
-"duplciates"
 "duplicate-answers"
 "duplicate-questions"
 "duplicates"
@@ -186,4 +185,5 @@
 "voting"
 "websites"
 "welcome"
+"winterbash"
 "wrong-answers")

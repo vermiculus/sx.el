@@ -490,6 +490,7 @@
 "mac"
 "mac-os"
 "main-loop"
+"makehuman"
 "management"
 "manuals"
 "map"

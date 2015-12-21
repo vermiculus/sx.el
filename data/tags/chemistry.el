@@ -237,6 +237,7 @@
 "textbook-erratum"
 "theoretical-chemistry"
 "thermodynamics"
+"thioether"
 "thiols"
 "titration"
 "toxicity"

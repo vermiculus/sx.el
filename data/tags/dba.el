@@ -870,6 +870,7 @@
 "sybaseiq"
 "synonyms"
 "syntax"
+"sysdba"
 "system-databases"
 "system-i"
 "system-tables"

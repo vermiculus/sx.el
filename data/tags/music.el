@@ -341,6 +341,7 @@
 "rhapsody"
 "rhythm"
 "ride-cymbal"
+"riff"
 "rock"
 "rock-n-roll"
 "roman-numerals"

@@ -45,7 +45,6 @@
 "deleted-questions"
 "design"
 "diff"
-"discrimination"
 "discussion"
 "disputed-flags"
 "down-votes"

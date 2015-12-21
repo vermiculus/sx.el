@@ -88,6 +88,7 @@
 "klotski-puzzle"
 "knights-and-knaves"
 "knowledge"
+"labyrinth"
 "language"
 "lateral-thinking"
 "latin-square"

@@ -374,6 +374,7 @@
 "statistical-test"
 "steganography"
 "stream-cipher"
+"subsetsum"
 "substitution-cipher"
 "symmetric"
 "tdes"
@@ -415,4 +416,5 @@
 "xml-encryption"
 "xor"
 "xts"
-"zero-knowledge-proofs")
+"zero-knowledge-proofs"
+"zeroknowledge")

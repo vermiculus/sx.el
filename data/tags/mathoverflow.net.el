@@ -1022,6 +1022,7 @@
 "projective-module"
 "projective-morphisms"
 "projective-resolution"
+"proof-analysis"
 "proof-assistant"
 "proof-assistants"
 "proof-complexity"

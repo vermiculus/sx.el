@@ -60,6 +60,7 @@
 "bequesting-bitcoin"
 "bfgminer"
 "bip"
+"bip100"
 "bip12"
 "bip16"
 "bip32"

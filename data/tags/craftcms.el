@@ -161,7 +161,6 @@
 "jquery"
 "js"
 "json"
-"l"
 "label"
 "language"
 "layout"

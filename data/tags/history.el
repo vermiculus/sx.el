@@ -476,6 +476,7 @@
 "race"
 "racism"
 "railroads"
+"reconquista"
 "records"
 "reformation"
 "religion"

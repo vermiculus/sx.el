@@ -75,6 +75,7 @@
 "hercules"
 "hermes"
 "hindu"
+"historia-regum-britanniae"
 "historia-regum-brittaniae"
 "history"
 "holy-grail"

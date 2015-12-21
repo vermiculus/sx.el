@@ -369,6 +369,7 @@
 "precedence-graph"
 "primes"
 "primitive-recursion"
+"prims-algorithm"
 "priority-queues"
 "probabilistic-algorithms"
 "probability-theory"

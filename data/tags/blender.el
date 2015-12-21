@@ -32,6 +32,7 @@
 "cell-fracture"
 "cloth-simulation"
 "collada"
+"collision"
 "color"
 "color-management"
 "command-line"

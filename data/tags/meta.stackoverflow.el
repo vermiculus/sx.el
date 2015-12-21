@@ -214,7 +214,6 @@
 "items-per-page"
 "jobs"
 "jsfiddle"
-"jsperf"
 "keyboard-shortcuts"
 "language-versions"
 "languages"
