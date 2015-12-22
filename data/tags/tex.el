@@ -748,6 +748,7 @@
 "manyfoot"
 "maple2e"
 "mapping"
+"margin-kern"
 "marginnote"
 "marginpar"
 "margins"

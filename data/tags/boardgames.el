@@ -323,6 +323,7 @@
 "little-wars"
 "lord-of-the-rings"
 "lord-of-the-rings-lcg"
+"lords-and-ladies"
 "lords-of-waterdeep"
 "lost-cities"
 "love-letter"

@@ -79,6 +79,7 @@
 "dreamweaver"
 "dwt"
 "dxa"
+"dxa-1.2"
 "dxa-java"
 "dxa-search"
 "dynamic-content-broker"

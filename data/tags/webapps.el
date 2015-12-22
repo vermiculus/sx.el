@@ -67,6 +67,7 @@
 "avatar"
 "avi"
 "azure"
+"backblaze-b2"
 "backup"
 "badoo"
 "bandcamp"

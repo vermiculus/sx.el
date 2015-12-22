@@ -666,7 +666,6 @@
 "virtualbox"
 "visual-studio"
 "visualstudio"
-"vlc"
 "vmware"
 "vmware-fusion"
 "vpn"

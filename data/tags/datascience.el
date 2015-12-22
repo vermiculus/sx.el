@@ -212,6 +212,7 @@
 "tableau"
 "tensorflow"
 "terminology"
+"text"
 "text-mining"
 "theano"
 "time-series"

@@ -578,6 +578,7 @@
 "oracle-streams"
 "oracle-xe"
 "oracle10g"
+"oracle11"
 "order"
 "order-by"
 "orm"

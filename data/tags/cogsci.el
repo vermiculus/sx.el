@@ -327,8 +327,6 @@
 "vstm"
 "wandering-mind"
 "well-being"
-"whatsapp"
-"whatsapp-web"
 "wisdom-of-crowds"
 "work-psychology"
 "working-memory"

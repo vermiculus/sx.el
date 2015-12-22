@@ -273,6 +273,7 @@
 "peer-review"
 "personal-name"
 "personal-statement"
+"personal-statement"
 "phd"
 "phd-committee"
 "phd-thesis"

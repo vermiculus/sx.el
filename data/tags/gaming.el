@@ -852,6 +852,7 @@
 "dogfighter"
 "dojo-quest"
 "dolphin"
+"dolphin-emulator"
 "dolphin-olympics-2"
 "donkey-kong"
 "donkey-kong-64"

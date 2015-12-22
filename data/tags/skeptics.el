@@ -346,6 +346,7 @@
 "jref"
 "judaism"
 "justice"
+"kansas"
 "keyboard"
 "korea"
 "labor"

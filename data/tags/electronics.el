@@ -982,6 +982,7 @@
 "not-gate"
 "npn"
 "nrf24l01"
+"nrf51822"
 "ntc"
 "ntsc"
 "nucleo"

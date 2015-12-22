@@ -243,6 +243,7 @@
 "toxicity"
 "transition-metals"
 "transition-state-theory"
+"transuranic-elements"
 "trends"
 "units"
 "valence-bond-theory"

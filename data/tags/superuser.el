@@ -3647,7 +3647,6 @@
 "passenger"
 "passive-cooling"
 "passphrase"
-"passport"
 "passwd"
 "password"
 "password-generation"

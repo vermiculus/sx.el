@@ -619,7 +619,7 @@
 "replay-detection"
 "requirements"
 "research"
-"response-spliting"
+"response-splitting"
 "rest"
 "restrictions"
 "reverse-engineering"

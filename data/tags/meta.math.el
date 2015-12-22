@@ -205,6 +205,7 @@
 "timeline"
 "timestamps"
 "titles"
+"tooltips"
 "top-7"
 "top-bar"
 "tour"

@@ -492,6 +492,7 @@
 "ghosting"
 "global-navigation"
 "google-analytics"
+"google-chart"
 "google-maps"
 "governance"
 "gridview"
