@@ -179,6 +179,7 @@
 "bilam"
 "binding-of-isaac"
 "biography"
+"biology"
 "bircas-hamazon"
 "bircas-krias-shema"
 "bircat-hamazon"

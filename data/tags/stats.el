@@ -376,6 +376,7 @@
 "environmental-data"
 "epidemiology"
 "equivalence"
+"erf"
 "ergodic"
 "error"
 "error-in-variables"

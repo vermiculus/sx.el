@@ -8,7 +8,6 @@
 "bedroom"
 "bicycle"
 "books"
-"bookshelf"
 "cables"
 "camping"
 "car"

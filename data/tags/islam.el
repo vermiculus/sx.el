@@ -1,7 +1,6 @@
 ("ablution"
 "abortion"
 "abrogation"
-"acapella"
 "accounting"
 "accuracy"
 "adab"

@@ -289,6 +289,7 @@
 "participle-phrase"
 "participles"
 "parts-of-speech"
+"passi"
 "passive"
 "passive-voice"
 "past"
@@ -493,6 +494,8 @@
 "word-request"
 "word-stress"
 "word-usage"
+"would-prefer"
 "would-rather"
+"would-sooner"
 "writing"
 "zero-article")

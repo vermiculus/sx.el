@@ -207,6 +207,7 @@
 "test-creation"
 "test-data"
 "test-design"
+"test-estimation"
 "test-failures"
 "test-management"
 "test-planning"

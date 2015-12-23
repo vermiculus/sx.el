@@ -204,6 +204,7 @@
 "documentation"
 "domain"
 "domain-mapping"
+"downgrade"
 "draft"
 "drag-drop"
 "dropdown"

@@ -79,7 +79,6 @@
 "fibonacci"
 "file-system"
 "floating-point"
-"fourier-transform"
 "fractal"
 "function"
 "functional-programming"

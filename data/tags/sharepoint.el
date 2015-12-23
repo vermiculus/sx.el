@@ -1304,6 +1304,7 @@
 "worker-process"
 "workflow"
 "workflow-activity"
+"workflow-designer"
 "workflow-form"
 "workflow-history"
 "workflow-lookup"

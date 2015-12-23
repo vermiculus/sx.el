@@ -9,6 +9,7 @@
 "2312"
 "28-days-later"
 "28-weeks-later"
+"3d"
 "5th-wave"
 "70s"
 "80s"

@@ -79,6 +79,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"suggested-edits"
 "suggestion"
 "support"
 "swag"

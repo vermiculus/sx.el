@@ -176,7 +176,6 @@
 "varnish"
 "veneer"
 "vises"
-"walnut"
 "warp"
 "water-protection"
 "weight-capacity"

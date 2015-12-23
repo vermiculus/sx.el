@@ -171,6 +171,7 @@
 "class-g-airspace"
 "clearance"
 "climb"
+"climbing"
 "clock"
 "closed-runways"
 "cockpit"

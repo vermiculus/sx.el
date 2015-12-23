@@ -412,6 +412,7 @@
 "recursive"
 "reductions"
 "reference-request"
+"regret-minimization"
 "regular-expressions"
 "regular-language"
 "relational-structures"

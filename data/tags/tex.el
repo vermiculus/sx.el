@@ -404,6 +404,7 @@
 "etoolbox"
 "euler"
 "eulervm"
+"euro"
 "europecv"
 "everypage"
 "everyshi"
