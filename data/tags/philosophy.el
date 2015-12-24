@@ -265,6 +265,7 @@
 "postmodernism"
 "practical-ethics"
 "pragmatism"
+"predicates"
 "presocratics"
 "probability"
 "problem-of-evil"

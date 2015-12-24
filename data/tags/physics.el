@@ -1060,5 +1060,4 @@
 "x-rays"
 "yang-mills"
 "zener-diodes"
-"zener-diodes"
-"zilch")
+"zener-diodes")

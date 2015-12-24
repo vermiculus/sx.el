@@ -532,7 +532,6 @@
 "hyperlinks"
 "ical"
 "icloud"
-"icons"
 "identi.ca"
 "identity"
 "if-this-then-that"

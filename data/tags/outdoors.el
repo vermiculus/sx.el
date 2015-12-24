@@ -146,6 +146,7 @@
 "forests"
 "fossil-hunting"
 "fossils"
+"france"
 "free-climbing"
 "free-solo-climbing"
 "french"

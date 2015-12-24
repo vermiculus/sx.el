@@ -5,6 +5,7 @@
 "beta"
 "bounty"
 "bug"
+"burninating"
 "canonical-answers"
 "chat"
 "close-reasons"

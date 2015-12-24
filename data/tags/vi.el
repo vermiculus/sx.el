@@ -121,7 +121,6 @@
 "netrw"
 "normal-mode"
 "nvi"
-"open-file"
 "options"
 "original-vi"
 "os-clipboard"

@@ -304,7 +304,6 @@
 "date"
 "dead-pixel"
 "deconvolution"
-"defect"
 "delete"
 "dell"
 "delta-e"

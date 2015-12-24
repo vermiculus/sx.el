@@ -64,6 +64,7 @@
 "moderators"
 "new-users"
 "notifications"
+"off-topic"
 "openid"
 "profile-page"
 "qgis"

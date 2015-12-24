@@ -63,6 +63,7 @@
 "scope"
 "search"
 "sexism"
+"site-design"
 "site-evaluation"
 "site-events"
 "site-name"

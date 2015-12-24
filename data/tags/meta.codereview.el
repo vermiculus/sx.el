@@ -63,6 +63,8 @@
 "formatting"
 "fun"
 "google"
+"grievances"
+"happy-festivus"
 "help-center"
 "homework"
 "hyperlinks"

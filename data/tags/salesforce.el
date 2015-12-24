@@ -585,6 +585,7 @@
 "javascript-remoting"
 "jenkins"
 "jforce"
+"jira"
 "jitterbit"
 "job"
 "jobs"

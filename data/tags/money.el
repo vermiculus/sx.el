@@ -31,6 +31,7 @@
 "apr"
 "apy"
 "arbitrage"
+"arizona"
 "arkansas"
 "asset-allocation"
 "asset-class"

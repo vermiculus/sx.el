@@ -704,6 +704,7 @@
 "inductor"
 "industrial"
 "infrared"
+"inoput"
 "input"
 "input-impedance"
 "inrush-current"

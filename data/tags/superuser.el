@@ -4197,6 +4197,7 @@
 "right-to-left"
 "ripping"
 "risk"
+"ristretto"
 "rj-11"
 "rj-45"
 "rm"

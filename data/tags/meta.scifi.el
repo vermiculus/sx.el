@@ -129,6 +129,7 @@
 "review-queue"
 "rss"
 "scope"
+"screenshots"
 "search"
 "self-answer"
 "site-faq"

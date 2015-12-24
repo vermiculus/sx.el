@@ -768,6 +768,7 @@
 "lo-bashamayim-hi"
 "lo-yilbash"
 "loans"
+"location"
 "lomdus"
 "loshon-hara"
 "lost-and-found"

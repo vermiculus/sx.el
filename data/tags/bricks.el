@@ -52,6 +52,7 @@
 "ev3"
 "ev3-g"
 "ev3dev"
+"fabuland"
 "first-lego-league"
 "fll"
 "floating"

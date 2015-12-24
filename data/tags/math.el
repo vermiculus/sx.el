@@ -92,7 +92,6 @@
 "bayesian"
 "bergman-spaces"
 "bernoulli-numbers"
-"bernoulli-theorem"
 "besov-space"
 "bessel-functions"
 "beta-function"

@@ -969,6 +969,7 @@
 "ui"
 "uicomponent"
 "undefined-variable"
+"uninstall"
 "unique-reference"
 "unit-tests"
 "untagged"

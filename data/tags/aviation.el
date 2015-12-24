@@ -139,6 +139,7 @@
 "cabin-pressure"
 "calibration"
 "call-sign"
+"camera"
 "canada"
 "canard"
 "capacity"
