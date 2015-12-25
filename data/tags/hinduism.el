@@ -101,7 +101,6 @@
 "gaudiya-vaishnavism"
 "gayatri"
 "gayatri-mantra"
-"geeta"
 "gender"
 "ghosts"
 "gita"

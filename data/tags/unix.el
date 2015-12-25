@@ -1628,6 +1628,7 @@
 "rhythmbox"
 "right-to-left"
 "ripping"
+"ristretto"
 "rkhunter"
 "rm"
 "rmail"

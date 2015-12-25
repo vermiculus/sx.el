@@ -30,6 +30,7 @@
 "featured"
 "flagging"
 "formatting"
+"housekeeping"
 "hyperlinks"
 "interesting-tags"
 "latex"

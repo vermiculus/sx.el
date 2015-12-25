@@ -48,6 +48,7 @@
 "autocad"
 "autodesk-sketchbook-pro"
 "automation"
+"axonometric-projection"
 "background"
 "background-removal"
 "balance"

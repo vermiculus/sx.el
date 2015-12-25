@@ -1630,7 +1630,6 @@
 "placeholder"
 "play-framework"
 "plesk"
-"pln"
 "plone"
 "plot"
 "plugin"

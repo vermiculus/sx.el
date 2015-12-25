@@ -1579,6 +1579,7 @@
 "zte-max"
 "zte-merit"
 "zte-optik"
+"zte-overture-2"
 "zte-racer"
 "zte-score"
 "zte-speed-n9130")

@@ -1097,6 +1097,7 @@
 "resume"
 "revision-control"
 "revtex"
+"right-angle"
 "right-to-left"
 "rivers"
 "rnw"

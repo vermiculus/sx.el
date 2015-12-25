@@ -363,6 +363,7 @@
 "toxicity"
 "toxins"
 "traditional-medicine"
+"trauma"
 "travel"
 "treatment"
 "treatment-options"

@@ -405,6 +405,7 @@
 "weather"
 "whitewater-rafting"
 "widgeteering"
+"wild-boar"
 "wild-camping"
 "wild-dogs"
 "wilderness"

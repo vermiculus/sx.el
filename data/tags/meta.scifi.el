@@ -11,6 +11,7 @@
 "asking-questions"
 "badges"
 "beta"
+"blocks"
 "blog"
 "bounty"
 "bug"

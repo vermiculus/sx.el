@@ -32,8 +32,10 @@
 "autocomplete"
 "automatic-comments"
 "automatic-deletion"
+"awarded-badges"
 "bad-questions"
 "badge-request"
+"badge-tracker"
 "badges"
 "banning"
 "behavior"
@@ -503,7 +505,6 @@
 "winterbash"
 "winterbash-2014"
 "winterbash-2015"
-"winterbashbadge"
 "wrong-answers"
 "xy-problem"
 "yearling-badge")

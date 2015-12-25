@@ -504,7 +504,6 @@
 "experts-exchange"
 "expiration"
 "expired-bounty"
-"expired-close-votes"
 "explanation"
 "exploit"
 "export"

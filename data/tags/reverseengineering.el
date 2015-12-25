@@ -155,6 +155,7 @@
 "memory-dump"
 "metasploit"
 "mips"
+"mixed-mode"
 "motorola"
 "mssql"
 "multi-process"

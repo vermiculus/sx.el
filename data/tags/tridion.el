@@ -51,6 +51,7 @@
 "content"
 "content-broker"
 "content-delivery"
+"content-import"
 "content-manager"
 "content-manager-explorer"
 "content-modeling"

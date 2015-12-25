@@ -69,6 +69,7 @@
 "search"
 "self-answer"
 "self-reference"
+"silliness"
 "site-evaluation"
 "site-faq"
 "site-promotion"

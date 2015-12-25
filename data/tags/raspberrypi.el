@@ -216,6 +216,7 @@
 "nfc"
 "nfs"
 "node.js"
+"nodered"
 "noobs"
 "nrf24l01"
 "ntp"

@@ -784,7 +784,6 @@
 "lower-bounds"
 "lyndon-words"
 "m-matrix"
-"ma"
 "maass-forms"
 "magma"
 "magmas"

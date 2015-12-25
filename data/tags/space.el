@@ -284,6 +284,7 @@
 "hydrazine"
 "hydrogen"
 "hypergravity"
+"hypersonic"
 "icbm"
 "ice"
 "ils"

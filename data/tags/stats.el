@@ -843,6 +843,7 @@
 "multivariate-normal"
 "multivariate-regression"
 "musical-data-analysis"
+"mutlivariate"
 "mutual-information"
 "na"
 "na"
