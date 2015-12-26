@@ -38,6 +38,7 @@
 "bugs"
 "cache"
 "calendar"
+"callback-page"
 "case"
 "chaining"
 "checksum"
@@ -301,4 +302,5 @@
 "workflow"
 "wsod"
 "wysiwyg"
-"xero")
+"xero"
+"xml")

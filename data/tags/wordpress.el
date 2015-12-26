@@ -914,7 +914,6 @@
 "wp-remote-request"
 "wp-reset-postdata"
 "wp-reset-query"
-"wp-rest-api"
 "wp-set-object-terms"
 "wp-settings.php"
 "wp-signup"

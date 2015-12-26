@@ -721,6 +721,7 @@
 "semantics"
 "semiotics"
 "seo"
+"serial-data-entry"
 "serious-game"
 "service-design"
 "settings"

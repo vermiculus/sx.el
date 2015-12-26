@@ -85,7 +85,6 @@
 "dialectes"
 "dialogues"
 "dictionnaires"
-"difference"
 "discographie"
 "discours"
 "discours-indirect"

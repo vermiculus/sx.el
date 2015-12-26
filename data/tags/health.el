@@ -373,7 +373,6 @@
 "type-1-diabetes"
 "typhoid"
 "ulcers"
-"unique"
 "united-states"
 "untagged"
 "urinary-system"

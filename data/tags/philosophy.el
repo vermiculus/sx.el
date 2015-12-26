@@ -136,8 +136,6 @@
 "heidegger"
 "hermeneutics"
 "hinduism"
-"historical"
-"history"
 "history-of-philosophy"
 "hobbes"
 "hofstadter"

@@ -57,7 +57,6 @@
 "dynamic-programming"
 "dynamics"
 "dynamixel"
-"educational-robot"
 "ekf"
 "electronics"
 "embedded-systems"

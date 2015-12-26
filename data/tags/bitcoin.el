@@ -601,7 +601,6 @@
 "stale-block"
 "standard"
 "standard-client"
-"start"
 "stealth-address"
 "stellar"
 "stocks"

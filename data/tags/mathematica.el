@@ -1,5 +1,4 @@
 (".netlink"
-"3d"
 "3d-printing"
 "accumulation"
 "accuracy"

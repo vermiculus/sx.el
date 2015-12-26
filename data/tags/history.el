@@ -554,6 +554,7 @@
 "sword"
 "syria"
 "tactics"
+"tang-dynasty"
 "tanks"
 "taxes"
 "technology"

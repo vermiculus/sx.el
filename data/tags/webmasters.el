@@ -473,7 +473,6 @@
 "infinite-scroll"
 "information-retrieval"
 "infringement"
-"inr"
 "instagram"
 "integration"
 "international"

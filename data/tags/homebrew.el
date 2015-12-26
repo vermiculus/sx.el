@@ -90,6 +90,7 @@
 "chiller"
 "chilling"
 "chloramines"
+"chlorine"
 "chocolate"
 "cider"
 "clarification"

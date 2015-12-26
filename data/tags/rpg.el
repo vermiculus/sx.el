@@ -671,6 +671,7 @@
 "runepriest"
 "runequest"
 "runequest-6"
+"sagas-of-the-icelanders"
 "sandbox"
 "savage-worlds"
 "savage-worlds-fantasy"

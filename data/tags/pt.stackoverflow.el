@@ -2027,6 +2027,7 @@
 "stack"
 "stack-trace"
 "stackexchange"
+"stackoverflow"
 "standalone"
 "statement"
 "static"

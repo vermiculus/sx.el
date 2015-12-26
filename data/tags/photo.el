@@ -1148,6 +1148,7 @@
 "weight"
 "white-balance"
 "wide-angle"
+"wide-angle-converter"
 "wide-aperture"
 "wide-gamut"
 "wifi"
