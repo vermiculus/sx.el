@@ -427,6 +427,7 @@
 "overlay"
 "page-arguments"
 "page-callbacks"
+"page-controller"
 "pager"
 "pages"
 "pagination"

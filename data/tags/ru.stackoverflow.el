@@ -1561,6 +1561,7 @@
 "play"
 "playframework"
 "plinq"
+"plotly"
 "plpgsql"
 "plsql"
 "plsql-developer"

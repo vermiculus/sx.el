@@ -29,7 +29,6 @@
 "disability"
 "disclosure"
 "discussion"
-"diversity"
 "down-votes"
 "editing"
 "election"

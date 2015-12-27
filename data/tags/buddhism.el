@@ -377,6 +377,7 @@
 "trikaya"
 "triratna-buddhism"
 "truth"
+"tulku"
 "two-truth-doctrine"
 "unconditioned"
 "vajrapani"

@@ -465,7 +465,6 @@
 "translation"
 "triage"
 "trivial"
-"truncated"
 "tumbleweed"
 "tumbleweed-badge"
 "twitter"

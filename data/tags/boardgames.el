@@ -580,6 +580,7 @@
 "two-headed-giant"
 "two-player"
 "two-rooms-and-a-boom"
+"tzolkin"
 "unexploded-cow"
 "uno"
 "untagged"

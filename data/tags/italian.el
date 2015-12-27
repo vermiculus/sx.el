@@ -48,7 +48,6 @@
 "phrase-choice"
 "phrase-request"
 "plural"
-"pluralization"
 "prepositions"
 "pronouns"
 "pronunciation"

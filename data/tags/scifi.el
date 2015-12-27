@@ -1149,7 +1149,6 @@
 "online-resources"
 "ontology"
 "optimus-prime"
-"optometrists"
 "orbital-mechanics"
 "orc"
 "order-65"

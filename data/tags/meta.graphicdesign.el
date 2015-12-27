@@ -1,5 +1,4 @@
 ("accepted-answer"
-"adobe"
 "answering-questions"
 "answers"
 "asking-questions"
@@ -36,7 +35,6 @@
 "formatting"
 "help-center"
 "hyperlinks"
-"illustator"
 "images"
 "interesting-tags"
 "login"

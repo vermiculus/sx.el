@@ -126,7 +126,6 @@
 "completion"
 "complexity"
 "conditions"
-"config"
 "configure"
 "confirmation"
 "confused"

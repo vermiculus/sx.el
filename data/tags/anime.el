@@ -779,6 +779,7 @@
 "rahxephon"
 "rainbow-nisha-rokubou"
 "rakkyo"
+"rakudai-kishi-no-cavalry"
 "ranma"
 "ranpo-kitan"
 "rave-master"

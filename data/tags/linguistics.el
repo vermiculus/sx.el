@@ -105,6 +105,7 @@
 "dialect-mapping"
 "dialectology"
 "dialects"
+"dialog-acts"
 "dictionary"
 "diglossia"
 "diphthongs"

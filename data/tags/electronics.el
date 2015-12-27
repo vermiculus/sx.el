@@ -1130,7 +1130,6 @@
 "pole-zeroplot"
 "pololu"
 "polyfuse"
-"polynomial-math"
 "port"
 "portable"
 "position"

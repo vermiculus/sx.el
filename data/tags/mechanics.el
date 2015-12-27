@@ -407,6 +407,7 @@
 "john-deere"
 "journey"
 "jump-start"
+"k1200"
 "k75"
 "ka"
 "karizma"

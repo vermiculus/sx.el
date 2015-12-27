@@ -119,6 +119,7 @@
 "openid"
 "plagiarism"
 "post-ban"
+"post-deletion"
 "posts"
 "privileges"
 "profile-page"
