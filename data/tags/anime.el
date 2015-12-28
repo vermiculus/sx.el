@@ -787,6 +787,7 @@
 "re-kan"
 "read-or-die"
 "reborn"
+"red-garden"
 "redline"
 "reign-the-conqueror"
 "requiem-for-the-phantom"

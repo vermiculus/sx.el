@@ -4,6 +4,7 @@
 "active-directory"
 "activity-monitor"
 "ado.net"
+"adodb"
 "advantage"
 "aerospike"
 "aggregate"

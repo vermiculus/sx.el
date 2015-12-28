@@ -713,6 +713,7 @@
 "magsafe"
 "magsafe-2"
 "mail"
+"mail-drop"
 "mail-rules"
 "mail.app"
 "maintenance"

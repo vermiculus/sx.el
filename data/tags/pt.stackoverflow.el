@@ -1440,7 +1440,6 @@
 "nagios"
 "namespace"
 "nan"
-"natal"
 "nav-bar"
 "navega&#231;&#227;o"
 "navegador"

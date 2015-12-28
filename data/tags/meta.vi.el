@@ -12,6 +12,8 @@
 "comments"
 "community-ads"
 "community-wiki"
+"cscope"
+"ctags"
 "data-dump"
 "data-explorer"
 "deleted-questions"

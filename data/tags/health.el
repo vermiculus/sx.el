@@ -226,6 +226,7 @@
 "medication"
 "medication"
 "medications"
+"meditation"
 "memory"
 "menstrual-cycle"
 "mental-health"

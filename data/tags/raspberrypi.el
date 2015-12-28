@@ -194,6 +194,7 @@
 "midori"
 "minecraft"
 "mmal"
+"modbus"
 "model-a"
 "model1"
 "model2"

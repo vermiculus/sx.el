@@ -379,7 +379,6 @@
 "eisenstein-series"
 "elementary-proofs"
 "elimination-theory"
-"ellip"
 "elliptic-cohomology"
 "elliptic-curves"
 "elliptic-functions"

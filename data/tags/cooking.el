@@ -729,6 +729,7 @@
 "syrup"
 "taffy"
 "tahini"
+"tamales"
 "tamarind"
 "tart"
 "tartare"

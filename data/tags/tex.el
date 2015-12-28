@@ -755,6 +755,7 @@
 "markdown"
 "markup"
 "math"
+"math-fonts"
 "math-mode"
 "math-operators"
 "math-table"

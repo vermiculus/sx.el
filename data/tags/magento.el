@@ -1007,6 +1007,7 @@
 "version"
 "versioning"
 "video"
+"view"
 "virtual"
 "virtual-products"
 "virtualtype"

@@ -201,6 +201,7 @@
 "insulation"
 "invasive-species"
 "jacket"
+"jump-starter"
 "kayak"
 "kayak-fibreglass"
 "kayak-plastic"

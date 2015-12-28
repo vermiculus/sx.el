@@ -653,6 +653,7 @@
 "flac"
 "flash-memory"
 "flashrom"
+"flask"
 "floating-point"
 "floppy"
 "fluxbox"

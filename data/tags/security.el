@@ -688,6 +688,7 @@
 "sip"
 "sitekey"
 "skype"
+"slack-space"
 "smartcard"
 "smartphone"
 "smime"

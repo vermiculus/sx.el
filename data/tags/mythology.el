@@ -87,6 +87,7 @@
 "interpretation"
 "iran"
 "irish"
+"ishtar"
 "islam"
 "isles-of-the-blest"
 "japanese"

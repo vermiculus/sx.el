@@ -43,6 +43,7 @@
 "flags"
 "formatting"
 "homework"
+"hw"
 "hyperlinks"
 "image"
 "inbox"

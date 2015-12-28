@@ -559,6 +559,7 @@
 "rethinkdb"
 "reverse-engineering"
 "ripping"
+"rotate"
 "rpg"
 "rss"
 "rtf"

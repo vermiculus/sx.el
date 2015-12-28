@@ -502,7 +502,6 @@
 "raspberry"
 "raspberry-pi"
 "rasterize"
-"rawjson"
 "real-time"
 "recreational-mathematics"
 "recurrence"

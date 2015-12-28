@@ -218,6 +218,7 @@
 "deviation"
 "dgca-india"
 "dgca-india-regulations"
+"dgca-indonesia"
 "disasters"
 "discontinued"
 "dispatch"

@@ -3531,6 +3531,7 @@
 "tetris"
 "tetris-axis"
 "tetris-battle"
+"tex-murphy-2"
 "text-adventure"
 "tf2"
 "tf2-demoman"
