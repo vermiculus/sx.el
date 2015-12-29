@@ -648,7 +648,6 @@
 "orthodox"
 "orthodoxy"
 "other-religions"
-"overview"
 "pacifism"
 "pagan"
 "panentheism"

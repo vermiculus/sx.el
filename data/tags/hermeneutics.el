@@ -324,6 +324,7 @@
 "translation-methodology"
 "translation-philosophy"
 "trinity"
+"tyndale-bible"
 "wisdom-literature"
 "women"
 "word-study"

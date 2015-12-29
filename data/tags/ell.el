@@ -49,7 +49,6 @@
 "case"
 "catenative-verbs"
 "causatives"
-"cheers"
 "clauses"
 "cleft-constructions"
 "collective-nouns"

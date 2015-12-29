@@ -1534,6 +1534,7 @@
 "star-trek-uniforms"
 "star-trek-voyager"
 "star-wars"
+"star-wars-battlefront"
 "star-wars-eu"
 "star-wars-eu"
 "star-wars-holiday-special"

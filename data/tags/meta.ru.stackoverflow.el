@@ -5,7 +5,6 @@
 "bounty"
 "bug"
 "burninate-request"
-"c#"
 "chat"
 "close-reasons"
 "closed-questions"

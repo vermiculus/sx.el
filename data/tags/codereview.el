@@ -514,6 +514,7 @@
 "memoization"
 "memory-management"
 "memory-optimization"
+"merge"
 "mergesort"
 "meta-programming"
 "meteor"

@@ -115,7 +115,6 @@
 "evolution"
 "exercise"
 "experiential"
-"explaining-to-others"
 "faith"
 "fake-buddha-quotes"
 "fate"

@@ -1903,6 +1903,7 @@
 "tableau"
 "tablet"
 "tabulate"
+"taiwan"
 "tandem-x"
 "targa"
 "taudem"

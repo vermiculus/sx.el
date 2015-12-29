@@ -1611,6 +1611,7 @@
 "tnai-stipulation"
 "tnay-stipulation"
 "tobacco-cig-smoking"
+"toeles"
 "toiveling-dishes"
 "tolaim"
 "torah-learning"

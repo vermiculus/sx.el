@@ -209,6 +209,7 @@
 "datasets"
 "declared-distances"
 "defense-aviation"
+"deice"
 "delta-wing"
 "density-altitude"
 "departure-sid"

@@ -48,6 +48,7 @@
 "amazon-ec2"
 "ambiguity"
 "amd"
+"analogic"
 "analogy"
 "analysis"
 "analytics"

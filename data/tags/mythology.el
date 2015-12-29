@@ -79,6 +79,7 @@
 "history"
 "holy-grail"
 "homer"
+"humbaba"
 "iliad"
 "immortality"
 "inanna"

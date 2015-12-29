@@ -192,6 +192,7 @@
 "ice"
 "ice-axe"
 "ice-climbing"
+"ice-screw"
 "iceland"
 "identification"
 "improvised-equipment"

@@ -1273,6 +1273,7 @@
 "site-rec"
 "site-recommendation"
 "site-specific"
+"site-statistics"
 "site-stats"
 "site-switcher"
 "site-usage"

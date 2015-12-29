@@ -928,6 +928,7 @@
 "local-customs"
 "local-knowledge"
 "locate-this"
+"locker"
 "loire-valley"
 "lombok"
 "london"

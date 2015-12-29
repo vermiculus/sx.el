@@ -3062,6 +3062,8 @@
 "subdomain"
 "subdomains"
 "subfolder"
+"subject"
+"subject-alternative-names"
 "subnet"
 "subnetting"
 "subscription"

@@ -153,6 +153,7 @@
 "real"
 "rebus"
 "regional-dialects"
+"retrograde-analysis"
 "rhyme"
 "riddle"
 "rivercrossing"

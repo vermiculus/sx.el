@@ -430,7 +430,6 @@
 "google-documents"
 "google-drawing"
 "google-drive"
-"google-drive-tags"
 "google-earth"
 "google-feedback"
 "google-fit"

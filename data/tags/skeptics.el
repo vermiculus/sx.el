@@ -522,6 +522,7 @@
 "psychology"
 "public-finance"
 "public-health"
+"puzzle"
 "pyramids"
 "quantum-mechanics"
 "quotes"

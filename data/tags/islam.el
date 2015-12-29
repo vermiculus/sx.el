@@ -674,6 +674,7 @@
 "uloom-al-quran"
 "umar-ibn-al-khattab"
 "umm-ul-banin"
+"ummah"
 "umrah"
 "unbeliever"
 "universe"

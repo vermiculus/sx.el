@@ -13,6 +13,7 @@
 "abtesting"
 "accounting"
 "acl"
+"actions"
 "activities"
 "activity"
 "address-labels"
