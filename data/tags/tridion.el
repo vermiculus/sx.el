@@ -75,6 +75,7 @@
 "deployment"
 "device"
 "directoryservicegroup"
+"discovery-service"
 "documentation"
 "dreamviewer"
 "dreamweaver"

@@ -51,7 +51,6 @@
 "notifications"
 "openid"
 "policy"
-"priviledges"
 "privileges"
 "profile-page"
 "question-quality"

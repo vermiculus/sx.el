@@ -232,6 +232,7 @@
 "newborn"
 "newborns"
 "nicu"
+"night-terrors"
 "night-time"
 "nightwaking"
 "noise"

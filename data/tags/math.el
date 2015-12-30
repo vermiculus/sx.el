@@ -723,6 +723,7 @@
 "kalman-filter"
 "karush-kuhn-tucker"
 "kinematics"
+"kirby-diagram"
 "kkt"
 "klein-bottle"
 "knight-tours"

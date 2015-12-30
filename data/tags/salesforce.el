@@ -307,6 +307,7 @@
 "datatable"
 "date"
 "date-field"
+"date-picker"
 "datetime"
 "dbamp"
 "deactivate"

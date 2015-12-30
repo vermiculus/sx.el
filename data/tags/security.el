@@ -304,6 +304,7 @@
 "forward-secrecy"
 "fraud"
 "freebsd"
+"freenet"
 "ftp"
 "future-proofing"
 "fuzzing"

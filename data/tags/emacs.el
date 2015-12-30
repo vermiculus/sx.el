@@ -259,6 +259,7 @@
 "ido"
 "ido-find-file"
 "iedit"
+"iimage-mode"
 "image-dired"
 "image-mode"
 "images"

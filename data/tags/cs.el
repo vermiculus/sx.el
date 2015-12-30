@@ -239,6 +239,7 @@
 "isabelle"
 "java"
 "k-map"
+"karnaugh-map"
 "kernel"
 "kernel-functions"
 "kleene-star"

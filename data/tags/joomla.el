@@ -16,6 +16,8 @@
 "array"
 "article-manager"
 "articles"
+"assets"
+"assets-table"
 "attachments"
 "authentication"
 "autoload"

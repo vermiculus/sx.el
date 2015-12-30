@@ -532,7 +532,6 @@
 "ruby"
 "ruby-on-rails"
 "rubygems"
-"rubyme"
 "rubymine"
 "rubyonrails"
 "rust"

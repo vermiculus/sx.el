@@ -18,7 +18,7 @@
 "attis"
 "aztec"
 "baal"
-"beings"
+"baboons"
 "beowulf"
 "british"
 "brittany"

@@ -217,6 +217,7 @@
 "cmyk"
 "cokin"
 "cold"
+"collaboration"
 "collage"
 "color"
 "color-black"

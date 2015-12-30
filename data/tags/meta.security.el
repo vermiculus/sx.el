@@ -6,6 +6,7 @@
 "asking-questions"
 "audience"
 "badges"
+"bears"
 "black-hat"
 "blog"
 "bounty"

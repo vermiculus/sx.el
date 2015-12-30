@@ -45,6 +45,7 @@
 "openid"
 "participation"
 "profile-page"
+"quality"
 "questions"
 "recent-activity"
 "reputation"

@@ -98,6 +98,7 @@
 "crevasses"
 "cross-country"
 "cross-country-skiing"
+"current"
 "czech"
 "deer"
 "deet"

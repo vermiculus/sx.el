@@ -140,6 +140,7 @@
 "site-statistics"
 "sorting"
 "specific-question"
+"specific-user"
 "spoilers"
 "stackexchange"
 "stackexchange-team"

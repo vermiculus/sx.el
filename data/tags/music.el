@@ -38,6 +38,7 @@
 "band"
 "banjo"
 "baroque"
+"barre-chords"
 "bartok"
 "bass-clarinet"
 "bass-drum"

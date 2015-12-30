@@ -925,6 +925,7 @@
 "multi-user"
 "multi-window"
 "multiple-devices"
+"multirom"
 "multirom-manager"
 "multitasking"
 "music"

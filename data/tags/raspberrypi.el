@@ -64,6 +64,7 @@
 "crash"
 "cron"
 "cross-compilation"
+"csh"
 "cups"
 "curl"
 "cvlc"

@@ -1681,6 +1681,7 @@
 "route"
 "routing"
 "rpf"
+"rpy2"
 "rtklib"
 "rtree"
 "rubbersheeting"

@@ -405,6 +405,7 @@
 "debconf"
 "debian"
 "debian-installer"
+"debian-jessie"
 "debootstrap"
 "debug"
 "debugging"

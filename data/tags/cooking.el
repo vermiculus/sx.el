@@ -730,6 +730,7 @@
 "tahini"
 "tamales"
 "tamarind"
+"tangerines"
 "tart"
 "tartare"
 "taste"

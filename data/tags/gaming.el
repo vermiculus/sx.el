@@ -1463,6 +1463,7 @@
 "guitar-hero-3"
 "guitar-hero-aerosmith"
 "guitar-hero-live"
+"guitar-hero-series"
 "guitar-hero-warriors-rock"
 "guitar-hero-world-tour"
 "gun-bros"

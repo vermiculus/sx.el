@@ -490,6 +490,7 @@
 "new2016edx"
 "news"
 "no-line-numbers"
+"no-rule-to-make-target"
 "nodatareceived"
 "node"
 "nonalphabetical"
