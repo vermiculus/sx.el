@@ -213,6 +213,7 @@
 "diigo"
 "direct-message"
 "directory-listing"
+"discovery.com"
 "disqus"
 "dns"
 "doc"

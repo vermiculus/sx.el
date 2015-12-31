@@ -238,7 +238,6 @@
 "intuition"
 "isabelle"
 "java"
-"k-map"
 "karnaugh-map"
 "kernel"
 "kernel-functions"

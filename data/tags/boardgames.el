@@ -576,7 +576,6 @@
 "trick-move"
 "trick-taking-games"
 "trivial-pursuit"
-"trouble"
 "troyes"
 "tsumego"
 "tsuro"

@@ -1296,7 +1296,6 @@
 "rs422"
 "rs485"
 "rtc"
-"rtcc"
 "rtd"
 "rtl"
 "rtos"

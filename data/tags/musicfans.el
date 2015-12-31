@@ -115,6 +115,8 @@
 "nina-simone"
 "norman-cook"
 "number-ones"
+"p-funk"
+"parliament"
 "parody"
 "passenger"
 "percussion"

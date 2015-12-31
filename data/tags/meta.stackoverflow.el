@@ -431,6 +431,7 @@
 "synonym-request"
 "syntax-highlighting"
 "system-message"
+"table"
 "tabs"
 "tactical-downvoting"
 "tag"

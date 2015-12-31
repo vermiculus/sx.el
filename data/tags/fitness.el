@@ -400,4 +400,5 @@
 "workplace"
 "wrist"
 "yoga"
+"you-are-your-own-gym"
 "zumba")

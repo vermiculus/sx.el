@@ -563,7 +563,6 @@
 "potato"
 "potatoes"
 "poultry"
-"preparation"
 "presentation"
 "pressure-canner"
 "pressure-cooker"

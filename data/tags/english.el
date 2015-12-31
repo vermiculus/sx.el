@@ -1055,6 +1055,7 @@
 "verbal"
 "verbing"
 "verbs"
+"vernacu"
 "vernacular"
 "versus"
 "view"

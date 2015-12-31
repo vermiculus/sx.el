@@ -123,6 +123,7 @@
 "gpu"
 "graph-theory"
 "grid"
+"grobner-bases"
 "hartree-fock"
 "helmholtz-equation"
 "heuristics"

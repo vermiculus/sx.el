@@ -374,6 +374,7 @@
 "dynamic-vf"
 "dynamic-vf-component"
 "dynamic-visualforce"
+"dynamiccomponent"
 "e-commerce"
 "eclipse"
 "edit"

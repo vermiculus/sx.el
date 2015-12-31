@@ -45,6 +45,7 @@
 "airports"
 "akl"
 "aktau"
+"ala"
 "alaska"
 "alaska-airlines"
 "albania"

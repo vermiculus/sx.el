@@ -2021,7 +2021,6 @@
 "pdf-bookmarks"
 "pdfgrep"
 "pdfimages"
-"pdflatex"
 "pdftk"
 "pelican"
 "pencil"

@@ -3322,6 +3322,7 @@
 "state-of-decay"
 "state-of-decay-breakdown"
 "state-of-decay-lifeline"
+"stealth-inc-2"
 "steam"
 "steam-achievements"
 "steam-big-picture"

@@ -824,6 +824,7 @@
 "multicolumn"
 "multido"
 "multimedia"
+"multiple-authors"
 "multiple-files"
 "multirow"
 "multline"

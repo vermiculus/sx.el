@@ -38,6 +38,7 @@
 "hyperlinks"
 "interesting-tags"
 "login"
+"logo"
 "magento"
 "magento2"
 "magestackday"

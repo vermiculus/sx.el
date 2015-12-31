@@ -87,6 +87,7 @@
 "genetic-algorithms"
 "gensim"
 "ggplot2"
+"github"
 "glm"
 "google"
 "gradient-descent"

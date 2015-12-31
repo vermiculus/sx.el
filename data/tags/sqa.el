@@ -70,6 +70,7 @@
 "flash-selenium"
 "form"
 "functional"
+"gatling"
 "geb"
 "git"
 "grid"

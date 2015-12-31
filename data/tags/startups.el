@@ -229,6 +229,7 @@
 "startup-costs"
 "startup-weekend"
 "statistics"
+"stats"
 "stealth"
 "stock"
 "stock-options"

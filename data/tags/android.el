@@ -475,6 +475,7 @@
 "gateway"
 "genymotion"
 "geolocation"
+"geometery-dash"
 "geotagging"
 "gesture-typing"
 "gingerbread"

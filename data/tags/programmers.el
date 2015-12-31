@@ -782,6 +782,7 @@
 "inheritance"
 "initialization"
 "innovation"
+"insta"
 "install"
 "installer"
 "instance"

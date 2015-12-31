@@ -614,6 +614,7 @@
 "recommendation"
 "reconciling"
 "record-keeping"
+"redemption-fees"
 "reference-material"
 "refinance"
 "refund"
