@@ -968,6 +968,7 @@
 "mitzrayim"
 "mitzvah"
 "mitzvos"
+"mixed-seating"
 "mlucha"
 "moav-moab"
 "modern-times"

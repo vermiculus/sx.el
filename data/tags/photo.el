@@ -846,7 +846,6 @@
 "polaroid"
 "popup-flash"
 "portable"
-"portde"
 "portfolio"
 "portrait"
 "portraiture"

@@ -175,6 +175,7 @@
 "putty"
 "quickfix"
 "quit"
+"range"
 "rearrangement"
 "refactor"
 "regex"

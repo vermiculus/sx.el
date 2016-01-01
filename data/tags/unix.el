@@ -443,6 +443,7 @@
 "directory"
 "directory-structure"
 "directx"
+"dirmngr"
 "disk"
 "disk-cleanup"
 "disk-encryption"

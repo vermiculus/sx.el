@@ -476,7 +476,6 @@
 "parenting"
 "patents"
 "paul-walker"
-"pazzles"
 "pedophilia"
 "perception"
 "perpetual-motion"

@@ -890,7 +890,6 @@
 "tree"
 "trie"
 "turtle"
-"turtle"
 "turtle-graphics"
 "twig"
 "twisted"

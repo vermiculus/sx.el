@@ -774,6 +774,7 @@
 "slow-log"
 "slowly-changing-dimension"
 "smallsql"
+"smb"
 "smo"
 "snapshot"
 "snapshot-isolation"

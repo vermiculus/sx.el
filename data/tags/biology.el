@@ -652,6 +652,7 @@
 "transfusion"
 "translation"
 "transplantation"
+"trauma"
 "treatment"
 "trees"
 "tuberculosis"

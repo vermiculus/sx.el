@@ -137,6 +137,7 @@
 "iran"
 "iraq"
 "ireland"
+"islam"
 "islamic-state"
 "israel"
 "italy"

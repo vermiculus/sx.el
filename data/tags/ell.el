@@ -476,6 +476,7 @@
 "while"
 "who"
 "who-whom"
+"will"
 "will-shall"
 "wish"
 "word"
@@ -492,6 +493,7 @@
 "word-request"
 "word-stress"
 "word-usage"
+"would"
 "would-rather"
 "writing"
 "zero-article")

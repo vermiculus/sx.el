@@ -357,7 +357,6 @@
 "scientific-productivity"
 "scientific-writing"
 "scopus"
-"sea"
 "second-degree"
 "self-plagiarism"
 "self-promotion"

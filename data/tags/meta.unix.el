@@ -51,6 +51,7 @@
 "interesting-tags"
 "late-answers"
 "login"
+"low-quality-posts"
 "markdown"
 "merging"
 "meta"

@@ -68,6 +68,7 @@
 "openid"
 "profile-page"
 "qgis"
+"quality"
 "questions"
 "recent-activity"
 "reputation"

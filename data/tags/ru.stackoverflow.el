@@ -215,7 +215,6 @@
 "autocad"
 "autocomplete"
 "autocompletetextview"
-"autofac"
 "autohotkey"
 "autolayout"
 "autoload"

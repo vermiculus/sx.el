@@ -8,6 +8,7 @@
 "beans"
 "blends"
 "brewing-process"
+"bulletproof"
 "burr-grinder"
 "business"
 "caffeine"

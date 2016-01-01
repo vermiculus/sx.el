@@ -753,6 +753,7 @@
 "template-redirect"
 "template-tags"
 "templates"
+"term-meta"
 "terms"
 "testing"
 "text"

@@ -262,7 +262,6 @@
 "boleto.net"
 "boot"
 "bootsfaces"
-"bootstrap"
 "bootstrap-3"
 "bootstrap-glyphicons"
 "bootstrap-table"
