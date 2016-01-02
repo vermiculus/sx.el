@@ -1259,6 +1259,7 @@
 "rashei-tevot"
 "rashi"
 "rationalism"
+"rav-moshe-feinstein"
 "rav-ovadya-yosef"
 "rav-yehudah-hechasid"
 "real-estate"

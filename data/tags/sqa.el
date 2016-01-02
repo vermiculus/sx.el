@@ -219,6 +219,7 @@
 "testcase"
 "testcomplete"
 "testcomplete8"
+"tester"
 "testing-environment"
 "testing-team"
 "testlink"

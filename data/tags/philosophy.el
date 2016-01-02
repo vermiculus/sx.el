@@ -251,7 +251,6 @@
 "physicalism"
 "physics"
 "pirsig"
-"plantinga"
 "plato"
 "plotinus"
 "poetry"

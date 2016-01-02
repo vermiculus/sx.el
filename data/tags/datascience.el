@@ -71,6 +71,7 @@
 "excel"
 "expectation-maximization"
 "experiments"
+"fashion"
 "feature-construction"
 "feature-engineering"
 "feature-extraction"

@@ -201,7 +201,6 @@
 "graphs"
 "greedy-algorithms"
 "group-theory"
-"halt"
 "halting-problem"
 "hamiltonian-circuit"
 "hamiltonian-path"

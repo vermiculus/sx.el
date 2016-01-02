@@ -35,6 +35,7 @@
 "flagging"
 "formatting"
 "game"
+"greetings"
 "help-center"
 "hyperlinks"
 "interesting-tags"

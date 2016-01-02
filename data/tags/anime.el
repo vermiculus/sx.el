@@ -153,6 +153,7 @@
 "castle-in-the-sky"
 "censorship"
 "chaika-coffin-princess"
+"chain-chronicle"
 "chaos-head"
 "charlotte"
 "chihayafuru"

@@ -159,7 +159,6 @@
 "rivercrossing"
 "rubiks-cube"
 "rush-hour"
-"sahpes"
 "science"
 "seasonal"
 "semi-interactive-puzzle"

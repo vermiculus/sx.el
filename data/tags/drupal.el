@@ -397,7 +397,6 @@
 "nginx"
 "nice-menus"
 "node"
-"node-api"
 "node-gallery"
 "node-hierarchy"
 "node-reference"

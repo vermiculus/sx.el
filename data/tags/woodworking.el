@@ -25,6 +25,7 @@
 "circular-saw"
 "clamps"
 "clean-up"
+"cnc"
 "coloring"
 "community-project"
 "cutting"

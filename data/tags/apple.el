@@ -797,6 +797,7 @@
 "multiple-displays"
 "multiple-monitors"
 "multitasking"
+"multitouch"
 "music"
 "music.app"
 "mysql"

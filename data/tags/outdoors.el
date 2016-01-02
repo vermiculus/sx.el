@@ -152,6 +152,7 @@
 "free-climbing"
 "free-solo-climbing"
 "french"
+"frostbite"
 "fruits"
 "fuel"
 "fungus"

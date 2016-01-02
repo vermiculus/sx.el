@@ -2109,6 +2109,7 @@
 "vfork"
 "vfs"
 "vga-cable"
+"vgreduce"
 "vhost"
 "vi"
 "vi-mode"

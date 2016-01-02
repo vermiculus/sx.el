@@ -1159,6 +1159,7 @@
 "sample"
 "sample-mean"
 "sample-size"
+"sample-variance"
 "sampling"
 "sandwich"
 "sas"

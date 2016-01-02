@@ -184,6 +184,7 @@
 "najdorf"
 "nalimov"
 "nimzo-indian"
+"nimzowitsch-defence"
 "notation"
 "novelties"
 "novelty"

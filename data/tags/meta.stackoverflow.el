@@ -102,6 +102,7 @@
 "css"
 "custom-close-reasons"
 "custom-tags"
+"cv"
 "daily-reputation-badges"
 "daily-reputation-limit"
 "data-dump"

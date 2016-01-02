@@ -1096,6 +1096,7 @@
 "tone-mapping"
 "transparent-objects"
 "transport"
+"trap-focus"
 "travel"
 "trend"
 "trick-photography"
