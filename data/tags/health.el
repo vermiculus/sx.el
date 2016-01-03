@@ -165,7 +165,6 @@
 "hearing"
 "heart-attack"
 "heart-disease"
-"heart-rate"
 "heart-transplant"
 "height"
 "hematology"

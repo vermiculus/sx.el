@@ -152,6 +152,7 @@
 "joomla-3.2"
 "joomla-3.3.x"
 "joomla-3.4"
+"joomla-3.5"
 "joomla-3.x"
 "joomla-api"
 "joomla-framework"

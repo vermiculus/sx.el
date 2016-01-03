@@ -78,6 +78,7 @@
 "digital-analog-conversion"
 "digital-in"
 "display"
+"documentation"
 "due"
 "eclipse"
 "edison"

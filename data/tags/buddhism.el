@@ -83,7 +83,6 @@
 "dependent-origination"
 "dependent-origination"
 "deva"
-"dhamma-dana"
 "dhammapada"
 "dhammas"
 "dharmaguptaka"

@@ -538,6 +538,7 @@
 "pepper"
 "peppercorns"
 "pestle"
+"pesto"
 "pickling"
 "pie"
 "pineapple"

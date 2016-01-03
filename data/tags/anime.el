@@ -941,6 +941,7 @@
 "tenchi-multiverse"
 "tenkuu-no-shiro-laputa"
 "tensai-bakabon"
+"tenshi-na-konamaiki"
 "terminology"
 "terra-formars"
 "terror-in-resonance"

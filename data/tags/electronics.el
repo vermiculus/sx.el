@@ -1226,6 +1226,7 @@
 "rc-network"
 "rc5"
 "rca"
+"rcd"
 "reactance"
 "reactive-power"
 "real-power"

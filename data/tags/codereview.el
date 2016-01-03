@@ -518,7 +518,6 @@
 "meta-programming"
 "meteor"
 "microdata"
-"midi"
 "minecraft"
 "minesweeper"
 "mithril.js"

@@ -8,6 +8,7 @@
 "autocompletion"
 "backup"
 "bash"
+"best-practice"
 "binary-file"
 "buffers"
 "callback"

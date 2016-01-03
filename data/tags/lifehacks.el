@@ -97,6 +97,7 @@
 "shaving"
 "shoes"
 "sink"
+"sleeping"
 "smell"
 "smoking"
 "snack-food"
