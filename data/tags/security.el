@@ -520,7 +520,6 @@
 "opera-mini"
 "operating-systems"
 "operations"
-"opinion"
 "opportunistic-encryption"
 "oracle"
 "os"

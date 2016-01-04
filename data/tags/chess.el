@@ -155,6 +155,7 @@
 "karpov"
 "kasparov"
 "king"
+"king-safety"
 "kings"
 "kings-gambit"
 "kings-indian"

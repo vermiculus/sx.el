@@ -921,7 +921,6 @@
 "wp-title"
 "wp-update-post"
 "wp-user-query"
-"wpackagist"
 "wpalchemy"
 "wpdb"
 "wpml"

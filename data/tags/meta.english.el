@@ -93,6 +93,7 @@
 "policy"
 "profile-page"
 "pronunciation"
+"proposal"
 "proposed-edits"
 "protected-questions"
 "question-ban"

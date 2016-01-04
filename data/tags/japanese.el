@@ -60,6 +60,7 @@
 "email"
 "english-to-japanese"
 "etymology"
+"euphemisms"
 "existential-constructions"
 "explanatory"
 "expression"

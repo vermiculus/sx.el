@@ -74,6 +74,7 @@
 "tag-wiki"
 "tagging"
 "tags"
+"teaching"
 "tex"
 "traffic"
 "unanswered"

@@ -1036,6 +1036,7 @@
 "lftp"
 "libata"
 "libcontainer"
+"libdmtx"
 "libedit"
 "libnotify"
 "libraries"

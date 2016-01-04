@@ -217,6 +217,7 @@
 "file-extensions"
 "file-field"
 "file-field-sources"
+"file-path"
 "file-permissions"
 "file-usage"
 "filedepot"

@@ -4,6 +4,7 @@
 "13x13"
 "18xx"
 "3d-chess"
+"504"
 "7-wonders"
 "7-wonders-babel"
 "7-wonders-cities"

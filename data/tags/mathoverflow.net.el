@@ -427,6 +427,7 @@
 "f-1"
 "f4"
 "fa.functional-analysis"
+"factorial"
 "factorization"
 "fair-division"
 "fano-varieties"

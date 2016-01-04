@@ -159,6 +159,7 @@
 "favicon"
 "favorite-tags"
 "favorites"
+"feature"
 "feature-request"
 "featured"
 "featured-page"

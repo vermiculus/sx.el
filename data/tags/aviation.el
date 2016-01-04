@@ -635,6 +635,7 @@
 "trim-tab"
 "tsa"
 "tupolev"
+"tupolev-134"
 "tupolev-144"
 "turbine"
 "turbocharged"

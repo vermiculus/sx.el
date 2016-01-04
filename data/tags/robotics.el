@@ -216,6 +216,7 @@
 "visual-servoing"
 "visualization"
 "walk"
+"walking-robot"
 "wheel"
 "wheeled-robot"
 "wifi"

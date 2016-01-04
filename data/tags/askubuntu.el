@@ -84,6 +84,7 @@
 "ahci"
 "aif"
 "aircrack-ng"
+"airmon-ng"
 "airplane-mode"
 "airplay"
 "akonadi"

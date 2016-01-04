@@ -3285,6 +3285,7 @@
 "ubuntu-13.04"
 "ubuntu-14.04"
 "ubuntu-14.10"
+"ubuntu-15.10"
 "ubuntu-8.04"
 "ubuntu-9.04"
 "ubuntu-9.10"

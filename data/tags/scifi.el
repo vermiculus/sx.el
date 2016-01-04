@@ -739,7 +739,6 @@
 "his-dark-materials"
 "history"
 "history-of"
-"history-of-middle-earth"
 "hitchhikers-guide"
 "hive-mind"
 "hobbits"
