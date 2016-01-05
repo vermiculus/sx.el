@@ -111,6 +111,7 @@
 "fallacy"
 "falsifiability"
 "feminism"
+"feuerbach"
 "feyerabend"
 "fitch"
 "formal-theory"

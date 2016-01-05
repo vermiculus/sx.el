@@ -69,6 +69,7 @@
 "deployment"
 "design-patterns"
 "development"
+"documentation"
 "download"
 "e-commerce"
 "editing"

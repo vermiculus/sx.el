@@ -467,6 +467,7 @@
 "risk-premium"
 "robust-optimization"
 "roll-adjustment"
+"rquantlib"
 "saa"
 "sde"
 "seasonal-effects"

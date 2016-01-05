@@ -1472,6 +1472,7 @@
 "upgrades"
 "uploads"
 "url"
+"usability"
 "usage-statistics"
 "usb"
 "usb-connection-mode"

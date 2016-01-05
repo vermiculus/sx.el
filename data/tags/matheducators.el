@@ -97,6 +97,7 @@
 "mathematica"
 "mathematical-analysis"
 "mathematical-discourse"
+"mathematical-modeling"
 "mathematical-pedagogy"
 "mathematics-in-daily-life"
 "meta"

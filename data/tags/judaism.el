@@ -1185,6 +1185,7 @@
 "phone"
 "pictures"
 "pidyon-haben"
+"pidyon-hamor"
 "pidyon-shvuyim-prisoners"
 "pikuachnefesh-danger-life"
 "pinchas"

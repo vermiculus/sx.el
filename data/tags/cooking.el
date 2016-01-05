@@ -634,6 +634,7 @@
 "saute"
 "sauteing"
 "scallops"
+"scoby"
 "scottish-cuisine"
 "scrambled-eggs"
 "seafood"

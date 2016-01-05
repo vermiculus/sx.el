@@ -367,7 +367,6 @@
 "lsyncd"
 "lucene"
 "mac"
-"machine-learning"
 "make"
 "makefile"
 "malloc"
@@ -767,5 +766,4 @@
 "詳細設計"
 "遺伝的アルゴリズム"
 "配列"
-"非同期"
-"高速再生")
+"非同期")

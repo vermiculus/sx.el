@@ -417,6 +417,7 @@
 "point"
 "polymode"
 "popup"
+"popwin"
 "powerline"
 "predictive-mode"
 "prefix-argument"

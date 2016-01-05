@@ -63,6 +63,7 @@
 "blackjack"
 "blokus"
 "blood-bowl"
+"blood-bowl-team-manager"
 "blueprints"
 "board-game-adaptations"
 "board-size"

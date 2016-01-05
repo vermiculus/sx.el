@@ -946,6 +946,7 @@
 "lounges"
 "louvre"
 "low-cost-carriers"
+"loyalty"
 "loyalty-programs"
 "lpb"
 "ltn"

@@ -96,6 +96,7 @@
 "bitcore"
 "bitfinex"
 "bitinstant"
+"bitlicense"
 "bitmain"
 "bitpay"
 "bitshares"

@@ -5,6 +5,7 @@
 "atomic-code-golf"
 "audio"
 "badges"
+"best-of"
 "beta-status"
 "blog"
 "bounty"

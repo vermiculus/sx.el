@@ -2362,6 +2362,7 @@
 "wordpress-theme"
 "workflow"
 "workspace"
+"wp"
 "wp8"
 "wpf"
 "wsdl"

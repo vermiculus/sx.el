@@ -41,6 +41,7 @@
 "aircraft-design"
 "aircraft-development"
 "aircraft-disposal"
+"aircraft-external-lights"
 "aircraft-failure"
 "aircraft-heavy"
 "aircraft-identification"

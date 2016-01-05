@@ -439,6 +439,8 @@
 "if-whether"
 "image-identification"
 "imperative"
+"impersonal"
+"impersonal-passive"
 "in-for"
 "in-of"
 "in-on"
