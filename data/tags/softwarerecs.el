@@ -177,6 +177,7 @@
 "drag-drop"
 "dragon-naturallyspeaking"
 "drawing"
+"drm"
 "dropbox"
 "drupal"
 "duplicate-display"

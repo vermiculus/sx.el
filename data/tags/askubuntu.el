@@ -2977,6 +2977,7 @@
 "video-driver"
 "video-editor"
 "video-player"
+"video-plugin"
 "video-streaming"
 "video4linux"
 "viewports"

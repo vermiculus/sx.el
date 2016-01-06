@@ -354,6 +354,7 @@
 "audio-processing"
 "audio-recording"
 "audio-streaming"
+"audio-visual"
 "audiobook"
 "audiocd"
 "audit"

@@ -147,6 +147,7 @@
 "deep-space-hibernation"
 "deep-space-network"
 "deimos"
+"delta-2"
 "delta-v"
 "delta4"
 "delta4-heavy"

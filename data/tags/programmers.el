@@ -1717,8 +1717,6 @@
 "visual-basic-6"
 "visual-c++"
 "visual-foxpro"
-"visual-source-safe"
-"visual-source-safe-2005"
 "visual-studio"
 "visual-studio-2008"
 "visual-studio-2010"

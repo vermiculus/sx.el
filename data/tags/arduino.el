@@ -252,6 +252,7 @@
 "ui"
 "uno"
 "untagged"
+"upload"
 "uploading"
 "usb"
 "variables"

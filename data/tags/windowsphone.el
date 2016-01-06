@@ -144,6 +144,8 @@
 "microsoft-account"
 "microsoft-acount"
 "microsoft-band"
+"microsoft-lumia-950"
+"microsoft-lumia-950-xl"
 "mms"
 "multi-tasking"
 "music"

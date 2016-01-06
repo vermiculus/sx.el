@@ -1264,6 +1264,7 @@
 "symplectic-group"
 "symplectic-topology"
 "syntax"
+"synthetic-differential"
 "systolic-geometry"
 "syzygies"
 "t-structure"

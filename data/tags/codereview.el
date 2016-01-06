@@ -802,6 +802,7 @@
 "snap-framework"
 "soap"
 "socket"
+"socket.io"
 "solaris"
 "solidworks"
 "sort"

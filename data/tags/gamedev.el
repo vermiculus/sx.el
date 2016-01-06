@@ -11,7 +11,6 @@
 "4x"
 "a-star"
 "aabb"
-"acceleration-structures"
 "accelerometer"
 "accessibility"
 "achievements"

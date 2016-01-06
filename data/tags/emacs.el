@@ -358,6 +358,7 @@
 "navigation"
 "networking"
 "newlines"
+"nhexl-mode"
 "nodejs"
 "notmuch"
 "nrepl"

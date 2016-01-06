@@ -264,6 +264,7 @@
 "soviet"
 "spain"
 "specific-elections"
+"sri-lanka"
 "state-legislatures"
 "statehood"
 "statistics"

@@ -1294,6 +1294,7 @@
 "windows-server-2008-r2"
 "windows-server-2012"
 "windows-server-2012-r2"
+"windows-update"
 "windows-xp"
 "winsock"
 "wopi"

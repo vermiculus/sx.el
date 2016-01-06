@@ -1203,6 +1203,7 @@
 "statweave"
 "stix"
 "stmaryrd"
+"storebox"
 "strikeout"
 "string"
 "strings"

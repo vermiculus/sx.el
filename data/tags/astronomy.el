@@ -80,6 +80,7 @@
 "earth"
 "earth-like-planet"
 "eccentric-orbit"
+"ecliptic"
 "electron"
 "element"
 "elemental-abundances"
@@ -328,4 +329,5 @@
 "white-dwarf"
 "white-hole"
 "wormhole"
-"x-ray")
+"x-ray"
+"zodiac")

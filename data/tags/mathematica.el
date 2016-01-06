@@ -510,7 +510,6 @@
 "refactoring"
 "reference-request"
 "regex"
-"regionq"
 "regions"
 "regression"
 "regular-expressions"

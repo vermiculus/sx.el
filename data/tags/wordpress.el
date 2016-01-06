@@ -798,6 +798,7 @@
 "transient"
 "translation"
 "trash"
+"travis-ci"
 "troubleshooting"
 "tumblr"
 "twenty-ten"

@@ -237,6 +237,7 @@
 "projects"
 "promotion"
 "psychology"
+"purchases"
 "qualification"
 "quitting"
 "raise"

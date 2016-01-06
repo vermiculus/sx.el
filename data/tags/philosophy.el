@@ -267,6 +267,7 @@
 "practical-ethics"
 "pragmatism"
 "presocratics"
+"principia-mathematica"
 "probability"
 "problem-of-evil"
 "proof"

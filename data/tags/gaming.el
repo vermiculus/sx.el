@@ -1744,6 +1744,7 @@
 "just-dance-2015"
 "just-dance-3"
 "just-dance-now"
+"just-dance-series"
 "kaillera"
 "kairobotica"
 "kamidori-alchemy-meister"

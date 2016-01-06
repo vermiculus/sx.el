@@ -201,6 +201,7 @@
 "earthquake"
 "egress"
 "elec"
+"electical"
 "electric-heat"
 "electric-motor"
 "electrical"

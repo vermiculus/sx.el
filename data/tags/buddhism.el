@@ -381,6 +381,7 @@
 "truth"
 "tulku"
 "two-truth-doctrine"
+"u-ba-khin"
 "unconditioned"
 "vajrapani"
 "vajrayana"

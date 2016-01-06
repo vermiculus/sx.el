@@ -636,6 +636,7 @@
 "unitary-patents"
 "unpatented"
 "untagged"
+"untapped"
 "update"
 "urey"
 "us"

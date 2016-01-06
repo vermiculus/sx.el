@@ -855,6 +855,7 @@
 "micromax-a35"
 "micromax-a350"
 "micromax-a57"
+"micromax-a63"
 "micromax-a87"
 "micromax-a89"
 "micromax-bolt-a27"

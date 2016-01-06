@@ -120,7 +120,6 @@
 "hydrolysis"
 "hyperconjugation"
 "identification"
-"iit-jee"
 "inn"
 "inorganic"
 "inorganic-chemistry"
