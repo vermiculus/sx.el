@@ -180,6 +180,7 @@
 "memberships"
 "memory"
 "menu"
+"merging"
 "message-templates"
 "metatags"
 "migration"

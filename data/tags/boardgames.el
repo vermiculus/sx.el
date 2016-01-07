@@ -510,6 +510,7 @@
 "small-world-underground"
 "smash-up"
 "solitaire"
+"solo-whist"
 "somnium"
 "sorry"
 "space-alert"

@@ -66,6 +66,7 @@
 "privacy"
 "privileges"
 "profile-page"
+"proofs"
 "questions"
 "re-open"
 "recent-activity"

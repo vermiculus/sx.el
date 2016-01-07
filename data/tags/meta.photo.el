@@ -79,6 +79,7 @@
 "profile-page"
 "questions"
 "recent-activity"
+"reopen-request"
 "reputation"
 "retagging"
 "reviews"

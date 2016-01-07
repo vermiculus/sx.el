@@ -129,6 +129,7 @@
 "digital-wallet"
 "disability"
 "disasters"
+"divine-attributes"
 "divorce"
 "diyya"
 "dogs"

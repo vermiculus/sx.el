@@ -1,4 +1,5 @@
 ("accepted-answer"
+"allowed-answers"
 "allowed-questions"
 "answers"
 "asking-questions"

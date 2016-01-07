@@ -157,7 +157,6 @@
 "repair"
 "repeater"
 "repeater-coverage"
-"retractable-antenna"
 "rfi"
 "rsgb"
 "rssi"

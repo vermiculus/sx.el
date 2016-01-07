@@ -414,6 +414,7 @@
 "jobs"
 "join"
 "join-conditions"
+"jpql"
 "json"
 "kerberos"
 "keyboard-shortcuts"

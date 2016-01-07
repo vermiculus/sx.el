@@ -158,6 +158,7 @@
 "javafx"
 "javascript"
 "jessie"
+"jessie-lite"
 "joystick"
 "jvm"
 "kali"

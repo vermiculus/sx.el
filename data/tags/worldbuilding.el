@@ -140,7 +140,6 @@
 "geology"
 "global-warming"
 "gods"
-"goverment"
 "government"
 "grammar"
 "gravity"

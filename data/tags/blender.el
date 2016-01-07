@@ -80,6 +80,7 @@
 "greasepencil"
 "groups"
 "hair-particles"
+"hardware"
 "id-mask"
 "image"
 "import"

@@ -2487,6 +2487,7 @@
 "puppetmaster"
 "pureftpd"
 "putty"
+"puttygen"
 "pv"
 "pvlan"
 "pvmove"

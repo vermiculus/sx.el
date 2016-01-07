@@ -507,6 +507,7 @@
 "login-error"
 "logout"
 "lost"
+"m2"
 "m2e"
 "m2epro"
 "mage-googleshopping"
