@@ -215,8 +215,20 @@ Element can be a question, answer, or comment."
            (sx-display-question
             (sx-question-get-question .site_par .id) 'focus))
           (t (error "Don't know how to open this link, please file a bug report: %s"
-               link)
+                    link)
              nil))))))
+
+;;;###autoload
+(defun sx-org-get-link ()
+  "Add a link to this post to Org's memory."
+  (when (memq major-mode '(sx-question-mode sx-question-list-mode))
+    (sx-assoc-let (sx--data-here)
+      (when .link
+        (org-store-link-props :type 'http
+                              :link .link
+                              :description .title)))))
+(eval-after-load "org"
+  '(add-to-list 'org-store-link-functions #'sx-org-get-link))
 
 
 ;;; Displaying
