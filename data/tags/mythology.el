@@ -40,6 +40,7 @@
 "deluge-myth"
 "demi-gods"
 "demonology"
+"dionysus"
 "dragons"
 "dreamtime"
 "easter-island"

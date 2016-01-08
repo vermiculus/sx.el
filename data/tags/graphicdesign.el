@@ -59,6 +59,7 @@
 "beizer-curve"
 "best-practice"
 "bestpractice"
+"bezier-curve"
 "billboard"
 "binding"
 "bit"

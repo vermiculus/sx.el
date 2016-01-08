@@ -50,6 +50,7 @@
 "capablanca"
 "capablanca-chess"
 "captures"
+"career"
 "carlsen"
 "carlsen-anand-2014"
 "caro-kann"

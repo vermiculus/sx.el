@@ -35,6 +35,7 @@
 "binary-logging"
 "bootstrap"
 "bounce"
+"braintree"
 "bugs"
 "cache"
 "calendar"

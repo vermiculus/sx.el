@@ -426,6 +426,7 @@
 "wiring"
 "wiringpi"
 "wolfram"
+"wolfson-audio-card"
 "wpa"
 "x11"
 "xbee"

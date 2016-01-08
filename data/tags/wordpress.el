@@ -308,7 +308,6 @@
 "google-xml-sitemaps"
 "gravatar"
 "groupby"
-"grunt"
 "guid"
 "guids"
 "hacked"

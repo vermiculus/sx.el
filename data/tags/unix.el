@@ -436,6 +436,7 @@
 "df"
 "dhclient"
 "dhcp"
+"dhcpconfig"
 "dialog"
 "dictionary"
 "diff"

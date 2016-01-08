@@ -713,6 +713,7 @@
 "osx"
 "outlook"
 "outlook-365"
+"outlook-on-the-web"
 "outlook-web-access"
 "outlook.com"
 "outlook.com-calendar"

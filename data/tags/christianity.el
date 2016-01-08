@@ -843,6 +843,7 @@
 "st-augustine-of-hippo"
 "st-francis-of-assisi"
 "st-thomas-aquinas"
+"star-wars"
 "stoicism"
 "subsidiarity"
 "suffering"

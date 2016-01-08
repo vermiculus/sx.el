@@ -56,6 +56,7 @@
 "content-filtering"
 "controller"
 "cookies"
+"cpanel"
 "css"
 "curl"
 "custom-action"

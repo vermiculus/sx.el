@@ -253,6 +253,8 @@
 "infallability"
 "inheritance"
 "insurance"
+"intellig"
+"intelligence"
 "interest"
 "internet"
 "invalid"

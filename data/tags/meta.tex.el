@@ -144,6 +144,7 @@
 "tagwiki"
 "tex-sx-package"
 "tikz"
+"title"
 "too-localized"
 "tour"
 "tug"

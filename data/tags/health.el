@@ -220,7 +220,6 @@
 "marijuana"
 "massage"
 "measurement"
-"measurment"
 "mechanical-ventilation"
 "medical-device"
 "medical-imaging"

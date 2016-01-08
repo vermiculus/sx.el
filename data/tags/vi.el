@@ -170,6 +170,7 @@
 "plugin-vundle"
 "plugin-you-complete-me"
 "plugin-zip"
+"posix-compliant"
 "previewing"
 "printing"
 "putty"

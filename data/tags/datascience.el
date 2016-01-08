@@ -150,6 +150,7 @@
 "neo4j"
 "neuralnetwork"
 "nlp"
+"nltk"
 "nodexl"
 "normalization"
 "nosql"

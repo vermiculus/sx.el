@@ -909,6 +909,7 @@
 "verification"
 "version-control"
 "versioning"
+"vertical-bar"
 "video"
 "view"
 "viewer"

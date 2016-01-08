@@ -1007,6 +1007,7 @@
 "prime-ideals"
 "prime-number-theorem"
 "prime-numbers"
+"primes"
 "primitive-elements"
 "primitive-ideal"
 "primitive-roots"

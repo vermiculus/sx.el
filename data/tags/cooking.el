@@ -487,7 +487,6 @@
 "mustard"
 "mutton"
 "neapolitan-pizza"
-"neopolitan-pizza"
 "non-stick"
 "noodles"
 "nut-butters"

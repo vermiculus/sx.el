@@ -190,6 +190,7 @@
 "qtaim"
 "quantum-chemistry"
 "quantum-mechanics"
+"r"
 "radicals"
 "radioactivity"
 "raman"

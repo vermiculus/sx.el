@@ -691,6 +691,7 @@
 "line-breaking"
 "line-numbering"
 "line-spacing"
+"linegoal"
 "linguex"
 "linguistics"
 "liningnums"

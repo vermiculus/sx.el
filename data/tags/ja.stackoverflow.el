@@ -39,6 +39,7 @@
 "apache-poi"
 "api"
 "apk-expansion-files"
+"apns"
 "app-store"
 "apple"
 "applescript"
