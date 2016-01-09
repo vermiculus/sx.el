@@ -1,7 +1,6 @@
 ("about-faq"
 "accepted-answer"
 "adopt-a-question"
-"advertising"
 "android-app"
 "answering"
 "answering-questions"

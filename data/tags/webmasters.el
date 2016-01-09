@@ -292,7 +292,6 @@
 "eu-cookie-law"
 "ev-certificate"
 "event-tracking"
-"excel"
 "exit-pages"
 "expires"
 "expression-web-4"

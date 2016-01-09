@@ -501,7 +501,6 @@
 "votes"
 "voting"
 "voting-fraud"
-"w3schools"
 "web-sockets"
 "wildcard"
 "windows-app"

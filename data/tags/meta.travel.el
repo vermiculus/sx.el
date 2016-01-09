@@ -60,7 +60,6 @@
 "meetups"
 "meta"
 "migration"
-"mobile"
 "moderation"
 "moderators"
 "new-users"

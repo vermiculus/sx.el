@@ -230,7 +230,6 @@
 "imperative-programming"
 "implementation"
 "independence"
-"infinitary"
 "integer-lattice"
 "integer-programming"
 "integrality-gap"

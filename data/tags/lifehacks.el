@@ -55,6 +55,7 @@
 "headphones"
 "home"
 "hygiene"
+"iphone"
 "jewelry"
 "junk-food"
 "kitchen"
@@ -129,5 +130,4 @@
 "water"
 "wifi"
 "winter"
-"work-arounds"
 "zipper")

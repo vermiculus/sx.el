@@ -101,6 +101,7 @@
 "category"
 "category-description"
 "cdn"
+"cgi"
 "challenge"
 "characters"
 "child-pages"

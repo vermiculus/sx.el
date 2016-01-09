@@ -132,7 +132,6 @@
 "health"
 "hearing"
 "heaters"
-"hedgehog"
 "herbivore"
 "herding"
 "hermit-crabs"

@@ -12,6 +12,7 @@
 "automated-testing"
 "automation"
 "bdd"
+"blazemeter"
 "browser-automation"
 "browser-session"
 "browsers"

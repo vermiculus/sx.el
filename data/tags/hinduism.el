@@ -16,7 +16,6 @@
 "animals"
 "arjuna"
 "art"
-"aryan-invasion-theory"
 "ashram"
 "astrology"
 "asuras"

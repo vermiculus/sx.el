@@ -72,7 +72,6 @@
 "ecology"
 "economic-geology"
 "eddies"
-"eddy-covariance"
 "el-nino"
 "electromagnetism"
 "enso"

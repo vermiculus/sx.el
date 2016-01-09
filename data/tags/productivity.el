@@ -37,7 +37,6 @@
 "efficiency"
 "electronic"
 "electronic-devices"
-"emacs"
 "email"
 "emotions"
 "ergonomics"

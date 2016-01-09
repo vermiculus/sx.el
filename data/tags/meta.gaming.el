@@ -32,7 +32,6 @@
 "comments"
 "community"
 "community-ads"
-"community-adverts"
 "community-bulletin"
 "community-event"
 "community-wiki"

@@ -2,8 +2,6 @@
 "accepted-answer"
 "answers"
 "asking-questions"
-"atomic-code-golf"
-"audio"
 "badges"
 "best-of"
 "beta-status"

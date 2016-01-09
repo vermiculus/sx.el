@@ -15,7 +15,6 @@
 "analog"
 "animation"
 "animation-rendering"
-"anti-aliasing"
 "aspect"
 "audio"
 "audio-cd"

@@ -94,5 +94,4 @@
 "vote-to-close"
 "votes"
 "voting"
-"winter-refactor-2013"
 "winter-refactor-2014")

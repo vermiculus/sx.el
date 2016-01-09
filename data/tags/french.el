@@ -85,7 +85,6 @@
 "dialectes"
 "dialogues"
 "dictionnaires"
-"discographie"
 "discours"
 "discours-indirect"
 "djeunz"

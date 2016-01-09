@@ -613,6 +613,7 @@
 "svg"
 "svn"
 "swift"
+"swift2"
 "swing"
 "swipe"
 "symfony2"

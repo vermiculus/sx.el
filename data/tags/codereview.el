@@ -676,7 +676,6 @@
 "pyglet"
 "pymongo"
 "pyplot"
-"pyplot"
 "pyqt"
 "pyramid"
 "pyside"

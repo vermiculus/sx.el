@@ -34,7 +34,6 @@
 "callstack"
 "capstone"
 "career-advice"
-"carry-flag"
 "cms"
 "code-modeling"
 "com"
@@ -281,6 +280,5 @@
 "x64"
 "x86"
 "xor"
-"zigbee"
 "zynos"
 "zyxel")

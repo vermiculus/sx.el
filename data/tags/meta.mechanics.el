@@ -1,6 +1,5 @@
 ("accepted-answer"
 "answers"
-"area-51"
 "asking-questions"
 "badges"
 "beta"

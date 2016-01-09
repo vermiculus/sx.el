@@ -374,6 +374,7 @@
 "charlie-chaplin"
 "charlie-kaufman"
 "cheers"
+"childhoods-end"
 "children-of-men"
 "children-of-the-corn"
 "childrens-hospital"

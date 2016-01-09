@@ -292,7 +292,6 @@
 "spatial-cognition"
 "speech"
 "speech-comprehension"
-"speed-accuracy-trade-off"
 "spm"
 "sport-psychology"
 "statistics"

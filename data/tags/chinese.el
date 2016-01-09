@@ -95,7 +95,6 @@
 "phrase"
 "pinyin"
 "place-names"
-"poems"
 "poetry"
 "politeness"
 "possessives"

@@ -88,7 +88,6 @@
 "hats"
 "help"
 "help-center"
-"homework"
 "hyperlinks"
 "icon"
 "identicon"

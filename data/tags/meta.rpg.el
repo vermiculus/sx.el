@@ -56,7 +56,6 @@
 "login"
 "markdown"
 "meta"
-"meta-tags"
 "migration"
 "mobile"
 "moderation"

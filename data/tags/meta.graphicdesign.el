@@ -33,7 +33,6 @@
 "flagging"
 "font-identification"
 "formatting"
-"help-center"
 "hyperlinks"
 "images"
 "interesting-tags"

@@ -230,6 +230,7 @@
 "vimscript"
 "vimscript-lua"
 "vimscript-python"
+"virtualedit"
 "visual-mode"
 "whitespace"
 "wildmenu"

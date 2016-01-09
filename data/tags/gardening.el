@@ -93,7 +93,6 @@
 "crabgrass"
 "creepers"
 "crop-rotation"
-"cucumber"
 "cucumbers"
 "cucurbits"
 "cuttings"

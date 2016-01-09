@@ -53,7 +53,6 @@
 "rss"
 "scope"
 "search"
-"semantics"
 "site-design"
 "site-evaluation"
 "site-philosophy"

@@ -74,7 +74,7 @@
 "status-reproduced"
 "status-review"
 "support"
-"syntax-highlighting"
+"survey"
 "tag-merge"
 "tag-synonyms"
 "tagging"

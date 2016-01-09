@@ -2,6 +2,7 @@
 "accounting"
 "adjustment-costs"
 "adverse-selection"
+"afford"
 "aggregate-production"
 "agriculture"
 "algorithmic-game-theory"
