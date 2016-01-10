@@ -558,7 +558,6 @@
 "depura&#231;&#227;o"
 "depurador"
 "depurar"
-"derro"
 "descompila&#231;&#227;o"
 "desempenho"
 "desenvolvimento"

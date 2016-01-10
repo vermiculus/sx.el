@@ -1,7 +1,6 @@
 ("accepted-answer"
 "allowed-answers"
 "allowed-questions"
-"announcement"
 "answers"
 "asking-questions"
 "badges"

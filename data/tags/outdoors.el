@@ -56,7 +56,6 @@
 "bow-hunting"
 "breathing"
 "bugs"
-"butterflies"
 "california"
 "camming-device"
 "camping"

@@ -544,7 +544,6 @@
 "mass-nouns"
 "math"
 "mathematics"
-"meani"
 "meaning"
 "meaning-in-context"
 "meanings"

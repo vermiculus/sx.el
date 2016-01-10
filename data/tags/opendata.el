@@ -21,6 +21,7 @@
 "business"
 "calendar"
 "canada"
+"cars"
 "caveats"
 "census"
 "chicago"

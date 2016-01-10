@@ -345,6 +345,7 @@
 "unicode"
 "united-kingdom"
 "united-states"
+"untagged"
 "us-civil-war"
 "us-marine-corps"
 "usa"

@@ -90,6 +90,7 @@
 "coordination"
 "correlating-conjunctions"
 "correspondence"
+"could"
 "countability"
 "countable-nouns"
 "counterfactual"

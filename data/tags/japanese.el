@@ -290,6 +290,7 @@
 "transitivity"
 "translation"
 "typesetting"
+"untagged"
 "usage"
 "verbals"
 "verbs"

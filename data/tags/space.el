@@ -59,6 +59,7 @@
 "balloons"
 "base"
 "battery"
+"beamed-propulsion"
 "berthing"
 "bigelow"
 "biology"

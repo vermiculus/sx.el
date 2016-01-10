@@ -108,6 +108,7 @@
 "customization"
 "customize"
 "cycling"
+"d-bus"
 "dabbrev"
 "daemon"
 "dash.el"

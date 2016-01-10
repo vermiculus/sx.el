@@ -392,7 +392,6 @@
 "ora-et-labora"
 "orks"
 "othello"
-"pair-solitaire"
 "pandante"
 "pandemic"
 "pandemic-contagion"

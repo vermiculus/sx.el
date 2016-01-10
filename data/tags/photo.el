@@ -262,7 +262,6 @@
 "concert"
 "condensation"
 "contax"
-"continuous"
 "continuous-autofocus"
 "continuous-drive"
 "continuous-lighting"

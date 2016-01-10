@@ -224,6 +224,7 @@
 "desktop"
 "desktop"
 "desktop-application"
+"detailed-search"
 "device"
 "device-independent"
 "device-rotation"

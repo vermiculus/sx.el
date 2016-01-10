@@ -1306,7 +1306,6 @@
 "workflow"
 "workflow-activity"
 "workflow-designer"
-"workflow-farm"
 "workflow-form"
 "workflow-history"
 "workflow-lookup"

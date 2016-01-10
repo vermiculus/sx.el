@@ -71,7 +71,7 @@
 "bifurcation"
 "big-bang"
 "big-list"
-"binary"
+"binary-stars"
 "binding-energy"
 "biology"
 "biophysics"

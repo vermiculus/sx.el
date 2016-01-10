@@ -227,6 +227,7 @@
 "plugin-feedme"
 "plugin-guestentries"
 "plugin-import"
+"plugin-jsonexpand"
 "plugin-printmaker"
 "plugin-pushnotifications"
 "plugin-redactorclips"
