@@ -381,7 +381,6 @@
 "student-success"
 "students"
 "study"
-"study-plan"
 "summer-school"
 "supervision"
 "supervisors"

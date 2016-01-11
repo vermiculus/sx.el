@@ -173,7 +173,6 @@
 "erc"
 "ergoemacs"
 "error-handling"
-"error-message"
 "ert"
 "eshell"
 "ess"

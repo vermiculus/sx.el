@@ -5264,6 +5264,7 @@
 "video-drivers"
 "video-editing"
 "video-encoding"
+"video-mixing"
 "video-playback"
 "video-streaming"
 "videochat"

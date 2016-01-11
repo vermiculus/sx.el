@@ -961,7 +961,6 @@
 "unfollow"
 "unicode"
 "unsubscribe"
-"untagged"
 "upload"
 "url"
 "url-shortening"

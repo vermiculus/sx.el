@@ -374,6 +374,7 @@
 "date-format"
 "dates"
 "dead-links"
+"debate"
 "declined-flags"
 "definition-phase"
 "delete"

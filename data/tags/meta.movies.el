@@ -91,6 +91,7 @@
 "tv"
 "unanswered-questions"
 "up-votes"
+"up-votes"
 "user-accounts"
 "user-interface"
 "users"

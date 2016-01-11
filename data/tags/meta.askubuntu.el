@@ -43,6 +43,7 @@
 "community"
 "community-ads"
 "community-bulletin"
+"community-event"
 "community-user"
 "community-wiki"
 "conferences"

@@ -100,6 +100,7 @@
 "asp.net"
 "aspell"
 "assignment"
+"associative-array"
 "asterisk"
 "asus"
 "async"

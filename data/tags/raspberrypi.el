@@ -289,6 +289,7 @@
 "raspbmc"
 "raspi-check"
 "raspi-config"
+"raspian"
 "raspicam"
 "raspivid"
 "razberry"

@@ -403,6 +403,7 @@
 "enterprise-wsdl"
 "entitlements"
 "entitysubscription"
+"environment"
 "environment-hub"
 "error"
 "error-messages"

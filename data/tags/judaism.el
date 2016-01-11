@@ -1064,6 +1064,7 @@
 "nusach-edot-hammizrach"
 "nusach-sefard"
 "nusach-sfard"
+"nusachot"
 "nuschaot"
 "occupation"
 "offerings"

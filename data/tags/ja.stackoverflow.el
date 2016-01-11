@@ -595,6 +595,7 @@
 "sphinx"
 "spring"
 "spring-boot"
+"spring-data"
 "spritekit"
 "sql"
 "sql-azure"

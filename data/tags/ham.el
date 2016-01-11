@@ -1,6 +1,7 @@
 ("20m-band"
 "2m-band"
 "33cm-band"
+"6m"
 "70cm-band"
 "airband"
 "am"

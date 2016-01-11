@@ -1023,6 +1023,7 @@
 "monad"
 "mongo"
 "mongodb"
+"mongoose"
 "monitoring"
 "monkey-patch"
 "mono"
