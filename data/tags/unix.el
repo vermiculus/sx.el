@@ -1088,6 +1088,7 @@
 "ls"
 "lsattr"
 "lsb"
+"lsb-release"
 "lsm"
 "lsof"
 "lsusb"

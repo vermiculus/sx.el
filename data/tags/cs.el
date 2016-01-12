@@ -90,6 +90,7 @@
 "computable-analysis"
 "computation-models"
 "computation-tree-logic"
+"computational-complexity"
 "computational-geometry"
 "computational-linguistics"
 "computer-algebra"

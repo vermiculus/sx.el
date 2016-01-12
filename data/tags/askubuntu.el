@@ -3206,7 +3206,6 @@
 "xscreensaver"
 "xsel"
 "xserver"
-"xsnow"
 "xte"
 "xterm"
 "xubuntu"

@@ -54,7 +54,6 @@
 "markdown"
 "meta"
 "migration"
-"minecraft"
 "moderation"
 "moderators"
 "new-genre"

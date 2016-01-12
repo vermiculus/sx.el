@@ -1031,6 +1031,7 @@
 "spring-13"
 "spring14"
 "spring15"
+"spring16"
 "sqlserver"
 "ssjs"
 "ssl"

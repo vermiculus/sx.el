@@ -72,6 +72,7 @@
 "co.combinatorics"
 "coding-theory"
 "cograph"
+"combinatorial-designs"
 "combinatorial-game-theory"
 "combinatorics"
 "combinatory-logic"

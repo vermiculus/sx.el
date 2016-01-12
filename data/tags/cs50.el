@@ -489,6 +489,7 @@
 "objective-c"
 "onlinehosting"
 "operands"
+"operator"
 "optimization"
 "osx"
 "outfile"

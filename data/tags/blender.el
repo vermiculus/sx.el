@@ -148,6 +148,7 @@
 "properties"
 "pynodes"
 "python"
+"quaternions"
 "render"
 "render-layers"
 "render-passes"

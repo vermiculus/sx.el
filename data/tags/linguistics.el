@@ -71,6 +71,7 @@
 "computer-science"
 "conjugation"
 "conjunctions"
+"conlang"
 "consonant-clusters"
 "consonants"
 "constituents"

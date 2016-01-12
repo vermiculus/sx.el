@@ -222,6 +222,7 @@
 "nozick"
 "objectivism"
 "objectivity"
+"occams-razor"
 "omnipotence"
 "omniscience"
 "ontological-argument"

@@ -555,6 +555,7 @@
 "handedness"
 "handicap-disabled-impair"
 "hands-fingers"
+"hanetz-sunrise"
 "hannukah"
 "hanuka"
 "hanukkah"

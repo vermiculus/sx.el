@@ -1697,6 +1697,7 @@
 "x100probe"
 "x86"
 "xbee"
+"xc32"
 "xc8"
 "xdc"
 "xilinx"

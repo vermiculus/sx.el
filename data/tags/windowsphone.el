@@ -65,6 +65,7 @@
 "dictionary"
 "display"
 "download-mode"
+"downloads"
 "driving-mode"
 "dual-sim"
 "email"
@@ -294,5 +295,6 @@
 "wpdm"
 "xbox-live"
 "xbox-music"
+"youtube"
 "zune"
 "zune-player")

@@ -187,6 +187,7 @@
 "debug"
 "debugging"
 "default"
+"delete-user"
 "deleted"
 "deleting"
 "deploy"

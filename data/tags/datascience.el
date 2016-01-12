@@ -8,6 +8,7 @@
 "anomaly-detection"
 "anonymization"
 "apache-drill"
+"apache-kafka"
 "apache-mahout"
 "apache-pig"
 "apache-spark"

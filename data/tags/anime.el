@@ -18,6 +18,7 @@
 "air-gear"
 "aiura"
 "ajin-demi-human"
+"akagami-no-shirayukihime"
 "akagi"
 "akai-ito"
 "akame-ga-kill"
