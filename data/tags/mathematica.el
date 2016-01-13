@@ -580,7 +580,6 @@
 "spreadsheets"
 "sql"
 "stability"
-"startscheduledtask"
 "statistics"
 "stochastic-calculus"
 "storage"

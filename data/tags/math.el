@@ -547,6 +547,7 @@
 "geometric-group-theory"
 "geometric-inequalities"
 "geometric-interpretation"
+"geometric-intuition"
 "geometric-invariant"
 "geometric-measure-theory"
 "geometric-probability"

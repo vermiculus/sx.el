@@ -114,6 +114,8 @@
 "mesopotamia"
 "mjolnir"
 "modern-influence"
+"mongolian"
+"mongolian-shamanism"
 "monomyth"
 "mu"
 "mwindo"

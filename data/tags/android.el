@@ -272,6 +272,7 @@
 "chrome"
 "chrome-for-android"
 "chrome-to-phone"
+"chromebook"
 "chromecast"
 "chromium"
 "cifs"

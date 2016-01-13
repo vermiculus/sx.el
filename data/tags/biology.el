@@ -615,7 +615,6 @@
 "stress"
 "structural-biology"
 "structure-prediction"
-"study-material"
 "sugar"
 "surgery"
 "surveyor-assay"

@@ -60,6 +60,7 @@
 "contradiction"
 "covenant"
 "creation"
+"cross"
 "cultural-analysis"
 "curses"
 "daniel"

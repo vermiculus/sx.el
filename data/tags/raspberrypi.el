@@ -367,6 +367,7 @@
 "suggestions"
 "swap-space"
 "switches"
+"sysfs"
 "system-clock"
 "systemd"
 "taskbar"

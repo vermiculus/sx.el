@@ -74,6 +74,7 @@
 "status-review"
 "suggestion"
 "support"
+"system"
 "tag-synonyms"
 "tagging"
 "tags"

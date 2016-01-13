@@ -700,7 +700,6 @@
 "escopo-de-vari&#225;veis"
 "espa&#231;o-em-branco"
 "estilo-de-codifica&#231;&#227;o"
-"estoque"
 "estrat&#233;gia"
 "estrutura"
 "estrutura-de-c&#243;digo"

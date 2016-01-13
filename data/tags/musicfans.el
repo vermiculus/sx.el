@@ -41,7 +41,6 @@
 "daft-punk"
 "dancing"
 "database"
-"david-bowie"
 "dead-can-dance"
 "def-leppard"
 "digital-audio"

@@ -72,6 +72,8 @@
 "licensing"
 "locked"
 "login"
+"low-quality"
+"low-quality-posts"
 "markdown"
 "mathjax"
 "meta"

@@ -11,6 +11,7 @@
 "comments"
 "community-ads"
 "community-wiki"
+"congratulations"
 "data-dump"
 "data-explorer"
 "deleted-questions"

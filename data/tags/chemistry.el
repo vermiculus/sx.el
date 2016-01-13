@@ -249,10 +249,12 @@
 "transuranic-elements"
 "trends"
 "units"
+"uv-visible"
 "valence-bond-theory"
 "vapor-pressure"
 "vapour-pressure"
 "viscosity"
 "vsepr-theory"
 "water"
+"woodward-fieser"
 "x-ray-diffraction")

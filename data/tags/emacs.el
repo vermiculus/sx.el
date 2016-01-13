@@ -409,6 +409,7 @@
 "pastebin"
 "path"
 "pdf"
+"pdf-tools"
 "performance"
 "perl"
 "persistence"

@@ -296,6 +296,7 @@
 "space-constructs"
 "space-elevators"
 "space-exploration"
+"space-opera"
 "space-stations"
 "space-stations"
 "space-travel"

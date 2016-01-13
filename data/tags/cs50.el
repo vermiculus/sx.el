@@ -110,6 +110,7 @@
 "click"
 "clock-watchdog-timeout"
 "clones"
+"cloud9"
 "clue.bmp"
 "code"
 "collision"

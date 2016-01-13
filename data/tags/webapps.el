@@ -454,6 +454,7 @@
 "google-maps"
 "google-movies"
 "google-music"
+"google-my-business"
 "google-my-maps"
 "google-news"
 "google-ngram-viewer"

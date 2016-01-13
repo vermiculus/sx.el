@@ -2284,6 +2284,7 @@
 "info"
 "infrared"
 "infrastructure"
+"ini-files"
 "init"
 "init-script"
 "init.rc"
