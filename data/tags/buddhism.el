@@ -46,6 +46,7 @@
 "buddhas"
 "buddhavatamasaka"
 "buddhist-cosmology"
+"buddhist-councils"
 "buddhist-miracles"
 "buddhist-text"
 "canon"

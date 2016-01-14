@@ -300,6 +300,7 @@
 "epigram"
 "eponyms"
 "equivalence"
+"equivalent"
 "er-ee"
 "errors"
 "esl"

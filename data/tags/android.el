@@ -1057,6 +1057,7 @@
 "prey"
 "printing"
 "privacy"
+"private-mode"
 "processes"
 "processor"
 "productivity"

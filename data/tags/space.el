@@ -621,6 +621,7 @@
 "sounding-rocket"
 "soviet-union"
 "soyuz"
+"spaaacecraft"
 "space-debris"
 "space-dust"
 "space-elevator"

@@ -49,6 +49,7 @@
 "inebriation"
 "ingredients"
 "ipa"
+"jalapeno"
 "keg"
 "lager"
 "lambic"

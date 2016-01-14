@@ -26,6 +26,7 @@
 "arm"
 "artificial-intelligence"
 "ascii"
+"ascii-art"
 "assembly"
 "assessment"
 "astronomy"

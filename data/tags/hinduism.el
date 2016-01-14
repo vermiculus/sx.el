@@ -25,6 +25,7 @@
 "avatar"
 "avatars"
 "ayurveda"
+"ayyappa"
 "balarama"
 "bali"
 "beef"

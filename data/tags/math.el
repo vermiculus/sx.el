@@ -17,6 +17,7 @@
 "additive-combinatorics"
 "adeles"
 "adjoint"
+"adjoint-functors"
 "advice"
 "affine-geometry"
 "affine-schemes"

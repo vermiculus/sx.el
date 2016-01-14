@@ -198,6 +198,7 @@
 "tags-sin&#244;nimas"
 "tags-sinonimas"
 "tradu&#231;&#227;o"
+"transifex"
 "translated"
 "unanswered-questions"
 "up-votes"

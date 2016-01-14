@@ -637,6 +637,7 @@
 "japanese"
 "java"
 "javascript"
+"julia"
 "kaleidoscope"
 "kerberos"
 "kernel"

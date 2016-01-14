@@ -1010,6 +1010,7 @@
 "wetransfer"
 "whatsapp"
 "when2meet"
+"wherevent"
 "whiteboard"
 "widget"
 "widgets"

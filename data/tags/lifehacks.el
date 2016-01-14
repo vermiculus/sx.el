@@ -127,6 +127,7 @@
 "vehicle"
 "walking"
 "water"
+"weather"
 "wifi"
 "winter"
 "work"

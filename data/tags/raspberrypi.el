@@ -146,6 +146,7 @@
 "i2c"
 "ide"
 "image"
+"init"
 "init.d"
 "input-device"
 "internet"

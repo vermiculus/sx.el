@@ -235,6 +235,7 @@
 "directory"
 "divide-and-conquer"
 "django"
+"dockerfile"
 "doctrine"
 "dogescript"
 "dojo"

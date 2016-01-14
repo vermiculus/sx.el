@@ -5,6 +5,7 @@
 "anagrams"
 "animation"
 "answer-chaining"
+"anti-polyglot"
 "apl"
 "arithmetic"
 "array-manipulation"

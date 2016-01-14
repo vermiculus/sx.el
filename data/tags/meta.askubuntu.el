@@ -191,7 +191,6 @@
 "uds"
 "uds-n"
 "unanswered-questions"
-"unregistered"
 "up-votes"
 "user-accounts"
 "user-communication"

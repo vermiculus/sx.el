@@ -232,6 +232,7 @@
 "doujinshi"
 "dragon-ball"
 "dragon-ball-gt"
+"dragon-ball-series"
 "dragon-ball-super"
 "dragon-ball-z"
 "dragon-crisis"

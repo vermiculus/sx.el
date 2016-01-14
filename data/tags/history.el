@@ -340,7 +340,6 @@
 "legislature"
 "lenin"
 "libya"
-"list"
 "literature"
 "logistics"
 "london"

@@ -624,6 +624,7 @@
 "predictive-text"
 "preloader"
 "presentation"
+"pretotype"
 "preview"
 "price-range"
 "pricing"

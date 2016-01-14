@@ -293,7 +293,6 @@
 "startup"
 "stress"
 "student"
-"supervision"
 "switzerland"
 "task-management"
 "taxes"

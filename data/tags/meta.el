@@ -211,7 +211,6 @@
 "business"
 "business-cards"
 "business-model"
-"buttons"
 "cache"
 "caching"
 "calendar"

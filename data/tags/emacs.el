@@ -504,6 +504,7 @@
 "skewer-mode"
 "skim-pdf"
 "slime"
+"sly"
 "smartparens"
 "smie"
 "smtpmail"

@@ -535,5 +535,6 @@
 "vision"
 "voting"
 "weighted-graphs"
+"wireless"
 "word-combinatorics"
 "xor")

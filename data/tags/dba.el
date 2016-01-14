@@ -351,6 +351,7 @@
 "hashing"
 "heap"
 "heroku"
+"heterogeneous-databases"
 "hibernate"
 "hierarchical"
 "hierarchical-data"

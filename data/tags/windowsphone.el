@@ -116,6 +116,7 @@
 "lock-screen"
 "low-end-devices"
 "lumia-520"
+"lumia-610"
 "lumia-635"
 "lumia-810"
 "lumia-900"
