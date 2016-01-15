@@ -158,6 +158,7 @@
 "plugin-ultisnips"
 "plugin-unite.vim"
 "plugin-vim-airline"
+"plugin-vim-autoformat"
 "plugin-vim-commentary"
 "plugin-vim-jsbeautify"
 "plugin-vim-jsx"

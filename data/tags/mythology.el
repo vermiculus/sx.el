@@ -19,6 +19,7 @@
 "aztec"
 "baal"
 "baboons"
+"basilisk"
 "beowulf"
 "british"
 "brittany"

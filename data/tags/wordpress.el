@@ -909,6 +909,7 @@
 "wp-parse-args"
 "wp-posts"
 "wp-query"
+"wp-query-comments"
 "wp-redirect"
 "wp-register-script"
 "wp-register-style"

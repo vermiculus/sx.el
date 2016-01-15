@@ -25,6 +25,7 @@
 "air-asia-x"
 "air-baltic"
 "air-canada"
+"air-china"
 "air-france"
 "air-india"
 "air-new-zealand"

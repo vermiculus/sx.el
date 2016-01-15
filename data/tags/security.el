@@ -143,6 +143,7 @@
 "code"
 "code-review"
 "code-signing"
+"codec"
 "cold-boot-attack"
 "command"
 "common-criteria"

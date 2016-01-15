@@ -202,6 +202,7 @@
 "daphne-the-brilliant-blue"
 "darker-than-black"
 "date-a-live"
+"dbz"
 "deadman-wonderland"
 "death-billiards"
 "death-note"

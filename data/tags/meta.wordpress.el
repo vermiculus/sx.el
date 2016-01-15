@@ -45,6 +45,7 @@
 "moderation"
 "moderators"
 "new-users"
+"newsletter"
 "notifications"
 "off-topic"
 "openid"

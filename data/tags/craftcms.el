@@ -104,6 +104,7 @@
 "extends"
 "feature-request"
 "feed"
+"feef"
 "field"
 "field-layout-designer"
 "fieldlayoutdesigner"

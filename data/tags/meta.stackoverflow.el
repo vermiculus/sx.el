@@ -380,6 +380,7 @@
 "self-promotion"
 "self-study"
 "seo"
+"serial-editing"
 "serial-voting"
 "settings-page"
 "sharing"

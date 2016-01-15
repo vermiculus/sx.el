@@ -696,6 +696,7 @@
 "tolower"
 "torrent"
 "traceroute"
+"transition"
 "trie"
 "twisted"
 "typeahead"

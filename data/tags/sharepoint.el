@@ -61,6 +61,7 @@
 "app-fabric"
 "app-part"
 "app-permissions"
+"app-web"
 "append-changes"
 "apple-ios"
 "application-pages"

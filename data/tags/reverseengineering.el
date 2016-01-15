@@ -260,6 +260,7 @@
 "untagged"
 "upx"
 "usb"
+"vb6"
 "virtual-functions"
 "virtual-machines"
 "virtual-memory"

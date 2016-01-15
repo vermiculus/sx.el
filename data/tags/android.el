@@ -1272,6 +1272,7 @@
 "silent-mode"
 "sim-card"
 "sim-locked"
+"sim-toolkit"
 "sim-unlocking"
 "simplenote"
 "sip"

@@ -103,6 +103,7 @@
 "debugging"
 "deduplication"
 "default-settings"
+"delete"
 "demo-site"
 "deployment"
 "developer"

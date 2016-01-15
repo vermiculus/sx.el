@@ -790,6 +790,7 @@
 "usd"
 "usd-us-dollar"
 "used-goods"
+"utah"
 "utilities"
 "utility"
 "utma-ugma"

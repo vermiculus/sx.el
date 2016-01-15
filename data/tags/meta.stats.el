@@ -80,6 +80,7 @@
 "moderators"
 "new-users"
 "notifications"
+"old-posts"
 "on-topic"
 "opendata-stackexchange"
 "openid"

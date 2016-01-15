@@ -8,6 +8,7 @@
 "7-wonders"
 "7-wonders-babel"
 "7-wonders-cities"
+"7-wonders-duel"
 "7-wonders-leaders"
 "a-touch-of-evil"
 "abalone"
