@@ -16,6 +16,7 @@
 "auto-generate"
 "auto-updates"
 "aws"
+"background-image"
 "baseelementmodel"
 "batch"
 "best-practice"

@@ -35,6 +35,7 @@
 "address-book"
 "adium"
 "admin"
+"administration"
 "administrator"
 "adobe"
 "adobe-acrobat"

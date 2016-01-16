@@ -52,6 +52,7 @@
 "migration"
 "moderation"
 "moderators"
+"multivariate-testing"
 "new-users"
 "notifications"
 "off-topic"

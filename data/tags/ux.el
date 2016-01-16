@@ -322,6 +322,8 @@
 "font-sizes"
 "font-weight"
 "footers"
+"force-click"
+"force-touch"
 "form"
 "form"
 "formats"

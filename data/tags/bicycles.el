@@ -148,6 +148,7 @@
 "dropouts"
 "dynamo"
 "dynamo-hub"
+"ebike"
 "electric"
 "electric-bike"
 "electric-power"

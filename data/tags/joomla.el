@@ -186,6 +186,7 @@
 "migration"
 "mobile-detection"
 "mobile-web-design"
+"mod-articles-category"
 "mod-languages"
 "modal"
 "model"

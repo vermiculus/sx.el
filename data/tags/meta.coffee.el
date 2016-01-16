@@ -1,4 +1,5 @@
 ("accepted-answer"
+"ads"
 "answers"
 "asking-questions"
 "badges"

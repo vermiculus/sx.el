@@ -97,6 +97,7 @@
 "consonance"
 "construction"
 "copyrights"
+"cornet"
 "counterpoint"
 "country-and-western"
 "crash-cymbal"

@@ -1319,7 +1319,6 @@
 "themes"
 "theorems"
 "thesis"
-"thickness"
 "thinsp"
 "thmbox"
 "thmtools"

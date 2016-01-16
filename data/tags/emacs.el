@@ -387,6 +387,7 @@
 "org-publish"
 "org-table"
 "org-tags"
+"org-verbatim"
 "orgstruct-mode"
 "orgtbl-mode"
 "osx"

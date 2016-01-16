@@ -67,7 +67,6 @@
 "scope"
 "search"
 "site-evaluation"
-"site-promotion"
 "specific-question"
 "spoilers"
 "statistics"

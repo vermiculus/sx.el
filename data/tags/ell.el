@@ -285,7 +285,6 @@
 "parts-of-speech"
 "passive"
 "passive-voice"
-"past"
 "past-continuous"
 "past-habitual"
 "past-participle"

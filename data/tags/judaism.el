@@ -564,7 +564,6 @@
 "hashavat-avedah"
 "hashavat-aveidah"
 "hashem"
-"hashgacha"
 "hashgacha-pratit"
 "hashkafa"
 "hashkafah"

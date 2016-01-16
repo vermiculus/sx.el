@@ -277,6 +277,7 @@
 "hook-menu-alter"
 "hook-node-#op"
 "hook-node-info"
+"hook-node-validate"
 "hook-nodeapi"
 "hook-page-alter"
 "hook-preprocess"

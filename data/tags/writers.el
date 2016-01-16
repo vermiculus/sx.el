@@ -81,6 +81,7 @@
 "fantasy"
 "fiction"
 "finance"
+"first"
 "first-draft"
 "first-line"
 "first-person"

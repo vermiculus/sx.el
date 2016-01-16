@@ -120,6 +120,7 @@
 "famous-games"
 "famous-moves"
 "famous-players"
+"famous-position"
 "fashion"
 "fen"
 "fianchetto"

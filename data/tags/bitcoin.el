@@ -248,6 +248,7 @@
 "exchange-rate"
 "exchanges"
 "export"
+"f2pool"
 "factom"
 "fallback-nodes"
 "faucets"

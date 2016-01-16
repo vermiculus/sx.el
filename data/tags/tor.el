@@ -172,6 +172,7 @@
 "threats"
 "time"
 "tls"
+"tor-browser"
 "tor-browser-bundle"
 "tor-button"
 "tor-cloud"

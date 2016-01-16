@@ -207,6 +207,7 @@
 "money"
 "moses"
 "mystery"
+"nabre"
 "names-of-god"
 "names-of-people"
 "narrative-analysis"

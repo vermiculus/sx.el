@@ -69,6 +69,8 @@
 "openid"
 "playtesting"
 "policy"
+"private-messages"
+"private-messaging"
 "process"
 "profile-page"
 "questions"

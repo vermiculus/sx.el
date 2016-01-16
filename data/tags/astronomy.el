@@ -225,6 +225,7 @@
 "planet"
 "planetary-formation"
 "planetary-ring"
+"planetary-transits"
 "planets"
 "plasma-physics"
 "pluto"

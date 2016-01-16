@@ -517,6 +517,7 @@
 "heroku"
 "heroku-connect"
 "heroku-enterprise"
+"hidden-fields"
 "hierarchy"
 "high-volume-portal"
 "highcharts"

@@ -29,7 +29,6 @@
 "cipher"
 "code"
 "code"
-"colour-sequence"
 "combinatorics"
 "computer-puzzle"
 "computer-science"

@@ -116,6 +116,7 @@
 "exercise"
 "experiential"
 "faith"
+"fasting"
 "fate"
 "fetters"
 "final-nirvana"

@@ -172,6 +172,7 @@
 "probability"
 "processing"
 "programming"
+"pybrain"
 "python"
 "q-learning"
 "r"

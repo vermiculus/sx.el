@@ -885,7 +885,6 @@
 "modal-logic"
 "model-categories"
 "model-theory"
-"modular"
 "modular-arithmetic"
 "modular-forms"
 "modules"

@@ -1033,6 +1033,7 @@
 "worldcat"
 "writeboard"
 "wufoo-forms"
+"xero"
 "xmarks"
 "xml"
 "xmpp"
