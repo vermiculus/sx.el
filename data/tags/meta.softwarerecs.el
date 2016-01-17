@@ -1,5 +1,6 @@
 ("about-page"
 "accepted-answer"
+"ads"
 "advertising"
 "alternatives"
 "answer-quality"

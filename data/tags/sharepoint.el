@@ -306,7 +306,6 @@
 "datetimecontrol"
 "daylight-saving-time"
 "db-log-file"
-"dcs"
 "ddwrt"
 "deadlock"
 "debug"

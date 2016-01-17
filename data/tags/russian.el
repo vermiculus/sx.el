@@ -76,7 +76,6 @@
 "toponyms"
 "translation"
 "transliteration"
-"trasliteration"
 "typography"
 "ukrainian"
 "untagged"

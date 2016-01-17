@@ -66,6 +66,7 @@
 "cardiovascular-disease"
 "carpal-tunnel-syndrome"
 "cellular-phone"
+"cerebrospinal-fluid"
 "chemical"
 "chickenpox"
 "children"

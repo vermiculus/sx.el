@@ -58,6 +58,7 @@
 "site-layout"
 "site-promotion"
 "sources"
+"specialcase"
 "specific-answer"
 "specific-question"
 "spelling"

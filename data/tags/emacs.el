@@ -144,6 +144,7 @@
 "efficiency"
 "ein"
 "eldoc"
+"electric"
 "electric-pair-mode"
 "elfeed"
 "elisp"

@@ -661,6 +661,7 @@
 "security-seal"
 "security-theater"
 "security-theatre"
+"security-zones"
 "selinux"
 "separation"
 "serial"

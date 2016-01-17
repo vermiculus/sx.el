@@ -233,6 +233,7 @@
 "range-voting"
 "redistricting"
 "referendum"
+"refugees"
 "regulation"
 "religion"
 "republic"

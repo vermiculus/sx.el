@@ -1035,7 +1035,6 @@
 "pushforward"
 "puzzle"
 "pythagorean-triples"
-"q"
 "q-analogs"
 "q-identities"
 "qa.quantum-algebra"

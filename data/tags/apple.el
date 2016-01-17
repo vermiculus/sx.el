@@ -980,6 +980,7 @@
 "remote-desktop"
 "remote-disc"
 "remote.app"
+"removable-media"
 "rename"
 "repair"
 "repair-permissions"

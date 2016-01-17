@@ -652,7 +652,6 @@
 "transplantation"
 "treatment"
 "trees"
-"tropical"
 "tuberculosis"
 "tumour"
 "tumour"

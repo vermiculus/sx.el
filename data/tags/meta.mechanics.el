@@ -48,7 +48,6 @@
 "rss"
 "scope"
 "search"
-"site-advertising"
 "site-definition"
 "site-evaluation"
 "specific-question"

@@ -760,6 +760,7 @@
 "lattices-in-lie-groups"
 "laurent-series"
 "law-of-large-numbers"
+"lcm"
 "learning"
 "least-common-multiple"
 "least-prime-factor"

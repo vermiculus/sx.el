@@ -231,6 +231,7 @@
 "restore"
 "roles"
 "sandbox"
+"scheduled-job"
 "scheduled-reminders"
 "scheduling"
 "search"

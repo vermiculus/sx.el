@@ -83,6 +83,7 @@
 "design"
 "diesel"
 "diffusion"
+"digital-communication"
 "distance-measurement"
 "documentation"
 "drafting"

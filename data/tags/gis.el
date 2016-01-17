@@ -2108,6 +2108,7 @@
 "webadf"
 "webmap"
 "weighted-overlay"
+"well-known-binary"
 "wfs"
 "wfs-t"
 "wgs84"

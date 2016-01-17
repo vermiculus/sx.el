@@ -192,6 +192,7 @@
 "morphology"
 "motion"
 "motion-detection"
+"moving"
 "moving-average"
 "mp3"
 "multi-channel"

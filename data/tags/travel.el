@@ -185,6 +185,7 @@
 "berlin"
 "bermuda"
 "bhutan"
+"bhx"
 "bicycles"
 "bikes"
 "biking"
