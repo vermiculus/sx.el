@@ -301,6 +301,7 @@
 "home-automation"
 "htc"
 "huyundai"
+"hydropower"
 "ibm"
 "ibotta"
 "ic"

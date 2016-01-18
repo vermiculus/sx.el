@@ -522,6 +522,7 @@
 "leviticus"
 "lgbt"
 "liberal-christianity"
+"liberation-theology"
 "lifestyle"
 "limited-atonement"
 "literalism"

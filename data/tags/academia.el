@@ -380,7 +380,6 @@
 "student-exchange"
 "student-success"
 "students"
-"study"
 "summer-school"
 "supervision"
 "supervisors"

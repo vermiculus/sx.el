@@ -619,7 +619,6 @@
 "twitter"
 "ubercart"
 "ubercart-stock"
-"ui"
 "uninstalling"
 "update"
 "updating"

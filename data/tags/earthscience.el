@@ -119,6 +119,7 @@
 "high-elevation"
 "history-of-science"
 "homework"
+"horizon"
 "hotspot"
 "human-influence"
 "humidity"

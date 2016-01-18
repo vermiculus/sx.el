@@ -1235,6 +1235,7 @@
 "unix"
 "unlock"
 "unlocked"
+"untagged"
 "update"
 "updates"
 "upgrade"

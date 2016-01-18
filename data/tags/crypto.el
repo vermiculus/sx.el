@@ -417,5 +417,4 @@
 "xml-encryption"
 "xor"
 "xts"
-"zero-knowledge-proofs"
-"zeroknowledge")
+"zero-knowledge-proofs")

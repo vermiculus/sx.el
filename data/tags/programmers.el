@@ -705,7 +705,6 @@
 "gwt"
 "hacker-culture"
 "hacking"
-"hacks"
 "hadoop"
 "handheld"
 "hardware"

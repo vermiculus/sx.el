@@ -1553,6 +1553,7 @@
 "hearts-of-iron-2"
 "hearts-of-iron-3"
 "hearts-of-stone"
+"heavy-bullets"
 "heavy-gear"
 "heavy-rain"
 "hector-badge-of-carnage"

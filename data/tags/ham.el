@@ -76,6 +76,7 @@
 "fox-hunt"
 "frequency"
 "frs"
+"gnuradio"
 "grounding"
 "handheld"
 "hf"

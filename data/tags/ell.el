@@ -147,7 +147,6 @@
 "formal"
 "formality"
 "forms-of-address"
-"free-indirect-discourse"
 "free-relative-clauses"
 "french"
 "fronting"

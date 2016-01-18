@@ -566,6 +566,7 @@
 "recovery"
 "recursion"
 "redefinition"
+"redirect"
 "redirecting"
 "register"
 "remove"

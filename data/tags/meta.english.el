@@ -104,6 +104,7 @@
 "question-restrictions"
 "questions"
 "recent-activity"
+"recommend"
 "reference"
 "reputation"
 "request"

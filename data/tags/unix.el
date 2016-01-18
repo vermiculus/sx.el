@@ -2064,7 +2064,6 @@
 "unix-sockets"
 "unlinked"
 "unmounting"
-"untagged"
 "unzip"
 "update"
 "updatedb"

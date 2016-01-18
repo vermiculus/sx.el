@@ -356,6 +356,7 @@
 "html"
 "html-5"
 "http"
+"http-brute"
 "http-proxy"
 "https"
 "hydra"

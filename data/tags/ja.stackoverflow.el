@@ -313,6 +313,7 @@
 "ios-simulator"
 "ios6"
 "ios8"
+"ipad"
 "iperf"
 "iphone"
 "iptables"

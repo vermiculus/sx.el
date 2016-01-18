@@ -549,7 +549,6 @@
 "magento-connect-manager"
 "magento-core"
 "magento-database"
-"magento-discount"
 "magento-ecg"
 "magento-ee"
 "magento-enterprise"
