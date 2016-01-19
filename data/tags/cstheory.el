@@ -191,7 +191,6 @@
 "fourier"
 "fourier-analysis"
 "fractals"
-"free-monad"
 "fsm"
 "function"
 "functional-programming"

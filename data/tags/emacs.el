@@ -137,6 +137,7 @@
 "documentation"
 "docview"
 "dump"
+"ecb"
 "echo-area"
 "edebug"
 "ediff"

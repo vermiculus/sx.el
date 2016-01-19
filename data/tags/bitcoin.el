@@ -117,6 +117,7 @@
 "blockexplorer"
 "blocks"
 "blocksize"
+"blockstream"
 "blocktrail"
 "bloom-filter"
 "bootstrap"

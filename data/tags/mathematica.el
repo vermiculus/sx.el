@@ -30,6 +30,7 @@
 "backslide"
 "backward-compatibility"
 "barchart"
+"barchart3d"
 "big-list"
 "big-numbers"
 "binary"
@@ -190,6 +191,7 @@
 "fem"
 "feyncalc"
 "file-transfer"
+"files"
 "files-and-directories"
 "filling"
 "filtering"
@@ -697,4 +699,5 @@
 "workbench"
 "writing"
 "wstp"
-"xml")
+"xml"
+"zip")

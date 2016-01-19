@@ -98,6 +98,7 @@
 "catan"
 "catan-card-game"
 "catan-cities-and-knights"
+"catan-explorers-pirates"
 "catan-junior"
 "catan-seafarers"
 "catan-traders-barbarians"

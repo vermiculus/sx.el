@@ -291,6 +291,7 @@
 "florida"
 "forecasting"
 "foreclosure"
+"foreign-currency"
 "foreign-exchange"
 "foreign-income"
 "forex"

@@ -138,6 +138,7 @@
 "mac-os"
 "magnetometer"
 "map"
+"mathematics"
 "matlab"
 "max232"
 "max7219"

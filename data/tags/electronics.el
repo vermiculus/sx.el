@@ -583,7 +583,6 @@
 "ft232"
 "ftdi"
 "fuel-gauge"
-"full"
 "full-bridge"
 "function"
 "function-generator"

@@ -257,6 +257,7 @@
 "microtonality"
 "midi"
 "midi-controller-keyboard"
+"midisoftwaremusic"
 "mikrokosmos"
 "mixer"
 "mixing"

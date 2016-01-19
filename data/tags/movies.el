@@ -340,6 +340,7 @@
 "captain-america-3"
 "captain-america-civil-war"
 "captain-phillips"
+"carol"
 "carrie"
 "carrie-2013"
 "cars"

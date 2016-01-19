@@ -1404,7 +1404,6 @@
 "transpose"
 "trees"
 "triangle"
-"triangular-numbers"
 "triangulated-categories"
 "triangulation"
 "trigonometric-functions"

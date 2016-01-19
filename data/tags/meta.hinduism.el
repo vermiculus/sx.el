@@ -8,6 +8,7 @@
 "bug"
 "chat"
 "close-reasons"
+"close-voting"
 "closed-questions"
 "comments"
 "community"

@@ -168,6 +168,7 @@
 "parsing"
 "pdf"
 "performance"
+"pgm"
 "pig"
 "powell-search"
 "predictive-modeling"

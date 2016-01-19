@@ -132,6 +132,7 @@
 "categorical-data"
 "cauchy"
 "causal-inference"
+"causalimpact"
 "causality"
 "cdf"
 "censoring"

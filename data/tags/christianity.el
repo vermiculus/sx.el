@@ -152,6 +152,7 @@
 "celebrations"
 "celibacy"
 "cessationism"
+"chance"
 "charismatic"
 "charity"
 "children"

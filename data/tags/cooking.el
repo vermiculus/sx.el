@@ -375,6 +375,7 @@
 "hot-sauce"
 "hummus"
 "hungarian-cuisine"
+"ice"
 "ice-cream"
 "icing"
 "indian-cuisine"

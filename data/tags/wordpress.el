@@ -269,6 +269,7 @@
 "function-exists"
 "functions"
 "functions.php"
+"functionsscope"
 "gallery"
 "genesis-theme-framework"
 "geo-data"

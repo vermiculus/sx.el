@@ -1188,6 +1188,8 @@
 "mkfs"
 "mkinitcpio"
 "mkisofs"
+"mklabel"
+"mkpart"
 "mksh"
 "mmap"
 "mmv"

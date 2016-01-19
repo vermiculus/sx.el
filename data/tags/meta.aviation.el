@@ -47,6 +47,7 @@
 "openid"
 "profile-page"
 "questions"
+"ranting"
 "recent-activity"
 "reputation"
 "reputation-leagues"

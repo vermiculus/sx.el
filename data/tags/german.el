@@ -150,6 +150,7 @@
 "modal-particle"
 "modal-verbs"
 "morphology"
+"music"
 "negation"
 "neologism"
 "neue-rechtschreibung"

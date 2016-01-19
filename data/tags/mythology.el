@@ -157,6 +157,7 @@
 "sumerian"
 "sun"
 "symbolism"
+"symbols"
 "tacitus"
 "tain-bo-cuailnge"
 "tammuz"
