@@ -48,6 +48,7 @@
 "data.gov"
 "demographics"
 "dictionary"
+"disaster"
 "disease"
 "district"
 "documentation"

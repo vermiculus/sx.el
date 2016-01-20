@@ -5464,7 +5464,6 @@
 "weechat"
 "wei"
 "wep"
-"wes-2009"
 "western-digital"
 "wfp"
 "wga"

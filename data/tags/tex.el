@@ -154,6 +154,7 @@
 "border"
 "bordermatrix"
 "bounding-box"
+"box"
 "boxes"
 "boxplot"
 "bpchem"

@@ -213,6 +213,7 @@
 "mounting"
 "mouse"
 "mpeg-2"
+"multiboot"
 "mysql"
 "netatalk"
 "network"

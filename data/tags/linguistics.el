@@ -431,6 +431,7 @@
 "syntax-trees"
 "tagalog"
 "tamil"
+"temporal-expressions"
 "tense"
 "terminology"
 "text-classification"

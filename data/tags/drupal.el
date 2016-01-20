@@ -598,7 +598,6 @@
 "theme-registry"
 "theme-settings"
 "theme-switching"
-"theme-templates"
 "themekey"
 "theming"
 "time"

@@ -754,7 +754,6 @@
 "nikon-v1"
 "nimh"
 "nissin"
-"no-research"
 "noise"
 "noise-reduction"
 "noise-removal"

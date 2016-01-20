@@ -13,7 +13,6 @@
 "characters"
 "chat"
 "clarification"
-"clo"
 "close-reasons"
 "closed-questions"
 "code-bowling"

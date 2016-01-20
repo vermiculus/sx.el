@@ -881,6 +881,7 @@
 "perl"
 "permission"
 "permissions"
+"persian"
 "personal-hotspot"
 "pf"
 "phone.app"

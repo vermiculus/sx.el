@@ -40,6 +40,7 @@
 "antipaladin"
 "anydice"
 "apocalypse-world"
+"arcanist"
 "archetype"
 "ardent"
 "area-of-effect"

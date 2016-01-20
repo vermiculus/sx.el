@@ -67,6 +67,7 @@
 "on-topic-definition"
 "openid"
 "overview-questions"
+"pastoral-advice-answers"
 "pastoral-advice-questions"
 "policy-proposal"
 "political-correctness"

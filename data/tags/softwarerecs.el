@@ -196,6 +196,7 @@
 "email-client"
 "email-server"
 "embedded-systems"
+"eml"
 "emoji"
 "emulator"
 "encryption"

@@ -198,6 +198,7 @@
 "tennis"
 "terminology"
 "tie-breaker"
+"titles"
 "tour-de-france"
 "tournaments"
 "track-and-field"

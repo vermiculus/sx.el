@@ -9,7 +9,6 @@
 "algorithm-design"
 "algorithms"
 "ambiguity"
-"amdahls-law"
 "amortized-analysis"
 "answer-set-programming"
 "api-design"

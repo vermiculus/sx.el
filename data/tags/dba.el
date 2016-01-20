@@ -995,6 +995,7 @@
 "xbase"
 "xml"
 "xmltype"
+"xp-cmdshell"
 "xquery"
 "xtrabackup"
 "xtradb"
