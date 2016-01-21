@@ -121,6 +121,7 @@
 "minimum-solve"
 "monty-hall"
 "movies"
+"murder-mystery"
 "music"
 "mystery"
 "network"

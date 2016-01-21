@@ -1265,6 +1265,8 @@
 "structural-equations"
 "structured-prediction"
 "structured-svm"
+"students-t-distribution"
+"students-t-test"
 "subject-specific"
 "subsampling"
 "subset"

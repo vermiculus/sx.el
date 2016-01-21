@@ -372,6 +372,7 @@
 "devarim"
 "devorim"
 "diaspora"
+"diction"
 "dictionary"
 "dikduk"
 "dina-dmalchusa-dina"

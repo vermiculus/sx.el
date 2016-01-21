@@ -734,6 +734,7 @@
 "object"
 "odata"
 "oem"
+"office-365"
 "office-365-app"
 "office-connect"
 "offline"

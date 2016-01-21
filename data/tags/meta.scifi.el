@@ -149,7 +149,6 @@
 "status-completed"
 "status-declined"
 "status-deferred"
-"status-exiled"
 "status-norepro"
 "status-planned"
 "status-reproduced"

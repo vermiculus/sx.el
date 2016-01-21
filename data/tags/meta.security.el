@@ -65,6 +65,7 @@
 "rss"
 "scope"
 "search"
+"security"
 "site-faq"
 "site-name"
 "site-promotion"

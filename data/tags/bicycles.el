@@ -342,6 +342,7 @@
 "rim-brake"
 "rim-tape"
 "rims"
+"road"
 "road-bike"
 "rollers"
 "rotor"

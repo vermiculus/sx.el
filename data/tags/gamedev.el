@@ -156,6 +156,7 @@
 "collision"
 "collision-avoidance"
 "collision-detection"
+"collision-prediction"
 "collision-resolution"
 "collision-testing"
 "color"

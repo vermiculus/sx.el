@@ -249,6 +249,7 @@
 "ecc"
 "ecies"
 "education"
+"elasticsearch"
 "electronic-voting"
 "elf"
 "elliptic-curves"

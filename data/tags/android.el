@@ -1581,6 +1581,7 @@
 "z4root"
 "zip"
 "zoom"
+"zte"
 "zte-blade"
 "zte-light-tab"
 "zte-max"

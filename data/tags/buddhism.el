@@ -133,6 +133,7 @@
 "gautama-buddha"
 "gender"
 "general-buddhism"
+"gift"
 "glossary"
 "goals"
 "god"

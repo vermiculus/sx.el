@@ -150,6 +150,7 @@
 "na-adjectives"
 "name"
 "names"
+"narration"
 "negation"
 "ni-and-de"
 "no-da"

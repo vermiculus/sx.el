@@ -355,6 +355,7 @@
 "proto-world"
 "psycholinguistics"
 "punctuation"
+"quantifiers"
 "quantitative-linguistics"
 "questions"
 "raising"

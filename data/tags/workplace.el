@@ -275,6 +275,7 @@
 "security-clearance"
 "self-direction"
 "self-employment"
+"severance"
 "sexual-harassment"
 "sexuality"
 "sickness"

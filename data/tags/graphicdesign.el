@@ -229,6 +229,7 @@
 "free"
 "freehand"
 "freelance"
+"freelancing"
 "front-end-development"
 "games"
 "gamut"

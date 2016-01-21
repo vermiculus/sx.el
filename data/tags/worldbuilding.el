@@ -156,6 +156,7 @@
 "humans"
 "hydrodynamics"
 "ice"
+"illness"
 "immortality"
 "industrial-age"
 "insectoid"

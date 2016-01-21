@@ -430,7 +430,6 @@
 "united-kingdom"
 "united-states"
 "university"
-"untagged"
 "us"
 "validation"
 "version-control"

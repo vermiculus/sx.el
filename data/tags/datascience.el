@@ -17,6 +17,7 @@
 "azure-ml"
 "backpropagation"
 "barplot"
+"bayesian-networks"
 "beginner"
 "bigdata"
 "binary"

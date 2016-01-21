@@ -47,6 +47,7 @@
 "openid"
 "profile-page"
 "proposed-faq"
+"quality"
 "questions"
 "recent-activity"
 "reputation"
