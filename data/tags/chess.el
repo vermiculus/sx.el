@@ -144,6 +144,7 @@
 "graphics"
 "grunfeld"
 "grunfeld-defense"
+"handicap"
 "handicapping"
 "hardware"
 "history"

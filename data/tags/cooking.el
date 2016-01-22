@@ -295,6 +295,7 @@
 "fondue"
 "food-history"
 "food-identification"
+"food-mill"
 "food-preservation"
 "food-processing"
 "food-safety"

@@ -268,6 +268,7 @@
 "seleccion-de-palabras"
 "semantic-range"
 "senses"
+"sentence-construction"
 "significado"
 "silabas"
 "sin&#243;nimos"

@@ -189,6 +189,7 @@
 "google"
 "google-chrome"
 "grace-period"
+"grammar"
 "graph"
 "gravatar"
 "harassment"

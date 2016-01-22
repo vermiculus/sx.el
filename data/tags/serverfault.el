@@ -3079,6 +3079,7 @@
 "suexec"
 "sugarcrm"
 "suid"
+"sumologic"
 "sun"
 "sun-one"
 "sunos"

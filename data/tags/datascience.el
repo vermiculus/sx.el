@@ -234,6 +234,7 @@
 "tools"
 "topic-model"
 "unbalanced-classes"
+"unicode"
 "unsupervised-learning"
 "untagged"
 "usecase"

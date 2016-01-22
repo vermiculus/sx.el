@@ -436,6 +436,7 @@
 "maneuverability"
 "manoeuvre"
 "map"
+"md-82"
 "measurement"
 "medical"
 "metar"

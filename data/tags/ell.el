@@ -457,6 +457,7 @@
 "verb"
 "verb-agreement"
 "verb-forms"
+"verb-pattern"
 "verb-usage"
 "verbal-noun"
 "verbing"

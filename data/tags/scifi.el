@@ -1595,6 +1595,7 @@
 "star-wars-battlefront"
 "star-wars-eu"
 "star-wars-eu"
+"star-wars-finn"
 "star-wars-holiday-special"
 "star-wars-legends"
 "star-wars-rebels"

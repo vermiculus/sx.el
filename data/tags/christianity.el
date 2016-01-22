@@ -149,7 +149,6 @@
 "catholic-bible"
 "catholic-catechism"
 "catholicism"
-"catholism"
 "celebrations"
 "celibacy"
 "cessationism"

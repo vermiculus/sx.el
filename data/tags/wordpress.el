@@ -507,7 +507,6 @@
 "pdf"
 "pdo"
 "performance"
-"perma"
 "permalink"
 "permalinks"
 "permissions"

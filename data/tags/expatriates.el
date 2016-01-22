@@ -244,6 +244,7 @@
 "uk"
 "uk-citizens"
 "uk-citizenship"
+"uk-visa"
 "ukraine"
 "ukrainian-citizens"
 "unemployment-benefits"

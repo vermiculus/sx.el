@@ -1233,6 +1233,7 @@
 "split-plot"
 "splus"
 "spss"
+"spss-modeler"
 "spurious-correlation"
 "sql"
 "st.statistics"

@@ -593,7 +593,6 @@
 "kiwi-irc"
 "kml"
 "koding"
-"kongregate"
 "language"
 "language-learning"
 "last.fm"

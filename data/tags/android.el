@@ -233,6 +233,7 @@
 "browser-add-ons"
 "browser-history"
 "browsers"
+"btsync"
 "bug"
 "bugs"
 "builds"
@@ -1458,6 +1459,7 @@
 "ubuntu-one"
 "umts"
 "unbricking"
+"unified-tv"
 "uninstall"
 "uninstallation"
 "uninstalling"
@@ -1590,4 +1592,5 @@
 "zte-overture-2"
 "zte-racer"
 "zte-score"
-"zte-speed-n9130")
+"zte-speed-n9130"
+"zte-z667t")

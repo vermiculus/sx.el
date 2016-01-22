@@ -263,6 +263,7 @@
 "holdall"
 "home-edition"
 "homework"
+"horizontalgauge"
 "html"
 "hyperlink"
 "hyphenation"

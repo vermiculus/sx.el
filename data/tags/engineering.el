@@ -119,6 +119,7 @@
 "experimental-physics"
 "failure-analysis"
 "fasteners"
+"fatigue"
 "fea"
 "feedback-loop"
 "fem"

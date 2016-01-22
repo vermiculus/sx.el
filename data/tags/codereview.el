@@ -465,6 +465,7 @@
 "lazy"
 "lc-3"
 "ldap"
+"less"
 "less-css"
 "levenshtein-distance"
 "levenshtein-distance"
