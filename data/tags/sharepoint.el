@@ -1075,6 +1075,7 @@
 "spfielduser"
 "spfile"
 "spgridview"
+"spgroup"
 "splimitedwebpartmanager"
 "splist"
 "splistitem"

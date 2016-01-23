@@ -70,6 +70,7 @@
 "deflation"
 "development"
 "development-economics"
+"difference-equations"
 "discrete-preferences"
 "discrimination"
 "dsge"

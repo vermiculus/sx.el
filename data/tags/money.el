@@ -395,7 +395,6 @@
 "inheritance"
 "inr-indian-rupee"
 "installment-sale"
-"instruments"
 "insurance"
 "intellectual-property"
 "interest"

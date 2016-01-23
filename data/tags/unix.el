@@ -117,6 +117,7 @@
 "audit"
 "auditd"
 "aufs"
+"augeas"
 "aur"
 "authbind"
 "authentication"

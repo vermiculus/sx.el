@@ -74,6 +74,7 @@
 "status-reproduced"
 "status-review"
 "support"
+"syntax-highlighting"
 "tag-synonyms"
 "tagging"
 "tags"

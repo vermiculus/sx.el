@@ -1425,7 +1425,6 @@
 "tag-syntax-association"
 "tag-wiki"
 "tag-wiki-excerpt"
-"tag-wikiprom"
 "tagging"
 "tags"
 "tags-burnination"

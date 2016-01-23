@@ -20,6 +20,7 @@
 "astrology"
 "asuras"
 "atharva-veda"
+"atheism"
 "atma"
 "atman"
 "avatar"

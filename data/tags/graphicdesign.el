@@ -320,6 +320,7 @@
 "learning"
 "legal"
 "lettering"
+"licence"
 "licensing"
 "lighting-effects"
 "line-art"

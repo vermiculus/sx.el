@@ -728,6 +728,7 @@
 "validation"
 "validator"
 "variables"
+"verdict.bmp"
 "verified"
 "version5.0.4"
 "vertical-resizing"

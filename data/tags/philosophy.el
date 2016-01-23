@@ -305,6 +305,7 @@
 "rigid-designator"
 "rilke"
 "rorty"
+"rousseau"
 "rule-ethics"
 "sartre"
 "saussure"

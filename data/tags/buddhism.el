@@ -122,6 +122,7 @@
 "fate"
 "fetters"
 "final-nirvana"
+"fire-sermon"
 "five-hindrances"
 "five-precepts"
 "five-skandas"

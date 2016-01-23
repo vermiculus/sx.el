@@ -826,6 +826,7 @@
 "reduplication"
 "reference"
 "reflexives"
+"refusing"
 "regional"
 "regionalisms"
 "register"

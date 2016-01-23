@@ -120,6 +120,7 @@
 "induino"
 "ino"
 "input"
+"installation"
 "intel-galileo"
 "interrupt"
 "ir"

@@ -683,6 +683,7 @@
 "webrtc"
 "websocket"
 "webview"
+"weinre"
 "win32api"
 "winapi"
 "windows"

@@ -1268,6 +1268,7 @@
 "rashi"
 "rationalism"
 "rav-moshe-feinstein"
+"rav-nachum-rabinovitch"
 "rav-ovadya-yosef"
 "rav-yehudah-hechasid"
 "real-estate"

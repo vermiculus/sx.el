@@ -68,6 +68,7 @@
 "quality-evaluation"
 "questions"
 "recent-activity"
+"reference-questions"
 "reopen-request"
 "reputation"
 "resume"

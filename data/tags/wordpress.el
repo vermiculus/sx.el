@@ -226,6 +226,7 @@
 "esc-textarea"
 "escaping"
 "events"
+"exceptions"
 "excerpt"
 "exclude"
 "export"

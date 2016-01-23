@@ -2,6 +2,8 @@
 "3d"
 "abstract-algebra"
 "ai-player"
+"alex-is-not-always-wrong"
+"alex-is-sometimes-right"
 "anagrams"
 "animation"
 "answer-chaining"

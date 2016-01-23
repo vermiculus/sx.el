@@ -64,6 +64,7 @@
 "diagnostics"
 "dictionary"
 "display"
+"display-dock"
 "download-mode"
 "downloads"
 "driving-mode"

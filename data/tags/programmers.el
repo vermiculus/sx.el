@@ -831,7 +831,6 @@
 "jira"
 "jit"
 "job"
-"job-advancement"
 "job-definition"
 "job-hunting"
 "job-interview"

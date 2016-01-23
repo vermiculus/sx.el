@@ -41,7 +41,6 @@
 "chronoforms"
 "cms"
 "cms-testing"
-"com"
 "com-banners"
 "com-content"
 "com-plugins"

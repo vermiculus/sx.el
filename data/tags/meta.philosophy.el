@@ -42,6 +42,7 @@
 "new-users"
 "notifications"
 "openid"
+"opinion"
 "profile-page"
 "question-challenge"
 "questions"
