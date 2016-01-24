@@ -1051,6 +1051,7 @@
 "ssp"
 "stacktrace"
 "standard-objects"
+"standard-ui"
 "standardcontroller"
 "standardsetcontroller"
 "startchat"

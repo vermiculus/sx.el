@@ -46,6 +46,7 @@
 "credit"
 "credit-history"
 "criminal-records"
+"cuba"
 "culture"
 "currency"
 "customs"

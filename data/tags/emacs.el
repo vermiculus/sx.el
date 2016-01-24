@@ -18,6 +18,7 @@
 "async"
 "attachment"
 "auctex"
+"authinfo"
 "auto-capitalize-mode"
 "auto-complete-mode"
 "auto-fill-mode"

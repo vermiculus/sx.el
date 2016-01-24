@@ -69,6 +69,7 @@
 "bip38"
 "bip39"
 "bip44"
+"bip47"
 "bip62"
 "bip65"
 "bip66"

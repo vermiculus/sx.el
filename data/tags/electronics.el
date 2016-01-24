@@ -1240,7 +1240,6 @@
 "reactive-power"
 "real-power"
 "receiver"
-"reciprocitytheorem"
 "recording"
 "rectifier"
 "redundancy"

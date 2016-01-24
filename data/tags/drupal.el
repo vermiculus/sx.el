@@ -511,7 +511,6 @@
 "rules"
 "rules-bonus"
 "rules-forms"
-"rules-scheduler"
 "salesforce"
 "sass"
 "scald"

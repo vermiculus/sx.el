@@ -169,6 +169,7 @@
 "safety"
 "seawater"
 "self-sufficiency"
+"shower"
 "solar-power"
 "solar-thermal"
 "space-heating"

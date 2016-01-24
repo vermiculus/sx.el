@@ -509,7 +509,6 @@
 "pitch"
 "pitot-static"
 "plane-construction"
-"plane-identifying"
 "plane-spotting"
 "pneumatics"
 "polar"

@@ -106,6 +106,7 @@
 "geophysics"
 "geospatial"
 "geothermal-heat"
+"germany"
 "geysers"
 "glaciation"
 "glacier"

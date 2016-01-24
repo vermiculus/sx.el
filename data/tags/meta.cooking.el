@@ -64,6 +64,7 @@
 "retag-request"
 "retagging"
 "review"
+"roll-back"
 "rss"
 "rules"
 "scope"

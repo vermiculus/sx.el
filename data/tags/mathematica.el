@@ -551,7 +551,6 @@
 "sets"
 "shortcuts"
 "side-effect"
-"signal"
 "signal-processing"
 "simplex"
 "simplification"

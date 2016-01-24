@@ -568,7 +568,6 @@
 "silex"
 "sinatra"
 "sitecore"
-"sitemap"
 "sizeclass"
 "slim"
 "slim-lang"

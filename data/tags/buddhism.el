@@ -85,6 +85,8 @@
 "dependent-origination"
 "desire"
 "deva"
+"dhamma-desana"
+"dhamma-savana"
 "dhammapada"
 "dhammas"
 "dharmaguptaka"

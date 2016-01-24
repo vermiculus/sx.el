@@ -64,7 +64,6 @@
 "character-length"
 "chat"
 "chat-stars"
-"cheating"
 "china"
 "citizen-patrol-badge"
 "clean-up"

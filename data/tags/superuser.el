@@ -3579,7 +3579,6 @@
 "overscan"
 "overwrite"
 "owa"
-"owl"
 "owncloud"
 "ownership"
 "p2p"

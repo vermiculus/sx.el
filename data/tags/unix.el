@@ -2285,6 +2285,7 @@
 "xmonad"
 "xmpp"
 "xorg"
+"xournal"
 "xpra"
 "xrandr"
 "xscreensaver"

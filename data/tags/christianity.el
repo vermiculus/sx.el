@@ -422,7 +422,6 @@
 "identity-christianity"
 "idolatry"
 "ignatius-of-antioch"
-"image"
 "image-of-god"
 "immaculate-conception"
 "immortality"

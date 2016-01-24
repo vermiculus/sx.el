@@ -150,6 +150,7 @@
 "fruits"
 "gallbladder"
 "gastroenterology"
+"genes"
 "genetic-engineering"
 "glucose"
 "gluten"
