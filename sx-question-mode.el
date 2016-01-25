@@ -243,6 +243,7 @@ on the current buffer use
 \\{sx-question-mode}"
   (setq header-line-format sx-question-mode--header-line)
   (setq mode-line-format sx-question-mode--mode-line)
+  (buffer-disable-undo (current-buffer))
   (set (make-local-variable 'nobreak-char-display) nil)
   ;; Determine how to close this window.
   (unless (window-parameter nil 'quit-restore)
