@@ -115,6 +115,7 @@
 "dash.el"
 "data-structures"
 "debian"
+"debug"
 "debugging"
 "default"
 "defcustom"

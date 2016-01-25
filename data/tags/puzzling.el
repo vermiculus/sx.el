@@ -15,6 +15,7 @@
 "board-games"
 "brainteaser"
 "burr-puzzle"
+"caesar-cipher"
 "calculation-puzzle"
 "cards"
 "cellular-automata"

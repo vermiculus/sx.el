@@ -166,6 +166,7 @@
 "iq"
 "java"
 "jpeg"
+"kalman"
 "kalman-filters"
 "knn"
 "laplace-transform"

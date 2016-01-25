@@ -480,6 +480,7 @@
 "square-grid"
 "stack"
 "stack-inspection"
+"static-analysis"
 "statistics"
 "storage"
 "streaming-algorithm"

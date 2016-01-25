@@ -3566,6 +3566,7 @@
 "wim"
 "wimax"
 "win7"
+"win8.1"
 "winbind"
 "windbg"
 "window-managers"

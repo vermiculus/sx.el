@@ -225,6 +225,7 @@
 "kits"
 "kombucha"
 "krausen"
+"krausening"
 "labels"
 "lactobacillus"
 "lactose"

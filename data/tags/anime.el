@@ -752,6 +752,7 @@
 "owarimonogatari"
 "oyasumi-punpun"
 "paca-plus"
+"pandora-crimson-shell"
 "pandora-hearts"
 "panel-arrangement"
 "papakiki"

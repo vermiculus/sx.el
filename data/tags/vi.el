@@ -140,6 +140,7 @@
 "plugin-latex-box"
 "plugin-lid.vim"
 "plugin-managers"
+"plugin-nerdcommenter"
 "plugin-nerdtree"
 "plugin-pathogen"
 "plugin-powerline"

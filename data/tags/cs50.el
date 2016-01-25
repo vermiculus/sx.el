@@ -239,6 +239,7 @@
 "face"
 "fail"
 "failed"
+"fails-check50-but-works"
 "fall"
 "false"
 "fatal-compilation-error"

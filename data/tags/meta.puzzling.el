@@ -62,6 +62,7 @@
 "reputation"
 "retagging"
 "reviewing"
+"reviews"
 "riddles"
 "rss"
 "scope"

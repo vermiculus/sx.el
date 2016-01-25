@@ -1426,6 +1426,7 @@
 "seville"
 "sex"
 "sfo"
+"sgn"
 "sha"
 "shanghai"
 "sharia-law"

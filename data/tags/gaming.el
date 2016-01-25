@@ -2200,6 +2200,7 @@
 "minecraft-nether"
 "minecraft-oceancraft"
 "minecraft-optifine"
+"minecraft-pi-edition"
 "minecraft-piston"
 "minecraft-pixelmon"
 "minecraft-pocket-edition"

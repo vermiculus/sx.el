@@ -31,6 +31,7 @@
 "atmosphere"
 "azimuth"
 "backyard-astronomy"
+"barnards-star"
 "big-bang-theory"
 "binary-star"
 "binoculars"

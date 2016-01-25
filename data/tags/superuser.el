@@ -4800,6 +4800,7 @@
 "system-repair-disc"
 "system-reserved-partition"
 "system-restore"
+"system-restore-points"
 "system-sounds"
 "system-tray"
 "systemctl"

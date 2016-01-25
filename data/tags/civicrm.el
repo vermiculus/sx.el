@@ -122,6 +122,7 @@
 "email"
 "engagement"
 "entity-reference"
+"entityref"
 "envelope"
 "error"
 "error-page"

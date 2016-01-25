@@ -866,6 +866,7 @@
 "github"
 "glassfish"
 "globaliza&#231;&#227;o"
+"glpk"
 "gmail"
 "gnupg"
 "golang"

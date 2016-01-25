@@ -68,6 +68,7 @@
 "status-reproduced"
 "status-review"
 "support"
+"survival"
 "tag-merge-request"
 "tag-synonyms"
 "tagging"

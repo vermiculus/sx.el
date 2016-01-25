@@ -2410,6 +2410,7 @@
 "xpath"
 "xrdp"
 "xsd"
+"xsl-fo"
 "xslt"
 "xss"
 "xtemplate"

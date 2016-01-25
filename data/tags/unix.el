@@ -2302,6 +2302,7 @@
 "yaourt"
 "yash"
 "yast"
+"yes"
 "yocto"
 "youtube"
 "youtube-dl"

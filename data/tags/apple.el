@@ -134,6 +134,7 @@
 "beats1"
 "benchmark"
 "bento"
+"beta"
 "beta-seed-program"
 "bettertouchtool"
 "billing"

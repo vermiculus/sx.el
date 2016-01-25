@@ -297,6 +297,7 @@
 "wpdm"
 "xbox-live"
 "xbox-music"
+"yahoo"
 "youtube"
 "zune"
 "zune-player")

@@ -37,6 +37,7 @@
 "help-vampire"
 "irc"
 "karma"
+"kpis"
 "language-barrier"
 "law"
 "leadership"
