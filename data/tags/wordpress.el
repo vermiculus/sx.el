@@ -895,6 +895,7 @@
 "wp-http"
 "wp-insert-post"
 "wp-insert-term"
+"wp-insert-user"
 "wp-kses"
 "wp-link-pages"
 "wp-list-categories"

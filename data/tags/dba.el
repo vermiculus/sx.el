@@ -1,5 +1,4 @@
 ("9.3"
-"9.3"
 "access-control"
 "acid"
 "acl"
@@ -309,6 +308,7 @@
 "filtered-index"
 "fine-grained-auditing"
 "firebird"
+"firewall"
 "flashback"
 "floating-point"
 "foreign-data"

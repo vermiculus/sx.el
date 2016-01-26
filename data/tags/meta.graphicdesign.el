@@ -1,4 +1,5 @@
 ("accepted-answer"
+"ads"
 "answering-questions"
 "answers"
 "asking-questions"

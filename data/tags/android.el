@@ -1261,6 +1261,7 @@
 "search-history"
 "security"
 "seesmic"
+"select-all"
 "selinux"
 "sensors"
 "services"

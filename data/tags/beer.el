@@ -20,6 +20,7 @@
 "classification"
 "colour"
 "competition"
+"composition"
 "cooking"
 "cooling"
 "distribution"

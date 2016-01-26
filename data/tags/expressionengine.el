@@ -219,6 +219,7 @@
 "field-pack"
 "fields"
 "fieldtype"
+"file-access"
 "file-field"
 "file-manager"
 "file-uploads"

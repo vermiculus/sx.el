@@ -33,6 +33,7 @@
 "bugs"
 "buildroot"
 "c"
+"c#"
 "c++"
 "cable"
 "cache"

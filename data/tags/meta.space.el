@@ -54,7 +54,6 @@
 "recent-activity"
 "remove-tag-request"
 "reputation"
-"request"
 "resources"
 "retagging"
 "review"

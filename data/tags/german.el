@@ -275,6 +275,7 @@
 "translation"
 "translation-de-to-en"
 "translation-en-to-de"
+"transliteration"
 "trennbare-verben"
 "typography"
 "ubersetzung"

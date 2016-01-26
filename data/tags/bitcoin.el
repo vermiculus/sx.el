@@ -76,6 +76,7 @@
 "bip70"
 "bitaddress.org"
 "bitcoin-atm"
+"bitcoin-classic"
 "bitcoin-cli"
 "bitcoin-client"
 "bitcoin-core"

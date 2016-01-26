@@ -252,6 +252,7 @@
 "romaji"
 "rōmaji"
 "salutations"
+"scope"
 "second-person-pronoun"
 "second-person-pronouns"
 "sentence-final-particles"

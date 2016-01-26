@@ -303,7 +303,6 @@
 "description"
 "detex"
 "detokenize"
-"diacritics"
 "diagbox"
 "diagrams"
 "dialogue"

@@ -216,6 +216,7 @@
 "shared"
 "short-fiction"
 "short-story"
+"social-media"
 "software"
 "stakes"
 "story"

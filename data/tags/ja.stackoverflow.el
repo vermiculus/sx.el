@@ -290,6 +290,7 @@
 "html-agility-pack"
 "html5"
 "html5-canvas"
+"htmlsimpledom"
 "http"
 "http-status-codes"
 "http2"

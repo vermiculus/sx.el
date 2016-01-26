@@ -883,7 +883,6 @@
 "move"
 "move-to-other-site"
 "moving-questions"
-"moving-the-cheese"
 "mozilla-weave"
 "mse"
 "mso-mse-split"

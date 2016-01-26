@@ -82,6 +82,7 @@
 "carcassonne-new-world"
 "carcassonne-river"
 "card-counting"
+"card-rarity"
 "card-sleeves"
 "card-wars"
 "cardfight-vanguard"

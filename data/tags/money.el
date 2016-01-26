@@ -564,6 +564,7 @@
 "penny-stocks"
 "pension"
 "pension-plan"
+"pension-sipp"
 "permanent-resident"
 "personal-check"
 "personal-loan"

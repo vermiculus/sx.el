@@ -292,6 +292,7 @@
 "transparency"
 "treaty"
 "turkey"
+"u.s"
 "uk"
 "ukraine"
 "un"

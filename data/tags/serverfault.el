@@ -1858,6 +1858,7 @@
 "mod-dav-svn"
 "mod-deflate"
 "mod-dims"
+"mod-dir"
 "mod-fastcgi"
 "mod-fcgid"
 "mod-filter"
