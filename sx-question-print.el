@@ -772,6 +772,8 @@ move point, don't create the code-block button."
   (let ((beg (line-beginning-position)))
     ;; To identify code-blocks we need to be at start of line.
     (goto-char beg)
+    (when (fboundp 'markdown-syntax-propertize)
+      (markdown-syntax-propertize (point) (point-max)))
     (when (markdown-match-pre-blocks (line-end-position))
       (unless dont-fontify
         (sx-babel--make-pre-button beg (point)))
