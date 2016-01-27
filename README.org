@@ -22,19 +22,21 @@ the different 'tabs' that you can view on the official site.  Implemented tabs
 include:
 
 - ~sx-tab-all-questions~      :: All questions.
-- ~sx-tab-unanswered~         :: u Unanswered questions.
-- ~sx-tab-unanswered-my-tags~ :: U Unanswered questions in your followed tags.
-- ~sx-tab-featured~           :: f Featured questions.
-- ~sx-tab-starred~            :: * Your starred questions.
-- ~sx-tab-frontpage~          :: h The frontpage of the site.
-- ~sx-tab-meta-or-main~       :: m Toggle between the meta and main sites.
-- ~sx-tab-newest~             :: n Newest questions first.
-- ~sx-tab-topvoted~           :: v Highest-scoring questions first.
-- ~sx-tab-week~               :: w Hot questions of the week.
+- ~sx-tab-unanswered~         :: =u= Unanswered questions.
+- ~sx-tab-unanswered-my-tags~ :: =U= Unanswered questions in your followed tags.
+- ~sx-tab-featured~           :: =f= Featured questions.
+- ~sx-tab-starred~            :: =*= Your starred questions.
+- ~sx-tab-frontpage~          :: =h= The frontpage of the site.
+- ~sx-tab-meta-or-main~       :: =m= Toggle between the meta and main sites.
+- ~sx-tab-newest~             :: =n= Newest questions first.
+- ~sx-tab-topvoted~           :: =v= Highest-scoring questions first.
+- ~sx-tab-week~               :: =w= Hot questions of the week.
 
-You can use ~sx-tab-switch~ (=s t=) to switch between some of these tabs.  Each
-of these opens up a list of questions, and you can further customize the
-ordering of the list with =O=.  Other keys include:
+Inside SX buffers, you can switch to other tabs by typing =s= followed by the key
+listed with the tab above.  You can also use ~sx-tab-switch~ (=s t=) to switch
+between tabs with completion.  Each of these opens up a list of questions, and
+you can further customize the ordering of the list with =O=.  Other keys
+include:
 
 - =n= and =p= :: Navigate the list.
 - =j= and =k= :: Navigate while viewing the question in a separate buffer.
@@ -90,7 +92,7 @@ security of your account.  This token is as good as a password.
     :config
     (bind-keys :prefix "C-c s"
                :prefix-map my-sx-map
-               :prefix-docstring "Keymap for SX global functionality."
+               :prefix-docstring "Global keymap for SX."
                ("q" . sx-tab-all-questions)
                ("i" . sx-inbox)
                ("o" . sx-open-link)
@@ -98,7 +100,7 @@ security of your account.  This token is as good as a password.
                ("a" . sx-ask)
                ("s" . sx-search)))
 #+END_SRC
-*** Standard
+*** Standard (With Prefix Key)
 Shamelessly stolen from [[http://endlessparentheses.com/sx-el-announcement-and-more-launcher-map.html][Endless Parentheses]].
 #+BEGIN_SRC elisp
 (define-prefix-command 'launcher-map)
