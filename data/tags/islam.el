@@ -88,6 +88,7 @@
 "clarification"
 "cleanliness"
 "clothing"
+"color"
 "companies"
 "comparative-madahib"
 "comparative-religions"

@@ -183,7 +183,6 @@
 "assembler"
 "asterisk"
 "asterix"
-"asunder"
 "asus"
 "at-command"
 "ath5k"

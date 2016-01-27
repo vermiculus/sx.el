@@ -613,4 +613,5 @@
 "xml"
 "yank"
 "yasnippet"
-"zoom")
+"zoom"
+"zsh")

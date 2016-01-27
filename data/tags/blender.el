@@ -167,6 +167,7 @@
 "selection-tools"
 "shaders"
 "shading"
+"shadows"
 "shape-keys"
 "shortcut"
 "smoke-simulation"

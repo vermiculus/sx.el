@@ -591,7 +591,6 @@
 "bsod"
 "bt-infinity"
 "btrfs"
-"btsync"
 "btx"
 "bubbles"
 "buddy-list"

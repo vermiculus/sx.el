@@ -1,4 +1,5 @@
 ("accents"
+"acronyms"
 "adjectives"
 "adverbs"
 "animateness"

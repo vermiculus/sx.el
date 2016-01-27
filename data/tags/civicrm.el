@@ -115,6 +115,7 @@
 "drupal-7"
 "drupal-7"
 "drupal-8"
+"drupal-commerce"
 "drupal-rules"
 "drupal-views"
 "drush"

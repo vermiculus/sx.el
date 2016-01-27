@@ -247,6 +247,7 @@
 "grayscale"
 "greek"
 "grep"
+"grid"
 "grids"
 "gui-design"
 "guides"

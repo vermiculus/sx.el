@@ -46,6 +46,7 @@
 "data-portal"
 "data-request"
 "data.gov"
+"dbpedia"
 "demographics"
 "dictionary"
 "disaster"

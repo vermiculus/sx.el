@@ -471,6 +471,7 @@
 "joel"
 "john-apostle"
 "john-book"
+"john-bunyan"
 "john-chrysostom"
 "john-climacus"
 "john-milton"

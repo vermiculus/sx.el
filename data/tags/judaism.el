@@ -1270,6 +1270,7 @@
 "rav-moshe-feinstein"
 "rav-nachum-rabinovitch"
 "rav-ovadya-yosef"
+"rav-shlomo-z-auerbach"
 "rav-yehudah-hechasid"
 "real-estate"
 "real-property"

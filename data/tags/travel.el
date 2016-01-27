@@ -1840,6 +1840,7 @@
 "zad"
 "zagreb"
 "zambia"
+"zika"
 "zimbabwe"
 "zimbabwean-citizen"
 "zoos"

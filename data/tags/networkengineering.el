@@ -248,6 +248,7 @@
 "powerconnect"
 "ppp"
 "pppoe"
+"pptp"
 "prefix"
 "private-vlan"
 "protocol-theory"

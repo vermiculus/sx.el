@@ -103,6 +103,7 @@
 "imperatives"
 "input-method"
 "interjections"
+"internet"
 "internet-slang"
 "interrogatives"
 "intonation"

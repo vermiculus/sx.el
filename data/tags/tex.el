@@ -1378,6 +1378,7 @@
 "tkz-fct"
 "tkz-graph"
 "tkz-kiviat"
+"tkz-tab"
 "toc"
 "tocbibind"
 "tocloft"

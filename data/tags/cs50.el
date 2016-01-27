@@ -316,6 +316,7 @@
 "gravity"
 "greedy"
 "greedy.c"
+"grouping"
 "grub"
 "gui"
 "gwindow"

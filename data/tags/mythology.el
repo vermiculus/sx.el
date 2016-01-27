@@ -20,6 +20,7 @@
 "aztec"
 "baal"
 "baboons"
+"bantu"
 "basilisk"
 "beowulf"
 "british"
