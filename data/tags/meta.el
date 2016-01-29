@@ -409,6 +409,7 @@
 "difficulty"
 "diggbar"
 "disciplined-badge"
+"disclaimer"
 "discussion"
 "display"
 "display-names"

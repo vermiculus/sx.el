@@ -75,6 +75,7 @@
 "deployer-extension"
 "deployment"
 "device"
+"digital-asset-management"
 "directoryservicegroup"
 "discovery-service"
 "documentation"

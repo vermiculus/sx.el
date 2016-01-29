@@ -6,6 +6,7 @@
 "answers"
 "asking-questions"
 "badges"
+"blacklist"
 "blog"
 "bot"
 "bounty"

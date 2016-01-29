@@ -1232,6 +1232,7 @@
 "substitution"
 "subversion"
 "sudoku"
+"suftesi"
 "sumatrapdf"
 "superscript"
 "superscripts"

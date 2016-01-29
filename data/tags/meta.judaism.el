@@ -114,6 +114,7 @@
 "rss"
 "scope"
 "search"
+"separate-tag-request"
 "site-layout-and-design"
 "site-name"
 "site-promotion"

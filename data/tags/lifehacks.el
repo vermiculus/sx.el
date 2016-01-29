@@ -73,7 +73,6 @@
 "music"
 "office"
 "office-supplies"
-"online-life"
 "organisation"
 "organization"
 "packaging"

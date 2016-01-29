@@ -335,6 +335,7 @@
 "udp"
 "untagged"
 "uplinks"
+"utp"
 "video"
 "virtual"
 "vlan"

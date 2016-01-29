@@ -741,6 +741,7 @@
 "kit-kat"
 "kitkat"
 "kobo"
+"lagging"
 "laging"
 "lan"
 "language"

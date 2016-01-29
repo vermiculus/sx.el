@@ -14,6 +14,7 @@
 "affordable-care-act"
 "after-hours-trading"
 "airline"
+"alabama"
 "alerts"
 "alternative-minimum-tax"
 "alternatives"

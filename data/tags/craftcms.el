@@ -83,6 +83,7 @@
 "ecommerce"
 "editor"
 "elementcriteriamodel"
+"elementeditor"
 "elementtype"
 "emails"
 "entries"

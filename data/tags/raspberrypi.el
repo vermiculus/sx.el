@@ -13,6 +13,7 @@
 "arm"
 "assembler"
 "assembly"
+"attiny85"
 "audio"
 "audio-playback"
 "backup"

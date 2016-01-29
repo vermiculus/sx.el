@@ -176,6 +176,7 @@
 "ollydbg"
 "ollyscript"
 "opcodes"
+"openocd"
 "operating-systems"
 "osx"
 "packer"

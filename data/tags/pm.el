@@ -1,4 +1,5 @@
 ("6-sigma"
+"acceptance-criteria"
 "agile"
 "analysis"
 "artifacts"

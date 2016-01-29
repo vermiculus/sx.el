@@ -129,6 +129,7 @@
 "cfml"
 "cfscript"
 "cgi"
+"change-making-problem"
 "chat"
 "checksum"
 "cherrypy"

@@ -316,6 +316,7 @@
 "theme"
 "theodicy"
 "theophany"
+"throne-of-god"
 "time"
 "timeline"
 "titus"

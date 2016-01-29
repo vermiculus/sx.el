@@ -715,6 +715,7 @@
 "hel"
 "helicopters"
 "helsinki"
+"helth"
 "hhn"
 "hidden-city-ticketing"
 "high-speed-rail"

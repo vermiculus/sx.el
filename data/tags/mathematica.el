@@ -138,6 +138,7 @@
 "difference-equations"
 "differential-equations"
 "differentials"
+"diffraction"
 "diophantine-equations"
 "discreteplot"
 "discretization"

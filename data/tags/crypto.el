@@ -410,6 +410,7 @@
 "verifiability"
 "vigenere"
 "visual-cryptography"
+"vm-reset"
 "voip"
 "voting"
 "white-box"

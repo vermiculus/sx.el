@@ -747,6 +747,7 @@
 "nikon-d700"
 "nikon-d7000"
 "nikon-d7100"
+"nikon-d750"
 "nikon-d80"
 "nikon-d800"
 "nikon-d810"

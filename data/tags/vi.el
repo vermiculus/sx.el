@@ -167,6 +167,7 @@
 "plugin-vundle"
 "plugin-you-complete-me"
 "plugin-zip"
+"posix"
 "previewing"
 "printing"
 "putty"

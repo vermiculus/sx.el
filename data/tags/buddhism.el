@@ -361,6 +361,7 @@
 "tanha"
 "tantra"
 "taoism"
+"tathagatagarbha"
 "tathgatagarbha"
 "teachers"
 "teaching"

@@ -235,7 +235,6 @@
 "copula"
 "correlated-predictors"
 "correlation"
-"correlation-matri"
 "correlation-matrix"
 "correspondence"
 "correspondence-analysis"
