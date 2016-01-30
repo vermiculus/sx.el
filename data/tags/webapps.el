@@ -675,6 +675,7 @@
 "music"
 "music-streaming"
 "mute"
+"my-usps"
 "myspace"
 "name"
 "natl-geodetic-survey"

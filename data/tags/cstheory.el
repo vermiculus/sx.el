@@ -409,6 +409,7 @@
 "randomness"
 "range-searching"
 "recreational"
+"recurrence"
 "recursion"
 "recursion-theory"
 "recursive"

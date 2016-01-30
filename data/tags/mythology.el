@@ -63,6 +63,7 @@
 "flamines-minores"
 "flood-myth"
 "folklore"
+"folkloristics"
 "folkvangr"
 "frazer"
 "funerals"

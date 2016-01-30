@@ -1,5 +1,4 @@
 ("adult-content"
-"automation"
 "avatar"
 "backlash"
 "ban-evasion"

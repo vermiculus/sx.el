@@ -598,6 +598,7 @@
 "shopping-cart-interface"
 "shrinking-money-supply"
 "sidechain"
+"sidechains"
 "sighash-flags"
 "signature"
 "signing"

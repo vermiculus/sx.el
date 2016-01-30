@@ -362,6 +362,7 @@
 "ios"
 "ip"
 "iphone"
+"ipn"
 "javascript"
 "jetpack"
 "jigoshop"

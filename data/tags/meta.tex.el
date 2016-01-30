@@ -40,7 +40,6 @@
 "design"
 "discussion"
 "down-votes"
-"ducks-dont-like-bold"
 "dupehammer"
 "duplicates"
 "editing"

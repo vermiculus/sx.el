@@ -13,6 +13,7 @@
 "apache-pig"
 "apache-spark"
 "association-rules"
+"audio-recognition"
 "autoencoder"
 "aws"
 "azure-ml"

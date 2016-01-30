@@ -19,6 +19,7 @@
 "benefits"
 "beta-testing"
 "billing"
+"board"
 "bootstrapping"
 "brand"
 "buisness-model"

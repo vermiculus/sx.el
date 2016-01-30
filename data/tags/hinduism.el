@@ -9,6 +9,7 @@
 "agnosticism"
 "ahimsa"
 "aitareya-brahmana"
+"aitareya-upanishad"
 "akshaya-tritiya"
 "alwar"
 "ancestry"

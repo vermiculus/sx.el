@@ -369,6 +369,7 @@
 "healing"
 "heavy-gear"
 "heavygear"
+"hell-on-earth-reloaded"
 "hero-system"
 "heroes-unlimited"
 "heroquest"

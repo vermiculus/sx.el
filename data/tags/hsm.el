@@ -28,6 +28,7 @@
 "chemistry"
 "chess"
 "classical-mechanics"
+"communication"
 "complex-analysis"
 "computation"
 "computer-science"

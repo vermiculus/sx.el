@@ -5,6 +5,7 @@
 "beta"
 "bounty"
 "bug"
+"challenges"
 "chat"
 "close-reasons"
 "closed-questions"

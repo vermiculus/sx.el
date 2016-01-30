@@ -1,4 +1,5 @@
-("3d-cursor"
+(".mmd"
+"3d-cursor"
 "3d-manipulator"
 "3d-printing"
 "3d-view"
