@@ -567,6 +567,7 @@
 "n-body"
 "nano"
 "nash"
+"natural-gas"
 "navigation"
 "neon"
 "ninja-250"

@@ -90,6 +90,7 @@
 "dsp-core"
 "dtft"
 "dynamic-programming"
+"dynamic-range-compression"
 "ecc"
 "ecg"
 "edge-detection"

@@ -578,6 +578,7 @@
 "headset-controls"
 "hebrew"
 "heimdall"
+"helium"
 "hidden"
 "history"
 "home-button"

@@ -65,6 +65,7 @@
 "reviews"
 "riddles"
 "rss"
+"rules"
 "scope"
 "search"
 "self-answer"

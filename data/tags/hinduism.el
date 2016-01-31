@@ -266,6 +266,7 @@
 "shiva-lingam"
 "shiva-purana"
 "shraaddha"
+"shwetashawatara-upanishad"
 "siddhi"
 "sidhdhi"
 "sin"

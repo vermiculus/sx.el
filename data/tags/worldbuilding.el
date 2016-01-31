@@ -249,6 +249,7 @@
 "power-sources"
 "pre-industrial"
 "prison"
+"problems"
 "prophecy"
 "proto-human"
 "psionics"

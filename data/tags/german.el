@@ -271,7 +271,6 @@
 "tenses"
 "terminology"
 "time"
-"tongue-in-cheek"
 "tools"
 "translation"
 "translation-de-to-en"

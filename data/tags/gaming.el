@@ -3747,7 +3747,6 @@
 "tourist-trophy"
 "tower-defense"
 "tower-of-guns"
-"tower-of-saviors"
 "tower-of-the-sorcerer"
 "tower-wars"
 "towerfall-ascension"

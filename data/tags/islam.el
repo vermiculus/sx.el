@@ -148,6 +148,7 @@
 "evidence"
 "evil"
 "evil-eye"
+"evil-thoughts"
 "evolution"
 "face"
 "faith"

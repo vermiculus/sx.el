@@ -128,6 +128,7 @@
 "frege"
 "functionalism"
 "fundamental-entities"
+"game-theory"
 "genealogy-of-morals"
 "german-philosophy"
 "gettier"

@@ -120,6 +120,7 @@
 "tag-mistakes"
 "tag-reference"
 "tag-synonyms"
+"tag-wiki"
 "tagging"
 "tags"
 "tour-page"

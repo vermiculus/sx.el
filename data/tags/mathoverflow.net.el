@@ -182,6 +182,7 @@
 "classical-mechanics"
 "classification"
 "classifying-spaces"
+"clifford"
 "clifford-algebras"
 "closed-form-expressions"
 "cluster-algebras"

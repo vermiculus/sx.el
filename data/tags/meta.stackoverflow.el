@@ -209,6 +209,7 @@
 "hyperlinks"
 "ignored-tags"
 "images"
+"india"
 "instant-self-answer"
 "interesting-page"
 "internationalization"

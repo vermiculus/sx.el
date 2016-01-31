@@ -394,7 +394,6 @@
 "vajrayana"
 "vedas"
 "vegetarianism"
-"veyyavaca"
 "vietnamese-buddhism"
 "vinaya"
 "vipassana"
