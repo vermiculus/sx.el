@@ -35,6 +35,7 @@
 "equipment"
 "espresso"
 "espresso-machine"
+"exotic"
 "extraction"
 "farming"
 "filter"

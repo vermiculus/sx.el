@@ -172,6 +172,7 @@
 "cs50.h"
 "cs50appliance2014"
 "cs50submit"
+"cs50tv"
 "cs50x"
 "css"
 "csv"

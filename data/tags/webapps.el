@@ -603,6 +603,7 @@
 "lastpass"
 "lastpass.com"
 "latex"
+"lazy-loading"
 "legal"
 "leo.org"
 "letterboxd"

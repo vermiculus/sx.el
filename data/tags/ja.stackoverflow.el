@@ -316,6 +316,7 @@
 "ios-simulator"
 "ios6"
 "ios8"
+"ios9"
 "ipad"
 "iperf"
 "iphone"

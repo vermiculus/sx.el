@@ -625,6 +625,7 @@
 "eva"
 "event-horizon"
 "ever-after"
+"everybody-hates-chris"
 "everybody-loves-raymond"
 "everyone-says-i-love-you"
 "evil-dead"

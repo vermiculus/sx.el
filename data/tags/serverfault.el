@@ -288,7 +288,6 @@
 "bcdedit"
 "bcp"
 "bcrypt"
-"beaglebone"
 "benchmark"
 "benchmarking"
 "benchmarks"

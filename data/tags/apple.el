@@ -811,6 +811,7 @@
 "networking"
 "news.app"
 "newsstand"
+"nfc"
 "nfs"
 "nike-running"
 "nikeplus"

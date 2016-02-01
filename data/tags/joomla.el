@@ -91,6 +91,7 @@
 "fabrik"
 "facebook"
 "fatal-error"
+"featured-articles"
 "features"
 "fields"
 "file-permissions"

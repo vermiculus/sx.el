@@ -1594,6 +1594,7 @@
 "wiki"
 "wikipedia"
 "wildcards"
+"window-title"
 "windows-10"
 "windows-7"
 "windows-8"

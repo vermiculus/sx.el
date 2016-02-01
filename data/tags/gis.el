@@ -1007,6 +1007,7 @@
 "internetexplorer"
 "interoperability"
 "interpolation"
+"intersect"
 "intersection"
 "intramaps-roam"
 "introductory-level"

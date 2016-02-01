@@ -46,7 +46,6 @@
 "electrical-requirements"
 "embossing"
 "end-grain"
-"equipement"
 "fasteners"
 "faux-finish"
 "fence"

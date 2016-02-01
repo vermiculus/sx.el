@@ -1,6 +1,7 @@
 ("abbreviations"
 "accent"
 "accusative"
+"accusative-and-infinitive"
 "accusative-case"
 "address"
 "adjective-endings"

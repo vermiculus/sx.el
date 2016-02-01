@@ -7,6 +7,7 @@
 "actuator"
 "air-muscle"
 "algorithm"
+"alljoyn"
 "architecture"
 "arduino"
 "ardupilot"

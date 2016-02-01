@@ -48,7 +48,6 @@
 "auto-node-title"
 "autocomplete"
 "autoloading"
-"availability"
 "avatars"
 "aws"
 "backtrace"
