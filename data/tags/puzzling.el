@@ -153,7 +153,6 @@
 "puzzle-creation"
 "puzzle-identification"
 "puzzle-theory"
-"quizz"
 "reachability"
 "real"
 "rebus"

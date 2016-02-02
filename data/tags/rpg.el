@@ -247,6 +247,7 @@
 "dresden-files"
 "drones"
 "druid"
+"duets"
 "dungeon"
 "dungeon-crawl-classics"
 "dungeon-design"

@@ -182,6 +182,7 @@
 "home-remedies"
 "hormones"
 "hospital"
+"how-to"
 "hpv"
 "hygiene"
 "hypertension"

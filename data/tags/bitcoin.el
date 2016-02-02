@@ -703,6 +703,7 @@
 "wallet-notify"
 "wallet-security"
 "wallet.dat"
+"warp-wallet"
 "watch-only"
 "weakness"
 "weaknesses"

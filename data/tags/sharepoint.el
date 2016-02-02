@@ -123,6 +123,7 @@
 "build"
 "build-number"
 "build-server"
+"build-version"
 "bulk"
 "business"
 "business-card"

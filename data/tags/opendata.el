@@ -232,6 +232,7 @@
 "wikidata"
 "wikimedia-commons"
 "wikipedia"
+"wikisource"
 "wikivoyage"
 "wiktionary"
 "worldbank"

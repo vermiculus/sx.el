@@ -175,6 +175,8 @@
 "edit"
 "editable-fields"
 "editor"
+"elasticsearch"
+"elasticsearch-connector"
 "email"
 "entities"
 "entity"

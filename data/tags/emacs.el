@@ -448,6 +448,7 @@
 "r"
 "rails"
 "read-only-mode"
+"readline"
 "real-auto-save"
 "realgud"
 "recentf"

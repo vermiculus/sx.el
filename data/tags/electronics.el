@@ -270,6 +270,7 @@
 "combinationalcircuits"
 "common"
 "common-collector"
+"common-emitter"
 "common-mode"
 "common-mode-choke"
 "communication"

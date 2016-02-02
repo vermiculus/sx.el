@@ -54,6 +54,7 @@
 "belgium"
 "bessarabia"
 "bible"
+"bigamy"
 "birth-certificates"
 "birth-record"
 "birth-records"

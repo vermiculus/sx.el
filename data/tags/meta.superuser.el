@@ -71,6 +71,7 @@
 "globalinbox"
 "gmail"
 "google"
+"google-spreadsheets"
 "gravatar"
 "greasemonkey"
 "help-pages"

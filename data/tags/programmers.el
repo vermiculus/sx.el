@@ -50,7 +50,6 @@
 "amd"
 "ampq"
 "ampqlib"
-"analogic"
 "analogy"
 "analysis"
 "analytics"

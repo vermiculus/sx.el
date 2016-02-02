@@ -669,6 +669,7 @@
 "touchscreen"
 "transcription"
 "translation"
+"transliteration"
 "travel"
 "trello"
 "tumblr"

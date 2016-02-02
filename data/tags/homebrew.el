@@ -205,6 +205,7 @@
 "hot-side-aeration"
 "hydrometer"
 "ibu"
+"ice-cider"
 "imperial"
 "indoors"
 "induction-heating"

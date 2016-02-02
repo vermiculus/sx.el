@@ -24,6 +24,7 @@
 "discussion"
 "down-votes"
 "editing"
+"election"
 "etiquette"
 "exact-duplicates"
 "faq"

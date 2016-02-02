@@ -46,6 +46,7 @@
 "balance"
 "bang"
 "barbarian-prince"
+"barbarossa"
 "basing"
 "battlecon"
 "battleship-galaxies"

@@ -204,4 +204,5 @@
 "webapps"
 "where-to-file-bug-report"
 "windows"
-"winter-bash")
+"winter-bash"
+"wrongly-closed-questions")

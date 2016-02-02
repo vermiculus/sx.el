@@ -145,6 +145,8 @@
 "history-of-philosophy"
 "hobbes"
 "hofstadter"
+"homosexuality"
+"horkheimer"
 "human-condition"
 "human-rights"
 "humanism"

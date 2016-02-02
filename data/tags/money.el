@@ -285,7 +285,6 @@
 "fico-score"
 "fidelity"
 "financial-advisor"
-"financial-instruments"
 "financial-literacy"
 "financial-statements"
 "financing"

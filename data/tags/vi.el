@@ -147,6 +147,7 @@
 "plugin-rope"
 "plugin-solarized"
 "plugin-spf13"
+"plugin-supertab"
 "plugin-syntastic"
 "plugin-system"
 "plugin-tagbar"

@@ -55,6 +55,7 @@
 "recent-activity"
 "reopen"
 "reputation"
+"resource-request"
 "retagging"
 "review"
 "rss"

@@ -275,6 +275,7 @@
 "opposite-word"
 "ordinal"
 "orthography"
+"oxymoron"
 "parallel"
 "parallelism"
 "paraphrase"
