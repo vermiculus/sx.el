@@ -199,6 +199,7 @@
 "find-file"
 "flx-ido"
 "flycheck"
+"flymake"
 "flyspell"
 "focus"
 "follow-mode"

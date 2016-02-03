@@ -196,7 +196,6 @@
 "locating-records"
 "london"
 "louisiana"
-"lousiana"
 "macfamilytree"
 "maine"
 "manifest"
@@ -222,7 +221,9 @@
 "missing-vital-records"
 "mississippi"
 "missouri"
+"mitochondrial-dna"
 "morocco"
+"mtdna"
 "myheritage.com"
 "name-change"
 "name-suffix"
@@ -367,7 +368,7 @@
 "warwickshire"
 "washington-state"
 "website"
-"webtrees"
+"webtrees.net"
 "werelate.org"
 "will"
 "wisconsin"
@@ -376,4 +377,5 @@
 "world-war-1"
 "world-war-2"
 "wpa"
-"ww1")
+"ww1"
+"y-dna")

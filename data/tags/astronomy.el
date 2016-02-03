@@ -106,6 +106,7 @@
 "frame-of-reference"
 "fundamental-astronomy"
 "funding"
+"future"
 "galactic-dynamics"
 "galaxies"
 "galaxy"

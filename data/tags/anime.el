@@ -803,6 +803,8 @@
 "puella-magi-madoka-magica"
 "punchline"
 "pupa"
+"queens-blade"
+"queensblade"
 "rage-of-bahamut"
 "ragnarok-into-the-abyss"
 "rahxephon"

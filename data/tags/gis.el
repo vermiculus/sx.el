@@ -2066,6 +2066,7 @@
 "usgs"
 "ushahidi"
 "usps"
+"utf-8"
 "utfgrid"
 "utility-network"
 "utm"

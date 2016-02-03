@@ -470,6 +470,7 @@
 "jquery"
 "js"
 "js-css"
+"js-translation"
 "json"
 "key"
 "knockoutjs"

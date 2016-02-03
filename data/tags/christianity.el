@@ -97,6 +97,7 @@
 "beatific-vision"
 "belief"
 "benedict-xvi"
+"berkhof"
 "bernard-of-clairvaux"
 "bible"
 "bible-basis"

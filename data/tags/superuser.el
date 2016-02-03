@@ -2115,7 +2115,6 @@
 "homegroup"
 "homepage"
 "homeplug"
-"homescreen"
 "honeypot"
 "hook"
 "host"

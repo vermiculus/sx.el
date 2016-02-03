@@ -246,6 +246,7 @@
 "webservice"
 "where-used"
 "workflow"
+"workfow"
 "worldserver"
 "xml"
 "xpm"

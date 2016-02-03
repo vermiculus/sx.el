@@ -296,6 +296,7 @@
 "view"
 "virtualhost"
 "virtuemart"
+"web-service"
 "weblinks"
 "widgetkit"
 "wordpress"

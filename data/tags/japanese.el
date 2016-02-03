@@ -1,5 +1,6 @@
 ("abbreviations"
 "academic-japanese"
+"active"
 "adjectives"
 "adverbs"
 "ainu"

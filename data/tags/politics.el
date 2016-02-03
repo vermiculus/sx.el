@@ -293,6 +293,7 @@
 "treaty"
 "turkey"
 "u.s"
+"uganda"
 "uk"
 "ukraine"
 "un"

@@ -639,6 +639,7 @@
 "statistics"
 "stats"
 "steam"
+"stitching"
 "streaming"
 "sublime-text"
 "support-tracker"

@@ -199,10 +199,10 @@
 "virtualbox"
 "vote-retraction"
 "vote-to-close"
+"vote-to-delete"
 "votes"
 "voting"
 "webapps"
 "where-to-file-bug-report"
 "windows"
-"winter-bash"
-"wrongly-closed-questions")
+"winter-bash")

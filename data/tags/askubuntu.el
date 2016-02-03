@@ -1451,8 +1451,6 @@
 "language-support"
 "lanschool"
 "laptop"
-"laravel"
-"laravel5"
 "laserjet"
 "last-command"
 "last.fm-client"

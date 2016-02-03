@@ -497,6 +497,7 @@
 "lawnmower"
 "leak"
 "lean"
+"leather"
 "led"
 "legacy"
 "lesabre"

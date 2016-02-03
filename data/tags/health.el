@@ -285,6 +285,7 @@
 "penis"
 "pharmacokinetics"
 "pharmacology"
+"pharmacy"
 "pica"
 "pill"
 "placebo"

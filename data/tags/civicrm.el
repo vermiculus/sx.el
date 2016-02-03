@@ -178,6 +178,7 @@
 "logging"
 "logs"
 "lts"
+"mailchimp"
 "mailing"
 "mailserver"
 "mamp"

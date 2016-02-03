@@ -250,7 +250,6 @@
 "aws-cli"
 "aws-directory-service"
 "awstats"
-"axapta"
 "axis"
 "azure"
 "azure-active-directory"

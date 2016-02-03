@@ -26,6 +26,7 @@
 "bootstrap-craft"
 "cache"
 "caching"
+"caching"
 "calendar"
 "case"
 "categories"

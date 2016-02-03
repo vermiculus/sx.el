@@ -865,7 +865,6 @@
 "micromax-a63"
 "micromax-a87"
 "micromax-a89"
-"micromax-bolt-a089"
 "micromax-bolt-a27"
 "micromax-canvas-2"
 "micromax-canvas-music-a88"

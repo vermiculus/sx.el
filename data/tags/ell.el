@@ -458,6 +458,7 @@
 "verb"
 "verb-agreement"
 "verb-forms"
+"verb-request"
 "verb-usage"
 "verbal-noun"
 "verbing"
