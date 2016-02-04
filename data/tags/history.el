@@ -220,7 +220,6 @@
 "famous-people"
 "fascism"
 "fashion"
-"fest"
 "festival"
 "feudalism"
 "finance"

@@ -12,6 +12,7 @@
 "arabic"
 "arctic"
 "arthurian"
+"astrology"
 "athena"
 "atlantis"
 "atrahasis"
@@ -214,4 +215,5 @@
 "wondjina"
 "yggdrasil"
 "zeus"
+"zodiac"
 "zoroastrianism")

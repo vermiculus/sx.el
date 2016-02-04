@@ -39,6 +39,7 @@
 "bhishma"
 "bhisnois"
 "bhumi"
+"birth"
 "brahma"
 "brahma-purana"
 "brahma-sutras"

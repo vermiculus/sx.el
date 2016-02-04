@@ -47,6 +47,7 @@
 "retagging"
 "review-queue"
 "rss"
+"sandbox"
 "scope"
 "search"
 "site-definition"

@@ -48,6 +48,7 @@
 "moderation"
 "moderators"
 "new-users"
+"non-sequitur"
 "notifications"
 "on-topic"
 "openid"

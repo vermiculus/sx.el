@@ -26,6 +26,7 @@
 "aegir"
 "ahah"
 "ajax"
+"alias"
 "amazon-ec2"
 "amazon-s3"
 "analytics"

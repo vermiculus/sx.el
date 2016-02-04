@@ -117,6 +117,7 @@
 "parody"
 "passenger"
 "percussion"
+"performance"
 "personnel"
 "pharrell-williams"
 "pink-floyd"

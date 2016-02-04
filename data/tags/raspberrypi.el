@@ -43,6 +43,7 @@
 "can-bus"
 "cars"
 "case"
+"cec-client"
 "chrome-os"
 "chromecast"
 "chromium"

@@ -64,6 +64,7 @@
 "rules"
 "scope"
 "search"
+"serial-voting"
 "site-evaluation"
 "site-health"
 "site-promotion"

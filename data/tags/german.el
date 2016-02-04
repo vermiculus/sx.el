@@ -273,7 +273,6 @@
 "terminology"
 "time"
 "tools"
-"tra"
 "translation"
 "translation-de-to-en"
 "translation-en-to-de"

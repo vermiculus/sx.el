@@ -309,6 +309,7 @@
 "fill-factor"
 "filtered-index"
 "fine-grained-auditing"
+"firebase"
 "firebird"
 "firewall"
 "flashback"

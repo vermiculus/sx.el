@@ -816,6 +816,7 @@
 "malkitzedek"
 "mamzer"
 "manuscripts"
+"maps"
 "marit-ayin"
 "maror"
 "marranos-conversos"

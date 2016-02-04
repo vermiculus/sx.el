@@ -95,6 +95,7 @@
 "bulk-cooking"
 "burger"
 "burgers"
+"burnt"
 "butchering"
 "butter"
 "buttermilk"

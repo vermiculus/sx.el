@@ -890,6 +890,7 @@
 "wp-get-archives"
 "wp-get-attachment-image"
 "wp-get-object-terms"
+"wp-get-shortlink"
 "wp-get-theme"
 "wp-handle-upload"
 "wp-head"

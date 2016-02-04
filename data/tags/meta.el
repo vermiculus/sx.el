@@ -159,6 +159,7 @@
 "bandwidth"
 "banner-message"
 "batch-edits"
+"be-nice-policy"
 "beginner"
 "beginners"
 "behavior"

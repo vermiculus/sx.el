@@ -979,6 +979,7 @@
 "plethysm"
 "point-set-topology"
 "point-set-topology"
+"pointwise"
 "poisson-geometry"
 "polar-body"
 "poly-gamma-function"

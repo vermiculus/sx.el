@@ -50,6 +50,7 @@
 "cin&#233;ma"
 "cinema"
 "citations"
+"commerce"
 "comparaison-de-langues"
 "comparatifs"
 "compl&#233;ments"

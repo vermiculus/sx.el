@@ -70,7 +70,6 @@
 "bouncing"
 "breakout"
 "breakout.c"
-"breakout.cpp"
 "brick"
 "bssize"
 "bubble"

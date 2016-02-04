@@ -1224,6 +1224,7 @@
 "risk-assessment"
 "rngs"
 "robust-statistics"
+"root-mean-square"
 "root-systems"
 "roots"
 "roots-of-unity"

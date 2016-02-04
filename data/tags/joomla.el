@@ -197,6 +197,7 @@
 "mod-languages"
 "modal"
 "model"
+"moderation"
 "module"
 "module-display"
 "module-manager"

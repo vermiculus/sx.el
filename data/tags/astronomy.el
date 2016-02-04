@@ -263,6 +263,7 @@
 "saturn"
 "science"
 "shooting-star"
+"singularity"
 "size"
 "soft-question"
 "software"

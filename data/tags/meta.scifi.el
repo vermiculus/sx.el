@@ -176,6 +176,7 @@
 "unanswered-questions"
 "up-votes"
 "user-accounts"
+"user-box"
 "user-interface"
 "users"
 "views"

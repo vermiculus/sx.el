@@ -2483,7 +2483,6 @@
 "sip"
 "sis-graphics"
 "skel"
-"skflow"
 "skype"
 "skype-for-business"
 "sleep"
