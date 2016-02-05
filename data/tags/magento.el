@@ -576,6 +576,7 @@
 "management"
 "manufacturer"
 "massaction"
+"mcrypt"
 "media"
 "memcache"
 "memcached"

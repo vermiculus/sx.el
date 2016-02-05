@@ -40,6 +40,7 @@
 "fist"
 "fitness"
 "flexibility"
+"flow"
 "fma"
 "footwork"
 "forms"

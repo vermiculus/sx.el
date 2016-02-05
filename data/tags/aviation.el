@@ -607,6 +607,7 @@
 "student-pilot"
 "sugar-volt"
 "supersonic"
+"surge-line"
 "svfr"
 "symbology"
 "tablet-in-cockpit"

@@ -68,6 +68,7 @@
 "hip-hop"
 "history"
 "house"
+"identify-this-album"
 "identify-this-sample"
 "identify-this-song"
 "identify-this-video"

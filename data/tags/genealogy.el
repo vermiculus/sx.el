@@ -134,6 +134,7 @@
 "family-tree"
 "family-tree-maker"
 "familysearch.org"
+"familytreedna.com"
 "filing-system"
 "finance"
 "findmypast"

@@ -110,6 +110,7 @@
 "nook"
 "nook-simple-touch"
 "notes"
+"ocr"
 "odyssey"
 "operating-system"
 "opf"

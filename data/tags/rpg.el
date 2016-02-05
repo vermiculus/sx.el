@@ -650,6 +650,7 @@
 "readied-action"
 "realm-management"
 "reign"
+"reincarnation"
 "relationship-maps"
 "relationship-mechanic"
 "religions-and-deities"

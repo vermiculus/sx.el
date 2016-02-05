@@ -214,5 +214,6 @@
 "wifi"
 "wire-antenna"
 "wiring"
+"wouxun"
 "yaesu"
 "yagi")

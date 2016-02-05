@@ -720,6 +720,7 @@
 "vpn"
 "wallpaper"
 "watch-os"
+"wav"
 "weather"
 "web"
 "web-apis"

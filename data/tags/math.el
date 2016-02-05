@@ -960,7 +960,6 @@
 "notation"
 "np-complete"
 "nt.number-theory"
-"number"
 "number-systems"
 "number-theory"
 "numeral-systems"

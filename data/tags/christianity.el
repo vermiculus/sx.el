@@ -172,7 +172,6 @@
 "christology"
 "christophany"
 "christopher-hitchens"
-"chronicles-of-the-kings"
 "chronology"
 "church-and-state"
 "church-building"

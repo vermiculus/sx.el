@@ -137,7 +137,6 @@
 "pairwise-testing"
 "people"
 "performance"
-"philosophy"
 "php"
 "phpunit"
 "planning"

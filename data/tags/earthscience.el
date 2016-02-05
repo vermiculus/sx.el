@@ -119,6 +119,7 @@
 "global-warming"
 "global-weirding"
 "great-oxidation-event"
+"greenhouse-gases"
 "greenland"
 "grid-spacing"
 "groundwater"

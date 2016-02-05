@@ -56,6 +56,7 @@
 "hardware"
 "headphones"
 "home"
+"hot"
 "hygiene"
 "jewelry"
 "junk-food"

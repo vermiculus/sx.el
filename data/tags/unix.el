@@ -2221,6 +2221,7 @@
 "window-title"
 "windows"
 "wine"
+"wineprefix"
 "winetricks"
 "wireless"
 "wireshark"

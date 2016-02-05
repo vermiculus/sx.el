@@ -152,7 +152,6 @@
 "cex.io"
 "cgminer"
 "chain-reorganization"
-"chain-tips"
 "chainwork"
 "change"
 "chargeback"
