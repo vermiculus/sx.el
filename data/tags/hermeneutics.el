@@ -138,6 +138,7 @@
 "idolatry"
 "inner-biblical-allusion"
 "inspiration"
+"intertextual"
 "intertextuality"
 "isaac"
 "isaiah"

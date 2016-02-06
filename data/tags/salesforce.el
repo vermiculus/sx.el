@@ -23,6 +23,7 @@
 "aggregate"
 "ajax"
 "ajax-toolkit"
+"allornone"
 "amazon"
 "amazon-s3"
 "amazone-rest-api-version"

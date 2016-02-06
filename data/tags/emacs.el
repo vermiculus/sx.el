@@ -271,6 +271,7 @@
 "indent"
 "indentation"
 "indirect-buffers"
+"inferior-buffer"
 "info"
 "inhibit"
 "init"

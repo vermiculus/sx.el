@@ -612,6 +612,7 @@
 "hoshanos"
 "hoshen-mishpat-civil-law"
 "hotzaa-carrying-reshuyot"
+"hovot-halevavot"
 "how-to"
 "hukot-hagoyim"
 "humble"

@@ -395,6 +395,7 @@
 "heresy"
 "heretic"
 "hermeneutics"
+"herod"
 "hindered-prayer"
 "hinduism"
 "historic-customs"

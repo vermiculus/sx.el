@@ -149,6 +149,7 @@
 "referee"
 "relegations"
 "road-racing"
+"road-running"
 "roller-derby"
 "rugby"
 "rugby-league"

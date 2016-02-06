@@ -4854,6 +4854,8 @@
 "technical-writing"
 "tee"
 "telecommunication"
+"telegram"
+"telegram-messenger"
 "telephony"
 "telnet"
 "temp"

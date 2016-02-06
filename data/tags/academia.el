@@ -305,6 +305,7 @@
 "professional-association"
 "professional-development"
 "professors"
+"professorship"
 "program-committee"
 "programming"
 "project-design"

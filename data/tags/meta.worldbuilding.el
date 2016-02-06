@@ -68,6 +68,7 @@
 "search"
 "site-evaluation"
 "site-promotion"
+"site-scope"
 "specific-answer"
 "specific-question"
 "specific-tag"

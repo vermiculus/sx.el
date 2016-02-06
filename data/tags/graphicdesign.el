@@ -46,6 +46,7 @@
 "ascii"
 "asset-management"
 "autocad"
+"autodesk-inventor"
 "autodesk-sketchbook-pro"
 "automation"
 "axonometric-projection"

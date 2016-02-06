@@ -854,6 +854,7 @@
 "sql"
 "sql-server"
 "squarespace"
+"srv-records"
 "ssl"
 "ssl-certificate"
 "standards"

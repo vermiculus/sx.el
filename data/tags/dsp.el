@@ -344,4 +344,5 @@
 "window-functions"
 "z-transform"
 "zero-padding"
-"zeros")
+"zeros"
+"zoh")

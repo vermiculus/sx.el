@@ -823,6 +823,7 @@
 "healer"
 "hedwig-and-the-angry-inch"
 "heist"
+"heist-2015"
 "helix"
 "hellboy"
 "hellboy-ii-golden-army"

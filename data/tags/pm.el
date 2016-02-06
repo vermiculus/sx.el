@@ -102,6 +102,7 @@
 "ms-project"
 "ms-project-2007"
 "ms-project-2010"
+"ms-project-2016"
 "ms-project2013"
 "multi-projects"
 "multi-team"

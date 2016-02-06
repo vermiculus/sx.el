@@ -58,7 +58,6 @@
 "site-design"
 "site-evaluation"
 "site-events"
-"site-name"
 "site-promotion"
 "specific-question"
 "stackexchange"

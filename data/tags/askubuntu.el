@@ -186,7 +186,6 @@
 "asterisk"
 "asterix"
 "asus"
-"at"
 "at-command"
 "ath5k"
 "ath9k"

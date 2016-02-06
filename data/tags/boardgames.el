@@ -370,6 +370,7 @@
 "mtg-modern"
 "mtg-multiplayer"
 "mtg-online"
+"mtg-unhinged"
 "mulligans"
 "munchkin"
 "munchkin-quest"
