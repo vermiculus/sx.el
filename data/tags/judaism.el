@@ -398,7 +398,6 @@
 "dvar-torah"
 "eat"
 "eating"
-"eating-before-prayer"
 "ecclesiastes"
 "edim-witnesses"
 "edus-testimony"

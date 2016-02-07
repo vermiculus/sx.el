@@ -125,6 +125,7 @@
 "gravitational-lensing"
 "gravitational-waves"
 "gravity"
+"habitable-zone"
 "habitation-zone"
 "hawking-radiation"
 "heat"

@@ -539,6 +539,7 @@
 "look-alikes"
 "lookalikes"
 "lyrics"
+"maening"
 "malapropism"
 "management"
 "mandative"

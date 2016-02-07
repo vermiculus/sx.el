@@ -83,6 +83,7 @@
 "dynamicfield"
 "ecommerce"
 "editor"
+"elementaction"
 "elementcriteriamodel"
 "elementeditor"
 "elementtype"

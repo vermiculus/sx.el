@@ -202,6 +202,7 @@
 "vertex-colors"
 "vertex-groups"
 "vertex-paint"
+"vertex-weights"
 "vertices"
 "video"
 "video-editor"

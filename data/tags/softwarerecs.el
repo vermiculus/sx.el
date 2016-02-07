@@ -70,6 +70,7 @@
 "cad"
 "calculator"
 "calendar"
+"call-graph"
 "camera"
 "car"
 "carddav"

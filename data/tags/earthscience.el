@@ -18,6 +18,7 @@
 "atmospheric-chemistry"
 "atmospheric-circulation"
 "atmospheric-dust"
+"atmospheric-optics"
 "atmospheric-radiation"
 "auroras"
 "axial-obliquity"

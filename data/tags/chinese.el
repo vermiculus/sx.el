@@ -125,6 +125,7 @@
 "speaking"
 "spelling"
 "spoken"
+"sport"
 "standard"
 "stroke-order"
 "strokes"

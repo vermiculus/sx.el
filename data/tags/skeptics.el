@@ -569,7 +569,6 @@
 "software"
 "sound"
 "soviet-union"
-"space"
 "space-flight"
 "spain"
 "sperm"

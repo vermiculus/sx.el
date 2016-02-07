@@ -847,7 +847,6 @@
 "dj-hero"
 "dk-country-returns"
 "dkc-tropical-freeze"
-"dlc"
 "dlc-quest"
 "dmc-devil-may-cry"
 "dnd-shadow-over-mystara"

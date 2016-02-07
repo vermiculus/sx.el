@@ -1498,6 +1498,7 @@
 "ninject"
 "node"
 "node-mysql"
+"node-red"
 "node.js"
 "nodebb"
 "nodejs"

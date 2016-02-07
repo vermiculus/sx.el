@@ -15,6 +15,7 @@
 "accounting"
 "acl"
 "actions"
+"activites"
 "activities"
 "activity"
 "address-labels"

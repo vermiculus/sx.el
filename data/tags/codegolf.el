@@ -31,6 +31,7 @@
 "c"
 "c#"
 "c++"
+"calculus"
 "calendar"
 "calendar"
 "card-games"

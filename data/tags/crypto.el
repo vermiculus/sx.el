@@ -95,7 +95,6 @@
 "distinguisher"
 "distinguishing-attack"
 "distributed-decryption"
-"dm-verity"
 "dpa"
 "dsa"
 "dual-ec-drbg"

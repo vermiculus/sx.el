@@ -796,7 +796,6 @@
 "sp-blitzindex"
 "spatial"
 "spatial-data"
-"spelling"
 "spexecutesql"
 "spider"
 "splitting"

@@ -157,7 +157,6 @@
 "charismatic"
 "charity"
 "children"
-"christ"
 "christ-myth-hypothesis"
 "christadelphians"
 "christian-history"

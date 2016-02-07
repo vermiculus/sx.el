@@ -266,6 +266,7 @@
 "treasure-tag"
 "tumblr"
 "twitter"
+"ubuntu"
 "uc-browser"
 "unlocking"
 "update"

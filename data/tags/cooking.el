@@ -605,6 +605,7 @@
 "ribs"
 "rice"
 "rice-cooker"
+"rice-wine"
 "ripe"
 "rising"
 "risotto"

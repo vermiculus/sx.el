@@ -246,7 +246,6 @@
 "webdev"
 "webforms"
 "webservice"
-"websphere"
 "where-used"
 "workflow"
 "worldserver"

@@ -140,6 +140,7 @@
 "cms"
 "codalab"
 "code"
+"codepen"
 "codeplex"
 "codeproject"
 "coderbyte"

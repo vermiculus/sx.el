@@ -420,6 +420,7 @@
 "liability"
 "licence"
 "lift"
+"lifting"
 "light-sport-aircraft"
 "lighter-than-air"
 "lightning"

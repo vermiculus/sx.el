@@ -73,6 +73,7 @@
 "electronegativity"
 "electronic-configuration"
 "electrons"
+"electroplating"
 "electrostatic-energy"
 "elemental-analysis"
 "elements"
