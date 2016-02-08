@@ -930,7 +930,6 @@
 "here-maps"
 "heroku"
 "heron-mapping-client"
-"heterogeneous-column"
 "hexagon-binning"
 "hexbinning"
 "hgt"

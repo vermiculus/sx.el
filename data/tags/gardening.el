@@ -185,6 +185,7 @@
 "heirloom"
 "herbicide"
 "herbs"
+"hibiscus"
 "holiday-cactus"
 "honey-locust"
 "hoses"

@@ -240,7 +240,6 @@
 "form-field-validation"
 "form-submission"
 "form-validation"
-"formbuilder"
 "forms"
 "forum"
 "frontpage"

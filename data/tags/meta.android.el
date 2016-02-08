@@ -45,6 +45,7 @@
 "flagging"
 "flags"
 "formatting"
+"help-center"
 "hyperlinks"
 "image"
 "interesting-tags"

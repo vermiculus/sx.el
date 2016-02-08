@@ -40,7 +40,6 @@
 "banning"
 "behavior"
 "blacklist-request"
-"blaming"
 "blog"
 "bookmark"
 "bounties"
@@ -513,7 +512,6 @@
 "winterbash"
 "winterbash-2014"
 "winterbash-2015"
-"witch-burning"
 "wrong-answers"
 "xy-problem"
 "yearling-badge")

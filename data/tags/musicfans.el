@@ -113,6 +113,7 @@
 "nina-simone"
 "norman-cook"
 "number-ones"
+"opera"
 "p-funk"
 "parliament"
 "parody"

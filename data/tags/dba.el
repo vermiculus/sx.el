@@ -630,6 +630,7 @@
 "pgpool"
 "php"
 "phpmyadmin"
+"phppgadmin"
 "physical-design"
 "pivot"
 "pivot-table"

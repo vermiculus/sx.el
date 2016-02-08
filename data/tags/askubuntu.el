@@ -2379,6 +2379,7 @@
 "sbuild"
 "scale-mode"
 "scaling"
+"scan"
 "scanner"
 "scanning"
 "scanning"

@@ -94,6 +94,7 @@
 "fasting"
 "festivals"
 "food"
+"funeral"
 "gandhari"
 "gandharva"
 "ganesh-chaturthi"

@@ -191,6 +191,7 @@
 "r"
 "random-forest"
 "ranking"
+"rbm"
 "recommendation"
 "recursive-partitioning"
 "reference-request"

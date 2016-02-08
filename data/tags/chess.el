@@ -67,7 +67,6 @@
 "chess-clocks"
 "chess-computers"
 "chess-engines"
-"chess-history"
 "chess-players"
 "chess-psychology"
 "chess-software"

@@ -14,6 +14,7 @@
 "alsa"
 "amazon"
 "andengine"
+"andorid"
 "android"
 "android-activity"
 "android-alertdialog"

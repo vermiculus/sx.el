@@ -357,6 +357,7 @@
 "junction"
 "junction-box"
 "kerdi"
+"kerosene"
 "kitchen"
 "kitchen-counters"
 "kitchen-sink"

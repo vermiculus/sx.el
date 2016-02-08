@@ -1221,7 +1221,6 @@
 "social-science"
 "softmax"
 "software"
-"software-recommendation"
 "sources"
 "sources"
 "spark-mllib"

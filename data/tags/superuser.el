@@ -331,7 +331,6 @@
 "at-commands"
 "ata"
 "atapi"
-"atheros"
 "athlon"
 "ati"
 "ati-catalyst"

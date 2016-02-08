@@ -746,6 +746,7 @@
 "lan"
 "language"
 "languages"
+"latex"
 "launcher"
 "launcherpro"
 "lava-iris-x1-grand"

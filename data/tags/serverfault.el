@@ -887,7 +887,6 @@
 "ecryptfs"
 "edb"
 "edirectory"
-"editor"
 "efs"
 "eicar-test-string"
 "eigrp"

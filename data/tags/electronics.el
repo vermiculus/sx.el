@@ -455,7 +455,6 @@
 "drive-strength"
 "driver"
 "drone"
-"dsl-filter"
 "dsp"
 "dspic"
 "dual"

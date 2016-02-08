@@ -674,6 +674,7 @@
 "movies"
 "mp3"
 "ms-money"
+"msdn"
 "multi-factor-auth"
 "multiple-sign-in"
 "music"

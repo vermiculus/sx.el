@@ -148,6 +148,7 @@
 "drivetrain"
 "drivetrain-slipping"
 "dropouts"
+"drum-brakes"
 "dynamo"
 "dynamo-hub"
 "ebike"
