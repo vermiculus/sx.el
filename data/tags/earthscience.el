@@ -119,6 +119,7 @@
 "global-warming"
 "global-warming"
 "global-weirding"
+"gravity"
 "great-oxidation-event"
 "greenhouse-gases"
 "greenland"

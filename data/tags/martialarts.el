@@ -81,6 +81,7 @@
 "krav-maga"
 "kung-fu"
 "legal"
+"luta-livre"
 "medical-advice"
 "meditation"
 "mentality"

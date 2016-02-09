@@ -467,6 +467,7 @@
 "rendering"
 "repl"
 "replace"
+"require"
 "restclient"
 "revert-buffer"
 "rgrep"

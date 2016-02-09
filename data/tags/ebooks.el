@@ -77,7 +77,6 @@
 "indesign"
 "instapaper"
 "ios"
-"iphone"
 "isbn"
 "kdp"
 "kf8"

@@ -50,6 +50,7 @@
 "brahmins"
 "bramha"
 "brihadaranyaka-upanishad"
+"brihaspati"
 "buddhism"
 "calendar"
 "carvaka"

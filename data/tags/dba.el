@@ -14,6 +14,7 @@
 "alt-linux"
 "alter-database"
 "alter-table"
+"alwaysencrypted"
 "alwayson"
 "amazon-ec2"
 "amazon-linux"

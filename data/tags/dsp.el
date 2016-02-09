@@ -178,6 +178,7 @@
 "linear-prediction"
 "linear-systems"
 "local-features"
+"localization"
 "lowpass-filter"
 "lpc"
 "machine-learning"

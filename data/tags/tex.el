@@ -469,6 +469,7 @@
 "fmtutil"
 "fncychap"
 "folders"
+"folding"
 "font"
 "font-encodings"
 "font-expansion"

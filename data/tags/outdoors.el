@@ -415,6 +415,8 @@
 "waterproof-clothing"
 "waterproofing"
 "weather"
+"wet-clothes"
+"wet-equipment"
 "whitewater-rafting"
 "widgeteering"
 "wild-boar"

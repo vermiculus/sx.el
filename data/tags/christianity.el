@@ -913,7 +913,6 @@
 "translation"
 "transubstantiation"
 "tree-of-life"
-"tribes-of-israel"
 "tribulation"
 "trinitarian"
 "trinity"

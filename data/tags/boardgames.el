@@ -96,6 +96,7 @@
 "castaways"
 "castle-panic"
 "castle-ravenloft"
+"cat-tower"
 "catacombs"
 "catan"
 "catan-card-game"

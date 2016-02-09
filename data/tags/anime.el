@@ -181,6 +181,7 @@
 "coppelion"
 "copyright"
 "corpse-party"
+"cosplay"
 "cosprayers"
 "cowboy-bebop"
 "crayon-shin-chan"

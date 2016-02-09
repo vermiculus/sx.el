@@ -72,6 +72,7 @@
 "duct-tape-coding"
 "electrical-engineering"
 "encode"
+"encryption"
 "error-correction"
 "f#"
 "factorial"

@@ -510,6 +510,7 @@
 "pushfit"
 "putty"
 "pvc"
+"quartz"
 "quietrock"
 "radiant-barrier"
 "radiant-heating"

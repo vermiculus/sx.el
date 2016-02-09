@@ -58,6 +58,7 @@
 "hygiene"
 "jewelry"
 "junk-food"
+"keys"
 "kitchen"
 "knives"
 "labeling"

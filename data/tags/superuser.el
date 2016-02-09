@@ -1856,6 +1856,7 @@
 "glasswire"
 "glib"
 "glibc"
+"gliffy"
 "global"
 "globbing"
 "glusterfs"

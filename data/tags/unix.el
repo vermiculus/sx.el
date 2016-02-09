@@ -1992,6 +1992,7 @@
 "tiling-wm"
 "time"
 "time-command"
+"time-utility"
 "timeout"
 "timestamps"
 "timezone"
