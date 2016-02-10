@@ -110,7 +110,6 @@
 "diacritical-marks"
 "dialect"
 "dictionaries"
-"diff"
 "difference"
 "diminutive"
 "direct-object"

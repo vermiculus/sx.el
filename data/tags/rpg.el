@@ -398,6 +398,7 @@
 "immediate-interrupt"
 "immediate-reaction"
 "immobilized"
+"immolator"
 "immunities"
 "implements"
 "improved-grab"

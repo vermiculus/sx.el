@@ -1085,7 +1085,6 @@
 "odata"
 "odt"
 "off-shore"
-"offer"
 "offline"
 "offshore"
 "old-software"

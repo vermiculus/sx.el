@@ -833,7 +833,6 @@
 "open-source"
 "opencl"
 "opendirectoryd"
-"opensource"
 "openssl"
 "opera"
 "optical-drive"

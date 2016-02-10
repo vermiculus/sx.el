@@ -43,6 +43,7 @@
 "fan"
 "fire"
 "flip-flop"
+"flip-flop"
 "food"
 "food-safety"
 "furniture"

@@ -202,7 +202,6 @@
 "reaction-control"
 "reaction-coordinate"
 "reaction-mechanism"
-"reaction-rate"
 "reactivity"
 "recrystallization"
 "redox"

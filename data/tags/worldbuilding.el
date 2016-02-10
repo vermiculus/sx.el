@@ -10,7 +10,6 @@
 "alternate-world"
 "alternate-worlds"
 "altitude"
-"anatomically-correct"
 "ancient-history"
 "android"
 "animals"

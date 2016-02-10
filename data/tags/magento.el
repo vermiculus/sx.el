@@ -469,6 +469,7 @@
 "javascript"
 "join"
 "join-table"
+"joomlart"
 "jquery"
 "js"
 "js-css"

@@ -4,7 +4,6 @@
 "asking-questions"
 "bad-tags"
 "badges"
-"blacklisted-users"
 "bounty"
 "bug"
 "chat"

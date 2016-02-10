@@ -367,6 +367,7 @@
 "mtg-cube"
 "mtg-drafting"
 "mtg-history"
+"mtg-joke-cards"
 "mtg-manabase"
 "mtg-modern"
 "mtg-multiplayer"

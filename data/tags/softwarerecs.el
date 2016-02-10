@@ -207,6 +207,7 @@
 "emoji"
 "emulator"
 "encryption"
+"english"
 "enterprise-portal"
 "epiphany"
 "epub"

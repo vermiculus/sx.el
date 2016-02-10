@@ -50,6 +50,7 @@
 "aircraft-limitations"
 "aircraft-maintenance"
 "aircraft-manufacturer"
+"aircraft-marking"
 "aircraft-naming"
 "aircraft-operations"
 "aircraft-order"

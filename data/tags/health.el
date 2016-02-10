@@ -23,6 +23,7 @@
 "antibiotics"
 "anticonvulsants"
 "antidepressants"
+"antihistamines"
 "anus"
 "anxiety-disorders"
 "arteries"
@@ -220,7 +221,6 @@
 "lipids"
 "liquids"
 "liver"
-"lumps"
 "lungs"
 "lyme-disease"
 "lymph"
@@ -240,6 +240,7 @@
 "menstrual-cycle"
 "mental-health"
 "metabolism"
+"microcephaly"
 "micronutrients"
 "migraine"
 "milk"
@@ -372,6 +373,7 @@
 "tendons"
 "tenocyte"
 "terminology"
+"test"
 "testosterone"
 "thyroid"
 "tingling"
@@ -410,4 +412,5 @@
 "wound"
 "wound-care"
 "wpw-syndrome"
-"wrist")
+"wrist"
+"zika-virus")

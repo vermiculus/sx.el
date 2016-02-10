@@ -311,6 +311,7 @@
 "subdomain"
 "subfolder"
 "switch"
+"system-status"
 "table"
 "table-field"
 "tag"

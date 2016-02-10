@@ -593,6 +593,7 @@
 "sill"
 "sink"
 "sinkhole"
+"sip"
 "skirting"
 "skylight"
 "slab"
@@ -761,6 +762,7 @@
 "wooden-furniture"
 "woodstove"
 "woodworking"
+"workmanship"
 "workshop"
 "wring"
 "yurt")

@@ -161,7 +161,6 @@
 "support"
 "suspension"
 "swag"
-"tag"
 "tag-blacklist-request"
 "tag-cleanup"
 "tag-synonyms"

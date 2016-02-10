@@ -81,6 +81,7 @@
 "bitcoin-client"
 "bitcoin-core"
 "bitcoin-core-version"
+"bitcoin-credit-card"
 "bitcoin-days-destroyed"
 "bitcoin-foundation"
 "bitcoin-literature"
