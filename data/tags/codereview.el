@@ -54,6 +54,7 @@
 "aspect-oriented"
 "assembly"
 "assertions"
+"astropy"
 "async"
 "async-await"
 "async.js"

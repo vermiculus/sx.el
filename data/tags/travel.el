@@ -1576,6 +1576,7 @@
 "taiwanese-citizens"
 "tajik-citizens"
 "tajikistan"
+"tallinja-cards"
 "tallinn"
 "tam-airlines"
 "tamil-nadu"

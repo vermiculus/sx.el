@@ -959,6 +959,7 @@
 "such"
 "suffix"
 "suffixes"
+"superfluity"
 "superlative"
 "superscript"
 "suppletive"

@@ -1207,6 +1207,7 @@
 "tutorials"
 "tv"
 "tvos"
+"tvos"
 "twain"
 "tweaks"
 "tweetbot"

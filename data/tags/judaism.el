@@ -124,6 +124,7 @@
 "bamidbar-numbers-book-of"
 "bamidbar-numbers-bookof"
 "bamidbar-parsha"
+"bamot"
 "bar-bas-bat-mitzvah"
 "bar-kochba"
 "bar-mitzvah"

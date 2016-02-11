@@ -12,7 +12,6 @@
 "arm"
 "array"
 "assembly"
-"assmebly"
 "ast"
 "atmel"
 "automation"

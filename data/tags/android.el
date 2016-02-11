@@ -683,6 +683,7 @@
 "import"
 "in-app-purchase"
 "inbox-by-gmail"
+"infinix-hot-2"
 "information"
 "init.d"
 "input-methods"

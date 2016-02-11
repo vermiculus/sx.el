@@ -241,6 +241,7 @@
 "nist"
 "non-repudiation"
 "nonce"
+"norx"
 "notation"
 "nsa"
 "ntru"

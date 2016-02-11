@@ -514,6 +514,7 @@
 "sound"
 "source"
 "spacemacs"
+"spam"
 "speedbar"
 "spell-checking"
 "spreadsheet"

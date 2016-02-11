@@ -1506,6 +1506,7 @@
 "sharknado"
 "sharktopus-vs-pteracuda"
 "she-hulk"
+"she-ra"
 "sherlock"
 "shield"
 "shielding"

@@ -667,7 +667,6 @@
 "postgresql-fdw"
 "postgresql-performance"
 "postgresql-xl"
-"postgrsql-9.4"
 "power-architect"
 "powershell"
 "prepared-statement"

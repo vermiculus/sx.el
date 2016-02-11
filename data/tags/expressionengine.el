@@ -496,6 +496,7 @@
 "signup"
 "simple-commerce"
 "simple-search"
+"single-entry"
 "single-sign-on"
 "site"
 "site-preferences"

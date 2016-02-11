@@ -504,7 +504,6 @@
 "gaussian-elimination"
 "gch"
 "gelfand-duality"
-"genera"
 "general-relativity"
 "general-topology"
 "generalized-functions"

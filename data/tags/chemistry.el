@@ -169,6 +169,7 @@
 "orbitals"
 "organic-chemistry"
 "organometallic-compounds"
+"organosilicon-compounds"
 "organosulfur-compounds"
 "osmosis"
 "oxidation-state"

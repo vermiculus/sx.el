@@ -80,7 +80,6 @@
 "site-evaluation"
 "site-policy"
 "site-promotion"
-"sp"
 "specific-answer"
 "specific-question"
 "stackexchange"

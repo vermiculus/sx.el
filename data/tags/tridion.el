@@ -115,6 +115,7 @@
 "importexportservice"
 "infrastructure"
 "installation"
+"installation-wizard"
 "itemselector"
 "java"
 "javascript"
