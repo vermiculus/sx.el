@@ -575,6 +575,7 @@
 "trick-taking-games"
 "trivial-pursuit"
 "trouble"
+"trumpet"
 "tsumego"
 "tsuro"
 "turn-order"

@@ -7,6 +7,7 @@
 "authority"
 "backlog"
 "blocker"
+"board"
 "books"
 "budget"
 "bugs"

@@ -113,6 +113,7 @@
 "resources"
 "romanization"
 "sandhi"
+"sarcasm"
 "saying"
 "seal"
 "sentence-structure"

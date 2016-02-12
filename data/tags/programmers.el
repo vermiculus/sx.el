@@ -835,6 +835,7 @@
 "jruby"
 "js"
 "jsf"
+"jsfiddle"
 "json"
 "jsp"
 "junior"

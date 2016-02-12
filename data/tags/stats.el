@@ -1095,7 +1095,6 @@
 "rayleigh"
 "rbf-network"
 "rbm"
-"rcpp"
 "real-time"
 "recommender-system"
 "record-linkage"

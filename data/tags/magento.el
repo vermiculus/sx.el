@@ -206,6 +206,7 @@
 "country-regions"
 "coupon"
 "coupon-codes"
+"crawler"
 "create"
 "create-invoice"
 "create-order"

@@ -551,7 +551,6 @@
 "stalingrad"
 "statistics"
 "steppe-nomads"
-"stone-age"
 "strategy"
 "submarine"
 "sumer"

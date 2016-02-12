@@ -7,6 +7,7 @@
 "aparencia"
 "apenas-link"
 "api"
+"aplicativos"
 "area51"
 "asking-questions"
 "atividades-recentes"

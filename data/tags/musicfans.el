@@ -122,6 +122,7 @@
 "performance"
 "personnel"
 "pharrell-williams"
+"piano"
 "pink-floyd"
 "playlists"
 "poe"

@@ -215,7 +215,6 @@
 "non-sef-url"
 "one-click-updates"
 "onuseraftersavegroup"
-"open"
 "overrides"
 "packaging"
 "pagination"

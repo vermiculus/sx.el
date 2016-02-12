@@ -58,6 +58,7 @@
 "search"
 "site-evaluation"
 "site-promotion"
+"social-media"
 "specific-question"
 "spelling"
 "stackexchange"

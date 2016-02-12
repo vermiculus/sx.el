@@ -59,6 +59,7 @@
 "site-evaluation"
 "site-events"
 "site-promotion"
+"social-media"
 "specific-question"
 "stackexchange"
 "statistics"

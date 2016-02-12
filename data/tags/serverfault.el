@@ -1008,7 +1008,6 @@
 "fedora-21"
 "fedora-22"
 "fencing"
-"fetchmail"
 "ffmpeg"
 "fhs"
 "fiber"

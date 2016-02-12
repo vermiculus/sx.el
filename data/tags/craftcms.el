@@ -49,6 +49,7 @@
 "controller"
 "conversion"
 "cookies"
+"count"
 "cp"
 "cp-dashboard"
 "craft-features"

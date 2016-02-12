@@ -254,6 +254,7 @@
 "perl"
 "permissions"
 "php"
+"pi-1"
 "pi-2"
 "pi-a"
 "pi-a+"

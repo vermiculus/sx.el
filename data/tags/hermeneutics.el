@@ -294,6 +294,7 @@
 "source-criticism"
 "speaker-identification"
 "spirit"
+"spirit-of-jesus"
 "symbolism"
 "symbology"
 "synoptic-problem"

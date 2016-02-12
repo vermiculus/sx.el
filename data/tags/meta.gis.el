@@ -96,6 +96,7 @@
 "tag-wikis"
 "tagging"
 "tags"
+"teaching"
 "toc"
 "top-7"
 "tour"

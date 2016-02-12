@@ -404,6 +404,7 @@
 "sentence-usage"
 "sentences"
 "silent-letter"
+"since"
 "singing"
 "singular"
 "singular-they"

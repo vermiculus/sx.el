@@ -101,7 +101,6 @@
 "gandharva"
 "ganesh-chaturthi"
 "ganesha"
-"gang"
 "ganga"
 "garuda"
 "garuda-purana"

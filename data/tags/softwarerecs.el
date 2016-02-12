@@ -718,6 +718,7 @@
 "virtual-desktop"
 "virtual-keyboard"
 "virtual-machine"
+"virtual-tool"
 "virtualization"
 "virus-scanner"
 "visual-design"
