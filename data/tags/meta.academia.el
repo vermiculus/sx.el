@@ -48,6 +48,7 @@
 "interesting-tags"
 "localized-questions"
 "login"
+"logo"
 "markdown"
 "meta"
 "migration"

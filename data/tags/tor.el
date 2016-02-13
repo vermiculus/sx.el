@@ -49,7 +49,6 @@
 "email"
 "encryption"
 "entry-node"
-"equipment"
 "error"
 "exit-node"
 "exit-policies"

@@ -69,6 +69,5 @@
 "user-interface"
 "users"
 "vote-to-close"
-"vote-to-delete"
 "votes"
 "voting")

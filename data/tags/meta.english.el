@@ -68,6 +68,7 @@
 "google"
 "guidance"
 "hats"
+"homework-questions"
 "hyperlinks"
 "images"
 "interesting-tags"

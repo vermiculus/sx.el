@@ -673,7 +673,6 @@
 "ventricles"
 "ventricular-system"
 "vertebrates"
-"vespidae"
 "vessel"
 "vestigial"
 "virology"

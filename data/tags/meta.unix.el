@@ -100,7 +100,6 @@
 "status-review"
 "suggested-edits"
 "support"
-"synonym-request"
 "syntax-highlighting"
 "tag-synonyms"
 "tag-tips"

@@ -48,7 +48,6 @@
 "questions"
 "recent-activity"
 "reputation"
-"resource"
 "retagging"
 "review"
 "rss"

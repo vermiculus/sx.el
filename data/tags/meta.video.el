@@ -59,7 +59,6 @@
 "status-planned"
 "status-reproduced"
 "status-review"
-"superuser"
 "support"
 "tag-request"
 "tag-synonyms"

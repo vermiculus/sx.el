@@ -29,7 +29,6 @@
 "featured"
 "flagging"
 "formatting"
-"future"
 "graduation"
 "help-center"
 "history"

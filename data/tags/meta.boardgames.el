@@ -1,5 +1,4 @@
 ("accepted-answer"
-"advertising"
 "allowed-topics"
 "answers"
 "asking-questions"
@@ -73,6 +72,7 @@
 "subjective"
 "support"
 "tag-synonyms"
+"tag-wiki"
 "tagging"
 "tags"
 "top-7"

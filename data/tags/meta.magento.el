@@ -20,7 +20,6 @@
 "discussion"
 "documentation"
 "down-votes"
-"duplicate-questions"
 "editing"
 "election"
 "etiquette"

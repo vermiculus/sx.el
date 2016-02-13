@@ -87,7 +87,6 @@
 "answer-order"
 "answer-preview"
 "answer-quality"
-"answer-summary"
 "answered-questions"
 "answers"
 "answers-as-comments"

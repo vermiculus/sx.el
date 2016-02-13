@@ -68,6 +68,7 @@
 "argento-soma"
 "aria"
 "arjuna"
+"arpeggio-of-blue-steel"
 "arslan-senki"
 "assassination-classroom"
 "atelier"

@@ -20,7 +20,6 @@
 "dead-mans-hand"
 "dealer"
 "dealing"
-"deepstack"
 "drawing"
 "equity"
 "etiquette"

@@ -61,8 +61,6 @@
 "site-definition"
 "site-evaluation"
 "site-promotion"
-"site-recommendation"
-"spam"
 "specific-question"
 "stackexchange"
 "statistics"

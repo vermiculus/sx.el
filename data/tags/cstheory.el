@@ -145,7 +145,6 @@
 "dfa"
 "dichotomy-theorems"
 "directed-acyclic-graph"
-"discrepancy"
 "disjoint-paths"
 "distributed-systems"
 "dm.discrete-mathematics"

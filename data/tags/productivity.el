@@ -1,5 +1,4 @@
 ("addiction"
-"adhd"
 "android"
 "anki"
 "arabic"
@@ -130,7 +129,6 @@
 "podcast"
 "pomodoro-technique"
 "positive-psychology"
-"potential"
 "printing"
 "prioritization"
 "priority"

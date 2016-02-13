@@ -161,7 +161,6 @@
 "pacing"
 "pages"
 "paper"
-"paraphrase"
 "parody"
 "passive-voice"
 "perspective"

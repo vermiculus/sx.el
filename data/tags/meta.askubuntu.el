@@ -197,6 +197,7 @@
 "user-interface"
 "users"
 "virtualbox"
+"vote-limit"
 "vote-retraction"
 "vote-to-close"
 "vote-to-delete"

@@ -74,7 +74,6 @@
 "suggested-edits"
 "suggestions"
 "support"
-"tag-blacklist"
 "tag-synonyms"
 "tag-wiki"
 "tagging"

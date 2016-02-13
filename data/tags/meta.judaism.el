@@ -1,7 +1,6 @@
 ("7-essential-metas"
 "about-page"
 "accepted-answer"
-"accessibility"
 "advertising"
 "android-app"
 "answer-quality"

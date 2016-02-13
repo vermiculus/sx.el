@@ -137,6 +137,7 @@
 "connect-four"
 "conquest-lcg"
 "conquest-of-planet-earth"
+"constantinopolis"
 "cooperation"
 "copyright"
 "core-worlds"

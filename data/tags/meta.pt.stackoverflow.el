@@ -180,7 +180,6 @@
 "status-norepro"
 "status-planned"
 "status-pronto"
-"status-ready"
 "status-recusado"
 "status-repro"
 "status-reproduced"

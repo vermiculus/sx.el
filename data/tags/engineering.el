@@ -158,7 +158,6 @@
 "highway-engineering"
 "home-improvement"
 "hss"
-"human-machine-interaction"
 "hvac"
 "hydraulics"
 "hydrology"

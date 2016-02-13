@@ -97,7 +97,6 @@
 "diet-tools"
 "dips"
 "disability"
-"diving"
 "doms"
 "dumbbells"
 "earbuds"

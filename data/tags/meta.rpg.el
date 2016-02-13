@@ -11,7 +11,6 @@
 "bounty"
 "bug"
 "burninate-request"
-"canonical-questions"
 "chat"
 "close-reasons"
 "closed-questions"

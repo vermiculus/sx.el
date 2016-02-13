@@ -53,7 +53,6 @@
 "flagging"
 "formatting"
 "fundamentals"
-"h2o"
 "hardware"
 "help-center"
 "homework"

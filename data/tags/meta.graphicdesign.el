@@ -72,7 +72,6 @@
 "status-reproduced"
 "status-review"
 "support"
-"tag-alerts"
 "tag-synonyms"
 "tagging"
 "tags"

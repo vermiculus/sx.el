@@ -37,7 +37,6 @@
 "gamejam"
 "gamejam-2013-fall"
 "gamejam-2014-winter"
-"gamification"
 "hyperlinks"
 "interesting-tags"
 "internationalization"

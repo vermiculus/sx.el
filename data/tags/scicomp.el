@@ -254,7 +254,6 @@
 "quadrature"
 "quantum-mechanics"
 "r"
-"radial-basis-functions"
 "random"
 "random-number-generation"
 "random-sampling"

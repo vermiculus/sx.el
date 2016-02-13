@@ -71,7 +71,6 @@
 "tag-wiki"
 "tagging"
 "tags"
-"twitter"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

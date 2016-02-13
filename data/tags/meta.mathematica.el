@@ -55,6 +55,7 @@
 "review"
 "rss"
 "search"
+"site-organization"
 "site-promotion"
 "site-tools"
 "specific-question"

@@ -1,5 +1,4 @@
 ("accepted-answer"
-"ads"
 "answers"
 "badges"
 "bounty"

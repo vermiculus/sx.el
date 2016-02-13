@@ -78,7 +78,6 @@
 "images"
 "incorrect-answers"
 "interesting-tags"
-"joke"
 "language"
 "late-answers"
 "legal"
@@ -187,6 +186,5 @@
 "votes"
 "voting"
 "websites"
-"welcome"
 "winterbash"
 "wrong-answers")

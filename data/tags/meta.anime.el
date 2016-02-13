@@ -75,7 +75,6 @@
 "site-design"
 "site-evaluation"
 "site-promotion"
-"spam"
 "specific-question"
 "spoilers"
 "stackexchange"

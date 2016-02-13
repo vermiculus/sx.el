@@ -551,6 +551,7 @@
 "light-emitting-diodes"
 "light-pollution"
 "lightning"
+"ligo"
 "linear-algebra"
 "linear-systems"
 "linearized-theory"

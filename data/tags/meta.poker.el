@@ -43,7 +43,6 @@
 "retagging"
 "rss"
 "search"
-"site-definition"
 "site-evaluation"
 "site-promotion"
 "software"

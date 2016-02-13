@@ -32,7 +32,6 @@
 "featured"
 "first-posts"
 "flagging"
-"font"
 "formatting"
 "homework"
 "hyperlinks"

@@ -32,7 +32,6 @@
 "election"
 "etiquette"
 "evidence"
-"evolution"
 "exact-duplicates"
 "faq"
 "favorites"

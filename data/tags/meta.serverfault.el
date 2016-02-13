@@ -91,7 +91,6 @@
 "on-topic"
 "openid"
 "poll"
-"product-support"
 "profile-page"
 "purchasing"
 "question-title"

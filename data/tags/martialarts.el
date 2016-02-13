@@ -18,7 +18,6 @@
 "breaking-boards"
 "breathing"
 "capoeira"
-"cardio"
 "certification"
 "children"
 "chokes"

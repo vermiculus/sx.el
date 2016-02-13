@@ -49,7 +49,6 @@
 "formatting"
 "help-center"
 "hyperlinks"
-"hypothetical-questions"
 "interesting-tags"
 "irony"
 "login"
