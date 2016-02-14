@@ -216,7 +216,6 @@
 "tips"
 "tree-traversal"
 "trigonometry"
-"twitter"
 "two-counter-machine"
 "typography"
 "underhanded"

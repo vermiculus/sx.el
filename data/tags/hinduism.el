@@ -284,7 +284,6 @@
 "sundaraghandam"
 "superstitions"
 "surya"
-"sutras"
 "swayamvar"
 "symbolism"
 "symbols"

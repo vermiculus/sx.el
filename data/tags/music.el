@@ -112,7 +112,6 @@
 "diatonic-harmony"
 "didgeridoo"
 "digital-piano"
-"discussions"
 "dissonance"
 "distortion"
 "dj"

@@ -28,6 +28,7 @@
 "alt-medicines"
 "alternative-medicine"
 "amazon"
+"america"
 "anatomy"
 "ancient-rome"
 "andrew-wakefield"

@@ -977,7 +977,6 @@
 "plane-geometry"
 "plethory"
 "plethysm"
-"poincare"
 "point-set-topology"
 "point-set-topology"
 "poisson-geometry"

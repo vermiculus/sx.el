@@ -137,7 +137,6 @@
 "gender"
 "general-buddhism"
 "gift"
-"glossary"
 "goals"
 "god"
 "heavens"

@@ -742,6 +742,7 @@
 "latex"
 "launcher"
 "launcherpro"
+"lava-iris-x1"
 "lava-iris-x1-grand"
 "led"
 "lenovo"

@@ -1181,7 +1181,6 @@
 "metacity"
 "metasploit"
 "metric"
-"mezzanine"
 "microphone"
 "microsoft-word"
 "midi"

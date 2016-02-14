@@ -192,6 +192,7 @@
 "compound-poisson"
 "compression"
 "computational-statistics"
+"computer"
 "computer-vision"
 "computing"
 "concavity"

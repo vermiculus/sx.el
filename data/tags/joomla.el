@@ -302,5 +302,6 @@
 "xampp"
 "xmap"
 "xml"
+"xss"
 "zoo"
 "zoo-cck")

@@ -207,6 +207,7 @@
 "pantheon"
 "payment-processor"
 "paypal"
+"pci-compliance"
 "pcp"
 "pdf"
 "pending"

@@ -178,6 +178,7 @@
 "eventhandler"
 "example"
 "excel"
+"excellink"
 "experimental"
 "experimental-mathematics"
 "export"

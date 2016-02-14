@@ -221,6 +221,7 @@
 "version-control-systems"
 "vi-words"
 "vim-development"
+"vim-plug"
 "vim-windows"
 "vimball"
 "vimdiff"

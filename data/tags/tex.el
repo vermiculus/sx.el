@@ -1249,6 +1249,7 @@
 "swash"
 "sweave"
 "swf"
+"syllogism"
 "symbol"
 "symbols"
 "synctex"

@@ -156,6 +156,8 @@
 "cs50-ide-offline"
 "cs50-io"
 "cs50-library"
+"cs50-mario"
+"cs50-pset1"
 "cs50-pset2"
 "cs50-pset6"
 "cs50-shuttle"

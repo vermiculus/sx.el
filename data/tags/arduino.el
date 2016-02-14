@@ -103,7 +103,6 @@
 "ftdi"
 "fuses"
 "galileo"
-"gameduino"
 "gpio"
 "gps"
 "gsm"

@@ -130,7 +130,6 @@
 "structure"
 "style"
 "subtitles"
-"sugar"
 "swearing"
 "synonyms"
 "syntax"

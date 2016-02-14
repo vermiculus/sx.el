@@ -385,6 +385,7 @@
 "full-page-cache"
 "fulltext"
 "gallery"
+"gaslighting"
 "gd2"
 "geoip"
 "germany"
