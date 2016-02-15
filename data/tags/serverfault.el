@@ -663,7 +663,6 @@
 "dcom"
 "dcpromo"
 "dd"
-"dd-wrt"
 "ddclient"
 "ddns"
 "ddos"

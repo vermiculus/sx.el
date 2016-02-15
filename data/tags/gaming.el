@@ -231,6 +231,7 @@
 "audiosurf-2"
 "auditorium"
 "aura-kingdom"
+"aurora-4x"
 "autohotkey"
 "avadon-black-fortress"
 "avatar"

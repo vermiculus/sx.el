@@ -3966,6 +3966,7 @@
 "pull"
 "pulse-audio"
 "pulseaudio"
+"puphpet"
 "puppet"
 "puppylinux"
 "purge"

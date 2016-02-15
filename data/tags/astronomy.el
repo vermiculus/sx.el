@@ -265,6 +265,7 @@
 "shooting-star"
 "singularity"
 "size"
+"sky-survey"
 "soft-question"
 "software"
 "solar"

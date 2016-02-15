@@ -75,6 +75,7 @@
 "force-fields"
 "freestyle"
 "game-engine"
+"geodesic"
 "geometry"
 "gpu"
 "graph-editor"

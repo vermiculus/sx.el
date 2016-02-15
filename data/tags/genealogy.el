@@ -258,6 +258,7 @@
 "ohio"
 "oklahoma"
 "online"
+"ontario"
 "oregon"
 "organization"
 "palaeography"

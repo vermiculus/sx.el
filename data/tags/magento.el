@@ -179,6 +179,7 @@
 "compilation"
 "compiler"
 "component"
+"component-manager"
 "composer"
 "conditional-loading"
 "config"

@@ -16,6 +16,7 @@
 "base-conversion"
 "bash"
 "befunge"
+"bigint"
 "binary"
 "binary-matrix"
 "binary-tree"

@@ -148,6 +148,7 @@
 "crypto"
 "cs"
 "cs50-2015"
+"cs50-2016"
 "cs50-appliance"
 "cs50-discuss"
 "cs50-finance"

@@ -91,6 +91,7 @@
 "astronomy"
 "authorship"
 "automobile"
+"averah"
 "avoda-zara-idol-worship"
 "avodah-zarah"
 "avodath-hashem"

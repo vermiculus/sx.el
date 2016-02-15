@@ -206,6 +206,7 @@
 "tags"
 "terminal"
 "terminology"
+"tex"
 "text-generation"
 "text-objects"
 "the-silver-searcher"
