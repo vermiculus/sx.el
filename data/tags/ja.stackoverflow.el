@@ -621,6 +621,7 @@
 "tcsh"
 "templates"
 "tensorflow"
+"teraterm"
 "tesseract"
 "testing"
 "text-files"

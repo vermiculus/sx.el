@@ -322,7 +322,6 @@
 "picks"
 "pipe-organ"
 "pitch"
-"pitch-correction"
 "plucking"
 "polyrhythm"
 "pop-music"

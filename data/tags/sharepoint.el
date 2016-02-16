@@ -1091,6 +1091,7 @@
 "spquery"
 "spreadsheet"
 "sprequest"
+"spsecurity"
 "spsecuritytrimmedcontrol"
 "spservices"
 "spsite"

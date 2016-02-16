@@ -630,7 +630,6 @@
 "performance"
 "perl"
 "perl6"
-"permutation"
 "phalcon"
 "phonegap"
 "phonegap"

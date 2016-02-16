@@ -27,6 +27,7 @@
 "alumni"
 "apache"
 "apache2"
+"api"
 "append"
 "applance"
 "appliance"

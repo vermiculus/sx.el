@@ -1124,6 +1124,7 @@
 "far-cry-4"
 "far-cry-series"
 "farm-and-grow"
+"farm-heroes"
 "farming-simulator-2011"
 "farming-simulator-2013"
 "farming-simulator-2015"

@@ -254,6 +254,7 @@
 "symbols"
 "system-call"
 "thread"
+"thumb2"
 "tools"
 "tracing"
 "ubicon32"

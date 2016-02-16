@@ -227,6 +227,7 @@
 "plugin-embedder"
 "plugin-feedme"
 "plugin-guestentries"
+"plugin-hacksaw"
 "plugin-import"
 "plugin-jsonexpand"
 "plugin-printmaker"

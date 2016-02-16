@@ -158,6 +158,7 @@
 "bugs"
 "build-version"
 "bus-power"
+"caches"
 "caldav"
 "calendar"
 "calibre"

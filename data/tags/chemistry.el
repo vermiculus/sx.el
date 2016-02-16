@@ -89,7 +89,6 @@
 "esters"
 "eutectic"
 "everyday-chemistry"
-"exper"
 "experimental-chemistry"
 "experimental-technique"
 "explosives"

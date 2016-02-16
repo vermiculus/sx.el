@@ -876,7 +876,6 @@
 "stackedit"
 "stackoverflow"
 "statistics"
-"stats"
 "status"
 "sticky-notes"
 "storage"
