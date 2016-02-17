@@ -300,6 +300,7 @@
 "forex"
 "form-1040x"
 "form-1099"
+"form-1099-div"
 "form-1099-misc"
 "form-8606"
 "form-t4a"

@@ -1233,6 +1233,7 @@
 "purescript"
 "push"
 "puzzles"
+"pycharm"
 "pyqt4"
 "python"
 "python-3.x"

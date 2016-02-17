@@ -351,6 +351,7 @@
 "muharram"
 "mumin"
 "munafiq"
+"musafaha"
 "mushaf"
 "mushrikeen"
 "music"

@@ -88,7 +88,6 @@
 "giving-and-receiving"
 "godan-verbs"
 "grammar"
-"grammaryori"
 "grammaticalization"
 "greetings"
 "haiku"

@@ -154,6 +154,7 @@
 "sequences"
 "series"
 "set-theory"
+"sliderule"
 "software"
 "solving-polynomials"
 "special-needs-education"

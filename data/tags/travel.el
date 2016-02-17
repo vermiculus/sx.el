@@ -988,7 +988,6 @@
 "malta-citizens"
 "man"
 "manchester"
-"mangalore"
 "manhattan"
 "manhattan"
 "manila"

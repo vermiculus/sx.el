@@ -63,6 +63,7 @@
 "anti-semitism"
 "aphorisms-adages"
 "apocrypha"
+"apostasy"
 "appliances"
 "aqedat-yishak"
 "arabic"

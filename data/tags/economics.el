@@ -175,6 +175,7 @@
 "long-run"
 "macro"
 "macroeconomics"
+"marginal"
 "marketing"
 "markets"
 "markov-chain"

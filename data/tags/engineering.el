@@ -176,6 +176,7 @@
 "lasers"
 "liability"
 "licensure"
+"lifespan"
 "light-emitting-diodes"
 "linear-motors"
 "linkage"

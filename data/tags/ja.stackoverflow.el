@@ -112,7 +112,6 @@
 "classloader"
 "clockwork"
 "clojure"
-"cloud9"
 "cmake"
 "cocoapods"
 "cocos2d-x"

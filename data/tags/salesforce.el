@@ -46,6 +46,7 @@
 "apex-managed-sharing"
 "apex-param"
 "apex-sharing"
+"apex-trigger"
 "apex-webservice"
 "apexactionfunction"
 "apexinputfield"

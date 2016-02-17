@@ -89,6 +89,7 @@
 "external-script"
 "fabrik"
 "facebook"
+"falang"
 "fatal-error"
 "featured-articles"
 "features"

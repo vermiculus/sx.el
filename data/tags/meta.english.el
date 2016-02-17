@@ -16,6 +16,7 @@
 "blacklisted-keywords"
 "blog"
 "bounty"
+"bowdlerization"
 "bug"
 "canonical-post"
 "chat"

@@ -37,6 +37,7 @@
 "broadcast-encryption"
 "brute-force-attack"
 "camellia"
+"carter-wegman"
 "cbc"
 "cbc-mac"
 "ccm"

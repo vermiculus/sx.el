@@ -43,6 +43,7 @@
 "astrobiology"
 "astrodynamics"
 "astronaut-lifestyle"
+"astronaut-recruitment"
 "astronauts"
 "astronomy"
 "astrosat"

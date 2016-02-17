@@ -575,6 +575,7 @@
 "twitter-bootstrap"
 "twitter-search-2"
 "untagged"
+"up"
 "update"
 "updating"
 "upgrade"

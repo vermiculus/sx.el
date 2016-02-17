@@ -417,6 +417,7 @@
 "keepass"
 "kerberos"
 "kernel"
+"key"
 "key-exchange"
 "key-generation"
 "key-management"
