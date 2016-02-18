@@ -154,5 +154,6 @@
 "weight"
 "weight-lifting"
 "wing-chun"
+"women"
 "wrestling"
 "wrists")

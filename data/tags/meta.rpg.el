@@ -15,6 +15,7 @@
 "close-reasons"
 "closed-questions"
 "closing-questions"
+"code-of-conduct"
 "comments"
 "community-ads"
 "community-moderation"

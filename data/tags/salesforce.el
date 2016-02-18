@@ -81,6 +81,7 @@
 "asssertequals"
 "asyncapexjob"
 "asynchronous"
+"asynchronous-testing"
 "attachment"
 "aura"
 "aura-attribute"

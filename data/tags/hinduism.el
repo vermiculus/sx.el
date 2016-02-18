@@ -51,6 +51,7 @@
 "bramha"
 "brihadaranyaka-upanishad"
 "brihaspati"
+"buddha"
 "buddhism"
 "calendar"
 "carvaka"

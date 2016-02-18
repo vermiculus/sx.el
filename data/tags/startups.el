@@ -143,6 +143,7 @@
 "licensing"
 "liquidation"
 "llc"
+"logo"
 "low-capital"
 "ltd"
 "ltv"

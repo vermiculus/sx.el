@@ -71,6 +71,7 @@
 "category-group"
 "category-image-field"
 "category-name"
+"cdn"
 "ce-cache"
 "ce-image"
 "ce-string"

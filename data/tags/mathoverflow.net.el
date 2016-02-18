@@ -473,7 +473,6 @@
 "four-manifolds"
 "fourier-analysis"
 "fourier-transform"
-"fracpartial"
 "fractals"
 "fractional-calculus"
 "fractional-iteration"

@@ -836,6 +836,7 @@
 "resources"
 "retronyms"
 "reversed-conditional"
+"rewrite"
 "rhetoric"
 "rhetorical-devices"
 "rhotic"

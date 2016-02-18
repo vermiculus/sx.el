@@ -741,7 +741,6 @@
 "row-estimates"
 "row-level-security"
 "row-lock"
-"row-visibility"
 "running-totals"
 "san"
 "sap"

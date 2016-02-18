@@ -146,8 +146,6 @@
 "core"
 "core-modifications"
 "count"
-"country"
-"cpanel"
 "create"
 "crm"
 "cron"

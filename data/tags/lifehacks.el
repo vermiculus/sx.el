@@ -27,6 +27,7 @@
 "container"
 "cooking"
 "cooling"
+"diy"
 "door"
 "drinking"
 "drinks"
@@ -133,5 +134,6 @@
 "weather"
 "wifi"
 "winter"
+"wood"
 "work"
 "zipper")

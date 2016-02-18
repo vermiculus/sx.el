@@ -114,6 +114,7 @@
 "jargon"
 "jlpt"
 "joke"
+"jokes"
 "joyo-kanji"
 "jōyō-kanji"
 "kana"

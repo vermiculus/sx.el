@@ -1168,7 +1168,6 @@
 "text-input"
 "text-to-speech"
 "textedit"
-"texting"
 "textmate"
 "textwrangler"
 "theft-recovery"

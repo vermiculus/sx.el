@@ -293,6 +293,7 @@
 "resources"
 "ressources"
 "rule-of-thumb"
+"russe"
 "salutations"
 "science"
 "sens"

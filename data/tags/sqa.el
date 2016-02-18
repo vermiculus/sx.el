@@ -228,6 +228,7 @@
 "tools"
 "training"
 "tsung"
+"uft-12.52"
 "uiautomation"
 "unit-tests"
 "unix"

@@ -133,6 +133,7 @@
 "open-ended"
 "optimization"
 "outer-space"
+"outside-the-box"
 "packing"
 "palindrome"
 "pandigital-puzzle"

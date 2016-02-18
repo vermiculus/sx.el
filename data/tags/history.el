@@ -170,7 +170,6 @@
 "customs"
 "czech-republic"
 "czechoslovakia"
-"daily-life"
 "dark-ages"
 "date"
 "dating"

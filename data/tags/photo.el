@@ -656,6 +656,7 @@
 "magic-lantern"
 "magnification"
 "maintenance"
+"makeup"
 "mamiya"
 "manfrotto"
 "manual-flash"

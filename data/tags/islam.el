@@ -374,6 +374,7 @@
 "newborn"
 "nikah"
 "nikah-al-mutah"
+"nikak"
 "niqab"
 "nisab"
 "non-mahram"

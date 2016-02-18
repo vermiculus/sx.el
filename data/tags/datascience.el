@@ -195,6 +195,7 @@
 "reference-request"
 "regression"
 "regular-expressions"
+"regularization"
 "reinforcement-learning"
 "relational-dbms"
 "reproducibility"

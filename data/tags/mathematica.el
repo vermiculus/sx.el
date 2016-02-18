@@ -551,6 +551,7 @@
 "save"
 "scaling"
 "scheduling"
+"scidraw"
 "scoping"
 "script"
 "scripting"

@@ -1229,6 +1229,7 @@
 "radiation"
 "radio"
 "radiofrequency"
+"radiolocation"
 "rail-to-rail"
 "ram"
 "random"

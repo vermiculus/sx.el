@@ -118,6 +118,7 @@
 "bloody-monday"
 "bloody-monday-last-season"
 "blue-exorcist"
+"blue-gender"
 "blue-seed"
 "bobobo-bo-bo-bobo"
 "bodacious-space-pirates"

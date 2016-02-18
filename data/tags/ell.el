@@ -175,7 +175,6 @@
 "grammaticality-in-context"
 "grammer"
 "greetings"
-"grmmar"
 "headlinese"
 "hendiadys"
 "history"
