@@ -53,6 +53,7 @@
 "profile-page"
 "questions"
 "recent-activity"
+"recognition"
 "reputation"
 "retagging"
 "rss"

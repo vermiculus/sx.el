@@ -44,6 +44,7 @@
 "curriculum"
 "definitions"
 "differential-equations"
+"differntial"
 "disability"
 "discrete-math"
 "diversity"

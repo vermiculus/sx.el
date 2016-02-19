@@ -50,6 +50,7 @@
 "alternate-access-mapping"
 "analytics"
 "anchor-tags"
+"android"
 "angular"
 "angularjs"
 "anonymous"

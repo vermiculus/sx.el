@@ -361,6 +361,7 @@
 "hierarchical-queries"
 "high-availability"
 "hints"
+"histogram"
 "hsqldb"
 "hstore"
 "htsql"

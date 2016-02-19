@@ -27,7 +27,6 @@
 "container"
 "cooking"
 "cooling"
-"diy"
 "door"
 "drinking"
 "drinks"

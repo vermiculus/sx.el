@@ -531,6 +531,7 @@
 "holidays"
 "home-page-component"
 "home-page-layout"
+"households"
 "html"
 "html-area-component"
 "html2canvas"

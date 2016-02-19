@@ -11,7 +11,6 @@
 "acting"
 "actions"
 "actual-play"
-"adamantine"
 "adnd"
 "adnd-1.0"
 "adnd-2.0"

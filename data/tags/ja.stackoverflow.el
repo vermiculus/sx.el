@@ -113,6 +113,7 @@
 "clockwork"
 "clojure"
 "cmake"
+"cobol"
 "cocoapods"
 "cocos2d-x"
 "codeigniter"

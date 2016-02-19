@@ -12,6 +12,7 @@
 "buffers"
 "callback"
 "chromium"
+"clang-complete"
 "clientserver"
 "colorscheme"
 "command-history"

@@ -178,6 +178,7 @@
 "harvest"
 "headlamp"
 "health"
+"heartrate"
 "helmet"
 "high-altitude"
 "high-altitude-diet"

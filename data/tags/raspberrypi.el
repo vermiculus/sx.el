@@ -300,7 +300,6 @@
 "qtonpi"
 "radio"
 "rasbian"
-"raspberry-pi"
 "raspberry-pi-foundation"
 "raspbian"
 "raspbmc"

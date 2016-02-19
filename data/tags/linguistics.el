@@ -186,6 +186,7 @@
 "imperfect"
 "indefinite-article"
 "indian-languages"
+"indic"
 "indo-aryan"
 "indo-european"
 "indonesian"

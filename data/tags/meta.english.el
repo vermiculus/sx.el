@@ -109,7 +109,6 @@
 "recent-activity"
 "recommend"
 "reference"
-"reopen"
 "reputation"
 "request"
 "research-effort"

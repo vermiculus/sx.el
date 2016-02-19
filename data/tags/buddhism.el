@@ -159,6 +159,7 @@
 "jataka"
 "jhana"
 "judaism"
+"judgment"
 "jukai"
 "justice"
 "kalama"

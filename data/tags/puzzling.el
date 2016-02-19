@@ -133,7 +133,6 @@
 "open-ended"
 "optimization"
 "outer-space"
-"outside-the-box"
 "packing"
 "palindrome"
 "pandigital-puzzle"
@@ -203,4 +202,5 @@
 "word-search"
 "word-sequence"
 "word-square"
+"wordmash"
 "wordplay")

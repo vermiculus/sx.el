@@ -1226,6 +1226,7 @@
 "mpd"
 "mpi"
 "mplayer"
+"mpv"
 "msys"
 "mta"
 "mta"

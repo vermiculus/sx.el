@@ -70,6 +70,7 @@
 "flash-selenium"
 "form"
 "functional"
+"fuzz-testing"
 "gatling"
 "geb"
 "git"

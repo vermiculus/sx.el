@@ -739,6 +739,7 @@
 "requirejs"
 "rest"
 "revealing-module-pattern"
+"reverse-polish-notation"
 "rhino"
 "rock-paper-scissors"
 "role-playing-game"
