@@ -146,7 +146,6 @@
 "physics"
 "pie"
 "point-clouds"
-"poly-count"
 "preferences"
 "properties"
 "pynodes"

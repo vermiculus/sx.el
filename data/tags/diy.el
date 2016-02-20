@@ -109,6 +109,8 @@
 "closer"
 "closet"
 "clothes-washer"
+"clothes-washer"
+"coax"
 "coax"
 "coaxial-cable"
 "code-compliance"

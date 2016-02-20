@@ -289,6 +289,7 @@
 "chelev"
 "cherem"
 "chesed-kindness"
+"chessed"
 "chicken"
 "chiddush"
 "children-of-noach"

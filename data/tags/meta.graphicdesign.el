@@ -71,6 +71,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"style-identification"
 "support"
 "tag-synonyms"
 "tagging"

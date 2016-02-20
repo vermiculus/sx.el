@@ -77,7 +77,6 @@
 "beer-and-pretzels"
 "beginner-box"
 "besm"
-"beta"
 "betrayal"
 "black-crusade"
 "blade-of-the-iron-throne"

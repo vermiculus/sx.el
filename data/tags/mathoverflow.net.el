@@ -81,7 +81,6 @@
 "associated-graded"
 "associative-algebra"
 "associative-algebras"
-"asympto"
 "asymptotics"
 "at.algebraic-topology"
 "automata-theory"

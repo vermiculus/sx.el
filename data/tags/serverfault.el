@@ -1331,6 +1331,7 @@
 "http-status-code-404"
 "http-status-code-408"
 "http-streaming"
+"http2"
 "httpd"
 "httpd.conf"
 "httperf"

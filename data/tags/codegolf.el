@@ -15,6 +15,7 @@
 "audio"
 "base-conversion"
 "bash"
+"basic"
 "befunge"
 "binary"
 "binary-matrix"

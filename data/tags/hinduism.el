@@ -130,6 +130,7 @@
 "indra"
 "isha-upanishad"
 "islam"
+"itihasa"
 "janev"
 "japa"
 "japamala"

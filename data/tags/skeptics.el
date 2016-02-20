@@ -327,6 +327,7 @@
 "infection"
 "infectious-disease"
 "insects"
+"insomnia"
 "intelligence"
 "intelligent-design"
 "internet"

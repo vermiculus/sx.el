@@ -294,6 +294,7 @@
 "view"
 "virtualhost"
 "virtuemart"
+"warp"
 "web-service"
 "weblinks"
 "widgetkit"

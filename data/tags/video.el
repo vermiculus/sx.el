@@ -109,6 +109,7 @@
 "hdcp"
 "hdmi"
 "hdr"
+"hitfilm"
 "huffyuv"
 "image-sensors"
 "imovie"

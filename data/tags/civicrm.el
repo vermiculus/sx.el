@@ -284,6 +284,7 @@
 "tinymce"
 "tokens"
 "tracked-links"
+"transifex"
 "translation"
 "tutorials"
 "twilio"

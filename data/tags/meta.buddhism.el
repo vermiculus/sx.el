@@ -50,6 +50,7 @@
 "quality"
 "questions"
 "recent-activity"
+"references"
 "reputation"
 "retagging"
 "review"

@@ -541,6 +541,7 @@
 "ifieldeditor"
 "ifilter"
 "iframe"
+"iinfopath"
 "iis"
 "iis7"
 "image"

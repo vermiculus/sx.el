@@ -524,6 +524,7 @@
 "public-key"
 "pubnub"
 "pushpool"
+"pycoin"
 "python"
 "qrcode"
 "quantum-computing"

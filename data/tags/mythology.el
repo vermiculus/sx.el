@@ -169,7 +169,6 @@
 "romance-three-kingdoms"
 "romulus-and-remus"
 "rosicrucianism"
-"rotk"
 "rumors"
 "sacrifice"
 "scientology"

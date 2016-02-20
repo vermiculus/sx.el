@@ -57,7 +57,6 @@
 "formal-logic"
 "galois-theory"
 "geometry"
-"germany"
 "gottingen"
 "gravity"
 "group-theory"

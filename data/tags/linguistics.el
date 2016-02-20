@@ -249,6 +249,7 @@
 "markedness"
 "marking"
 "mathematical-language"
+"meaning"
 "mediopassive"
 "merge"
 "metathesis"

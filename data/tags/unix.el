@@ -1448,6 +1448,7 @@
 "pgp"
 "php"
 "php5"
+"php7"
 "phpmyadmin"
 "phreebooks"
 "pictures"
