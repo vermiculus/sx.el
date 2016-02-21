@@ -79,6 +79,7 @@
 "grease-pencil"
 "greasepencil"
 "groups"
+"gui"
 "hair-particles"
 "hardware"
 "id-mask"
@@ -216,4 +217,5 @@
 "windows"
 "wireframe"
 "workflow"
+"workspace"
 "world")

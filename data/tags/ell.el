@@ -99,6 +99,7 @@
 "culture"
 "dangling-modifier"
 "dangling-participle"
+"dash"
 "date"
 "declarative-sentence"
 "definite-article"

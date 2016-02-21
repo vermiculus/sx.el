@@ -198,6 +198,7 @@
 "hanafi"
 "haram"
 "haram-halal"
+"hats"
 "health"
 "heaven"
 "hell"

@@ -59,7 +59,6 @@
 "site-evaluation"
 "site-layout"
 "site-promotion"
-"sources"
 "specific-answer"
 "specific-question"
 "spelling"

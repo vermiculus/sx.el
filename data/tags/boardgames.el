@@ -526,6 +526,7 @@
 "steam"
 "stone-age"
 "storage"
+"strange-remnants"
 "stratego"
 "struggle-for-catan"
 "study"

@@ -972,7 +972,6 @@
 "mutual-inductance"
 "nand"
 "nand-flash"
-"nanowire"
 "navigation"
 "ne5534"
 "ne555"

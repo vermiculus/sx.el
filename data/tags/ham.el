@@ -164,6 +164,7 @@
 "rsgb"
 "rssi"
 "rtl-sdr"
+"rtty"
 "safety"
 "satellites"
 "sdr"

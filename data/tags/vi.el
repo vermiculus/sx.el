@@ -204,6 +204,7 @@
 "substitute"
 "swap-file"
 "syntax-highlighting"
+"tab"
 "tab-characters"
 "tabbed-user-interface"
 "tags"

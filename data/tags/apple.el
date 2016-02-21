@@ -995,6 +995,7 @@
 "rtl"
 "ruby"
 "rvm"
+"sad"
 "safari"
 "safari-5"
 "safari-5.1"

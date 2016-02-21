@@ -72,6 +72,7 @@
 "english"
 "english-to-german"
 "eszett"
+"ethymology"
 "etiquette"
 "etymology"
 "euphemism"

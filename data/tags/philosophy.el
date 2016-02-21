@@ -139,6 +139,7 @@
 "greeks"
 "happiness"
 "hegel"
+"hegelchan"
 "heidegger"
 "hermeneutics"
 "hinduism"

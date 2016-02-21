@@ -688,6 +688,7 @@
 "involutions"
 "irrational-numbers"
 "ising-model"
+"isogenies"
 "isometric-immersion"
 "isometries"
 "isomorphism-testing"

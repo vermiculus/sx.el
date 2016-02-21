@@ -570,7 +570,6 @@
 "error"
 "error-handling"
 "escape-characters"
-"esxi"
 "etc"
 "etckeeper"
 "ethercat"
