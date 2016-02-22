@@ -470,6 +470,7 @@
 "mfa"
 "microsoft"
 "microsoft-edge"
+"mime-type"
 "mitm"
 "mixed-content"
 "mobile"

@@ -81,7 +81,6 @@
 "beeminder"
 "bing"
 "bing-maps"
-"birthday"
 "bit.ly"
 "bitbucket"
 "bitly"

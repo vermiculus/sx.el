@@ -246,7 +246,6 @@
 "forms"
 "fortran"
 "forum"
-"foss"
 "framework"
 "free-libre-software"
 "freetype"

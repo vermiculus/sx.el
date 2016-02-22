@@ -1368,6 +1368,7 @@
 "weil-petersson-metric"
 "weyl-algebra"
 "weyl-group"
+"whitehead-product"
 "wild-representation-type"
 "witt-vectors"
 "word-problem"

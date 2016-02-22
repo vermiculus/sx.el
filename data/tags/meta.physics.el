@@ -100,6 +100,7 @@
 "suggested-edits"
 "support"
 "suspensions"
+"tag"
 "tag-synonyms"
 "tag-warnings"
 "tagging"

@@ -169,6 +169,7 @@
 "enterprise-cdf"
 "entity"
 "envelope"
+"epilog"
 "eps-format"
 "equation-solving"
 "error"

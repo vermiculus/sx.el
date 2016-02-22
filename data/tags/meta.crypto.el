@@ -79,6 +79,7 @@
 "tag-synonyms"
 "tagging"
 "tags"
+"title"
 "tour"
 "trusted-users"
 "unanswered-questions"

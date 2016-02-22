@@ -2621,7 +2621,6 @@
 "led"
 "legal"
 "lenovo"
-"lenovo-desktop"
 "lenovo-desktop-computer"
 "lenovo-laptop"
 "leo-editor"

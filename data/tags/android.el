@@ -1079,6 +1079,7 @@
 "recent-apps-list"
 "recovery"
 "recovery-mode"
+"redmi-2"
 "reformat"
 "region"
 "remote"

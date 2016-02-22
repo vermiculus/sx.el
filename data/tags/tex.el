@@ -100,7 +100,6 @@
 "babel"
 "back-referencing"
 "backgrounds"
-"badboxes"
 "badness"
 "bakoma"
 "baposter"

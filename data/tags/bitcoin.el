@@ -160,6 +160,7 @@
 "checklocktimeverify"
 "checkpoints"
 "checksig"
+"child-pays-for-parent"
 "china"
 "client"
 "cloud-mining"

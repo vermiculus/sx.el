@@ -199,7 +199,6 @@
 "economy"
 "education"
 "edwardian"
-"edwardian-period"
 "egypt"
 "election"
 "electoral-system"

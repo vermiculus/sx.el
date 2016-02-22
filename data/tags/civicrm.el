@@ -72,6 +72,7 @@
 "civisurvey"
 "civivolunteer"
 "civix"
+"ck"
 "ckeditor"
 "cli"
 "cms-integration"

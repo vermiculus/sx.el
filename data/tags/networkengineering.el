@@ -259,7 +259,6 @@
 "rack-layout"
 "radius"
 "rancid"
-"redirect"
 "redistribution"
 "redundancy"
 "redundant-routes"

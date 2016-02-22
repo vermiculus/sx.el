@@ -56,6 +56,7 @@
 "dissection"
 "dominoes"
 "dots-and-boxes"
+"economicactivity"
 "eight-segment"
 "einsteins-puzzle"
 "encoded-message"
