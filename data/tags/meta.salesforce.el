@@ -17,6 +17,7 @@
 "community-wiki"
 "data-dump"
 "data-explorer"
+"deign"
 "deleted-questions"
 "design"
 "discussion"

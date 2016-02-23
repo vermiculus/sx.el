@@ -433,6 +433,7 @@
 "kult"
 "l5r"
 "l5r-2e"
+"l5r-3e"
 "l5r-4e"
 "labyrinth-lord"
 "lady-blackbird"

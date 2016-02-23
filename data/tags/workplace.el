@@ -279,6 +279,7 @@
 "singapore"
 "skills"
 "skunkworks"
+"smoking"
 "social-media"
 "socializing"
 "software"

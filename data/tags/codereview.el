@@ -176,6 +176,7 @@
 "conditionals"
 "conditions"
 "configuration"
+"connect-four"
 "connection-pool"
 "console"
 "constants"

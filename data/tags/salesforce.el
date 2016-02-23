@@ -330,6 +330,7 @@
 "delete"
 "delete-field-beta"
 "delete-managed-package"
+"dependent-lookup"
 "dependent-picklist"
 "deploy"
 "deployment"

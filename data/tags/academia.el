@@ -104,6 +104,7 @@
 "defense"
 "degree"
 "design"
+"desperate"
 "developing-countries"
 "digital-libraries"
 "disability"

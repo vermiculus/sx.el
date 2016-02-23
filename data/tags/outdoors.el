@@ -339,6 +339,7 @@
 "snakes"
 "snorkeling"
 "snow"
+"snow-chain"
 "snowboarding"
 "snowdonia"
 "snowshoeing"

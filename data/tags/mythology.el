@@ -190,6 +190,7 @@
 "theology"
 "theseus"
 "thor"
+"tibetan"
 "titans"
 "torah"
 "tragedy"

@@ -329,7 +329,6 @@
 "generalization"
 "generate-script"
 "geo"
-"geography"
 "geometry"
 "ghost-record"
 "gin-index"

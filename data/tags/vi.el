@@ -111,6 +111,7 @@
 "merge"
 "microsoft-windows"
 "mnemonics"
+"mobaxterm"
 "modeline"
 "motion"
 "mouse"

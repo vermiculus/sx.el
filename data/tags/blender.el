@@ -48,6 +48,7 @@
 "datablocks"
 "depth-of-field"
 "dimensions"
+"displacement"
 "documentation"
 "dof"
 "dopesheet"

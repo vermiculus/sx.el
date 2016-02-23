@@ -367,6 +367,7 @@
 "swimming"
 "symptoms"
 "syncope"
+"taste-buds"
 "tea"
 "teeth"
 "tendinitis"

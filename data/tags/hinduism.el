@@ -180,6 +180,7 @@
 "matsya-purana"
 "maya"
 "meditation"
+"methology"
 "mind"
 "modern"
 "moksha"

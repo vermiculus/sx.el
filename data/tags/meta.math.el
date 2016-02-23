@@ -81,6 +81,7 @@
 "formatting"
 "frontpage"
 "google-chrome"
+"grace-period"
 "gravatar"
 "hat"
 "help-center"

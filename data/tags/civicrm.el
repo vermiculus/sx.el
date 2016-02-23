@@ -150,6 +150,7 @@
 "git"
 "github"
 "global-menu"
+"google"
 "google-hangouts"
 "greetings"
 "groups"
