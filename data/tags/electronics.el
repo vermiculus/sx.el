@@ -192,7 +192,6 @@
 "bypass"
 "bypass-capacitor"
 "c"
-"c#"
 "c++"
 "c18"
 "c51"

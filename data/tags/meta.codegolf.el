@@ -45,6 +45,7 @@
 "formatting"
 "golf-cpu"
 "golfscript"
+"graduation"
 "handicap"
 "hyperlinks"
 "interesting-tags"

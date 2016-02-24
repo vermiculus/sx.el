@@ -120,6 +120,7 @@
 "status-review"
 "suggested-edits"
 "support"
+"swag"
 "synonym-request"
 "syntax-highlighting"
 "tag-synonyms"

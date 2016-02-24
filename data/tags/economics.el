@@ -218,6 +218,7 @@
 "package-suggestion"
 "paneldata"
 "pareto-efficiency"
+"pareto-optimality"
 "payment-system"
 "perfect-complements"
 "pigouvian-taxes"
@@ -312,5 +313,6 @@
 "value"
 "wages"
 "walrasian"
+"walrasian-eqm"
 "welfare"
 "welfare-economics")

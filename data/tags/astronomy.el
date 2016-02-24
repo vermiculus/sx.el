@@ -36,6 +36,7 @@
 "big-bang-theory"
 "binary-star"
 "binoculars"
+"black-body"
 "black-hole"
 "bortle-scale"
 "brown-dwarf"

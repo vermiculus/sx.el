@@ -268,6 +268,7 @@
 "movement"
 "multilingualism"
 "mutual-intelligibility"
+"mwe"
 "mwes"
 "n-grams"
 "named-entity-recognition"

@@ -31,7 +31,6 @@
 "flagging"
 "forks-and-versions"
 "formatting"
-"gif"
 "help-center"
 "hyperlinks"
 "interesting-tags"

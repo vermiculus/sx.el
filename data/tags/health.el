@@ -379,7 +379,6 @@
 "testosterone"
 "thyroid"
 "tingling"
-"tinnitus"
 "toxicity"
 "toxins"
 "traditional-medicine"

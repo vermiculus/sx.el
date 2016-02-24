@@ -116,6 +116,7 @@
 "c#"
 "c++"
 "calc"
+"calculus-of-variations"
 "calibration"
 "canonical"
 "canonical-correlation"

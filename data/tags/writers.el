@@ -250,6 +250,7 @@
 "turning-point"
 "typing"
 "untagged"
+"usage"
 "verse"
 "version-control"
 "videogame"

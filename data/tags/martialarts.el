@@ -63,6 +63,7 @@
 "judo"
 "jujitsu"
 "jujutsu"
+"jump-kick"
 "kalaripayattu"
 "kali"
 "karate"

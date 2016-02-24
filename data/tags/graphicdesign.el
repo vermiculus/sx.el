@@ -220,6 +220,7 @@
 "font-management"
 "font-manipulation"
 "font-matching"
+"font-matching"
 "font-pairing"
 "font-recommendation"
 "font-size"

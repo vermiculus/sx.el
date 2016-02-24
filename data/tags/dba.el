@@ -143,6 +143,7 @@
 "cte"
 "cube"
 "cursors"
+"daas"
 "data-archival"
 "data-cleansing"
 "data-collection"

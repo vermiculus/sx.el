@@ -190,6 +190,7 @@
 "chrome"
 "chrome-extensions"
 "chromecast"
+"cifs"
 "cinema-display"
 "clash-of-clans"
 "classic-mac-os"

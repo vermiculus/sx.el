@@ -113,6 +113,7 @@
 "too-broad"
 "tools"
 "top-7"
+"top-bar"
 "unanswered-questions"
 "unicoin"
 "up-votes"

@@ -889,6 +889,7 @@
 "lake-district"
 "lake-victoria"
 "lakes"
+"lan-airlines"
 "land-borders"
 "land-transit"
 "landmarks"

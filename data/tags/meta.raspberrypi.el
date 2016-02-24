@@ -47,6 +47,7 @@
 "on-off-topic"
 "openid"
 "pcduino"
+"privileges"
 "profile-page"
 "promotion"
 "promotional-events"
