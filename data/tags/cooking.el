@@ -374,6 +374,7 @@
 "honey"
 "honeycomb"
 "hot"
+"hot-chocolate"
 "hot-dog"
 "hot-sauce"
 "hummus"

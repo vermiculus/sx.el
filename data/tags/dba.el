@@ -755,6 +755,7 @@
 "schema-comparison"
 "schema-copy"
 "schemas"
+"scn"
 "sco-unix"
 "script"
 "scripting"

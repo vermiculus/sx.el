@@ -5,6 +5,7 @@
 "adverbs"
 "ainu"
 "ambiguity"
+"animacy"
 "animals"
 "anime"
 "antonyms"

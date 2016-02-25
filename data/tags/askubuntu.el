@@ -1746,6 +1746,7 @@
 "mplayer"
 "ms-dos"
 "ms-exchange"
+"msftdata"
 "msgfmt"
 "msi"
 "msn"

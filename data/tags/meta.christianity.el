@@ -14,6 +14,7 @@
 "bug"
 "catholicism"
 "chat"
+"church-fathers"
 "cleanup"
 "close-reasons"
 "closed-questions"

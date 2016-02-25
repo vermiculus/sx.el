@@ -218,6 +218,7 @@
 "performance"
 "permissions"
 "php"
+"plugin-amforms"
 "plugin-cachewarmer"
 "plugin-calendar"
 "plugin-charge"

@@ -336,6 +336,7 @@
 "recent-names"
 "recommendation-questions"
 "recommended-tab"
+"referrers"
 "registration"
 "rejected-edits"
 "related-questions"

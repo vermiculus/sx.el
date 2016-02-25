@@ -65,7 +65,6 @@
 "tag-synonyms"
 "tagging"
 "tags"
-"ter"
 "unanswered-questions"
 "up-votes"
 "user-accounts"

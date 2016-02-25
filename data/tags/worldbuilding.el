@@ -345,7 +345,6 @@
 "super-powers"
 "supernova"
 "survival"
-"suspend-disbelief"
 "tactics"
 "technological-development"
 "technology"

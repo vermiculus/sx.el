@@ -820,6 +820,7 @@
 "person-accounts"
 "phonegap"
 "php"
+"php-toolkit"
 "picklist"
 "pilot"
 "platform-activity"

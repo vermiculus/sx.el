@@ -17,6 +17,7 @@
 "carbonation"
 "cellaring"
 "cicerone"
+"cider"
 "classification"
 "colour"
 "competition"

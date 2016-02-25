@@ -184,6 +184,7 @@
 "stats"
 "storage"
 "strategy"
+"sumo-wrestling"
 "super-bowl"
 "surfing"
 "suspension"

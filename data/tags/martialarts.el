@@ -144,6 +144,7 @@
 "terminology"
 "testing"
 "training"
+"traning"
 "tricking"
 "tricks"
 "ufc"

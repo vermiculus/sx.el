@@ -60,6 +60,7 @@
 "rss"
 "scope"
 "search"
+"sf-worldtour"
 "site-evaluation"
 "site-promotion"
 "spam"

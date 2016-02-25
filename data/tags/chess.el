@@ -265,6 +265,7 @@
 "scid"
 "scoresheet"
 "scotch-game"
+"semi-slav"
 "shogi"
 "sicilian"
 "sicilian-defense"
