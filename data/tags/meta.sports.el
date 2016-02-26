@@ -29,6 +29,7 @@
 "flagging"
 "formatting"
 "hyperlinks"
+"images"
 "interesting-tags"
 "login"
 "markdown"

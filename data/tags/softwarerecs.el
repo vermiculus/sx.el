@@ -120,6 +120,7 @@
 "contract-manager"
 "cookies"
 "cooking"
+"copy-paste-detection"
 "cpanel"
 "crm"
 "cross-platform"

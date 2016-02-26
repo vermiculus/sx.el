@@ -838,7 +838,6 @@
 "stator"
 "steam-powered"
 "steering"
-"steering-dampener"
 "steering-wheel"
 "stereo"
 "storage"

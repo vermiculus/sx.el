@@ -358,6 +358,7 @@
 "review-audits"
 "review-ban"
 "review-ban"
+"review-history"
 "review-suspension"
 "revision-history"
 "rollback-wars"

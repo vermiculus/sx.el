@@ -112,7 +112,6 @@
 "halides"
 "halocarbons"
 "heat"
-"heterocycle"
 "history-of-chemistry"
 "home-experiment"
 "homework"

@@ -393,6 +393,7 @@
 "lungs"
 "lymph"
 "lymphatic"
+"lymphoma"
 "macroevolution"
 "malaria"
 "mammals"

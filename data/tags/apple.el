@@ -1144,7 +1144,6 @@
 "swift"
 "swiftkey"
 "switching"
-"sx"
 "symbolic-link"
 "symlink"
 "sync"

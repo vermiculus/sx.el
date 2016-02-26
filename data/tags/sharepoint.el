@@ -900,6 +900,7 @@
 "registry"
 "related-list"
 "reliability"
+"relying-party-trust"
 "reminder"
 "remote-blob-storage"
 "remote-event-receiver"

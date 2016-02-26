@@ -1835,7 +1835,6 @@
 "sml"
 "smoothing"
 "snap"
-"snap"
 "snapping"
 "soap"
 "soe"

@@ -144,7 +144,6 @@
 "terminology"
 "testing"
 "training"
-"traning"
 "tricking"
 "tricks"
 "ufc"
@@ -158,4 +157,5 @@
 "wing-chun"
 "women"
 "wrestling"
+"wrist-lock"
 "wrists")

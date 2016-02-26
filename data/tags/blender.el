@@ -1,4 +1,5 @@
-("3d-cursor"
+("2.76"
+"3d-cursor"
 "3d-manipulator"
 "3d-printing"
 "3d-view"
@@ -80,7 +81,6 @@
 "grease-pencil"
 "greasepencil"
 "groups"
-"gui"
 "hair-particles"
 "hardware"
 "id-mask"
@@ -161,7 +161,6 @@
 "rigging"
 "rigid-body-simulation"
 "rigify"
-"rotation"
 "ruler"
 "sapling"
 "scene"
@@ -220,5 +219,4 @@
 "windows"
 "wireframe"
 "workflow"
-"workspace"
 "world")

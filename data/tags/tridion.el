@@ -101,7 +101,6 @@
 "footprint"
 "format-area-styles"
 "fredhopper"
-"googlesearch"
 "gui"
 "gui-extensions"
 "hotfix-rollup"

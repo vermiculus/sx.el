@@ -269,7 +269,6 @@
 "multilingualism"
 "multiword-expression"
 "mutual-intelligibility"
-"mwes"
 "n-grams"
 "named-entity-recognition"
 "names"

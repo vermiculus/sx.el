@@ -34,6 +34,7 @@
 "bhikkhu"
 "bhikkhuni"
 "birth-stories"
+"bodhipakkhiyadhamma"
 "bodhisattva"
 "bodhisattva-vows"
 "bon"

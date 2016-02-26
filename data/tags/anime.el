@@ -227,6 +227,7 @@
 "digimon"
 "digimon-tamers"
 "digimon-tri"
+"dimension-w"
 "disgaea"
 "dog-days"
 "dokkiri-doctor"

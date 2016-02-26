@@ -318,6 +318,7 @@
 "le-havre"
 "legal"
 "legend-of-the-five-rings"
+"legendary-marvel"
 "legends-of-andor"
 "lets-kill-krampus"
 "liars-dice"

@@ -3312,6 +3312,7 @@
 "splinter-cell-conviction"
 "splinter-cell-ct"
 "splinter-cell-da"
+"spoiler"
 "spore"
 "spore-galactic-adventures"
 "spotpass"
