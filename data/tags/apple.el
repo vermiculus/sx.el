@@ -1279,6 +1279,7 @@
 "voip"
 "vpn"
 "vpp"
+"wacom"
 "wake"
 "wake-on-lan"
 "wallet"

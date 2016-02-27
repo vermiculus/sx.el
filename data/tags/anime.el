@@ -92,6 +92,7 @@
 "basquash"
 "bastard"
 "battle-angel-alita"
+"battle-through-heaven"
 "beck"
 "beelzebub"
 "berserk"

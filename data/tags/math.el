@@ -778,7 +778,6 @@
 "legendre-polynomial"
 "legendre-polynomials"
 "legendre-symbol"
-"levi-civita"
 "levy-processes"
 "lft"
 "lie-algebra"

@@ -36,7 +36,6 @@
 "best-practice"
 "billingblock"
 "binary-logging"
-"blank"
 "bootstrap"
 "bounce"
 "braintree"

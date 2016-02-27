@@ -42,6 +42,7 @@
 "blacklist-request"
 "blog"
 "bookmark"
+"bots"
 "bounties"
 "bounty"
 "branding"

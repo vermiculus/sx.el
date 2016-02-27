@@ -66,6 +66,7 @@
 "reputation"
 "retagging"
 "review"
+"roomba"
 "rss"
 "scope"
 "screenshots"

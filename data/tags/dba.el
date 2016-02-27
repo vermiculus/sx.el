@@ -695,6 +695,7 @@
 "query-timeout"
 "queue"
 "quoted-identifier"
+"r"
 "r-language"
 "rac"
 "raid"

@@ -482,6 +482,7 @@
 "skew"
 "skewness"
 "slippage"
+"sml"
 "soft-question"
 "software"
 "solvency-ii"

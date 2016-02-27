@@ -241,6 +241,7 @@
 "correspondence"
 "correspondence-analysis"
 "cosine-distance"
+"cosine-similarity"
 "cost-maximization"
 "count-data"
 "counterbalancing"

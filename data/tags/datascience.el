@@ -229,6 +229,7 @@
 "survival-analysis"
 "svm"
 "tableau"
+"template"
 "tensorflow"
 "terminology"
 "text"

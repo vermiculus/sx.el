@@ -136,6 +136,7 @@
 "diamondback"
 "dicycle"
 "diet"
+"disability"
 "disc"
 "disc-brake"
 "disk-brake"

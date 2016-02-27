@@ -240,6 +240,7 @@
 "gif"
 "gimp"
 "glyphs"
+"gnuplot"
 "google"
 "google-material-design"
 "gradient"

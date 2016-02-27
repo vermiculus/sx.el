@@ -33,6 +33,7 @@
 "capital-returns"
 "capital-structure"
 "causality"
+"ccep"
 "central-banking"
 "chaos-theory"
 "charity"
@@ -218,7 +219,6 @@
 "package-suggestion"
 "paneldata"
 "pareto-efficiency"
-"pareto-optimality"
 "payment-system"
 "perfect-complements"
 "pigouvian-taxes"
@@ -313,6 +313,5 @@
 "value"
 "wages"
 "walrasian"
-"walrasian-eqm"
 "welfare"
 "welfare-economics")

@@ -147,6 +147,7 @@
 "religious-institution"
 "remedial-courses"
 "review"
+"rigor"
 "scheduling"
 "secondary-education"
 "self-learning"

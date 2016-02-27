@@ -119,6 +119,7 @@
 "shield"
 "shoes"
 "short-stick"
+"shotokan"
 "shu-ha-ri"
 "social"
 "soreness"

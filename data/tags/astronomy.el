@@ -184,6 +184,7 @@
 "metal"
 "metallicity"
 "meteor"
+"meteor-shower"
 "meteorite"
 "milky-way"
 "milkyway"

@@ -2,6 +2,7 @@
 "address"
 "aerial-photography"
 "africa"
+"ai"
 "aid"
 "analysis"
 "api"
