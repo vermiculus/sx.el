@@ -360,6 +360,7 @@
 "gosick"
 "grappler-baki"
 "great-teacher-onizuka"
+"grimgar"
 "grisaia"
 "grisaia-no-kajitsu"
 "grisaia-no-meikyuu"

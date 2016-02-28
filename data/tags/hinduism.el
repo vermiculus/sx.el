@@ -158,6 +158,7 @@
 "kshatriya"
 "kubera"
 "kumbh-mela"
+"kumbhakarna"
 "kundali"
 "kurukshetra"
 "lakshmana"

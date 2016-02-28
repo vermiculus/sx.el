@@ -546,7 +546,6 @@
 "rat"
 "rc-aircraft"
 "reconnaissance-aircraft"
-"records"
 "refueling"
 "regional"
 "regulations"

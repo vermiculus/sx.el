@@ -85,7 +85,6 @@
 "clarification"
 "cleanliness"
 "clothing"
-"color"
 "comparative-madahib"
 "comparative-religions"
 "congregational-prayer"

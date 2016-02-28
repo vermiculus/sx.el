@@ -47,6 +47,7 @@
 "cinema4d"
 "cleaning"
 "clipping"
+"closed-captioning"
 "codec"
 "color"
 "color-correction"

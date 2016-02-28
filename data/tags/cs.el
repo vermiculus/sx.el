@@ -406,6 +406,7 @@
 "pumping-lemma"
 "pushdown-automata"
 "quadratic-programming"
+"quantization"
 "quantum-computing"
 "queueing-theory"
 "quicksort"

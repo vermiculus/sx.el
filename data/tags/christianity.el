@@ -870,6 +870,7 @@
 "syncretism"
 "systematic-theology"
 "tabernacle"
+"talmud"
 "temple"
 "temptation"
 "ten-commandments"

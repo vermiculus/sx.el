@@ -41,7 +41,6 @@
 "ad5351"
 "adapter"
 "adc"
-"adcp"
 "adder"
 "addressing"
 "ads"

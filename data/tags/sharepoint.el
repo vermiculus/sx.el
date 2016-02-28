@@ -1251,7 +1251,6 @@
 "viewfields"
 "views"
 "viewstate"
-"virtosoftware"
 "virtual-directory"
 "virtual-machine"
 "visio"

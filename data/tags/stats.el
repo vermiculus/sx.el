@@ -245,6 +245,7 @@
 "cost-maximization"
 "count-data"
 "counterbalancing"
+"coupon-collector-problem"
 "courses"
 "covariance"
 "covariance-matrix"

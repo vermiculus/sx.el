@@ -195,6 +195,7 @@
 "models"
 "multi-domain"
 "multi-environment"
+"multi-select"
 "multi-site"
 "multilingual"
 "mysql"

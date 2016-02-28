@@ -2000,6 +2000,7 @@
 "the-machine"
 "the-machinist"
 "the-magicians"
+"the-magnificent-ambersons"
 "the-magnificent-seven"
 "the-man-from-earth"
 "the-man-from-uncle"

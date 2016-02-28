@@ -9,6 +9,7 @@
 "bug"
 "canonical-resources"
 "chat"
+"citations"
 "close-reasons"
 "closed-questions"
 "closing"

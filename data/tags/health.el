@@ -76,6 +76,7 @@
 "cholesterol"
 "chronic-illness"
 "clinical-study"
+"clonazepam"
 "coagulopathy"
 "coffee"
 "cognitive-science"

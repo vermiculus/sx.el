@@ -402,6 +402,7 @@
 "package"
 "package-development"
 "package-repositories"
+"packaging-emacs"
 "pairing"
 "paradox"
 "paragraphs"
