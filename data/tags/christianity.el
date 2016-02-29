@@ -229,6 +229,7 @@
 "daniel"
 "dante"
 "david"
+"deacons"
 "dead-sea-scrolls"
 "death"
 "debt"

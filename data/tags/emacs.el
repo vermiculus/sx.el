@@ -121,6 +121,7 @@
 "defcustom"
 "deft-mode"
 "deletion"
+"delight"
 "delimiters"
 "desktop"
 "development"

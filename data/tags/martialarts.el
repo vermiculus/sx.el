@@ -118,6 +118,7 @@
 "shaolin"
 "shield"
 "shoes"
+"shopping"
 "short-stick"
 "shotokan"
 "shu-ha-ri"

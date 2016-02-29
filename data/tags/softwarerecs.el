@@ -314,7 +314,6 @@
 "icon"
 "id3"
 "ide"
-"image-capture"
 "image-conversion"
 "image-editing"
 "image-editor"

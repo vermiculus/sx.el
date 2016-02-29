@@ -561,6 +561,7 @@
 "selenium-webdriver"
 "sendmail"
 "serializable"
+"serializer"
 "service"
 "servlet"
 "sessionid"

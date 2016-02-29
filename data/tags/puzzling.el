@@ -129,6 +129,7 @@
 "nim"
 "no-computers"
 "nonogram"
+"number-formation"
 "number-sequence"
 "number-theory"
 "open-ended"

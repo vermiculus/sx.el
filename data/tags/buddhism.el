@@ -151,7 +151,6 @@
 "iconography"
 "ideas"
 "ignorance"
-"ignorant"
 "impermanence"
 "insight"
 "integration"

@@ -1152,7 +1152,6 @@
 "phpunit"
 "physics"
 "pipelining"
-"piracy"
 "pitfalls"
 "planning"
 "platforms"

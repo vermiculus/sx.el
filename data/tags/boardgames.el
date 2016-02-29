@@ -422,6 +422,7 @@
 "pirate-king"
 "pirates-cove"
 "pit"
+"pixel-tactics"
 "play-time"
 "playing-cards"
 "pokemon"

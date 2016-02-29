@@ -902,6 +902,7 @@
 "tdd"
 "teaching"
 "teamwork"
+"tech"
 "techncal"
 "techniques"
 "telemetry"

@@ -5,6 +5,7 @@
 "8.0"
 "8.1"
 "8.1-update-1"
+"8.x"
 "8x"
 "accessibility"
 "accessories"

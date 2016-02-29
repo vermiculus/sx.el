@@ -273,7 +273,6 @@
 "booststrap"
 "boot"
 "bootsfaces"
-"bootstrap"
 "bootstrap-3"
 "bootstrap-glyphicons"
 "bootstrap-table"
@@ -1635,7 +1634,6 @@
 "parse"
 "parse.com"
 "parser"
-"particionar"
 "pascal"
 "passagem-por-refer&#234;ncia"
 "passport.js"
@@ -1845,7 +1843,6 @@
 "redes"
 "redes-neurais"
 "redimensionamento"
-"redimensionar"
 "redips.drag"
 "redirecionamento"
 "redirecionamento-de-url"
@@ -2489,4 +2486,5 @@
 "zend-framework-2"
 "zeos"
 "zip"
-"zurb-foundation")
+"zurb-foundation"
+"zwamp")

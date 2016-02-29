@@ -1068,7 +1068,6 @@
 "poissons-equation"
 "poker"
 "polar-coordinates"
-"pole"
 "polish-notation"
 "polya-urn-model"
 "polygamma"

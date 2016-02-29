@@ -848,7 +848,6 @@
 "sqlplus"
 "sqlpsx"
 "sqlserver"
-"sqlt-sql"
 "srid"
 "ssas"
 "ssd"
