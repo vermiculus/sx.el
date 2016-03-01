@@ -151,6 +151,7 @@
 "plugin-system"
 "plugin-tagbar"
 "plugin-ternjs"
+"plugin-textobj-user"
 "plugin-ultisnips"
 "plugin-unite.vim"
 "plugin-vim-airline"

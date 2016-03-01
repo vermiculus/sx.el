@@ -2898,6 +2898,7 @@
 "sms-gateway"
 "smtp"
 "smtp-auth"
+"smtp-headers"
 "smtpd"
 "smtps"
 "snapshot"

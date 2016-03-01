@@ -163,6 +163,7 @@
 "joomla-framework-1.x"
 "joomla-user-groups"
 "joomla.com"
+"joomla1.0"
 "joomla3.x"
 "joomlart"
 "joomshopping"

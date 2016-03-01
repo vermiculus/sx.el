@@ -22,6 +22,7 @@
 "dispute"
 "down-votes"
 "duplicate-question"
+"edit"
 "editing"
 "election"
 "etiquette"

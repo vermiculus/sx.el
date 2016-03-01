@@ -141,6 +141,7 @@
 "devel"
 "dhtml-menu"
 "dialogs"
+"discount"
 "display-suite"
 "disqus"
 "distribution"

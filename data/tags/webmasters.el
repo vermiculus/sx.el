@@ -39,7 +39,6 @@
 "aggregators"
 "ajax"
 "alexa"
-"alias"
 "alt-attribute"
 "alternative"
 "amazon"

@@ -417,6 +417,7 @@
 "terminology"
 "thinning"
 "three-sisters"
+"tillandsia"
 "tilling"
 "tomatillos"
 "tomato"

@@ -89,6 +89,7 @@
 "classical-guitar"
 "classical-music"
 "classical-period"
+"clavichord"
 "clefs"
 "composers"
 "composition"

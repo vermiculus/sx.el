@@ -947,6 +947,7 @@
 "tiered-pricing"
 "tierprice"
 "time"
+"timeout"
 "timezone"
 "tiny-mce"
 "tinymce"

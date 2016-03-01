@@ -217,6 +217,7 @@
 "short-story"
 "social-media"
 "software"
+"speechwriting"
 "stakes"
 "story"
 "storyline"

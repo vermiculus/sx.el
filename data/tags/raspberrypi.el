@@ -1,5 +1,6 @@
 ("1-wire"
 "1080p"
+"64-bit"
 "accessibility"
 "alsa"
 "alternative-power"

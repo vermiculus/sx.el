@@ -32,6 +32,7 @@
 "batteries"
 "beach"
 "bear-bag"
+"bear-spray"
 "bears"
 "beginner"
 "belay"

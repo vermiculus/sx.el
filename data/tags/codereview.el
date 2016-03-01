@@ -291,6 +291,7 @@
 "exercism"
 "express"
 "express.js"
+"expression"
 "expression-trees"
 "expressjs"
 "ext.js"

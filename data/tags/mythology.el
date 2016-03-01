@@ -11,6 +11,7 @@
 "apollo"
 "arabic"
 "arctic"
+"artemis"
 "arthurian"
 "astrology"
 "athena"

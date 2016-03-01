@@ -625,6 +625,7 @@
 "fglrx"
 "fhs"
 "fifo"
+"figlet"
 "file"
 "file-browser"
 "file-command"

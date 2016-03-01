@@ -9,6 +9,7 @@
 "ansys"
 "approximation-algorithms"
 "architecture"
+"armadillo"
 "arpack"
 "assembly"
 "automatic-differentiation"

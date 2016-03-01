@@ -672,7 +672,6 @@
 "security-theatre"
 "security-zones"
 "segmentation"
-"segregation"
 "selinux"
 "separation"
 "serial"

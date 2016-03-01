@@ -929,6 +929,7 @@
 "unitarianism"
 "united-kingdom"
 "united-states"
+"unity"
 "unity-church"
 "universal-priesthood"
 "universalism"

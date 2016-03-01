@@ -367,6 +367,7 @@
 "peer-to-peer"
 "perceptron"
 "performance"
+"permuta"
 "permutations"
 "persistent-data-structure"
 "petri-nets"

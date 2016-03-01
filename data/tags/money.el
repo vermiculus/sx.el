@@ -300,6 +300,7 @@
 "foreign-exchange"
 "foreign-income"
 "forex"
+"form-1040"
 "form-1040x"
 "form-1099"
 "form-1099-div"
