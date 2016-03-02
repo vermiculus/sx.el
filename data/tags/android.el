@@ -65,6 +65,7 @@
 "advertising"
 "adw-launcher-ex"
 "adw.launcher"
+"afwall+"
 "aim"
 "airdroid"
 "airplane-mode"

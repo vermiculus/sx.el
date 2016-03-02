@@ -397,6 +397,7 @@
 "text-to-speech"
 "tftp"
 "timekeeping"
+"tmux"
 "toolchain"
 "touchscreen"
 "troubleshooting"

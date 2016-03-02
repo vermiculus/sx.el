@@ -70,7 +70,6 @@
 "burial-records"
 "calendar"
 "california"
-"camp"
 "canada"
 "catholic-church"
 "cause-of-death"

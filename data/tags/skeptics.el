@@ -162,6 +162,7 @@
 "cryptozoology"
 "culture"
 "currency"
+"current-events"
 "cyprus"
 "darwin"
 "dating"

@@ -175,6 +175,7 @@
 "style"
 "stylish"
 "support"
+"supportspeech"
 "systemtray"
 "tag-wiki"
 "tags"

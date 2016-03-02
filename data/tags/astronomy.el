@@ -186,6 +186,7 @@
 "meteor"
 "meteor-shower"
 "meteorite"
+"methane"
 "milky-way"
 "milkyway"
 "molecular-weight"

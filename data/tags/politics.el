@@ -50,6 +50,7 @@
 "definitions"
 "demarchy"
 "democracy"
+"demographics"
 "denmark"
 "direct-action"
 "direct-democracy"

@@ -583,6 +583,7 @@
 "mysql"
 "narrative"
 "navigation-mesh"
+"navigation-volume"
 "navmesh"
 "ndk"
 "network"

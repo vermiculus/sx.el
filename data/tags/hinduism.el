@@ -81,8 +81,6 @@
 "demi-god"
 "devas"
 "devotee"
-"devotee"
-"devotion"
 "devotion"
 "dharma"
 "disciple"

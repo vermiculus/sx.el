@@ -922,7 +922,6 @@
 "wp-remote-request"
 "wp-reset-postdata"
 "wp-reset-query"
-"wp-scripts"
 "wp-set-object-terms"
 "wp-settings.php"
 "wp-signup"

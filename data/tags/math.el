@@ -1154,6 +1154,7 @@
 "quantile"
 "quantum-calculus"
 "quantum-computation"
+"quantum-computing"
 "quantum-field-theory"
 "quantum-groups"
 "quantum-information"

@@ -74,6 +74,7 @@
 "bots"
 "boxes"
 "breadcrumbs"
+"bug"
 "bulk-operations"
 "cache"
 "caching"

@@ -191,6 +191,7 @@
 "configuration"
 "confirmation"
 "conflict"
+"connection"
 "console"
 "contact-form"
 "contact-us"

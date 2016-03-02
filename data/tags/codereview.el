@@ -103,6 +103,7 @@
 "bourne-shell"
 "brainfuck"
 "breadth-first-search"
+"browser-storage"
 "c"
 "c#"
 "c++"

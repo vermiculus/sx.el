@@ -155,7 +155,6 @@
 "configuration"
 "confirmations"
 "confluence"
-"connections"
 "contact-address"
 "contacts"
 "contacts-group"

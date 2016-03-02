@@ -267,6 +267,7 @@
 "socketlabs"
 "soft-credit"
 "sort-order"
+"spam"
 "sql"
 "ssl"
 "start-up"

@@ -195,7 +195,6 @@
 "renouncing-citizenship"
 "rental"
 "repatriation"
-"residence"
 "residence-cards"
 "residency"
 "resident-permit"
