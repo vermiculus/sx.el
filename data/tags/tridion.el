@@ -94,6 +94,7 @@
 "event"
 "event-system"
 "experience-manager"
+"experiment"
 "extension-errors"
 "extension-model"
 "external-integrations"

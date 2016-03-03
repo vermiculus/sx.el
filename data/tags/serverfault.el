@@ -341,6 +341,7 @@
 "branchcache"
 "bridge"
 "bridge-router"
+"bridged-adapter"
 "bridging"
 "broadcom"
 "brocade"

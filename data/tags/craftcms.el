@@ -170,6 +170,7 @@
 "license"
 "lightswitch"
 "limit"
+"link"
 "live-preview"
 "live-view"
 "locale"

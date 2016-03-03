@@ -594,6 +594,7 @@
 "saturn"
 "saturn-v"
 "science"
+"science-fiction"
 "scientific-data"
 "security"
 "sedna"

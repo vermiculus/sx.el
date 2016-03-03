@@ -2007,6 +2007,7 @@
 "the-magnificent-ambersons"
 "the-magnificent-seven"
 "the-man-from-earth"
+"the-man-from-u.n.c.l.e"
 "the-man-from-uncle"
 "the-man-in-the-iron-mask"
 "the-marathon-family"

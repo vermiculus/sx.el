@@ -470,6 +470,7 @@
 "rock-paper-scissors"
 "roll-through-the-ages"
 "roma"
+"rorys-story-cubes"
 "rota"
 "rummikub"
 "rummy"

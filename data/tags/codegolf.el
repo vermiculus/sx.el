@@ -61,7 +61,6 @@
 "crossword"
 "cryptography"
 "css"
-"csv"
 "data-structures"
 "date"
 "date-manipulating"

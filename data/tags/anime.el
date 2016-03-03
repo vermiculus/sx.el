@@ -371,6 +371,7 @@
 "gunbuster"
 "gundam"
 "gundam-build-fighters"
+"gundam-wing"
 "gungrave"
 "gunslinger-girl"
 "gunxsword"

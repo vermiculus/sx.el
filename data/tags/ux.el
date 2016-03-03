@@ -397,6 +397,7 @@
 "image"
 "image-format"
 "incentives"
+"inclusive-design"
 "indexing"
 "indicator"
 "industrial-design"

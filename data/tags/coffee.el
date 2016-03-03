@@ -1,6 +1,7 @@
 ("accidents"
 "acids"
 "aeropress"
+"americano"
 "arabica"
 "aroma"
 "bean-to-cup"

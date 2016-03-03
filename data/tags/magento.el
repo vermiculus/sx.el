@@ -349,6 +349,7 @@
 "exception"
 "export"
 "extend"
+"extendjs"
 "extension-attributes"
 "extensions"
 "external"

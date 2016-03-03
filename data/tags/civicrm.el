@@ -194,6 +194,7 @@
 "memberships"
 "memberships"
 "menu"
+"merge"
 "merging"
 "message-templates"
 "metatags"

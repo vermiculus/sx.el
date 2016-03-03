@@ -150,7 +150,6 @@
 "kartikeya"
 "kauravas"
 "kaushitaki-upanishad"
-"kena-upanishad"
 "kesari"
 "kholapur"
 "krishna"

@@ -480,6 +480,7 @@
 "glass"
 "glass-plate"
 "gnd-filter"
+"gnome"
 "godox"
 "golden-hour"
 "golden-ratio"

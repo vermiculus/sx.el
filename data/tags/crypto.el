@@ -17,6 +17,7 @@
 "asymmetric"
 "attack"
 "attribute-based-encry"
+"attribute-based-encrypt"
 "authenticated-encryption"
 "authentication"
 "avalanche"

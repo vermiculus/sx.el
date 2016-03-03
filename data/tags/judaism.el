@@ -1103,6 +1103,7 @@
 "oral-torah"
 "ordination"
 "organizations"
+"origin"
 "orla-revai"
 "orlah"
 "orthodox"

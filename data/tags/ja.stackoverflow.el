@@ -733,6 +733,7 @@
 "youtube-data-api"
 "youtube-player-api"
 "zend-framework"
+"zend-framework2"
 "zsh"
 "アセンブリ言語"
 "アプリ内課金"

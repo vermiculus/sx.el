@@ -342,6 +342,7 @@
 "icon"
 "id"
 "ide"
+"if-then"
 "iis"
 "image"
 "image-editor"
