@@ -167,7 +167,6 @@
 "numerical-analysis"
 "optical-properties"
 "orbitals"
-"organic"
 "organic-chemistry"
 "organometallic-compounds"
 "organosilicon-compounds"

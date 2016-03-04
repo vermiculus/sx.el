@@ -140,7 +140,6 @@
 "markov"
 "markov-process"
 "matlab"
-"matrix-factorization"
 "metadata"
 "methods"
 "missing-data"

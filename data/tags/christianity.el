@@ -799,6 +799,7 @@
 "saint"
 "salvation"
 "same-sex-marriage"
+"samson"
 "samuel"
 "sanctification"
 "sarah"

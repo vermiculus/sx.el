@@ -728,6 +728,7 @@
 "sunbutter"
 "sushi"
 "sweet-potato"
+"sweeteners"
 "swiss-roll"
 "syrup"
 "taffy"

@@ -35,6 +35,7 @@
 "flavor"
 "flavour"
 "foam"
+"food"
 "foreign-beer"
 "freshness"
 "garnish"

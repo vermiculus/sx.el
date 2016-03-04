@@ -500,6 +500,7 @@
 "shadows-of-brimstone"
 "shadows-over-camelot"
 "shape"
+"shark"
 "shelem"
 "sheriff-of-nottingham"
 "shogi"

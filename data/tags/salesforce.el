@@ -119,6 +119,7 @@
 "bulk"
 "bulk-api"
 "bulk-delete"
+"bulk-permission"
 "bulkification"
 "bulkify"
 "burp"

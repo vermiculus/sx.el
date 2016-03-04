@@ -223,7 +223,6 @@
 "version-control-systems"
 "vi-words"
 "vim-development"
-"vim-snipmate"
 "vim-windows"
 "vimball"
 "vimdiff"

@@ -462,6 +462,7 @@
 "max"
 "max-connections"
 "maxdop"
+"maxscale"
 "mdl"
 "mdx"
 "memcached"

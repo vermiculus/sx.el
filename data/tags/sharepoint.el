@@ -63,6 +63,7 @@
 "app-fabric"
 "app-part"
 "app-permissions"
+"app-pools"
 "app-web"
 "append-changes"
 "apple-ios"

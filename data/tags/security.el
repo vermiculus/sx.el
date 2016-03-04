@@ -731,6 +731,7 @@
 "sql-injection"
 "sql-server"
 "sqlmap"
+"squid"
 "srp"
 "ssd"
 "ssh"

@@ -510,7 +510,6 @@
 "voting"
 "voting-fraud"
 "web-sockets"
-"why"
 "wildcard"
 "windows-app"
 "winterbash"

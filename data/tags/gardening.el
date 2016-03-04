@@ -62,6 +62,7 @@
 "carnivorous-plants"
 "carrots"
 "cauliflower"
+"celery"
 "chainsaw"
 "chemicals"
 "cherries"

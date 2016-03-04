@@ -60,7 +60,6 @@
 "apa6"
 "apalike"
 "appendices"
-"appendix"
 "apple"
 "aquamacs"
 "arabic"

@@ -86,6 +86,7 @@
 "dht22"
 "diagram"
 "display"
+"dist-upgrade"
 "dns"
 "docker"
 "dpkg"

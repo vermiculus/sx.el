@@ -63,6 +63,7 @@
 "junk-food"
 "keys"
 "kitchen"
+"knife-sharpening"
 "knives"
 "labeling"
 "laundry"

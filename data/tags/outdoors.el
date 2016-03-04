@@ -226,6 +226,7 @@
 "lightning"
 "liquid-fuel-stoves"
 "litter"
+"logging"
 "long-bow"
 "long-trail"
 "lost"

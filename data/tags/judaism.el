@@ -283,6 +283,7 @@
 "chazaka"
 "chazal"
 "chazara-betshuva"
+"chazarah"
 "chazarat-hashatz"
 "chazon-ish"
 "chazzan-prayer-leader"
