@@ -80,6 +80,7 @@
 "banking"
 "barbary-wars"
 "battles"
+"bavaria"
 "belgium"
 "berlin-wall"
 "bible"

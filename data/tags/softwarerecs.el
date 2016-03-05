@@ -595,6 +595,7 @@
 "safari"
 "samba"
 "sandbox"
+"sanitize"
 "sass"
 "scala"
 "scanning"

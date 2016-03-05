@@ -653,6 +653,7 @@
 "infinite-combinatorics"
 "infinite-dim-manifolds"
 "infinite-divisibility"
+"infinite-loop-spaces"
 "infinite-sequences"
 "infinite-time-computabili"
 "infinitesimals"

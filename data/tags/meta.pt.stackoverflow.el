@@ -186,6 +186,7 @@
 "status-reproduced"
 "status-review"
 "status-revis&#227;o"
+"sugest&#227;o"
 "superuser"
 "suporte"
 "support"

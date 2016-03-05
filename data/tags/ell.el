@@ -288,6 +288,7 @@
 "participle-clause"
 "participle-phrase"
 "participles"
+"partitives"
 "parts-of-speech"
 "passive"
 "passive-voice"

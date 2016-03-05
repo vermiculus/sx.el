@@ -167,6 +167,7 @@
 "seeded-questions"
 "self-answer"
 "serial-voting"
+"sidebar"
 "so"
 "soft-question"
 "solution-verification"

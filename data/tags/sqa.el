@@ -11,6 +11,7 @@
 "assert"
 "automated-testing"
 "automation"
+"batch-file"
 "bdd"
 "blazemeter"
 "browser-automation"

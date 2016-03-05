@@ -850,6 +850,7 @@
 "profiling"
 "project-online"
 "project-server"
+"project-sitecollection"
 "project-templates"
 "project2007"
 "projectedfield"

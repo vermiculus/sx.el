@@ -357,6 +357,7 @@
 "library"
 "license"
 "lightning-network"
+"lightning-routing"
 "lightweight"
 "limit"
 "linode"

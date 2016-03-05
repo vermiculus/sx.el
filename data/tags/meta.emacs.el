@@ -56,7 +56,6 @@
 "search"
 "self-answer"
 "site-crossover"
-"site-description"
 "site-evaluation"
 "site-promotion"
 "specific-question"

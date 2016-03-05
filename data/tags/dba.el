@@ -556,6 +556,7 @@
 "odp.net"
 "offline"
 "offset-fetch"
+"ola-hallengren"
 "olap"
 "oledb"
 "online"

@@ -777,7 +777,6 @@
 "turkish-cuisine"
 "tzatziki"
 "uht"
-"uk"
 "umami"
 "untagged"
 "utensils"

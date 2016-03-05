@@ -44,7 +44,6 @@
 "rss"
 "scope"
 "search"
-"site-evaluation"
 "site-name"
 "site-promotion"
 "specific-question"

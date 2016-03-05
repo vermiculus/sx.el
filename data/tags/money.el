@@ -323,6 +323,7 @@
 "funding"
 "funeral"
 "futures"
+"gambling"
 "gbp"
 "gbp-british-pound"
 "general-partnership"

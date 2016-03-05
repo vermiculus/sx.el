@@ -162,6 +162,7 @@
 "gastroenterology"
 "genes"
 "genetic-engineering"
+"genetics"
 "glucose"
 "gums"
 "gynaecology"

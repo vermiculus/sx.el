@@ -546,6 +546,7 @@
 "ffc"
 "fft"
 "field"
+"field-strength"
 "fifo"
 "filter"
 "finfet"

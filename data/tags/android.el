@@ -888,6 +888,7 @@
 "monitoring"
 "moon-reader"
 "moto-x"
+"moto-x-play"
 "motoblur"
 "motorola"
 "motorola-atrix-4g"

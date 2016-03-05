@@ -265,6 +265,7 @@
 "sacrifice"
 "salvation"
 "samuel"
+"sanctification"
 "sarcasm"
 "satan"
 "saul"

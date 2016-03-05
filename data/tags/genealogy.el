@@ -162,6 +162,7 @@
 "guyana"
 "handwriting-analysis"
 "haplogroup"
+"hawaii"
 "headstone"
 "hebrew"
 "heraldry"

@@ -613,6 +613,7 @@
 "noun-adjuncts"
 "noun-phrases"
 "nouns"
+"novel"
 "nuance"
 "number"
 "numbers"

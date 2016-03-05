@@ -864,6 +864,7 @@
 "httpd"
 "https"
 "httrack"
+"huawei"
 "humor"
 "hurd"
 "hybrid-graphics"

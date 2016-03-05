@@ -1916,6 +1916,7 @@
 "storage"
 "stored-procedure"
 "story-map"
+"strahler"
 "stream-order"
 "street-address"
 "streets"
