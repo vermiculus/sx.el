@@ -1,5 +1,4 @@
 ("abortion"
-"absurd"
 "adorno"
 "aesthetics"
 "agnosticism"
@@ -198,6 +197,7 @@
 "love"
 "lucretious"
 "machiavelli"
+"marcus-aurelius"
 "marx"
 "marxism"
 "materialism"

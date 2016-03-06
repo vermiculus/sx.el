@@ -1533,6 +1533,7 @@
 "vpn"
 "wakelock"
 "wallpaper"
+"walton-primo-g6"
 "warranty"
 "water-damage"
 "wcdma"

@@ -171,7 +171,6 @@
 "romance-three-kingdoms"
 "romulus-and-remus"
 "rosicrucianism"
-"rumors"
 "sacrifice"
 "scientology"
 "seasons"

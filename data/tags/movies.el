@@ -686,7 +686,6 @@
 "fifth-element"
 "fifty-shades-of-grey"
 "fight-club"
-"film-genre"
 "film-industry"
 "film-location"
 "film-techniques"

@@ -973,6 +973,7 @@
 "viper"
 "virago"
 "vitz"
+"vivante"
 "volkswagen"
 "volvo"
 "voyager"

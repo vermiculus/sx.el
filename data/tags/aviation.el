@@ -130,6 +130,7 @@
 "boeing-767"
 "boeing-777"
 "boeing-787"
+"boeing-sst"
 "bombardier"
 "bomber"
 "books"

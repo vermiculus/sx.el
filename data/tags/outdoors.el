@@ -346,6 +346,7 @@
 "snowdonia"
 "snowshoeing"
 "snowshoes"
+"solar"
 "solo-climbing"
 "solo-trekking"
 "spain"

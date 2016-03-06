@@ -83,7 +83,6 @@
 "environmental-chemistry"
 "enzymes"
 "equation-of-state"
-"equilbrium"
 "equilibrium"
 "equipment"
 "erratum"

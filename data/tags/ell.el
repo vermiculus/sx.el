@@ -99,6 +99,8 @@
 "dangling-modifier"
 "dangling-participle"
 "date"
+"dative-alternation"
+"dative-benefactive"
 "declarative-sentence"
 "definite-article"
 "definition"
@@ -489,5 +491,6 @@
 "word-stress"
 "word-usage"
 "would-rather"
+"wr"
 "writing"
 "zero-article")

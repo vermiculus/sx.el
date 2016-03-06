@@ -268,7 +268,6 @@
 "economy"
 "edge-of-the-empire"
 "edition-comparison"
-"educational-game"
 "eladrin"
 "elemental-evil"
 "elf"

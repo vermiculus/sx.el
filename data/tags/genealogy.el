@@ -147,6 +147,7 @@
 "gedcom"
 "gender"
 "gendex"
+"genealogical-proof"
 "genealogical-societies"
 "gentry"
 "germany"

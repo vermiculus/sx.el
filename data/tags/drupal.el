@@ -287,7 +287,6 @@
 "hook-views-query-alter"
 "hooks"
 "hover"
-"html5"
 "http-status-codes"
 "hybridauth"
 "i18n"

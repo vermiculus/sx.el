@@ -182,6 +182,7 @@
 "compiler"
 "component"
 "component-manager"
+"composabletypes"
 "composer"
 "conditional-loading"
 "config"

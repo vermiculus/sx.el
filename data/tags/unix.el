@@ -1892,7 +1892,6 @@
 "subversion"
 "sudo"
 "sudoedit"
-"sudoers"
 "sunos"
 "superblock"
 "supervisord"

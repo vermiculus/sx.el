@@ -91,6 +91,7 @@
 "josephus-problem"
 "keys-and-locks"
 "klotski-puzzle"
+"knight-moves"
 "knights-and-knaves"
 "knowledge"
 "labyrinth"

@@ -294,6 +294,7 @@
 "express-edition"
 "extended-events"
 "extended-stored-procedure"
+"external-tables"
 "facttable"
 "failover"
 "fast-refresh"

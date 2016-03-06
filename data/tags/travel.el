@@ -1710,7 +1710,6 @@
 "uk-citzens"
 "uk-resident"
 "uk-residents"
-"uk-visit-visas"
 "ukraine"
 "ukrainian"
 "ukrainian-citizens"

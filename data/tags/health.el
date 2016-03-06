@@ -160,7 +160,6 @@
 "fruits"
 "gallbladder"
 "gastroenterology"
-"genes"
 "genetic-engineering"
 "genetics"
 "glucose"

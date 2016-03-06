@@ -225,7 +225,6 @@
 "enzymes"
 "epidemiology"
 "epigenetics"
-"ethics"
 "ethnobiology"
 "ethology"
 "eukaryotic-cells"

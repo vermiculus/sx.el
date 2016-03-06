@@ -132,6 +132,7 @@
 "growth"
 "growth-theory"
 "health-economics"
+"high-frequency-trading"
 "history"
 "history-economic-thought"
 "housing"

@@ -1024,6 +1024,7 @@
 "starbursts"
 "stars"
 "statistics"
+"steam"
 "stereoscopy"
 "still-life"
 "stock-photography"

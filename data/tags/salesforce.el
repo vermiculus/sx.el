@@ -1184,6 +1184,7 @@
 "validation"
 "validation-rule"
 "variable-names"
+"variable-scope"
 "veeva"
 "version-control"
 "versioning"

@@ -60,6 +60,7 @@
 "japanese"
 "jeet-kune-do"
 "jiujitsu"
+"joint-lock"
 "judo"
 "jujitsu"
 "jujutsu"
