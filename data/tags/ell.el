@@ -100,7 +100,6 @@
 "dangling-participle"
 "date"
 "dative-alternation"
-"dative-benefactive"
 "declarative-sentence"
 "definite-article"
 "definition"
@@ -408,6 +407,7 @@
 "sentence-structure"
 "sentence-usage"
 "sentences"
+"shift"
 "silent-letter"
 "singing"
 "singular"
@@ -491,6 +491,5 @@
 "word-stress"
 "word-usage"
 "would-rather"
-"wr"
 "writing"
 "zero-article")

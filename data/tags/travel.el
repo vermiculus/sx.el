@@ -543,6 +543,7 @@
 "etiquette"
 "eu"
 "eu-citizens"
+"eu-id-card"
 "eurail"
 "euronight"
 "europe"

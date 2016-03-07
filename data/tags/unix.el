@@ -2303,6 +2303,7 @@
 "xmodmap"
 "xmonad"
 "xmpp"
+"xnest"
 "xorg"
 "xournal"
 "xpra"

@@ -87,6 +87,7 @@
 "notifications"
 "offensive-content"
 "openid"
+"phonetic"
 "podcast"
 "policy"
 "post-ban"

@@ -97,6 +97,7 @@
 "lcd"
 "library"
 "libreoffice"
+"license"
 "linux"
 "lit"
 "loan"

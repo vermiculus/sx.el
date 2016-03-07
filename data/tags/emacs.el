@@ -108,6 +108,7 @@
 "customization"
 "customize"
 "cycling"
+"cygwin"
 "d-bus"
 "dabbrev"
 "daemon"

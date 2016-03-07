@@ -177,6 +177,7 @@
 "glissando"
 "grading"
 "grip"
+"gttm"
 "guitar"
 "guitar-effects"
 "guitar-neck"

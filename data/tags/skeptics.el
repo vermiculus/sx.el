@@ -65,6 +65,7 @@
 "bacteria"
 "banking"
 "barack-obama"
+"bates-method"
 "bathrooms"
 "battery"
 "beauty"

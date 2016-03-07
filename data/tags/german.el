@@ -97,6 +97,7 @@
 "grammar"
 "grammatical-case"
 "grammatical-number"
+"grammatical-person"
 "grammaticality"
 "grammatik"
 "greetings"

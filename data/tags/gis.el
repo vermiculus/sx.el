@@ -1741,6 +1741,7 @@
 "satellite"
 "saudi-arabia"
 "save"
+"savi"
 "sbas"
 "sbet"
 "scale"

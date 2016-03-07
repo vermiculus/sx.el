@@ -723,7 +723,6 @@
 "maps.app"
 "markdown"
 "matlab"
-"matlab-2016a"
 "mavericks"
 "mbp"
 "mdfind"

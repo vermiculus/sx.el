@@ -324,6 +324,7 @@
 "vedanta"
 "vedanta-desika"
 "vedas"
+"vedic-chanting"
 "vedic-gods"
 "vedic-rituals"
 "venkateshwara"

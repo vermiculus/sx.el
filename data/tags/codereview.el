@@ -38,6 +38,7 @@
 "apache-spark"
 "apex-code"
 "api"
+"apl"
 "applescript"
 "arduino"
 "arnoldc"

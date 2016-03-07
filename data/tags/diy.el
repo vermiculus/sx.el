@@ -4,6 +4,7 @@
 "abs"
 "access-panel"
 "accessibility"
+"acid"
 "acoustic"
 "acrylic"
 "addition"

@@ -1265,7 +1265,6 @@
 "reactive"
 "reactjs"
 "readability"
-"reading"
 "reading-code"
 "real-time"
 "rebol"

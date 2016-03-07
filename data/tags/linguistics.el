@@ -246,6 +246,7 @@
 "lojban"
 "machine-translation"
 "malay"
+"maltese"
 "mandarin"
 "markedness"
 "marking"

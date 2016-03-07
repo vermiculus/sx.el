@@ -210,7 +210,6 @@
 "field-formatter"
 "field-formatters"
 "field-group"
-"field-permissions"
 "field-widgets"
 "fields"
 "fieldset"

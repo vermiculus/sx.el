@@ -309,7 +309,6 @@
 "communities-list"
 "community"
 "community-ads"
-"community-adverts"
 "community-bulletin"
 "community-data"
 "community-evaluation"

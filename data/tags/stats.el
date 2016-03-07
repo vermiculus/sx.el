@@ -587,6 +587,7 @@
 "inference"
 "inferential-statistics"
 "infinite-variance"
+"infinitesimals"
 "information"
 "information-extraction"
 "information-geometry"

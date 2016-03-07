@@ -26,6 +26,7 @@
 "bijection"
 "birthday-attack"
 "bitcoin"
+"bitslicing"
 "blake2"
 "blind-signature"
 "blinding"
