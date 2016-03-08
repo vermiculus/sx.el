@@ -285,6 +285,7 @@
 "gpu-monitor"
 "gpx"
 "grafana"
+"graits"
 "graphic-design"
 "graphite"
 "graphs"

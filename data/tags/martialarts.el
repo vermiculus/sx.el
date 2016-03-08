@@ -24,7 +24,6 @@
 "closed-guard"
 "competition"
 "cross-training"
-"defence"
 "defense"
 "dogi"
 "dojo"

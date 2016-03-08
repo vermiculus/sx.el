@@ -597,6 +597,7 @@
 "index-package"
 "indexing"
 "indic"
+"indices"
 "initex"
 "initials"
 "inkscape"

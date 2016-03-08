@@ -417,6 +417,7 @@
 "navigationbar"
 "nend"
 "neobundle"
+"neovim"
 "netbeans"
 "network"
 "nfc"

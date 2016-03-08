@@ -187,6 +187,7 @@
 "debug"
 "debugging"
 "default"
+"defer-term-counting"
 "deleted"
 "deleting"
 "deploy"

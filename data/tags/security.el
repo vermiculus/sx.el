@@ -475,6 +475,7 @@
 "microsoft-edge"
 "mime-type"
 "mitm"
+"mitmf"
 "mixed-content"
 "mobile"
 "mod-security"

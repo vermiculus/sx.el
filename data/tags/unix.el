@@ -32,7 +32,6 @@
 "administration"
 "adobe-flash"
 "afs"
-"ag"
 "agrep"
 "aide"
 "aircrack-ng"

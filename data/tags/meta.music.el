@@ -19,6 +19,7 @@
 "data-explorer"
 "decision"
 "deleted-questions"
+"design"
 "discussion"
 "down-votes"
 "duplicates"

@@ -5,6 +5,7 @@
 "ars-technica"
 "asking-questions"
 "badges"
+"bandwidth"
 "beta"
 "blog"
 "bounty"

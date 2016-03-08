@@ -66,6 +66,7 @@
 "explanation"
 "family"
 "formation-of-numbers"
+"frobenius"
 "game"
 "game-theory"
 "geared-puzzles"

@@ -198,6 +198,7 @@
 "spell"
 "spell-checking"
 "split"
+"ssh"
 "startup"
 "status-line"
 "string-manipulation"

@@ -865,7 +865,6 @@
 "unknown-armies"
 "untagged"
 "utility-powers"
-"v20"
 "vampire-city"
 "vampire-darkages"
 "vampire-kindred-of-east"

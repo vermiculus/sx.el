@@ -373,6 +373,7 @@
 "reasoning"
 "reduced-relative-clause"
 "redundancy"
+"reduplication"
 "reference"
 "reflexive-pronouns"
 "register"

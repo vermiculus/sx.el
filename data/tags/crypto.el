@@ -5,6 +5,7 @@
 "acoustic-cryptanalysis"
 "adversarial-model"
 "aes"
+"affine-cipher"
 "algebraic-attack"
 "algebraic-eraser"
 "algorithm-design"

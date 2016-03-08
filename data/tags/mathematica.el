@@ -261,6 +261,7 @@
 "hdf5-format"
 "head"
 "headers"
+"heatmap"
 "histograms"
 "history"
 "hold"
