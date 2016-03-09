@@ -18,6 +18,7 @@
 "deleted-questions"
 "design"
 "discussion"
+"display-names"
 "down-votes"
 "editing"
 "election"

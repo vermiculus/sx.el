@@ -32,6 +32,7 @@
 "airbus-a320"
 "airbus-a321"
 "airbus-a330"
+"airbus-a340"
 "airbus-a350"
 "airbus-a380"
 "airbus-neo"

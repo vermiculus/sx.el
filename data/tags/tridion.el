@@ -202,7 +202,6 @@
 "storage-extensions"
 "stri"
 "structuregroups"
-"tanslation"
 "taxonomy"
 "tcdl"
 "template-builder"

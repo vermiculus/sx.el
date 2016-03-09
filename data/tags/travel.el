@@ -192,6 +192,7 @@
 "biometric-passports"
 "birdwatching"
 "bishkek"
+"bivs"
 "bkk"
 "black-sea"
 "bne"

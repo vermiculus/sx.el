@@ -58,6 +58,7 @@
 "revisions-page"
 "rss"
 "search"
+"shopping-questions"
 "site-definition"
 "site-evaluation"
 "site-promotion"

@@ -392,7 +392,6 @@
 "paper-size"
 "paragraph"
 "paragraph-styles"
-"patent"
 "path"
 "path-effects"
 "pathfinder"

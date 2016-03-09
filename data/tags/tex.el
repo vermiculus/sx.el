@@ -930,7 +930,6 @@
 "pagenote"
 "pagesel"
 "pageslts"
-"pagination"
 "pandoc"
 "paper"
 "paper-size"

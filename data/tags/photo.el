@@ -985,6 +985,7 @@
 "skin-tones"
 "sky"
 "skylight"
+"slave"
 "sld"
 "slides"
 "slideshow"

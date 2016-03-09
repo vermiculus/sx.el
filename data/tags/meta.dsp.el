@@ -35,6 +35,7 @@
 "meta"
 "migration"
 "moderation"
+"moderators"
 "new-users"
 "notifications"
 "off-topic"

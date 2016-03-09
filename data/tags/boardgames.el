@@ -394,7 +394,6 @@
 "nine-mens-morris"
 "ninja-burger"
 "notation"
-"number-of-players"
 "nuns-on-the-run"
 "nuts"
 "odysseus"

@@ -248,7 +248,6 @@
 "directxmath"
 "displacement-mapping"
 "distribution"
-"dlc"
 "dll"
 "documentation"
 "dod"

@@ -4,6 +4,7 @@
 ".htaccess"
 ".profile"
 ".sh"
+".sh"
 ".ttf"
 "10.04"
 "10.10"

@@ -1054,6 +1054,8 @@
 "youtube-playlist"
 "youtube-watch-later"
 "zapier"
+"zendesk"
+"zendesk-help-center"
 "zimbra"
 "zipcar"
 "zippyshare"

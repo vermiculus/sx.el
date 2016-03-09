@@ -1185,6 +1185,7 @@
 "review-suspension"
 "reviewer-badge"
 "revision-history"
+"revision-list"
 "revisions"
 "revisions-list"
 "revival-badge"

@@ -583,6 +583,7 @@
 "graded-rings"
 "gradient"
 "gradient-flows"
+"graph-connectivity"
 "graph-invariants"
 "graph-isomorphism"
 "graph-laplacian"

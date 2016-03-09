@@ -572,6 +572,7 @@
 "pension"
 "pension-plan"
 "pension-sipp"
+"peril"
 "permanent-resident"
 "personal-check"
 "personal-loan"

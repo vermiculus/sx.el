@@ -204,6 +204,7 @@
 "reproducibility"
 "research"
 "rmsprop"
+"rnn"
 "rstudio"
 "sampling"
 "sas"

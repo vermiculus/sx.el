@@ -996,6 +996,7 @@
 "oneplus-two"
 "oom-priority"
 "open-source"
+"openjdk"
 "openoffice"
 "openvpn"
 "opera-mini"

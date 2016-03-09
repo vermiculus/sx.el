@@ -1269,6 +1269,7 @@
 "natural-language"
 "nautilus"
 "nbd"
+"nc"
 "ncftp"
 "ncurses"
 "ndiswrappers"

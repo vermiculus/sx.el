@@ -85,6 +85,7 @@
 "asynchronous"
 "asynchronous-testing"
 "attachment"
+"attribute"
 "aura"
 "aura-attribute"
 "aura-id"
