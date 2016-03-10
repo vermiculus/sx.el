@@ -1,4 +1,5 @@
 ("1-wire"
+"7-segment"
 "accelerometer"
 "adafruit"
 "adc"

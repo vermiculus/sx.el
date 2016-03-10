@@ -605,6 +605,7 @@
 "proxy"
 "proxychains"
 "public-key-infrastructure"
+"putty"
 "pycrypto"
 "python"
 "qr-code"

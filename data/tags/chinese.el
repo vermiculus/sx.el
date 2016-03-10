@@ -20,6 +20,7 @@
 "classical-chinese"
 "classifiers"
 "colloquialisms"
+"colocation"
 "comparison"
 "congratulations"
 "conversation"

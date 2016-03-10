@@ -102,6 +102,7 @@
 "status-planned"
 "status-reproduced"
 "status-review"
+"stock-photography"
 "subjective"
 "support"
 "swag"

@@ -396,6 +396,7 @@
 "sram"
 "stationary-bike"
 "stationery-bike"
+"statistics"
 "steel"
 "steerer"
 "stem"

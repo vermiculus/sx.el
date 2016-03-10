@@ -106,6 +106,7 @@
 "europass"
 "europe"
 "events"
+"exercise"
 "exit-interview"
 "expenses"
 "failure"

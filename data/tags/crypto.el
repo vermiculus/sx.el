@@ -414,7 +414,6 @@
 "universal-composability"
 "universal-hash"
 "universal-re-encryption"
-"untagged"
 "verifiability"
 "vigenere"
 "visual-cryptography"

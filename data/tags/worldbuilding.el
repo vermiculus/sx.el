@@ -209,6 +209,7 @@
 "military-defense"
 "mind-control"
 "mines"
+"mining"
 "modern-age"
 "moons"
 "mountains"

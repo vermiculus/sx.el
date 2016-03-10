@@ -949,6 +949,7 @@
 "video"
 "vigenere-cipher"
 "vimscript"
+"virtual-machine"
 "visual-studio"
 "vkscript"
 "wcf"

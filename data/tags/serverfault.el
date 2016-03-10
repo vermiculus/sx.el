@@ -1567,6 +1567,7 @@
 "kill"
 "kill-process"
 "kinit"
+"kitematic"
 "kjournald"
 "kmemsize"
 "kms"

@@ -1105,6 +1105,7 @@
 "realizability"
 "recreational-mathematics"
 "recurrences"
+"recursion-theory"
 "reduction-graphs"
 "reductive-groups"
 "reference-request"

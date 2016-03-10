@@ -84,6 +84,7 @@
 "draft"
 "drop-down"
 "dynamicfield"
+"eager-loading"
 "ecommerce"
 "editor"
 "elementaction"

@@ -1730,7 +1730,6 @@
 "xauth"
 "xcode"
 "xhtml"
-"xkcd-1305"
 "xml"
 "xmlhttprequest"
 "xna"

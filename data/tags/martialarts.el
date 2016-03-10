@@ -49,7 +49,6 @@
 "health"
 "hema"
 "history"
-"holding"
 "hyeong"
 "iaido"
 "iaijutsu"

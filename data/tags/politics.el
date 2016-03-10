@@ -123,6 +123,7 @@
 "igo"
 "illegal-immigration"
 "immigration"
+"impeachment"
 "income"
 "income-inequality"
 "independence"

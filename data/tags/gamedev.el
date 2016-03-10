@@ -172,6 +172,7 @@
 "component-based"
 "compression"
 "computational-geometry"
+"compute-shader"
 "computeshader"
 "conceptual"
 "configuration"

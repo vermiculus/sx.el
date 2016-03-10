@@ -1025,7 +1025,6 @@
 "windows-8"
 "windows-server-2003"
 "windows-server-2008"
-"wireframe"
 "woocommerce"
 "word-press"
 "wordpress"

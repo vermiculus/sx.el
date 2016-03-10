@@ -192,7 +192,6 @@
 "chromecast"
 "cifs"
 "cinema-display"
-"cisco"
 "clash-of-clans"
 "classic-mac-os"
 "cleaning"

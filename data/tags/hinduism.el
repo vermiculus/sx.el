@@ -236,6 +236,7 @@
 "purana"
 "puranas"
 "radha"
+"ram"
 "rama"
 "ramanuja"
 "ramayana"

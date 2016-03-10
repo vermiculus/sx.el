@@ -57,7 +57,6 @@
 "documentation"
 "doi"
 "drugs"
-"ecology"
 "economics"
 "education"
 "elections"

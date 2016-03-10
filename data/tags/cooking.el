@@ -237,7 +237,6 @@
 "deep-frying"
 "deflate"
 "defrosting"
-"deg"
 "dehydrating"
 "dessert"
 "dicing"
