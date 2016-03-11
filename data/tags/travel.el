@@ -1669,7 +1669,6 @@
 "travel-gadgets"
 "travel-hacks"
 "travel-insurance"
-"travel-logs"
 "travel-mates"
 "travel-obstructions"
 "travel-sickness"

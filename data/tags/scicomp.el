@@ -80,7 +80,6 @@
 "diffusion"
 "discontinuous-galerkin"
 "discretization"
-"docker"
 "documentation"
 "domain-decomposition"
 "education"

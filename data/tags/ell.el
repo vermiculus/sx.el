@@ -182,6 +182,7 @@
 "homographs"
 "homophones"
 "hyphen"
+"hypocorism"
 "idiom-meaning"
 "idiom-request"
 "idiomatic"

@@ -265,7 +265,6 @@
 "sati-goddess"
 "scripture"
 "sects"
-"seven"
 "sex"
 "shaiva-siddhanta"
 "shaivism"
@@ -354,5 +353,6 @@
 "yamaloka"
 "yashoda"
 "yoga"
+"yoga-sutras"
 "yogi"
 "yuga")

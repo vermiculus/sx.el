@@ -40,6 +40,7 @@
 "authenticate"
 "authentication"
 "author"
+"authorize.net"
 "automation"
 "aws"
 "backup"

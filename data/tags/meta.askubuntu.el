@@ -204,6 +204,5 @@
 "votes"
 "voting"
 "webapps"
-"where-to-file-bug-report"
 "windows"
 "winter-bash")

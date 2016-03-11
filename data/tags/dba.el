@@ -796,6 +796,7 @@
 "snapshot-isolation"
 "solaris"
 "solr"
+"sort"
 "sorting"
 "sos-scheduler-yield"
 "soundex"

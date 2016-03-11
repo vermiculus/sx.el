@@ -276,6 +276,7 @@
 "judaism"
 "judgements"
 "jumuah"
+"jurisprudence"
 "kaaba"
 "kaabah"
 "kaffarah"

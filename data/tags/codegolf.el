@@ -197,7 +197,6 @@
 "shortest-time"
 "shortest-time"
 "simulation"
-"sine"
 "sorting"
 "source-layout"
 "stack"

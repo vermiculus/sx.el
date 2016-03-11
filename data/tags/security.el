@@ -490,6 +490,7 @@
 "nat"
 "near-field-communication"
 "nessus"
+"netcat"
 "netstat"
 "network"
 "network-access-control"

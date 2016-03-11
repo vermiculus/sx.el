@@ -219,6 +219,7 @@
 "enlarge"
 "eof"
 "error"
+"error-400"
 "error-403"
 "error-404"
 "error-405"

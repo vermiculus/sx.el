@@ -19,6 +19,7 @@
 "ambient-data-framework"
 "anguilla"
 "api"
+"applicationdata"
 "architecture"
 "archival"
 "audience-manager"

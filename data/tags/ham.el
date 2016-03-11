@@ -203,6 +203,7 @@
 "united-kingdom"
 "united-states"
 "untagged"
+"unun"
 "us"
 "usa"
 "uv-5r"

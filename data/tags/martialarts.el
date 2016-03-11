@@ -147,6 +147,7 @@
 "technique"
 "terminology"
 "testing"
+"throwing"
 "training"
 "tricking"
 "tricks"

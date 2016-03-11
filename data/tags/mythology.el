@@ -186,6 +186,7 @@
 "tacitus"
 "tain-bo-cuailnge"
 "tammuz"
+"tantalus"
 "teutonic"
 "the-native-tales"
 "theology"

@@ -688,6 +688,7 @@
 "thunderbird"
 "time-management"
 "timer"
+"timezones"
 "tls"
 "touchscreen"
 "transcription"
