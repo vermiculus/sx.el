@@ -321,6 +321,7 @@
 "martyr"
 "masjid"
 "masjid-al-haram"
+"masturbation"
 "matam"
 "meaning"
 "meat"

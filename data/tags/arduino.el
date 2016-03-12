@@ -246,6 +246,7 @@
 "threads"
 "time"
 "timers"
+"timezone"
 "timing"
 "tinygps"
 "tlc5940"

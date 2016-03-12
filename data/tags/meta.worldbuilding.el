@@ -83,7 +83,6 @@
 "status-planned"
 "status-reproduced"
 "status-review"
-"study-case"
 "support"
 "tag-blacklist"
 "tag-synonyms"

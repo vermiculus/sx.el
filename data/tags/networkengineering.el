@@ -72,6 +72,7 @@
 "cisco-small-business"
 "cisco-voip"
 "cisco-wireless"
+"cisco-wlc"
 "cli"
 "congestion"
 "cos"

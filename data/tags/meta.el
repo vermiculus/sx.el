@@ -1326,7 +1326,6 @@
 "stackapps"
 "stackegg"
 "stackexchange"
-"stackexchange-1.0"
 "stackexchange-2.0"
 "stackexchange-button"
 "stackexchange-filter"

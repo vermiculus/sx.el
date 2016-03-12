@@ -400,6 +400,7 @@
 "hunter-vigil"
 "hx"
 "hybrid-rpg"
+"iamzombie"
 "immediate-actions"
 "immediate-interrupt"
 "immediate-reaction"
@@ -718,6 +719,7 @@
 "shadowrun-sr4"
 "shadowrun-sr5"
 "shadows-of-esteren"
+"shaken"
 "shaman"
 "shield"
 "shift"
@@ -924,5 +926,6 @@
 "wu-xing-the-ninja-crusade"
 "xcrawl"
 "xp"
+"z-corps"
 "zombies"
 "zone")

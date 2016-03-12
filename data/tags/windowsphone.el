@@ -99,6 +99,7 @@
 "gps"
 "groove"
 "group-chat"
+"headset"
 "here"
 "history"
 "homebrew"

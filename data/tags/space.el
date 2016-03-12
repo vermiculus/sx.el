@@ -542,6 +542,7 @@
 "raptor"
 "rassvet"
 "raw-data"
+"rcs"
 "rd-170"
 "rd-180"
 "rd-19x"

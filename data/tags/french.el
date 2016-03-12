@@ -63,6 +63,7 @@
 "conjonctions"
 "conjugaison"
 "conjugation"
+"connotation"
 "constructions"
 "constructions-causatives"
 "contractions"

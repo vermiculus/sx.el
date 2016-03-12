@@ -152,6 +152,7 @@
 "physics"
 "poetry"
 "polyomino"
+"prime"
 "probability"
 "programming"
 "pursuit-evasion"

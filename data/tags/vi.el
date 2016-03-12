@@ -115,6 +115,7 @@
 "multiple-files"
 "multiple-lines"
 "neovim"
+"neovim-qt"
 "netrw"
 "normal-mode"
 "nvi"

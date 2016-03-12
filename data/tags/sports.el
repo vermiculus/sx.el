@@ -40,6 +40,7 @@
 "cricket-world-cup"
 "cross-training"
 "curling"
+"cycleball"
 "cycling"
 "darts"
 "davis-cup"

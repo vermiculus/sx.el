@@ -295,7 +295,6 @@
 "haematology"
 "hair"
 "hallucinogens"
-"haptics"
 "hardy-weinberg"
 "healing"
 "health"

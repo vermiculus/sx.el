@@ -22,6 +22,7 @@
 "brazil"
 "business"
 "calendar"
+"camping"
 "canada"
 "cars"
 "caveats"

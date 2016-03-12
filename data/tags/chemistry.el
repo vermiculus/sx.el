@@ -228,7 +228,6 @@
 "stereochemistry"
 "stereoisomerism"
 "stoichiometry"
-"strain"
 "structural-biology"
 "structural-formula"
 "sublimation"

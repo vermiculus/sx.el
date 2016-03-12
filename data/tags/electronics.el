@@ -615,7 +615,6 @@
 "glcd"
 "glue"
 "gnd"
-"gnss"
 "gold"
 "goniometer"
 "gpio"

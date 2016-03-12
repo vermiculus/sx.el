@@ -401,6 +401,7 @@
 "vipassana"
 "visuddhimagga"
 "volition"
+"welfare"
 "well-being"
 "western-buddhism"
 "western-philosophy"

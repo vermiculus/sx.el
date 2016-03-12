@@ -235,6 +235,7 @@
 "convex-dominance"
 "convex-ordering"
 "convolution"
+"cooccurrence"
 "copula"
 "correlated-predictors"
 "correlation"

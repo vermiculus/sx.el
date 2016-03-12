@@ -527,7 +527,6 @@
 "second-world-war"
 "secularism"
 "seleucid-empire"
-"self-rule"
 "sengoku"
 "settlement"
 "seventeenth-century"

@@ -757,6 +757,7 @@
 "orguss"
 "osadai"
 "osamu-tezuka"
+"osomatsu-san"
 "osu-karatebu"
 "otoboku"
 "otome-yokai-zakuro"

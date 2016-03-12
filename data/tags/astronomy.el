@@ -295,6 +295,7 @@
 "speed"
 "standards"
 "star"
+"star-cataloges"
 "star-cluster"
 "star-cycle"
 "star-formation"

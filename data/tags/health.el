@@ -21,6 +21,7 @@
 "ankle"
 "anorexia"
 "antibiotics"
+"anticoagulation"
 "anticonvulsants"
 "antidepressants"
 "antihistamines"

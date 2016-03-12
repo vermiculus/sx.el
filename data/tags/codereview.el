@@ -764,6 +764,7 @@
 "rust"
 "rx-java"
 "salesforce"
+"salesforce-apex"
 "sandbox"
 "sas"
 "sass"
