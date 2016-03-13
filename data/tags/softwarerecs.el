@@ -743,6 +743,7 @@
 "voicemail"
 "voip"
 "vpn"
+"vr"
 "wallpaper"
 "watch-os"
 "wav"

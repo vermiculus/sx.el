@@ -882,8 +882,6 @@
 "streaming"
 "street-view"
 "stumbleupon"
-"subscription"
-"sugarcrm"
 "support"
 "survey"
 "surveymonkey"

@@ -142,6 +142,7 @@
 "hard-float"
 "hardware"
 "haskell"
+"hat"
 "hdd"
 "hdmi"
 "headless"

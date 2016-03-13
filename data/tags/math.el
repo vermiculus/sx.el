@@ -1168,6 +1168,7 @@
 "quantum-groups"
 "quantum-information"
 "quantum-mechanics"
+"quartic-equations"
 "quasi-uniform-spaces"
 "quasicoherent-sheaves"
 "quasiconformal-maps"

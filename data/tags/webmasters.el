@@ -666,7 +666,6 @@
 "ownership"
 "paas"
 "page"
-"page-maps"
 "page-ranking"
 "page-similarity"
 "page-size"

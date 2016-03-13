@@ -85,6 +85,7 @@
 "crib"
 "crying"
 "custody"
+"dad"
 "daily-routine"
 "dating"
 "daycare"

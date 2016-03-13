@@ -1207,7 +1207,6 @@
 "visualforce-component"
 "visualforce-tab"
 "visualforce-template"
-"visualforcenooverri"
 "visualforcepage"
 "wave"
 "web"

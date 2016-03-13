@@ -1068,6 +1068,7 @@
 "weather"
 "weight"
 "wetting"
+"white-dwarfs"
 "white-holes"
 "wick-rotation"
 "wick-theorem"

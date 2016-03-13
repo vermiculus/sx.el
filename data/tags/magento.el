@@ -120,6 +120,7 @@
 "category-products"
 "category-tree"
 "cdn"
+"cdnperformance"
 "ce"
 "ce-1.4.0.1"
 "ce-1.4.1.1"

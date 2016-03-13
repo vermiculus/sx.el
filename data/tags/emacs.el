@@ -611,6 +611,7 @@
 "x11"
 "xemacs"
 "xml"
+"xml-schema"
 "yank"
 "yasnippet"
 "zoom"

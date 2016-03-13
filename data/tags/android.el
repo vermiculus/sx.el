@@ -965,7 +965,6 @@
 "nexus-s"
 "nfc"
 "nikon-s800c"
-"nokia-series-60"
 "nokia-x"
 "non-market"
 "nook"

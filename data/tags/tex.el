@@ -1163,6 +1163,7 @@
 "scrlayer-scrpage"
 "scrlttr2"
 "scrpage2"
+"scrreport"
 "sectioning"
 "sections"
 "sections-paragraphs"

@@ -833,6 +833,7 @@
 "repartee"
 "repetition"
 "reported-speech"
+"req"
 "request"
 "research"
 "resource"

@@ -67,6 +67,7 @@
 "compile"
 "components"
 "constants"
+"convert"
 "core-libraries"
 "cosa"
 "counterfeit"

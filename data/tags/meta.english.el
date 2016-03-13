@@ -107,6 +107,7 @@
 "question-requirements"
 "question-restrictions"
 "questions"
+"quotes"
 "recent-activity"
 "recommend"
 "reference"

@@ -78,7 +78,6 @@
 "arithmetic-variety"
 "artin-ring"
 "arxiv"
-"ask-johnson"
 "associated-graded"
 "associative-algebra"
 "associative-algebras"

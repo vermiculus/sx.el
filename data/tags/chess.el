@@ -131,6 +131,7 @@
 "forced-move"
 "formation"
 "forms-of-chess"
+"fortress"
 "forum"
 "four-knights"
 "french"

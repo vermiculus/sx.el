@@ -401,6 +401,7 @@
 "hx"
 "hybrid-rpg"
 "iamzombie"
+"icons"
 "immediate-actions"
 "immediate-interrupt"
 "immediate-reaction"

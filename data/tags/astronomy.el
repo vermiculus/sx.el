@@ -17,6 +17,7 @@
 "antimatter"
 "apparent-magnitude"
 "apparent-motion"
+"archaeology"
 "artificial-satellite"
 "ascension"
 "asterisms"
