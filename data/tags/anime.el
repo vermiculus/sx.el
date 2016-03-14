@@ -10,7 +10,6 @@
 "absorb-ability"
 "accel-world"
 "acchi-kocchi"
-"afairytaleofdemonlord"
 "afro-samurai"
 "agarest-war"
 "agarest-war-2"

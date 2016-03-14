@@ -463,6 +463,7 @@
 "fake-proofs"
 "faq"
 "farey-sequences"
+"fast-fourier-transform"
 "fermat-numbers"
 "fermi-dirac-integral"
 "fft"

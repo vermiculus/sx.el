@@ -485,6 +485,8 @@
 "linked-list"
 "linkedin"
 "linq"
+"linq-expression"
+"linq-expressions"
 "linq-to-sql"
 "linux"
 "lisp"

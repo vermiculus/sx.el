@@ -291,6 +291,7 @@
 "directory"
 "discount"
 "distinct"
+"docker"
 "documentation"
 "domain"
 "download"

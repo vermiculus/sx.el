@@ -984,6 +984,7 @@
 "search-results-webpart"
 "search-scope"
 "searchserviceapplication"
+"sec"
 "secure-store"
 "security"
 "security-token-service"

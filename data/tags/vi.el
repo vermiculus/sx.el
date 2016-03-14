@@ -133,6 +133,7 @@
 "plugin-conque"
 "plugin-ctrlp"
 "plugin-delimitmate"
+"plugin-devicons"
 "plugin-dispatch"
 "plugin-easy-align"
 "plugin-eclim"

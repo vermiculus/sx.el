@@ -50,6 +50,7 @@
 "moderators"
 "new-users"
 "notifications"
+"off-topic"
 "openid"
 "policy"
 "privileges"

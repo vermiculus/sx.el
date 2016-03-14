@@ -1,5 +1,4 @@
 (".net"
-"acc"
 "acceptance-testing"
 "action-recording"
 "agile"
@@ -83,6 +82,7 @@
 "hp-alm"
 "hp-alm-12.01"
 "hp-alm-12.20"
+"hp-quality-center"
 "hp-quality-center"
 "hp-uft"
 "hpqc"

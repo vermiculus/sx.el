@@ -45,6 +45,7 @@
 "apps"
 "aps"
 "aps-c"
+"aquarium"
 "architecture"
 "archival"
 "archive"

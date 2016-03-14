@@ -1,5 +1,6 @@
 ("7-questions"
 "accepted-answer"
+"annoucement"
 "answers"
 "asking-questions"
 "badges"

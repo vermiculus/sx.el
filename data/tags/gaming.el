@@ -3985,7 +3985,6 @@
 "voice-chat"
 "void-rogue"
 "voxatron"
-"vr"
 "vulture"
 "vvvvvv"
 "waiting-in-line-3d"

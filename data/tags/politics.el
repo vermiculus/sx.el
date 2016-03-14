@@ -114,7 +114,6 @@
 "historiography"
 "history"
 "homosexuality"
-"house"
 "human-development"
 "human-rights"
 "hunting"

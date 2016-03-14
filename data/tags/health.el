@@ -24,7 +24,6 @@
 "anticoagulation"
 "anticonvulsants"
 "antidepressants"
-"antihistamines"
 "anus"
 "anxiety-disorders"
 "arteries"
