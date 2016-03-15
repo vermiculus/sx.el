@@ -117,6 +117,7 @@
 "recent-activity"
 "recommendations"
 "removal"
+"reopen-request"
 "reputation"
 "resource-questions"
 "retag-request"

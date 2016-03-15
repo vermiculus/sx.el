@@ -931,6 +931,7 @@
 "pagenote"
 "pagesel"
 "pageslts"
+"pagestyle"
 "pandoc"
 "paper"
 "paper-size"

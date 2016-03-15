@@ -126,6 +126,7 @@
 "ldap"
 "legacy-pack"
 "licensing"
+"link"
 "link-info"
 "link-resolver"
 "linking"

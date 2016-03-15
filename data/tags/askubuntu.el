@@ -1264,7 +1264,6 @@
 "input-devices"
 "input-language"
 "input-method"
-"input-sources"
 "inputrc"
 "inspiron"
 "instagram"

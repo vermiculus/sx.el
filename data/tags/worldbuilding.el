@@ -120,6 +120,7 @@
 "family"
 "fantasy"
 "fantasy-races"
+"far-future"
 "faster-than-light"
 "fauna"
 "female"

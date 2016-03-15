@@ -344,6 +344,7 @@
 "javascript"
 "job"
 "json-rpc"
+"key-collision"
 "key-selling-points"
 "keypool"
 "langerhans-wallet"

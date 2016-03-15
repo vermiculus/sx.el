@@ -290,7 +290,6 @@
 "get-the-id"
 "get-the-tags"
 "get-the-term-list"
-"get-the-terms"
 "get-the-title"
 "get-theme-mod"
 "get-user-count"

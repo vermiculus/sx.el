@@ -959,6 +959,7 @@
 "salesforce-crm"
 "salesforce-for-outlook"
 "salesforce-id"
+"salesforce-login"
 "salesforce-orders"
 "salesforce-sdk-android"
 "salesforce-sdk-hybrid"

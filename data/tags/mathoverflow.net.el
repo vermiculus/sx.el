@@ -701,7 +701,6 @@
 "isotropic-submanifolds"
 "it.information-theory"
 "iterated-integral"
-"iterated-root"
 "iwasawa-theory"
 "j-invariant"
 "jacobian-conjecture"

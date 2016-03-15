@@ -218,7 +218,6 @@
 "dnd-3.5"
 "dnd-3.5e"
 "dnd-3e"
-"dnd-4"
 "dnd-4.0"
 "dnd-4.0-essentials"
 "dnd-4e"
