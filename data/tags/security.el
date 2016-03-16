@@ -265,6 +265,7 @@
 "enigmail"
 "entropy"
 "enumeration"
+"environment-variables"
 "error-handling"
 "ethernet"
 "ethics"

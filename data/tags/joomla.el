@@ -225,6 +225,7 @@
 "permissions"
 "phocagallery"
 "php"
+"php7"
 "phpmyadmin"
 "plugin"
 "plugin-events"

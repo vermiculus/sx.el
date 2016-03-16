@@ -462,7 +462,6 @@
 "h.264"
 "h264"
 "hacking"
-"hackintosh"
 "handoff"
 "handwriting"
 "hang"

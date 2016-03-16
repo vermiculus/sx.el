@@ -23,7 +23,6 @@
 "antivirus"
 "apache"
 "api"
-"apple"
 "apple-watch"
 "archiving"
 "arm"

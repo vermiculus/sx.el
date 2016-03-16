@@ -48,6 +48,7 @@
 "computer-arithmetic"
 "computer-vision"
 "comsol"
+"conceptual-model"
 "condition-number"
 "conditioning"
 "conjugate-gradient"

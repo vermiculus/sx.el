@@ -56,7 +56,6 @@
 "epic-cycle"
 "epic-poetry"
 "erinyes"
-"ethymology"
 "etymology"
 "faerie"
 "fairies"

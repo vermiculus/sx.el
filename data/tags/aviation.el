@@ -421,7 +421,6 @@
 "landing-gear"
 "lapl"
 "laser-illumination"
-"law"
 "lba"
 "liability"
 "licence"

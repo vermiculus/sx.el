@@ -45,6 +45,7 @@
 "e-reader"
 "ebook-management"
 "ebook-readers"
+"economics"
 "editing"
 "eink"
 "embedding"

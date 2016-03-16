@@ -1203,6 +1203,7 @@
 "samsung-galaxy-s-5"
 "samsung-galaxy-s-5-mini"
 "samsung-galaxy-s-6"
+"samsung-galaxy-s-7-edge"
 "samsung-galaxy-s-advance"
 "samsung-galaxy-s-duos"
 "samsung-galaxy-s-duos-2"

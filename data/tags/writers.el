@@ -228,6 +228,7 @@
 "submission-tracking"
 "submissions"
 "submitting-work"
+"subplot"
 "suspense"
 "symbolism"
 "synopsis"

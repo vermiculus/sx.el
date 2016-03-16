@@ -644,7 +644,6 @@
 "tradition"
 "translation"
 "travelling"
-"truth"
 "tv"
 "udhiyyah"
 "uloom-al-hadith"

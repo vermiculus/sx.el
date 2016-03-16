@@ -48,6 +48,7 @@
 "online-resources"
 "openid"
 "possible-duplicates"
+"production"
 "profile-page"
 "proofreading"
 "quality"

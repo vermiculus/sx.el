@@ -143,6 +143,7 @@
 "matlab"
 "max232"
 "max7219"
+"mcu"
 "mechanical"
 "mega"
 "memory-usage"

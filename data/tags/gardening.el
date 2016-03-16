@@ -233,6 +233,7 @@
 "lemons"
 "lettuce"
 "leylandii"
+"lichen"
 "light"
 "lilac"
 "lily"

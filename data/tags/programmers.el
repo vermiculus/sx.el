@@ -930,6 +930,7 @@
 "manual-testing"
 "manuals"
 "map"
+"mapping"
 "mariadb"
 "market"
 "market-share"

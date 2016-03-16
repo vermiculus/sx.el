@@ -274,6 +274,7 @@
 "shaiva-siddhanta"
 "shaivism"
 "shakthi"
+"shakti"
 "shakuni"
 "shani"
 "shastras"

@@ -529,6 +529,7 @@
 "kino-no-tabi"
 "kinos-journey"
 "kiseijuu-sei-no-kakuritsu"
+"kishin-douji-zenki"
 "kissxsis"
 "kitakubu-katsudou-kiroku"
 "kite"
