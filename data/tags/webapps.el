@@ -99,7 +99,6 @@
 "blogspot"
 "book"
 "bookmarklet"
-"bookmarklet-rec"
 "bookmarks"
 "books"
 "bot"

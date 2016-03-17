@@ -35,6 +35,7 @@
 "bing"
 "bing-vision"
 "blu-win-hd"
+"blu-win-jr"
 "bluetooth"
 "brightness"
 "browser"

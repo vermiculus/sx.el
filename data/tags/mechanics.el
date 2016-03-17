@@ -329,6 +329,7 @@
 "evap"
 "exhaust"
 "expedition"
+"expidition"
 "explorer"
 "express-van"
 "exterior"

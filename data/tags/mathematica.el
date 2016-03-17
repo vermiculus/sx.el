@@ -448,6 +448,7 @@
 "packages"
 "packed-arrays"
 "packing"
+"paclets"
 "padding"
 "pagelayout"
 "palettes"

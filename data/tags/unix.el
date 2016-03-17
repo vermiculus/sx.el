@@ -1933,6 +1933,7 @@
 "system-recovery"
 "system-v"
 "systemd"
+"systemd-boot"
 "systemd-networkd"
 "systemd-nspawn"
 "sysvinit"

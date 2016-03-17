@@ -36,6 +36,7 @@
 "collecting"
 "collegiate"
 "competitive-eating"
+"copa-america"
 "cricket"
 "cricket-world-cup"
 "cross-training"

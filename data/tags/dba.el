@@ -561,6 +561,7 @@
 "olap"
 "oledb"
 "online"
+"online-ddl"
 "ontology"
 "openldap"
 "openrowset"

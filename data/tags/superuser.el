@@ -2141,6 +2141,7 @@
 "hp-officejet"
 "hp-pavilion"
 "hp-photosmart"
+"hp-proliant"
 "hp-ux"
 "hpc"
 "hplip"

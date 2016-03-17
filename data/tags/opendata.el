@@ -15,6 +15,7 @@
 "barcodes"
 "belgium"
 "best-practice"
+"bibliometrics"
 "big-data"
 "biology"
 "bittorrent"

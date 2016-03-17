@@ -197,6 +197,7 @@
 "couchdb"
 "covariance"
 "cql"
+"cron"
 "cross-browser"
 "crud"
 "crypto++"

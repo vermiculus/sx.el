@@ -769,6 +769,7 @@
 "rotate"
 "rotation"
 "rpg"
+"rpg-maker"
 "rpg-maker-vx"
 "rpg-maker-xp"
 "rts"

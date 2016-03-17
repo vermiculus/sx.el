@@ -91,6 +91,7 @@
 "on-topic"
 "openid"
 "poll"
+"privacy"
 "profile-page"
 "purchasing"
 "question-title"

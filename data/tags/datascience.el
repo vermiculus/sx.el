@@ -28,6 +28,7 @@
 "c"
 "career"
 "categorical-data"
+"cca"
 "chess"
 "churn"
 "classification"

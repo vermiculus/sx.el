@@ -3649,6 +3649,7 @@
 "wsus"
 "wsus-offline"
 "www-data"
+"wyse"
 "wysiwyg"
 "x-forwarded-for"
 "x-frame-options"

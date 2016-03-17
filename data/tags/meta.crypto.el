@@ -55,6 +55,7 @@
 "policy"
 "privileges"
 "profile-page"
+"promotion"
 "question-quality"
 "questions"
 "recent-activity"

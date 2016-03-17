@@ -553,7 +553,6 @@
 "finfet"
 "fir"
 "firmware"
-"firware"
 "flag"
 "flash"
 "flash-memories"

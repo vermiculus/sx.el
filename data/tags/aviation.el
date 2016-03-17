@@ -558,7 +558,6 @@
 "return-to-service"
 "reynolds-number"
 "robinson-r44"
-"roll"
 "rotary-wing"
 "rotax-912"
 "rotorcraft"

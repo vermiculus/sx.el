@@ -460,7 +460,6 @@
 "nose"
 "nucleic-acids"
 "nutrition"
-"obstetrics"
 "odour"
 "olfaction"
 "oogenesis"

@@ -8,6 +8,7 @@
 "bean-to-cup"
 "bean-varieties"
 "beans"
+"blade-grinder"
 "brewing"
 "brewing-process"
 "bulletproof"

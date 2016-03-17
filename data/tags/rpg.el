@@ -303,6 +303,7 @@
 "fate-core"
 "fate-fae"
 "fate-points"
+"fear"
 "fear-itself"
 "feat-qualifications"
 "feats"
