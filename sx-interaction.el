@@ -227,8 +227,15 @@ Element can be a question, answer, or comment."
         (org-store-link-props :type 'http
                               :link .link
                               :description .title)))))
+
 (eval-after-load "org"
-  '(add-to-list 'org-store-link-functions #'sx-org-get-link))
+  '(cond
+    ((fboundp 'org-link-set-parameters)
+     (org-link-set-parameters
+      "sx" :store #'sx-org-get-link))
+    ((boundp 'org-store-link-functions)
+     (add-to-list 'org-store-link-functions
+                  #'sx-org-get-link))))
 
 
 ;;; Displaying
