@@ -188,6 +188,7 @@ If DATA is a question, also mark it as read."
         (sx-question--mark-read data)
         (sx--maybe-update-display)))))
 
+;;;###autoload
 (defun sx-open-link (link &optional _)
   "Visit element given by LINK inside Emacs.
 Element can be a question, answer, or comment."
