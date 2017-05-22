@@ -572,7 +572,7 @@ font-locks code-blocks according to mode."
   "Return non-nil if point is inside code.
 This can be inline Markdown code or a Markdown code-block."
   (save-match-data
-    (or (markdown-code-at-point-p)
+    (or (markdown-inline-code-at-point-p)
         (save-excursion
           (sx-question-mode--skip-and-fontify-pre 'dont-fontify)))))
 
