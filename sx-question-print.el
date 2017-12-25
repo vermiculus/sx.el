@@ -212,6 +212,13 @@ type is not available, images won't work."
   :type 'integer
   :group 'sx-question-mode)
 
+(defvar sx-question-mode-after-print-hook nil
+  "Hook run after the question has been printed.
+The hook functions are called without arguments with
+the `sx-question-mode' buffer current.
+The special variable `inhibit-read-only' is t while the hook functions run.
+This hook can be used for special formatting of parts of the question buffer.")
+
 
 ;;; Functions
 ;;;; Printing the general structure
@@ -240,6 +247,7 @@ QUESTION must be a data structure returned by `json-read'."
            (cl-sort .answers sx-question-mode-answer-sort-function))))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
+  (run-hooks 'sx-question-mode-after-print-hook)
   ;; Go up
   (goto-char (point-min))
   (sx-question-mode-next-section))
