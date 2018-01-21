@@ -525,7 +525,7 @@ that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
   (sx-question-mode--display
-   (tabulated-list-get-id) 
+   (tabulated-list-get-id)
    (sx-question-list--create-question-window)))
 
 (defun sx-question-list--create-question-window ()
