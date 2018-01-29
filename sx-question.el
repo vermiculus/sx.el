@@ -1,6 +1,6 @@
 ;;; sx-question.el --- question logic                -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Sean Allred
+;; Copyright (C) 2014-2018  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
 

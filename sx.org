@@ -27,7 +27,7 @@
 This manual is for SX (version {{{version}}}, {{{updated}}}), a
 StackExchange client for Emacs.
 
-Copyright © 2014 Free Software Foundation, Inc.
+Copyright © 2014-2018 Free Software Foundation, Inc.
 
 #+BEGIN_QUOTE
 Permission is granted to copy, distribute and/or modify this

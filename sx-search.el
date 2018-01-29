@@ -1,6 +1,6 @@
 ;;; sx-search.el --- searching for questions         -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Artur Malabarba
+;; Copyright (C) 2014-2018  Artur Malabarba
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 
@@ -107,7 +107,7 @@ prefix argument, the user is asked for everything."
        (setq excluded-tags
              (sx-tag-multiple-read site "Excluded tags (optional)")))
      (list site query tags excluded-tags)))
-  
+
   ;; Here starts the actual function
   (sx-initialize)
   (with-current-buffer (get-buffer-create "*sx-search-result*")

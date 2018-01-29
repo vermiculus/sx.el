@@ -1,6 +1,6 @@
 ;;; sx-question-print.el --- populating the question-mode buffer with content  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Artur Malabarba
+;; Copyright (C) 2014-2018  Artur Malabarba
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 
@@ -484,7 +484,7 @@ font-locks code-blocks according to mode."
          "\f\\|[ \t]*$\\|[ \t]*[*+-] \\|[ \t]*[0-9]+\\.[ \t]\\|[ \t]*: ")
         (paragraph-separate "\\(?:[ \t\f]*\\|.*  \\)$")
         (adaptive-fill-first-line-regexp "\\`[ \t]*>[ \t]*?\\'")
-        (adaptive-fill-function #'markdown-adaptive-fill-function)) 
+        (adaptive-fill-function #'markdown-adaptive-fill-function))
     (save-restriction
       (narrow-to-region beg end)
       ;; html tags can span many paragraphs, so we handle them

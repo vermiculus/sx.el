@@ -1,6 +1,6 @@
 ;;; sx-networks.el --- user network information      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Sean Allred
+;; Copyright (C) 2014-2018  Sean Allred
 
 ;; Author: Sean Allred <code@seanallred.com>
 
@@ -78,7 +78,7 @@ If cache is not available, retrieve current data."
   "Update user information.
 Sets cache and then uses `sx-network--get-associated' to update
 the variables."
-  (setq sx-network--user-information 
+  (setq sx-network--user-information
         (sx-method-call 'me
           :submethod 'associated
           :keywords '((types . (main_site meta_site)))

@@ -1,6 +1,6 @@
 ;;; sx-question-list.el --- major-mode for navigating questions list  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Artur Malabarba
+;; Copyright (C) 2014-2018  Artur Malabarba
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 
@@ -206,7 +206,7 @@ This variable gets reset to 0 before every refresh.
 It should be used by `sx-question-list--next-page-function'.")
 (make-variable-buffer-local 'sx-question-list--pages-so-far)
 
-(defvar sx-question-list--refresh-function nil 
+(defvar sx-question-list--refresh-function nil
   "Function used to refresh the list of questions to be displayed.
 Used by `sx-question-list-mode', this is a function, called with
 no arguments, which returns a list questions to be displayed,
@@ -525,7 +525,7 @@ that may currently be there."
   (interactive "p")
   (sx-question-list-next n)
   (sx-question-mode--display
-   (tabulated-list-get-id) 
+   (tabulated-list-get-id)
    (sx-question-list--create-question-window)))
 
 (defun sx-question-list--create-question-window ()

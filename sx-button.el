@@ -1,6 +1,6 @@
 ;;; sx-button.el --- defining buttons                -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2014  Artur Malabarba
+;; Copyright (C) 2014-2018  Artur Malabarba
 
 ;; Author: Artur Malabarba <bruce.connor.am@gmail.com>
 
@@ -93,7 +93,7 @@ usually part of a code-block."
   ;; Buttons receive markers.
   (when (markerp text-or-marker)
     (setq majormode (get-text-property text-or-marker 'sx-mode))
-    (unless (setq text-or-marker 
+    (unless (setq text-or-marker
                   (get-text-property text-or-marker 'sx-button-copy))
       (sx-message "Nothing of interest here.")))
   (with-current-buffer (pop-to-buffer (generate-new-buffer
@@ -117,9 +117,9 @@ usually part of a code-block."
 
 ;;; Help-echo definitions
 (defconst sx-button--help-echo
-  (concat "mouse-1, RET" 
+  (concat "mouse-1, RET"
           (propertize ": %s -- " 'face 'minibuffer-prompt)
-          "w" 
+          "w"
           (propertize ": copy %s" 'face 'minibuffer-prompt))
   "Base help-echo on which others can be written.")
 
