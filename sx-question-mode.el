@@ -53,11 +53,11 @@ Common values for this variable are `pop-to-buffer' and `switch-to-buffer'."
 
 (defun sx-question-mode--get-window ()
   "Return a window displaying a question, or nil."
-  (car-safe
-   (cl-member-if
-    (lambda (x) (with-selected-window x
-             (derived-mode-p 'sx-question-mode)))
-    (window-list nil 'never nil))))
+  (get-window-with-predicate
+   (lambda (win)
+     (with-selected-window win
+       (derived-mode-p 'sx-question-mode)))
+   'never))
 
 (defun sx-question-mode--display (data &optional window)
   "Display question given by DATA on WINDOW.
