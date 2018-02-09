@@ -48,7 +48,9 @@
 (defun sx-bug-report ()
   "File a bug report about the `sx' package."
   (interactive)
-  (browse-url "https://github.com/vermiculus/sx.el/issues/new"))
+  (if (featurep 'magithub)
+      (magithub-issue-new (magithub-repo "vermiculus/sx.el"))
+    (browse-url "https://github.com/vermiculus/sx.el/issues/new")))
 
 
 ;;; Site
