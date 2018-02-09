@@ -159,7 +159,8 @@ is an alist containing the elements:
                 (replace-regexp-in-string
                  "_" " " (or .item_type .notification_type)))
                (cond (.answer_id " on Answer at:")
-                     (.question_id " on:")))
+                     (.question_id " on:")
+                     (t ":")))
        'face 'font-lock-keyword-face)
       (list
        (concat (sx-time-since .creation_date)
@@ -168,14 +169,15 @@ is an alist containing the elements:
       (list
        (propertize
         " " 'display
-        (concat "\n  " (propertize .title 'face 'sx-question-list-date) "\n"
+        (concat "\n  " (propertize (or .title "") 'face 'sx-question-list-date) "\n"
+              (when .body
                 (let ((col fill-column))
                   (with-temp-buffer
                     (setq fill-column col)
                     (insert "  " .body)
                     (fill-region (point-min) (point-max))
                     (buffer-string))))
-        'face 'default))))))
+        'face 'default)))))))
 
 
 ;;; Entry commands
