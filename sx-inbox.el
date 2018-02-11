@@ -56,6 +56,12 @@
   :type 'integer
   :group 'sx)
 
+(defface sx-inbox-item-type
+  '((t :inherit font-lock-keyword-face))  "")
+
+(defface sx-inbox-item-type-unread
+  '((t :inherit font-lock-keyword-face :weight bold)) "")
+
 (defun sx-inbox-get (&optional notifications page keywords)
   "Get an array of inbox items for the current user.
 If NOTIFICATIONS is non-nil, query from `notifications' method,
@@ -161,7 +167,7 @@ is an alist containing the elements:
                (cond (.answer_id " on Answer at:")
                      (.question_id " on:")
                      (t ":")))
-       'face 'font-lock-keyword-face)
+       'face (if .is_unread 'sx-inbox-item-type-unread 'sx-inbox-item-type))
       (list
        (concat (sx-time-since .creation_date)
                sx-question-list-ago-string)
@@ -176,8 +182,8 @@ is an alist containing the elements:
                     (setq fill-column col)
                     (insert "  " .body)
                     (fill-region (point-min) (point-max))
-                    (buffer-string))))
-        'face 'default)))))))
+                    (buffer-string))) "\n")
+        'face (if .is_unread 'bold 'default))))))))
 
 
 ;;; Entry commands
