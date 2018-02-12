@@ -278,7 +278,12 @@ likes."
        (sx-question-get-from-comment .site_par .comment_id) 'focus)
       (sx--find-in-buffer 'comment .comment_id))
      (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
+;     (sx-message "Viewing notifications is not yet implemented"))
+      (let ((start 0))
+       (while (string-match "\\(http[^\"]+\\)\"" .body start)
+         (setq .link (match-string 1 .body))
+         (setq start (match-end 0))))
+      (browse-url .link))
      (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
