@@ -62,6 +62,9 @@
 (defface sx-inbox-item-type-unread
   '((t :inherit font-lock-keyword-face :weight bold)) "")
 
+(defface sx-inbox-link
+  '((t :inherit link))  "")
+
 (defun sx-inbox-get (&optional notifications page keywords)
   "Get an array of inbox items for the current user.
 If NOTIFICATIONS is non-nil, query from `notifications' method,
@@ -175,14 +178,25 @@ is an alist containing the elements:
       (list
        (propertize " " 'display
         (concat "  " (propertize (or .title "") 'face 'sx-question-list-date) "\n"
-              (when .body
-                (let ((col fill-column))
-                  (with-temp-buffer
-                    (setq fill-column col)
-                    (insert "   " .body)
-                    (fill-region (point-min) (point-max))
-                    (buffer-string))))
-              "\n" ) 'face (if .is_unread 'bold 'default) ))))))
+          (when .body
+            (let (end-1 start-2 text)
+             (while (and
+                      (string-match "<a[^>]+>" .body)
+                      (setq end-1 (match-end 0))
+                      (string-match "</a[^>]*>" .body)
+                      (setq start-2 (match-beginning 0)))
+               (setq .body (replace-regexp-in-string "\\(<a[^<]+</a[^>]*>\\).*\\'"
+                             (setq text (substring .body end-1 start-2)) .body nil nil 1))
+               (when (string-match text .body)
+                 (add-face-text-property
+                   (match-beginning 0) (match-end 0) 'sx-inbox-link nil .body))))
+            (let ((col fill-column))
+              (with-temp-buffer
+                (setq fill-column col)
+                (insert "   " .body)
+                (fill-region (point-min) (point-max))
+                (buffer-string))))
+          "\n" ) 'face (if .is_unread 'bold 'default) ))))))
 
 
 ;;; Entry commands
