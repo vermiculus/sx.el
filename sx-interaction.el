@@ -47,6 +47,14 @@
 (require 'sx-cache)
 
 
+;;; defcustoms
+(defcustom sx-browser-function 'browse-url
+  "Name of function to be used to open links that are not yet
+supported by either the StackExchange API or by this package."
+  :type 'function
+  :group 'sx)
+
+
 ;;; Using data in buffer
 (defun sx--data-here (&optional type noerror)
   "Get the alist regarding object under point of type TYPE.
@@ -283,7 +291,7 @@ likes."
        (while (string-match "\\(http[^\"]+\\)\"" .body start)
          (setq .link (match-string 1 .body))
          (setq start (match-end 0))))
-      (browse-url .link))
+      (funcall sx-browser-function .link))
      (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
