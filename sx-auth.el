@@ -112,6 +112,9 @@ following privileges are requested:
 * no_expiry
     do not pester you to reauthorize again
 
+* private_info
+    TODO explanation.
+
 After authorization with StackExchange, the user is then
 redirected to a website managed by SX.  The access token required
 to use authenticated methods is included in the hash (which is
