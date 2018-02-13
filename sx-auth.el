@@ -131,8 +131,7 @@ parsed and displayed prominently on the page)."
                             no_expiry
                             private_info
                             write_access))
-                  (redirect_uri . ,(url-hexify-string
-                                    sx-auth-redirect-uri)))
+                  (redirect_uri . ,sx-auth-redirect-uri))
                 ","))))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
