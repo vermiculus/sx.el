@@ -57,10 +57,12 @@
   :group 'sx)
 
 (defface sx-inbox-item-type
-  '((t :inherit font-lock-keyword-face))  "")
+  '((t :inherit font-lock-keyword-face))  ""
+  :group 'sx)
 
 (defface sx-inbox-item-type-unread
-  '((t :inherit font-lock-keyword-face :weight bold)) "")
+  '((t :inherit font-lock-keyword-face :weight bold)) ""
+  :group 'sx)
 
 (defun sx-inbox-get (&optional notifications page keywords)
   "Get an array of inbox items for the current user.
