@@ -112,6 +112,9 @@ following privileges are requested:
 * no_expiry
     do not pester you to reauthorize again
 
+* private_info
+    TODO explanation.
+
 After authorization with StackExchange, the user is then
 redirected to a website managed by SX.  The access token required
 to use authenticated methods is included in the hash (which is
@@ -128,8 +131,7 @@ parsed and displayed prominently on the page)."
                             no_expiry
                             private_info
                             write_access))
-                  (redirect_uri . ,(url-hexify-string
-                                    sx-auth-redirect-uri)))
+                  (redirect_uri . ,sx-auth-redirect-uri))
                 ","))))
      (browse-url url)
      (read-string "Enter the access token displayed on the webpage: ")))
