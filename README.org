@@ -63,7 +63,7 @@ include:
 SX is now available on MELPA!  Both the stable release and the development
 version can be found there.  Install it via the Package Menu or just run
 #+BEGIN_SRC text
-M-x package-install RET sx RET=
+M-x package-install RET sx RET
 #+END_SRC
 
 ** Authenticating
