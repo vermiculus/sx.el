@@ -244,7 +244,7 @@ QUESTION must be a data structure returned by `json-read'."
     (mapc #'sx-question-mode--print-section
           (cl-remove-if
            #'sx--deleted-p
-           (cl-sort .answers sx-question-mode-answer-sort-function))))
+           (cl-sort (copy-sequence .answers) sx-question-mode-answer-sort-function))))
   (insert "\n\n                       ")
   (insert-text-button "Write an Answer" :type 'sx-button-answer)
   (run-hooks 'sx-question-mode-after-print-hook)
