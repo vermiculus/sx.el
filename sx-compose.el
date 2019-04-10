@@ -70,14 +70,14 @@ Is invoked between `sx-compose-before-send-hook' and
 
 (defconst sx-compose--question-headers
   (concat
-   #("Title: " 0 7 (intangible t read-only t rear-nonsticky t))
+   #("Title: " 0 7 (intangible t read-only nil rear-nonsticky t))
    "%s"
-   #("\n" 0 1 (read-only t))
-   #("Tags : " 0 7 (read-only t intangible t rear-nonsticky t))
+   #("\n" 0 1 (read-only nil))
+   #("Tags : " 0 7 (read-only nil intangible t rear-nonsticky t))
    "%s"
-   #("\n" 0 1 (read-only t rear-nonsticky t))
+   #("\n" 0 1 (read-only nil rear-nonsticky t))
    #("________________________________________\n"
-     0 41 (read-only t rear-nonsticky t intangible t
+     0 41 (read-only nil rear-nonsticky t intangible t
                      sx-compose-separator t))
    "\n")
   "Headers inserted when composing a new question.
