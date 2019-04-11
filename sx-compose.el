@@ -70,16 +70,17 @@ Is invoked between `sx-compose-before-send-hook' and
 
 (defconst sx-compose--question-headers
   (concat
-   #("Title: " 0 7 (intangible t read-only nil rear-nonsticky t))
+   #("Title: " 0 6 (read-only t cursor-intangible t ))
    "%s"
-   #("\n" 0 1 (read-only nil))
-   #("Tags : " 0 7 (read-only nil intangible t rear-nonsticky t))
+   #("\n" 0 1 (read-only t))
+   #("Tags : " 0 6 (read-only t cursor-intangible t ))
    "%s"
-   #("\n" 0 1 (read-only nil rear-nonsticky t))
-   #("________________________________________\n"
-     0 41 (read-only nil rear-nonsticky t intangible t
-                     sx-compose-separator t))
-   "\n")
+   #("\n" 0 1 (read-only t ))
+   #("________________________________________\n" 0 41
+     (read-only t cursor-intangible t sx-compose-separator t rear-nonsticky t)
+     )
+   "\n"
+   )
   "Headers inserted when composing a new question.
 Used by `sx-compose-create'.")
 
@@ -121,6 +122,7 @@ variable should also be set to enable more functionality.
 
 \\<sx-compose-mode>
 \\{sx-compose-mode}"
+  (cursor-intangible-mode)
   (setq header-line-format sx-compose--header-line)
   (add-hook 'sx-compose-after-send-functions
     #'sx-compose-quit nil t)
