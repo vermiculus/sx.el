@@ -158,13 +158,13 @@ This defaults to `sx-request-response-get-items'.
 The full set of arguments is built with
 `sx-request--build-keyword-arguments', prepending
 `sx-request-api-key' to receive a higher quota. It will also
-include user's `access_token` if it is avaialble. This call is
+include user's `access_token` if it is available. This call is
 then resolved with `url-retrieve-synchronously' to a temporary
 buffer that it returns.  The headers are then stripped using a
 search a blank line (\"\\n\\n\").  The main body of the response
 is then tested with `sx-encoding-gzipped-buffer-p' for
 compression.  If it is compressed, `sx-request-unzip-program' is
-called to uncompress the response.  The uncompressed respons is
+called to uncompress the response.  The uncompressed response is
 then read with `json-read-from-string'.
 
 `sx-request-remaining-api-requests' is updated appropriately and
