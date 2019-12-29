@@ -551,7 +551,7 @@ SITE is a string, indicating where the question will be posted."
 DATA is a question alist. Interactively, it is guessed from
 context at point. "
   ;; If the user tries to answer a question that's not viewed, he
-  ;; probaby hit the button by accident.
+  ;; probably hit the button by accident.
   (interactive
    (list (sx--error-if-unread (sx--data-here 'question))))
   (sx-ensure-authentication)

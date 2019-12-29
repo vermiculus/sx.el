@@ -101,7 +101,7 @@ Used by `sx-compose-create'.")
 (make-variable-buffer-local 'sx-compose--is-question-p)
 
 (defvar sx-compose--site nil
-  "Site which the curent compose buffer belongs to.")
+  "Site which the current compose buffer belongs to.")
 (make-variable-buffer-local 'sx-compose--site)
 
 

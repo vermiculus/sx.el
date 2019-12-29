@@ -1,4 +1,4 @@
-;;; sx-bot.el --- Functions for automated maintanence  -*- lexical-binding: t; -*-
+;;; sx-bot.el --- Functions for automated maintenance  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014-2018  Artur Malabarba
 

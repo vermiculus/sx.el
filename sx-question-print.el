@@ -354,7 +354,7 @@ DATA can represent a question or an answer."
           (insert "\n")
           (sx-question-mode--insert-markdown .body_markdown)
           (insert "\n" sx-question-mode-separator))
-        ;; Clean up commments manually deleted.  The `append' call is
+        ;; Clean up comments manually deleted.  The `append' call is
         ;; to ensure `comments' is a list and not a vector.
         (let ((comments (cl-remove-if #'sx--deleted-p .comments)))
           (when comments
@@ -374,7 +374,7 @@ DATA can represent a question or an answer."
                 ;; be upvoted too).
                 (mapc #'sx-question-mode--print-comment comments))
               ;; If there are comments, we want part of this margin to go
-              ;; inside them, so the button get's placed beside the
+              ;; inside them, so the button gets placed beside the
               ;; "Comments" header when you hide them.
               (insert "         ")))
           ;; If there are no comments, we have to add this margin here.
