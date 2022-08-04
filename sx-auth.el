@@ -148,7 +148,7 @@ If it has `auth-required' SUBMETHODs, or no submethod, return t."
         ;; eligible, in which case we only need to check the `car'.
         (sub-head (if (listp submethod)
                       (car submethod))))
-    (lwarn " sx-auth method" :debug "Method %s requires auth" method-auth)
+    (lwarn '(sx-auth method) :debug "Method %s requires auth" method-auth)
     (and method-auth
          (or
           ;; All submethods require auth.
@@ -175,7 +175,7 @@ removed those properties."
                                                   sx-auth-filter-auth)))
                                        (or incl-filter filter))))
          clean-filter out-filter)
-    (lwarn "sx-auth filter" :debug "Filter: %S" filter)
+    (lwarn '(sx-auth filter) :debug "Filter: %S" filter)
     ;; Auth-filters is the filters that are issues
     (when auth-filters
       (setq clean-filter
@@ -186,7 +186,7 @@ removed those properties."
         (setq out-filter
               (cons clean-filter rest-filter))
       (setq out-filter clean-filter))
-    (lwarn "sx-auth filter2" :debug "Filter property %s requires auth. %S"
+    (lwarn '(sx-auth filter2) :debug "Filter property %s requires auth. %S"
            auth-filters out-filter)
     out-filter))
 

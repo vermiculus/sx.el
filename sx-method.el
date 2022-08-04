@@ -114,7 +114,7 @@ Return the entire response as a complex alist."
          (cond
           ((eq get-all t) #'sx-request-all-stop-when-no-more)
           (t get-all))))
-    (lwarn "sx-call-method" :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
+    (lwarn '(sx-call-method) :debug "A: %S T: %S. M: %S,%s. F: %S" (equal 'warn auth)
            access-token method-auth full-method filter-auth)
     (unless access-token
       (cond
