@@ -207,7 +207,8 @@ With prefix NOTIFICATIONS, list notifications instead of inbox."
       (pop-to-buffer sx-inbox--buffer)
       (enlarge-window
        (- (+ fill-column 4) (window-width))
-       'horizontal))))
+       'horizontal)
+      (set-window-dedicated-p w t))))
 
 ;;;###autoload
 (defun sx-inbox-notifications ()
