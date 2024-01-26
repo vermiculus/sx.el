@@ -170,7 +170,7 @@ is an alist containing the elements:
        'face (if .is_unread 'sx-inbox-item-type-unread 'sx-inbox-item-type))
       (list
        (concat (sx-time-since .creation_date)
-               sx-question-list-ago-string)
+               sx-question-list-ago-string "\n")
        'face 'sx-question-list-date)
       (list
        (propertize " " 'display
