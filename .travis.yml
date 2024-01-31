@@ -6,27 +6,19 @@ branches:
     - data
 
 env:
-  - EVM_EMACS=emacs-24.1-bin
-  - EVM_EMACS=emacs-24.2-bin
-  - EVM_EMACS=emacs-24.3-bin
-  - EVM_EMACS=emacs-24.4-bin
+  - EMACS_24_X=1
+  - EMACS_24_X=2
+  - EMACS_24_X=3
+  - EMACS_24_X=4
 
 before_install:
-  - sudo mkdir /usr/local/evm
-  - sudo chown travis:travis /usr/local/evm
-  - curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
-  - export PATH="/home/travis/.evm/bin:$PATH"
-  - evm install $EVM_EMACS --skip --use
-  - curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
-  - export PATH="/home/travis/.cask/bin:$PATH"
-  - cask info
-  - cask install
-  - which emacs
+  - sudo make travis-prepare
   - emacs --version
   - cask --version
+  - sudo make travis-install
 
 script:
-  - emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
+  - make $EMACS_24_X
   
 notifications:
   webhooks:
