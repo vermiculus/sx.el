@@ -28,6 +28,9 @@
 ;;; Code:
 (require 'tabulated-list)
 
+(declare-function magithub-issue-new "magithub-issue-post")
+(declare-function magithub-repo "magithub-core")
+
 (defconst sx-version "0.3" "Version of the `sx' package.")
 
 (defgroup sx nil

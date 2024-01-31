@@ -10,6 +10,7 @@ env:
   - EVM_EMACS=emacs-24.2-bin
   - EVM_EMACS=emacs-24.3-bin
   - EVM_EMACS=emacs-24.4-bin
+  - EVM_EMACS=emacs-25.3-bin
 
 before_install:
   - sudo mkdir /usr/local/evm
@@ -26,6 +27,7 @@ before_install:
   - cask --version
 
 script:
+  - emacs  --eval "(setq byte-compile-error-on-warn (>= emacs-major-version 25))" -L .  --batch -f batch-byte-compile sx*.el
   - emacs --batch -L . -l ert -l test/tests.el -f ert-run-tests-batch-and-exit
   
 notifications:

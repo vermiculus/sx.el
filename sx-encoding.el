@@ -152,10 +152,8 @@ numbers identifying the gzip file format.
 
 See URL `http://www.gzip.org/zlib/rfc-gzip.html'."
   ;; Credit: http://emacs.stackexchange.com/a/2978
-  (let ((unidata (string-as-unibyte data)))
-    (when (<= 2 (length unidata))
-      (equal (substring unidata 0 2)
-             (unibyte-string 31 139)))))
+  (equal (substring (encode-coding-string data 'no-conversion) 0 2)
+         (unibyte-string 31 139)))
 
 (defun sx-encoding-gzipped-buffer-p (buffer)
   "Check if BUFFER is gzip-compressed.

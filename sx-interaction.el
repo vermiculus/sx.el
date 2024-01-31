@@ -38,6 +38,7 @@
 ;;; Code:
 (eval-when-compile
   '(require 'cl-lib))
+(declare-function org-store-link-props "org")
 
 (require 'sx)
 (require 'sx-question)
@@ -88,7 +89,7 @@ REST is passed to `sx--data-here'."
     (apply #'sx--data-here rest)))
 
 (defun sx--error-if-unread (data)
-  "Throw a user-error if DATA is an unread question.
+  "Throw a `user-error' if DATA is an unread question.
 If it's not a question, or if it is read, return DATA."
   ;; If we found a question, we may need to check if it's read.
   (if (and (assoc 'title data)
@@ -122,13 +123,13 @@ be a question matching SITE and ID."
                (sx-question-mode-refresh 'no-update)))))))
 
 (defun sx--copy-data (from to)
-  "Copy all fields of alist FORM onto TO.
+  "Copy all fields of alist FROM onto TO.
 Only fields contained in TO are copied."
   (setcar to (car from))
   (setcdr to (cdr from)))
 
 (defun sx-ensure-authentication ()
-  "Signal user-error if the user refuses to authenticate.
+  "Signal `user-error' if the user refuses to authenticate.
 Note that `sx-method-call' already does authentication checking.
 This function is meant to be used by commands that don't
 immediately perform method calls, such as `sx-ask'.  This way,
@@ -137,7 +138,7 @@ the trouble of composing an entire question."
   (unless (sx-cache-get 'auth)
     (if (y-or-n-p "This command requires authentication, would you like to authenticate? ")
         (sx-authenticate)
-      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again."))))
+      (sx-user-error "This command requires authentication, please run `M-x sx-authenticate' and try again"))))
 
 (defmacro sx--make-update-callback (&rest body)
   "Return a function that runs BODY and updates display.
@@ -172,7 +173,7 @@ argument passed to the function.  Then,
 DATA can be a question, answer, or comment. Interactively, it is
 derived from point position.
 
-If copy-as-kill is non-nil, do not call `browse-url'.
+If COPY-AS-KILL is non-nil, do not call `browse-url'.
 Instead, copy the link as a new kill with `kill-new'.
 Interactively, this is specified with a prefix argument.
 
@@ -245,7 +246,7 @@ Element can be a question, answer, or comment."
 Interactively, display object under point. Object can be a
 question, an answer, or an inbox_item.
 
-This is meant for interactive use. In lisp code, use
+This is meant for interactive use. In Lisp code, use
 object-specific functions such as `sx-display-question' and the
 likes."
   (interactive (list (sx--data-here)))
@@ -549,7 +550,7 @@ SITE is a string, indicating where the question will be posted."
 (defun sx-answer (data)
   "Start composing an answer for question given by DATA.
 DATA is a question alist. Interactively, it is guessed from
-context at point. "
+context at point."
   ;; If the user tries to answer a question that's not viewed, he
   ;; probably hit the button by accident.
   (interactive

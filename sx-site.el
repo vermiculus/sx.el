@@ -52,6 +52,7 @@
   "List of favorite sites.
 Each entry is a string corresponding to a single site's
 api_site_parameter."
+  :type '(repeat string)
   :group 'sx)
 
 (defun sx-site-get-api-tokens ()
