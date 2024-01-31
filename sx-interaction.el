@@ -47,6 +47,14 @@
 (require 'sx-cache)
 
 
+;;; defcustoms
+(defcustom sx-browser-function 'browse-url
+  "Name of function to be used to open links that are not yet
+supported by either the StackExchange API or by this package."
+  :type 'function
+  :group 'sx)
+
+
 ;;; Using data in buffer
 (defun sx--data-here (&optional type noerror)
   "Get the alist regarding object under point of type TYPE.
@@ -278,7 +286,12 @@ likes."
        (sx-question-get-from-comment .site_par .comment_id) 'focus)
       (sx--find-in-buffer 'comment .comment_id))
      (.notification_type
-      (sx-message "Viewing notifications is not yet implemented"))
+;     (sx-message "Viewing notifications is not yet implemented"))
+      (let ((start 0))
+       (while (string-match "\\(http[^\"]+\\)\"" .body start)
+         (setq .link (match-string 1 .body))
+         (setq start (match-end 0))))
+      (funcall sx-browser-function .link))
      (.item_type (sx-open-link .link)))))
 
 (defun sx-display-question (&optional data focus window)
